@@ -102,6 +102,13 @@ namespace Cureos.Measurables
             return mAmount.CompareTo(other.mAmount);
         }
 
+        /// <summary>
+        /// Returns the fully qualified type name of this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.String"/> containing a fully qualified type name.
+        /// </returns>
+        /// <filterpriority>2</filterpriority>
         public override string ToString()
         {
             return string.Format("{0} {1}", mAmount, Unit).Trim();
