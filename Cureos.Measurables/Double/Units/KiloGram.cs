@@ -6,7 +6,7 @@ namespace Cureos.Measurables.Double.Units
     {
         #region FIELDS
 
-        public static readonly KiloGram Unit;
+        public static readonly KiloGram Instance;
 
         #endregion
 
@@ -14,10 +14,10 @@ namespace Cureos.Measurables.Double.Units
 
         static KiloGram()
         {
-            Unit = new KiloGram();
+            Instance = new KiloGram();
         }
 
-        private KiloGram() : base(UnitPrefix.Kilo, "g", Mass.Dimensions)
+        private KiloGram() : base(UnitPrefix.Kilo, "g", Mass.Dimension)
         {
             
         }

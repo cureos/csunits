@@ -2,23 +2,23 @@ using Cureos.Measurables.Dimensions;
 
 namespace Cureos.Measurables.Double.Units
 {
-    public sealed class Meter : ConcreteUnit
+    public sealed class Gray : ConcreteUnit
     {
         #region FIELDS
 
-        public static readonly Meter Instance;
+        public static readonly Gray Instance;
 
         #endregion
 
         #region CONSTRUCTORS
 
-        static Meter()
+        static Gray()
         {
-            Instance = new Meter();
+            Instance = new Gray();
         }
 
-        private Meter()
-            : base("m", Length.Dimension)
+        private Gray()
+            : base("Gy", AbsorbedDose.Dimension)
         {
 
         }

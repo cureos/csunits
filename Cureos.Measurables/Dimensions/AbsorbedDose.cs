@@ -2,7 +2,7 @@ using System;
 
 namespace Cureos.Measurables.Dimensions
 {
-    public static class Mass
+    public static class AbsorbedDose
     {
         #region FIELDS
 
@@ -12,9 +12,9 @@ namespace Cureos.Measurables.Dimensions
 
         #region CONSTRUCTORS
 
-        static Mass()
+        static AbsorbedDose()
         {
-            Dimension = new UnitDimension(0, 1, 0, 0, 0, 0, 0);
+            Dimension = new UnitDimension(2, 0, -2, 0, 0, 0, 0);
         }
 
         #endregion

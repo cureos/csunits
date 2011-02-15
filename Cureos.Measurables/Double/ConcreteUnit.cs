@@ -4,8 +4,9 @@ namespace Cureos.Measurables.Double
 {
     public class ConcreteUnit : IUnit<double>
     {
-        #region MEMBER VARIABLES
+        #region INSTANCE VARIABLES
 
+        private readonly string mSymbol;
         private readonly double mToBaseFactor;
         private readonly double mFromBaseFactor;
 
@@ -17,12 +18,12 @@ namespace Cureos.Measurables.Double
         /// Reference unit constructor for multiplicative unit conversion, conversion factor unity
         /// </summary>
         /// <param name="iSymbol">Unit symbol</param>
-        /// <param name="iDimensions">Unit dimensions in terms of SI base units</param>
-        public ConcreteUnit(string iSymbol, UnitDimensions iDimensions)
+        /// <param name="iDimension">Unit dimensions in terms of SI base units</param>
+        protected ConcreteUnit(string iSymbol, UnitDimension iDimension)
         {
-            Symbol = iSymbol;
+            mSymbol = iSymbol;
             ReferenceUnit = this;
-            Dimensions = iDimensions;
+            Dimension = iDimension;
             mToBaseFactor = mFromBaseFactor = 1.0;
             InitializeMultiplicativeConverters();
         }
@@ -32,14 +33,28 @@ namespace Cureos.Measurables.Double
         /// </summary>
         /// <param name="iPrefix">Unit prefix</param>
         /// <param name="iPrefixlessSymbol">Unit symbol excluding prefix</param>
-        /// <param name="iDimensions">Unit dimensions in terms of SI base units</param>
-        public ConcreteUnit(UnitPrefix iPrefix, string iPrefixlessSymbol, UnitDimensions iDimensions)
+        /// <param name="iDimension">Unit dimensions in terms of SI base units</param>
+        protected ConcreteUnit(UnitPrefix iPrefix, string iPrefixlessSymbol, UnitDimension iDimension)
         {
-            Symbol = iPrefix.GetUnitSymbol(iPrefixlessSymbol);
+            mSymbol = iPrefix.GetUnitSymbol(iPrefixlessSymbol);
             ReferenceUnit = this;
-            Dimensions = iDimensions;
+            Dimension = iDimension;
             mToBaseFactor = iPrefix.GetValue();
             mFromBaseFactor = iPrefix.GetInvertedValue();
+            InitializeMultiplicativeConverters();
+        }
+
+        /// <summary>
+        /// Reference unit constructor for multiplicative unit conversion, conversion factor unity
+        /// </summary>
+        /// <param name="iSymbol">Unit symbol</param>
+        /// <param name="iReferenceUnit">Reference unit</param>
+        protected ConcreteUnit(string iSymbol, IUnit iReferenceUnit)
+        {
+            mSymbol = iSymbol;
+            ReferenceUnit = iReferenceUnit;
+            Dimension = iReferenceUnit.Dimension;
+            mToBaseFactor = mFromBaseFactor = 1.0;
             InitializeMultiplicativeConverters();
         }
 
@@ -49,11 +64,11 @@ namespace Cureos.Measurables.Double
         /// <param name="iPrefix">Unit prefix</param>
         /// <param name="iPrefixlessSymbol">Unit symbol excluding prefix</param>
         /// <param name="iReferenceUnit">Reference unit</param>
-        public ConcreteUnit(UnitPrefix iPrefix, string iPrefixlessSymbol, IUnit<double> iReferenceUnit)
+        protected ConcreteUnit(UnitPrefix iPrefix, string iPrefixlessSymbol, IUnit iReferenceUnit)
         {
-            Symbol = iPrefix.GetUnitSymbol(iPrefixlessSymbol);
+            mSymbol = iPrefix.GetUnitSymbol(iPrefixlessSymbol);
             ReferenceUnit = iReferenceUnit;
-            Dimensions = iReferenceUnit.Dimensions;
+            Dimension = iReferenceUnit.Dimension;
             mToBaseFactor = iPrefix.GetValue();
             mFromBaseFactor = iPrefix.GetInvertedValue();
             InitializeMultiplicativeConverters();
@@ -65,11 +80,11 @@ namespace Cureos.Measurables.Double
         /// <param name="iSymbol">Unit symbol</param>
         /// <param name="iReferenceUnit">Reference unit</param>
         /// <param name="iToBaseFactor">Multiplicative factor for temporary unit conversion to base</param>
-        public ConcreteUnit(string iSymbol, IUnit<double> iReferenceUnit, double iToBaseFactor)
+        protected ConcreteUnit(string iSymbol, IUnit iReferenceUnit, double iToBaseFactor)
         {
-            Symbol = iSymbol;
+            mSymbol = iSymbol;
             ReferenceUnit = iReferenceUnit;
-            Dimensions = iReferenceUnit.Dimensions;
+            Dimension = iReferenceUnit.Dimension;
             mToBaseFactor = iToBaseFactor;
             mFromBaseFactor = 1.0 / iToBaseFactor;
             InitializeMultiplicativeConverters();
@@ -79,11 +94,9 @@ namespace Cureos.Measurables.Double
         
         #region Implementation of IUnit<double>
 
-        public string Symbol { get; private set; }
+        public IUnit ReferenceUnit { get; private set; }
 
-        public IUnit<double> ReferenceUnit { get; private set; }
-
-        public UnitDimensions Dimensions { get; private set; }
+        public UnitDimension Dimension { get; private set; }
 
         public Func<double, double> ToBase { get; private set; }
 
@@ -92,6 +105,11 @@ namespace Cureos.Measurables.Double
         #endregion
 
         #region METHODS
+
+        public override string ToString()
+        {
+            return mSymbol;
+        }
 
         private void InitializeMultiplicativeConverters()
         {

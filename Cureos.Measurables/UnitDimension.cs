@@ -2,11 +2,11 @@ using System;
 
 namespace Cureos.Measurables
 {
-    public sealed class UnitDimensions : Tuple<int, int, int, int, int, int, int>
+    public sealed class UnitDimension : Tuple<int, int, int, int, int, int, int>
     {
         #region CONSTRUCTORS
 
-        public UnitDimensions(int iLengthExponent, int iMassExponent, int iTimeExponent, int iElectricCurrentExponent, int iTemperatureExponent,
+        public UnitDimension(int iLengthExponent, int iMassExponent, int iTimeExponent, int iElectricCurrentExponent, int iTemperatureExponent,
             int iLuminousIntensityExponent, int iPlaneAngleExponent)
             : base(iLengthExponent, iMassExponent, iTimeExponent, iElectricCurrentExponent,
             iTemperatureExponent, iLuminousIntensityExponent, iPlaneAngleExponent)

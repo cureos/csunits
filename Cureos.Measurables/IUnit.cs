@@ -2,18 +2,23 @@
 
 namespace Cureos.Measurables
 {
-    /// <summary>
-    /// Common interface for physical units
-    /// </summary>
-    public interface IUnit<T>
+    public interface IUnit
     {
         #region PROPERTIES
 
-        string Symbol { get; }
+        IUnit ReferenceUnit { get; }
 
-        IUnit<T> ReferenceUnit { get; }
+        UnitDimension Dimension { get; }
 
-        UnitDimensions Dimensions { get; }
+        #endregion
+    }
+
+    /// <summary>
+    /// Common interface for physical units
+    /// </summary>
+    public interface IUnit<T> : IUnit
+    {
+        #region PROPERTIES
 
         Func<T, T> ToBase { get; }
 

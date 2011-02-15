@@ -40,19 +40,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dimensions\AbsorbedDose.cs" />
     <Compile Include="Dimensions\Length.cs" />
     <Compile Include="Dimensions\Mass.cs" />
     <Compile Include="Double\Measurable.cs" />
-    <Compile Include="Double\MeasurableExtensions.cs" />
     <Compile Include="Double\ConcreteUnit.cs" />
+    <Compile Include="Double\Units\CentiGray.cs" />
+    <Compile Include="Double\Units\CentiMeter.cs" />
     <Compile Include="Double\Units\Gram.cs" />
+    <Compile Include="Double\Units\Gray.cs" />
     <Compile Include="Double\Units\KiloGram.cs" />
     <Compile Include="Double\Units\Meter.cs" />
+    <Compile Include="Double\Units\MilliMeter.cs" />
     <Compile Include="IMeasurable.cs" />
     <Compile Include="IMeasurableArray.cs" />
     <Compile Include="IUnit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitDimensions.cs" />
+    <Compile Include="UnitDimension.cs" />
     <Compile Include="UnitPrefix.cs" />
     <Compile Include="UnitPrefixExtensions.cs" />
     <Compile Include="UnitReflection.cs" />

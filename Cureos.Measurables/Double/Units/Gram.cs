@@ -1,12 +1,10 @@
-using Cureos.Measurables.Dimensions;
-
 namespace Cureos.Measurables.Double.Units
 {
     public sealed class Gram : ConcreteUnit
     {
         #region FIELDS
 
-        public static readonly Gram Unit;
+        public static readonly Gram Instance;
 
         #endregion
 
@@ -14,11 +12,11 @@ namespace Cureos.Measurables.Double.Units
 
         static Gram()
         {
-            Unit = new Gram();
+            Instance = new Gram();
         }
 
         private Gram()
-            : base("g", Mass.Dimensions)
+            : base("g", KiloGram.Instance)
         {
 
         }

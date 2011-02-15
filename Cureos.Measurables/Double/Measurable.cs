@@ -28,14 +28,15 @@ namespace Cureos.Measurables.Double
 
         public U Unit
         {
-            get { return UnitReflection.GetUnitInstance<double, U>(); }
+            get { return UnitReflection.GetUnitInstance<U>(); }
         }
 
-        public IMeasurable<double, V> ConvertTo<V>(V iToUnit) where V : IUnit<double>
+        public IMeasurable<double, V> ConvertTo<V>() where V : IUnit<double>
         {
-            if (Unit.Dimensions.Equals(iToUnit.Dimensions))
+            V toUnit = UnitReflection.GetUnitInstance<V>();
+            if (Unit.Dimension.Equals(toUnit.Dimension))
             {
-                return new Measurable<V>(iToUnit.FromBase(Unit.ToBase(mAmount)));
+                return new Measurable<V>(toUnit.FromBase(Unit.ToBase(mAmount)));
             }
             throw new InvalidOperationException("Unit dimensions are not equal");
         }
@@ -50,7 +51,7 @@ namespace Cureos.Measurables.Double
 
         public override string ToString()
         {
-            return string.Format("{0} {1}", mAmount, Unit.Symbol);
+            return string.Format("{0} {1}", mAmount, Unit);
         }
 
         #endregion

@@ -10,6 +10,8 @@ namespace Tests.Cureos.Measurables.Double
     {
         #region Fields
 
+        private const double mkEps = 1.0e-7;
+
         private Measurable<KiloGram> _instance;
 
         #endregion
@@ -37,6 +39,21 @@ namespace Tests.Cureos.Measurables.Double
             const string expected = "3.5 kg";
             var actual = _instance.ToString();
             Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void ConvertTo_KiloGramToGram_Amount1000TimesGreater()
+        {
+            var expected = 1000.0 * _instance.Amount;
+            var actual = _instance.ConvertTo<Gram>().Amount;
+            Assert.AreEqual(expected, actual, mkEps);
+        }
+
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void Convert_KiloGramToMeter_Throws()
+        {
+            var throws = _instance.ConvertTo<Meter>();
         }
 
         #endregion

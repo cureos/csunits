@@ -6,6 +6,6 @@ namespace Cureos.Measurables
 
         U Unit { get; }
 
-        IMeasurable<T, V> ConvertTo<V>(V iToUnit) where V : IUnit<T>;
+        IMeasurable<T, V> ConvertTo<V>() where V : IUnit<T>;
     }
 }

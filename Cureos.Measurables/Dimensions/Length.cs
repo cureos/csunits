@@ -6,7 +6,7 @@ namespace Cureos.Measurables.Dimensions
     {
         #region FIELDS
 
-        public static readonly UnitDimensions Dimensions;
+        public static readonly UnitDimension Dimension;
 
         #endregion
 
@@ -14,7 +14,7 @@ namespace Cureos.Measurables.Dimensions
 
         static Length()
         {
-            Dimensions = new UnitDimensions(1, 0, 0, 0, 0, 0, 0);
+            Dimension = new UnitDimension(1, 0, 0, 0, 0, 0, 0);
         }
 
         #endregion
