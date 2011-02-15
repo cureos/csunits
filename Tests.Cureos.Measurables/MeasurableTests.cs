@@ -1,9 +1,9 @@
 using System;
-using Cureos.Measurables.Double;
-using Cureos.Measurables.Double.Units;
+using Cureos.Measurables;
+using Cureos.Measurables.Units;
 using NUnit.Framework;
 
-namespace Tests.Cureos.Measurables.Double
+namespace Tests.Cureos.Measurables
 {
     [TestFixture]
     public class MeasurableTests
@@ -51,7 +51,7 @@ namespace Tests.Cureos.Measurables.Double
 
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void Convert_KiloGramToMeter_Throws()
+        public void ConvertTo_KiloGramToMeter_Throws()
         {
             var throws = _instance.ConvertTo<Meter>();
         }

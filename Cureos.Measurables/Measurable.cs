@@ -1,27 +1,34 @@
 using System;
+#if SINGLE
+using AmountType = System.Single;
+#elif DECIMAL
+using AmountType = System.Decimal;
+#else
 
-namespace Cureos.Measurables.Double
+#endif
+
+namespace Cureos.Measurables
 {
-    public struct Measurable<U> : IMeasurable<double, U> where U : IUnit<double>
+    public struct Measurable<U> : IMeasurable<U> where U : IUnit
     {
         #region INSTANCE MEMBERS
 
-        private readonly double mAmount;
+        private readonly System.Double mAmount;
 
         #endregion
 
         #region CONSTRUCTORS
 
-        public Measurable(double iAmount)
+        public Measurable(System.Double iAmount)
         {
             mAmount = iAmount;
         }
 
         #endregion
 
-        #region Implementation of IMeasurable<double,out U>
+        #region Implementation of IMeasurable<out U>
 
-        public double Amount
+        public System.Double Amount
         {
             get { return mAmount; }
         }
@@ -31,7 +38,7 @@ namespace Cureos.Measurables.Double
             get { return UnitReflection.GetUnitInstance<U>(); }
         }
 
-        public IMeasurable<double, V> ConvertTo<V>() where V : IUnit<double>
+        public IMeasurable<V> ConvertTo<V>() where V : IUnit
         {
             V toUnit = UnitReflection.GetUnitInstance<V>();
             if (Unit.Dimension.Equals(toUnit.Dimension))
@@ -43,10 +50,6 @@ namespace Cureos.Measurables.Double
 
         #endregion
 
-        #region PROPERTIES
-
-        #endregion
-        
         #region METHODS
 
         public override string ToString()

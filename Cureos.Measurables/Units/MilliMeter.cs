@@ -1,4 +1,4 @@
-﻿namespace Cureos.Measurables.Double.Units
+﻿namespace Cureos.Measurables.Units
 {
     public sealed class MilliMeter : ConcreteUnit
     {

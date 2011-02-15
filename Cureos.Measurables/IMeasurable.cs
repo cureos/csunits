@@ -1,11 +1,19 @@
+#if SINGLE
+using AmountType = System.Single;
+#elif DECIMAL
+using AmountType = System.Decimal;
+#else
+using AmountType = System.Double;
+#endif
+
 namespace Cureos.Measurables
 {
-    public interface IMeasurable<T, out U> where U : IUnit<T>
+    public interface IMeasurable<out U> where U : IUnit
     {
-        T Amount { get; }
+        AmountType Amount { get; }
 
         U Unit { get; }
 
-        IMeasurable<T, V> ConvertTo<V>() where V : IUnit<T>;
+        IMeasurable<V> ConvertTo<V>() where V : IUnit;
     }
 }

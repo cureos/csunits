@@ -1,7 +1,18 @@
 ﻿using System;
 
+#if SINGLE
+using AmountType = System.Single;
+#elif DECIMAL
+using AmountType = System.Decimal;
+#else
+using AmountType = System.Double;
+#endif
+
 namespace Cureos.Measurables
 {
+    /// <summary>
+    /// Common interface for physical units
+    /// </summary>
     public interface IUnit
     {
         #region PROPERTIES
@@ -10,19 +21,9 @@ namespace Cureos.Measurables
 
         UnitDimension Dimension { get; }
 
-        #endregion
-    }
+        Func<AmountType, AmountType> ToBase { get; }
 
-    /// <summary>
-    /// Common interface for physical units
-    /// </summary>
-    public interface IUnit<T> : IUnit
-    {
-        #region PROPERTIES
-
-        Func<T, T> ToBase { get; }
-
-        Func<T, T> FromBase { get; }
+        Func<AmountType, AmountType> FromBase { get; }
 
         #endregion
     }

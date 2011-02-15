@@ -1,6 +1,6 @@
 using Cureos.Measurables.Dimensions;
 
-namespace Cureos.Measurables.Double.Units
+namespace Cureos.Measurables.Units
 {
     public sealed class KiloGram : ConcreteUnit
     {

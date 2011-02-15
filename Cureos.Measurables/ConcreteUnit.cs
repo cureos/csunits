@@ -1,14 +1,21 @@
 using System;
+#if SINGLE
+using AmountType = System.Single;
+#elif DECIMAL
+using AmountType = System.Decimal;
+#else
 
-namespace Cureos.Measurables.Double
+#endif
+
+namespace Cureos.Measurables
 {
-    public class ConcreteUnit : IUnit<double>
+    public class ConcreteUnit : IUnit
     {
         #region INSTANCE VARIABLES
 
         private readonly string mSymbol;
-        private readonly double mToBaseFactor;
-        private readonly double mFromBaseFactor;
+        private readonly System.Double mToBaseFactor;
+        private readonly System.Double mFromBaseFactor;
 
         #endregion
         
@@ -80,7 +87,7 @@ namespace Cureos.Measurables.Double
         /// <param name="iSymbol">Unit symbol</param>
         /// <param name="iReferenceUnit">Reference unit</param>
         /// <param name="iToBaseFactor">Multiplicative factor for temporary unit conversion to base</param>
-        protected ConcreteUnit(string iSymbol, IUnit iReferenceUnit, double iToBaseFactor)
+        protected ConcreteUnit(string iSymbol, IUnit iReferenceUnit, System.Double iToBaseFactor)
         {
             mSymbol = iSymbol;
             ReferenceUnit = iReferenceUnit;
