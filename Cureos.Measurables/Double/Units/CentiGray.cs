@@ -1,5 +1,3 @@
-using Cureos.Measurables.Dimensions;
-
 namespace Cureos.Measurables.Double.Units
 {
     public sealed class CentiGray : ConcreteUnit
