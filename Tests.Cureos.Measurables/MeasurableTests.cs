@@ -3,6 +3,14 @@ using Cureos.Measurables;
 using Cureos.Measurables.Units;
 using NUnit.Framework;
 
+#if SINGLE
+using AmountType = System.Single;
+#elif DECIMAL
+using AmountType = System.Decimal;
+#elif DOUBLE
+using AmountType = System.Double;
+#endif
+
 namespace Tests.Cureos.Measurables
 {
     [TestFixture]
@@ -10,7 +18,7 @@ namespace Tests.Cureos.Measurables
     {
         #region Fields
 
-        private const double mkEps = 1.0e-7;
+        private const AmountType mkEps = 1.0e-7;
 
         private Measurable<KiloGram> _instance;
 

@@ -2,7 +2,7 @@
 using AmountType = System.Single;
 #elif DECIMAL
 using AmountType = System.Decimal;
-#else
+#elif DOUBLE
 using AmountType = System.Double;
 #endif
 

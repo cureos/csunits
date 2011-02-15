@@ -1,5 +1,3 @@
-using System;
-
 namespace Cureos.Measurables.Dimensions
 {
     public static class AbsorbedDose
