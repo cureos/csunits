@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cureos.Measurables", "Cureos.Measurables\Cureos.Measurables.csproj", "{CA7A1D82-0305-4BFF-848E-24F553AA5709}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Cureos.Measurables", "Tests.Cureos.Measurables\Tests.Cureos.Measurables.csproj", "{8CC50712-E318-472D-A639-78AF46C5AAFA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA7A1D82-0305-4BFF-848E-24F553AA5709}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA7A1D82-0305-4BFF-848E-24F553AA5709}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA7A1D82-0305-4BFF-848E-24F553AA5709}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA7A1D82-0305-4BFF-848E-24F553AA5709}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CC50712-E318-472D-A639-78AF46C5AAFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CC50712-E318-472D-A639-78AF46C5AAFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CC50712-E318-472D-A639-78AF46C5AAFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CC50712-E318-472D-A639-78AF46C5AAFA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

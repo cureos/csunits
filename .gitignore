@@ -1,0 +1,8 @@
+
+/_ReSharper.uomnet
+*.user
+*.suo
+/Cureos.Measurables/bin
+/Cureos.Measurables/obj
+/Tests.Cureos.Measurables/bin
+/Tests.Cureos.Measurables/obj
