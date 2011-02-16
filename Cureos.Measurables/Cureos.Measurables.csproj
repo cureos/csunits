@@ -41,15 +41,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dimensions\AbsorbedDose.cs" />
+    <Compile Include="Dimensions\Area.cs" />
     <Compile Include="Dimensions\Length.cs" />
     <Compile Include="Dimensions\Mass.cs" />
+    <Compile Include="Dimensions\Temperature.cs" />
+    <Compile Include="Dimensions\Volume.cs" />
     <Compile Include="Measurable.cs" />
-    <Compile Include="ConcreteUnit.cs" />
+    <Compile Include="GenericUnit.cs" />
     <Compile Include="Units\CentiGray.cs" />
     <Compile Include="Units\CentiMeter.cs" />
+    <Compile Include="Units\Celsius.cs" />
+    <Compile Include="Units\CubicMeter.cs" />
     <Compile Include="Units\Gram.cs" />
     <Compile Include="Units\Gray.cs" />
+    <Compile Include="Units\Kelvin.cs" />
     <Compile Include="Units\KiloGram.cs" />
+    <Compile Include="Units\Liter.cs" />
     <Compile Include="Units\Meter.cs" />
     <Compile Include="Units\MilliMeter.cs" />
     <Compile Include="IMeasurable.cs" />
@@ -60,6 +67,7 @@
     <Compile Include="UnitPrefix.cs" />
     <Compile Include="UnitPrefixExtensions.cs" />
     <Compile Include="UnitReflection.cs" />
+    <Compile Include="Units\SquareMeter.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

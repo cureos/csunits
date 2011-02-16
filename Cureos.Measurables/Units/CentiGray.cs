@@ -1,6 +1,6 @@
 namespace Cureos.Measurables.Units
 {
-    public sealed class CentiGray : ConcreteUnit
+    public sealed class CentiGray : GenericUnit
     {
         #region FIELDS
 

@@ -1,6 +1,6 @@
 namespace Cureos.Measurables.Units
 {
-    public sealed class Gram : ConcreteUnit
+    public sealed class Gram : GenericUnit
     {
         #region FIELDS
 

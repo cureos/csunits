@@ -114,6 +114,50 @@ namespace Cureos.Measurables
             return string.Format("{0} {1}", mAmount, Unit).Trim();
         }
 
+        public Measurable<U> Plus<V>(Measurable<V> iRhs) where V : IUnit
+        {
+            return new Measurable<U>(mAmount + iRhs.ConvertTo<U>().Amount);
+        }
+
+        public Measurable<U> Minus<V>(Measurable<V> iRhs) where V : IUnit
+        {
+            return new Measurable<U>(mAmount - iRhs.ConvertTo<U>().Amount);
+        }
+
+        public Measurable<W> Times<V, W>(Measurable<V> iRhs) where V : IUnit where W : IUnit
+        {
+            V rhsUnit = UnitReflection.GetUnitInstance<V>();
+            W toUnit = UnitReflection.GetUnitInstance<W>();
+            GenericUnit multUnit = GenericUnit.Multiply(Unit, rhsUnit);
+
+            if (!toUnit.Dimension.Equals(multUnit.Dimension))
+            {
+                throw new InvalidOperationException(
+                    "Dimension of requested out unit is not equal to unit dimension of multiplication");
+            }
+
+            return new Measurable<W>(toUnit.FromBase(Unit.ToBase(mAmount) * rhsUnit.ToBase(iRhs.Amount)));
+        }
+
+        #endregion
+
+        #region OPERATORS
+
+        public static explicit operator Measurable<U>(AmountType iAmount)
+        {
+            return new Measurable<U>(iAmount);
+        }
+
+        public static Measurable<U> operator+(Measurable<U> iLhs, Measurable<U> iRhs)
+        {
+            return new Measurable<U>(iLhs.mAmount + iRhs.mAmount);
+        }
+
+        public static Measurable<U> operator-(Measurable<U> iLhs, Measurable<U> iRhs)
+        {
+            return new Measurable<U>(iLhs.mAmount - iRhs.Amount);
+        }
+
         #endregion
     }
 }

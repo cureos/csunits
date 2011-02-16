@@ -3,22 +3,12 @@ using Cureos.Measurables;
 using Cureos.Measurables.Units;
 using NUnit.Framework;
 
-#if SINGLE
-using AmountType = System.Single;
-#elif DECIMAL
-using AmountType = System.Decimal;
-#elif DOUBLE
-using AmountType = System.Double;
-#endif
-
 namespace Tests.Cureos.Measurables
 {
     [TestFixture]
     public class MeasurableTests
     {
         #region Fields
-
-        private const AmountType mkEps = 1.0e-7;
 
         private Measurable<KiloGram> _instance;
 
@@ -54,7 +44,7 @@ namespace Tests.Cureos.Measurables
         {
             var expected = 1000.0 * _instance.Amount;
             var actual = _instance.ConvertTo<Gram>().Amount;
-            Assert.AreEqual(expected, actual, mkEps);
+            Assert.AreEqual(expected, actual, AmountHelper.EqualityTolerance);
         }
 
         [Test]

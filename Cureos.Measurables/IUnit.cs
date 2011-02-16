@@ -17,6 +17,8 @@ namespace Cureos.Measurables
     {
         #region PROPERTIES
 
+        string Symbol { get; }
+
         IUnit ReferenceUnit { get; }
 
         UnitDimension Dimension { get; }

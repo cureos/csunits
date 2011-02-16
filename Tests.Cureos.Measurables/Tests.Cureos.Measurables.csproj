@@ -43,8 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AmountHelper.cs" />
     <Compile Include="MeasurableTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Units\CelsiusTests.cs" />
+    <Compile Include="Units\LiterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cureos.Measurables\Cureos.Measurables.csproj">

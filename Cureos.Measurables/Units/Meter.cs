@@ -2,7 +2,7 @@ using Cureos.Measurables.Dimensions;
 
 namespace Cureos.Measurables.Units
 {
-    public sealed class Meter : ConcreteUnit
+    public sealed class Meter : GenericUnit
     {
         #region FIELDS
 

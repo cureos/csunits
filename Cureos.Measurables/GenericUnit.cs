@@ -10,11 +10,10 @@ using AmountType = System.Double;
 
 namespace Cureos.Measurables
 {
-    public class ConcreteUnit : IUnit
+    public class GenericUnit : IUnit
     {
         #region INSTANCE VARIABLES
 
-        private readonly string mSymbol;
         private readonly AmountType mToBaseFactor;
         private readonly AmountType mFromBaseFactor;
 
@@ -27,9 +26,9 @@ namespace Cureos.Measurables
         /// </summary>
         /// <param name="iSymbol">Unit symbol</param>
         /// <param name="iDimension">Unit dimensions in terms of SI base units</param>
-        protected ConcreteUnit(string iSymbol, UnitDimension iDimension)
+        protected GenericUnit(string iSymbol, UnitDimension iDimension)
         {
-            mSymbol = iSymbol;
+            Symbol = iSymbol;
             ReferenceUnit = this;
             Dimension = iDimension;
             mToBaseFactor = mFromBaseFactor = 1.0;
@@ -42,9 +41,9 @@ namespace Cureos.Measurables
         /// <param name="iPrefix">Unit prefix</param>
         /// <param name="iPrefixlessSymbol">Unit symbol excluding prefix</param>
         /// <param name="iDimension">Unit dimensions in terms of SI base units</param>
-        protected ConcreteUnit(UnitPrefix iPrefix, string iPrefixlessSymbol, UnitDimension iDimension)
+        protected GenericUnit(UnitPrefix iPrefix, string iPrefixlessSymbol, UnitDimension iDimension)
         {
-            mSymbol = iPrefix.GetUnitSymbol(iPrefixlessSymbol);
+            Symbol = iPrefix.GetUnitSymbol(iPrefixlessSymbol);
             ReferenceUnit = this;
             Dimension = iDimension;
             mToBaseFactor = iPrefix.GetValue();
@@ -57,9 +56,9 @@ namespace Cureos.Measurables
         /// </summary>
         /// <param name="iSymbol">Unit symbol</param>
         /// <param name="iReferenceUnit">Reference unit</param>
-        protected ConcreteUnit(string iSymbol, IUnit iReferenceUnit)
+        protected GenericUnit(string iSymbol, IUnit iReferenceUnit)
         {
-            mSymbol = iSymbol;
+            Symbol = iSymbol;
             ReferenceUnit = iReferenceUnit;
             Dimension = iReferenceUnit.Dimension;
             mToBaseFactor = mFromBaseFactor = 1.0;
@@ -72,9 +71,9 @@ namespace Cureos.Measurables
         /// <param name="iPrefix">Unit prefix</param>
         /// <param name="iPrefixlessSymbol">Unit symbol excluding prefix</param>
         /// <param name="iReferenceUnit">Reference unit</param>
-        protected ConcreteUnit(UnitPrefix iPrefix, string iPrefixlessSymbol, IUnit iReferenceUnit)
+        protected GenericUnit(UnitPrefix iPrefix, string iPrefixlessSymbol, IUnit iReferenceUnit)
         {
-            mSymbol = iPrefix.GetUnitSymbol(iPrefixlessSymbol);
+            Symbol = iPrefix.GetUnitSymbol(iPrefixlessSymbol);
             ReferenceUnit = iReferenceUnit;
             Dimension = iReferenceUnit.Dimension;
             mToBaseFactor = iPrefix.GetValue();
@@ -88,9 +87,9 @@ namespace Cureos.Measurables
         /// <param name="iSymbol">Unit symbol</param>
         /// <param name="iReferenceUnit">Reference unit</param>
         /// <param name="iToBaseFactor">Multiplicative factor for temporary unit conversion to base</param>
-        protected ConcreteUnit(string iSymbol, IUnit iReferenceUnit, AmountType iToBaseFactor)
+        protected GenericUnit(string iSymbol, IUnit iReferenceUnit, AmountType iToBaseFactor)
         {
-            mSymbol = iSymbol;
+            Symbol = iSymbol;
             ReferenceUnit = iReferenceUnit;
             Dimension = iReferenceUnit.Dimension;
             mToBaseFactor = iToBaseFactor;
@@ -98,9 +97,29 @@ namespace Cureos.Measurables
             InitializeMultiplicativeConverters();
         }
 
+        /// <summary>
+        /// Initializes a unit instance which uses a generic unit conversion
+        /// </summary>
+        /// <param name="iSymbol">Unit symbol</param>
+        /// <param name="iReferenceUnit">Reference unit</param>
+        /// <param name="iToBase">Function converting this unit to base</param>
+        /// <param name="iFromBase">Function converting from base to this unit</param>
+        protected GenericUnit(string iSymbol, IUnit iReferenceUnit, Func<AmountType, AmountType> iToBase,
+            Func<AmountType, AmountType> iFromBase)
+        {
+            Symbol = iSymbol;
+            ReferenceUnit = iReferenceUnit;
+            Dimension = iReferenceUnit.Dimension;
+            mToBaseFactor = mFromBaseFactor = 0.0;
+            ToBase = iToBase;
+            FromBase = iFromBase;
+        }
+
         #endregion
         
         #region Implementation of IUnit<double>
+
+        public string Symbol { get; private set; }
 
         public IUnit ReferenceUnit { get; private set; }
 
@@ -116,7 +135,17 @@ namespace Cureos.Measurables
 
         public override string ToString()
         {
-            return mSymbol;
+            return Symbol;
+        }
+
+        internal static GenericUnit Multiply(IUnit iLhsUnit, IUnit iRhsUnit)
+        {
+            return new GenericUnit(String.Format("{0} {1}", iLhsUnit.Symbol, iRhsUnit.Symbol), iLhsUnit.Dimension + iRhsUnit.Dimension);
+        }
+
+        internal static GenericUnit Divide(IUnit iLhsUnit, IUnit iRhsUnit)
+        {
+            return new GenericUnit(String.Format("{0} / {1}", iLhsUnit.Symbol, iRhsUnit.Symbol), iLhsUnit.Dimension - iRhsUnit.Dimension);
         }
 
         private void InitializeMultiplicativeConverters()

@@ -2,7 +2,7 @@ using Cureos.Measurables.Dimensions;
 
 namespace Cureos.Measurables.Units
 {
-    public sealed class KiloGram : ConcreteUnit
+    public sealed class KiloGram : GenericUnit
     {
         #region FIELDS
 
