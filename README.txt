@@ -4,9 +4,9 @@
 
 Simple C# framework to support Units of Measurement
 
-Copyright © 2011 Anders Gustafsson, Cureos AB
+Copyright 2011 (c) Anders Gustafsson, Cureos AB
 
-Released under Eclipse Public License, version 1.0
+Made available under Eclipse Public License, version 1.0
 
 
 
@@ -15,7 +15,7 @@ USAGE EXAMPLES
 
 using Cureos.Measurables;
 using Cureos.Measurables.Units;
-…
+...
 
 Measurable<KiloGram> initialWgt = new Measurable<KiloGram>(75.0);
 Measurable<KiloGram> gainedWgt = new Measurable<Gram>(2.5);
@@ -26,7 +26,7 @@ Measurable<Gram> newWgtInGram = newWgt.InUnit<Gram>();
 Measurable<Gram> initialWgtInGram = newWgtInGram.Minus(gainedWgt);
 
 
-Console.WriteLine(“Initial weight: {0}”, initialWgtInGram);
+Console.WriteLine("Initial weight: {0}", initialWgtInGram);
 
 
 Measurable<CentiMeter> height = (Measurable<CentiMeter>)30.0;
@@ -39,8 +39,7 @@ Measurable<Liter> maxVol = (Measurable<Liter>)10.0;
 
 if (vol < maxVol)
 {
-  Console.WriteLine(
-“Calculated volume is within limits, actual volume: {0} liters”,
+  Console.WriteLine("Calculated volume is within limits, actual volume: {0} liters",
  vol.Amount);
 }
 
@@ -58,7 +57,7 @@ REMARKS
 
 Developed with Visual Studio 2010, using .NET Framework 4. The solution might require tweaking to build with Mono or older versions of .NET Framework.
 
-The “work-horse” Enumerable<> is declared as a struct, and the struct itself only contains one value type member. The main goal of this approach is to maximize calculation performance, while at the same time ensuring unit type safety. In contrast, operations involving unit conversions are costly due to extensive use of type reflection.
+The "work-horse" Enumerable<> is declared as a struct, and the struct itself only contains one value type member. The main goal of this approach is to maximize calculation performance, while at the same time ensuring unit type safety. In contrast, operations involving unit conversions are costly due to extensive use of type reflection.
 
 With preprocessor directives, it is possible to configure the library so that the measurable amounts are defined in a desired floating-point value type. The following preprocessor directives are currently supported, and can be defined in the project build settings:
 
@@ -91,6 +90,7 @@ public sealed class Joule : GenericUnit
 }
 
 The member constructor is declared private, to ensure that no instances of the unit class are accidentally created. The class only publicly exposes the static field denoted Instance. This field must be defined and initialized with an instance of the containing unit class to ensure that operations involving unit conversion does not fail.
+
 
 ----
 

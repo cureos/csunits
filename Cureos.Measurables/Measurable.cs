@@ -1,3 +1,9 @@
+// Copyright (c) 2011 Anders Gustafsson, Cureos AB.
+// All rights reserved. This software and the accompanying materials
+// are made available under the terms of the Eclipse Public License v1.0
+// which accompanies this distribution, and is available at
+// http://www.eclipse.org/legal/epl-v10.html
+
 using System;
 
 #if SINGLE
@@ -10,6 +16,10 @@ using AmountType = System.Double;
 
 namespace Cureos.Measurables
 {
+    /// <summary>
+    /// Implementation struct of a measurable object
+    /// </summary>
+    /// <typeparam name="U">Unit in which the measurable object is specified</typeparam>
     public struct Measurable<U> : IMeasurable<U>, IComparable<Measurable<U>>, IEquatable<Measurable<U>> where U : IUnit
     {
         #region INSTANCE MEMBERS
@@ -20,6 +30,10 @@ namespace Cureos.Measurables
 
         #region CONSTRUCTORS
 
+        /// <summary>
+        /// Initializes an instance of the measurable object
+        /// </summary>
+        /// <param name="iAmount">Amount in the unit of the measurable object</param>
         public Measurable(AmountType iAmount)
         {
             mAmount = iAmount;
@@ -29,16 +43,29 @@ namespace Cureos.Measurables
 
         #region Implementation of IMeasurable<out U>
 
+        /// <summary>
+        /// Gets the amount of the measurable
+        /// </summary>
         public AmountType Amount
         {
             get { return mAmount; }
         }
 
+        /// <summary>
+        /// Gets the unit specific to the measurable object
+        /// </summary>
         public U Unit
         {
             get { return UnitReflection.GetUnitInstance<U>(); }
         }
 
+        /// <summary>
+        /// Converts the measurable object into another specified unit of the same unit dimension
+        /// </summary>
+        /// <typeparam name="V">Unit to convert the measurable to</typeparam>
+        /// <returns>A new measurable object in the requested unit</returns>
+        /// <exception cref="InvalidOperationException">is thrown if the dimensions of the specified unit are not the
+        /// same as the dimensions of the unit of this measurable object</exception>
         public IMeasurable<V> InUnit<V>() where V : IUnit
         {
             V toUnit = UnitReflection.GetUnitInstance<V>();
@@ -114,17 +141,45 @@ namespace Cureos.Measurables
             return string.Format("{0} {1}", mAmount, Unit).Trim();
         }
 
-        public Measurable<U> Plus<V>(Measurable<V> iRhs) where V : IUnit
+        /// <summary>
+        /// Add this object with a measurable object of (potentially) another unit, and return
+        /// a summed measurable in the unit of this object
+        /// </summary>
+        /// <typeparam name="V">Unit of the measurable object to be added</typeparam>
+        /// <param name="iOther">Measurable object to add</param>
+        /// <returns>Sum of this and other measurable object, in the unit of this object</returns>
+        /// <exception cref="InvalidOperationException">is thrown if the dimensions of the specified unit are not the
+        /// same as the dimensions of the unit of this measurable object</exception>
+        public Measurable<U> Plus<V>(Measurable<V> iOther) where V : IUnit
         {
-            return new Measurable<U>(mAmount + iRhs.InUnit<U>().Amount);
+            return new Measurable<U>(mAmount + iOther.InUnit<U>().Amount);
         }
 
-        public Measurable<U> Minus<V>(Measurable<V> iRhs) where V : IUnit
+        /// <summary>
+        /// Subtract this object with a measurable object of (potentially) another unit, and return
+        /// the difference measurable in the unit of this object
+        /// </summary>
+        /// <typeparam name="V">Unit of the measurable object to be subtracted</typeparam>
+        /// <param name="iOther">Measurable object to subtract</param>
+        /// <returns>Difference of this and other measurable object, in the unit of this object</returns>
+        /// <exception cref="InvalidOperationException">is thrown if the dimensions of the specified unit are not the
+        /// same as the dimensions of the unit of this measurable object</exception>
+        public Measurable<U> Minus<V>(Measurable<V> iOther) where V : IUnit
         {
-            return new Measurable<U>(mAmount - iRhs.InUnit<U>().Amount);
+            return new Measurable<U>(mAmount - iOther.InUnit<U>().Amount);
         }
 
-        public Measurable<VOut> Times<VIn, VOut>(Measurable<VIn> iRhs) where VIn : IUnit where VOut : IUnit
+        /// <summary>
+        /// Multiply this measurable object with another measurable of a different unit, and return a measurable object
+        /// in the specified out unit
+        /// </summary>
+        /// <typeparam name="VIn">Unit of the measurable object to multiply</typeparam>
+        /// <typeparam name="VOut">Requested unit of the resulting measurable object</typeparam>
+        /// <param name="iOther">Measurable object to multiply to this object</param>
+        /// <returns>Product of this and the other measurable object as a measurable in the requested out unit</returns>
+        /// <exception cref="InvalidOperationException">is thrown if the requested out unit does not have the same dimensions
+        /// as the unit dimension product of the multiplied measurable objects</exception>
+        public Measurable<VOut> Times<VIn, VOut>(Measurable<VIn> iOther) where VIn : IUnit where VOut : IUnit
         {
             VIn rhsUnit = UnitReflection.GetUnitInstance<VIn>();
             VOut toUnit = UnitReflection.GetUnitInstance<VOut>();
@@ -136,10 +191,20 @@ namespace Cureos.Measurables
                     "Dimension of requested out unit is not equal to unit dimension of multiplication");
             }
 
-            return new Measurable<VOut>(toUnit.FromBase(Unit.ToBase(mAmount) * rhsUnit.ToBase(iRhs.Amount)));
+            return new Measurable<VOut>(toUnit.FromBase(Unit.ToBase(mAmount) * rhsUnit.ToBase(iOther.Amount)));
         }
 
-        public Measurable<VOut> Divide<VIn, VOut>(Measurable<VIn> iRhs)
+        /// <summary>
+        /// Divide this measurable object with another measurable of a different unit, and return a measurable object
+        /// in the specified out unit
+        /// </summary>
+        /// <typeparam name="VIn">Unit of the measurable object to divide</typeparam>
+        /// <typeparam name="VOut">Requested unit of the resulting measurable object</typeparam>
+        /// <param name="iOther">Measurable object to divide from this object</param>
+        /// <returns>Quotient of this and the other measurable object as a measurable in the requested out unit</returns>
+        /// <exception cref="InvalidOperationException">is thrown if the requested out unit does not have the same dimensions
+        /// as the unit dimension quotient of the divided measurable objects</exception>
+        public Measurable<VOut> Divide<VIn, VOut>(Measurable<VIn> iOther)
             where VIn : IUnit
             where VOut : IUnit
         {
@@ -153,31 +218,96 @@ namespace Cureos.Measurables
                     "Dimension of requested out unit is not equal to unit dimension of division");
             }
 
-            return new Measurable<VOut>(toUnit.FromBase(Unit.ToBase(mAmount) / rhsUnit.ToBase(iRhs.Amount)));
+            checked
+            {
+                return new Measurable<VOut>(toUnit.FromBase(Unit.ToBase(mAmount) / rhsUnit.ToBase(iOther.Amount)));
+            }
         }
 
         #endregion
 
         #region OPERATORS
 
+        /// <summary>
+        /// Cast operator for floating-point values
+        /// </summary>
+        /// <param name="iAmount">Floating-point amount</param>
+        /// <returns>Measurable object with the specified amount</returns>
         public static explicit operator Measurable<U>(AmountType iAmount)
         {
             return new Measurable<U>(iAmount);
         }
 
+        /// <summary>
+        /// Sum two measurable objects of the same unit
+        /// </summary>
+        /// <param name="iLhs">First measurable object</param>
+        /// <param name="iRhs">Second measurable object</param>
+        /// <returns>Sum of the measurable objects</returns>
         public static Measurable<U> operator+(Measurable<U> iLhs, Measurable<U> iRhs)
         {
             return new Measurable<U>(iLhs.mAmount + iRhs.mAmount);
         }
 
+        /// <summary>
+        /// Subtract two measurable objects of the same unit
+        /// </summary>
+        /// <param name="iLhs">First measurable object</param>
+        /// <param name="iRhs">Second measuable object</param>
+        /// <returns>Difference of the measurable objects</returns>
         public static Measurable<U> operator-(Measurable<U> iLhs, Measurable<U> iRhs)
         {
             return new Measurable<U>(iLhs.mAmount - iRhs.mAmount);
         }
 
-        public static AmountType operator/(Measurable<U> iNumerator, Measurable<U> iDenominator)
+        /// <summary>
+        /// Multiply a scalar and a measurable object
+        /// </summary>
+        /// <param name="iScalar">Floating-point scalar</param>
+        /// <param name="iMeasurable">Measurable object</param>
+        /// <returns>Product of the scalar and the measurable object</returns>
+        public static Measurable<U> operator*(AmountType iScalar, Measurable<U> iMeasurable)
         {
-            return iNumerator.mAmount / iDenominator.mAmount;
+            return new Measurable<U>(iScalar * iMeasurable.mAmount);
+        }
+
+        /// <summary>
+        /// Multiply a measurable object and a scalar
+        /// </summary>
+        /// <param name="iMeasurable">Measurable object</param>
+        /// <param name="iScalar">Floating-point scalar</param>
+        /// <returns>Product of the measurable object and the scalar</returns>
+        public static Measurable<U> operator *(Measurable<U> iMeasurable, AmountType iScalar)
+        {
+            return new Measurable<U>(iMeasurable.mAmount * iScalar);
+        }
+
+        /// <summary>
+        /// Divide a measurable object with a scalar
+        /// </summary>
+        /// <param name="iMeasurable">Measurable object</param>
+        /// <param name="iScalar">Floating-point scalar</param>
+        /// <returns>Quotient of the measurable object and the scalar</returns>
+        public static Measurable<U> operator /(Measurable<U> iMeasurable, AmountType iScalar)
+        {
+            checked
+            {
+                return new Measurable<U>(iMeasurable.mAmount/iScalar);
+            }
+        }
+
+        /// <summary>
+        /// Divide two measurable objects of the same unit
+        /// </summary>
+        /// <param name="iNumerator">Numerator measurable</param>
+        /// <param name="iDenominator">Denominator measurable</param>
+        /// <returns>Scalar quotient of the two measurable objects</returns>
+        public static AmountType operator /(Measurable<U> iNumerator, Measurable<U> iDenominator)
+        {
+            checked
+            {
+                return iNumerator.mAmount / iDenominator.mAmount;
+            }
         }
 
         /// <summary>
