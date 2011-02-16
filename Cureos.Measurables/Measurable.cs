@@ -124,10 +124,10 @@ namespace Cureos.Measurables
             return new Measurable<U>(mAmount - iRhs.ConvertTo<U>().Amount);
         }
 
-        public Measurable<W> Times<V, W>(Measurable<V> iRhs) where V : IUnit where W : IUnit
+        public Measurable<VOut> Times<VIn, VOut>(Measurable<VIn> iRhs) where VIn : IUnit where VOut : IUnit
         {
-            V rhsUnit = UnitReflection.GetUnitInstance<V>();
-            W toUnit = UnitReflection.GetUnitInstance<W>();
+            VIn rhsUnit = UnitReflection.GetUnitInstance<VIn>();
+            VOut toUnit = UnitReflection.GetUnitInstance<VOut>();
             GenericUnit multUnit = GenericUnit.Multiply(Unit, rhsUnit);
 
             if (!toUnit.Dimension.Equals(multUnit.Dimension))
@@ -136,7 +136,24 @@ namespace Cureos.Measurables
                     "Dimension of requested out unit is not equal to unit dimension of multiplication");
             }
 
-            return new Measurable<W>(toUnit.FromBase(Unit.ToBase(mAmount) * rhsUnit.ToBase(iRhs.Amount)));
+            return new Measurable<VOut>(toUnit.FromBase(Unit.ToBase(mAmount) * rhsUnit.ToBase(iRhs.Amount)));
+        }
+
+        public Measurable<VOut> Divide<VIn, VOut>(Measurable<VIn> iRhs)
+            where VIn : IUnit
+            where VOut : IUnit
+        {
+            VIn rhsUnit = UnitReflection.GetUnitInstance<VIn>();
+            VOut toUnit = UnitReflection.GetUnitInstance<VOut>();
+            GenericUnit divideUnit = GenericUnit.Divide(Unit, rhsUnit);
+
+            if (!toUnit.Dimension.Equals(divideUnit.Dimension))
+            {
+                throw new InvalidOperationException(
+                    "Dimension of requested out unit is not equal to unit dimension of division");
+            }
+
+            return new Measurable<VOut>(toUnit.FromBase(Unit.ToBase(mAmount) / rhsUnit.ToBase(iRhs.Amount)));
         }
 
         #endregion
@@ -155,7 +172,78 @@ namespace Cureos.Measurables
 
         public static Measurable<U> operator-(Measurable<U> iLhs, Measurable<U> iRhs)
         {
-            return new Measurable<U>(iLhs.mAmount - iRhs.Amount);
+            return new Measurable<U>(iLhs.mAmount - iRhs.mAmount);
+        }
+
+        public static AmountType operator/(Measurable<U> iNumerator, Measurable<U> iDenominator)
+        {
+            return iNumerator.mAmount / iDenominator.mAmount;
+        }
+
+        /// <summary>
+        /// Less than operator for Measurable objects
+        /// </summary>
+        /// <param name="iLhs">First object</param>
+        /// <param name="iRhs">Second object</param>
+        /// <returns>true if first Measurable object is less than second Measurable object; false otherwise</returns>
+        public static bool operator <(Measurable<U> iLhs, Measurable<U> iRhs)
+        {
+            return iLhs.mAmount < iRhs.mAmount;
+        }
+
+        /// <summary>
+        /// Greater than operator for Measurable objects
+        /// </summary>
+        /// <param name="iLhs">First object</param>
+        /// <param name="iRhs">Second object</param>
+        /// <returns>true if first Measurable object is greater than second Measurable object; false otherwise</returns>
+        public static bool operator >(Measurable<U> iLhs, Measurable<U> iRhs)
+        {
+            return iLhs.mAmount > iRhs.mAmount;
+        }
+
+        /// <summary>
+        /// Less than or equal to operator for Measurable objects
+        /// </summary>
+        /// <param name="iLhs">First object</param>
+        /// <param name="iRhs">Second object</param>
+        /// <returns>true if first Measurable object is less than or equal to second Measurable object; false otherwise</returns>
+        public static bool operator <=(Measurable<U> iLhs, Measurable<U> iRhs)
+        {
+            return iLhs.mAmount <= iRhs.mAmount;
+        }
+
+        /// <summary>
+        /// Greater than or equal to operator for Measurable objects
+        /// </summary>
+        /// <param name="iLhs">First object</param>
+        /// <param name="iRhs">Second object</param>
+        /// <returns>true if first Measurable object is greater than or equal to second Measurable object; false otherwise</returns>
+        public static bool operator >=(Measurable<U> iLhs, Measurable<U> iRhs)
+        {
+            return iLhs.mAmount >= iRhs.mAmount;
+        }
+
+        /// <summary>
+        /// Equality operator for Measurable objects
+        /// </summary>
+        /// <param name="iLhs">First object</param>
+        /// <param name="iRhs">Second object</param>
+        /// <returns>true if the two Measurable objects are equal; false otherwise</returns>
+        public static bool operator ==(Measurable<U> iLhs, Measurable<U> iRhs)
+        {
+            return iLhs.mAmount == iRhs.mAmount;
+        }
+
+        /// <summary>
+        /// Inquality operator for Measurable objects
+        /// </summary>
+        /// <param name="iLhs">First object</param>
+        /// <param name="iRhs">Second object</param>
+        /// <returns>true if the two Measurable objects are not equal; false if they are equal</returns>
+        public static bool operator !=(Measurable<U> iLhs, Measurable<U> iRhs)
+        {
+            return iLhs.mAmount != iRhs.mAmount;
         }
 
         #endregion

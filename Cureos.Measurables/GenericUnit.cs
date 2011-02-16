@@ -140,12 +140,12 @@ namespace Cureos.Measurables
 
         internal static GenericUnit Multiply(IUnit iLhsUnit, IUnit iRhsUnit)
         {
-            return new GenericUnit(String.Format("{0} {1}", iLhsUnit.Symbol, iRhsUnit.Symbol), iLhsUnit.Dimension + iRhsUnit.Dimension);
+            return new GenericUnit(String.Empty, iLhsUnit.Dimension + iRhsUnit.Dimension);
         }
 
         internal static GenericUnit Divide(IUnit iLhsUnit, IUnit iRhsUnit)
         {
-            return new GenericUnit(String.Format("{0} / {1}", iLhsUnit.Symbol, iRhsUnit.Symbol), iLhsUnit.Dimension - iRhsUnit.Dimension);
+            return new GenericUnit(String.Empty, iLhsUnit.Dimension - iRhsUnit.Dimension);
         }
 
         private void InitializeMultiplicativeConverters()
