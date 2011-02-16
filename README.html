@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.3  (Win32)">
+	<META NAME="AUTHOR" CONTENT="Anders Gustafsson">
+	<META NAME="CREATED" CONTENT="20110216;13522000">
+	<META NAME="CHANGEDBY" CONTENT="Anders Gustafsson">
+	<META NAME="CHANGED" CONTENT="20110216;15102299">
+	<STYLE TYPE="text/css">
+	<!--
+		PRE.cjk { font-family: "NSimSun", monospace }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" DIR="LTR">
+<H1>uomnet</H1>
+<P STYLE="margin-top: 0.17in; page-break-after: avoid"><FONT FACE="Albany, sans-serif"><FONT SIZE=4>Simple
+C# framework to support Units of Measurement</FONT></FONT></P>
+<P>Copyright &copy; 2011 Anders Gustafsson, Cureos AB<BR>Released
+under Eclipse Public License, version 1.0</P>
+<HR>
+<P STYLE="margin-top: 0.17in; page-break-after: avoid"><FONT FACE="Albany, sans-serif"><FONT SIZE=4>Usage
+examples</FONT></FONT></P>
+<PRE CLASS="western">using Cureos.Measurables;<BR>using Cureos.Measurables.Units;<BR>&hellip;<BR><BR>Measurable&lt;KiloGram&gt; initialWgt = new Measurable&lt;KiloGram&gt;(75.0);<BR>Measurable&lt;KiloGram&gt; gainedWgt = new Measurable&lt;Gram&gt;(2.5);<BR><BR>Measurable&lt;KiloGram&gt; newWgt = initialWgt + gainedWgt;<BR><BR>Measurable&lt;Gram&gt; newWgtInGram = newWgt.InUnit&lt;Gram&gt;();<BR>Measurable&lt;Gram&gt; initialWgtInGram = newWgtInGram.Minus(gainedWgt);<BR><BR>Console.WriteLine(&ldquo;Initial weight: {0}&rdquo;, initialWgtInGram);<BR><BR>Measurable&lt;CentiMeter&gt; height = (Measurable&lt;CentiMeter&gt;)30.0;<BR>Measurable&lt;SquareMeter&gt; area = new Measurable&lt;SquareMeter&gt;(0.02);<BR><BR>Measurable&lt;Liter&gt; vol = height.Times(area);<BR>Measurable&lt;Liter&gt; maxVol = (Measurable&lt;Liter&gt;)10.0;<BR><BR>if (vol &lt; maxVol)<BR>{<BR> Console.WriteLine(&ldquo;Calculated volume is within limits, actual volume: {0} liters&rdquo;, vol.Amount);<BR>}</PRE><P>
+<BR>should yield the output:</P>
+<PRE CLASS="western">Initial weight: 75000 g<BR>Calculated volume is within limits, actual volume 6 liters
+</PRE>
+<HR>
+<P STYLE="margin-top: 0.17in; page-break-after: avoid"><FONT FACE="Albany, sans-serif"><FONT SIZE=4>Remarks</FONT></FONT></P>
+<P>Developed with Visual Studio 2010, using .NET Framework 4. The
+solution might require tweaking to build with Mono or older versions
+of .NET Framework.</P>
+<P>The &ldquo;work-horse&rdquo; Enumerable&lt;&gt; is declared as a
+struct, and the struct itself only contains one value type member.
+The main goal of this approach is to maximize calculation
+performance, while at the same time ensuring unit type safety. In
+contrast, operations involving unit conversions are costly due to
+extensive use of type reflection.</P>
+<P>With preprocessor directives, it is possible to configure the
+library so that the measurable amounts are defined in a desired
+floating-point value type. The following preprocessor directives are
+currently supported, and can be defined in the project build
+settings:</P>
+<TABLE WIDTH=432 BORDER=1 CELLPADDING=5 CELLSPACING=4 STYLE="page-break-inside: avoid">
+	<COL WIDTH=186>
+	<COL WIDTH=212>
+	<TR VALIGN=TOP>
+		<TD WIDTH=186>
+			<P><B>Preprocessor directive</B></P>
+		</TD>
+		<TD WIDTH=212>
+			<P> <B>Corresponding value type</B></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=186>
+			<P>DOUBLE</P>
+		</TD>
+		<TD WIDTH=212>
+			<P> System.Double</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=186>
+			<P>SINGLE</P>
+		</TD>
+		<TD WIDTH=212>
+			<P> System.Single</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=186>
+			<P>DECIMAL</P>
+		</TD>
+		<TD WIDTH=212>
+			<P> System.Decimal</P>
+		</TD>
+	</TR>
+</TABLE>
+<P><BR><BR>
+</P>
+<P>Units are identified through their dimension in terms of SI Base
+Units. When extending this library, it is recommended that a
+quantity-specific unit dimension static class is added to the
+Dimensions sub-folder. The following conventions have been used when
+implementing the currently existing unit dimension specifications:</P>
+<PRE CLASS="western">internal static class Energy<BR>{<BR>    internal static readonly UnitDimension Dimension;<BR>    static Energy() { Dimension = new UnitDimension(2, 1, -2, 0, 0, 0, 0); }<BR>}
+</PRE><P>
+When creating a new energy unit, the Energy.Dimension field can then
+be used to define the new unit.</P>
+<P>To add a new unit to the library, there are a few normative
+conventions to follow. New units are preferably added to the Units
+sub-folder. Provided is an example implementation:</P>
+<PRE CLASS="western"><FONT COLOR="#000000">public sealed class Joule : GenericUnit<BR>{<BR>    public static readonly Joule Instance;<BR>    static Joule() { Instance = new Joule(); }<BR>    private Joule() : base(&quot;J&quot;, Energy.Dimension) { }<BR>}</FONT>
+</PRE><P>
+The member constructor is declared private, to ensure that no
+instances of the unit class are accidentally created. The class only
+publicly exposes the static field denoted Instance. This field must
+be defined and initialized with an instance of the containing unit
+class to ensure that operations involving unit conversion does not
+fail.</P>
+<HR>
+<P>Last updated on February 16, 2011 by Anders Gustafsson,
+anders[at]cureos[dot]com.</P>
+</BODY>
+</HTML>
