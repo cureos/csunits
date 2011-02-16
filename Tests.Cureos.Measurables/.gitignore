@@ -1,2 +1,3 @@
-
+/test-results/
 *.vs10x
+*.pidb
