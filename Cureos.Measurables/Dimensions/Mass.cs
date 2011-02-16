@@ -1,10 +1,10 @@
 namespace Cureos.Measurables.Dimensions
 {
-    public static class Mass
+    internal static class Mass
     {
         #region FIELDS
 
-        public static readonly UnitDimension Dimension;
+        internal static readonly UnitDimension Dimension;
 
         #endregion
 

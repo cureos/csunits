@@ -39,7 +39,7 @@ namespace Cureos.Measurables
             get { return UnitReflection.GetUnitInstance<U>(); }
         }
 
-        public IMeasurable<V> ConvertTo<V>() where V : IUnit
+        public IMeasurable<V> InUnit<V>() where V : IUnit
         {
             V toUnit = UnitReflection.GetUnitInstance<V>();
             if (Unit.Dimension.Equals(toUnit.Dimension))
@@ -116,12 +116,12 @@ namespace Cureos.Measurables
 
         public Measurable<U> Plus<V>(Measurable<V> iRhs) where V : IUnit
         {
-            return new Measurable<U>(mAmount + iRhs.ConvertTo<U>().Amount);
+            return new Measurable<U>(mAmount + iRhs.InUnit<U>().Amount);
         }
 
         public Measurable<U> Minus<V>(Measurable<V> iRhs) where V : IUnit
         {
-            return new Measurable<U>(mAmount - iRhs.ConvertTo<U>().Amount);
+            return new Measurable<U>(mAmount - iRhs.InUnit<U>().Amount);
         }
 
         public Measurable<VOut> Times<VIn, VOut>(Measurable<VIn> iRhs) where VIn : IUnit where VOut : IUnit

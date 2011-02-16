@@ -40,18 +40,18 @@ namespace Tests.Cureos.Measurables
         }
 
         [Test]
-        public void ConvertTo_KiloGramToGram_Amount1000TimesGreater()
+        public void InUnit_KiloGramToGram_Amount1000TimesGreater()
         {
             var expected = 1000.0 * _instance.Amount;
-            var actual = _instance.ConvertTo<Gram>().Amount;
+            var actual = _instance.InUnit<Gram>().Amount;
             Assert.AreEqual(expected, actual, AmountHelper.EqualityTolerance);
         }
 
         [Test]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void ConvertTo_KiloGramToMeter_Throws()
+        public void InUnit_KiloGramToMeter_Throws()
         {
-            var throws = _instance.ConvertTo<Meter>();
+            var throws = _instance.InUnit<Meter>();
         }
 
         #endregion

@@ -8,11 +8,15 @@ using AmountType = System.Double;
 
 namespace Cureos.Measurables
 {
-    public interface IMeasurableArray
+    public interface IMeasurableArray<out U> where U : IUnit
     {
         #region PROPERTIES
 
         AmountType[] Amounts { get; }
+
+        U Unit { get; }
+
+        IMeasurableArray<V> InUnit<V>() where V : IUnit;
 
         #endregion
     }

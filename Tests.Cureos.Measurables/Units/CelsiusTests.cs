@@ -32,19 +32,19 @@ namespace Tests.Cureos.Measurables.Units
         #region Unit tests
 
         [Test]
-        public void ConvertTo_CelsiusToKelvin_AmountIncremented273()
+        public void InUnit_CelsiusToKelvin_AmountIncremented273()
         {
             var expected = 293.15;
-            var actual = _instance.ConvertTo<Kelvin>().Amount;
+            var actual = _instance.InUnit<Kelvin>().Amount;
             Assert.AreEqual(expected, actual, AmountHelper.EqualityTolerance);
         }
 
         [Test]
-        public void ConvertTo_KelvinToCelsius_AmountDecremented273()
+        public void InUnit_KelvinToCelsius_AmountDecremented273()
         {
             var tempKelvin = new Measurable<Kelvin>(288.65);
             var expected = 15.5;
-            var actual = tempKelvin.ConvertTo<Celsius>().Amount;
+            var actual = tempKelvin.InUnit<Celsius>().Amount;
             Assert.AreEqual(expected, actual, AmountHelper.EqualityTolerance);
         }
 
