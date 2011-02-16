@@ -8,6 +8,45 @@ using System;
 
 namespace Cureos.Measurables
 {
+	
+#if NOTNET4
+	public class Tuple<T1, T2, T3, T4, T5, T6, T7>
+	{
+		public Tuple(T1 i1, T2 i2, T3 i3, T4 i4, T5 i5, T6 i6, T7 i7)
+		{
+			Item1 = i1;
+			Item2 = i2;
+			Item3 = i3;
+			Item4 = i4;
+			Item5 = i5;
+			Item6 = i6;
+			Item7 = i7;
+		}
+		
+		public T1 Item1 { get; private set; }
+		public T2 Item2 { get; private set; }
+		public T3 Item3 { get; private set; }
+		public T4 Item4 { get; private set; }
+		public T5 Item5 { get; private set; }
+		public T6 Item6 { get; private set; }
+		public T7 Item7 { get; private set; }
+		
+		public override bool Equals (object obj)
+		{
+			var tupleObj = obj as Tuple<T1, T2, T3, T4, T5, T6, T7>;
+			return tupleObj != null ? Item1.Equals(tupleObj.Item1) && Item2.Equals(tupleObj.Item2) &&
+				Item3.Equals(tupleObj.Item3) && Item4.Equals(tupleObj.Item4) && Item5.Equals(tupleObj.Item5) &&
+					Item6.Equals(tupleObj.Item6) && Item7.Equals(tupleObj.Item7) : false;
+		}
+		
+		public override int GetHashCode ()
+		{
+			return Item1.GetHashCode() + Item2.GetHashCode() + Item3.GetHashCode() + Item4.GetHashCode() +
+				Item5.GetHashCode() + Item6.GetHashCode() + Item7.GetHashCode();
+		}
+	}
+#endif
+	
     /// <summary>
     /// Representation of the unit dimension in terms of SI base units
     /// </summary>
