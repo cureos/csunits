@@ -4,6 +4,10 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
+using System;
+using Cureos.Measurables;
+using NUnit.Framework;
+
 #if SINGLE
 using AmountType = System.Single;
 #elif DECIMAL
@@ -14,11 +18,22 @@ using AmountType = System.Double;
 
 namespace Tests.Cureos.Measurables
 {
-    public static class AmountHelper
+    internal static class AmountAssert
     {
         #region FIELDS
 
-        public const AmountType EqualityTolerance = 1.0e-7;
+        private const double mkEqualityTolerance = 1.0e-6;
+
+        #endregion
+
+        #region METHODS
+
+        internal static void AreEqual<U>(IMeasurable<U> iLhs, IMeasurable<U> iRhs) where U : IUnit
+        {
+            double delta =
+                (double) Math.Abs((iRhs.Amount - iLhs.Amount)/Math.Max(Math.Abs(iLhs.Amount), Math.Abs(iRhs.Amount)));
+            Assert.IsTrue(delta < mkEqualityTolerance);
+        }
 
         #endregion
     }

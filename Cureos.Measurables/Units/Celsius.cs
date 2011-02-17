@@ -4,6 +4,14 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
+#if SINGLE
+using AmountType = System.Single;
+#elif DECIMAL
+using AmountType = System.Decimal;
+#elif DOUBLE
+using AmountType = System.Double;
+#endif
+
 namespace Cureos.Measurables.Units
 {
     public sealed class Celsius : GenericUnit
@@ -17,7 +25,7 @@ namespace Cureos.Measurables.Units
         #region CONSTRUCTORS
 
         private Celsius()
-            : base("°C", Kelvin.Instance, t => t + 273.15, t => t - 273.15)
+            : base("°C", Kelvin.Instance, t => t + (AmountType)273.15, t => t - (AmountType)273.15)
         {
 
         }

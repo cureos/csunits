@@ -34,7 +34,7 @@ namespace Tests.Cureos.Measurables
         public void TimeMeasurableAdditions()
         {
             DateTime start = DateTime.Now;
-            var val = (Measurable<KiloGram>)0.0;
+            var val = new Measurable<KiloGram>(0.0);
             for (int i = 0; i < no; ++i)
             {
                 val += (Measurable<KiloGram>)i;

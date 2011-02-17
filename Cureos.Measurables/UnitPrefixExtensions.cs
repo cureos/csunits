@@ -56,7 +56,7 @@ namespace Cureos.Measurables
 
         public static AmountType GetValue(this UnitPrefix iPrefix)
         {
-            return Math.Pow((AmountType)10.0, (AmountType)iPrefix);
+            return (AmountType)Math.Pow(10.0, (double)iPrefix);
         }
 
         #endregion

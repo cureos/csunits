@@ -33,10 +33,28 @@ namespace Cureos.Measurables
         /// <summary>
         /// Initializes an instance of the measurable object
         /// </summary>
-        /// <param name="iAmount">Amount in the unit of the measurable object</param>
-        public Measurable(AmountType iAmount)
+        /// <param name="iAmount">Double-precision amount in the unit of the measurable object</param>
+        public Measurable(double iAmount)
         {
-            mAmount = iAmount;
+            mAmount = (AmountType)iAmount;
+        }
+
+        /// <summary>
+        /// Initializes an instance of the measurable object
+        /// </summary>
+        /// <param name="iAmount">Single precision amount in the unit of the measurable object</param>
+        public Measurable(float iAmount)
+        {
+            mAmount = (AmountType)iAmount;
+        }
+
+        /// <summary>
+        /// Initializes an instance of the measurable object
+        /// </summary>
+        /// <param name="iAmount">Decimal amount in the unit of the measurable object</param>
+        public Measurable(decimal iAmount)
+        {
+            mAmount = (AmountType)iAmount;
         }
 
         #endregion

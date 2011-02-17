@@ -48,9 +48,9 @@ namespace Tests.Cureos.Measurables
         [Test]
         public void InUnit_KiloGramToGram_Amount1000TimesGreater()
         {
-            var expected = 1000.0 * _instance.Amount;
-            var actual = _instance.InUnit<Gram>().Amount;
-            Assert.AreEqual(expected, actual, AmountHelper.EqualityTolerance);
+            var expected = new Measurable<Gram>(3500.0);
+            var actual = _instance.InUnit<Gram>();
+            AmountAssert.AreEqual(expected, actual);
         }
 
         [Test]

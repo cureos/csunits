@@ -4,6 +4,14 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
+#if SINGLE
+using AmountType = System.Single;
+#elif DECIMAL
+using AmountType = System.Decimal;
+#elif DOUBLE
+using AmountType = System.Double;
+#endif
+
 namespace Cureos.Measurables.Units
 {
     public sealed class Gram : GenericUnit
@@ -17,7 +25,7 @@ namespace Cureos.Measurables.Units
         #region CONSTRUCTORS
 
         private Gram()
-            : base("g", KiloGram.Instance, 0.001)
+            : base("g", KiloGram.Instance, (AmountType)0.001)
         {
         }
 
