@@ -53,12 +53,6 @@
     <Compile Include="Units\CelsiusTests.cs" />
     <Compile Include="Units\LiterTests.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Cureos.Measurables\Cureos.Measurables.csproj">
-      <Project>{CA7A1D82-0305-4BFF-848E-24F553AA5709}</Project>
-      <Name>Cureos.Measurables</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -68,4 +62,10 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <ProjectReference Include="..\Cureos.Measurables\Cureos.Measurables.csproj">
+      <Project>{CA7A1D82-0305-4BFF-848E-24F553AA5709}</Project>
+      <Name>Cureos.Measurables</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

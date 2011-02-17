@@ -18,7 +18,7 @@ namespace Cureos.Measurables
     /// Interface for a single measurable object
     /// </summary>
     /// <typeparam name="U">Unit specific to the measurable object</typeparam>
-    public interface IMeasurable<out U> where U : IUnit
+    public interface IMeasurable<U> where U : IUnit
     {
         /// <summary>
         /// Gets the amount of the measurable

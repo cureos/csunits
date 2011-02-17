@@ -18,7 +18,7 @@ namespace Cureos.Measurables
     /// Interface for an array of  measurable objects
     /// </summary>
     /// <typeparam name="U">Unit specific to all measurable objects in the array</typeparam>
-    public interface IMeasurableArray<out U> where U : IUnit
+    public interface IMeasurableArray<U> where U : IUnit
     {
         #region PROPERTIES
 
