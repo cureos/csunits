@@ -4,6 +4,8 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
+using System;
+
 #if SINGLE
 using AmountType = System.Single;
 #elif DECIMAL
@@ -12,24 +14,16 @@ using AmountType = System.Decimal;
 using AmountType = System.Double;
 #endif
 
-namespace Cureos.Measurables.Units
+namespace Cureos.Measurables
 {
-    public sealed class Celsius : GenericUnit
+    /// <summary>
+    /// Support class with math functions related to the measurable objects
+    /// </summary>
+    internal static class MathSupport
     {
-        #region FIELDS
-
-        public static readonly Celsius Instance = new Celsius();
-
-        #endregion
-
-        #region CONSTRUCTORS
-
-        private Celsius()
-            : base("°C", Kelvin.Instance, t => t + (AmountType)273.15, t => t - (AmountType)273.15)
+        internal static AmountType Pow10(int iExponent)
         {
-
+            return (AmountType)Math.Pow(10.0, iExponent);
         }
-
-        #endregion
     }
 }

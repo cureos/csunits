@@ -3,10 +3,7 @@
 Simple C# framework to support Units of Measurement
 
 Copyright 2011 (c) Anders Gustafsson, Cureos AB
-
 Made available under Eclipse Public License, version 1.0
-
-
 
 == Usage examples
 
@@ -18,28 +15,22 @@ Made available under Eclipse Public License, version 1.0
     Measurable<KiloGram> gainedWgt = new Measurable<Gram>(2.5);
     Measurable<KiloGram> newWgt = initialWgt + gainedWgt;
 
-
     Measurable<Gram> newWgtInGram = newWgt.InUnit<Gram>();
     Measurable<Gram> initialWgtInGram = newWgtInGram.Minus(gainedWgt);
 
-
     Console.WriteLine("Initial weight: {0}", initialWgtInGram);
-
 
     Measurable<CentiMeter> height = (Measurable<CentiMeter>)30.0;
     Measurable<SquareMeter> area = new Measurable<SquareMeter>(0.02);
 
+    Measurable<Liter> vol;
+    Measurable.Multiply(height, area, out vol);
 
-    Measurable<Liter> vol = height.Times(area);
     Measurable<Liter> maxVol = (Measurable<Liter>)10.0;
-
-
     if (vol < maxVol)
     {
-        Console.WriteLine("Calculated volume is within limits, actual volume: {0} liters",
- vol.Amount);
+        Console.WriteLine("Calculated volume is within limits, actual volume: {0} liters", vol.Amount);
     }
-
 
 should yield the output:
 
@@ -54,20 +45,19 @@ Developed with Visual Studio 2010, using .NET Framework 4. The solution might re
 
 The "work-horse" Measurable<> is declared as a struct, and the struct itself only contains one value type member. The main goal of this approach is to maximize calculation performance, while at the same time ensuring unit type safety. In contrast, operations involving unit exposure or conversions are costly due to use of type reflection.
 
-With preprocessor directives, it is possible to configure the library so that the measurable amounts are defined in a desired floating-point value type. The following preprocessor directives are currently supported, and can be defined in the project build settings (has not yet been tested in practice):
+With preprocessor directives, it is possible to configure the library so that the measurable amounts are defined in a desired floating-point value type. The following preprocessor directives are currently supported, and can be defined in the project build settings:
 
-*Preprocessor directive*:: *Corresponding value type*
-+DOUBLE+:: +System.Double+
+[DOUBLE] Set amount type to System.Double
 
-+SINGLE+:: +System.Single+
+[SINGLE] Set amount type to System.Single
 
-+DECIMAL+:: +decimal+
+[DECIMAL] Set amount type to System.Decimal
 
 Units are identified through their dimension in terms of SI Base Units. When extending this library, it is recommended that a quantity-specific unit dimension static class is added to the Dimensions sub-folder. The following conventions have been used when implementing the currently existing unit dimension specifications:
 
     internal static class Energy
     {
-        internal static readonly UnitDimension Dimension = new UnitDimension(2,1,-2,0,0,0,0);
+        internal static readonly UnitDimension Dimension = new UnitDimension(2 ,1, -2, 0, 0, 0, 0);
     }
 
 When creating a new energy unit, the Energy.Dimension field can then be used to define the new unit.

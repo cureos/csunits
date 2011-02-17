@@ -40,18 +40,18 @@ namespace Tests.Cureos.Measurables.Units
         [Test]
         public void InUnit_CelsiusToKelvin_AmountIncremented273()
         {
-            var expected = 293.15;
-            var actual = _instance.InUnit<Kelvin>().Amount;
-            Assert.AreEqual(expected, actual, AmountHelper.EqualityTolerance);
+            var expected = new Measurable<Kelvin>(293.15);
+            var actual = _instance.InUnit<Kelvin>();
+            AmountAssert.AreEqual(expected, actual);
         }
 
         [Test]
         public void InUnit_KelvinToCelsius_AmountDecremented273()
         {
             var tempKelvin = new Measurable<Kelvin>(288.65);
-            var expected = 15.5;
-            var actual = tempKelvin.InUnit<Celsius>().Amount;
-            Assert.AreEqual(expected, actual, AmountHelper.EqualityTolerance);
+            var expected = new Measurable<Celsius>(15.5);
+            var actual = tempKelvin.InUnit<Celsius>();
+            AmountAssert.AreEqual(expected, actual);
         }
 
         #endregion

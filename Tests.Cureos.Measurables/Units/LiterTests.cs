@@ -21,9 +21,10 @@ namespace Tests.Cureos.Measurables.Units
         {
             var length = new Measurable<CentiMeter>(15.0);
             var area = new Measurable<SquareMeter>(0.02);
-            var expected = 3.0;
-            var actual = length.Times<SquareMeter, Liter>(area).Amount;
-            Assert.AreEqual(expected, actual, AmountHelper.EqualityTolerance);
+            var expected = new Measurable<Liter>(3.0);
+            Measurable<Liter> actual;
+            Measurable.Multiply(length, area, out actual);
+            AmountAssert.AreEqual(expected, actual);
         }
 
         #endregion

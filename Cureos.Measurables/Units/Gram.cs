@@ -17,7 +17,7 @@ namespace Cureos.Measurables.Units
         #region CONSTRUCTORS
 
         private Gram()
-            : base("g", KiloGram.Instance, 0.001)
+            : base("g", KiloGram.Instance, MathSupport.Pow10(-3))
         {
         }
 
