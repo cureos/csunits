@@ -48,7 +48,6 @@
     <Compile Include="Dimensions\Mass.cs" />
     <Compile Include="Dimensions\Temperature.cs" />
     <Compile Include="Dimensions\Volume.cs" />
-    <Compile Include="MathSupport.cs" />
     <Compile Include="Measurable.cs" />
     <Compile Include="GenericUnit.cs" />
     <Compile Include="Units\CentiGray.cs" />
@@ -71,6 +70,7 @@
     <Compile Include="UnitPrefixExtensions.cs" />
     <Compile Include="UnitReflection.cs" />
     <Compile Include="Units\SquareMeter.cs" />
+    <Compile Include="AmountHelper.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

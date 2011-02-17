@@ -19,11 +19,11 @@ namespace Cureos.Measurables
     /// <summary>
     /// Support class with math functions related to the measurable objects
     /// </summary>
-    internal static class MathSupport
+    internal static class AmountHelper
     {
-        internal static AmountType Pow10(int iExponent)
-        {
-            return (AmountType)Math.Pow(10.0, iExponent);
-        }
+		internal static AmountType CastToAmountType(double iValue)
+		{
+			return (AmountType)iValue;
+		}
     }
 }

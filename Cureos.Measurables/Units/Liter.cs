@@ -17,7 +17,7 @@ namespace Cureos.Measurables.Units
         #region CONSTRUCTORS
 
         private Liter()
-            : base("l", CubicMeter.Instance, MathSupport.Pow10(-3))
+            : base("l", CubicMeter.Instance, AmountHelper.CastToAmountType(0.001))
         {
         }
 
