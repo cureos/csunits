@@ -57,7 +57,7 @@ REMARKS
 
 Developed with Visual Studio 2010, using .NET Framework 4. The solution might require tweaking to build with Mono or older versions of .NET Framework.
 
-The "work-horse" Enumerable<> is declared as a struct, and the struct itself only contains one value type member. The main goal of this approach is to maximize calculation performance, while at the same time ensuring unit type safety. In contrast, operations involving unit conversions are costly due to extensive use of type reflection.
+The "work-horse" Measurable<> is declared as a struct, and the struct itself only contains one value type member. The main goal of this approach is to maximize calculation performance, while at the same time ensuring unit type safety. In contrast, operations involving unit conversions are costly due to extensive use of type reflection.
 
 With preprocessor directives, it is possible to configure the library so that the measurable amounts are defined in a desired floating-point value type. The following preprocessor directives are currently supported, and can be defined in the project build settings:
 

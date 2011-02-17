@@ -10,16 +10,7 @@ namespace Cureos.Measurables.Dimensions
     {
         #region FIELDS
 
-        internal static readonly UnitDimension Dimension;
-
-        #endregion
-
-        #region CONSTRUCTORS
-
-        static AbsorbedDose()
-        {
-            Dimension = new UnitDimension(2, 0, -2, 0, 0, 0, 0);
-        }
+        internal static readonly UnitDimension Dimension = new UnitDimension(2, 0, -2, 0, 0, 0, 0);
 
         #endregion
     }

@@ -10,16 +10,11 @@ namespace Cureos.Measurables.Units
     {
         #region FIELDS
 
-        public static readonly CentiMeter Instance;
+        public static readonly CentiMeter Instance = new CentiMeter();
 
         #endregion
 
         #region CONSTRUCTORS
-
-        static CentiMeter()
-        {
-            Instance = new CentiMeter();
-        }
 
         private CentiMeter()
             : base(UnitPrefix.Centi, "m", Meter.Instance)

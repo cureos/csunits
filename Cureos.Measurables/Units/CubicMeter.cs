@@ -12,21 +12,15 @@ namespace Cureos.Measurables.Units
     {
         #region FIELDS
 
-        public static readonly CubicMeter Instance;
+        public static readonly CubicMeter Instance = new CubicMeter();
 
         #endregion
 
         #region CONSTRUCTORS
 
-        static CubicMeter()
-        {
-            Instance = new CubicMeter();
-        }
-
         private CubicMeter()
             : base("m³", Volume.Dimension)
         {
-
         }
 
         #endregion
