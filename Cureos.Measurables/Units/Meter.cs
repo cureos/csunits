@@ -12,21 +12,15 @@ namespace Cureos.Measurables.Units
     {
         #region FIELDS
 
-        public static readonly Meter Instance;
+        public static readonly Meter Instance = new Meter();
 
         #endregion
 
         #region CONSTRUCTORS
 
-        static Meter()
-        {
-            Instance = new Meter();
-        }
-
         private Meter()
             : base("m", Length.Dimension)
         {
-
         }
 
         #endregion

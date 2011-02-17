@@ -71,7 +71,7 @@ namespace Cureos.Measurables
             V toUnit = UnitReflection.GetUnitInstance<V>();
             if (Unit.Dimension.Equals(toUnit.Dimension))
             {
-                return new Measurable<V>(toUnit.FromBase(Unit.ToBase(mAmount)));
+                return new Measurable<V>(toUnit.AmountFromReferenceUnitConverter(Unit.AmountToReferenceUnitConverter(mAmount)));
             }
             throw new InvalidOperationException("Unit dimensions are not equal");
         }
@@ -191,7 +191,7 @@ namespace Cureos.Measurables
                     "Dimension of requested out unit is not equal to unit dimension of multiplication");
             }
 
-            return new Measurable<VOut>(toUnit.FromBase(Unit.ToBase(mAmount) * rhsUnit.ToBase(iOther.Amount)));
+            return new Measurable<VOut>(toUnit.AmountFromReferenceUnitConverter(Unit.AmountToReferenceUnitConverter(mAmount) * rhsUnit.AmountToReferenceUnitConverter(iOther.Amount)));
         }
 
         /// <summary>
@@ -220,7 +220,7 @@ namespace Cureos.Measurables
 
             checked
             {
-                return new Measurable<VOut>(toUnit.FromBase(Unit.ToBase(mAmount) / rhsUnit.ToBase(iOther.Amount)));
+                return new Measurable<VOut>(toUnit.AmountFromReferenceUnitConverter(Unit.AmountToReferenceUnitConverter(mAmount) / rhsUnit.AmountToReferenceUnitConverter(iOther.Amount)));
             }
         }
 

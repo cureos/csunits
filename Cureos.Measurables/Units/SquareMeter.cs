@@ -12,21 +12,15 @@ namespace Cureos.Measurables.Units
     {
         #region FIELDS
 
-        public static readonly SquareMeter Instance;
+        public static readonly SquareMeter Instance = new SquareMeter();
 
         #endregion
 
         #region CONSTRUCTORS
 
-        static SquareMeter()
-        {
-            Instance = new SquareMeter();
-        }
-
         private SquareMeter()
             : base("m²", Area.Dimension)
         {
-
         }
 
         #endregion

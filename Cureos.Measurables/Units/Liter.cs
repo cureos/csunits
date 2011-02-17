@@ -10,16 +10,11 @@ namespace Cureos.Measurables.Units
     {
         #region FIELDS
 
-        public static readonly Liter Instance;
+        public static readonly Liter Instance = new Liter();
 
         #endregion
 
         #region CONSTRUCTORS
-
-        static Liter()
-        {
-            Instance = new Liter();
-        }
 
         private Liter()
             : base("l", CubicMeter.Instance, 0.001)

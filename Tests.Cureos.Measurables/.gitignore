@@ -1,3 +1,7 @@
+<<<<<<< HEAD
 
+=======
+/test-results/
+>>>>>>> master
 *.vs10x
 *.pidb

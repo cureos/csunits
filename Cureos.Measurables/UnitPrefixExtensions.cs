@@ -7,6 +7,14 @@
 using System;
 using System.Collections.Generic;
 
+#if SINGLE
+using AmountType = System.Single;
+#elif DECIMAL
+using AmountType = System.Decimal;
+#elif DOUBLE
+using AmountType = System.Double;
+#endif
+
 namespace Cureos.Measurables
 {
     public static class UnitPrefixExtensions
@@ -46,14 +54,9 @@ namespace Cureos.Measurables
             return String.Format("{0}{1}", Symbols[iPrefix], iPrefixlessSymbol);
         }
 
-        public static double GetValue(this UnitPrefix iPrefix)
+        public static AmountType GetValue(this UnitPrefix iPrefix)
         {
-            return Math.Pow(10.0, (double) iPrefix);
-        }
-
-        public static double GetInvertedValue(this UnitPrefix iPrefix)
-        {
-            return Math.Pow(10.0, -(double) iPrefix);
+            return Math.Pow((AmountType)10.0, (AmountType)iPrefix);
         }
 
         #endregion

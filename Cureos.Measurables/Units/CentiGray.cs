@@ -10,21 +10,15 @@ namespace Cureos.Measurables.Units
     {
         #region FIELDS
 
-        public static readonly CentiGray Instance;
+        public static readonly CentiGray Instance = new CentiGray();
 
         #endregion
 
         #region CONSTRUCTORS
 
-        static CentiGray()
-        {
-            Instance = new CentiGray();
-        }
-
         private CentiGray()
             : base(UnitPrefix.Centi, "Gy", Gray.Instance)
         {
-
         }
 
         #endregion

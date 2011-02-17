@@ -10,16 +10,11 @@ namespace Cureos.Measurables.Units
     {
         #region FIELDS
 
-        public static readonly Celsius Instance;
+        public static readonly Celsius Instance = new Celsius();
 
         #endregion
 
         #region CONSTRUCTORS
-
-        static Celsius()
-        {
-            Instance = new Celsius();
-        }
 
         private Celsius()
             : base("°C", Kelvin.Instance, t => t + 273.15, t => t - 273.15)

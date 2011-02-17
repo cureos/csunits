@@ -10,21 +10,15 @@ namespace Cureos.Measurables.Units
     {
         #region FIELDS
 
-        public static readonly Gram Instance;
+        public static readonly Gram Instance = new Gram();
 
         #endregion
 
         #region CONSTRUCTORS
 
-        static Gram()
-        {
-            Instance = new Gram();
-        }
-
         private Gram()
-            : base("g", KiloGram.Instance)
+            : base("g", KiloGram.Instance, 0.001)
         {
-
         }
 
         #endregion

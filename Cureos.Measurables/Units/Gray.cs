@@ -12,21 +12,15 @@ namespace Cureos.Measurables.Units
     {
         #region FIELDS
 
-        public static readonly Gray Instance;
+        public static readonly Gray Instance = new Gray();
 
         #endregion
 
         #region CONSTRUCTORS
 
-        static Gray()
-        {
-            Instance = new Gray();
-        }
-
         private Gray()
             : base("Gy", AbsorbedDose.Dimension)
         {
-
         }
 
         #endregion

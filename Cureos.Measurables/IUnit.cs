@@ -39,14 +39,14 @@ namespace Cureos.Measurables
         UnitDimension Dimension { get; }
 
         /// <summary>
-        /// Gets the function used for converting an amount from this unit to a common base for all units of the same dimension
+        /// Gets the function used for converting an amount from this unit to the reference unit of the same dimension
         /// </summary>
-        Func<AmountType, AmountType> ToBase { get; }
+        Func<AmountType, AmountType> AmountToReferenceUnitConverter { get; }
 
         /// <summary>
-        /// Gets the function used for converting an amount to this unit from a common base for all units of the same dimension
+        /// Gets the function used for converting an amount to this unit from the reference unit of the same dimension
         /// </summary>
-        Func<AmountType, AmountType> FromBase { get; }
+        Func<AmountType, AmountType> AmountFromReferenceUnitConverter { get; }
 
         #endregion
     }

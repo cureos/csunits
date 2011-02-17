@@ -10,16 +10,11 @@ namespace Cureos.Measurables.Units
     {
         #region FIELDS
 
-        public static readonly MilliMeter Instance;
+        public static readonly MilliMeter Instance = new MilliMeter();
 
         #endregion
 
         #region CONSTRUCTORS
-
-        static MilliMeter()
-        {
-            Instance = new MilliMeter();
-        }
 
         private MilliMeter()
             : base(UnitPrefix.Milli, "m", Meter.Instance)

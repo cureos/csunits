@@ -12,21 +12,15 @@ namespace Cureos.Measurables.Units
     {
         #region FIELDS
 
-        public static readonly Kelvin Instance;
+        public static readonly Kelvin Instance = new Kelvin();
 
         #endregion
 
         #region CONSTRUCTORS
 
-        static Kelvin()
-        {
-            Instance = new Kelvin();
-        }
-
         private Kelvin()
             : base("K", Temperature.Dimension)
         {
-
         }
 
         #endregion

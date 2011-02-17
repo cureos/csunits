@@ -6,5 +6,8 @@
 /Cureos.Measurables/obj
 /Tests.Cureos.Measurables/bin
 /Tests.Cureos.Measurables/obj
+<<<<<<< HEAD
 /Tests.Cureos.Measurables/test-results
+=======
+>>>>>>> master
 *.userprefs
