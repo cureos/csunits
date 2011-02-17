@@ -17,6 +17,9 @@ using AmountType = System.Double;
 
 namespace Cureos.Measurables
 {
+    /// <summary>
+    /// Extension methods associated with <see cref="UnitPrefix"/> enumeration
+    /// </summary>
     public static class UnitPrefixExtensions
     {
         #region FIELDS
@@ -49,11 +52,22 @@ namespace Cureos.Measurables
 
         #region EXTENSION METHODS
 
+        /// <summary>
+        /// Get unit symbol prepended with the specified unit prefix
+        /// </summary>
+        /// <param name="iPrefix">This unit prefix</param>
+        /// <param name="iPrefixlessSymbol">Prefix-less unit symbol</param>
+        /// <returns>Resulting unit symbol with this prefix prepended</returns>
         public static string GetUnitSymbol(this UnitPrefix iPrefix, string iPrefixlessSymbol)
         {
             return String.Format("{0}{1}", Symbols[iPrefix], iPrefixlessSymbol);
         }
 
+        /// <summary>
+        /// Gets the value associated with this unit prefix
+        /// </summary>
+        /// <param name="iPrefix">This unit prefix</param>
+        /// <returns>Value associated with this unit prefix</returns>
         public static AmountType GetValue(this UnitPrefix iPrefix)
         {
             return (AmountType)Math.Pow(10.0, (double)iPrefix);

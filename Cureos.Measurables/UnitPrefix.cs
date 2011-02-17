@@ -6,6 +6,9 @@
 
 namespace Cureos.Measurables
 {
+    /// <summary>
+    /// Enumeration of supported unit prefixes
+    /// </summary>
     public enum UnitPrefix
     {
         Pico = -12,
