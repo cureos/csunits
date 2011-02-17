@@ -49,6 +49,7 @@
     <Compile Include="TimingTests.cs" />
     <Compile Include="Units\CelsiusTests.cs" />
     <Compile Include="Units\LiterTests.cs" />
+    <Compile Include="Units\SquareMeterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cureos.Measurables\Cureos.Measurables.csproj">

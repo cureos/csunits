@@ -3,10 +3,7 @@
 Simple C# framework to support Units of Measurement
 
 Copyright 2011 (c) Anders Gustafsson, Cureos AB
-
 Made available under Eclipse Public License, version 1.0
-
-
 
 == Usage examples
 
@@ -18,27 +15,22 @@ Made available under Eclipse Public License, version 1.0
     Measurable<KiloGram> gainedWgt = new Measurable<Gram>(2.5);
     Measurable<KiloGram> newWgt = initialWgt + gainedWgt;
 
-
     Measurable<Gram> newWgtInGram = newWgt.InUnit<Gram>();
     Measurable<Gram> initialWgtInGram = newWgtInGram.Minus(gainedWgt);
 
-
     Console.WriteLine("Initial weight: {0}", initialWgtInGram);
-
 
     Measurable<CentiMeter> height = (Measurable<CentiMeter>)30.0;
     Measurable<SquareMeter> area = new Measurable<SquareMeter>(0.02);
 
+    Measurable<Liter> vol;
+    Measurable.Multiply(height, area, out vol);
 
-    Measurable<Liter> vol = height.Times(area);
     Measurable<Liter> maxVol = (Measurable<Liter>)10.0;
-
-
     if (vol < maxVol)
     {
         Console.WriteLine("Calculated volume is within limits, actual volume: {0} liters", vol.Amount);
     }
-
 
 should yield the output:
 
@@ -65,7 +57,7 @@ Units are identified through their dimension in terms of SI Base Units. When ext
 
     internal static class Energy
     {
-        internal static readonly UnitDimension Dimension = new UnitDimension(2,1,-2,0,0,0,0);
+        internal static readonly UnitDimension Dimension = new UnitDimension(2 ,1, -2, 0, 0, 0, 0);
     }
 
 When creating a new energy unit, the Energy.Dimension field can then be used to define the new unit.

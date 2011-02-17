@@ -36,7 +36,11 @@ namespace Cureos.Measurables
         /// <param name="iAmount">Double-precision amount in the unit of the measurable object</param>
         public Measurable(double iAmount)
         {
-            mAmount = (AmountType)iAmount;
+            mAmount = 
+#if DECIMAL
+                (AmountType)
+#endif
+                iAmount;
         }
 
         /// <summary>
@@ -45,7 +49,11 @@ namespace Cureos.Measurables
         /// <param name="iAmount">Single precision amount in the unit of the measurable object</param>
         public Measurable(float iAmount)
         {
-            mAmount = (AmountType)iAmount;
+            mAmount =
+#if DECIMAL
+                (AmountType)
+#endif
+                iAmount;
         }
 
         /// <summary>
@@ -54,7 +62,11 @@ namespace Cureos.Measurables
         /// <param name="iAmount">Decimal amount in the unit of the measurable object</param>
         public Measurable(decimal iAmount)
         {
-            mAmount = (AmountType)iAmount;
+            mAmount =
+#if !DECIMAL
+                (AmountType)
+#endif
+                iAmount;
         }
 
         #endregion
@@ -185,61 +197,6 @@ namespace Cureos.Measurables
         public Measurable<U> Minus<V>(Measurable<V> iOther) where V : IUnit
         {
             return new Measurable<U>(mAmount - iOther.InUnit<U>().Amount);
-        }
-
-        /// <summary>
-        /// Multiply this measurable object with another measurable of a different unit, and return a measurable object
-        /// in the specified out unit
-        /// </summary>
-        /// <typeparam name="VIn">Unit of the measurable object to multiply</typeparam>
-        /// <typeparam name="VOut">Requested unit of the resulting measurable object</typeparam>
-        /// <param name="iOther">Measurable object to multiply to this object</param>
-        /// <returns>Product of this and the other measurable object as a measurable in the requested out unit</returns>
-        /// <exception cref="InvalidOperationException">is thrown if the requested out unit does not have the same dimensions
-        /// as the unit dimension product of the multiplied measurable objects</exception>
-        public Measurable<VOut> Times<VIn, VOut>(Measurable<VIn> iOther) where VIn : IUnit where VOut : IUnit
-        {
-            VIn rhsUnit = UnitReflection.GetUnitInstance<VIn>();
-            VOut toUnit = UnitReflection.GetUnitInstance<VOut>();
-            GenericUnit multUnit = GenericUnit.Multiply(Unit, rhsUnit);
-
-            if (!toUnit.Dimension.Equals(multUnit.Dimension))
-            {
-                throw new InvalidOperationException(
-                    "Dimension of requested out unit is not equal to unit dimension of multiplication");
-            }
-
-            return new Measurable<VOut>(toUnit.AmountFromReferenceUnitConverter(Unit.AmountToReferenceUnitConverter(mAmount) * rhsUnit.AmountToReferenceUnitConverter(iOther.Amount)));
-        }
-
-        /// <summary>
-        /// Divide this measurable object with another measurable of a different unit, and return a measurable object
-        /// in the specified out unit
-        /// </summary>
-        /// <typeparam name="VIn">Unit of the measurable object to divide</typeparam>
-        /// <typeparam name="VOut">Requested unit of the resulting measurable object</typeparam>
-        /// <param name="iOther">Measurable object to divide from this object</param>
-        /// <returns>Quotient of this and the other measurable object as a measurable in the requested out unit</returns>
-        /// <exception cref="InvalidOperationException">is thrown if the requested out unit does not have the same dimensions
-        /// as the unit dimension quotient of the divided measurable objects</exception>
-        public Measurable<VOut> Divide<VIn, VOut>(Measurable<VIn> iOther)
-            where VIn : IUnit
-            where VOut : IUnit
-        {
-            VIn rhsUnit = UnitReflection.GetUnitInstance<VIn>();
-            VOut toUnit = UnitReflection.GetUnitInstance<VOut>();
-            GenericUnit divideUnit = GenericUnit.Divide(Unit, rhsUnit);
-
-            if (!toUnit.Dimension.Equals(divideUnit.Dimension))
-            {
-                throw new InvalidOperationException(
-                    "Dimension of requested out unit is not equal to unit dimension of division");
-            }
-
-            checked
-            {
-                return new Measurable<VOut>(toUnit.AmountFromReferenceUnitConverter(Unit.AmountToReferenceUnitConverter(mAmount) / rhsUnit.AmountToReferenceUnitConverter(iOther.Amount)));
-            }
         }
 
         #endregion
@@ -392,6 +349,87 @@ namespace Cureos.Measurables
         public static bool operator !=(Measurable<U> iLhs, Measurable<U> iRhs)
         {
             return iLhs.mAmount != iRhs.mAmount;
+        }
+
+        #endregion
+    }
+
+    /// <summary>
+    /// Static support class with complementary measurable object methods
+    /// </summary>
+    public static class Measurable
+    {
+        #region METHODS
+
+        /// <summary>
+        /// Multiply one measurable object with another measurable of a different unit, and return a measurable object
+        /// in the specified out unit
+        /// </summary>
+        /// <typeparam name="U1">Unit of the first measurable object to multiply</typeparam>
+        /// <typeparam name="U2">Unit of the second measurable object to multiply</typeparam>
+        /// <typeparam name="UOut">Requested unit of the resulting measurable object</typeparam>
+        /// <param name="iLhs">First measurable object</param>
+        /// <param name="iRhs">Second measurable object</param>
+        /// <param name="oResult">Product of the first two measurable objects as a measurable in the requested out unit</param>
+        /// <exception cref="InvalidOperationException">is thrown if the requested out unit does not have the same dimensions
+        /// as the unit dimension product of the multiplied measurable objects</exception>
+        public static void Multiply<U1, U2, UOut>(Measurable<U1> iLhs, Measurable<U2> iRhs, out Measurable<UOut> oResult)
+            where U1 : IUnit
+            where U2 : IUnit
+            where UOut : IUnit
+        {
+            U1 lhsUnit = UnitReflection.GetUnitInstance<U1>();
+            U2 rhsUnit = UnitReflection.GetUnitInstance<U2>();
+            UOut toUnit = UnitReflection.GetUnitInstance<UOut>();
+            GenericUnit multUnit = GenericUnit.Multiply(lhsUnit, rhsUnit);
+
+            if (!toUnit.Dimension.Equals(multUnit.Dimension))
+            {
+                throw new InvalidOperationException(
+                    "Dimension of requested out unit is not equal to unit dimension of multiplication");
+            }
+
+            oResult =
+                new Measurable<UOut>(
+                    toUnit.AmountFromReferenceUnitConverter(lhsUnit.AmountToReferenceUnitConverter(iLhs.Amount) *
+                                                            rhsUnit.AmountToReferenceUnitConverter(iRhs.Amount)));
+        }
+
+        /// <summary>
+        /// Divide one measurable object with another measurable of a different unit, and return a measurable object
+        /// in the specified out unit
+        /// </summary>
+        /// <typeparam name="U1">Unit of the numerator measurable object</typeparam>
+        /// <typeparam name="U2">Unit of the denominator measurable object</typeparam>
+        /// <typeparam name="UOut">Requested unit of the resulting measurable object</typeparam>
+        /// <param name="iLhs">Numerator measurable object</param>
+        /// <param name="iRhs">Denominator measurable object</param>
+        /// <param name="oResult">Quotient of the measurable objects as a measurable in the requested out unit</param>
+        /// <exception cref="InvalidOperationException">is thrown if the requested out unit does not have the same dimensions
+        /// as the unit dimension quotient of the divided measurable objects</exception>
+        public static void Divide<U1, U2, UOut>(Measurable<U1> iLhs, Measurable<U2> iRhs, out Measurable<UOut> oResult)
+            where U1 : IUnit
+            where U2 : IUnit
+            where UOut : IUnit
+        {
+            U1 lhsUnit = UnitReflection.GetUnitInstance<U1>();
+            U2 rhsUnit = UnitReflection.GetUnitInstance<U2>();
+            UOut toUnit = UnitReflection.GetUnitInstance<UOut>();
+            GenericUnit divideUnit = GenericUnit.Divide(lhsUnit, rhsUnit);
+
+            if (!toUnit.Dimension.Equals(divideUnit.Dimension))
+            {
+                throw new InvalidOperationException(
+                    "Dimension of requested out unit is not equal to unit dimension of division");
+            }
+
+            checked
+            {
+                oResult =
+                    new Measurable<UOut>(
+                        toUnit.AmountFromReferenceUnitConverter(lhsUnit.AmountToReferenceUnitConverter(iLhs.Amount) /
+                                                                rhsUnit.AmountToReferenceUnitConverter(iRhs.Amount)));
+            }
         }
 
         #endregion
