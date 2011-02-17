@@ -46,6 +46,7 @@
     <Compile Include="Dimensions\Mass.cs" />
     <Compile Include="Dimensions\Temperature.cs" />
     <Compile Include="Dimensions\Volume.cs" />
+    <Compile Include="MathSupport.cs" />
     <Compile Include="Measurable.cs" />
     <Compile Include="GenericUnit.cs" />
     <Compile Include="Units\CentiGray.cs" />
