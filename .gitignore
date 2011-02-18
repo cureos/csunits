@@ -7,3 +7,7 @@
 /Tests.Cureos.Measurables/bin
 /Tests.Cureos.Measurables/obj
 *.userprefs
+/Tests.Cureos.Measures/bin
+/Tests.Cureos.Measures/obj
+/Cureos.Measures/obj
+/Cureos.Measures/bin

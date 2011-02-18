@@ -7,9 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Cureos.Measurables", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{900379F9-E2FD-4342-9330-A67DB2C2F4F7}"
 	ProjectSection(SolutionItems) = preProject
-		COPYING.htm = COPYING.htm
 		README.rdoc = README.rdoc
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cureos.Measures", "Cureos.Measures\Cureos.Measures.csproj", "{E55BFB0E-0074-404F-A988-7C1E245DF752}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Cureos.Measures", "Tests.Cureos.Measures\Tests.Cureos.Measures.csproj", "{11E5CCED-98AB-4057-A950-D3400152D362}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +28,14 @@ Global
 		{8CC50712-E318-472D-A639-78AF46C5AAFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CC50712-E318-472D-A639-78AF46C5AAFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CC50712-E318-472D-A639-78AF46C5AAFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E55BFB0E-0074-404F-A988-7C1E245DF752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E55BFB0E-0074-404F-A988-7C1E245DF752}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E55BFB0E-0074-404F-A988-7C1E245DF752}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E55BFB0E-0074-404F-A988-7C1E245DF752}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11E5CCED-98AB-4057-A950-D3400152D362}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11E5CCED-98AB-4057-A950-D3400152D362}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11E5CCED-98AB-4057-A950-D3400152D362}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11E5CCED-98AB-4057-A950-D3400152D362}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
