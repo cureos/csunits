@@ -74,7 +74,21 @@ namespace Cureos.Measures
         {
             get { return mUnit.GetAssociatedQuantity(); }
         }
-
+		
+		public AmountType GetAmount(Unit iUnit)
+		{
+			if (iUnit.GetAssociatedQuantity() == Quantity)
+			{
+				return iUnit.ConvertAmountTo(mUnit.GetReferenceUnitAmount(mAmount), iUnit);
+			}
+			throw new InvalidOperationException("Not possible to convert amount to unit of different quantity");
+		}
+		
+		public Measure ConvertTo(Unit iUnit)
+		{
+			return new Measure(GetAmount(iUnit), iUnit);
+		}
+		
         #endregion
 
         #region METHODS

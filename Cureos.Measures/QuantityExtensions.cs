@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Cureos.Measures
 {
@@ -21,16 +22,16 @@ namespace Cureos.Measures
 
         static QuantityExtensions()
         {
-            smDetailsMap = new Dictionary<Quantity, QuantityDetails>
+            smDetailsMap = new List<QuantityDetails>
                                {
-                                   {Quantity.Length, new QuantityDetails(new UnitDimensions(1, 0, 0, 0, 0, 0, 0))},
-                                   {Quantity.Area, new QuantityDetails(new UnitDimensions(2, 0, 0, 0, 0, 0, 0))},
-                                   {Quantity.Volume, new QuantityDetails(new UnitDimensions(3, 0, 0, 0, 0, 0, 0))},
-                                   {Quantity.Mass, new QuantityDetails(new UnitDimensions(0, 1, 0, 0, 0, 0, 0))},
-                                   {Quantity.Time, new QuantityDetails(new UnitDimensions(0, 0, 1, 0, 0, 0, 0))},
-                                   {Quantity.Temperature, new QuantityDetails(new UnitDimensions(0, 0, 0, 0, 1, 0, 0))},
-                                   {Quantity.AbsorbedDose, new QuantityDetails(new UnitDimensions(2, 0, -2, 0, 0, 0, 0))}
-                               };
+                                   new QuantityDetails(Quantity.Length, new UnitDimensions(1, 0, 0, 0, 0, 0, 0)),
+                                   new QuantityDetails(Quantity.Area, new UnitDimensions(2, 0, 0, 0, 0, 0, 0)),
+                                   new QuantityDetails(Quantity.Volume, new UnitDimensions(3, 0, 0, 0, 0, 0, 0)),
+                                   new QuantityDetails(Quantity.Mass, new UnitDimensions(0, 1, 0, 0, 0, 0, 0)),
+                                   new QuantityDetails(Quantity.Time, new UnitDimensions(0, 0, 1, 0, 0, 0, 0)),
+                                   new QuantityDetails(Quantity.Temperature, new UnitDimensions(0, 0, 0, 0, 1, 0, 0)),
+                                   new QuantityDetails(Quantity.AbsorbedDose, new UnitDimensions(2, 0, -2, 0, 0, 0, 0))
+                               }.ToDictionary(qd => qd.Quantity);
         }
 
         #endregion
@@ -56,8 +57,9 @@ namespace Cureos.Measures
             
             #region CONSTRUCTORS
 
-            internal QuantityDetails(UnitDimensions iUnitDimensions)
+            internal QuantityDetails(Quantity iQuantity, UnitDimensions iUnitDimensions)
             {
+				Quantity = iQuantity;
                 Dimensions = iUnitDimensions;
                 mReferenceUnit = Unit.None;
             }
@@ -65,7 +67,9 @@ namespace Cureos.Measures
             #endregion
 
             #region AUTO-IMPLEMENTED PROPERTIES
-
+			
+			internal Quantity Quantity { get; private set; }
+			
             internal UnitDimensions Dimensions { get; private set; }
 
             #endregion
