@@ -4,18 +4,19 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
+using System;
+
 #if SINGLE
 using AmountType = System.Single;
 #elif DECIMAL
 using AmountType = System.Decimal;
 #elif DOUBLE
-using System;
 using AmountType = System.Double;
 #endif
 
 namespace Cureos.Measures
 {
-    public struct Measure
+    public struct Measure : IMeasure
     {
         #region MEMBER VARIABLES
 
@@ -75,6 +76,10 @@ namespace Cureos.Measures
             get { return mUnit.GetAssociatedQuantity(); }
         }
 		
+        #endregion
+
+        #region METHODS
+		
 		public AmountType GetAmount(Unit iUnit)
 		{
 			if (iUnit.GetAssociatedQuantity() == Quantity)
@@ -84,14 +89,10 @@ namespace Cureos.Measures
 			throw new InvalidOperationException("Not possible to convert amount to unit of different quantity");
 		}
 		
-		public Measure ConvertTo(Unit iUnit)
+		public IMeasure ConvertTo(Unit iUnit)
 		{
 			return new Measure(GetAmount(iUnit), iUnit);
 		}
-		
-        #endregion
-
-        #region METHODS
 
         public Measure Times(Measure iRhs, Unit iOutUnit)
         {
