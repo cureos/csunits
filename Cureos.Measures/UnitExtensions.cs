@@ -61,9 +61,9 @@ namespace Cureos.Measures
 
         #region EXTENSION METHODS
 
-        public static Quantity GetAssociatedQuantity(this Unit iUnit)
+        public static Quantity GetQuantity(this Unit iUnit)
         {
-            return smUnitDetailsMap[iUnit].AssociatedQuantity;
+            return smUnitDetailsMap[iUnit].Quantity;
         }
 
         public static string GetSymbol(this Unit iUnit)
@@ -93,65 +93,53 @@ namespace Cureos.Measures
         /// </summary>
         private sealed class UnitDetails
         {
-            /*            #region MEMBER VARIABLES
-
-                        private readonly AmountType mAmountToReferenceUnitFactor;
-                        private readonly AmountType mAmountFromReferenceUnitFactor;
-
-                        #endregion
-            */
             #region CONSTRUCTORS
 
             /// <summary>
             /// Reference unit details constructor
             /// </summary>
             /// <param name="iUnit">Unit instance</param>
-            /// <param name="iAssociatedQuantity">Quantity for which this unit is reference unit</param>
+            /// <param name="iQuantity">Quantity for which this unit is reference unit</param>
             /// <param name="iSymbol">Unit symbol</param>
-            internal UnitDetails(Unit iUnit, Quantity iAssociatedQuantity, string iSymbol)
+            internal UnitDetails(Unit iUnit, Quantity iQuantity, string iSymbol)
             {
                 Unit = iUnit;
-                AssociatedQuantity = iAssociatedQuantity;
+                Quantity = iQuantity;
                 Symbol = iSymbol;
-                //                mAmountToReferenceUnitFactor = mAmountFromReferenceUnitFactor = (AmountType)1.0;
                 AmountToReferenceUnitConverter = AmountFromReferenceUnitConverter = a => a;
-                iAssociatedQuantity.SetReferenceUnit(iUnit);
+                iQuantity.SetReferenceUnit(iUnit);
             }
 
             /// <summary>
             /// Initializes a non-reference unit instance which uses multiplicative conversion vis-a-vis the reference unit
             /// </summary>
             /// <param name="iUnit">Unit instance</param>
-            /// <param name="iAssociatedQuantity">Physical quantity associated with this unit</param>
+            /// <param name="iQuantity">Physical quantity associated with this unit</param>
             /// <param name="iSymbol">Unit symbol</param>
             /// <param name="iAmountToReferenceUnitFactor">Multiplicative factor for amount conversion to reference unit</param>
-            internal UnitDetails(Unit iUnit, Quantity iAssociatedQuantity, string iSymbol, double iAmountToReferenceUnitFactor)
+            internal UnitDetails(Unit iUnit, Quantity iQuantity, string iSymbol, double iAmountToReferenceUnitFactor)
             {
                 Unit = iUnit;
-                AssociatedQuantity = iAssociatedQuantity;
+                Quantity = iQuantity;
                 Symbol = iSymbol;
-                //                mAmountToReferenceUnitFactor = iAmountToReferenceUnitFactor;
-                //                mAmountFromReferenceUnitFactor = (AmountType)1.0 / iAmountToReferenceUnitFactor;
                 AmountToReferenceUnitConverter = a => a * iAmountToReferenceUnitFactor;
                 AmountFromReferenceUnitConverter = a => a / iAmountToReferenceUnitFactor;
-                //                InitializeMultiplicativeConverters();
             }
 
             /// <summary>
             /// Initializes a unit instance which uses a generic unit conversion
             /// </summary>
             /// <param name="iUnit">Unit instance</param>
-            /// <param name="iAssociatedQuantity">Physical quantity associated with this unit</param>
+            /// <param name="iQuantity">Physical quantity associated with this unit</param>
             /// <param name="iSymbol">Unit symbol</param>
             /// <param name="iAmountToReferenceUnitConverter">Function converting amount in this unit to reference unit amount</param>
             /// <param name="iAmountFromReferenceUnitConverter">Function converting reference unit amount to amount in this unit</param>
-            internal UnitDetails(Unit iUnit, Quantity iAssociatedQuantity, string iSymbol,
+            internal UnitDetails(Unit iUnit, Quantity iQuantity, string iSymbol,
                 Func<double, double> iAmountToReferenceUnitConverter, Func<double, double> iAmountFromReferenceUnitConverter)
             {
                 Unit = iUnit;
-                AssociatedQuantity = iAssociatedQuantity;
+                Quantity = iQuantity;
                 Symbol = iSymbol;
-                //                mAmountToReferenceUnitFactor = mAmountFromReferenceUnitFactor = (AmountType)0.0;
                 AmountToReferenceUnitConverter = iAmountToReferenceUnitConverter;
                 AmountFromReferenceUnitConverter = iAmountFromReferenceUnitConverter;
             }
@@ -163,7 +151,7 @@ namespace Cureos.Measures
             /// <summary>
             /// Gets the quantity associated with this unit
             /// </summary>
-            internal Quantity AssociatedQuantity { get; private set; }
+            internal Quantity Quantity { get; private set; }
 
             internal Unit Unit { get; private set; }
 
@@ -219,15 +207,6 @@ namespace Cureos.Measures
             internal static UnitDetails Divide(IUnit iLhsUnit, IUnit iRhsUnit)
             {
                 return new UnitDetails(String.Empty, iLhsUnit.Dimension - iRhsUnit.Dimension);
-            }
-
-            /// <summary>
-            /// Convenience method for creating amount converts based on defined multiplicative conversion factors
-            /// </summary>
-            private void InitializeMultiplicativeConverters()
-            {
-                AmountToReferenceUnitConverter = a => a * mAmountToReferenceUnitFactor;
-                AmountFromReferenceUnitConverter = a => a * mAmountFromReferenceUnitFactor;
             }
 
             #endregion

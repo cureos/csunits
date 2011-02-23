@@ -73,7 +73,7 @@ namespace Cureos.Measures
 
         public Quantity Quantity
         {
-            get { return mUnit.GetAssociatedQuantity(); }
+            get { return mUnit.GetQuantity(); }
         }
 		
         #endregion
@@ -82,7 +82,7 @@ namespace Cureos.Measures
 		
 		public AmountType GetAmount(Unit iUnit)
 		{
-			if (iUnit.GetAssociatedQuantity() == Quantity)
+			if (iUnit.GetQuantity() == Quantity)
 			{
 				return iUnit.ConvertAmountTo(mUnit.GetReferenceUnitAmount(mAmount), iUnit);
 			}
@@ -93,12 +93,6 @@ namespace Cureos.Measures
 		{
 			return new Measure(GetAmount(iUnit), iUnit);
 		}
-
-        public Measure Times(Measure iRhs, Unit iOutUnit)
-        {
-            // TODO Implement support in UnitExtensions and QuantityExtensions to manage this one
-            return new Measure();
-        }
 
         public override string ToString()
         {

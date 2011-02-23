@@ -50,6 +50,8 @@
     <Compile Include="UnitExtensions.cs" />
     <Compile Include="QuantityDimensions.cs" />
     <Compile Include="IMeasure.cs" />
+    <Compile Include="IQuantity.cs" />
+    <Compile Include="Quantities\Length.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -59,4 +61,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="Quantities\" />
+  </ItemGroup>
 </Project>
