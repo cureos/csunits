@@ -10,88 +10,93 @@ using System.Linq;
 
 namespace Cureos.Measures
 {
-    public static class QuantityExtensions
-    {
-        #region STATIC MEMBERS
+	public static class QuantityExtensions
+	{
+		#region STATIC MEMBERS
 
-        private static Dictionary<Quantity, QuantityDetails> smDetailsMap;
+		private static Dictionary<Quantity, QuantityDetails> smDetailsMap;
 
-        #endregion
+		#endregion
 
-        #region CONSTRUCTORS
+		#region CONSTRUCTORS
 
-        static QuantityExtensions()
-        {
-            smDetailsMap = new List<QuantityDetails>
-                               {
-                                   new QuantityDetails(Quantity.Length, new QuantityDimensions(1, 0, 0, 0, 0, 0, 0)),
-                                   new QuantityDetails(Quantity.Area, new QuantityDimensions(2, 0, 0, 0, 0, 0, 0)),
-                                   new QuantityDetails(Quantity.Volume, new QuantityDimensions(3, 0, 0, 0, 0, 0, 0)),
-                                   new QuantityDetails(Quantity.Mass, new QuantityDimensions(0, 1, 0, 0, 0, 0, 0)),
-                                   new QuantityDetails(Quantity.Time, new QuantityDimensions(0, 0, 1, 0, 0, 0, 0)),
-                                   new QuantityDetails(Quantity.Temperature, new QuantityDimensions(0, 0, 0, 0, 1, 0, 0)),
-                                   new QuantityDetails(Quantity.AbsorbedDose, new QuantityDimensions(2, 0, -2, 0, 0, 0, 0))
-                               }.ToDictionary(qd => qd.Quantity);
-        }
+		static QuantityExtensions()
+		{
+			smDetailsMap = new List<QuantityDetails>
+							   {
+								   new QuantityDetails(Quantity.Length, new QuantityDimensions(1, 0, 0, 0, 0, 0, 0)),
+								   new QuantityDetails(Quantity.Area, new QuantityDimensions(2, 0, 0, 0, 0, 0, 0)),
+								   new QuantityDetails(Quantity.Volume, new QuantityDimensions(3, 0, 0, 0, 0, 0, 0)),
+								   new QuantityDetails(Quantity.Mass, new QuantityDimensions(0, 1, 0, 0, 0, 0, 0)),
+								   new QuantityDetails(Quantity.Time, new QuantityDimensions(0, 0, 1, 0, 0, 0, 0)),
+								   new QuantityDetails(Quantity.Temperature, new QuantityDimensions(0, 0, 0, 0, 1, 0, 0)),
+								   new QuantityDetails(Quantity.AbsorbedDose, new QuantityDimensions(2, 0, -2, 0, 0, 0, 0))
+							   }.ToDictionary(qd => qd.Quantity);
+		}
 
-        #endregion
+		#endregion
 
-        #region EXTENSION METHODS
+		#region EXTENSION METHODS
 
-        public static void SetReferenceUnit(this Quantity iQuantity, Unit iReferenceUnit)
-        {
-            smDetailsMap[iQuantity].ReferenceUnit = iReferenceUnit;
-        }
+		public static void SetReferenceUnit(this Quantity iQuantity, Unit iReferenceUnit)
+		{
+			smDetailsMap[iQuantity].ReferenceUnit = iReferenceUnit;
+		}
 
-        #endregion
-        
-        #region INNER SUPPORT CLASSES
+		public static Unit GetReferenceUnit(this Quantity iQuantity)
+		{
+			return smDetailsMap[iQuantity].ReferenceUnit;
+		}
 
-        private sealed class QuantityDetails
-        {
-            #region MEMBER VARIABLES
+		#endregion
+		
+		#region INNER SUPPORT CLASSES
 
-            private Unit mReferenceUnit;
+		private sealed class QuantityDetails
+		{
+			#region MEMBER VARIABLES
 
-            #endregion
-            
-            #region CONSTRUCTORS
+			private Unit mReferenceUnit;
 
-            internal QuantityDetails(Quantity iQuantity, QuantityDimensions iDimensions)
-            {
+			#endregion
+			
+			#region CONSTRUCTORS
+
+			internal QuantityDetails(Quantity iQuantity, QuantityDimensions iDimensions)
+			{
 				Quantity = iQuantity;
-                Dimensions = iDimensions;
-                mReferenceUnit = Unit.None;
-            }
+				Dimensions = iDimensions;
+				mReferenceUnit = Unit.None;
+			}
 
-            #endregion
+			#endregion
 
-            #region AUTO-IMPLEMENTED PROPERTIES
+			#region AUTO-IMPLEMENTED PROPERTIES
 			
 			internal Quantity Quantity { get; private set; }
 			
-            internal QuantityDimensions Dimensions { get; private set; }
+			internal QuantityDimensions Dimensions { get; private set; }
 
-            #endregion
+			#endregion
 
-            #region PROPERTIES
+			#region PROPERTIES
 
-            internal Unit ReferenceUnit
-            {
-                get
-                {
-                    return mReferenceUnit;
-                }
-                set
-                {
-                    if (mReferenceUnit != Unit.None) throw new InvalidOperationException("Attempt to set already defined ReferenceUnit");
-                    mReferenceUnit = value;
-                }
-            }
+			internal Unit ReferenceUnit
+			{
+				get
+				{
+					return mReferenceUnit;
+				}
+				set
+				{
+					if (mReferenceUnit != Unit.None) throw new InvalidOperationException("Attempt to set already defined ReferenceUnit");
+					mReferenceUnit = value;
+				}
+			}
 
-            #endregion
-        }
+			#endregion
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }

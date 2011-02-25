@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Measure.cs" />
+    <Compile Include="Measure_Q.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quantity.cs" />
     <Compile Include="QuantityExtensions.cs" />
@@ -61,7 +62,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <Folder Include="Quantities\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

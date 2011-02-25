@@ -16,69 +16,69 @@ using AmountType = System.Double;
 
 namespace Cureos.Measures
 {
-    public struct Measure : IMeasure
-    {
-        #region MEMBER VARIABLES
+	public struct Measure : IMeasure
+	{
+		#region MEMBER VARIABLES
 
-        private readonly AmountType mAmount;
-        private readonly Unit mUnit;
+		private readonly AmountType mAmount;
+		private readonly Unit mUnit;
 
-        #endregion
+		#endregion
 
-        #region CONSTRUCTORS
+		#region CONSTRUCTORS
 
-        public Measure(double iAmount, Unit iUnit)
-        {
-            mAmount =
+		public Measure(double iAmount, Unit iUnit)
+		{
+			mAmount =
 #if DECIMAL
-                (AmountType)
+				(AmountType)
 #endif
-                iAmount;
-            mUnit = iUnit;
-        }
+				iAmount;
+			mUnit = iUnit;
+		}
 
-        public Measure(float iAmount, Unit iUnit)
-        {
-            mAmount =
+		public Measure(float iAmount, Unit iUnit)
+		{
+			mAmount =
 #if DECIMAL
-                (AmountType)
+				(AmountType)
 #endif
-                iAmount;
-            mUnit = iUnit;
-        }
+				iAmount;
+			mUnit = iUnit;
+		}
 
-        public Measure(decimal iAmount, Unit iUnit)
-        {
-            mAmount =
+		public Measure(decimal iAmount, Unit iUnit)
+		{
+			mAmount =
 #if !DECIMAL
-                (AmountType)
+				(AmountType)
 #endif
-                iAmount;
-            mUnit = iUnit;
-        }
+				iAmount;
+			mUnit = iUnit;
+		}
 
-        #endregion
+		#endregion
 
-        #region PROPERTIES
+		#region PROPERTIES
 
-        public AmountType Amount
-        {
-            get { return mAmount; }
-        }
+		public AmountType Amount
+		{
+			get { return mAmount; }
+		}
 
-        public Unit Unit
-        {
-            get { return mUnit; }
-        }
+		public Unit Unit
+		{
+			get { return mUnit; }
+		}
 
-        public Quantity Quantity
-        {
-            get { return mUnit.GetQuantity(); }
-        }
+		public Quantity Quantity
+		{
+			get { return mUnit.GetQuantity(); }
+		}
 		
-        #endregion
+		#endregion
 
-        #region METHODS
+		#region METHODS
 		
 		public AmountType GetAmount(Unit iUnit)
 		{
@@ -94,28 +94,28 @@ namespace Cureos.Measures
 			return new Measure(GetAmount(iUnit), iUnit);
 		}
 
-        public override string ToString()
-        {
-            return String.Format("{0} {1}", mAmount, mUnit.GetSymbol());
-        }
+		public override string ToString()
+		{
+			return String.Format("{0} {1}", mAmount, mUnit.GetSymbol());
+		}
 
-        #endregion
-        
-        #region OPERATORS
+		#endregion
+		
+		#region OPERATORS
 
-        public static Measure operator +(Measure iLhs, Measure iRhs)
-        {
-            if (iLhs.mUnit == iRhs.mUnit)
-            {
-                return new Measure(iLhs.mAmount + iRhs.mAmount, iLhs.mUnit);
-            }
-            if (iLhs.Quantity == iRhs.Quantity)
-            {
-                return new Measure(iLhs.mAmount + iRhs.mUnit.ConvertAmountTo(iRhs.mAmount, iLhs.mUnit), iLhs.Unit);
-            }
-            throw new InvalidOperationException("Not possible to add measures of different quantities");
-        }
+		public static Measure operator +(Measure iLhs, Measure iRhs)
+		{
+			if (iLhs.mUnit == iRhs.mUnit)
+			{
+				return new Measure(iLhs.mAmount + iRhs.mAmount, iLhs.mUnit);
+			}
+			if (iLhs.Quantity == iRhs.Quantity)
+			{
+				return new Measure(iLhs.mAmount + iRhs.mUnit.ConvertAmountTo(iRhs.mAmount, iLhs.mUnit), iLhs.Unit);
+			}
+			throw new InvalidOperationException("Not possible to add measures of different quantities");
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }
