@@ -26,7 +26,7 @@ namespace Tests.Cureos.Measures
             }
             DateTime stop = DateTime.Now;
             
-            Assert.Ignore("Sum: {0}, timing {1} ms", val, (stop.Ticks - start.Ticks) / 10000);
+            Assert.Pass("Sum: {0}, timing {1} ms", val, (stop.Ticks - start.Ticks) / 10000);
         }
 
         [Test]
@@ -40,7 +40,7 @@ namespace Tests.Cureos.Measures
             }
             DateTime stop = DateTime.Now;
 
-            Assert.Ignore("Sum: {0}, timing {1} ms", val, (stop.Ticks - start.Ticks) / 10000);
+            Assert.Pass("Sum: {0}, timing {1} ms", val, (stop.Ticks - start.Ticks) / 10000);
         }
 
         [Test]
@@ -54,7 +54,7 @@ namespace Tests.Cureos.Measures
             }
             DateTime stop = DateTime.Now;
 
-            Assert.Ignore("Sum: {0}, timing {1} ms", val, (stop.Ticks - start.Ticks) / 10000);
+            Assert.Pass("Sum: {0}, timing {1} ms", val, (stop.Ticks - start.Ticks) / 10000);
         }
     }
 }
