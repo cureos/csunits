@@ -99,6 +99,11 @@ namespace Cureos.Measures
 			return String.Format("{0} {1}", mAmount, mUnit.GetSymbol());
 		}
 
+		public AmountType GetReferenceUnitAmount()
+		{
+			return mUnit.GetReferenceUnitAmount(mAmount);
+		}
+
 		#endregion
 		
 		#region OPERATORS

@@ -82,17 +82,40 @@ namespace Cureos.Measures
 
 		public AmountType GetAmount(Unit iUnit)
 		{
-			throw new NotImplementedException();
+			if (iUnit.GetQuantity() == Quantity)
+			{
+				return iUnit.ConvertAmountTo(mAmount, iUnit);
+			}
+			throw new InvalidOperationException("Not possible to convert amount to unit of different quantity");
 		}
 
 		public IMeasure ConvertTo(Unit iUnit)
 		{
-			throw new NotImplementedException();
+			return new Measure(GetAmount(iUnit), iUnit);
+		}
+
+		public override string ToString()
+		{
+			return String.Format("{0} {1}", mAmount, Unit.GetSymbol());
 		}
 
 		#endregion
 
 		#region OPERATORS
+
+		public static explicit operator Measure(Measure<Q> iMeasure)
+		{
+			return new Measure(iMeasure.mAmount, iMeasure.Unit);
+		}
+
+		public static explicit operator Measure<Q>(Measure iMeasure)
+		{
+			if (iMeasure.Quantity.Equals(default(Q).Quantity)) 
+			{
+				return new Measure<Q>(iMeasure.GetReferenceUnitAmount());
+			}
+			throw new InvalidOperationException("Not possible to convert measure to different quantity");
+		}
 
 		public static Measure<Q> operator+(Measure<Q> iLhs, Measure<Q> iRhs)
 		{
