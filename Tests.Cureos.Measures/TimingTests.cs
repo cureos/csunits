@@ -56,5 +56,19 @@ namespace Tests.Cureos.Measures
 
             Assert.Pass("Sum: {0}, timing {1} ms", val, (stop.Ticks - start.Ticks) / 10000);
         }
+
+        [Test]
+        public void TimeGenericMeasureAdditionsSameUnit()
+        {
+            DateTime start = DateTime.Now;
+            var val = new Measure<Length>(0.0);
+            for (int i = 0; i < no; ++i)
+            {
+                val += new Measure<Length>((double)i);
+            }
+            DateTime stop = DateTime.Now;
+
+            Assert.Pass("Sum: {0}, timing {1} ms", val, (stop.Ticks - start.Ticks) / 10000);
+        }
     }
 }

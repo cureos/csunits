@@ -30,7 +30,7 @@ namespace Cureos.Measures
 		public Measure(double iAmount, Unit iUnit)
 		{
 			mAmount =
-#if DECIMAL
+#if !DOUBLE
 				(AmountType)
 #endif
 				iAmount;
@@ -40,7 +40,7 @@ namespace Cureos.Measures
 		public Measure(float iAmount, Unit iUnit)
 		{
 			mAmount =
-#if DECIMAL
+#if !SINGLE
 				(AmountType)
 #endif
 				iAmount;

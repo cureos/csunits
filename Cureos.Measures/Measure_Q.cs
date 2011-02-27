@@ -19,49 +19,86 @@ using AmountType = System.Double;
 
 namespace Cureos.Measures
 {
-    public struct Measure<Q> : IMeasure where Q : IQuantity
-    {
-        #region MEMBER VARIABLES
+	public struct Measure<Q> : IMeasure where Q : IQuantity
+	{
+		#region MEMBER VARIABLES
 
-        private readonly AmountType mAmount;
+		private readonly AmountType mAmount;
 
-        #endregion
+		#endregion
 
-        #region CONSTRUCTORS
+		#region CONSTRUCTORS
 
-        #endregion
 
-        #region PROPERTIES
+		public Measure(double iAmount)
+		{
+			mAmount =
+#if !DOUBLE
+				(AmountType)
+#endif
+				iAmount;
+		}
 
-        public AmountType Amount
-        {
-            get { throw new NotImplementedException(); }
-        }
+		public Measure(float iAmount)
+		{
+			mAmount =
+#if !SINGLE
+				(AmountType)
+#endif
+				iAmount;
+		}
 
-        public Unit Unit
-        {
-            get { return Quantity.GetReferenceUnit(); }
-        }
+		public Measure(decimal iAmount)
+		{
+			mAmount =
+#if !DECIMAL
+				(AmountType)
+#endif
+				iAmount;
+		}
 
-        public Quantity Quantity
-        {
-            get { return default(Q).Quantity; }
-        }
+		#endregion
 
-        #endregion
+		#region PROPERTIES
 
-        #region METHODS
+		public AmountType Amount
+		{
+			get { return mAmount; }
+		}
 
-        public AmountType GetAmount(Unit iUnit)
-        {
-            throw new NotImplementedException();
-        }
+		public Unit Unit
+		{
+			get { return Quantity.GetReferenceUnit(); }
+		}
 
-        public IMeasure ConvertTo(Unit iUnit)
-        {
-            throw new NotImplementedException();
-        }
+		public Quantity Quantity
+		{
+			get { return default(Q).Quantity; }
+		}
 
-        #endregion
-    }
+		#endregion
+
+		#region METHODS
+
+		public AmountType GetAmount(Unit iUnit)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IMeasure ConvertTo(Unit iUnit)
+		{
+			throw new NotImplementedException();
+		}
+
+		#endregion
+
+		#region OPERATORS
+
+		public static Measure<Q> operator+(Measure<Q> iLhs, Measure<Q> iRhs)
+		{
+			return new Measure<Q>(iLhs.mAmount + iRhs.mAmount);
+		}
+
+		#endregion
+	}
 }
