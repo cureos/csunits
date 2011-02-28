@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MeasureAssert.cs" />
+    <Compile Include="MeasureGenericTests.cs" />
     <Compile Include="MeasureTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimingTests.cs" />
