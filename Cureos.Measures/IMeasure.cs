@@ -21,7 +21,7 @@ namespace Cureos.Measures
 		/// <summary>
 		/// Gets the measured amount in the <paramref name="MeasuredUnit">current unit of measure</paramref>
 		/// </summary>
-		AmountType Amount
+		AmountType MeasuredAmount
 		{
 			get;
 		}

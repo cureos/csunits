@@ -126,7 +126,7 @@ namespace Cureos.Measures
 		/// <summary>
 		/// Gets the measured amount in the <paramref name="MeasuredUnit">current unit of measure</paramref>
 		/// </summary>
-		public AmountType Amount
+		public AmountType MeasuredAmount
 		{
 			get { return mAmount; }
 		}
@@ -177,6 +177,25 @@ namespace Cureos.Measures
 			return iUnit.GetAmount(this);
 		}
 
+		/// <summary>
+		/// Compares another object with this measure object
+		/// </summary>
+		/// <param name="obj">Object to compare with this object</param>
+		/// <returns>true if <paramref name="obj"/> is a quantity-specific Measure object that is equivalent with this object, 
+		/// false otherwise</returns>
+		public override bool Equals(object obj)
+		{
+			return obj is Measure<Q> ? this == (Measure<Q>)obj : false;
+		}
+
+		/// <summary>
+		/// Gets the Measure object hash code
+		/// </summary>
+		/// <returns>Hash code of this object</returns>
+		public override int GetHashCode()
+		{
+			return mAmount.GetHashCode();
+		}
 
 		/// <summary>
 		/// Gets the measure represented as a string
