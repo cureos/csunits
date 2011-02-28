@@ -30,6 +30,17 @@ namespace Tests.Cureos.Measures
         {
             var throws = new Measure<AbsorbedDose>(1.0, Unit.Minute);
         }
+
+        [Test]
+        public void DivisionOperator_DivideGenericSameQuantity_ReturnsScalar()
+        {
+            var expected = 1.0;
+            var numerator = new Measure<Area>(500.0, Unit.SquareCentiMeter);
+            var denominator = new Measure<Area>(5.0, Unit.SquareDeciMeter);
+            var actual = (double)(numerator / denominator);
+            Assert.AreEqual(expected, actual, 1.0e-7);
+        }
+
         #endregion
     }
 }

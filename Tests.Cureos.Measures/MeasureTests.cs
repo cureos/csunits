@@ -145,32 +145,19 @@ namespace Tests.Cureos.Measures
         }
 
         [Test]
-        public void DivisionOperator_DivideNonGenericSameQuantity_ReturnsScalarAccountingForUnitConversion()
+        public void TimesOperator_MultiplyScalarAndMeasure_ReturnsProductWithSameUnit()
         {
-            var expected = 1.0;
-            var numerator = new Measure(500.0, Unit.SquareCentiMeter);
-            var denominator = new Measure(5.0, Unit.SquareDeciMeter);
-            var actual = (double)(numerator / denominator);
-            Assert.AreEqual(expected, actual, 1.0e-7);
+            var expected = new Measure(25.0, Unit.CentiGray);
+            var actual = 5.0 * new Measure(5.0, Unit.CentiGray);
+            MeasureAssert.MeasuresAreEqual(expected, actual);
         }
 
         [Test]
-        public void DivisionOperator_DivideNonGenericSameUnit_ReturnsScalar()
+        public void TimesOperator_MultiplyMeasureAndScalar_ReturnsProductWithSameUnit()
         {
-            var expected = 1.0;
-            var numerator = new Measure(5.0, Unit.SquareDeciMeter);
-            var denominator = new Measure(5.0, Unit.SquareDeciMeter);
-            var actual = (double)(numerator / denominator);
-            Assert.AreEqual(expected, actual, 1.0e-7);
-        }
-
-        [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
-        public void DivisionOperator_DivideNonGenericsToNonExistingResultingQuantity_Throws()
-        {
-           var numerator = new Measure(5.0, Unit.SquareDeciMeter);
-            var denominator = new Measure(5.0, Unit.CubicDeciMeter);
-            var throws = numerator / denominator;
+            var expected = new Measure(25.0, Unit.CentiGray);
+            var actual = new Measure(5.0, Unit.CentiGray) * 5.0;
+            MeasureAssert.MeasuresAreEqual(expected, actual);
         }
 
         #endregion
