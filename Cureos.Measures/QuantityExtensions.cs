@@ -122,5 +122,12 @@ namespace Cureos.Measures
 		}
 
 		#endregion
-	}
+
+        internal static Quantity GetQuotientQuantity(Quantity iNumeratorQuantity, Quantity iDenominatorQuantity)
+        {
+            QuantityDimensions quotientDimensions = smDetailsMap[iNumeratorQuantity].Dimensions -
+                                                    smDetailsMap[iDenominatorQuantity].Dimensions;
+            return smDetailsMap.Single(kv => kv.Value.Dimensions.Equals(quotientDimensions)).Key;
+        }
+    }
 }

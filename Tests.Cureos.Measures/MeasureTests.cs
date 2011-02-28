@@ -160,6 +160,15 @@ namespace Tests.Cureos.Measures
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }
 
+        [Test]
+        public void DivisionOperator_DivideVolumeAndLength_ReturnsArea()
+        {
+            var expected = new Measure(10.0, Unit.SquareDeciMeter);
+            var numerator = new Measure(1.0, Unit.Liter);
+            var denominator = new Measure(1.0, Unit.CentiMeter);
+            var actual = numerator / denominator;
+            MeasureAssert.AmountsAreEqual(expected, actual);
+        }
         #endregion
     }
 }

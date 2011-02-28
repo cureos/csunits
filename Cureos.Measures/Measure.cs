@@ -298,8 +298,10 @@ namespace Cureos.Measures
 		/// <param name="iNumerator">Numerator measure</param>
 		/// <param name="iDenominator">Denominator measure</param>
 		/// <returns>Scalar quotient of the two measure objects</returns>
-		public static AmountType operator /(Measure iNumerator, Measure iDenominator)
+		public static Measure operator /(Measure iNumerator, Measure iDenominator)
 		{
+			Quantity quotientQuantity = QuantityExtensions.GetQuotientQuantity(iNumerator.MeasuredQuantity,
+																			   iDenominator.MeasuredQuantity);
 			checked
 			{
 				return iNumerator.mUnit == iDenominator.mUnit ?
@@ -307,39 +309,55 @@ namespace Cureos.Measures
 					iNumerator.mAmount / iNumerator.mUnit.GetAmount(iDenominator);
 			}
 		}
+		/*
+				/// <summary>
+				/// Divide two measure objects of the same quantity
+				/// </summary>
+				/// <param name="iNumerator">Numerator measure</param>
+				/// <param name="iDenominator">Denominator measure</param>
+				/// <returns>Scalar quotient of the two measure objects</returns>
+				public static AmountType operator /(Measure iNumerator, Measure iDenominator)
+				{
+					checked
+					{
+						return iNumerator.mUnit == iDenominator.mUnit ?
+							iNumerator.mAmount / iDenominator.mAmount :
+							iNumerator.mAmount / iNumerator.mUnit.GetAmount(iDenominator);
+					}
+				}
 
-		/// <summary>
-		/// Divide two measure objects of the same quantity
-		/// </summary>
-		/// <param name="iNumerator">Numerator measure</param>
-		/// <param name="iDenominator">Denominator measure (any object implementing IMeasure interface)</param>
-		/// <returns>Scalar quotient of the two measure objects</returns>
-		public static AmountType operator /(Measure iNumerator, IMeasure iDenominator)
-		{
-			checked
-			{
-				return iNumerator.MeasuredUnit == iDenominator.MeasuredUnit ?
-					iNumerator.MeasuredAmount / iDenominator.MeasuredAmount :
-					iNumerator.MeasuredAmount / iNumerator.MeasuredUnit.GetAmount(iDenominator);
-			}
-		}
+				/// <summary>
+				/// Divide two measure objects of the same quantity
+				/// </summary>
+				/// <param name="iNumerator">Numerator measure</param>
+				/// <param name="iDenominator">Denominator measure (any object implementing IMeasure interface)</param>
+				/// <returns>Scalar quotient of the two measure objects</returns>
+				public static AmountType operator /(Measure iNumerator, IMeasure iDenominator)
+				{
+					checked
+					{
+						return iNumerator.MeasuredUnit == iDenominator.MeasuredUnit ?
+							iNumerator.MeasuredAmount / iDenominator.MeasuredAmount :
+							iNumerator.MeasuredAmount / iNumerator.MeasuredUnit.GetAmount(iDenominator);
+					}
+				}
 
-		/// <summary>
-		/// Divide two measure objects of the same quantity
-		/// </summary>
-		/// <param name="iNumerator">Numerator measure (any object implementing IMeasure interface)</param>
-		/// <param name="iDenominator">Denominator measure</param>
-		/// <returns>Scalar quotient of the two measure objects</returns>
-		public static AmountType operator /(IMeasure iNumerator, Measure iDenominator)
-		{
-			checked
-			{
-				return iNumerator.MeasuredUnit == iDenominator.MeasuredUnit ?
-					iNumerator.MeasuredAmount / iDenominator.MeasuredAmount :
-					iNumerator.MeasuredAmount / iNumerator.MeasuredUnit.GetAmount(iDenominator);
-			}
-		}
-
+				/// <summary>
+				/// Divide two measure objects of the same quantity
+				/// </summary>
+				/// <param name="iNumerator">Numerator measure (any object implementing IMeasure interface)</param>
+				/// <param name="iDenominator">Denominator measure</param>
+				/// <returns>Scalar quotient of the two measure objects</returns>
+				public static AmountType operator /(IMeasure iNumerator, Measure iDenominator)
+				{
+					checked
+					{
+						return iNumerator.MeasuredUnit == iDenominator.MeasuredUnit ?
+							iNumerator.MeasuredAmount / iDenominator.MeasuredAmount :
+							iNumerator.MeasuredAmount / iNumerator.MeasuredUnit.GetAmount(iDenominator);
+					}
+				}
+		*/
 		/// <summary>
 		/// Less than operator for measure objects
 		/// </summary>
