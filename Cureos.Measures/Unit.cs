@@ -6,6 +6,9 @@
 
 namespace Cureos.Measures
 {
+    /// <summary>
+    /// Supported units of measure
+    /// </summary>
     public enum Unit
     {
         None,

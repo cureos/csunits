@@ -1,4 +1,4 @@
-// Copyright (c) 2011 Anders Gustafsson, Cureos AB.
+﻿// Copyright (c) 2011 Anders Gustafsson, Cureos AB.
 // All rights reserved. This software and the accompanying materials
 // are made available under the terms of the Eclipse Public License v1.0
 // which accompanies this distribution, and is available at
@@ -6,12 +6,11 @@
 
 namespace Cureos.Measures.Quantities
 {
-	public struct Length : IQuantity
-	{
-		public Quantity Value
-		{
-			get { return Quantity.Length; }
-		}
-	}
+    public struct Mass : IQuantity
+    {
+        public Quantity Value
+        {
+            get { return Quantity.Mass; }
+        }
+    }
 }
-

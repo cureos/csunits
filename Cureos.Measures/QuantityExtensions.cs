@@ -10,6 +10,9 @@ using System.Linq;
 
 namespace Cureos.Measures
 {
+	/// <summary>
+	/// Support class providing extension methods for the <see cref="Quantity">Quantity enumeration</see>
+	/// </summary>
 	public static class QuantityExtensions
 	{
 		#region STATIC MEMBERS
@@ -20,6 +23,9 @@ namespace Cureos.Measures
 
 		#region CONSTRUCTORS
 
+		/// <summary>
+		/// Initialize the quantity details map by specifiying the quantity dimensions in SI base units of each respective quantity
+		/// </summary>
 		static QuantityExtensions()
 		{
 			smDetailsMap = new List<QuantityDetails>
@@ -38,11 +44,25 @@ namespace Cureos.Measures
 
 		#region EXTENSION METHODS
 
+		/// <summary>
+		/// Sets the reference unit of the specific quantity
+		/// </summary>
+		/// <param name="iQuantity">Quantity for which the reference unit should be defined</param>
+		/// <param name="iReferenceUnit">Reference unit</param>
+		/// <remarks>The reference unit can only be set once for each quantity; if an attempt is made to set the reference unit
+		/// of one quantity multiple times, the underlying property setter will throw</remarks>
 		public static void SetReferenceUnit(this Quantity iQuantity, Unit iReferenceUnit)
 		{
 			smDetailsMap[iQuantity].ReferenceUnit = iReferenceUnit;
 		}
 
+		/// <summary>
+		/// Gets the reference unit of the specified quantity
+		/// </summary>
+		/// <param name="iQuantity">Quantity for which the reference unit is requested</param>
+		/// <returns>Reference unit of the specified quantity</returns>
+		/// <remarks>If the reference unit has not been defined for the specified quantity, the underlying property getter
+		/// will throw</remarks>
 		public static Unit GetReferenceUnit(this Quantity iQuantity)
 		{
 			return smDetailsMap[iQuantity].ReferenceUnit;
@@ -52,6 +72,9 @@ namespace Cureos.Measures
 		
 		#region INNER SUPPORT CLASSES
 
+		/// <summary>
+		/// Helper class representing the characteristics of a single quantity
+		/// </summary>
 		private sealed class QuantityDetails
 		{
 			#region MEMBER VARIABLES
@@ -85,6 +108,7 @@ namespace Cureos.Measures
 			{
 				get
 				{
+					if (mReferenceUnit == Unit.None) throw new InvalidOperationException("ReferenceUnit is not defined for this quantity");
 					return mReferenceUnit;
 				}
 				set

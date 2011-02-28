@@ -18,24 +18,52 @@ namespace Cureos.Measures
 {
 	public interface IMeasure
 	{
-        AmountType Amount
-        {
-            get;
-        }
+		/// <summary>
+		/// Gets the measured amount in the <paramref name="MeasuredUnit">current unit of measure</paramref>
+		/// </summary>
+		AmountType Amount
+		{
+			get;
+		}
 
-        Unit Unit
-        {
-            get;
-        }
+		/// <summary>
+		/// Gets the measured amount in the <paramref name="ReferenceUnit">reference unit of measure</paramref>
+		/// </summary>
+		AmountType ReferenceUnitAmount
+		{
+			get;
+		}
 
-        Quantity Quantity
-        {
-            get;
-        }
+		/// <summary>
+		/// Gets the measured quantity
+		/// </summary>
+		Quantity MeasuredQuantity
+		{
+			get;
+		}
 		
+		/// <summary>
+		/// Gets the unit of measure
+		/// </summary>
+		Unit MeasuredUnit
+		{
+			get;
+		}
+
+		/// <summary>
+		/// Gets the reference unit of measure for the <paramref name="MeasuredQuantity">measured quantity</paramref>
+		/// </summary>
+		Unit ReferenceUnit
+		{
+			get;
+		}
+
+		/// <summary>
+		/// Gets the amount of the measure in the <paramref name="iUnit">requested unit</paramref> of the same quantity
+		/// </summary>
+		/// <param name="iUnit">Unit in which the measured amount should be specified</param>
+		/// <returns>The measured amount in the <paramref name="iUnit">requested unit</paramref></returns>
 		AmountType GetAmount(Unit iUnit);
-		
-		IMeasure ConvertTo(Unit iUnit);
 	}
 }
 

@@ -6,6 +6,7 @@
 
 using System;
 using Cureos.Measures;
+using Cureos.Measures.Quantities;
 using NUnit.Framework;
 
 namespace Tests.Cureos.Measures

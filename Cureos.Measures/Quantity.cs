@@ -6,6 +6,9 @@
 
 namespace Cureos.Measures
 {
+    /// <summary>
+    /// Supported quantities
+    /// </summary>
     public enum Quantity
     {
         Length,

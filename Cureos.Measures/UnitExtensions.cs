@@ -18,6 +18,9 @@ using AmountType = System.Double;
 
 namespace Cureos.Measures
 {
+    /// <summary>
+    /// Helper class providing extension methods for the <see cref="Unit">Unit enumeration</see>
+    /// </summary>
     public static class UnitExtensions
     {
         #region STATIC MEMBER VARIABLES
@@ -28,6 +31,10 @@ namespace Cureos.Measures
 
         #region CONSTRUCTORS
 
+        /// <summary>
+        /// Initializes the unit details map, by specifying associated quantity, text symbol, reference unit status and
+        /// amount conversion operators to and from reference unit
+        /// </summary>
         static UnitExtensions()
         {
             smUnitDetailsMap = new UnitDetails[]
@@ -61,24 +68,46 @@ namespace Cureos.Measures
 
         #region EXTENSION METHODS
 
+        /// <summary>
+        /// Gets the quantity associated with the specified unit
+        /// </summary>
+        /// <param name="iUnit">Unit for which the associated quantity is requested</param>
+        /// <returns>Quantity associated with the specified unit</returns>
         public static Quantity GetQuantity(this Unit iUnit)
         {
             return smUnitDetailsMap[iUnit].Quantity;
         }
 
+        /// <summary>
+        /// Gets the text symbol of the specified unit
+        /// </summary>
+        /// <param name="iUnit">Unit for which the text symbol is requested</param>
+        /// <returns>Text symbol for the specified unit</returns>
         public static string GetSymbol(this Unit iUnit)
         {
             return smUnitDetailsMap[iUnit].Symbol;
         }
 
-        public static AmountType ConvertAmountTo(this Unit iFromUnit, AmountType iFromUnitAmount, Unit iToUnit)
+        /// <summary>
+        /// Gets the amount of the <paramref name="iMeasure">specified measure</paramref> in the requested unit
+        /// </summary>
+        /// <param name="iToUnit">Unit to which the measured amount should be converted</param>
+        /// <param name="iMeasure">Measure for which the amount should be converted into the requested unit</param>
+        /// <returns>Measured amount converted into <paramref name="iToUnit">specified unit</paramref></returns>
+        /// <exception cref="InvalidOperationException">is thrown if the quantity of the specified unit is different
+        /// from the measured quantity</exception>
+        public static AmountType GetAmount(this Unit iToUnit, IMeasure iMeasure)
         {
-            return
-                smUnitDetailsMap[iToUnit].AmountFromReferenceUnitConverter(
-                    smUnitDetailsMap[iFromUnit].AmountToReferenceUnitConverter(iFromUnitAmount));
+            if (iToUnit.GetQuantity() == iMeasure.MeasuredQuantity)
+            {
+                return smUnitDetailsMap[iToUnit].AmountFromReferenceUnitConverter(iMeasure.ReferenceUnitAmount);
+            }
+            throw new InvalidOperationException(
+                String.Format("Associated quantity for unit {0} is not equal to measured quantity {1}",
+                iToUnit, iMeasure.MeasuredQuantity));
         }
 
-        public static Double GetReferenceUnitAmount(this Unit iFromUnit, AmountType iFromUnitAmount)
+        public static AmountType GetReferenceUnitAmount(this Unit iFromUnit, AmountType iFromUnitAmount)
         {
             return smUnitDetailsMap[iFromUnit].AmountToReferenceUnitConverter(iFromUnitAmount);
         }
