@@ -37,8 +37,46 @@ namespace Tests.Cureos.Measures
             var expected = 1.0;
             var numerator = new Measure<Area>(500.0, Unit.SquareCentiMeter);
             var denominator = new Measure<Area>(5.0, Unit.SquareDeciMeter);
-            var actual = (double)(numerator / denominator);
+            var actual = (double) (numerator/denominator);
             Assert.AreEqual(expected, actual, 1.0e-7);
+        }
+
+        [Test]
+        public void Times_MultiplyAreaAndLength_ReturnsVolume()
+        {
+            var expected = new Measure<Volume>(6.0);
+            var lhs = new Measure<Area>(2.0);
+            var rhs = new Measure<Length>(3.0);
+            var actual = Measure<Volume>.Times(lhs, rhs);
+            MeasureAssert.MeasuresAreEqual(expected, actual);
+        }
+
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void Times_MultiplyAreaAndAreaToVolume_Throws()
+        {
+            var lhs = new Measure<Area>(2.0);
+            var rhs = new Measure<Area>(3.0);
+            var throws = Measure<Volume>.Times(lhs, rhs);
+        }
+
+        [Test]
+        public void Divide_DivideVolumeAndLength_ReturnsArea()
+        {
+            var expected = new Measure<Area>(4.0);
+            var numerator = new Measure<Volume>(8.0);
+            var denominator = new Measure<Length>(200.0, Unit.CentiMeter);
+            var actual = Measure<Area>.Divide(numerator, denominator);
+            MeasureAssert.MeasuresAreEqual(expected, actual);
+        }
+
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void Divide_DivideAreaAndAreaToLength_Throws()
+        {
+            var numerator = new Measure<Area>(8.0);
+            var denominator = new Measure<Area>(200.0, Unit.SquareDeciMeter);
+            var throws = Measure<Length>.Divide(numerator, denominator);
         }
 
         #endregion

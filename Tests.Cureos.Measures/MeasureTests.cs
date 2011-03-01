@@ -211,6 +211,15 @@ namespace Tests.Cureos.Measures
             Assert.AreEqual(expected, actual);
         }
 
+        [Test]
+        public void MultiplicationOperator_MultiplyAreaAndLength_ReturnsVolume()
+        {
+            var expected = new Measure(0.006, Unit.CubicMeter);
+            var lhs = new Measure(2.0, Unit.DeciMeter);
+            var rhs = new Measure(3.0, Unit.SquareDeciMeter);
+            var actual = lhs * rhs;
+            MeasureAssert.MeasuresAreEqual(expected, actual);
+        }
         #endregion
     }
 }

@@ -68,6 +68,18 @@ namespace Cureos.Measures
 			return smDetailsMap[iQuantity].ReferenceUnit;
 		}
 
+		public static bool IsQuantityOfProduct(this Quantity iQuantity, Quantity iLhs, Quantity iRhs)
+		{
+			return smDetailsMap[iQuantity].Dimensions.Equals(smDetailsMap[iLhs].Dimensions +
+															 smDetailsMap[iRhs].Dimensions);
+		}
+
+		public static bool IsQuantityOfQuotient(this Quantity iQuantity, Quantity iNumerator, Quantity iDenominator)
+		{
+			return smDetailsMap[iQuantity].Dimensions.Equals(smDetailsMap[iNumerator].Dimensions -
+															 smDetailsMap[iDenominator].Dimensions);
+		}
+
 		#endregion
 
 		#region METHODS
@@ -80,11 +92,11 @@ namespace Cureos.Measures
 		/// <returns>The single listed quantity representing the product of the specified quantities</returns>
 		/// <exception cref="InvalidOperationException">if no resulting quantity could be identified,
 		/// or if there is more than one quantity matching the resulting quantity dimensions</exception>
-		internal static Quantity Multiply(Quantity iLhs, Quantity iRhs)
+		internal static Quantity Times(Quantity iLhs, Quantity iRhs)
 		{
-			QuantityDimensions quotientDimensions = smDetailsMap[iLhs].Dimensions +
+			QuantityDimensions productDimensions = smDetailsMap[iLhs].Dimensions +
 													smDetailsMap[iRhs].Dimensions;
-			return smDetailsMap.Single(kv => kv.Value.Dimensions.Equals(quotientDimensions)).Key;
+			return smDetailsMap.Single(kv => kv.Value.Dimensions.Equals(productDimensions)).Key;
 		}
 
 		/// <summary>

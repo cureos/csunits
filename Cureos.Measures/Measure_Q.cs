@@ -5,9 +5,6 @@
 // http://www.eclipse.org/legal/epl-v10.html
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 #if SINGLE
 using AmountType = System.Single;
@@ -19,7 +16,7 @@ using AmountType = System.Double;
 
 namespace Cureos.Measures
 {
-	public struct Measure<Q> : IMeasure where Q : struct, IQuantity
+	public struct Measure<Q> : IMeasure, IEquatable<Measure<Q>>, IComparable<Measure<Q>> where Q : struct, IQuantity
 	{
 		#region MEMBER VARIABLES
 
@@ -178,6 +175,74 @@ namespace Cureos.Measures
 		}
 
 		/// <summary>
+		/// Multiply two measure objects
+		/// </summary>
+		/// <typeparam name="Q1">Quantity type of the left-hand side measure</typeparam>
+		/// <typeparam name="Q2">Quantity type of the right-hand side measure</typeparam>
+		/// <param name="iLhs">Left-hand side measure object</param>
+		/// <param name="iRhs">Right-hand side measure object</param>
+		/// <returns>Product of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
+		public static Measure<Q> Times<Q1, Q2>(Measure<Q1> iLhs, Measure<Q2> iRhs)
+			where Q1 : struct, IQuantity
+			where Q2 : struct, IQuantity
+		{
+			if (default(Q).Value.IsQuantityOfProduct(iLhs.MeasuredQuantity, iRhs.MeasuredQuantity))
+			{
+				return new Measure<Q>(iLhs.mAmount * iRhs.mAmount);
+			}
+			throw new InvalidOperationException(String.Format("Cannot multiply {0} and {1} to measure of quantity {2}",
+															  iLhs, iRhs, default(Q).Value));
+		}
+
+		/// <summary>
+		/// Divide two measure objects
+		/// </summary>
+		/// <typeparam name="Q1">Quantity type of the numerator measure</typeparam>
+		/// <typeparam name="Q2">Quantity type of the denominator measure</typeparam>
+		/// <param name="iNumerator">Numerator measure object</param>
+		/// <param name="iDenominator">Denominator measure object</param>
+		/// <returns>Quotient of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
+		public static Measure<Q> Divide<Q1, Q2>(Measure<Q1> iNumerator, Measure<Q2> iDenominator)
+			where Q1 : struct, IQuantity
+			where Q2 : struct, IQuantity
+		{
+			if (default(Q).Value.IsQuantityOfQuotient(iNumerator.MeasuredQuantity, iDenominator.MeasuredQuantity))
+			{
+				return new Measure<Q>(iNumerator.mAmount / iDenominator.mAmount);
+			}
+			throw new InvalidOperationException(String.Format("Cannot divide {0} and {1} to measure of quantity {2}",
+															  iNumerator, iDenominator, default(Q).Value));
+		}
+
+		/// <summary>
+		/// Indicates whether the current object is equal to another object of the same type.
+		/// </summary>
+		/// <param name="other">An object to compare with this object.</param>
+		/// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
+		public bool Equals(Measure<Q> other)
+		{
+			return mAmount.Equals(other.mAmount);
+		}
+
+		/// <summary>
+		/// Compares the current object with another object of the same type.
+		/// </summary>
+		/// <param name="other">An object to compare with this object.</param>
+		/// <returns>
+		/// A 32-bit signed integer that indicates the relative order of the objects being compared. The return value has the following meanings: 
+		/// Value               Meaning 
+		/// Less than zero      This object is less than the <paramref name="other"/> parameter.
+		/// Zero                This object is equal to <paramref name="other"/>. 
+		/// Greater than zero   This object is greater than <paramref name="other"/>. 
+		/// </returns>
+		/// <exception cref="InvalidOperationException">if the quantity of the other measure is not the same as the quantity
+		/// of this object</exception>
+		public int CompareTo(Measure<Q> other)
+		{
+			return mAmount.CompareTo(other.mAmount);
+		}
+
+		/// <summary>
 		/// Compares another object with this measure object
 		/// </summary>
 		/// <param name="obj">Object to compare with this object</param>
@@ -185,7 +250,7 @@ namespace Cureos.Measures
 		/// false otherwise</returns>
 		public override bool Equals(object obj)
 		{
-			return obj is Measure<Q> ? this == (Measure<Q>)obj : false;
+			return obj is Measure<Q> ? Equals((Measure<Q>)obj) : false;
 		}
 
 		/// <summary>
