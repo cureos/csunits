@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AmountConverter.cs" />
+    <Compile Include="ExampleOutput.cs" />
     <Compile Include="MeasureAssert.cs" />
     <Compile Include="MeasureGenericTests.cs" />
     <Compile Include="MeasureTests.cs" />
