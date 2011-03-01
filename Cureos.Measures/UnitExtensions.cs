@@ -146,7 +146,7 @@ namespace Cureos.Measures
             /// <param name="iQuantity">Physical quantity associated with this unit</param>
             /// <param name="iSymbol">Unit symbol</param>
             /// <param name="iAmountToReferenceUnitFactor">Multiplicative factor for amount conversion to reference unit</param>
-            internal UnitDetails(Unit iUnit, Quantity iQuantity, string iSymbol, double iAmountToReferenceUnitFactor)
+            internal UnitDetails(Unit iUnit, Quantity iQuantity, string iSymbol, AmountType iAmountToReferenceUnitFactor)
             {
                 Unit = iUnit;
                 Quantity = iQuantity;
@@ -164,7 +164,8 @@ namespace Cureos.Measures
             /// <param name="iAmountToReferenceUnitConverter">Function converting amount in this unit to reference unit amount</param>
             /// <param name="iAmountFromReferenceUnitConverter">Function converting reference unit amount to amount in this unit</param>
             internal UnitDetails(Unit iUnit, Quantity iQuantity, string iSymbol,
-                Func<double, double> iAmountToReferenceUnitConverter, Func<double, double> iAmountFromReferenceUnitConverter)
+                Func<AmountType, AmountType> iAmountToReferenceUnitConverter, 
+                Func<AmountType, AmountType> iAmountFromReferenceUnitConverter)
             {
                 Unit = iUnit;
                 Quantity = iQuantity;

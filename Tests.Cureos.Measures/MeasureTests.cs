@@ -201,7 +201,7 @@ namespace Tests.Cureos.Measures
             var throws = numerator / denominator;
         }
 
-        [Test]
+        [Test, Explicit]
         public void DivisionOperator_DivideVolumeAndZeroLength_ReturnsInfinityAmount()
         {
             var expected = AmountConverter.ToAmountType(Double.PositiveInfinity);
