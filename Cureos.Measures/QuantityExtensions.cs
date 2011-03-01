@@ -17,7 +17,7 @@ namespace Cureos.Measures
 	{
 		#region STATIC MEMBERS
 
-		private static Dictionary<Quantity, QuantityDetails> smDetailsMap;
+		private static readonly Dictionary<Quantity, QuantityDetails> smDetailsMap;
 
 		#endregion
 
@@ -66,6 +66,40 @@ namespace Cureos.Measures
 		public static Unit GetReferenceUnit(this Quantity iQuantity)
 		{
 			return smDetailsMap[iQuantity].ReferenceUnit;
+		}
+
+		#endregion
+
+		#region METHODS
+
+		/// <summary>
+		/// Perform "multiplication" of two quantities, and identify the resulting product quantity
+		/// </summary>
+		/// <param name="iLhs">Left-hand side quantity</param>
+		/// <param name="iRhs">Right-hand side quantity</param>
+		/// <returns>The single listed quantity representing the product of the specified quantities</returns>
+		/// <exception cref="InvalidOperationException">if no resulting quantity could be identified,
+		/// or if there is more than one quantity matching the resulting quantity dimensions</exception>
+		internal static Quantity Multiply(Quantity iLhs, Quantity iRhs)
+		{
+			QuantityDimensions quotientDimensions = smDetailsMap[iLhs].Dimensions +
+													smDetailsMap[iRhs].Dimensions;
+			return smDetailsMap.Single(kv => kv.Value.Dimensions.Equals(quotientDimensions)).Key;
+		}
+
+		/// <summary>
+		/// Perform "division" of two quantities, and identify the resulting qoutient quantity
+		/// </summary>
+		/// <param name="iNumerator">Numerator quantity</param>
+		/// <param name="iDenominator">Denominator quantity</param>
+		/// <returns>The single listed quantity representing the quotient of the numerator and denominator quantities</returns>
+		/// <exception cref="InvalidOperationException">if no resulting quantity could be identified,
+		/// or if there is more than one quantity matching the resulting quantity dimensions</exception>
+		internal static Quantity Divide(Quantity iNumerator, Quantity iDenominator)
+		{
+			QuantityDimensions quotientDimensions = smDetailsMap[iNumerator].Dimensions -
+													smDetailsMap[iDenominator].Dimensions;
+			return smDetailsMap.Single(kv => kv.Value.Dimensions.Equals(quotientDimensions)).Key;
 		}
 
 		#endregion
@@ -122,12 +156,5 @@ namespace Cureos.Measures
 		}
 
 		#endregion
-
-        internal static Quantity GetQuotientQuantity(Quantity iNumeratorQuantity, Quantity iDenominatorQuantity)
-        {
-            QuantityDimensions quotientDimensions = smDetailsMap[iNumeratorQuantity].Dimensions -
-                                                    smDetailsMap[iDenominatorQuantity].Dimensions;
-            return smDetailsMap.Single(kv => kv.Value.Dimensions.Equals(quotientDimensions)).Key;
-        }
-    }
+	}
 }

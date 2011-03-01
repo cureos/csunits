@@ -110,7 +110,7 @@ namespace Cureos.Measures
             }
 
             #endregion
-            /*
+
             #region OPERATORS
 
             /// <summary>
@@ -119,10 +119,12 @@ namespace Cureos.Measures
             /// <param name="iLhs">First unit dimension object</param>
             /// <param name="iRhs">Second unit dimension object</param>
             /// <returns>New unit dimension object, with each exponent being the sum of the two input object exponents</returns>
-            public static UnitDimension operator +(UnitDimension iLhs, UnitDimension iRhs)
+            public static QuantityDimensions operator +(QuantityDimensions iLhs, QuantityDimensions iRhs)
             {
-                return new UnitDimension(iLhs.Item1 + iRhs.Item1, iLhs.Item2 + iRhs.Item2, iLhs.Item3 + iRhs.Item3,
-                    iLhs.Item4 + iRhs.Item4, iLhs.Item5 + iRhs.Item5, iLhs.Item6 + iRhs.Item6, iLhs.Item7 + iRhs.Item7);
+                return new QuantityDimensions(iLhs.LengthExponent + iRhs.LengthExponent, iLhs.MassExponent + iRhs.MassExponent,
+                    iLhs.TimeExponent + iRhs.TimeExponent, iLhs.ElectricCurrentExponent + iRhs.ElectricCurrentExponent,
+                    iLhs.TemperatureExponent + iRhs.TemperatureExponent, iLhs.LuminousIntensityExponent + iRhs.LuminousIntensityExponent,
+                    iLhs.SubstanceAmountExponent + iRhs.SubstanceAmountExponent);
             }
 
             /// <summary>
@@ -131,14 +133,15 @@ namespace Cureos.Measures
             /// <param name="iLhs">First unit dimension object</param>
             /// <param name="iRhs">Second unit dimension object</param>
             /// <returns>New unit dimension object, with each exponent being the difference of the two input object exponents</returns>
-            public static UnitDimension operator -(UnitDimension iLhs, UnitDimension iRhs)
+            public static QuantityDimensions operator -(QuantityDimensions iLhs, QuantityDimensions iRhs)
             {
-                return new UnitDimension(iLhs.Item1 - iRhs.Item1, iLhs.Item2 - iRhs.Item2, iLhs.Item3 - iRhs.Item3,
-                    iLhs.Item4 - iRhs.Item4, iLhs.Item5 - iRhs.Item5, iLhs.Item6 - iRhs.Item6, iLhs.Item7 - iRhs.Item7);
+                return new QuantityDimensions(iLhs.LengthExponent - iRhs.LengthExponent, iLhs.MassExponent - iRhs.MassExponent, 
+                    iLhs.TimeExponent - iRhs.TimeExponent, iLhs.ElectricCurrentExponent - iRhs.ElectricCurrentExponent, 
+                    iLhs.TemperatureExponent - iRhs.TemperatureExponent, iLhs.LuminousIntensityExponent - iRhs.LuminousIntensityExponent,
+                    iLhs.SubstanceAmountExponent - iRhs.SubstanceAmountExponent);
             }
 
             #endregion
- */
-        }
+         }
 }
 

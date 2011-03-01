@@ -148,7 +148,7 @@ namespace Tests.Cureos.Measures
         public void TimesOperator_MultiplyScalarAndMeasure_ReturnsProductWithSameUnit()
         {
             var expected = new Measure(25.0, Unit.CentiGray);
-            var actual = 5.0 * new Measure(5.0, Unit.CentiGray);
+            var actual = AmountConverter.ToAmountType(5.0) * new Measure(5.0, Unit.CentiGray);
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }
 
@@ -156,19 +156,61 @@ namespace Tests.Cureos.Measures
         public void TimesOperator_MultiplyMeasureAndScalar_ReturnsProductWithSameUnit()
         {
             var expected = new Measure(25.0, Unit.CentiGray);
-            var actual = new Measure(5.0, Unit.CentiGray) * 5.0;
+            var actual = new Measure(5.0, Unit.CentiGray) * AmountConverter.ToAmountType(5.0);
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }
 
         [Test]
         public void DivisionOperator_DivideVolumeAndLength_ReturnsArea()
         {
-            var expected = new Measure(10.0, Unit.SquareDeciMeter);
+            var expected = new Measure(0.1, Unit.SquareMeter);
             var numerator = new Measure(1.0, Unit.Liter);
             var denominator = new Measure(1.0, Unit.CentiMeter);
             var actual = numerator / denominator;
-            MeasureAssert.AmountsAreEqual(expected, actual);
+            MeasureAssert.MeasuresAreEqual(expected, actual);
         }
+
+        [Test]
+        public void DivisionOperator_DivideVolumeAndGenericLengthMeasure_ReturnsNonGenericArea()
+        {
+            var expected = new Measure(0.1, Unit.SquareMeter);
+            var numerator = new Measure(1.0, Unit.Liter);
+            var denominator = new Measure<Length>(1.0, Unit.CentiMeter);
+            var actual = numerator / denominator;
+            Assert.IsInstanceOf(typeof(Measure), actual);
+            MeasureAssert.MeasuresAreEqual(expected, actual);
+        }
+
+        [Test]
+        public void DivisionOperator_DivideGenericVolumeAndLength_ReturnsNonGenericArea()
+        {
+            var expected = new Measure(0.1, Unit.SquareMeter);
+            var numerator = new Measure<Volume>(1.0, Unit.Liter);
+            var denominator = new Measure(1.0, Unit.CentiMeter);
+            var actual = numerator / denominator;
+            Assert.IsInstanceOf(typeof(Measure), actual);
+            MeasureAssert.MeasuresAreEqual(expected, actual);
+        }
+
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void DivisionOperator_DivideLengthAndVolumeWhenNoInverseAreaQuantityExists_Throws()
+        {
+            var numerator = new Measure(1.0, Unit.Meter);
+            var denominator = new Measure(1.0, Unit.CubicMeter);
+            var throws = numerator / denominator;
+        }
+
+        [Test]
+        public void DivisionOperator_DivideVolumeAndZeroLength_ReturnsInfinityAmount()
+        {
+            var expected = AmountConverter.ToAmountType(Double.PositiveInfinity);
+            var numerator = new Measure(1.0, Unit.CubicMeter);
+            var denominator = new Measure(0.0, Unit.Meter);
+            var actual = (numerator / denominator).MeasuredAmount;
+            Assert.AreEqual(expected, actual);
+        }
+
         #endregion
     }
 }

@@ -293,22 +293,50 @@ namespace Cureos.Measures
 		}
 
 		/// <summary>
-		/// Divide two measure objects of the same quantity
+		/// Divide two measure objects
 		/// </summary>
 		/// <param name="iNumerator">Numerator measure</param>
 		/// <param name="iDenominator">Denominator measure</param>
-		/// <returns>Scalar quotient of the two measure objects</returns>
+		/// <returns>Quotient of the two measure objects, given in the reference unit of the resulting quantity</returns>
+		/// <exception cref="InvalidOperationException">if a unique quotient quantity cannot be identified</exception>
 		public static Measure operator /(Measure iNumerator, Measure iDenominator)
 		{
-			Quantity quotientQuantity = QuantityExtensions.GetQuotientQuantity(iNumerator.MeasuredQuantity,
-																			   iDenominator.MeasuredQuantity);
-			checked
-			{
-				return iNumerator.mUnit == iDenominator.mUnit ?
-					iNumerator.mAmount / iDenominator.mAmount :
-					iNumerator.mAmount / iNumerator.mUnit.GetAmount(iDenominator);
-			}
+			Quantity quotientQuantity = QuantityExtensions.Divide(iNumerator.MeasuredQuantity,
+																  iDenominator.MeasuredQuantity);
+			return new Measure(iNumerator.ReferenceUnitAmount/iDenominator.ReferenceUnitAmount,
+							   quotientQuantity.GetReferenceUnit());
 		}
+
+		/// <summary>
+		/// Divide two measure objects, where denominator may be any object implementing the IMeasure interface
+		/// </summary>
+		/// <param name="iNumerator">Numerator measure</param>
+		/// <param name="iDenominator">Denominator measure (any object implementing the IMeasure interface)</param>
+		/// <returns>Quotient of the two measure objects, given in the reference unit of the resulting quantity</returns>
+		/// <exception cref="InvalidOperationException">if a unique quotient quantity cannot be identified</exception>
+		public static Measure operator /(Measure iNumerator, IMeasure iDenominator)
+		{
+			Quantity quotientQuantity = QuantityExtensions.Divide(iNumerator.MeasuredQuantity,
+																  iDenominator.MeasuredQuantity);
+			return new Measure(iNumerator.ReferenceUnitAmount / iDenominator.ReferenceUnitAmount,
+							   quotientQuantity.GetReferenceUnit());
+		}
+
+		/// <summary>
+		/// Divide two measure objects, where numerator may be any object implementing the IMeasure interface
+		/// </summary>
+		/// <param name="iNumerator">Numerator measure (any object implementing the IMeasure interface)</param>
+		/// <param name="iDenominator">Denominator measure</param>
+		/// <returns>Quotient of the two measure objects, given in the reference unit of the resulting quantity</returns>
+		/// <exception cref="InvalidOperationException">if a unique quotient quantity cannot be identified</exception>
+		public static Measure operator /(IMeasure iNumerator, Measure iDenominator)
+		{
+			Quantity quotientQuantity = QuantityExtensions.Divide(iNumerator.MeasuredQuantity,
+																  iDenominator.MeasuredQuantity);
+			return new Measure(iNumerator.ReferenceUnitAmount / iDenominator.ReferenceUnitAmount,
+							   quotientQuantity.GetReferenceUnit());
+		}
+
 		/*
 				/// <summary>
 				/// Divide two measure objects of the same quantity
