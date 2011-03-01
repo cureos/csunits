@@ -121,7 +121,7 @@ namespace Cureos.Measures
 		#region PROPERTIES
 
 		/// <summary>
-		/// Gets the measured amount in the <paramref name="MeasuredUnit">current unit of measure</paramref>
+		/// Gets the measured amount in the <see cref="MeasuredUnit">current unit of measure</see>
 		/// </summary>
 		public AmountType MeasuredAmount
 		{
@@ -129,7 +129,7 @@ namespace Cureos.Measures
 		}
 
 		/// <summary>
-		/// Gets the measured amount in the <paramref name="ReferenceUnit">reference unit of measure</paramref>
+		/// Gets the measured amount in the <see cref="ReferenceUnit">reference unit of measure</see>
 		/// </summary>
 		public AmountType ReferenceUnitAmount
 		{
@@ -153,7 +153,7 @@ namespace Cureos.Measures
 		}
 
 		/// <summary>
-		/// Gets the reference unit of measure for the <paramref name="MeasuredQuantity">measured quantity</paramref>
+		/// Gets the reference unit of measure for the <see cref="MeasuredQuantity">measured quantity</see>
 		/// </summary>
 		public Unit ReferenceUnit
 		{
@@ -308,6 +308,36 @@ namespace Cureos.Measures
 		{
 			AssertValidMeasure(iMeasure);
 			return new Measure<Q>(iMeasure.ReferenceUnitAmount);
+		}
+
+		/// <summary>
+		/// Double cast operator
+		/// </summary>
+		/// <param name="iAmount">Amount in double precision</param>
+		/// <returns>Measure object with specified amount</returns>
+		public static explicit operator Measure<Q>(double iAmount)
+		{
+			return new Measure<Q>(iAmount);
+		}
+
+		/// <summary>
+		/// Float cast operator
+		/// </summary>
+		/// <param name="iAmount">Amount in single precision</param>
+		/// <returns>Measure object with specified amount</returns>
+		public static explicit operator Measure<Q>(float iAmount)
+		{
+			return new Measure<Q>(iAmount);
+		}
+
+		/// <summary>
+		/// Decimal cast operator
+		/// </summary>
+		/// <param name="iAmount">Amount in decimal precision</param>
+		/// <returns>Measure object with specified amount</returns>
+		public static explicit operator Measure<Q>(decimal iAmount)
+		{
+			return new Measure<Q>(iAmount);
 		}
 
 		/// <summary>

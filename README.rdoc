@@ -7,45 +7,46 @@ Made available under Eclipse Public License, version 1.0
 
 == Usage examples
 
-    using Cureos.Measurables;
-    using Cureos.Measurables.Units;
-    ...
+	using Cureos.Measures;
+	using Cureos.Measures.Quantities;
+	...
 
-    Measurable<KiloGram> initialWgt = new Measurable<KiloGram>(75.0);
-    Measurable<KiloGram> gainedWgt = new Measurable<Gram>(2.5);
-    Measurable<KiloGram> newWgt = initialWgt + gainedWgt;
+	Measure<Mass> initialWgt = new Measure<Mass>(75.0);
+	Measure<Mass> gainedWgt = new Measure<Mass>(2.5, Unit.Gram);
+	Measure<Mass> newWgt = initialWgt + gainedWgt;
 
-    Measurable<Gram> newWgtInGram = newWgt.InUnit<Gram>();
-    Measurable<Gram> initialWgtInGram = newWgtInGram.Minus(gainedWgt);
+	Measure newWgtUntyped = (Measure)newWgt;
+	Measure newWgtInGram = newWgtUntyped.GetMeasure(Unit.Gram);
+	Measure initialWgtInGram = newWgtInGram - gainedWgt;
 
-    Console.WriteLine("Initial weight: {0}", initialWgtInGram);
+	Console.WriteLine("Initial weight: {0}", initialWgtInGram);
 
-    Measurable<CentiMeter> height = (Measurable<CentiMeter>)30.0;
-    Measurable<SquareMeter> area = new Measurable<SquareMeter>(0.02);
+	Measure<Length> height = new Measure<Length>(30.0, Unit.CentiMeter);
+	Measure<Area> area = (Measure<Area>)0.02;
 
-    Measurable<Liter> vol;
-    Measurable.Multiply(height, area, out vol);
-
-    Measurable<Liter> maxVol = (Measurable<Liter>)10.0;
-    if (vol < maxVol)
-    {
-        Console.WriteLine("Calculated volume is within limits, actual volume: {0} liters", vol.Amount);
-    }
+	var vol = Measure<Volume>.Times(height, area);
+	Measure<Volume> maxVol = Measure<Volume>(10.0, Unit.Liter);
+	if (vol < maxVol)
+	{
+		Console.WriteLine("Calculated volume is within limits, actual volume: {0} liters", vol.GetAmount(Unit.Liter));
+	}
 
 should yield the output:
 
-    Initial weight: 75000 g
-    Calculated volume is within limits, actual volume 6 liters
-
+	Initial weight: 75000 g
+	Calculated volume is within limits, actual volume 6 liters
 
 
 == Remarks
 
-Developed with Visual Studio 2010, using .NET Framework 4. The solution might require tweaking to build with Mono or older versions of .NET Framework. There is a separate branch where the library has been built with Mono (2.8.2) via MonoDevelop (2.4.2), where the .NET compatilibilty has been set to .NET 3.5. It was necessary to define a dummy class Tuple<T1, ..., T7> to enable building with .NET 3.5 compatibility.
+Developed with Visual Studio 2010, using .NET Framework 3.5.
 
-The "work-horse" Measurable<> is declared as a struct, and the struct itself only contains one value type member. The main goal of this approach is to maximize calculation performance, while at the same time ensuring unit type safety. In contrast, operations involving unit exposure or conversions are costly due to use of type reflection.
+The "work-horses" Measure and Measure<Q> are declared as structs. The main goal of this approach is to maximize calculation performance, while at the same time ensuring quantity type safety. In contrast, operations involving unit exposure or conversions are more costly due to dictionary look-up operations.
 
-With preprocessor directives, it is possible to configure the library so that the measurable amounts are defined in a desired floating-point value type. The following preprocessor directives are currently supported, and can be defined in the project build settings:
+
+== Building for specific floating-point types
+
+With preprocessor directives, it is possible to configure the library so that the measure amounts are defined in a desired floating-point value type. The following preprocessor directives are currently supported, and can be defined in the project build settings:
 
 [DOUBLE] Set amount type to System.Double
 
@@ -53,34 +54,61 @@ With preprocessor directives, it is possible to configure the library so that th
 
 [DECIMAL] Set amount type to System.Decimal
 
-Units are identified through their dimension in terms of SI Base Units. When extending this library, it is recommended that a quantity-specific unit dimension static class is added to the Dimensions sub-folder. The following conventions have been used when implementing the currently existing unit dimension specifications:
 
-    internal static class Energy
-    {
-        internal static readonly UnitDimension Dimension = new UnitDimension(2 ,1, -2, 0, 0, 0, 0);
-    }
+== Extending the library
 
-When creating a new energy unit, the Energy.Dimension field can then be used to define the new unit.
+Quantities are identified through their dimension in terms of SI Base Units. For completeness, each quantity should have a reference unit, expressable as a combination of one or more SI base units. This is particularly important to ensure that resulting amounts are correctly erxpressed when multiplying or dividing measures.
 
-To add a new unit to the library, there are a few normative conventions to follow. New units are preferably added to the Units sub-folder. Provided is an example implementation of a reference unit for a specific unit dimension:
+To extend the library with additional quantities and associated units, the following steps should be taken in project Cureos.Measures:
 
-    public sealed class Joule : GenericUnit
-    {
-        public static readonly Joule Instance = new Joule();
-        private Joule() : base("J", Energy.Dimension) { }
-    }
+* In the file Quantity.cs, add the new quantity to the enumeration:
 
-The member constructor is declared private, to ensure that no instances of the unit class are accidentally created. The class only publicly exposes the static field denoted Instance. This field must be defined and initialized with an instance of the containing unit class to ensure that operations involving unit exposure or conversion do not fail.
+	public enum Quantity
+	{
+		... ,
+		Energy
+	}
 
-Other units with the same unit dimension can then be created and refer to the reference unit. Unit conversion is internally performed as a two-step process, first converting the amount to the reference unit and next converting from the reference unit to the requested unit. In many cases, unit conversion is strictly multiplicative and based on the unit prefix.
-Here is an example of an implementation of a complementary energy unit, which bases unit conversion strictly on the unit prefix:
+* In the file QuantityExtensions.cs, static constructor, add the new quantity to the quantity details dictionary:
 
-    public sealed class KiloJoule : GenericUnit
-    {
-        public static readonly KiloJoule Instance = new KiloJoule();
-        private KiloJoule() : base(UnitPrefix.Kilo, "J", Joule.Instance) { }
-    }
+	smDetailsMap = new List<QuantityDetails>
+	{
+		... ,
+		new QuantityDetails(Quantity.Energy, new QuantityDimensions(2, 1, -2, 0, 0, 0, 0))
+	}
+
+* In the Quantities sub-folder, add a new member-less struct implementing the IQuantity interface, and have the Value property getter return the enumerated value of the new quantity:
+
+	namespace Cureos.Measures.Quantities
+	{
+		public struct Energy : IQuantity
+		{
+			public Quantity Value
+			{
+				get { return Quantity.Energy; }
+			}
+		}
+	}
+
+* In the file Unit.cs, add the unit(s) associated with the quantity to the enumeration:
+
+	public enum Unit
+	{
+		... ,
+		Joule,
+		KiloJoule
+	}
+
+* In the file UnitExtensions.cs, static constructor, add the new units to the unit details dictionary. The reference unit (in the example, Joule) uses a UnitDetails constructor without amount conversion specifications, whereas the secondary units are initialized using amount conversion factors/operators to and from the reference unit:
+
+	smUnitDetailsMap = new UnitDetails[]
+	{
+		... ,
+		new UnitDetails(Unit.Joule, Quantity.Energy, "J"),
+		new UnitDetails(Unit.KiloJoule, Quantity.Energy, "kJ", (AmountType) 1000.0)
+	}
+
 
 == Revision
 
-Last updated on February 17, 2011 by Anders Gustafsson, anders[at]cureos[dot]com.
+Last updated on March 1, 2011 by Anders Gustafsson, anders[at]cureos[dot]com.
