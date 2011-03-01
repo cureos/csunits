@@ -12,3 +12,5 @@
 /Cureos.Measures/obj
 /Cureos.Measures/bin
 *.vs10x
+*.pidb
+/test-results
