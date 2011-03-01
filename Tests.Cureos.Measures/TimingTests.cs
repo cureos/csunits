@@ -46,7 +46,7 @@ namespace Tests.Cureos.Measures
 
         [Test]
         public void TimeMeasureAdditionsToDifferentUnit()
-        {}
+        {
             DateTime start = DateTime.Now;
             var val = new Measure(0.0, Unit.KiloGram);
             for (int i = 0; i < no; ++i)
