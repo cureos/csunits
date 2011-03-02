@@ -68,12 +68,35 @@ namespace Cureos.Measures
 			return smDetailsMap[iQuantity].ReferenceUnit;
 		}
 
+		public static IEnumerable<Unit> GetSupportedUnits(this Quantity iQuantity)
+		{
+			return smDetailsMap[iQuantity].SupportedUnits;
+		}
+
+		/// <summary>
+		/// Checks whether the "product" of two quantities has the same quantity dimensions as the <paramref name="iQuantity">
+		/// specified quantity</paramref>
+		/// </summary>
+		/// <param name="iQuantity">Quantity of which its dimensions should match the product of the multiplied quantities</param>
+		/// <param name="iLhs">First quantity in multiplication</param>
+		/// <param name="iRhs">Second quantity in multiplication</param>
+		/// <returns>true if the quantity "product" matches the dimensions of the <paramref name="iQuantity">
+		/// specified quantity</paramref>, false otherwise</returns>
 		public static bool IsQuantityOfProduct(this Quantity iQuantity, Quantity iLhs, Quantity iRhs)
 		{
 			return smDetailsMap[iQuantity].Dimensions.Equals(smDetailsMap[iLhs].Dimensions +
 															 smDetailsMap[iRhs].Dimensions);
 		}
 
+		/// <summary>
+		/// Checks whether the "quotient" of two quantities has the same quantity dimensions as the <paramref name="iQuantity">
+		/// specified quantity</paramref>
+		/// </summary>
+		/// <param name="iQuantity">Quantity of which its dimensions should match the quotient of the divided quantities</param>
+		/// <param name="iNumerator">Numerator quantity in division</param>
+		/// <param name="iDenominator">Denominator quantity in division</param>
+		/// <returns>true if the quantity "quotient" matches the dimensions of the <paramref name="iQuantity">
+		/// specified quantity</paramref>, false otherwise</returns>
 		public static bool IsQuantityOfQuotient(this Quantity iQuantity, Quantity iNumerator, Quantity iDenominator)
 		{
 			return smDetailsMap[iQuantity].Dimensions.Equals(smDetailsMap[iNumerator].Dimensions -
@@ -126,7 +149,8 @@ namespace Cureos.Measures
 			#region MEMBER VARIABLES
 
 			private Unit mReferenceUnit;
-
+			private IEnumerable<Unit> mSupportedUnits;
+	
 			#endregion
 			
 			#region CONSTRUCTORS
@@ -136,6 +160,7 @@ namespace Cureos.Measures
 				Quantity = iQuantity;
 				Dimensions = iDimensions;
 				mReferenceUnit = Unit.None;
+				mSupportedUnits = null;
 			}
 
 			#endregion
@@ -154,13 +179,33 @@ namespace Cureos.Measures
 			{
 				get
 				{
-					if (mReferenceUnit == Unit.None) throw new InvalidOperationException("ReferenceUnit is not defined for this quantity");
+					lock (this)
+					{
+						if (mReferenceUnit == Unit.None)
+							throw new InvalidOperationException("ReferenceUnit is not defined for this quantity");
+					}
 					return mReferenceUnit;
 				}
 				set
 				{
-					if (mReferenceUnit != Unit.None) throw new InvalidOperationException("Attempt to set already defined ReferenceUnit");
-					mReferenceUnit = value;
+					lock (this)
+					{
+						if (mReferenceUnit != Unit.None)
+							throw new InvalidOperationException("Attempt to set already defined ReferenceUnit");
+						mReferenceUnit = value;
+					}
+				}
+			}
+
+			internal IEnumerable<Unit> SupportedUnits
+			{
+				get
+				{
+					lock (this)
+					{
+						if (mSupportedUnits == null) mSupportedUnits = UnitExtensions.GetUnitsOf(Quantity);
+					}
+					return mSupportedUnits;
 				}
 			}
 

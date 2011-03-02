@@ -129,7 +129,19 @@ namespace Cureos.Measures
 		{
 			return iUnit.GetAmount(this);
 		}
-		
+
+		/// <summary>
+		/// Returns a string description of the measure in the given <paramref name="iUnit">physical unit</paramref>
+		/// </summary>
+		/// <param name="iUnit">Unit in which the measure should be presented</param>
+		/// <returns>String representation of the measure in the given <paramref name="iUnit">physical unit</paramref></returns>
+		/// <exception cref="InvalidOperationException">if the <paramref name="iUnit">specified unit</paramref> is of
+		/// a different quantity than the <see cref="MeasuredUnit">measured unit </see></exception>
+		public string ToString(Unit iUnit)
+		{
+			return String.Format("{0} {1}", GetAmount(iUnit), iUnit.GetSymbol()).Trim();
+		}
+
 		/// <summary>
 		/// Gets a new measure object with the amount converted to the <paramref name="iUnit">specified unit</paramref>
 		/// </summary>
