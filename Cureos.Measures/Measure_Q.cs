@@ -285,7 +285,7 @@ namespace Cureos.Measures
 
 		private static void AssertValidUnit(Unit iUnit)
 		{
-			if (iUnit.GetQuantity() != default(Q).Value)
+			if (!default(Q).Value.IsUnitSupported(iUnit))
 				throw new InvalidOperationException(String.Format("Unit {0} is not of quantity {1}", iUnit, default(Q).Value));
 		}
 

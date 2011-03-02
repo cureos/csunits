@@ -68,9 +68,25 @@ namespace Cureos.Measures
 			return smDetailsMap[iQuantity].ReferenceUnit;
 		}
 
+		/// <summary>
+		/// Get units supported by the specified quantity
+		/// </summary>
+		/// <param name="iQuantity">Quantity for which supported units is requester</param>
+		/// <returns>Collection of units supported by the specified quantity</returns>
 		public static IEnumerable<Unit> GetSupportedUnits(this Quantity iQuantity)
 		{
 			return smDetailsMap[iQuantity].SupportedUnits;
+		}
+
+		/// <summary>
+		/// Checks whether specified unit is supported by specified quantity
+		/// </summary>
+		/// <param name="iQuantity">Quantity</param>
+		/// <param name="iUnit">Unit to check for supportability</param>
+		/// <returns>true if specified unit is supported by specified quantity, false otherwise</returns>
+		public static bool IsUnitSupported(this Quantity iQuantity, Unit iUnit)
+		{
+			return GetSupportedUnits(iQuantity).Contains(iUnit);
 		}
 
 		/// <summary>

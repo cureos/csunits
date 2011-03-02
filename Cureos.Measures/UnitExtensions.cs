@@ -98,7 +98,7 @@ namespace Cureos.Measures
         /// from the measured quantity</exception>
         public static AmountType GetAmount(this Unit iToUnit, IMeasure iMeasure)
         {
-            if (iToUnit.GetQuantity() == iMeasure.MeasuredQuantity)
+            if (iMeasure.MeasuredQuantity.IsUnitSupported(iToUnit))
             {
                 return smUnitDetailsMap[iToUnit].AmountFromReferenceUnitConverter(iMeasure.ReferenceUnitAmount);
             }
