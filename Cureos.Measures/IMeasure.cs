@@ -19,9 +19,9 @@ namespace Cureos.Measures
 	public interface IMeasure
 	{
 		/// <summary>
-		/// Gets the measured amount in the <see cref="MeasuredUnit">current unit of measure</see>
+		/// Gets the measured amount in the <see cref="Unit">current unit of measure</see>
 		/// </summary>
-		AmountType MeasuredAmount
+		AmountType Amount
 		{
 			get;
 		}
@@ -45,7 +45,7 @@ namespace Cureos.Measures
 		/// <summary>
 		/// Gets the unit of measure
 		/// </summary>
-		Unit MeasuredUnit
+		Unit Unit
 		{
 			get;
 		}

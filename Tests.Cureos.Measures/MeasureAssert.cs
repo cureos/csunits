@@ -27,9 +27,9 @@ namespace Tests.Cureos.Measures
 
         internal static void MeasuresAreEqual(IMeasure expected, IMeasure actual)
         {
-            if (actual.MeasuredUnit == expected.MeasuredUnit)
+            if (actual.Unit == expected.Unit)
             {
-                Assert.IsTrue(Math.Abs(actual.MeasuredAmount - expected.MeasuredAmount) < smkEqualityTolerance,
+                Assert.IsTrue(Math.Abs(actual.Amount - expected.Amount) < smkEqualityTolerance,
                     "Expected {0}, actual value {1}", expected, actual);
             }
             else
@@ -40,14 +40,14 @@ namespace Tests.Cureos.Measures
 
         internal static void AmountsAreEqual(IMeasure expected, IMeasure actual)
         {
-            if (actual.MeasuredUnit == expected.MeasuredUnit)
+            if (actual.Unit == expected.Unit)
             {
-                Assert.IsTrue(Math.Abs(actual.MeasuredAmount - expected.MeasuredAmount) < smkEqualityTolerance,
+                Assert.IsTrue(Math.Abs(actual.Amount - expected.Amount) < smkEqualityTolerance,
                     "Expected {0}, actual value {1}", expected, actual);
             }
-            else if (actual.MeasuredQuantity == expected.MeasuredQuantity)
+            else if (actual.GetQuantity() == expected.GetQuantity())
             {
-                Assert.IsTrue(Math.Abs(actual.ReferenceUnitAmount - expected.ReferenceUnitAmount) < smkEqualityTolerance,
+                Assert.IsTrue(Math.Abs(actual.GetReferenceUnitAmount() - expected.GetReferenceUnitAmount()) < smkEqualityTolerance,
                     "Expected {0}, actual value {1}", expected, actual);
             }
             else

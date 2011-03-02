@@ -77,9 +77,9 @@ namespace Cureos.Measures
 		#region PROPERTIES
 
 		/// <summary>
-		/// Gets the measured amount in the <see cref="MeasuredUnit">current unit of measure</see>
+		/// Gets the measured amount in the <see cref="Unit">current unit of measure</see>
 		/// </summary>
-		public AmountType MeasuredAmount
+		public AmountType Amount
 		{
 			get { return mAmount; }
 		}
@@ -89,7 +89,7 @@ namespace Cureos.Measures
 		/// </summary>
 		public AmountType ReferenceUnitAmount
 		{
-			get { return mUnit.GetReferenceUnitAmount(mAmount); }
+			get { return mUnit.ConvertAmountToReferenceUnit(mAmount); }
 		}
 
 		/// <summary>
@@ -103,7 +103,7 @@ namespace Cureos.Measures
 		/// <summary>
 		/// Gets the unit of measure
 		/// </summary>
-		public Unit MeasuredUnit
+		public Unit Unit
 		{
 			get { return mUnit; }
 		}
@@ -113,7 +113,7 @@ namespace Cureos.Measures
 		/// </summary>
 		public Unit ReferenceUnit
 		{
-			get { return MeasuredQuantity.GetReferenceUnit(); }
+			get { return mUnit.GetReferenceUnit(); }
 		}
 		#endregion
 
@@ -127,7 +127,7 @@ namespace Cureos.Measures
 		/// <exception cref="InvalidOperationException">Is thrown if the specified unit is of another quantity</exception>
 		public AmountType GetAmount(Unit iUnit)
 		{
-			return iUnit.GetAmount(this);
+			return IMeasureExtensions.GetAmount(this, iUnit);   /**/
 		}
 
 		/// <summary>
@@ -136,7 +136,7 @@ namespace Cureos.Measures
 		/// <param name="iUnit">Unit in which the measure should be presented</param>
 		/// <returns>String representation of the measure in the given <paramref name="iUnit">physical unit</paramref></returns>
 		/// <exception cref="InvalidOperationException">if the <paramref name="iUnit">specified unit</paramref> is of
-		/// a different quantity than the <see cref="MeasuredUnit">measured unit </see></exception>
+		/// a different quantity than the <see cref="Unit">measured unit </see></exception>
 		public string ToString(Unit iUnit)
 		{
 			return String.Format("{0} {1}", GetAmount(iUnit), iUnit.GetSymbol()).Trim();
@@ -177,9 +177,9 @@ namespace Cureos.Measures
 		/// of this object</exception>
 		public int CompareTo(Measure other)
 		{
-			return MeasuredUnit == other.MeasuredUnit ?
-				MeasuredAmount.CompareTo(other.MeasuredAmount) :
-				MeasuredAmount.CompareTo(MeasuredUnit.GetAmount(other));
+			return Unit == other.Unit ?
+				Amount.CompareTo(other.Amount) :
+				Amount.CompareTo(other.GetAmount(Unit));
 		}
 
 		/// <summary>
@@ -200,7 +200,7 @@ namespace Cureos.Measures
 		{
 			unchecked
 			{
-				return (ReferenceUnitAmount.GetHashCode() * 397) ^ ReferenceUnit.GetHashCode();
+				return (this.GetReferenceUnitAmount().GetHashCode() * 397) ^ this.GetReferenceUnit().GetHashCode();
 			}
 		}
 
@@ -595,79 +595,81 @@ namespace Cureos.Measures
 
 		public static Measure Plus(IMeasure iLhs, IMeasure iRhs)
 		{
-			return iLhs.MeasuredUnit == iRhs.MeasuredUnit ?
-				new Measure(iLhs.MeasuredAmount + iRhs.MeasuredAmount, iLhs.MeasuredUnit) :
-				new Measure(iLhs.MeasuredAmount + iLhs.MeasuredUnit.GetAmount(iRhs), iLhs.MeasuredUnit);
+			return iLhs.Unit == iRhs.Unit ?
+				new Measure(iLhs.Amount + iRhs.Amount, iLhs.Unit) :
+				new Measure(iLhs.Amount + iRhs.GetAmount(iLhs.Unit), iLhs.Unit);
 		}
 
 		public static Measure Minus(IMeasure iLhs, IMeasure iRhs)
 		{
-			return iLhs.MeasuredUnit == iRhs.MeasuredUnit ?
-				new Measure(iLhs.MeasuredAmount - iRhs.MeasuredAmount, iLhs.MeasuredUnit) :
-				new Measure(iLhs.MeasuredAmount - iLhs.MeasuredUnit.GetAmount(iRhs), iLhs.MeasuredUnit);
+			return iLhs.Unit == iRhs.Unit ?
+				new Measure(iLhs.Amount - iRhs.Amount, iLhs.Unit) :
+				new Measure(iLhs.Amount - iRhs.GetAmount(iLhs.Unit), iLhs.Unit);
 		}
 
 		private static Measure Times(IMeasure iLhs, IMeasure iRhs)
 		{
-			Quantity productQuantity = QuantityExtensions.Times(iLhs.MeasuredQuantity,
-																  iRhs.MeasuredQuantity);
-			return new Measure(iLhs.ReferenceUnitAmount * iRhs.ReferenceUnitAmount,
+			Quantity productQuantity = QuantityExtensions.Times(iLhs.GetQuantity(), iRhs.GetQuantity());
+			return new Measure(iLhs.GetReferenceUnitAmount() * iRhs.GetReferenceUnitAmount(),
 							   productQuantity.GetReferenceUnit());
 		}
 
 		private static Measure Divide(IMeasure iNumerator, IMeasure iDenominator)
 		{
-			Quantity quotientQuantity = QuantityExtensions.Divide(iNumerator.MeasuredQuantity,
-																  iDenominator.MeasuredQuantity);
-			return new Measure(iNumerator.ReferenceUnitAmount/iDenominator.ReferenceUnitAmount,
+			Quantity quotientQuantity = QuantityExtensions.Divide(iNumerator.GetQuantity(), iDenominator.GetQuantity());
+			return new Measure(iNumerator.GetReferenceUnitAmount() /iDenominator.GetReferenceUnitAmount(),
 							   quotientQuantity.GetReferenceUnit());
 		}
 
 		private static bool LessThan(IMeasure iLhs, IMeasure iRhs)
 		{
-			return iLhs.MeasuredUnit == iRhs.MeasuredUnit
-					   ? iLhs.MeasuredAmount < iRhs.MeasuredAmount
-					   : iLhs.MeasuredAmount < iLhs.MeasuredUnit.GetAmount(iRhs);
+			return iLhs.Unit == iRhs.Unit
+					   ? iLhs.Amount < iRhs.Amount
+					   : iLhs.Amount < iRhs.GetAmount(iLhs.Unit);
 		}
 
 		private static bool GreaterThan(IMeasure iLhs, IMeasure iRhs)
 		{
-			return iLhs.MeasuredUnit == iRhs.MeasuredUnit
-					   ? iLhs.MeasuredAmount > iRhs.MeasuredAmount
-					   : iLhs.MeasuredAmount > iLhs.MeasuredUnit.GetAmount(iRhs);
+			return iLhs.Unit == iRhs.Unit
+					   ? iLhs.Amount > iRhs.Amount
+					   : iLhs.Amount > iRhs.GetAmount(iLhs.Unit);
 		}
 
 		private static bool LessThanOrEqualTo(IMeasure iLhs, IMeasure iRhs)
 		{
-			return iLhs.MeasuredUnit == iRhs.MeasuredUnit
-					   ? iLhs.MeasuredAmount <= iRhs.MeasuredAmount
-					   : iLhs.MeasuredAmount <= iLhs.MeasuredUnit.GetAmount(iRhs);
+			return iLhs.Unit == iRhs.Unit
+					   ? iLhs.Amount <= iRhs.Amount
+					   : iLhs.Amount <= iRhs.GetAmount(iLhs.Unit);
 		}
 
 		private static bool GreaterThanOrEqualTo(IMeasure iLhs, IMeasure iRhs)
 		{
-			return iLhs.MeasuredUnit == iRhs.MeasuredUnit
-					   ? iLhs.MeasuredAmount >= iRhs.MeasuredAmount
-					   : iLhs.MeasuredAmount >= iLhs.MeasuredUnit.GetAmount(iRhs);
+			return iLhs.Unit == iRhs.Unit
+					   ? iLhs.Amount >= iRhs.Amount
+					   : iLhs.Amount >= iRhs.GetAmount(iLhs.Unit);
 		}
 
 		private static bool AreEqual(IMeasure iLhs, IMeasure iRhs)
 		{
-			return iLhs.MeasuredUnit == iRhs.MeasuredUnit
-					   ? iLhs.MeasuredAmount == iRhs.MeasuredAmount
-					   : iLhs.MeasuredAmount == iLhs.MeasuredUnit.GetAmount(iRhs);
+			return iLhs.Unit == iRhs.Unit
+					   ? iLhs.Amount == iRhs.Amount
+					   : iLhs.Amount == iRhs.GetAmount(iLhs.Unit);
 		}
 
 		private static bool AreNotEqual(IMeasure iLhs, IMeasure iRhs)
 		{
-			return iLhs.MeasuredUnit == iRhs.MeasuredUnit
-					   ? iLhs.MeasuredAmount != iRhs.MeasuredAmount
-					   : iLhs.MeasuredAmount != iLhs.MeasuredUnit.GetAmount(iRhs);
+			return iLhs.Unit == iRhs.Unit
+					   ? iLhs.Amount != iRhs.Amount
+					   : iLhs.Amount != iRhs.GetAmount(iLhs.Unit);
 		}
 
 		#endregion
 	}
 
+	/// <summary>
+	/// Quantity-typed representation of a single measure
+	/// </summary>
+	/// <typeparam name="Q"></typeparam>
 	public struct Measure<Q> : IMeasure, IEquatable<Measure<Q>>, IComparable<Measure<Q>> where Q : struct, IQuantity
 	{
 		#region MEMBER VARIABLES
@@ -727,7 +729,7 @@ iAmount;
 		public Measure(double iAmount, Unit iUnit)
 		{
 			AssertValidUnit(iUnit);
-			mAmount = iUnit.GetReferenceUnitAmount(
+			mAmount = iUnit.ConvertAmountToReferenceUnit(
 #if !DOUBLE
 				(AmountType)
 #endif
@@ -744,7 +746,7 @@ iAmount);
 		public Measure(float iAmount, Unit iUnit)
 		{
 			AssertValidUnit(iUnit);
-			mAmount = iUnit.GetReferenceUnitAmount(
+			mAmount = iUnit.ConvertAmountToReferenceUnit(
 #if !SINGLE
 (AmountType)
 #endif
@@ -761,7 +763,7 @@ iAmount);
 		public Measure(decimal iAmount, Unit iUnit)
 		{
 			AssertValidUnit(iUnit);
-			mAmount = iUnit.GetReferenceUnitAmount(
+			mAmount = iUnit.ConvertAmountToReferenceUnit(
 #if !DECIMAL
 (AmountType)
 #endif
@@ -773,9 +775,9 @@ iAmount);
 		#region PROPERTIES
 
 		/// <summary>
-		/// Gets the measured amount in the <see cref="MeasuredUnit">current unit of measure</see>
+		/// Gets the measured amount in the <see cref="Unit">current unit of measure</see>
 		/// </summary>
-		public AmountType MeasuredAmount
+		public AmountType Amount
 		{
 			get { return mAmount; }
 		}
@@ -799,9 +801,9 @@ iAmount);
 		/// <summary>
 		/// Gets the unit of measure
 		/// </summary>
-		public Unit MeasuredUnit
+		public Unit Unit
 		{
-			get { return ReferenceUnit; }
+			get { return default(Q).EnumeratedValue.GetReferenceUnit(); }
 		}
 
 		/// <summary>
@@ -809,7 +811,7 @@ iAmount);
 		/// </summary>
 		public Unit ReferenceUnit
 		{
-			get { return MeasuredQuantity.GetReferenceUnit(); }
+			get { return Unit.GetReferenceUnit(); }
 		}
 		#endregion
 
@@ -823,7 +825,7 @@ iAmount);
 		/// <exception cref="InvalidOperationException">Is thrown if the specified unit is of another quantity</exception>
 		public AmountType GetAmount(Unit iUnit)
 		{
-			return iUnit.GetAmount(this);
+			return IMeasureExtensions.GetAmount(this, iUnit);   /**/
 		}
 
 		/// <summary>
@@ -832,7 +834,7 @@ iAmount);
 		/// <param name="iUnit">Unit in which the measure should be presented</param>
 		/// <returns>String representation of the measure in the given <paramref name="iUnit">physical unit</paramref></returns>
 		/// <exception cref="InvalidOperationException">if the <paramref name="iUnit">specified unit</paramref> is of
-		/// a different quantity than the <see cref="MeasuredUnit">measured unit </see></exception>
+		/// a different quantity than the <see cref="Unit">measured unit </see></exception>
 		public string ToString(Unit iUnit)
 		{
 			return String.Format("{0} {1}", GetAmount(iUnit), iUnit.GetSymbol()).Trim();
@@ -850,7 +852,7 @@ iAmount);
 			where Q1 : struct, IQuantity
 			where Q2 : struct, IQuantity
 		{
-			if (default(Q).EnumeratedValue.IsQuantityOfProduct(iLhs.MeasuredQuantity, iRhs.MeasuredQuantity))
+			if (default(Q).EnumeratedValue.IsQuantityOfProduct(iLhs.GetQuantity(), iRhs.GetQuantity()))
 			{
 				return new Measure<Q>(iLhs.mAmount * iRhs.mAmount);
 			}
@@ -870,7 +872,7 @@ iAmount);
 			where Q1 : struct, IQuantity
 			where Q2 : struct, IQuantity
 		{
-			if (default(Q).EnumeratedValue.IsQuantityOfQuotient(iNumerator.MeasuredQuantity, iDenominator.MeasuredQuantity))
+			if (default(Q).EnumeratedValue.IsQuantityOfQuotient(iNumerator.GetQuantity(), iDenominator.GetQuantity()))
 			{
 				return new Measure<Q>(iNumerator.mAmount / iDenominator.mAmount);
 			}
@@ -932,7 +934,7 @@ iAmount);
 		/// <returns>The measure description</returns>
 		public override string ToString()
 		{
-			return String.Format("{0} {1}", mAmount, ReferenceUnit.GetSymbol()).Trim();
+			return String.Format("{0} {1}", mAmount, Unit.GetSymbol()).Trim();
 		}
 
 		private static void AssertValidUnit(Unit iUnit)
@@ -943,7 +945,7 @@ iAmount);
 
 		private static void AssertValidMeasure(Measure iMeasure)
 		{
-			if (iMeasure.MeasuredQuantity != default(Q).EnumeratedValue)
+			if (iMeasure.GetQuantity() != default(Q).EnumeratedValue)
 			{
 				throw new InvalidOperationException(String.Format("Measure {0} is not of quantity {1}", iMeasure, default(Q).EnumeratedValue));
 			}
@@ -960,7 +962,7 @@ iAmount);
 		/// <returns>Non-generic equivalent of the generic measure object</returns>
 		public static explicit operator Measure(Measure<Q> iMeasure)
 		{
-			return new Measure(iMeasure.mAmount, iMeasure.MeasuredUnit);
+			return new Measure(iMeasure.mAmount, iMeasure.Unit);
 		}
 
 		/// <summary>
@@ -971,7 +973,7 @@ iAmount);
 		public static explicit operator Measure<Q>(Measure iMeasure)
 		{
 			AssertValidMeasure(iMeasure);
-			return new Measure<Q>(iMeasure.ReferenceUnitAmount);
+			return new Measure<Q>(iMeasure.GetReferenceUnitAmount());
 		}
 
 		/// <summary>
@@ -1132,7 +1134,7 @@ iAmount);
 		}
 
 		/// <summary>
-		/// Inquality operator for measure objects
+		/// Inequality operator for measure objects
 		/// </summary>
 		/// <param name="iLhs">First object</param>
 		/// <param name="iRhs">Second object</param>

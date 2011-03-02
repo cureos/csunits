@@ -207,7 +207,7 @@ namespace Tests.Cureos.Measures
             var expected = AmountConverter.ToAmountType(Double.PositiveInfinity);
             var numerator = new Measure(1.0, Unit.CubicMeter);
             var denominator = new Measure(0.0, Unit.Meter);
-            var actual = (numerator / denominator).MeasuredAmount;
+            var actual = (numerator / denominator).Amount;
             Assert.AreEqual(expected, actual);
         }
 

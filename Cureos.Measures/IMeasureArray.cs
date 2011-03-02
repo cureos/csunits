@@ -16,18 +16,43 @@ namespace Cureos.Measures
 {
     public interface IMeasureArray
     {
+        /// <summary>
+        /// Gets the array of measured amounts in the <see cref="MeasuredUnit">current unit of measure</see>
+        /// </summary>
         AmountType[] MeasuredAmounts { get; }
 
+        /// <summary>
+        /// Gets the array of measured amounts in the <see cref="ReferenceUnit">reference unit of measure</see>
+        /// </summary>
         AmountType[] ReferenceUnitAmounts { get; }
 
+        /// <summary>
+        /// Gets the measured quantity
+        /// </summary>
         Quantity MeasuredQuantity { get; }
 
+        /// <summary>
+        /// Gets the unit of measure
+        /// </summary>
         Unit MeasuredUnit { get; }
 
+        /// <summary>
+        /// Gets the reference unit of measure for the <see cref="MeasuredQuantity">measured quantity</see>
+        /// </summary>
         Unit ReferenceUnit { get; }
 
+        /// <summary>
+        /// Gets the array of measured amounts in the <paramref name="iUnit">requested unit</paramref> of the same quantity
+        /// </summary>
+        /// <param name="iUnit">Unit in which the measured amounts should be specified</param>
+        /// <returns>The array of measured amounts in the <paramref name="iUnit">requested unit</paramref></returns>
         AmountType[] GetAmounts(Unit iUnit);
 
+        /// <summary>
+        /// Returns a string description of the measure array in the given <paramref name="iUnit">physical unit</paramref>
+        /// </summary>
+        /// <param name="iUnit">Unit in which the measure array should be presented</param>
+        /// <returns>String representation of the measure array in the given <paramref name="iUnit">physical unit</paramref></returns>
         string ToString(Unit iUnit);
     }
 }

@@ -79,6 +79,16 @@ namespace Cureos.Measures
         }
 
         /// <summary>
+        /// Gets the reference unit associated with the specified unit
+        /// </summary>
+        /// <param name="iUnit">Unit for which the reference unit is requested</param>
+        /// <returns>Reference unit of the specified unit</returns>
+        public static Unit GetReferenceUnit(this Unit iUnit)
+        {
+            return GetQuantity(iUnit).GetReferenceUnit();
+        }
+
+        /// <summary>
         /// Gets the text symbol of the specified unit
         /// </summary>
         /// <param name="iUnit">Unit for which the text symbol is requested</param>
@@ -89,34 +99,27 @@ namespace Cureos.Measures
         }
 
         /// <summary>
-        /// Gets the amount of the <paramref name="iMeasure">specified measure</paramref> in the requested unit
-        /// </summary>
-        /// <param name="iToUnit">Unit to which the measured amount should be converted</param>
-        /// <param name="iMeasure">Measure for which the amount should be converted into the requested unit</param>
-        /// <returns>Measured amount converted into <paramref name="iToUnit">specified unit</paramref></returns>
-        /// <exception cref="InvalidOperationException">is thrown if the quantity of the specified unit is different
-        /// from the measured quantity</exception>
-        public static AmountType GetAmount(this Unit iToUnit, IMeasure iMeasure)
-        {
-            if (iMeasure.MeasuredQuantity.IsUnitSupported(iToUnit))
-            {
-                return smUnitDetailsMap[iToUnit].AmountFromReferenceUnitConverter(iMeasure.ReferenceUnitAmount);
-            }
-            throw new InvalidOperationException(
-                String.Format("Associated quantity for unit {0} is not equal to measured quantity {1}",
-                iToUnit, iMeasure.MeasuredQuantity));
-        }
-
-        /// <summary>
         /// Returns the <paramref name="iFromUnitAmount">specified amount</paramref>, given in the <paramref name="iFromUnit">
         /// specified unit</paramref>, converted into the reference unit of the specified unit
         /// </summary>
         /// <param name="iFromUnit">Unit of the measured amount</param>
         /// <param name="iFromUnitAmount">Measured amount in the specified unit</param>
         /// <returns>Amount given in the reference unit of the <paramref name="iFromUnit">specified unit</paramref></returns>
-        public static AmountType GetReferenceUnitAmount(this Unit iFromUnit, AmountType iFromUnitAmount)
+        public static AmountType ConvertAmountToReferenceUnit(this Unit iFromUnit, AmountType iFromUnitAmount)
         {
             return smUnitDetailsMap[iFromUnit].AmountToReferenceUnitConverter(iFromUnitAmount);
+        }
+
+        /// <summary>
+        /// Returns the <paramref name="iReferenceUnitAmount">specified amount</paramref>, given in a reference unit,
+        /// converted into the <paramref name="iToUnit">corresponding specified unit</paramref> of the reference unit
+        /// </summary>
+        /// <param name="iToUnit">Unit into which the reference unit amount should be converted</param>
+        /// <param name="iReferenceUnitAmount">Measured amount in the reference unit</param>
+        /// <returns>Amount given in the <paramref name="iToUnit">specified unit</paramref> of the reference unit</returns>
+        public static AmountType ConvertAmountFromReferenceUnit(this Unit iToUnit, AmountType iReferenceUnitAmount)
+        {
+            return smUnitDetailsMap[iToUnit].AmountFromReferenceUnitConverter(iReferenceUnitAmount);
         }
 
         #endregion
