@@ -8,7 +8,7 @@ namespace Cureos.Measures.Quantities
 {
     public struct Temperature : IQuantity
     {
-        public Quantity Value
+        public Quantity EnumeratedValue
         {
             get { return Quantity.Temperature; }
         }

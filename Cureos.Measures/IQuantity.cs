@@ -10,7 +10,7 @@ namespace Cureos.Measures
 {
 	public interface IQuantity
 	{
-		Quantity Value { get; }
+		Quantity EnumeratedValue { get; }
 	}
 }
 
