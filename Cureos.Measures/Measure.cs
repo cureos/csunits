@@ -5,6 +5,7 @@
 // http://www.eclipse.org/legal/epl-v10.html
 
 using System;
+using Cureos.Measures.Extensions;
 
 #if SINGLE
 using AmountType = System.Single;

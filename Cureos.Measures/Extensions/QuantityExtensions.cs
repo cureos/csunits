@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Cureos.Measures
+namespace Cureos.Measures.Extensions
 {
 	/// <summary>
 	/// Support class providing extension methods for the <see cref="Quantity">Quantity enumeration</see>

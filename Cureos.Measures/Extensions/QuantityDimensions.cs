@@ -4,7 +4,7 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
-namespace Cureos.Measures
+namespace Cureos.Measures.Extensions
 {
         /// <summary>
         /// Representation of the unit dimension in terms of SI base units

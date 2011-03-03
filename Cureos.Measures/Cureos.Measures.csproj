@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IMeasureArray.cs" />
-    <Compile Include="IMeasureExtensions.cs" />
+    <Compile Include="Extensions\IMeasureExtensions.cs" />
     <Compile Include="Measure.cs" />
     <Compile Include="MeasureArray.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -54,10 +54,10 @@
     <Compile Include="Quantities\Time.cs" />
     <Compile Include="Quantities\Volume.cs" />
     <Compile Include="Quantity.cs" />
-    <Compile Include="QuantityExtensions.cs" />
+    <Compile Include="Extensions\QuantityExtensions.cs" />
     <Compile Include="Unit.cs" />
-    <Compile Include="UnitExtensions.cs" />
-    <Compile Include="QuantityDimensions.cs" />
+    <Compile Include="Extensions\UnitExtensions.cs" />
+    <Compile Include="Extensions\QuantityDimensions.cs" />
     <Compile Include="IMeasure.cs" />
     <Compile Include="IQuantity.cs" />
     <Compile Include="Quantities\Length.cs" />
@@ -70,7 +70,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <Folder Include="Extensions\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

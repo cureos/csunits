@@ -16,7 +16,7 @@ using AmountType = System.Decimal;
 using AmountType = System.Double;
 #endif
 
-namespace Cureos.Measures
+namespace Cureos.Measures.Extensions
 {
     /// <summary>
     /// Helper class providing extension methods for the <see cref="Unit">Unit enumeration</see>
@@ -188,7 +188,7 @@ namespace Cureos.Measures
             /// <param name="iAmountToReferenceUnitConverter">Function converting amount in this unit to reference unit amount</param>
             /// <param name="iAmountFromReferenceUnitConverter">Function converting reference unit amount to amount in this unit</param>
             internal UnitDetails(Unit iUnit, Quantity iQuantity, string iSymbol,
-                Func<AmountType, AmountType> iAmountToReferenceUnitConverter, 
+                Func<AmountType, AmountType> iAmountToReferenceUnitConverter,
                 Func<AmountType, AmountType> iAmountFromReferenceUnitConverter)
             {
                 Unit = iUnit;

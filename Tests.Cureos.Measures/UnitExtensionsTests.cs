@@ -7,6 +7,7 @@
 using System;
 using System.Linq;
 using Cureos.Measures;
+using Cureos.Measures.Extensions;
 using NUnit.Framework;
 
 namespace Tests.Cureos.Measures

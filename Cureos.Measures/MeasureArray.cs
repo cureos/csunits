@@ -14,6 +14,7 @@ using AmountType = System.Single;
 #elif DECIMAL
 using AmountType = System.Decimal;
 #elif DOUBLE
+using Cureos.Measures.Extensions;
 using AmountType = System.Double;
 #endif
 

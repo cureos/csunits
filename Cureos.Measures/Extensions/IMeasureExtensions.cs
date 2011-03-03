@@ -14,7 +14,7 @@ using AmountType = System.Decimal;
 using AmountType = System.Double;
 #endif
 
-namespace Cureos.Measures
+namespace Cureos.Measures.Extensions
 {
     /// <summary>
     /// Static class containing extension methods for classes implementing the IMeasure interface
