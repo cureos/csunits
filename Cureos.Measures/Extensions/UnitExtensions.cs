@@ -16,7 +16,7 @@ using AmountType = System.Decimal;
 using AmountType = System.Double;
 #endif
 
-namespace Cureos.Measures
+namespace Cureos.Measures.Extensions
 {
     /// <summary>
     /// Helper class providing extension methods for the <see cref="Unit">Unit enumeration</see>
@@ -79,6 +79,16 @@ namespace Cureos.Measures
         }
 
         /// <summary>
+        /// Gets the reference unit associated with the specified unit
+        /// </summary>
+        /// <param name="iUnit">Unit for which the reference unit is requested</param>
+        /// <returns>Reference unit of the specified unit</returns>
+        public static Unit GetReferenceUnit(this Unit iUnit)
+        {
+            return GetQuantity(iUnit).GetReferenceUnit();
+        }
+
+        /// <summary>
         /// Gets the text symbol of the specified unit
         /// </summary>
         /// <param name="iUnit">Unit for which the text symbol is requested</param>
@@ -89,31 +99,45 @@ namespace Cureos.Measures
         }
 
         /// <summary>
-        /// Gets the amount of the <paramref name="iMeasure">specified measure</paramref> in the requested unit
+        /// Returns the <paramref name="iFromUnitAmount">specified amount</paramref>, given in the <paramref name="iFromUnit">
+        /// specified unit</paramref>, converted into the reference unit of the specified unit
         /// </summary>
-        /// <param name="iToUnit">Unit to which the measured amount should be converted</param>
-        /// <param name="iMeasure">Measure for which the amount should be converted into the requested unit</param>
-        /// <returns>Measured amount converted into <paramref name="iToUnit">specified unit</paramref></returns>
-        /// <exception cref="InvalidOperationException">is thrown if the quantity of the specified unit is different
-        /// from the measured quantity</exception>
-        public static AmountType GetAmount(this Unit iToUnit, IMeasure iMeasure)
-        {
-            if (iToUnit.GetQuantity() == iMeasure.MeasuredQuantity)
-            {
-                return smUnitDetailsMap[iToUnit].AmountFromReferenceUnitConverter(iMeasure.ReferenceUnitAmount);
-            }
-            throw new InvalidOperationException(
-                String.Format("Associated quantity for unit {0} is not equal to measured quantity {1}",
-                iToUnit, iMeasure.MeasuredQuantity));
-        }
-
-        public static AmountType GetReferenceUnitAmount(this Unit iFromUnit, AmountType iFromUnitAmount)
+        /// <param name="iFromUnit">Unit of the measured amount</param>
+        /// <param name="iFromUnitAmount">Measured amount in the specified unit</param>
+        /// <returns>Amount given in the reference unit of the <paramref name="iFromUnit">specified unit</paramref></returns>
+        public static AmountType ConvertAmountToReferenceUnit(this Unit iFromUnit, AmountType iFromUnitAmount)
         {
             return smUnitDetailsMap[iFromUnit].AmountToReferenceUnitConverter(iFromUnitAmount);
         }
 
+        /// <summary>
+        /// Returns the <paramref name="iReferenceUnitAmount">specified amount</paramref>, given in a reference unit,
+        /// converted into the <paramref name="iToUnit">corresponding specified unit</paramref> of the reference unit
+        /// </summary>
+        /// <param name="iToUnit">Unit into which the reference unit amount should be converted</param>
+        /// <param name="iReferenceUnitAmount">Measured amount in the reference unit</param>
+        /// <returns>Amount given in the <paramref name="iToUnit">specified unit</paramref> of the reference unit</returns>
+        public static AmountType ConvertAmountFromReferenceUnit(this Unit iToUnit, AmountType iReferenceUnitAmount)
+        {
+            return smUnitDetailsMap[iToUnit].AmountFromReferenceUnitConverter(iReferenceUnitAmount);
+        }
+
         #endregion
 
+        #region METHODS
+
+        /// <summary>
+        /// Gets the collection of units associated with the <paramref name="iQuantity">specified quantity</paramref>
+        /// </summary>
+        /// <param name="iQuantity">Quantity for which the collection of units is requested</param>
+        /// <returns>Collection of units associated with the <paramref name="iQuantity">specified quantity</paramref></returns>
+        internal static IEnumerable<Unit> GetUnits(Quantity iQuantity)
+        {
+            return smUnitDetailsMap.Where(kv => kv.Value.Quantity.Equals(iQuantity)).Select(kv => kv.Key);
+        }
+
+        #endregion
+        
         #region INNER SUPPORT CLASSES
 
         /// <summary>
@@ -164,7 +188,7 @@ namespace Cureos.Measures
             /// <param name="iAmountToReferenceUnitConverter">Function converting amount in this unit to reference unit amount</param>
             /// <param name="iAmountFromReferenceUnitConverter">Function converting reference unit amount to amount in this unit</param>
             internal UnitDetails(Unit iUnit, Quantity iQuantity, string iSymbol,
-                Func<AmountType, AmountType> iAmountToReferenceUnitConverter, 
+                Func<AmountType, AmountType> iAmountToReferenceUnitConverter,
                 Func<AmountType, AmountType> iAmountFromReferenceUnitConverter)
             {
                 Unit = iUnit;
@@ -201,46 +225,6 @@ namespace Cureos.Measures
             internal Func<AmountType, AmountType> AmountFromReferenceUnitConverter { get; private set; }
 
             #endregion
-/*
-            #region METHODS
-
-            /// <summary>
-            /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
-            /// </summary>
-            /// <returns>
-            /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
-            /// </returns>
-            /// <filterpriority>2</filterpriority>
-            public override string ToString()
-            {
-                return Symbol;
-            }
-
-            /// <summary>
-            /// Multiply two unit objects, yielding a new generic unit with the unit dimensions summed
-            /// </summary>
-            /// <param name="iLhsUnit">First unit object</param>
-            /// <param name="iRhsUnit">Second unit object</param>
-            /// <returns>Generic unit with unit dimensions equal to the sum of the multiplied units</returns>
-            internal static UnitDetails Multiply(IUnit iLhsUnit, IUnit iRhsUnit)
-            {
-                return new UnitDetails(String.Empty, iLhsUnit.Dimension + iRhsUnit.Dimension);
-            }
-
-            /// <summary>
-            /// Divide two unit objects, yielding a new generic unit with unit dimension equal to the difference of the 
-            /// divided units' unit dimensions
-            /// </summary>
-            /// <param name="iLhsUnit">Numerator unit object</param>
-            /// <param name="iRhsUnit">Denominator unit object</param>
-            /// <returns>Generic unit with unit dimensions equal to the difference of the divided units</returns>
-            internal static UnitDetails Divide(IUnit iLhsUnit, IUnit iRhsUnit)
-            {
-                return new UnitDetails(String.Empty, iLhsUnit.Dimension - iRhsUnit.Dimension);
-            }
-
-            #endregion
- */
         }
 
         #endregion

@@ -2,15 +2,15 @@
 /_ReSharper.uomnet
 *.user
 *.suo
-/Cureos.Measurables/bin
-/Cureos.Measurables/obj
-/Tests.Cureos.Measurables/bin
-/Tests.Cureos.Measurables/obj
 *.userprefs
+<<<<<<< HEAD
 /Tests.Cureos.Measures/bin
 /Tests.Cureos.Measures/obj
 /Cureos.Measures/obj
 /Cureos.Measures/bin
 *.vs10x
 *.pidb
+=======
+*.vs10x
+>>>>>>> master
 /test-results

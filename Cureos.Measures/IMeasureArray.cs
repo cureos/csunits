@@ -4,8 +4,6 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
-using System;
-
 #if SINGLE
 using AmountType = System.Single;
 #elif DECIMAL
@@ -16,23 +14,16 @@ using AmountType = System.Double;
 
 namespace Cureos.Measures
 {
-	public interface IMeasure
-	{
-		/// <summary>
-		/// Gets the measured amount in the <see cref="Unit">current unit of measure</see>
-		/// </summary>
-		AmountType Amount
-		{
-			get;
-		}
+    public interface IMeasureArray
+    {
+        /// <summary>
+        /// Gets the array of measured amounts in the <see cref="Unit">current unit of measure</see>
+        /// </summary>
+        AmountType[] Amounts { get; }
 
-		/// <summary>
-		/// Gets the unit of measure
-		/// </summary>
-		Unit Unit
-		{
-			get;
-		}
-	}
+        /// <summary>
+        /// Gets the unit of measure
+        /// </summary>
+        Unit Unit { get; }
+    }
 }
-
