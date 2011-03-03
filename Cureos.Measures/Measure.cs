@@ -847,7 +847,7 @@ iAmount);
 
 		private static void AssertValidUnit(Unit iUnit)
 		{
-			if (!default(Q).EnumeratedValue.IsUnitSupported(iUnit))
+			if (iUnit.GetQuantity() != default(Q).EnumeratedValue)
 				throw new InvalidOperationException(String.Format("Unit {0} is not of quantity {1}", iUnit, default(Q).EnumeratedValue));
 		}
 

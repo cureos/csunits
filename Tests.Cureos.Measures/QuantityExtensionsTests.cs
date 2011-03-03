@@ -30,22 +30,6 @@ namespace Tests.Cureos.Measures
             CollectionAssert.DoesNotContain(areaUnits, Unit.CentiMeter);
         }
 
-        [Test]
-        public void IsUnitSupported_GramOfMass_ReturnsTrue()
-        {
-            var expected = true;
-            var actual = Quantity.Mass.IsUnitSupported(Unit.Gram);
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void IsUnitSupported_GrayOfMass_ReturnsFalse()
-        {
-            var expected = false;
-            var actual = Quantity.Mass.IsUnitSupported(Unit.Gray);
-            Assert.AreEqual(expected, actual);
-        }
-
         #endregion
     }
 }

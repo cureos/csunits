@@ -126,7 +126,12 @@ namespace Cureos.Measures
 
         #region METHODS
 
-        internal static IEnumerable<Unit> GetUnitsOf(Quantity iQuantity)
+        /// <summary>
+        /// Gets the collection of units associated with the <paramref name="iQuantity">specified quantity</paramref>
+        /// </summary>
+        /// <param name="iQuantity">Quantity for which the collection of units is requested</param>
+        /// <returns>Collection of units associated with the <paramref name="iQuantity">specified quantity</paramref></returns>
+        internal static IEnumerable<Unit> GetUnits(Quantity iQuantity)
         {
             return smUnitDetailsMap.Where(kv => kv.Value.Quantity.Equals(iQuantity)).Select(kv => kv.Key);
         }

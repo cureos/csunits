@@ -33,13 +33,6 @@ namespace Cureos.Measures
 		{
 			get;
 		}
-
-		/// <summary>
-		/// Gets the amount of the measure in the <paramref name="iUnit">requested unit</paramref> of the same quantity
-		/// </summary>
-		/// <param name="iUnit">Unit in which the measured amount should be specified</param>
-		/// <returns>The measured amount in the <paramref name="iUnit">requested unit</paramref></returns>
-//		AmountType GetAmount(Unit iUnit);
 	}
 }
 

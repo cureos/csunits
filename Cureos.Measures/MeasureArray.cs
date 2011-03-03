@@ -31,11 +31,69 @@ namespace Cureos.Measures
 
         public MeasureArray(IEnumerable<double> iAmounts)
         {
-            mAmounts =
 #if DOUBLE
-                mAmounts = iAmounts.ToArray();
-#else
-                mAmounts = iAmounts.Select(a => Convert.ToDouble())
+            mAmounts = iAmounts.ToArray();
+#elif SINGLE
+            mAmounts = iAmounts.Cast<float>().ToArray();
+#elif DECIMAL
+            mAmounts = iAmounts.Cast<decimal>().ToArray();
+#endif
+        }
+
+        public MeasureArray(IEnumerable<float> iAmounts)
+        {
+#if DOUBLE
+            mAmounts = iAmounts.Cast<double>().ToArray();
+#elif SINGLE
+            mAmounts = iAmounts.ToArray();
+#elif DECIMAL
+            mAmounts = iAmounts.Cast<decimal>().ToArray();
+#endif
+        }
+
+
+        public MeasureArray(IEnumerable<decimal> iAmounts)
+        {
+#if DOUBLE
+            mAmounts = iAmounts.Cast<double>().ToArray();
+#elif SINGLE
+            mAmounts = iAmounts.Cast<float>().ToArray();
+#elif DECIMAL
+            mAmounts = iAmounts.ToArray();
+#endif
+        }
+
+        public MeasureArray(IEnumerable<double> iAmounts, Unit iUnit)
+        {
+#if DOUBLE
+            mAmounts = iAmounts.ToArray();
+#elif SINGLE
+            mAmounts = iAmounts.Cast<float>().ToArray();
+#elif DECIMAL
+            mAmounts = iAmounts.Cast<decimal>().ToArray();
+#endif
+        }
+
+        public MeasureArray(IEnumerable<float> iAmounts, Unit iUnit)
+        {
+#if DOUBLE
+            mAmounts = iAmounts.Cast<double>().ToArray();
+#elif SINGLE
+            mAmounts = iAmounts.ToArray();
+#elif DECIMAL
+            mAmounts = iAmounts.Cast<decimal>().ToArray();
+#endif
+        }
+
+
+        public MeasureArray(IEnumerable<decimal> iAmounts, Unit iUnit)
+        {
+#if DOUBLE
+            mAmounts = iAmounts.Cast<double>().ToArray();
+#elif SINGLE
+            mAmounts = iAmounts.Cast<float>().ToArray();
+#elif DECIMAL
+            mAmounts = iAmounts.ToArray();
 #endif
         }
 
@@ -44,63 +102,19 @@ namespace Cureos.Measures
         #region Implementation of IMeasureArray
 
         /// <summary>
-        /// Gets the array of measured amounts in the <see cref="IMeasureArray.MeasuredUnit">current unit of measure</see>
+        /// Gets the array of measured amounts in the <see cref="IMeasureArray.Unit">current unit of measure</see>
         /// </summary>
-        public AmountType[] MeasuredAmounts
+        public AmountType[] Amounts
         {
-            get { throw new NotImplementedException(); }
-        }
-
-        /// <summary>
-        /// Gets the array of measured amounts in the <see cref="IMeasureArray.ReferenceUnit">reference unit of measure</see>
-        /// </summary>
-        public AmountType[] ReferenceUnitAmounts
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        /// <summary>
-        /// Gets the measured quantity
-        /// </summary>
-        public Quantity MeasuredQuantity
-        {
-            get { throw new NotImplementedException(); }
+            get { return mAmounts; }
         }
 
         /// <summary>
         /// Gets the unit of measure
         /// </summary>
-        public Unit MeasuredUnit
+        public Unit Unit
         {
-            get { throw new NotImplementedException(); }
-        }
-
-        /// <summary>
-        /// Gets the reference unit of measure for the <see cref="IMeasureArray.MeasuredQuantity">measured quantity</see>
-        /// </summary>
-        public Unit ReferenceUnit
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        /// <summary>
-        /// Gets the array of measured amounts in the <paramref name="iUnit">requested unit</paramref> of the same quantity
-        /// </summary>
-        /// <param name="iUnit">Unit in which the measured amounts should be specified</param>
-        /// <returns>The array of measured amounts in the <paramref name="iUnit">requested unit</paramref></returns>
-        public AmountType[] GetAmounts(Unit iUnit)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Returns a string description of the measure array in the given <paramref name="iUnit">physical unit</paramref>
-        /// </summary>
-        /// <param name="iUnit">Unit in which the measure array should be presented</param>
-        /// <returns>String representation of the measure array in the given <paramref name="iUnit">physical unit</paramref></returns>
-        public string ToString(Unit iUnit)
-        {
-            throw new NotImplementedException();
+            get { return default(Q).EnumeratedValue.GetReferenceUnit(); }
         }
 
         #endregion

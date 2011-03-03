@@ -79,17 +79,6 @@ namespace Cureos.Measures
 		}
 
 		/// <summary>
-		/// Checks whether specified unit is supported by specified quantity
-		/// </summary>
-		/// <param name="iQuantity">Quantity</param>
-		/// <param name="iUnit">Unit to check for supportability</param>
-		/// <returns>true if specified unit is supported by specified quantity, false otherwise</returns>
-		public static bool IsUnitSupported(this Quantity iQuantity, Unit iUnit)
-		{
-			return GetSupportedUnits(iQuantity).Contains(iUnit);
-		}
-
-		/// <summary>
 		/// Checks whether the "product" of two quantities has the same quantity dimensions as the <paramref name="iQuantity">
 		/// specified quantity</paramref>
 		/// </summary>
@@ -219,7 +208,7 @@ namespace Cureos.Measures
 				{
 					lock (this)
 					{
-						if (mSupportedUnits == null) mSupportedUnits = UnitExtensions.GetUnitsOf(Quantity);
+						if (mSupportedUnits == null) mSupportedUnits = UnitExtensions.GetUnits(Quantity);
 					}
 					return mSupportedUnits;
 				}
