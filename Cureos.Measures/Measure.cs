@@ -85,22 +85,6 @@ namespace Cureos.Measures
 		}
 
 		/// <summary>
-		/// Gets the measured amount in the <see cref="ReferenceUnit">reference unit of measure</see>
-		/// </summary>
-		public AmountType ReferenceUnitAmount
-		{
-			get { return mUnit.ConvertAmountToReferenceUnit(mAmount); }
-		}
-
-		/// <summary>
-		/// Gets the measured quantity
-		/// </summary>
-		public Quantity MeasuredQuantity
-		{
-			get { return mUnit.GetQuantity(); }
-		}
-
-		/// <summary>
 		/// Gets the unit of measure
 		/// </summary>
 		public Unit Unit
@@ -108,39 +92,9 @@ namespace Cureos.Measures
 			get { return mUnit; }
 		}
 
-		/// <summary>
-		/// Gets the reference unit of measure for the <see cref="MeasuredQuantity">measured quantity</see>
-		/// </summary>
-		public Unit ReferenceUnit
-		{
-			get { return mUnit.GetReferenceUnit(); }
-		}
 		#endregion
 
 		#region METHODS
-
-		/// <summary>
-		/// Gets the amount of the measure in the <paramref name="iUnit">requested unit</paramref> of the same quantity
-		/// </summary>
-		/// <param name="iUnit">Unit in which the measured amount should be specified</param>
-		/// <returns>The measured amount in the <paramref name="iUnit">requested unit</paramref></returns>
-		/// <exception cref="InvalidOperationException">Is thrown if the specified unit is of another quantity</exception>
-		public AmountType GetAmount(Unit iUnit)
-		{
-			return IMeasureExtensions.GetAmount(this, iUnit);   /**/
-		}
-
-		/// <summary>
-		/// Returns a string description of the measure in the given <paramref name="iUnit">physical unit</paramref>
-		/// </summary>
-		/// <param name="iUnit">Unit in which the measure should be presented</param>
-		/// <returns>String representation of the measure in the given <paramref name="iUnit">physical unit</paramref></returns>
-		/// <exception cref="InvalidOperationException">if the <paramref name="iUnit">specified unit</paramref> is of
-		/// a different quantity than the <see cref="Unit">measured unit </see></exception>
-		public string ToString(Unit iUnit)
-		{
-			return String.Format("{0} {1}", GetAmount(iUnit), iUnit.GetSymbol()).Trim();
-		}
 
 		/// <summary>
 		/// Gets a new measure object with the amount converted to the <paramref name="iUnit">specified unit</paramref>
@@ -149,7 +103,7 @@ namespace Cureos.Measures
 		/// <returns>New measure object with the amount converted to the <paramref name="iUnit">specified unit</paramref></returns>
 		public Measure GetMeasure(Unit iUnit)
 		{
-			return new Measure(GetAmount(iUnit), iUnit);
+			return new Measure(this.GetAmount(iUnit), iUnit);
 		}
 
 		/// <summary>
@@ -783,22 +737,6 @@ iAmount);
 		}
 
 		/// <summary>
-		/// Gets the measured amount in the <see cref="ReferenceUnit">reference unit of measure</see>
-		/// </summary>
-		public AmountType ReferenceUnitAmount
-		{
-			get { return mAmount; }
-		}
-
-		/// <summary>
-		/// Gets the measured quantity
-		/// </summary>
-		public Quantity MeasuredQuantity
-		{
-			get { return default(Q).EnumeratedValue; }
-		}
-
-		/// <summary>
 		/// Gets the unit of measure
 		/// </summary>
 		public Unit Unit
@@ -806,39 +744,9 @@ iAmount);
 			get { return default(Q).EnumeratedValue.GetReferenceUnit(); }
 		}
 
-		/// <summary>
-		/// Gets the reference unit of measure for the <see cref="MeasuredQuantity">measured quantity</see>
-		/// </summary>
-		public Unit ReferenceUnit
-		{
-			get { return Unit.GetReferenceUnit(); }
-		}
 		#endregion
 
 		#region METHODS
-
-		/// <summary>
-		/// Gets the amount of the measure in the <paramref name="iUnit">requested unit</paramref> of the same quantity
-		/// </summary>
-		/// <param name="iUnit">Unit in which the measured amount should be specified</param>
-		/// <returns>The measured amount in the <paramref name="iUnit">requested unit</paramref></returns>
-		/// <exception cref="InvalidOperationException">Is thrown if the specified unit is of another quantity</exception>
-		public AmountType GetAmount(Unit iUnit)
-		{
-			return IMeasureExtensions.GetAmount(this, iUnit);   /**/
-		}
-
-		/// <summary>
-		/// Returns a string description of the measure in the given <paramref name="iUnit">physical unit</paramref>
-		/// </summary>
-		/// <param name="iUnit">Unit in which the measure should be presented</param>
-		/// <returns>String representation of the measure in the given <paramref name="iUnit">physical unit</paramref></returns>
-		/// <exception cref="InvalidOperationException">if the <paramref name="iUnit">specified unit</paramref> is of
-		/// a different quantity than the <see cref="Unit">measured unit </see></exception>
-		public string ToString(Unit iUnit)
-		{
-			return String.Format("{0} {1}", GetAmount(iUnit), iUnit.GetSymbol()).Trim();
-		}
 
 		/// <summary>
 		/// Multiply two measure objects

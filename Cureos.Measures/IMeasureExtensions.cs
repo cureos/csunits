@@ -21,16 +21,31 @@ namespace Cureos.Measures
     /// </summary>
     public static class IMeasureExtensions
     {
+        /// <summary>
+        /// Gets the quantity associated with the specified measure
+        /// </summary>
+        /// <param name="iMeasure">Measure for which the quantity is requested</param>
+        /// <returns>Quantity associated with the measure</returns>
         public static Quantity GetQuantity(this IMeasure iMeasure)
         {
             return iMeasure.Unit.GetQuantity();
         }
 
+        /// <summary>
+        /// Gets the reference unit for the measured quantity
+        /// </summary>
+        /// <param name="iMeasure">Measure for which the reference unit is requested</param>
+        /// <returns>Reference unit of the measured quantity</returns>
         public static Unit GetReferenceUnit(this IMeasure iMeasure)
         {
             return iMeasure.Unit.GetReferenceUnit();
         }
 
+        /// <summary>
+        /// Gets the amount in terms of the reference unit of the measured quantity
+        /// </summary>
+        /// <param name="iMeasure">Measure for which the reference unit amount is requested</param>
+        /// <returns>Amount in terms of the reference unit of the measured quantity</returns>
         public static AmountType GetReferenceUnitAmount(this IMeasure iMeasure)
         {
             return iMeasure.Unit.ConvertAmountToReferenceUnit(iMeasure.Amount);
@@ -55,6 +70,14 @@ namespace Cureos.Measures
                 iUnit, GetQuantity(iMeasure)));
         }
 
+        /// <summary>
+        /// Gets the measure as a string, with amount converted to the requested unit
+        /// </summary>
+        /// <param name="iMeasure">Measure for which the description string should be generated</param>
+        /// <param name="iUnit">Unit in which the measure should be presented</param>
+        /// <returns>Measure as a string in the <paramref name="iUnit">specified unit</paramref></returns>
+        /// <exception cref="InvalidOperationException">if the <paramref name="iUnit">specified unit</paramref> is of
+        /// a different quantity than the <see cref="Unit">measured unit </see></exception>
         public static string ToString(this IMeasure iMeasure, Unit iUnit)
         {
             return string.Format("{0} {1}", GetAmount(iMeasure, iUnit), iUnit).Trim();
