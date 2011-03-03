@@ -25,6 +25,7 @@ namespace Cureos.Measures
         #region MEMBER VARIABLES
 
         private readonly AmountType[] mAmounts;
+        private readonly Unit mUnit;
 
         #endregion
 
@@ -39,6 +40,7 @@ namespace Cureos.Measures
 #elif DECIMAL
             mAmounts = iAmounts.Cast<decimal>().ToArray();
 #endif
+            mUnit = Quantity<Q>.ReferenceUnit;
         }
 
         public MeasureArray(IEnumerable<float> iAmounts)
@@ -50,6 +52,7 @@ namespace Cureos.Measures
 #elif DECIMAL
             mAmounts = iAmounts.Cast<decimal>().ToArray();
 #endif
+            mUnit = Quantity<Q>.ReferenceUnit;
         }
 
 
@@ -62,40 +65,50 @@ namespace Cureos.Measures
 #elif DECIMAL
             mAmounts = iAmounts.ToArray();
 #endif
+            mUnit = Quantity<Q>.ReferenceUnit;
         }
 
         public MeasureArray(IEnumerable<double> iAmounts, Unit iUnit)
         {
+            AssertValidUnit(iUnit);
 #if DOUBLE
-            mAmounts = iAmounts.ToArray();
+            var refUnitAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit(a));
 #elif SINGLE
-            mAmounts = iAmounts.Cast<float>().ToArray();
+            var refUnitAmounts = iAmounts.Cast<float>().Select(a => iUnit.ConvertAmountToReferenceUnit(a));
 #elif DECIMAL
-            mAmounts = iAmounts.Cast<decimal>().ToArray();
+            var refUnitAmounts = iAmounts.Cast<decimal>().Select(a => iUnit.ConvertAmountToReferenceUnit(a));
 #endif
+            mAmounts = refUnitAmounts.ToArray();
+            mUnit = Quantity<Q>.ReferenceUnit;
         }
 
         public MeasureArray(IEnumerable<float> iAmounts, Unit iUnit)
         {
+            AssertValidUnit(iUnit);
 #if DOUBLE
-            mAmounts = iAmounts.Cast<double>().ToArray();
+            var refUnitAmounts = iAmounts.Cast<double>().Select(a => iUnit.ConvertAmountToReferenceUnit(a));
 #elif SINGLE
-            mAmounts = iAmounts.ToArray();
+            var refUnitAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit(a));
 #elif DECIMAL
-            mAmounts = iAmounts.Cast<decimal>().ToArray();
+            var refUnitAmounts = iAmounts.Cast<decimal>().Select(a => iUnit.ConvertAmountToReferenceUnit(a));
 #endif
+            mAmounts = refUnitAmounts.ToArray();
+            mUnit = Quantity<Q>.ReferenceUnit;
         }
 
 
         public MeasureArray(IEnumerable<decimal> iAmounts, Unit iUnit)
         {
+            AssertValidUnit(iUnit);
 #if DOUBLE
-            mAmounts = iAmounts.Cast<double>().ToArray();
+            var refUnitAmounts = iAmounts.Cast<double>().Select(a => iUnit.ConvertAmountToReferenceUnit(a));
 #elif SINGLE
-            mAmounts = iAmounts.Cast<float>().ToArray();
+            var refUnitAmounts = iAmounts.Cast<float>().Select(a => iUnit.ConvertAmountToReferenceUnit(a));
 #elif DECIMAL
-            mAmounts = iAmounts.ToArray();
+            var refUnitAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit(a));
 #endif
+            mAmounts = refUnitAmounts.ToArray();
+            mUnit = Quantity<Q>.ReferenceUnit;
         }
 
         #endregion
@@ -116,6 +129,16 @@ namespace Cureos.Measures
         public Unit Unit
         {
             get { return default(Q).EnumeratedValue.GetReferenceUnit(); }
+        }
+
+        #endregion
+
+        #region METHODS
+
+        private static void AssertValidUnit(Unit iUnit)
+        {
+            if (!Quantity<Q>.Supports(iUnit))
+                throw new InvalidOperationException(String.Format("Unit {0} is not of quantity {1}", iUnit, Quantity<Q>.Value));
         }
 
         #endregion

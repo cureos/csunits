@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\Quantity.cs" />
     <Compile Include="IMeasureArray.cs" />
     <Compile Include="Extensions\IMeasureExtensions.cs" />
     <Compile Include="Measure.cs" />

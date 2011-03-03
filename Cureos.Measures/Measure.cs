@@ -572,7 +572,7 @@ namespace Cureos.Measures
 		private static Measure Divide(IMeasure iNumerator, IMeasure iDenominator)
 		{
 			Quantity quotientQuantity = QuantityExtensions.Divide(iNumerator.GetQuantity(), iDenominator.GetQuantity());
-			return new Measure(iNumerator.GetReferenceUnitAmount() /iDenominator.GetReferenceUnitAmount(),
+			return new Measure(iNumerator.GetReferenceUnitAmount() / iDenominator.GetReferenceUnitAmount(),
 							   quotientQuantity.GetReferenceUnit());
 		}
 
@@ -742,7 +742,7 @@ iAmount);
 		/// </summary>
 		public Unit Unit
 		{
-			get { return default(Q).EnumeratedValue.GetReferenceUnit(); }
+			get { return Quantity<Q>.Value.GetReferenceUnit(); }
 		}
 
 		#endregion
@@ -761,12 +761,12 @@ iAmount);
 			where Q1 : struct, IQuantity
 			where Q2 : struct, IQuantity
 		{
-			if (default(Q).EnumeratedValue.IsQuantityOfProduct(iLhs.GetQuantity(), iRhs.GetQuantity()))
+			if (Quantity<Q>.Value.IsQuantityOfProduct(iLhs.GetQuantity(), iRhs.GetQuantity()))
 			{
 				return new Measure<Q>(iLhs.mAmount * iRhs.mAmount);
 			}
 			throw new InvalidOperationException(String.Format("Cannot multiply {0} and {1} to measure of quantity {2}",
-															  iLhs, iRhs, default(Q).EnumeratedValue));
+															  iLhs, iRhs, Quantity<Q>.Value));
 		}
 
 		/// <summary>
@@ -781,12 +781,12 @@ iAmount);
 			where Q1 : struct, IQuantity
 			where Q2 : struct, IQuantity
 		{
-			if (default(Q).EnumeratedValue.IsQuantityOfQuotient(iNumerator.GetQuantity(), iDenominator.GetQuantity()))
+			if (Quantity<Q>.Value.IsQuantityOfQuotient(iNumerator.GetQuantity(), iDenominator.GetQuantity()))
 			{
 				return new Measure<Q>(iNumerator.mAmount / iDenominator.mAmount);
 			}
 			throw new InvalidOperationException(String.Format("Cannot divide {0} and {1} to measure of quantity {2}",
-															  iNumerator, iDenominator, default(Q).EnumeratedValue));
+															  iNumerator, iDenominator, Quantity<Q>.Value));
 		}
 
 		/// <summary>
@@ -848,16 +848,8 @@ iAmount);
 
 		private static void AssertValidUnit(Unit iUnit)
 		{
-			if (iUnit.GetQuantity() != default(Q).EnumeratedValue)
-				throw new InvalidOperationException(String.Format("Unit {0} is not of quantity {1}", iUnit, default(Q).EnumeratedValue));
-		}
-
-		private static void AssertValidMeasure(Measure iMeasure)
-		{
-			if (iMeasure.GetQuantity() != default(Q).EnumeratedValue)
-			{
-				throw new InvalidOperationException(String.Format("Measure {0} is not of quantity {1}", iMeasure, default(Q).EnumeratedValue));
-			}
+			if (!Quantity<Q>.Supports(iUnit))
+				throw new InvalidOperationException(String.Format("Unit {0} is not of quantity {1}", iUnit, Quantity<Q>.Value));
 		}
 
 		#endregion
@@ -881,8 +873,12 @@ iAmount);
 		/// <returns>Generic equivalent of the specified non-generic measure object</returns>
 		public static explicit operator Measure<Q>(Measure iMeasure)
 		{
-			AssertValidMeasure(iMeasure);
-			return new Measure<Q>(iMeasure.GetReferenceUnitAmount());
+			if (Quantity<Q>.Supports(iMeasure))
+			{
+				return new Measure<Q>(iMeasure.GetReferenceUnitAmount());
+			}
+			throw new InvalidOperationException(String.Format("Measure {0} is not of quantity {1}", iMeasure,
+															  Quantity<Q>.Value));
 		}
 
 		/// <summary>
