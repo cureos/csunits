@@ -26,7 +26,7 @@ namespace Tests.Cureos.Measures
 
         internal static IEnumerable<AmountType> ToAmountType(IEnumerable<double> iValues)
         {
-            return iValues.Cast<AmountType>();
+            return iValues.Select(a => (AmountType)a);
         }
     }
 }

@@ -25,8 +25,7 @@ namespace Tests.Cureos.Measures
         [SetUp]
         public void Setup()
         {
-            _instance = new MeasureArray<Length>(AmountConverter.ToAmountType(new[] {1.0, 2.0, 3.0, 4.0, 5.0}),
-                                                 Unit.CentiMeter);
+            _instance = new MeasureArray<Length>(new[] {1.0, 2.0, 3.0, 4.0, 5.0}, Unit.CentiMeter);
         }
 
         [TearDown]
@@ -44,7 +43,7 @@ namespace Tests.Cureos.Measures
         {
             var expected = AmountConverter.ToAmountType(new[] {0.01, 0.02, 0.03, 0.04, 0.05});
             var actual = _instance.Amounts;
-            CollectionAssert.AreEqual(expected, actual);
+            CollectionAssert.AreEqual(expected, actual, AmountComparer.Instance);
         }
 
         [Test]

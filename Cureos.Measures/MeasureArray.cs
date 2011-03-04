@@ -5,16 +5,15 @@
 // http://www.eclipse.org/legal/epl-v10.html
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cureos.Measures.Extensions;
 
 #if SINGLE
 using AmountType = System.Single;
 #elif DECIMAL
 using AmountType = System.Decimal;
 #elif DOUBLE
-using Cureos.Measures.Extensions;
 using AmountType = System.Double;
 #endif
 
@@ -40,9 +39,9 @@ namespace Cureos.Measures
 #if DOUBLE
             mAmounts = iAmounts.ToArray();
 #elif SINGLE
-            mAmounts = iAmounts.Cast<float>().ToArray();
+            mAmounts = iAmounts.Select(a => (AmountType)a).ToArray();
 #elif DECIMAL
-            mAmounts = iAmounts.Cast<decimal>().ToArray();
+            mAmounts = iAmounts.Select(a => (AmountType)a).ToArray();
 #endif
             mUnit = Quantity<Q>.ReferenceUnit;
         }
@@ -54,11 +53,11 @@ namespace Cureos.Measures
         public MeasureArray(IEnumerable<float> iAmounts)
         {
 #if DOUBLE
-            mAmounts = iAmounts.Cast<double>().ToArray();
+            mAmounts = iAmounts.Select(a => (AmountType)a).ToArray();
 #elif SINGLE
             mAmounts = iAmounts.ToArray();
 #elif DECIMAL
-            mAmounts = iAmounts.Cast<decimal>().ToArray();
+            mAmounts = iAmounts.Select(a => (AmountType)a).ToArray();
 #endif
             mUnit = Quantity<Q>.ReferenceUnit;
         }
@@ -70,9 +69,9 @@ namespace Cureos.Measures
         public MeasureArray(IEnumerable<decimal> iAmounts)
         {
 #if DOUBLE
-            mAmounts = iAmounts.Cast<double>().ToArray();
+            mAmounts = iAmounts.Select(a => (AmountType)a).ToArray();
 #elif SINGLE
-            mAmounts = iAmounts.Cast<float>().ToArray();
+            mAmounts = iAmounts.Select(a => (AmountType)a).ToArray();
 #elif DECIMAL
             mAmounts = iAmounts.ToArray();
 #endif
@@ -88,13 +87,12 @@ namespace Cureos.Measures
         {
             AssertValidUnit(iUnit);
 #if DOUBLE
-            var refUnitAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit(a));
+            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit(a)).ToArray();
 #elif SINGLE
-            var refUnitAmounts = iAmounts.Cast<float>().Select(a => iUnit.ConvertAmountToReferenceUnit(a));
+            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit((AmountType)a)).ToArray();
 #elif DECIMAL
-            var refUnitAmounts = iAmounts.Cast<decimal>().Select(a => iUnit.ConvertAmountToReferenceUnit(a));
+            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit((AmountType)a)).ToArray();
 #endif
-            mAmounts = refUnitAmounts.ToArray();
             mUnit = Quantity<Q>.ReferenceUnit;
         }
 
@@ -107,13 +105,12 @@ namespace Cureos.Measures
         {
             AssertValidUnit(iUnit);
 #if DOUBLE
-            var refUnitAmounts = iAmounts.Cast<double>().Select(a => iUnit.ConvertAmountToReferenceUnit(a));
+            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit((AmountType)a)).ToArray();
 #elif SINGLE
-            var refUnitAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit(a));
+            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit(a)).ToArray();
 #elif DECIMAL
-            var refUnitAmounts = iAmounts.Cast<decimal>().Select(a => iUnit.ConvertAmountToReferenceUnit(a));
+            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit((AmountType)a)).ToArray();
 #endif
-            mAmounts = refUnitAmounts.ToArray();
             mUnit = Quantity<Q>.ReferenceUnit;
         }
 
@@ -126,13 +123,12 @@ namespace Cureos.Measures
         {
             AssertValidUnit(iUnit);
 #if DOUBLE
-            var refUnitAmounts = iAmounts.Cast<double>().Select(a => iUnit.ConvertAmountToReferenceUnit(a));
+            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit((AmountType)a)).ToArray();
 #elif SINGLE
-            var refUnitAmounts = iAmounts.Cast<float>().Select(a => iUnit.ConvertAmountToReferenceUnit(a));
+            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit((AmountType)a)).ToArray();
 #elif DECIMAL
-            var refUnitAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit(a));
+            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit(a)).ToArray();
 #endif
-            mAmounts = refUnitAmounts.ToArray();
             mUnit = Quantity<Q>.ReferenceUnit;
         }
 
