@@ -177,7 +177,11 @@ namespace Tests.Cureos.Measures
             var numerator = new Measure(1.0, Unit.Liter);
             var denominator = new Measure<Length>(1.0, Unit.CentiMeter);
             var actual = numerator / denominator;
+#if NUNIT24
+            Assert.IsInstanceOfType(typeof(Measure), actual);
+#else
             Assert.IsInstanceOf(typeof(Measure), actual);
+#endif
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }
 
@@ -188,7 +192,11 @@ namespace Tests.Cureos.Measures
             var numerator = new Measure<Volume>(1.0, Unit.Liter);
             var denominator = new Measure(1.0, Unit.CentiMeter);
             var actual = numerator / denominator;
+#if NUNIT24
+            Assert.IsInstanceOfType(typeof(Measure), actual);
+#else
             Assert.IsInstanceOf(typeof(Measure), actual);
+#endif
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }
 

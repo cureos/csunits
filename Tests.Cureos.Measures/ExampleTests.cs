@@ -35,7 +35,11 @@ namespace Tests.Cureos.Measures
             {
                 Console.WriteLine("Calculated volume is within limits, actual volume: {0}", vol[Unit.Liter]);
             }
+#if NUNIT24
+			Assert.Ignore();
+#else
             Assert.Pass();
+#endif
         }
     }
 }

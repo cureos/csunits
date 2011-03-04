@@ -57,11 +57,13 @@ namespace Tests.Cureos.Measures
         ///                 </exception><filterpriority>2</filterpriority>
         public int Compare(object x, object y)
         {
-            Assert.IsInstanceOf(typeof(AmountType), x);
-            Assert.IsInstanceOf(typeof(AmountType), y);
-
-            AmountType diff = (AmountType)x - (AmountType)y;
-            return diff < -smkEqualityTolerance ? -1 : diff < smkEqualityTolerance ? 0 : 1;
+			if (x is AmountType && y is AmountType)
+			{
+	            AmountType diff = (AmountType)x - (AmountType)y;
+	            return diff < -smkEqualityTolerance ? -1 : diff < smkEqualityTolerance ? 0 : 1;
+			}
+			throw new InvalidOperationException(String.Format("Compared objects are not of the required amount type: {0}; {1}",
+			                                                  x.GetType(), y.GetType()));
         }
 
         #endregion

@@ -26,8 +26,12 @@ namespace Tests.Cureos.Measures
                 val += (double) i;
             }
             DateTime stop = DateTime.Now;
-            
-            Assert.Pass("Sum: {0}, timing {1} ms", val, (stop.Ticks - start.Ticks) / 10000);
+#if NUNIT24
+			Assert.Ignore
+#else
+            Assert.Pass
+#endif
+					("Sum: {0}, timing {1} ms", val, (stop.Ticks - start.Ticks) / 10000);
         }
 
         [Test]
@@ -41,7 +45,12 @@ namespace Tests.Cureos.Measures
             }
             DateTime stop = DateTime.Now;
 
-            Assert.Pass("Sum: {0}, timing {1} ms", val, (stop.Ticks - start.Ticks) / 10000);
+#if NUNIT24
+			Assert.Ignore
+#else
+            Assert.Pass
+#endif
+					("Sum: {0}, timing {1} ms", val, (stop.Ticks - start.Ticks) / 10000);
         }
 
         [Test]
@@ -55,7 +64,12 @@ namespace Tests.Cureos.Measures
             }
             DateTime stop = DateTime.Now;
 
-            Assert.Pass("Sum: {0}, timing {1} ms", val, (stop.Ticks - start.Ticks) / 10000);
+#if NUNIT24
+			Assert.Ignore
+#else
+            Assert.Pass
+#endif
+				("Sum: {0}, timing {1} ms", val, (stop.Ticks - start.Ticks) / 10000);
         }
 
         [Test]
@@ -69,7 +83,12 @@ namespace Tests.Cureos.Measures
             }
             DateTime stop = DateTime.Now;
 
-            Assert.Pass("Sum: {0}, timing {1} ms", val, (stop.Ticks - start.Ticks) / 10000);
+#if NUNIT24
+			Assert.Ignore
+#else
+            Assert.Pass
+#endif
+				("Sum: {0}, timing {1} ms", val, (stop.Ticks - start.Ticks) / 10000);
         }
     }
 }

@@ -64,7 +64,12 @@ namespace Tests.Cureos.Measures
         [Test]
         public void GetEnumerator_Default_ShouldNotThrow()
         {
+#if NUNIT24
+			var val = _instance.GetEnumerator();
+			Assert.Ignore();
+#else
             Assert.DoesNotThrow(() => { var val = _instance.GetEnumerator(); });
+#endif
         }
         #endregion
     }
