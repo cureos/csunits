@@ -61,6 +61,11 @@ namespace Tests.Cureos.Measures
             var throws = _instance[6];
         }
 
+        [Test]
+        public void GetEnumerator_Default_ShouldNotThrow()
+        {
+            Assert.DoesNotThrow(() => { var val = _instance.GetEnumerator(); });
+        }
         #endregion
     }
 }

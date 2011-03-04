@@ -5,6 +5,7 @@
 // http://www.eclipse.org/legal/epl-v10.html
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Cureos.Measures.Extensions;
@@ -19,7 +20,7 @@ using AmountType = System.Double;
 
 namespace Cureos.Measures
 {
-    public class MeasureArray<Q> : IMeasureArray where Q : struct, IQuantity
+    public class MeasureArray<Q> : IEnumerable<AmountType>, IMeasureArray where Q : struct, IQuantity
     {
         #region MEMBER VARIABLES
 
@@ -171,6 +172,34 @@ namespace Cureos.Measures
 
         #endregion
 
+        #region Implementation of IEnumerable
+
+        /// <summary>
+        /// Returns an enumerator that iterates through the collection.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
+        /// </returns>
+        /// <filterpriority>1</filterpriority>
+        public IEnumerator<AmountType> GetEnumerator()
+        {
+            return mAmounts.Cast<AmountType>().GetEnumerator();
+        }
+
+        /// <summary>
+        /// Returns an enumerator that iterates through a collection.
+        /// </summary>
+        /// <returns>
+        /// An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
+        /// </returns>
+        /// <filterpriority>2</filterpriority>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        #endregion
+
         #region PROPERTIES
 
         /// <summary>
@@ -178,7 +207,7 @@ namespace Cureos.Measures
         /// </summary>
         /// <param name="i">Zero-based index of the measure array</param>
         /// <returns>The <paramref name="i">i:th</paramref> component of the measure array</returns>
-        public Measure<Q> this[int i]
+        public Measure<Q> this[uint i]
         {
             get { return new Measure<Q>(mAmounts[i]); }
         }
