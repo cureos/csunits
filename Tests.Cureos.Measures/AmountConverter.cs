@@ -4,6 +4,9 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
+using System.Collections.Generic;
+using System.Linq;
+
 #if SINGLE
 using AmountType = System.Single;
 #elif DECIMAL
@@ -19,6 +22,11 @@ namespace Tests.Cureos.Measures
         internal static AmountType ToAmountType(double iValue)
         {
             return (AmountType) iValue;
+        }
+
+        internal static IEnumerable<AmountType> ToAmountType(IEnumerable<double> iValues)
+        {
+            return iValues.Select(a => (AmountType)a);
         }
     }
 }

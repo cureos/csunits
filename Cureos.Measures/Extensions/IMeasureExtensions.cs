@@ -52,25 +52,6 @@ namespace Cureos.Measures.Extensions
         }
 
         /// <summary>
-        /// Gets the amount of the <paramref name="iMeasure">specified measure</paramref> in the requested unit
-        /// </summary>
-        /// <param name="iMeasure">Measure for which the amount should be converted into the requested unit</param>
-        /// <param name="iUnit">Unit to which the measured amount should be converted</param>
-        /// <returns>Measured amount converted into <paramref name="iUnit">specified unit</paramref></returns>
-        /// <exception cref="InvalidOperationException">is thrown if the quantity of the specified unit is different
-        /// from the measured quantity</exception>
-        public static AmountType GetAmount(this IMeasure iMeasure, Unit iUnit)
-        {
-            if (iUnit.GetQuantity() == GetQuantity(iMeasure))
-            {
-                return iUnit.ConvertAmountFromReferenceUnit(GetReferenceUnitAmount(iMeasure));
-            }
-            throw new InvalidOperationException(
-                String.Format("Quantity of unit {0} is not equal to measured quantity {1}",
-                iUnit, GetQuantity(iMeasure)));
-        }
-
-        /// <summary>
         /// Gets the measure as a string, with amount converted to the requested unit
         /// </summary>
         /// <param name="iMeasure">Measure for which the description string should be generated</param>
@@ -80,7 +61,7 @@ namespace Cureos.Measures.Extensions
         /// a different quantity than the <see cref="Unit">measured unit </see></exception>
         public static string ToString(this IMeasure iMeasure, Unit iUnit)
         {
-            return string.Format("{0} {1}", GetAmount(iMeasure, iUnit), iUnit).Trim();
+            return string.Format("{0} {1}", iMeasure.GetAmount(iUnit), iUnit).Trim();
         }
     }
 }

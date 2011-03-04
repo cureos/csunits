@@ -4,12 +4,11 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
-using System;
 using Cureos.Measures;
 using Cureos.Measures.Extensions;
 using NUnit.Framework;
 
-namespace Tests.Cureos.Measures
+namespace Tests.Cureos.Measures.Extensions
 {
     [TestFixture]
     public class QuantityExtensionsTests

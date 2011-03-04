@@ -6,26 +6,73 @@
 
 namespace Cureos.Measures.Extensions
 {
+    /// <summary>
+    /// Support methods and properties for efficiently handling struct types implementing the IQuantity interface
+    /// </summary>
+    /// <typeparam name="Q">Struct type representing a specific quantity, implementing the IQuantity interface</typeparam>
     internal static class Quantity<Q> where Q : struct, IQuantity
     {
+        /// <summary>
+        /// Gets the enumerated value corresponding to the specified IQuantity type
+        /// </summary>
         internal static Quantity Value
         {
             get { return default(Q).EnumeratedValue; }
         }
 
-        public static Unit ReferenceUnit
+        /// <summary>
+        /// Gets the reference unit associated with the specified IQuantity type
+        /// </summary>
+        internal static Unit ReferenceUnit
         {
             get { return Value.GetReferenceUnit(); }
         }
 
-        internal static bool Supports(Unit iUnit)
+        /// <summary>
+        /// Checks whether the <paramref name="iUnit">specified unit</paramref> is of the specified IQuantity type
+        /// </summary>
+        /// <param name="iUnit">Unit for which quantity should be checked</param>
+        /// <returns>true if the <paramref name="iUnit">specified unit</paramref> is of the specified IQuantity type,
+        /// false otherwise</returns>
+        internal static bool IsQuantityOf(Unit iUnit)
         {
             return iUnit.GetQuantity() == Value;
         }
 
-        internal static bool Supports(IMeasure iMeasure)
+        /// <summary>
+        /// Checks whether the <paramref name="iMeasure">specified measure</paramref> is of the specified IQuantity type
+        /// </summary>
+        /// <param name="iMeasure">Measure for which quantity should be checked</param>
+        /// <returns>true if the <paramref name="iMeasure">specified measure</paramref> is of the specified IQuantity type,
+        /// false otherwise</returns>
+        internal static bool IsQuantityOf(IMeasure iMeasure)
         {
             return iMeasure.GetQuantity() == Value;
+        }
+
+        /// <summary>
+        /// Checks whether the "product" of two quantities has the same quantity dimensions as the quantity given by the 
+        /// IQuantity type
+        /// </summary>
+        /// <param name="iLhs">First quantity in multiplication</param>
+        /// <param name="iRhs">Second quantity in multiplication</param>
+        /// <returns>true if the quantity "product" matches the dimensions of the given IQuantity type, false otherwise</returns>
+        internal static bool IsProductOf(Quantity iLhs, Quantity iRhs)
+        {
+            return Value.IsProductOf(iLhs, iRhs);
+        }
+
+        /// <summary>
+        /// Checks whether the "quotient" of two quantities has the same quantity dimensions as the quantity given
+        /// by the specified IQuantity type
+        /// </summary>
+        /// <param name="iNumerator">Numerator quantity in division</param>
+        /// <param name="iDenominator">Denominator quantity in division</param>
+        /// <returns>true if the quantity "quotient" matches the dimensions of the quantity given by the specified
+        /// IQuantity type, false otherwise</returns>
+        internal static bool IsQuotientOf(Quantity iNumerator, Quantity iDenominator)
+        {
+            return Value.IsQuotientOf(iNumerator, iDenominator);
         }
     }
 }

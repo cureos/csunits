@@ -4,20 +4,18 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
-namespace Cureos.Measures
+
+namespace Cureos.Measures.Quantities
 {
-    /// <summary>
-    /// Supported quantities
-    /// </summary>
-    public enum Quantity
+    public struct Energy : IQuantity
     {
-        Length,
-        Area,
-        Volume,
-        Mass,
-        Time,
-        Temperature,
-        Energy,
-        AbsorbedDose
+        #region Implementation of IQuantity
+
+        public Quantity EnumeratedValue
+        {
+            get { return Quantity.Energy; }
+        }
+
+        #endregion
     }
 }

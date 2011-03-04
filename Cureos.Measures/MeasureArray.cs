@@ -5,16 +5,15 @@
 // http://www.eclipse.org/legal/epl-v10.html
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cureos.Measures.Extensions;
 
 #if SINGLE
 using AmountType = System.Single;
 #elif DECIMAL
 using AmountType = System.Decimal;
 #elif DOUBLE
-using Cureos.Measures.Extensions;
 using AmountType = System.Double;
 #endif
 
@@ -31,83 +30,105 @@ namespace Cureos.Measures
 
         #region CONSTRUCTORS
 
+        /// <summary>
+        /// Initializes an array of amounts in the reference unit of the IQuantity type
+        /// </summary>
+        /// <param name="iAmounts">Array of amounts, given in the reference unit</param>
         public MeasureArray(IEnumerable<double> iAmounts)
         {
 #if DOUBLE
             mAmounts = iAmounts.ToArray();
 #elif SINGLE
-            mAmounts = iAmounts.Cast<float>().ToArray();
+            mAmounts = iAmounts.Select(a => (AmountType)a).ToArray();
 #elif DECIMAL
-            mAmounts = iAmounts.Cast<decimal>().ToArray();
+            mAmounts = iAmounts.Select(a => (AmountType)a).ToArray();
 #endif
             mUnit = Quantity<Q>.ReferenceUnit;
         }
 
+        /// <summary>
+        /// Initializes an array of amounts in the reference unit of the IQuantity type
+        /// </summary>
+        /// <param name="iAmounts">Array of amounts, given in the reference unit</param>
         public MeasureArray(IEnumerable<float> iAmounts)
         {
 #if DOUBLE
-            mAmounts = iAmounts.Cast<double>().ToArray();
+            mAmounts = iAmounts.Select(a => (AmountType)a).ToArray();
 #elif SINGLE
             mAmounts = iAmounts.ToArray();
 #elif DECIMAL
-            mAmounts = iAmounts.Cast<decimal>().ToArray();
+            mAmounts = iAmounts.Select(a => (AmountType)a).ToArray();
 #endif
             mUnit = Quantity<Q>.ReferenceUnit;
         }
 
-
+        /// <summary>
+        /// Initializes an array of amounts in the reference unit of the IQuantity type
+        /// </summary>
+        /// <param name="iAmounts">Array of amounts, given in the reference unit</param>
         public MeasureArray(IEnumerable<decimal> iAmounts)
         {
 #if DOUBLE
-            mAmounts = iAmounts.Cast<double>().ToArray();
+            mAmounts = iAmounts.Select(a => (AmountType)a).ToArray();
 #elif SINGLE
-            mAmounts = iAmounts.Cast<float>().ToArray();
+            mAmounts = iAmounts.Select(a => (AmountType)a).ToArray();
 #elif DECIMAL
             mAmounts = iAmounts.ToArray();
 #endif
             mUnit = Quantity<Q>.ReferenceUnit;
         }
 
+        /// <summary>
+        /// Initializes an array of amounts in the reference unit of the IQuantity type
+        /// </summary>
+        /// <param name="iAmounts">Array of amounts, given in the <paramref name="iUnit">specified unit</paramref></param>
+        /// <param name="iUnit">Unit in which the amount array is originally specified</param>
         public MeasureArray(IEnumerable<double> iAmounts, Unit iUnit)
         {
             AssertValidUnit(iUnit);
 #if DOUBLE
-            var refUnitAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit(a));
+            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit(a)).ToArray();
 #elif SINGLE
-            var refUnitAmounts = iAmounts.Cast<float>().Select(a => iUnit.ConvertAmountToReferenceUnit(a));
+            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit((AmountType)a)).ToArray();
 #elif DECIMAL
-            var refUnitAmounts = iAmounts.Cast<decimal>().Select(a => iUnit.ConvertAmountToReferenceUnit(a));
+            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit((AmountType)a)).ToArray();
 #endif
-            mAmounts = refUnitAmounts.ToArray();
             mUnit = Quantity<Q>.ReferenceUnit;
         }
 
+        /// <summary>
+        /// Initializes an array of amounts in the reference unit of the IQuantity type
+        /// </summary>
+        /// <param name="iAmounts">Array of amounts, given in the <paramref name="iUnit">specified unit</paramref></param>
+        /// <param name="iUnit">Unit in which the amount array is originally specified</param>
         public MeasureArray(IEnumerable<float> iAmounts, Unit iUnit)
         {
             AssertValidUnit(iUnit);
 #if DOUBLE
-            var refUnitAmounts = iAmounts.Cast<double>().Select(a => iUnit.ConvertAmountToReferenceUnit(a));
+            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit((AmountType)a)).ToArray();
 #elif SINGLE
-            var refUnitAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit(a));
+            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit(a)).ToArray();
 #elif DECIMAL
-            var refUnitAmounts = iAmounts.Cast<decimal>().Select(a => iUnit.ConvertAmountToReferenceUnit(a));
+            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit((AmountType)a)).ToArray();
 #endif
-            mAmounts = refUnitAmounts.ToArray();
             mUnit = Quantity<Q>.ReferenceUnit;
         }
 
-
+        /// <summary>
+        /// Initializes an array of amounts in the reference unit of the IQuantity type
+        /// </summary>
+        /// <param name="iAmounts">Array of amounts, given in the <paramref name="iUnit">specified unit</paramref></param>
+        /// <param name="iUnit">Unit in which the amount array is originally specified</param>
         public MeasureArray(IEnumerable<decimal> iAmounts, Unit iUnit)
         {
             AssertValidUnit(iUnit);
 #if DOUBLE
-            var refUnitAmounts = iAmounts.Cast<double>().Select(a => iUnit.ConvertAmountToReferenceUnit(a));
+            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit((AmountType)a)).ToArray();
 #elif SINGLE
-            var refUnitAmounts = iAmounts.Cast<float>().Select(a => iUnit.ConvertAmountToReferenceUnit(a));
+            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit((AmountType)a)).ToArray();
 #elif DECIMAL
-            var refUnitAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit(a));
+            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit(a)).ToArray();
 #endif
-            mAmounts = refUnitAmounts.ToArray();
             mUnit = Quantity<Q>.ReferenceUnit;
         }
 
@@ -128,7 +149,38 @@ namespace Cureos.Measures
         /// </summary>
         public Unit Unit
         {
-            get { return default(Q).EnumeratedValue.GetReferenceUnit(); }
+            get { return mUnit; }
+        }
+
+        /// <summary>
+        /// Gets the collection of measured amounts in the <paramref name="iUnit">specified unit</paramref>
+        /// </summary>
+        /// <param name="iUnit">Unit in which the array of measured amounts should be returned</param>
+        /// <returns>Collection of measured amounts, given in the <paramref name="iUnit">specified unit</paramref></returns>
+        /// <exception cref="InvalidOperationException">if the specified unit is not of the same quantity as the measure</exception>
+        public IEnumerable<AmountType> GetAmounts(Unit iUnit)
+        {
+            if (Quantity<Q>.IsQuantityOf(iUnit))
+            {
+                return mAmounts.Select(a => iUnit.ConvertAmountFromReferenceUnit(a));
+            }
+            throw new InvalidOperationException(
+                String.Format("Quantity of unit {0} is not equal to measured quantity {1}",
+                iUnit, Quantity<Q>.Value));
+        }
+
+        #endregion
+
+        #region PROPERTIES
+
+        /// <summary>
+        /// Gets the <paramref name="i">i:th</paramref> measure component of the measure array
+        /// </summary>
+        /// <param name="i">Zero-based index of the measure array</param>
+        /// <returns>The <paramref name="i">i:th</paramref> component of the measure array</returns>
+        public Measure<Q> this[int i]
+        {
+            get { return new Measure<Q>(mAmounts[i]); }
         }
 
         #endregion
@@ -137,7 +189,7 @@ namespace Cureos.Measures
 
         private static void AssertValidUnit(Unit iUnit)
         {
-            if (!Quantity<Q>.Supports(iUnit))
+            if (!Quantity<Q>.IsQuantityOf(iUnit))
                 throw new InvalidOperationException(String.Format("Unit {0} is not of quantity {1}", iUnit, Quantity<Q>.Value));
         }
 

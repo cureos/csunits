@@ -12,11 +12,10 @@ Made available under Eclipse Public License, version 1.0
  ...
 
  Measure<Mass> initialWgt = new Measure<Mass>(75.0);
- Measure<Mass> gainedWgt = new Measure<Mass>(2.5, Unit.Gram);
+ Measure<Mass> gainedWgt = new Measure<Mass>(2.5, Unit.HectoGram);
  Measure<Mass> newWgt = initialWgt + gainedWgt;
 
- Measure newWgtUntyped = (Measure)newWgt;
- Measure newWgtInGram = newWgtUntyped.GetMeasure(Unit.Gram);
+ Measure newWgtInGram = newWgt[Unit.Gram];
  Measure initialWgtInGram = newWgtInGram - gainedWgt;
 
  Console.WriteLine("Initial weight: {0}", initialWgtInGram);
@@ -29,13 +28,13 @@ Made available under Eclipse Public License, version 1.0
 
  if (vol < maxVol)
  {
-  Console.WriteLine("Calculated volume is within limits, actual volume: {0} liters", vol.GetAmount(Unit.Liter));
+  Console.WriteLine("Calculated volume is within limits, actual volume: {0}", vol[Unit.Liter]);
  }
 
 should yield the output:
 
  Initial weight: 75000 g
- Calculated volume is within limits, actual volume 6 liters
+ Calculated volume is within limits, actual volume 6 l
 
 
 == Remarks
@@ -70,7 +69,7 @@ To extend the library with additional quantities and associated units, the follo
     Energy
    }
 
-* In the file QuantityExtensions.cs, static constructor, add the new quantity to the quantity details dictionary:
+* In the file QuantityExtensions.cs (Extensions sub-folder), static constructor, add the new quantity to the quantity details dictionary:
 
    smDetailsMap = new List<QuantityDetails>
    {
@@ -97,7 +96,7 @@ To extend the library with additional quantities and associated units, the follo
     KiloJoule
    }
 
-* In the file UnitExtensions.cs, static constructor, add the new units to the unit details dictionary. The reference unit (in the example, Joule) uses a UnitDetails constructor without amount conversion specifications, whereas the secondary units are initialized using amount conversion factors/operators to and from the reference unit:
+* In the file UnitExtensions.cs (Extensions sub-folder), static constructor, add the new units to the unit details dictionary. The reference unit (in the example, Joule) uses a UnitDetails constructor without amount conversion specifications, whereas the secondary units are initialized using amount conversion factors/operators to and from the reference unit:
 
    smUnitDetailsMap = new UnitDetails[]
    {
@@ -109,4 +108,4 @@ To extend the library with additional quantities and associated units, the follo
 
 == Revision
 
-Last updated on March 1, 2011 by Anders Gustafsson, anders[at]cureos[dot]com.
+Last updated on March 4, 2011 by Anders Gustafsson, anders[at]cureos[dot]com.
