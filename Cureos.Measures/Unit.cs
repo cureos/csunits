@@ -24,6 +24,8 @@ namespace Cureos.Measures
         CubicDeciMeter,
         CubicCentiMeter,
         KiloGram,
+        Tonne,
+        HectoGram,
         Gram,
         Second,
         Minute,
@@ -32,6 +34,8 @@ namespace Cureos.Measures
         Week,
         Kelvin,
         Celsius,
+        Joule,
+        KiloJoule,
         Gray,
         CentiGray
     }

@@ -36,6 +36,7 @@ namespace Cureos.Measures.Extensions
 								   new QuantityDetails(Quantity.Mass, new QuantityDimensions(0, 1, 0, 0, 0, 0, 0)),
 								   new QuantityDetails(Quantity.Time, new QuantityDimensions(0, 0, 1, 0, 0, 0, 0)),
 								   new QuantityDetails(Quantity.Temperature, new QuantityDimensions(0, 0, 0, 0, 1, 0, 0)),
+								   new QuantityDetails(Quantity.Energy, new QuantityDimensions(2, 1, -2, 0, 0, 0, 0)),
 								   new QuantityDetails(Quantity.AbsorbedDose, new QuantityDimensions(2, 0, -2, 0, 0, 0, 0))
 							   }.ToDictionary(qd => qd.Quantity);
 		}

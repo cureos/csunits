@@ -50,6 +50,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quantities\AbsorbedDose.cs" />
     <Compile Include="Quantities\Area.cs" />
+    <Compile Include="Quantities\Energy.cs" />
     <Compile Include="Quantities\Mass.cs" />
     <Compile Include="Quantities\Temperature.cs" />
     <Compile Include="Quantities\Time.cs" />

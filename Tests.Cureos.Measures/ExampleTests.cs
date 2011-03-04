@@ -18,7 +18,7 @@ namespace Tests.Cureos.Measures
         public void Example1()
         {
             Measure<Mass> initialWgt = new Measure<Mass>(75.0);
-            Measure<Mass> gainedWgt = new Measure<Mass>(2.5, Unit.Gram);
+            Measure<Mass> gainedWgt = new Measure<Mass>(2.5, Unit.HectoGram);
             Measure<Mass> newWgt = initialWgt + gainedWgt;
 
             Measure newWgtInGram = newWgt[Unit.Gram];
@@ -33,7 +33,7 @@ namespace Tests.Cureos.Measures
             var maxVol = new Measure<Volume>(10.0, Unit.Liter);
             if (vol < maxVol)
             {
-                Console.WriteLine("Calculated volume is within limits, actual volume: {0} liters", vol.GetAmount(Unit.Liter));
+                Console.WriteLine("Calculated volume is within limits, actual volume: {0}", vol[Unit.Liter]);
             }
             Assert.Pass();
         }
