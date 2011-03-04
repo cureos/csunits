@@ -33,6 +33,15 @@ namespace Cureos.Measures
 		{
 			get;
 		}
-	}
+
+        /// <summary>
+        /// Gets the amount of this measure in the requested unit
+        /// </summary>
+        /// <param name="iUnit">Unit to which the measured amount should be converted</param>
+        /// <returns>Measured amount converted into <paramref name="iUnit">specified unit</paramref></returns>
+        /// <exception cref="InvalidOperationException">is thrown if the quantity of the specified unit is different
+        /// from the measured quantity</exception>
+        AmountType GetAmount(Unit iUnit);
+    }
 }
 

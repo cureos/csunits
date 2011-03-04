@@ -17,6 +17,9 @@ using AmountType = System.Double;
 
 namespace Cureos.Measures
 {
+	/// <summary>
+	/// Quantity-agnostic measure
+	/// </summary>
 	public struct Measure : IMeasure, IEquatable<Measure>, IComparable<Measure>
 	{
 		#region MEMBER VARIABLES
@@ -93,18 +96,37 @@ namespace Cureos.Measures
 			get { return mUnit; }
 		}
 
+		/// <summary>
+		/// Gets a new measure based on this measure but in the <paramref name="iUnit">specified unit</paramref>
+		/// </summary>
+		/// <param name="iUnit">Unit in which the new measure should be specified</param>
+		/// <exception cref="InvalidOperationException">is thrown if the quantity of the specified unit is different
+		/// from the measured quantity</exception>
+		public Measure this[Unit iUnit]
+		{
+			get { return new Measure(GetAmount(iUnit), iUnit); }
+		}
+
 		#endregion
 
 		#region METHODS
 
 		/// <summary>
-		/// Gets a new measure object with the amount converted to the <paramref name="iUnit">specified unit</paramref>
+		/// Gets the amount of this measure in the requested unit
 		/// </summary>
-		/// <param name="iUnit">Unit in which the new measure should be specified</param>
-		/// <returns>New measure object with the amount converted to the <paramref name="iUnit">specified unit</paramref></returns>
-		public Measure GetMeasure(Unit iUnit)
+		/// <param name="iUnit">Unit to which the measured amount should be converted</param>
+		/// <returns>Measured amount converted into <paramref name="iUnit">specified unit</paramref></returns>
+		/// <exception cref="InvalidOperationException">is thrown if the quantity of the specified unit is different
+		/// from the measured quantity</exception>
+		public AmountType GetAmount(Unit iUnit)
 		{
-			return new Measure(this.GetAmount(iUnit), iUnit);
+			if (iUnit.GetQuantity() == this.GetQuantity())
+			{
+				return iUnit.ConvertAmountFromReferenceUnit(this.GetReferenceUnitAmount());
+			}
+			throw new InvalidOperationException(
+				String.Format("Quantity of unit {0} is not equal to measured quantity {1}",
+				iUnit, this.GetQuantity()));
 		}
 
 		/// <summary>
@@ -624,7 +646,7 @@ namespace Cureos.Measures
 	/// <summary>
 	/// Quantity-typed representation of a single measure
 	/// </summary>
-	/// <typeparam name="Q"></typeparam>
+	/// <typeparam name="Q">Struct type implementing the IQuantity interface</typeparam>
 	public struct Measure<Q> : IMeasure, IEquatable<Measure<Q>>, IComparable<Measure<Q>> where Q : struct, IQuantity
 	{
 		#region MEMBER VARIABLES
@@ -742,12 +764,41 @@ iAmount);
 		/// </summary>
 		public Unit Unit
 		{
-			get { return Quantity<Q>.Value.GetReferenceUnit(); }
+			get { return Quantity<Q>.ReferenceUnit; }
+		}
+
+		/// <summary>
+		/// Gets a new non-typed measure based on this measure but in the <paramref name="iUnit">specified unit</paramref>
+		/// </summary>
+		/// <param name="iUnit">Unit in which the new measure should be specified</param>
+		/// <exception cref="InvalidOperationException">is thrown if the quantity of the specified unit is different
+		/// from the measured quantity</exception>
+		public Measure this[Unit iUnit]
+		{
+			get { return new Measure(GetAmount(iUnit), iUnit); }
 		}
 
 		#endregion
 
 		#region METHODS
+
+		/// <summary>
+		/// Gets the amount of this measure in the requested unit
+		/// </summary>
+		/// <param name="iUnit">Unit to which the measured amount should be converted</param>
+		/// <returns>Measured amount converted into <paramref name="iUnit">specified unit</paramref></returns>
+		/// <exception cref="InvalidOperationException">is thrown if the quantity of the specified unit is different
+		/// from the measured quantity</exception>
+		public AmountType GetAmount(Unit iUnit)
+		{
+			if (Quantity<Q>.IsQuantityOf(iUnit))
+			{
+				return iUnit.ConvertAmountFromReferenceUnit(mAmount);
+			}
+			throw new InvalidOperationException(
+				String.Format("Quantity of unit {0} is not equal to measured quantity {1}",
+				iUnit, Quantity<Q>.Value));
+		}
 
 		/// <summary>
 		/// Multiply two measure objects
@@ -761,7 +812,7 @@ iAmount);
 			where Q1 : struct, IQuantity
 			where Q2 : struct, IQuantity
 		{
-			if (Quantity<Q>.Value.IsQuantityOfProduct(iLhs.GetQuantity(), iRhs.GetQuantity()))
+			if (Quantity<Q>.IsProductOf(iLhs.GetQuantity(), iRhs.GetQuantity()))
 			{
 				return new Measure<Q>(iLhs.mAmount * iRhs.mAmount);
 			}
@@ -781,7 +832,7 @@ iAmount);
 			where Q1 : struct, IQuantity
 			where Q2 : struct, IQuantity
 		{
-			if (Quantity<Q>.Value.IsQuantityOfQuotient(iNumerator.GetQuantity(), iDenominator.GetQuantity()))
+			if (Quantity<Q>.IsQuotientOf(iNumerator.GetQuantity(), iDenominator.GetQuantity()))
 			{
 				return new Measure<Q>(iNumerator.mAmount / iDenominator.mAmount);
 			}
@@ -848,7 +899,7 @@ iAmount);
 
 		private static void AssertValidUnit(Unit iUnit)
 		{
-			if (!Quantity<Q>.Supports(iUnit))
+			if (!Quantity<Q>.IsQuantityOf(iUnit))
 				throw new InvalidOperationException(String.Format("Unit {0} is not of quantity {1}", iUnit, Quantity<Q>.Value));
 		}
 
@@ -857,23 +908,13 @@ iAmount);
 		#region OPERATORS
 
 		/// <summary>
-		/// Converts a generic Measure object into a non-generic equivalent
-		/// </summary>
-		/// <param name="iMeasure">Generic measure object subject to conversion</param>
-		/// <returns>Non-generic equivalent of the generic measure object</returns>
-		public static explicit operator Measure(Measure<Q> iMeasure)
-		{
-			return new Measure(iMeasure.mAmount, iMeasure.Unit);
-		}
-
-		/// <summary>
 		/// Converts a non-generic measure object into a generic equivalent
 		/// </summary>
 		/// <param name="iMeasure">Non-generic measure object</param>
 		/// <returns>Generic equivalent of the specified non-generic measure object</returns>
 		public static explicit operator Measure<Q>(Measure iMeasure)
 		{
-			if (Quantity<Q>.Supports(iMeasure))
+			if (Quantity<Q>.IsQuantityOf(iMeasure))
 			{
 				return new Measure<Q>(iMeasure.GetReferenceUnitAmount());
 			}

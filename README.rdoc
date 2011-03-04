@@ -15,8 +15,7 @@ Made available under Eclipse Public License, version 1.0
  Measure<Mass> gainedWgt = new Measure<Mass>(2.5, Unit.Gram);
  Measure<Mass> newWgt = initialWgt + gainedWgt;
 
- Measure newWgtUntyped = (Measure)newWgt;
- Measure newWgtInGram = newWgtUntyped.GetMeasure(Unit.Gram);
+ Measure newWgtInGram = newWgt[Unit.Gram];
  Measure initialWgtInGram = newWgtInGram - gainedWgt;
 
  Console.WriteLine("Initial weight: {0}", initialWgtInGram);
@@ -109,4 +108,4 @@ To extend the library with additional quantities and associated units, the follo
 
 == Revision
 
-Last updated on March 1, 2011 by Anders Gustafsson, anders[at]cureos[dot]com.
+Last updated on March 4, 2011 by Anders Gustafsson, anders[at]cureos[dot]com.

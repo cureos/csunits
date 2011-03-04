@@ -87,7 +87,7 @@ namespace Cureos.Measures.Extensions
 		/// <param name="iRhs">Second quantity in multiplication</param>
 		/// <returns>true if the quantity "product" matches the dimensions of the <paramref name="iQuantity">
 		/// specified quantity</paramref>, false otherwise</returns>
-		public static bool IsQuantityOfProduct(this Quantity iQuantity, Quantity iLhs, Quantity iRhs)
+		public static bool IsProductOf(this Quantity iQuantity, Quantity iLhs, Quantity iRhs)
 		{
 			return smDetailsMap[iQuantity].Dimensions.Equals(smDetailsMap[iLhs].Dimensions +
 															 smDetailsMap[iRhs].Dimensions);
@@ -102,7 +102,7 @@ namespace Cureos.Measures.Extensions
 		/// <param name="iDenominator">Denominator quantity in division</param>
 		/// <returns>true if the quantity "quotient" matches the dimensions of the <paramref name="iQuantity">
 		/// specified quantity</paramref>, false otherwise</returns>
-		public static bool IsQuantityOfQuotient(this Quantity iQuantity, Quantity iNumerator, Quantity iDenominator)
+		public static bool IsQuotientOf(this Quantity iQuantity, Quantity iNumerator, Quantity iDenominator)
 		{
 			return smDetailsMap[iQuantity].Dimensions.Equals(smDetailsMap[iNumerator].Dimensions -
 															 smDetailsMap[iDenominator].Dimensions);
