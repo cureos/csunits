@@ -1092,4 +1092,15 @@ iAmount);
 
 		#endregion
 	}
+	
+	public struct Measure<U> : IMeasure where U : struct, IUnit<Q> where Q : struct, IQuantity
+	{
+		private readonly AmountType mAmount;
+		
+		public Measure(AmountType iAmount)
+		{
+			mAmount = iAmount;
+		}
+		
+	}
 }
