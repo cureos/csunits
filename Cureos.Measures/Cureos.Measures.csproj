@@ -66,6 +66,7 @@
     <Compile Include="IQuantity.cs" />
     <Compile Include="Quantities\Length.cs" />
     <Compile Include="IUnit.cs" />
+    <Compile Include="Units\CentiMeter.cs" />
     <Compile Include="Units\Meter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

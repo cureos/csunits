@@ -7,6 +7,7 @@
 using System;
 using Cureos.Measures;
 using Cureos.Measures.Quantities;
+using Cureos.Measures.Units;
 using NUnit.Framework;
 
 namespace Tests.Cureos.Measures
@@ -70,6 +71,20 @@ namespace Tests.Cureos.Measures
 								  }
 								  return val;
 							  });
+		}
+
+		[Test]
+		public void TimeGenericMeasureAdditionsDifferentUnit()
+		{
+			PerformTiming(() =>
+			{
+				var val = new Measure<Length, CentiMeter>(0.0);
+				for (int i = 0; i < no; ++i)
+				{
+					val += new Measure<Length>((double)i);
+				}
+				return val;
+			});
 		}
 
 		private static void PerformTiming(Func<object> a)

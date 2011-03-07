@@ -1095,12 +1095,20 @@ iAmount);
 	
 	public struct Measure<Q, U> : IMeasure where U : struct, IUnit<Q> where Q : struct, IQuantity
 	{
+		#region MEMBER VARIABLES
+
 		private readonly AmountType mAmount;
-		
+
+		#endregion
+
+		#region CONSTRUCTORS
+
 		public Measure(AmountType iAmount)
 		{
 			mAmount = iAmount;
 		}
+
+		#endregion
 
 		#region Implementation of IMeasure
 
@@ -1128,6 +1136,31 @@ iAmount);
 		public AmountType GetAmount(Unit iUnit)
 		{
 			return iUnit.ConvertAmountFromReferenceUnit(this.GetReferenceUnitAmount());
+		}
+
+		#endregion
+
+		#region METHODS
+
+		#endregion
+
+		/// <summary>
+		/// Returns the fully qualified type name of this instance.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="T:System.String"/> containing a fully qualified type name.
+		/// </returns>
+		/// <filterpriority>2</filterpriority>
+		public override string ToString()
+		{
+			return String.Format("{0} {1}", mAmount, Unit.GetSymbol()).Trim();
+		}
+
+		#region OPERATORS
+
+		public static Measure<Q, U> operator+(Measure<Q, U> iLhs, IMeasure iRhs)
+		{
+			return new Measure<Q, U>(iLhs.mAmount + iRhs.GetAmount(iLhs.Unit));
 		}
 
 		#endregion

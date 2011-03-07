@@ -7,6 +7,7 @@
 using System;
 using Cureos.Measures;
 using Cureos.Measures.Quantities;
+using Cureos.Measures.Units;
 using NUnit.Framework;
 
 namespace Tests.Cureos.Measures
@@ -230,6 +231,7 @@ namespace Tests.Cureos.Measures
         }
         #endregion
     }
+
     [TestFixture]
     public class MeasureQTests
     {
@@ -298,6 +300,22 @@ namespace Tests.Cureos.Measures
             var throws = Measure<Length>.Divide(numerator, denominator);
         }
 
+        #endregion
+    }
+
+    [TestFixture]
+    public class MeasureQUTests
+    {
+        #region Test Methods
+
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void AddOperator_AddDfifferentQuantities_Throws()
+        {
+            var length = new Measure<Length, Meter>(2.0);
+            var mass = new Measure<Mass>(1.0);
+            var throws = length + mass;
+        }
         #endregion
     }
 }
