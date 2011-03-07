@@ -7,6 +7,7 @@
 using System;
 using Cureos.Measures;
 using Cureos.Measures.Quantities;
+using Cureos.Measures.Units;
 using NUnit.Framework;
 
 namespace Tests.Cureos.Measures
@@ -25,7 +26,7 @@ namespace Tests.Cureos.Measures
 		[SetUp]
 		public void Setup()
 		{
-			_instance = new MeasureArray<Length>(new[] {1.0, 2.0, 3.0, 4.0, 5.0}, EnumUnit.CentiMeter);
+			_instance = new MeasureArray<Length>(new[] {1.0, 2.0, 3.0, 4.0, 5.0}, Unit.CentiMeter);
 		}
 
 		[TearDown]

@@ -703,14 +703,13 @@ iAmount;
 		/// <param name="iUnit">Unit of measure</param>
 		/// <exception cref="InvalidOperationException">is thrown if the quantity of the specified unit
 		/// is not the same as the type-specified quantity</exception>
-		public Measure(double iAmount, EnumUnit iUnit)
+		public Measure(double iAmount, IUnit<Q> iUnit)
 		{
-			AssertValidUnit(iUnit);
-			mAmount = iUnit.ConvertAmountToReferenceUnit(
+			mAmount = iUnit.AmountToReferenceUnitConverter(
 #if !DOUBLE
 				(AmountType)
 #endif
-iAmount);
+				iAmount);
 		}
 
 		/// <summary>
@@ -720,14 +719,13 @@ iAmount);
 		/// <param name="iUnit">Unit of measure</param>
 		/// <exception cref="InvalidOperationException">is thrown if the quantity of the specified unit
 		/// is not the same as the type-specified quantity</exception>
-		public Measure(float iAmount, EnumUnit iUnit)
+		public Measure(float iAmount, IUnit<Q> iUnit)
 		{
-			AssertValidUnit(iUnit);
-			mAmount = iUnit.ConvertAmountToReferenceUnit(
+			mAmount = iUnit.AmountToReferenceUnitConverter(
 #if !SINGLE
-(AmountType)
+				(AmountType)
 #endif
-iAmount);
+				iAmount);
 		}
 
 		/// <summary>
@@ -737,14 +735,13 @@ iAmount);
 		/// <param name="iUnit">Unit of measure</param>
 		/// <exception cref="InvalidOperationException">is thrown if the quantity of the specified unit
 		/// is not the same as the type-specified quantity</exception>
-		public Measure(decimal iAmount, EnumUnit iUnit)
+		public Measure(decimal iAmount, IUnit<Q> iUnit)
 		{
-			AssertValidUnit(iUnit);
-			mAmount = iUnit.ConvertAmountToReferenceUnit(
+			mAmount = iUnit.AmountToReferenceUnitConverter(
 #if !DECIMAL
-(AmountType)
+				(AmountType)
 #endif
-iAmount);
+				iAmount);
 		}
 
 		#endregion
@@ -800,12 +797,12 @@ iAmount);
 				iUnit, Quantity<Q>.Value));
 		}
 
-	    public IUnit<Q> Unit
-	    {
-	        get { return default(Q).ReferenceUnit; }
-	    }
+		public IUnit<Q> Unit
+		{
+			get { return default(Q).ReferenceUnit; }
+		}
 
-	    public AmountType GetAmount(IUnit<Q> iUnit)
+		public AmountType GetAmount(IUnit<Q> iUnit)
 		{
 			return iUnit.AmountFromReferenceUnitConverter(mAmount);
 		}
@@ -1135,7 +1132,7 @@ iAmount);
 		/// </summary>
 		public EnumUnit EnumeratedUnit
 		{
-			get { return Unit<Q, U>.Value; }
+			get { throw new NotImplementedException(); }
 		}
 
 		/// <summary>
@@ -1152,20 +1149,20 @@ iAmount);
 
 		#region Implementation of IMeasure<Q>
 
-	    /// <summary>
-	    /// Gets the unit of measure
-	    /// </summary>
-	    public IUnit<Q> Unit
-	    {
-	        get { return default(U); }
-	    }
+		/// <summary>
+		/// Gets the unit of measure
+		/// </summary>
+		public IUnit<Q> Unit
+		{
+			get { return default(U); }
+		}
 
-	    /// <summary>
-	    /// Gets the amount of this measure in the requested unit
-	    /// </summary>
-	    /// <param name="iUnit">Unit to which the measured amount should be converted</param>
-	    /// <returns>Measured amount converted into <paramref name="iUnit">specified unit</paramref></returns>
-	    public AmountType GetAmount(IUnit<Q> iUnit)
+		/// <summary>
+		/// Gets the amount of this measure in the requested unit
+		/// </summary>
+		/// <param name="iUnit">Unit to which the measured amount should be converted</param>
+		/// <returns>Measured amount converted into <paramref name="iUnit">specified unit</paramref></returns>
+		public AmountType GetAmount(IUnit<Q> iUnit)
 		{
 			return iUnit.AmountFromReferenceUnitConverter(Unit.AmountToReferenceUnitConverter(mAmount));
 		}

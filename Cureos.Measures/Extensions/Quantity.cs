@@ -10,7 +10,7 @@ namespace Cureos.Measures.Extensions
     /// Support methods and properties for efficiently handling struct types implementing the IQuantity interface
     /// </summary>
     /// <typeparam name="Q">Struct type representing a specific quantity, implementing the IQuantity interface</typeparam>
-    internal static class Quantity<Q> where Q : struct, IQuantity
+    internal static class Quantity<Q> where Q : struct, IQuantity<Q>
     {
         /// <summary>
         /// Gets the enumerated value corresponding to the specified IQuantity type

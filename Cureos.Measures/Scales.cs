@@ -24,6 +24,7 @@ namespace Cureos.Measures
         public const double Deci = 1.0e-1;
         public const double Centi = 1.0e-2;
         public const double Milli = 1.0e-3;
+        public const double TenThousandth = 1.0e-4;
         public const double Micro = 1.0e-6;
         public const double Nano = 1.0e-9;
         public const double Pico = 1.0e-12;
@@ -57,6 +58,7 @@ namespace Cureos.Measures
         public const float Deci = 1.0e-1f;
         public const float Centi = 1.0e-2f;
         public const float Milli = 1.0e-3f;
+        public const double TenThousandth = 1.0e-4f;
         public const float Micro = 1.0e-6f;
         public const float Nano = 1.0e-9f;
         public const float Pico = 1.0e-12f;
@@ -90,6 +92,7 @@ namespace Cureos.Measures
         public const decimal Deci = 1.0e-1m;
         public const decimal Centi = 1.0e-2m;
         public const decimal Milli = 1.0e-3m;
+        public const double TenThousandth = 1.0e-4m;
         public const decimal Micro = 1.0e-6m;
         public const decimal Nano = 1.0e-9m;
         public const decimal Pico = 1.0e-12m;

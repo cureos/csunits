@@ -16,20 +16,15 @@ using AmountType = System.Double;
 
 namespace Cureos.Measures
 {
-	public interface IUnit
+	public interface IUnit<Q> where Q : struct, IQuantity<Q>
 	{
-		EnumUnit EnumeratedUnit { get; }
+		IQuantity<Q> ReferencedQuantity { get; }
 
 		string Symbol { get; }
 
 		Func<AmountType, AmountType> AmountToReferenceUnitConverter { get; }
 
 		Func<AmountType, AmountType> AmountFromReferenceUnitConverter { get; }
-	}
-
-	public interface IUnit<Q> : IUnit where Q : struct, IQuantity<Q>
-	{
-		IQuantity<Q> ReferencedQuantity { get; }
 	}
 }
 

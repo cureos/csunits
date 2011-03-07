@@ -8,15 +8,16 @@ using System;
 
 namespace Cureos.Measures
 {
-	public interface IQuantity
+/*	public interface IQuantity
+	{
+	} */
+
+	public interface IQuantity<Q> where Q : struct, IQuantity<Q>
 	{
 		EnumQuantity EnumeratedValue { get; }
 
 		QuantityDimensions Dimensions { get; }
-	}
 
-	public interface IQuantity<Q> : IQuantity where Q : struct, IQuantity<Q>
-	{
 		IUnit<Q> ReferenceUnit { get; }
 	}
 }

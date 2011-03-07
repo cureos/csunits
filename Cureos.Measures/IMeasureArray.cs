@@ -19,20 +19,23 @@ namespace Cureos.Measures
     public interface IMeasureArray
     {
         /// <summary>
-        /// Gets the array of measured amounts in the <see cref="Unit">current unit of measure</see>
+        /// Gets the array of measured amounts in the <see cref="IMeasureArray{Q}.Unit">current unit of measure</see>
         /// </summary>
         AmountType[] Amounts { get; }
+    }
 
+    public interface IMeasureArray<Q> : IMeasureArray where Q : struct, IQuantity<Q>
+    {
         /// <summary>
         /// Gets the unit of measure
         /// </summary>
-        EnumUnit Unit { get; }
+        IUnit<Q> Unit { get; }
 
         /// <summary>
         /// Gets the array of measured amounts in the <paramref name="iUnit">specified unit</paramref>
         /// </summary>
         /// <param name="iUnit">Unit in which the array of measured amounts should be returned</param>
         /// <returns>Array of measured amounts, given in the <paramref name="iUnit">specified unit</paramref></returns>
-        IEnumerable<AmountType> GetAmounts(EnumUnit iUnit);
+        IEnumerable<AmountType> GetAmounts(IUnit<Q> iUnit);
     }
 }
