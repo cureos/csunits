@@ -316,6 +316,16 @@ namespace Tests.Cureos.Measures
             var mass = new Measure<Mass>(1.0);
             var throws = length + mass;
         }
+
+        [Test]
+        public void GetAmount_UsingIUnit_ValidConversion()
+        {
+            var expected = AmountConverter.ToAmountType(500.0);
+            var instance = new Measure<Length, Meter>(5.0);
+            var actual = instance.GetAmount(Units.CentiMeter);
+            Assert.AreEqual(expected, actual);
+        }
+
         #endregion
     }
 }

@@ -13,11 +13,16 @@ namespace Cureos.Measures.Units
     {
         #region Implementation of IUnit<Length>
 
-        public Unit EnumeratedValue
+        public Unit EnumeratedUnit
         {
             get { return Unit.CentiMeter; }
         }
 
         #endregion
+
+        public Length Quantity
+        {
+            get { return default(Length); }
+        }
     }
 }

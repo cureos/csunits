@@ -129,6 +129,11 @@ namespace Cureos.Measures
 				iUnit, this.GetQuantity()));
 		}
 
+		public double GetAmount(IUnit iUnit)
+		{
+			throw new NotImplementedException();
+		}
+
 		/// <summary>
 		/// Indicates whether the current object is equal to another object of the same type.
 		/// </summary>
@@ -647,7 +652,7 @@ namespace Cureos.Measures
 	/// Quantity-typed representation of a single measure
 	/// </summary>
 	/// <typeparam name="Q">Struct type implementing the IQuantity interface</typeparam>
-	public struct Measure<Q> : IMeasure, IEquatable<Measure<Q>>, IComparable<Measure<Q>> where Q : struct, IQuantity
+	public struct Measure<Q> : IMeasure<Q>, IEquatable<Measure<Q>>, IComparable<Measure<Q>> where Q : struct, IQuantity
 	{
 		#region MEMBER VARIABLES
 
@@ -798,6 +803,16 @@ iAmount);
 			throw new InvalidOperationException(
 				String.Format("Quantity of unit {0} is not equal to measured quantity {1}",
 				iUnit, Quantity<Q>.Value));
+		}
+
+		public double GetAmount(IUnit iUnit)
+		{
+			return GetAmount(iUnit.EnumeratedUnit);
+		}
+
+		public double GetAmount(IUnit<Q> iUnit)
+		{
+			return iUnit.EnumeratedUnit.ConvertAmountFromReferenceUnit(mAmount);
 		}
 
 		/// <summary>
@@ -1093,7 +1108,7 @@ iAmount);
 		#endregion
 	}
 	
-	public struct Measure<Q, U> : IMeasure where U : struct, IUnit<Q> where Q : struct, IQuantity
+	public struct Measure<Q, U> : IMeasure<Q> where U : struct, IUnit<Q> where Q : struct, IQuantity
 	{
 		#region MEMBER VARIABLES
 
@@ -1136,6 +1151,20 @@ iAmount);
 		public AmountType GetAmount(Unit iUnit)
 		{
 			return iUnit.ConvertAmountFromReferenceUnit(this.GetReferenceUnitAmount());
+		}
+
+		public double GetAmount(IUnit iUnit)
+		{
+			return GetAmount(iUnit.EnumeratedUnit);
+		}
+
+		#endregion
+
+		#region Implementation of IMeasure<Q>
+
+		public double GetAmount(IUnit<Q> iUnit)
+		{
+			return GetAmount(iUnit.EnumeratedUnit);
 		}
 
 		#endregion

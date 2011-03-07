@@ -4,15 +4,26 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
+using System;
 using Cureos.Measures.Quantities;
 
 namespace Cureos.Measures.Units
 {
 	public struct Meter : IUnit<Length>
 	{
-		public Unit EnumeratedValue
+		public Unit EnumeratedUnit
 		{
 			get { return Unit.Meter; }
+		}
+
+		public Length Quantity
+		{
+			get { return default(Length); }
+		}
+
+		public IUnit<Length> ReferenceUnit
+		{
+			get { return Quantity.ReferenceUnit; }
 		}
 	}
 }

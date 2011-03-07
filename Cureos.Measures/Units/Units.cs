@@ -4,13 +4,13 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
-namespace Cureos.Measures.Extensions
+using Cureos.Measures.Quantities;
+
+namespace Cureos.Measures.Units
 {
-    internal static class Unit<Q, U> where U : struct, IUnit<Q> where Q : struct, IQuantity
+    public static class Units
     {
-        internal static Unit Value
-        {
-            get { return default(U).EnumeratedUnit; }
-        }
+        public static readonly IUnit<Length> Meter = default(Meter);
+        public static readonly IUnit<Length> CentiMeter = default(CentiMeter);
     }
 }

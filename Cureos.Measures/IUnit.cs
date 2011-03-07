@@ -6,9 +6,14 @@
 
 namespace Cureos.Measures
 {
-	public interface IUnit<Q> where Q : struct, IQuantity
+	public interface IUnit
 	{
-		Unit EnumeratedValue { get; }
+		Unit EnumeratedUnit { get; }
+	}
+
+	public interface IUnit<Q> : IUnit where Q : struct, IQuantity
+	{
+		Q Quantity { get; }
 	}
 }
 

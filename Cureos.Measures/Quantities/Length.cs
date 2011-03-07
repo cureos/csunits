@@ -12,6 +12,11 @@ namespace Cureos.Measures.Quantities
 		{
 			get { return Quantity.Length; }
 		}
+
+		public IUnit<Length> ReferenceUnit
+		{
+			get { return Units.Units.Meter; }
+		}
 	}
 }
 

@@ -68,6 +68,7 @@
     <Compile Include="IUnit.cs" />
     <Compile Include="Units\CentiMeter.cs" />
     <Compile Include="Units\Meter.cs" />
+    <Compile Include="Units\Units.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
