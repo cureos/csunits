@@ -18,54 +18,54 @@ using AmountType = System.Double;
 
 namespace Tests.Cureos.Measures
 {
-    public class AmountComparer : IComparer
-    {
-        public static readonly AmountComparer Instance;
+	public class AmountComparer : IComparer
+	{
+		public static readonly AmountComparer Instance;
 
-        private static readonly AmountType smkEqualityTolerance;
+		private static readonly AmountType smkEqualityTolerance;
 
-        #region CONSTRUCTORS
+		#region CONSTRUCTORS
 
-        static AmountComparer()
-        {
-            smkEqualityTolerance = AmountConverter.ToAmountType(1.0e-6);
-            Instance = new AmountComparer();
-        }
+		static AmountComparer()
+		{
+			smkEqualityTolerance = AmountConverter.ToAmountType(1.0e-6);
+			Instance = new AmountComparer();
+		}
 
-        #endregion
-        
-        #region Implementation of IComparer
+		#endregion
+		
+		#region Implementation of IComparer
 
-        /// <summary>
-        /// Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other.
-        /// </summary>
-        /// <returns>
-        /// Value 
-        ///                     Condition 
-        ///                     Less than zero 
-        ///                 <paramref name="x"/> is less than <paramref name="y"/>. 
-        ///                     Zero 
-        ///                 <paramref name="x"/> equals <paramref name="y"/>. 
-        ///                     Greater than zero 
-        ///                 <paramref name="x"/> is greater than <paramref name="y"/>. 
-        /// </returns>
-        /// <param name="x">The first object to compare. 
-        ///                 </param><param name="y">The second object to compare. 
-        ///                 </param><exception cref="T:System.ArgumentException">Neither <paramref name="x"/> nor <paramref name="y"/> implements the <see cref="T:System.IComparable"/> interface.
-        ///                     -or- 
-        ///                 <paramref name="x"/> and <paramref name="y"/> are of different types and neither one can handle comparisons with the other. 
-        ///                 </exception><filterpriority>2</filterpriority>
-        public int Compare(object x, object y)
-        {
+		/// <summary>
+		/// Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other.
+		/// </summary>
+		/// <returns>
+		/// Value 
+		///                     Condition 
+		///                     Less than zero 
+		///                 <paramref name="x"/> is less than <paramref name="y"/>. 
+		///                     Zero 
+		///                 <paramref name="x"/> equals <paramref name="y"/>. 
+		///                     Greater than zero 
+		///                 <paramref name="x"/> is greater than <paramref name="y"/>. 
+		/// </returns>
+		/// <param name="x">The first object to compare. 
+		///                 </param><param name="y">The second object to compare. 
+		///                 </param><exception cref="T:System.ArgumentException">Neither <paramref name="x"/> nor <paramref name="y"/> implements the <see cref="T:System.IComparable"/> interface.
+		///                     -or- 
+		///                 <paramref name="x"/> and <paramref name="y"/> are of different types and neither one can handle comparisons with the other. 
+		///                 </exception><filterpriority>2</filterpriority>
+		public int Compare(object x, object y)
+		{
 			if (x is AmountType && y is AmountType)
 			{
-	            AmountType diff = (AmountType)x - (AmountType)y;
-	            return diff < -smkEqualityTolerance ? -1 : diff < smkEqualityTolerance ? 0 : 1;
+				AmountType diff = (AmountType)x - (AmountType)y;
+				return diff < -smkEqualityTolerance ? -1 : diff < smkEqualityTolerance ? 0 : 1;
 			}
 			throw new InvalidOperationException(String.Format("Compared objects are not of the required amount type: {0}; {1}",
-			                                                  x.GetType(), y.GetType()));
-        }
+															  x.GetType(), y.GetType()));
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }

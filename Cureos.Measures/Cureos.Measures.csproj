@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\Quantity.cs" />
+    <Compile Include="Extensions\Unit.cs" />
     <Compile Include="IMeasureArray.cs" />
     <Compile Include="Extensions\IMeasureExtensions.cs" />
     <Compile Include="Measure.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Quantities\Volume.cs" />
     <Compile Include="Quantity.cs" />
     <Compile Include="Extensions\QuantityExtensions.cs" />
+    <Compile Include="Scales.cs" />
     <Compile Include="Unit.cs" />
     <Compile Include="Extensions\UnitExtensions.cs" />
     <Compile Include="Extensions\QuantityDimensions.cs" />
@@ -75,7 +77,5 @@
   </Target>
   -->
   <ItemGroup />
-  <ItemGroup>
-    <Folder Include="Units\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

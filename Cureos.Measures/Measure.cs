@@ -1093,7 +1093,7 @@ iAmount);
 		#endregion
 	}
 	
-	public struct Measure<U> : IMeasure where U : struct, IUnit<Q> where Q : struct, IQuantity
+	public struct Measure<Q, U> : IMeasure where U : struct, IUnit<Q> where Q : struct, IQuantity
 	{
 		private readonly AmountType mAmount;
 		
@@ -1101,6 +1101,35 @@ iAmount);
 		{
 			mAmount = iAmount;
 		}
-		
+
+		#region Implementation of IMeasure
+
+		/// <summary>
+		/// Gets the measured amount in the <see cref="Unit">current unit of measure</see>
+		/// </summary>
+		public AmountType Amount
+		{
+			get { return mAmount; }
+		}
+
+		/// <summary>
+		/// Gets the unit of measure
+		/// </summary>
+		public Unit Unit
+		{
+			get { return Unit<Q, U>.Value; }
+		}
+
+		/// <summary>
+		/// Gets the amount of this measure in the requested unit
+		/// </summary>
+		/// <param name="iUnit">Unit to which the measured amount should be converted</param>
+		/// <returns>Measured amount converted into <paramref name="iUnit">specified unit</paramref></returns>
+		public AmountType GetAmount(Unit iUnit)
+		{
+			return iUnit.ConvertAmountFromReferenceUnit(this.GetReferenceUnitAmount());
+		}
+
+		#endregion
 	}
 }

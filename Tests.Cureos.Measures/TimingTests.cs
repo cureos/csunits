@@ -11,84 +11,79 @@ using NUnit.Framework;
 
 namespace Tests.Cureos.Measures
 {
-    [TestFixture]
-    public class TimingTests
-    {
-        private const int no = 1000000;
+	[TestFixture]
+	public class TimingTests
+	{
+		private const int no = 1000000;
 
-        [Test]
-        public void TimeDoubleAdditions()
-        {
-            DateTime start = DateTime.Now;
-            double val = 0.0;
-            for (int i = 0; i < no; ++i)
-            {
-                val += (double) i;
-            }
-            DateTime stop = DateTime.Now;
-#if NUNIT24
-			Assert.Ignore
-#else
-            Assert.Pass
-#endif
-					("Sum: {0}, timing {1} ms", val, (stop.Ticks - start.Ticks) / 10000);
-        }
+		[Test]
+		public void TimeDoubleAdditions()
+		{
+			PerformTiming(() =>
+							  {
+								  double val = 0.0;
+								  for (int i = 0; i < no; ++i)
+								  {
+									  val += (double) i;
+								  }
+								  return val;
+							  });
+		}
 
-        [Test]
-        public void TimeMeasureAdditionsSameUnit()
-        {
-            DateTime start = DateTime.Now;
-            var val = new Measure(0.0, Unit.KiloGram);
-            for (int i = 0; i < no; ++i)
-            {
-                val += new Measure((double)i, Unit.KiloGram);
-            }
-            DateTime stop = DateTime.Now;
+		[Test]
+		public void TimeMeasureAdditionsSameUnit()
+		{
+			PerformTiming(() =>
+							  {
+								  var val = new Measure(0.0, Unit.KiloGram);
+								  for (int i = 0; i < no; ++i)
+								  {
+									  val += new Measure((double) i, Unit.KiloGram);
+								  }
+								  return val;
+							  });
+		}
 
-#if NUNIT24
-			Assert.Ignore
-#else
-            Assert.Pass
-#endif
-					("Sum: {0}, timing {1} ms", val, (stop.Ticks - start.Ticks) / 10000);
-        }
+		[Test]
+		public void TimeMeasureAdditionsToDifferentUnit()
+		{
+			PerformTiming(() =>
+							  {
+								  var val = new Measure(0.0, Unit.KiloGram);
+								  for (int i = 0; i < no; ++i)
+								  {
+									  val += new Measure((double) i, Unit.Gram);
+								  }
+								  return val;
+							  });
+		}
 
-        [Test]
-        public void TimeMeasureAdditionsToDifferentUnit()
-        {
-            DateTime start = DateTime.Now;
-            var val = new Measure(0.0, Unit.KiloGram);
-            for (int i = 0; i < no; ++i)
-            {
-                val += new Measure((double)i, Unit.Gram);
-            }
-            DateTime stop = DateTime.Now;
+		[Test]
+		public void TimeGenericMeasureAdditionsSameUnit()
+		{
+			PerformTiming(() =>
+							  {
+								  var val = new Measure<Length>(0.0);
+								  for (int i = 0; i < no; ++i)
+								  {
+									  val += new Measure<Length>((double)i);
+								  }
+								  return val;
+							  });
+		}
 
-#if NUNIT24
-			Assert.Ignore
-#else
-            Assert.Pass
-#endif
-				("Sum: {0}, timing {1} ms", val, (stop.Ticks - start.Ticks) / 10000);
-        }
-
-        [Test]
-        public void TimeGenericMeasureAdditionsSameUnit()
-        {
-            DateTime start = DateTime.Now;
-            var val = new Measure<Length>(0.0);
-            for (int i = 0; i < no; ++i)
-            {
-                val += new Measure<Length>((double)i);
-            }
-            DateTime stop = DateTime.Now;
+		private static void PerformTiming(Func<object> a)
+		{
+			DateTime start = DateTime.Now;
+			var val = a.Invoke();
+			DateTime stop = DateTime.Now;
 
 #if NUNIT24
 			Assert.Ignore
 #else
-            Assert.Pass
+			Assert.Pass
 #endif
 				("Sum: {0}, timing {1} ms", val, (stop.Ticks - start.Ticks) / 10000);
-        }
-    }
+		}
+	}
 }
