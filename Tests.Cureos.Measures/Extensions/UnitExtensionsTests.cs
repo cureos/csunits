@@ -19,9 +19,9 @@ namespace Tests.Cureos.Measures.Extensions
         [Test]
         public void GetUnitsOf_QuantityVolume_ContainsLiterAndCubicDeciMeter()
         {
-            var volumeUnits = UnitExtensions.GetUnits(Quantity.Volume);
-            Assert.IsTrue(volumeUnits.Contains(Unit.Liter));
-            Assert.IsTrue(volumeUnits.Contains(Unit.CubicDeciMeter));
+            var volumeUnits = UnitExtensions.GetUnits(EnumQuantity.Volume);
+            Assert.IsTrue(volumeUnits.Contains(EnumUnit.Liter));
+            Assert.IsTrue(volumeUnits.Contains(EnumUnit.CubicDeciMeter));
         }
 
         #endregion

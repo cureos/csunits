@@ -19,13 +19,13 @@ using AmountType = System.Double;
 namespace Cureos.Measures.Extensions
 {
     /// <summary>
-    /// Helper class providing extension methods for the <see cref="Unit">Unit enumeration</see>
+    /// Helper class providing extension methods for the <see cref="EnumUnit">Unit enumeration</see>
     /// </summary>
     public static class UnitExtensions
     {
         #region STATIC MEMBER VARIABLES
 
-        private static readonly Dictionary<Unit, UnitDetails> smUnitDetailsMap;
+        private static readonly Dictionary<EnumUnit, UnitDetails> smUnitDetailsMap;
 
         #endregion
 
@@ -39,33 +39,33 @@ namespace Cureos.Measures.Extensions
         {
             smUnitDetailsMap = new UnitDetails[]
                                    {
-                                       new UnitDetails(Unit.Meter, Quantity.Length, "m"),
-                                       new UnitDetails(Unit.DeciMeter, Quantity.Length, "dm", Scales.Deci),
-                                       new UnitDetails(Unit.CentiMeter, Quantity.Length, "cm", Scales.Centi),
-                                       new UnitDetails(Unit.MilliMeter, Quantity.Length, "mm", Scales.Milli),
-                                       new UnitDetails(Unit.SquareMeter, Quantity.Area, "m²"),
-                                       new UnitDetails(Unit.SquareDeciMeter, Quantity.Area, "dm²", Scales.Square(Scales.Deci)),
-                                       new UnitDetails(Unit.SquareCentiMeter, Quantity.Area, "cm²", Scales.Square(Scales.Centi)),
-                                       new UnitDetails(Unit.CubicMeter, Quantity.Volume, "m³"),
-                                       new UnitDetails(Unit.Liter, Quantity.Volume, "l", Scales.Cube(Scales.Deci)),
-                                       new UnitDetails(Unit.CubicDeciMeter, Quantity.Volume, "dm³", Scales.Cube(Scales.Deci)),
-                                       new UnitDetails(Unit.CubicCentiMeter, Quantity.Volume, "cm³", Scales.Cube(Scales.Centi)),
-                                       new UnitDetails(Unit.KiloGram, Quantity.Mass, "kg"),
-                                       new UnitDetails(Unit.Tonne, Quantity.Mass, "t", Scales.Kilo),
-                                       new UnitDetails(Unit.HectoGram, Quantity.Mass, "hg", Scales.Deci),
-                                       new UnitDetails(Unit.Gram, Quantity.Mass, "g", Scales.Milli),
-                                       new UnitDetails(Unit.Second, Quantity.Time, "s"),
-                                       new UnitDetails(Unit.Minute, Quantity.Time, "min", Scales.SecondsPerMinute),
-                                       new UnitDetails(Unit.Hour, Quantity.Time, "h", Scales.SecondsPerHour),
-                                       new UnitDetails(Unit.Day, Quantity.Time, "dy", Scales.SecondsPerDay),
-                                       new UnitDetails(Unit.Week, Quantity.Time, "wk", Scales.SecondsPerWeek),
-                                       new UnitDetails(Unit.Kelvin, Quantity.Temperature, "K"),
-                                       new UnitDetails(Unit.Celsius, Quantity.Temperature, "°C",
+                                       new UnitDetails(EnumUnit.Meter, EnumQuantity.Length, "m"),
+                                       new UnitDetails(EnumUnit.DeciMeter, EnumQuantity.Length, "dm", Scales.Deci),
+                                       new UnitDetails(EnumUnit.CentiMeter, EnumQuantity.Length, "cm", Scales.Centi),
+                                       new UnitDetails(EnumUnit.MilliMeter, EnumQuantity.Length, "mm", Scales.Milli),
+                                       new UnitDetails(EnumUnit.SquareMeter, EnumQuantity.Area, "m²"),
+                                       new UnitDetails(EnumUnit.SquareDeciMeter, EnumQuantity.Area, "dm²", Scales.Square(Scales.Deci)),
+                                       new UnitDetails(EnumUnit.SquareCentiMeter, EnumQuantity.Area, "cm²", Scales.Square(Scales.Centi)),
+                                       new UnitDetails(EnumUnit.CubicMeter, EnumQuantity.Volume, "m³"),
+                                       new UnitDetails(EnumUnit.Liter, EnumQuantity.Volume, "l", Scales.Cube(Scales.Deci)),
+                                       new UnitDetails(EnumUnit.CubicDeciMeter, EnumQuantity.Volume, "dm³", Scales.Cube(Scales.Deci)),
+                                       new UnitDetails(EnumUnit.CubicCentiMeter, EnumQuantity.Volume, "cm³", Scales.Cube(Scales.Centi)),
+                                       new UnitDetails(EnumUnit.KiloGram, EnumQuantity.Mass, "kg"),
+                                       new UnitDetails(EnumUnit.Tonne, EnumQuantity.Mass, "t", Scales.Kilo),
+                                       new UnitDetails(EnumUnit.HectoGram, EnumQuantity.Mass, "hg", Scales.Deci),
+                                       new UnitDetails(EnumUnit.Gram, EnumQuantity.Mass, "g", Scales.Milli),
+                                       new UnitDetails(EnumUnit.Second, EnumQuantity.Time, "s"),
+                                       new UnitDetails(EnumUnit.Minute, EnumQuantity.Time, "min", Scales.SecondsPerMinute),
+                                       new UnitDetails(EnumUnit.Hour, EnumQuantity.Time, "h", Scales.SecondsPerHour),
+                                       new UnitDetails(EnumUnit.Day, EnumQuantity.Time, "dy", Scales.SecondsPerDay),
+                                       new UnitDetails(EnumUnit.Week, EnumQuantity.Time, "wk", Scales.SecondsPerWeek),
+                                       new UnitDetails(EnumUnit.Kelvin, EnumQuantity.Temperature, "K"),
+                                       new UnitDetails(EnumUnit.Celsius, EnumQuantity.Temperature, "°C",
                                                        a => a + Scales.CelsiusKelvinDifference, a => a - Scales.CelsiusKelvinDifference),
-                                       new UnitDetails(Unit.Joule, Quantity.Energy, "J"),
-                                       new UnitDetails(Unit.KiloJoule, Quantity.Energy, "kJ", Scales.Kilo),
-                                       new UnitDetails(Unit.Gray, Quantity.AbsorbedDose, "Gy"),
-                                       new UnitDetails(Unit.CentiGray, Quantity.AbsorbedDose, "cGy", Scales.Centi)
+                                       new UnitDetails(EnumUnit.Joule, EnumQuantity.Energy, "J"),
+                                       new UnitDetails(EnumUnit.KiloJoule, EnumQuantity.Energy, "kJ", Scales.Kilo),
+                                       new UnitDetails(EnumUnit.Gray, EnumQuantity.AbsorbedDose, "Gy"),
+                                       new UnitDetails(EnumUnit.CentiGray, EnumQuantity.AbsorbedDose, "cGy", Scales.Centi)
                                    }.ToDictionary(ud => ud.Unit);
         }
 
@@ -78,7 +78,7 @@ namespace Cureos.Measures.Extensions
         /// </summary>
         /// <param name="iUnit">Unit for which the associated quantity is requested</param>
         /// <returns>Quantity associated with the specified unit</returns>
-        public static Quantity GetQuantity(this Unit iUnit)
+        public static EnumQuantity GetQuantity(this EnumUnit iUnit)
         {
             return smUnitDetailsMap[iUnit].Quantity;
         }
@@ -88,7 +88,7 @@ namespace Cureos.Measures.Extensions
         /// </summary>
         /// <param name="iUnit">Unit for which the reference unit is requested</param>
         /// <returns>Reference unit of the specified unit</returns>
-        public static Unit GetReferenceUnit(this Unit iUnit)
+        public static EnumUnit GetReferenceUnit(this EnumUnit iUnit)
         {
             return GetQuantity(iUnit).GetReferenceUnit();
         }
@@ -98,7 +98,7 @@ namespace Cureos.Measures.Extensions
         /// </summary>
         /// <param name="iUnit">Unit for which the text symbol is requested</param>
         /// <returns>Text symbol for the specified unit</returns>
-        public static string GetSymbol(this Unit iUnit)
+        public static string GetSymbol(this EnumUnit iUnit)
         {
             return smUnitDetailsMap[iUnit].Symbol;
         }
@@ -110,7 +110,7 @@ namespace Cureos.Measures.Extensions
         /// <param name="iFromUnit">Unit of the measured amount</param>
         /// <param name="iFromUnitAmount">Measured amount in the specified unit</param>
         /// <returns>Amount given in the reference unit of the <paramref name="iFromUnit">specified unit</paramref></returns>
-        public static AmountType ConvertAmountToReferenceUnit(this Unit iFromUnit, AmountType iFromUnitAmount)
+        public static AmountType ConvertAmountToReferenceUnit(this EnumUnit iFromUnit, AmountType iFromUnitAmount)
         {
             return smUnitDetailsMap[iFromUnit].AmountToReferenceUnitConverter(iFromUnitAmount);
         }
@@ -122,7 +122,7 @@ namespace Cureos.Measures.Extensions
         /// <param name="iToUnit">Unit into which the reference unit amount should be converted</param>
         /// <param name="iReferenceUnitAmount">Measured amount in the reference unit</param>
         /// <returns>Amount given in the <paramref name="iToUnit">specified unit</paramref> of the reference unit</returns>
-        public static AmountType ConvertAmountFromReferenceUnit(this Unit iToUnit, AmountType iReferenceUnitAmount)
+        public static AmountType ConvertAmountFromReferenceUnit(this EnumUnit iToUnit, AmountType iReferenceUnitAmount)
         {
             return smUnitDetailsMap[iToUnit].AmountFromReferenceUnitConverter(iReferenceUnitAmount);
         }
@@ -136,7 +136,7 @@ namespace Cureos.Measures.Extensions
         /// </summary>
         /// <param name="iQuantity">Quantity for which the collection of units is requested</param>
         /// <returns>Collection of units associated with the <paramref name="iQuantity">specified quantity</paramref></returns>
-        internal static IEnumerable<Unit> GetUnits(Quantity iQuantity)
+        internal static IEnumerable<EnumUnit> GetUnits(EnumQuantity iQuantity)
         {
             return smUnitDetailsMap.Where(kv => kv.Value.Quantity.Equals(iQuantity)).Select(kv => kv.Key);
         }
@@ -159,7 +159,7 @@ namespace Cureos.Measures.Extensions
             /// <param name="iUnit">Unit instance</param>
             /// <param name="iQuantity">Quantity for which this unit is reference unit</param>
             /// <param name="iSymbol">Unit symbol</param>
-            internal UnitDetails(Unit iUnit, Quantity iQuantity, string iSymbol)
+            internal UnitDetails(EnumUnit iUnit, EnumQuantity iQuantity, string iSymbol)
             {
                 Unit = iUnit;
                 Quantity = iQuantity;
@@ -175,7 +175,7 @@ namespace Cureos.Measures.Extensions
             /// <param name="iQuantity">Physical quantity associated with this unit</param>
             /// <param name="iSymbol">Unit symbol</param>
             /// <param name="iAmountToReferenceUnitFactor">Multiplicative factor for amount conversion to reference unit</param>
-            internal UnitDetails(Unit iUnit, Quantity iQuantity, string iSymbol, AmountType iAmountToReferenceUnitFactor)
+            internal UnitDetails(EnumUnit iUnit, EnumQuantity iQuantity, string iSymbol, AmountType iAmountToReferenceUnitFactor)
             {
                 Unit = iUnit;
                 Quantity = iQuantity;
@@ -192,7 +192,7 @@ namespace Cureos.Measures.Extensions
             /// <param name="iSymbol">Unit symbol</param>
             /// <param name="iAmountToReferenceUnitConverter">Function converting amount in this unit to reference unit amount</param>
             /// <param name="iAmountFromReferenceUnitConverter">Function converting reference unit amount to amount in this unit</param>
-            internal UnitDetails(Unit iUnit, Quantity iQuantity, string iSymbol,
+            internal UnitDetails(EnumUnit iUnit, EnumQuantity iQuantity, string iSymbol,
                 Func<AmountType, AmountType> iAmountToReferenceUnitConverter,
                 Func<AmountType, AmountType> iAmountFromReferenceUnitConverter)
             {
@@ -210,9 +210,9 @@ namespace Cureos.Measures.Extensions
             /// <summary>
             /// Gets the quantity associated with this unit
             /// </summary>
-            internal Quantity Quantity { get; private set; }
+            internal EnumQuantity Quantity { get; private set; }
 
-            internal Unit Unit { get; private set; }
+            internal EnumUnit Unit { get; private set; }
 
             /// <summary>
             /// Gets the unit symbol

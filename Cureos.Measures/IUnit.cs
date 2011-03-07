@@ -4,16 +4,32 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
+using System;
+
+#if SINGLE
+using AmountType = System.Single;
+#elif DECIMAL
+using AmountType = System.Decimal;
+#elif DOUBLE
+using AmountType = System.Double;
+#endif
+
 namespace Cureos.Measures
 {
 	public interface IUnit
 	{
-		Unit EnumeratedUnit { get; }
+		EnumUnit EnumeratedUnit { get; }
+
+		string Symbol { get; }
+
+		Func<AmountType, AmountType> AmountToReferenceUnitConverter { get; }
+
+		Func<AmountType, AmountType> AmountFromReferenceUnitConverter { get; }
 	}
 
-	public interface IUnit<Q> : IUnit where Q : struct, IQuantity
+	public interface IUnit<Q> : IUnit where Q : struct, IQuantity<Q>
 	{
-		Q Quantity { get; }
+		IQuantity<Q> ReferencedQuantity { get; }
 	}
 }
 

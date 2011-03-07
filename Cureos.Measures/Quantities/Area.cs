@@ -4,13 +4,28 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
+using System;
+using Cureos.Measures.Units;
+
 namespace Cureos.Measures.Quantities
 {
-    public struct Area : IQuantity
+    public struct Area : IQuantity<Area>
     {
-        public Quantity EnumeratedValue
+        private static readonly QuantityDimensions smkDimensions = new QuantityDimensions(2, 0, 0, 0, 0, 0, 0);
+
+        public EnumQuantity EnumeratedValue
         {
-            get { return Quantity.Area; }
+            get { throw new NotImplementedException(); }
+        }
+
+        public QuantityDimensions Dimensions
+        {
+            get { return smkDimensions; }
+        }
+
+        public IUnit<Area> ReferenceUnit
+        {
+            get { return Unit.SquareMeter; }
         }
     }
 }

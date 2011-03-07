@@ -11,13 +11,13 @@ using System.Linq;
 namespace Cureos.Measures.Extensions
 {
 	/// <summary>
-	/// Support class providing extension methods for the <see cref="Quantity">Quantity enumeration</see>
+	/// Support class providing extension methods for the <see cref="EnumQuantity">Quantity enumeration</see>
 	/// </summary>
 	public static class QuantityExtensions
 	{
 		#region STATIC MEMBERS
 
-		private static readonly Dictionary<Quantity, QuantityDetails> smDetailsMap;
+		private static readonly Dictionary<EnumQuantity, QuantityDetails> smDetailsMap;
 
 		#endregion
 
@@ -30,14 +30,14 @@ namespace Cureos.Measures.Extensions
 		{
 			smDetailsMap = new List<QuantityDetails>
 							   {
-								   new QuantityDetails(Quantity.Length, new QuantityDimensions(1, 0, 0, 0, 0, 0, 0)),
-								   new QuantityDetails(Quantity.Area, new QuantityDimensions(2, 0, 0, 0, 0, 0, 0)),
-								   new QuantityDetails(Quantity.Volume, new QuantityDimensions(3, 0, 0, 0, 0, 0, 0)),
-								   new QuantityDetails(Quantity.Mass, new QuantityDimensions(0, 1, 0, 0, 0, 0, 0)),
-								   new QuantityDetails(Quantity.Time, new QuantityDimensions(0, 0, 1, 0, 0, 0, 0)),
-								   new QuantityDetails(Quantity.Temperature, new QuantityDimensions(0, 0, 0, 0, 1, 0, 0)),
-								   new QuantityDetails(Quantity.Energy, new QuantityDimensions(2, 1, -2, 0, 0, 0, 0)),
-								   new QuantityDetails(Quantity.AbsorbedDose, new QuantityDimensions(2, 0, -2, 0, 0, 0, 0))
+								   new QuantityDetails(EnumQuantity.Length, new QuantityDimensions(1, 0, 0, 0, 0, 0, 0)),
+								   new QuantityDetails(EnumQuantity.Area, new QuantityDimensions(2, 0, 0, 0, 0, 0, 0)),
+								   new QuantityDetails(EnumQuantity.Volume, new QuantityDimensions(3, 0, 0, 0, 0, 0, 0)),
+								   new QuantityDetails(EnumQuantity.Mass, new QuantityDimensions(0, 1, 0, 0, 0, 0, 0)),
+								   new QuantityDetails(EnumQuantity.Time, new QuantityDimensions(0, 0, 1, 0, 0, 0, 0)),
+								   new QuantityDetails(EnumQuantity.Temperature, new QuantityDimensions(0, 0, 0, 0, 1, 0, 0)),
+								   new QuantityDetails(EnumQuantity.Energy, new QuantityDimensions(2, 1, -2, 0, 0, 0, 0)),
+								   new QuantityDetails(EnumQuantity.AbsorbedDose, new QuantityDimensions(2, 0, -2, 0, 0, 0, 0))
 							   }.ToDictionary(qd => qd.Quantity);
 		}
 
@@ -52,7 +52,7 @@ namespace Cureos.Measures.Extensions
 		/// <param name="iReferenceUnit">Reference unit</param>
 		/// <remarks>The reference unit can only be set once for each quantity; if an attempt is made to set the reference unit
 		/// of one quantity multiple times, the underlying property setter will throw</remarks>
-		public static void SetReferenceUnit(this Quantity iQuantity, Unit iReferenceUnit)
+		public static void SetReferenceUnit(this EnumQuantity iQuantity, EnumUnit iReferenceUnit)
 		{
 			smDetailsMap[iQuantity].ReferenceUnit = iReferenceUnit;
 		}
@@ -64,7 +64,7 @@ namespace Cureos.Measures.Extensions
 		/// <returns>Reference unit of the specified quantity</returns>
 		/// <remarks>If the reference unit has not been defined for the specified quantity, the underlying property getter
 		/// will throw</remarks>
-		public static Unit GetReferenceUnit(this Quantity iQuantity)
+		public static EnumUnit GetReferenceUnit(this EnumQuantity iQuantity)
 		{
 			return smDetailsMap[iQuantity].ReferenceUnit;
 		}
@@ -74,7 +74,7 @@ namespace Cureos.Measures.Extensions
 		/// </summary>
 		/// <param name="iQuantity">Quantity for which supported units is requester</param>
 		/// <returns>Collection of units supported by the specified quantity</returns>
-		public static IEnumerable<Unit> GetSupportedUnits(this Quantity iQuantity)
+		public static IEnumerable<EnumUnit> GetSupportedUnits(this EnumQuantity iQuantity)
 		{
 			return smDetailsMap[iQuantity].SupportedUnits;
 		}
@@ -88,7 +88,7 @@ namespace Cureos.Measures.Extensions
 		/// <param name="iRhs">Second quantity in multiplication</param>
 		/// <returns>true if the quantity "product" matches the dimensions of the <paramref name="iQuantity">
 		/// specified quantity</paramref>, false otherwise</returns>
-		public static bool IsProductOf(this Quantity iQuantity, Quantity iLhs, Quantity iRhs)
+		public static bool IsProductOf(this EnumQuantity iQuantity, EnumQuantity iLhs, EnumQuantity iRhs)
 		{
 			return smDetailsMap[iQuantity].Dimensions.Equals(smDetailsMap[iLhs].Dimensions +
 															 smDetailsMap[iRhs].Dimensions);
@@ -103,7 +103,7 @@ namespace Cureos.Measures.Extensions
 		/// <param name="iDenominator">Denominator quantity in division</param>
 		/// <returns>true if the quantity "quotient" matches the dimensions of the <paramref name="iQuantity">
 		/// specified quantity</paramref>, false otherwise</returns>
-		public static bool IsQuotientOf(this Quantity iQuantity, Quantity iNumerator, Quantity iDenominator)
+		public static bool IsQuotientOf(this EnumQuantity iQuantity, EnumQuantity iNumerator, EnumQuantity iDenominator)
 		{
 			return smDetailsMap[iQuantity].Dimensions.Equals(smDetailsMap[iNumerator].Dimensions -
 															 smDetailsMap[iDenominator].Dimensions);
@@ -121,7 +121,7 @@ namespace Cureos.Measures.Extensions
 		/// <returns>The single listed quantity representing the product of the specified quantities</returns>
 		/// <exception cref="InvalidOperationException">if no resulting quantity could be identified,
 		/// or if there is more than one quantity matching the resulting quantity dimensions</exception>
-		internal static Quantity Times(Quantity iLhs, Quantity iRhs)
+		internal static EnumQuantity Times(EnumQuantity iLhs, EnumQuantity iRhs)
 		{
 			QuantityDimensions productDimensions = smDetailsMap[iLhs].Dimensions +
 													smDetailsMap[iRhs].Dimensions;
@@ -136,7 +136,7 @@ namespace Cureos.Measures.Extensions
 		/// <returns>The single listed quantity representing the quotient of the numerator and denominator quantities</returns>
 		/// <exception cref="InvalidOperationException">if no resulting quantity could be identified,
 		/// or if there is more than one quantity matching the resulting quantity dimensions</exception>
-		internal static Quantity Divide(Quantity iNumerator, Quantity iDenominator)
+		internal static EnumQuantity Divide(EnumQuantity iNumerator, EnumQuantity iDenominator)
 		{
 			QuantityDimensions quotientDimensions = smDetailsMap[iNumerator].Dimensions -
 													smDetailsMap[iDenominator].Dimensions;
@@ -154,18 +154,18 @@ namespace Cureos.Measures.Extensions
 		{
 			#region MEMBER VARIABLES
 
-			private Unit mReferenceUnit;
-			private IEnumerable<Unit> mSupportedUnits;
+			private EnumUnit mReferenceUnit;
+			private IEnumerable<EnumUnit> mSupportedUnits;
 	
 			#endregion
 			
 			#region CONSTRUCTORS
 
-			internal QuantityDetails(Quantity iQuantity, QuantityDimensions iDimensions)
+			internal QuantityDetails(EnumQuantity iQuantity, QuantityDimensions iDimensions)
 			{
 				Quantity = iQuantity;
 				Dimensions = iDimensions;
-				mReferenceUnit = Unit.None;
+				mReferenceUnit = EnumUnit.None;
 				mSupportedUnits = null;
 			}
 
@@ -173,7 +173,7 @@ namespace Cureos.Measures.Extensions
 
 			#region AUTO-IMPLEMENTED PROPERTIES
 			
-			internal Quantity Quantity { get; private set; }
+			internal EnumQuantity Quantity { get; private set; }
 			
 			internal QuantityDimensions Dimensions { get; private set; }
 
@@ -181,13 +181,13 @@ namespace Cureos.Measures.Extensions
 
 			#region PROPERTIES
 
-			internal Unit ReferenceUnit
+			internal EnumUnit ReferenceUnit
 			{
 				get
 				{
 					lock (this)
 					{
-						if (mReferenceUnit == Unit.None)
+						if (mReferenceUnit == EnumUnit.None)
 							throw new InvalidOperationException("ReferenceUnit is not defined for this quantity");
 					}
 					return mReferenceUnit;
@@ -196,14 +196,14 @@ namespace Cureos.Measures.Extensions
 				{
 					lock (this)
 					{
-						if (mReferenceUnit != Unit.None)
+						if (mReferenceUnit != EnumUnit.None)
 							throw new InvalidOperationException("Attempt to set already defined ReferenceUnit");
 						mReferenceUnit = value;
 					}
 				}
 			}
 
-			internal IEnumerable<Unit> SupportedUnits
+			internal IEnumerable<EnumUnit> SupportedUnits
 			{
 				get
 				{

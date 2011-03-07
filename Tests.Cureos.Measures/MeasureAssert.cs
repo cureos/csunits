@@ -28,7 +28,7 @@ namespace Tests.Cureos.Measures
 
         internal static void MeasuresAreEqual(IMeasure expected, IMeasure actual)
         {
-            if (actual.Unit == expected.Unit)
+            if (actual.EnumeratedUnit == expected.EnumeratedUnit)
             {
                 Assert.IsTrue(Math.Abs(actual.Amount - expected.Amount) < smkEqualityTolerance,
                     "Expected {0}, actual value {1}", expected, actual);
@@ -41,7 +41,7 @@ namespace Tests.Cureos.Measures
 
         internal static void AmountsAreEqual(IMeasure expected, IMeasure actual)
         {
-            if (actual.Unit == expected.Unit)
+            if (actual.EnumeratedUnit == expected.EnumeratedUnit)
             {
                 Assert.IsTrue(Math.Abs(actual.Amount - expected.Amount) < smkEqualityTolerance,
                     "Expected {0}, actual value {1}", expected, actual);

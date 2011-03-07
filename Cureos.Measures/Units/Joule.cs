@@ -9,9 +9,9 @@ using Cureos.Measures.Quantities;
 
 namespace Cureos.Measures.Units
 {
-    public partial struct CentiMeter : IUnit<Length>
+    public partial struct Joule : IUnit<Energy>
     {
-        #region Implementation of IUnit<Length>
+        #region Implementation of IUnit
 
         public EnumUnit EnumeratedUnit
         {
@@ -20,14 +20,18 @@ namespace Cureos.Measures.Units
 
         public string Symbol
         {
-            get { return "cm"; }
+            get { return "J"; }
         }
 
         #endregion
 
-        public IQuantity<Length> ReferencedQuantity
+        #region Implementation of IUnit<Energy>
+
+        public IQuantity<Energy> ReferencedQuantity
         {
-            get { return Quantity.Length; }
+            get { return Quantity.Energy; }
         }
+
+        #endregion
     }
 }

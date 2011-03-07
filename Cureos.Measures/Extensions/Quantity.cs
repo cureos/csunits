@@ -15,7 +15,7 @@ namespace Cureos.Measures.Extensions
         /// <summary>
         /// Gets the enumerated value corresponding to the specified IQuantity type
         /// </summary>
-        internal static Quantity Value
+        internal static EnumQuantity Value
         {
             get { return default(Q).EnumeratedValue; }
         }
@@ -23,7 +23,7 @@ namespace Cureos.Measures.Extensions
         /// <summary>
         /// Gets the reference unit associated with the specified IQuantity type
         /// </summary>
-        internal static Unit ReferenceUnit
+        internal static EnumUnit ReferenceUnit
         {
             get { return Value.GetReferenceUnit(); }
         }
@@ -34,7 +34,7 @@ namespace Cureos.Measures.Extensions
         /// <param name="iUnit">Unit for which quantity should be checked</param>
         /// <returns>true if the <paramref name="iUnit">specified unit</paramref> is of the specified IQuantity type,
         /// false otherwise</returns>
-        internal static bool IsQuantityOf(Unit iUnit)
+        internal static bool IsQuantityOf(EnumUnit iUnit)
         {
             return iUnit.GetQuantity() == Value;
         }
@@ -57,7 +57,7 @@ namespace Cureos.Measures.Extensions
         /// <param name="iLhs">First quantity in multiplication</param>
         /// <param name="iRhs">Second quantity in multiplication</param>
         /// <returns>true if the quantity "product" matches the dimensions of the given IQuantity type, false otherwise</returns>
-        internal static bool IsProductOf(Quantity iLhs, Quantity iRhs)
+        internal static bool IsProductOf(EnumQuantity iLhs, EnumQuantity iRhs)
         {
             return Value.IsProductOf(iLhs, iRhs);
         }
@@ -70,7 +70,7 @@ namespace Cureos.Measures.Extensions
         /// <param name="iDenominator">Denominator quantity in division</param>
         /// <returns>true if the quantity "quotient" matches the dimensions of the quantity given by the specified
         /// IQuantity type, false otherwise</returns>
-        internal static bool IsQuotientOf(Quantity iNumerator, Quantity iDenominator)
+        internal static bool IsQuotientOf(EnumQuantity iNumerator, EnumQuantity iDenominator)
         {
             return Value.IsQuotientOf(iNumerator, iDenominator);
         }

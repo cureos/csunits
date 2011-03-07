@@ -9,9 +9,9 @@ using Cureos.Measures.Quantities;
 
 namespace Cureos.Measures.Units
 {
-    public partial struct CentiMeter : IUnit<Length>
+    public partial struct Kelvin : IUnit<Temperature>
     {
-        #region Implementation of IUnit<Length>
+        #region Implementation of IUnit
 
         public EnumUnit EnumeratedUnit
         {
@@ -20,14 +20,18 @@ namespace Cureos.Measures.Units
 
         public string Symbol
         {
-            get { return "cm"; }
+            get { return "K"; }
         }
 
         #endregion
 
-        public IQuantity<Length> ReferencedQuantity
+        #region Implementation of IUnit<Temperature>
+
+        public IQuantity<Temperature> ReferencedQuantity
         {
-            get { return Quantity.Length; }
+            get { return Quantity.Temperature; }
         }
+
+        #endregion
     }
 }

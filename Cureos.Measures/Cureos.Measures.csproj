@@ -53,22 +53,31 @@
     <Compile Include="Quantities\Area.cs" />
     <Compile Include="Quantities\Energy.cs" />
     <Compile Include="Quantities\Mass.cs" />
+    <Compile Include="Quantities\Quantity.cs" />
     <Compile Include="Quantities\Temperature.cs" />
     <Compile Include="Quantities\Time.cs" />
     <Compile Include="Quantities\Volume.cs" />
-    <Compile Include="Quantity.cs" />
+    <Compile Include="EnumQuantity.cs" />
     <Compile Include="Extensions\QuantityExtensions.cs" />
     <Compile Include="Scales.cs" />
-    <Compile Include="Unit.cs" />
+    <Compile Include="EnumUnit.cs" />
     <Compile Include="Extensions\UnitExtensions.cs" />
-    <Compile Include="Extensions\QuantityDimensions.cs" />
+    <Compile Include="QuantityDimensions.cs" />
     <Compile Include="IMeasure.cs" />
     <Compile Include="IQuantity.cs" />
     <Compile Include="Quantities\Length.cs" />
     <Compile Include="IUnit.cs" />
     <Compile Include="Units\CentiMeter.cs" />
+    <Compile Include="Units\UnitConverters.cs" />
+    <Compile Include="Units\CubicMeter.cs" />
+    <Compile Include="Units\Gray.cs" />
+    <Compile Include="Units\Joule.cs" />
+    <Compile Include="Units\Kelvin.cs" />
+    <Compile Include="Units\KiloGram.cs" />
     <Compile Include="Units\Meter.cs" />
-    <Compile Include="Units\Units.cs" />
+    <Compile Include="Units\Second.cs" />
+    <Compile Include="Units\SquareMeter.cs" />
+    <Compile Include="Units\Unit.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

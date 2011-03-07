@@ -6,9 +6,9 @@
 
 namespace Cureos.Measures.Extensions
 {
-    internal static class Unit<Q, U> where U : struct, IUnit<Q> where Q : struct, IQuantity
+    internal static class Unit<Q, U> where U : struct, IUnit<Q> where Q : struct, IQuantity<Q>
     {
-        internal static Unit Value
+        internal static EnumUnit Value
         {
             get { return default(U).EnumeratedUnit; }
         }

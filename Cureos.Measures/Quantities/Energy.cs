@@ -5,15 +5,30 @@
 // http://www.eclipse.org/legal/epl-v10.html
 
 
+using System;
+using Cureos.Measures.Units;
+
 namespace Cureos.Measures.Quantities
 {
-    public struct Energy : IQuantity
+    public struct Energy : IQuantity<Energy>
     {
+        private static readonly QuantityDimensions smkDimensions = new QuantityDimensions(2, 1, -2, 0, 0, 0, 0);
+
         #region Implementation of IQuantity
 
-        public Quantity EnumeratedValue
+        public EnumQuantity EnumeratedValue
         {
-            get { return Quantity.Energy; }
+            get { throw new NotImplementedException(); }
+        }
+
+        public QuantityDimensions Dimensions
+        {
+            get { return smkDimensions; }
+        }
+
+        public IUnit<Energy> ReferenceUnit
+        {
+            get { return Unit.Joule; }
         }
 
         #endregion

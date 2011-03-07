@@ -18,16 +18,16 @@ namespace Tests.Cureos.Measures.Extensions
         [Test]
         public void GetSupportedUnits_QuantityLength_ContainsMeterAndMilliMeter()
         {
-            var lengthUnits = Quantity.Length.GetSupportedUnits();
-            CollectionAssert.Contains(lengthUnits, Unit.Meter);
-            CollectionAssert.Contains(lengthUnits, Unit.MilliMeter);
+            var lengthUnits = EnumQuantity.Length.GetSupportedUnits();
+            CollectionAssert.Contains(lengthUnits, EnumUnit.Meter);
+            CollectionAssert.Contains(lengthUnits, EnumUnit.MilliMeter);
         }
 
         [Test]
         public void GetSupportedUnits_QuantityArea_DoesNotContainCentiMeter()
         {
-            var areaUnits = Quantity.Area.GetSupportedUnits();
-            CollectionAssert.DoesNotContain(areaUnits, Unit.CentiMeter);
+            var areaUnits = EnumQuantity.Area.GetSupportedUnits();
+            CollectionAssert.DoesNotContain(areaUnits, EnumUnit.CentiMeter);
         }
 
         #endregion

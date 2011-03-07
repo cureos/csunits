@@ -9,9 +9,9 @@ using Cureos.Measures.Quantities;
 
 namespace Cureos.Measures.Units
 {
-    public partial struct CentiMeter : IUnit<Length>
+    public partial struct Gray : IUnit<AbsorbedDose>
     {
-        #region Implementation of IUnit<Length>
+        #region Implementation of IUnit
 
         public EnumUnit EnumeratedUnit
         {
@@ -20,14 +20,18 @@ namespace Cureos.Measures.Units
 
         public string Symbol
         {
-            get { return "cm"; }
+            get { return "Gy"; }
         }
 
         #endregion
 
-        public IQuantity<Length> ReferencedQuantity
+        #region Implementation of IUnit<AbsorbedDose>
+
+        public IQuantity<AbsorbedDose> ReferencedQuantity
         {
-            get { return Quantity.Length; }
+            get { return Quantity.AbsorbedDose; }
         }
+
+        #endregion
     }
 }

@@ -20,12 +20,12 @@ using AmountType = System.Double;
 
 namespace Cureos.Measures
 {
-    public class MeasureArray<Q> : IEnumerable<AmountType>, IMeasureArray where Q : struct, IQuantity
+    public class MeasureArray<Q> : IEnumerable<AmountType>, IMeasureArray where Q : struct, IQuantity<Q>
     {
         #region MEMBER VARIABLES
 
         private readonly AmountType[] mAmounts;
-        private readonly Unit mUnit;
+        private readonly EnumUnit mUnit;
 
         #endregion
 
@@ -84,7 +84,7 @@ namespace Cureos.Measures
         /// </summary>
         /// <param name="iAmounts">Array of amounts, given in the <paramref name="iUnit">specified unit</paramref></param>
         /// <param name="iUnit">Unit in which the amount array is originally specified</param>
-        public MeasureArray(IEnumerable<double> iAmounts, Unit iUnit)
+        public MeasureArray(IEnumerable<double> iAmounts, EnumUnit iUnit)
         {
             AssertValidUnit(iUnit);
 #if DOUBLE
@@ -102,7 +102,7 @@ namespace Cureos.Measures
         /// </summary>
         /// <param name="iAmounts">Array of amounts, given in the <paramref name="iUnit">specified unit</paramref></param>
         /// <param name="iUnit">Unit in which the amount array is originally specified</param>
-        public MeasureArray(IEnumerable<float> iAmounts, Unit iUnit)
+        public MeasureArray(IEnumerable<float> iAmounts, EnumUnit iUnit)
         {
             AssertValidUnit(iUnit);
 #if DOUBLE
@@ -120,7 +120,7 @@ namespace Cureos.Measures
         /// </summary>
         /// <param name="iAmounts">Array of amounts, given in the <paramref name="iUnit">specified unit</paramref></param>
         /// <param name="iUnit">Unit in which the amount array is originally specified</param>
-        public MeasureArray(IEnumerable<decimal> iAmounts, Unit iUnit)
+        public MeasureArray(IEnumerable<decimal> iAmounts, EnumUnit iUnit)
         {
             AssertValidUnit(iUnit);
 #if DOUBLE
@@ -148,7 +148,7 @@ namespace Cureos.Measures
         /// <summary>
         /// Gets the unit of measure
         /// </summary>
-        public Unit Unit
+        public EnumUnit Unit
         {
             get { return mUnit; }
         }
@@ -159,7 +159,7 @@ namespace Cureos.Measures
         /// <param name="iUnit">Unit in which the array of measured amounts should be returned</param>
         /// <returns>Collection of measured amounts, given in the <paramref name="iUnit">specified unit</paramref></returns>
         /// <exception cref="InvalidOperationException">if the specified unit is not of the same quantity as the measure</exception>
-        public IEnumerable<AmountType> GetAmounts(Unit iUnit)
+        public IEnumerable<AmountType> GetAmounts(EnumUnit iUnit)
         {
             if (Quantity<Q>.IsQuantityOf(iUnit))
             {
@@ -216,7 +216,7 @@ namespace Cureos.Measures
 
         #region METHODS
 
-        private static void AssertValidUnit(Unit iUnit)
+        private static void AssertValidUnit(EnumUnit iUnit)
         {
             if (!Quantity<Q>.IsQuantityOf(iUnit))
                 throw new InvalidOperationException(String.Format("Unit {0} is not of quantity {1}", iUnit, Quantity<Q>.Value));

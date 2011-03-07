@@ -26,13 +26,13 @@ namespace Cureos.Measures
         /// <summary>
         /// Gets the unit of measure
         /// </summary>
-        Unit Unit { get; }
+        EnumUnit Unit { get; }
 
         /// <summary>
         /// Gets the array of measured amounts in the <paramref name="iUnit">specified unit</paramref>
         /// </summary>
         /// <param name="iUnit">Unit in which the array of measured amounts should be returned</param>
         /// <returns>Array of measured amounts, given in the <paramref name="iUnit">specified unit</paramref></returns>
-        IEnumerable<AmountType> GetAmounts(Unit iUnit);
+        IEnumerable<AmountType> GetAmounts(EnumUnit iUnit);
     }
 }

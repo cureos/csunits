@@ -36,10 +36,10 @@ namespace Tests.Cureos.Measures
 		{
 			PerformTiming(() =>
 							  {
-								  var val = new Measure(0.0, Unit.KiloGram);
+								  var val = new Measure(0.0, EnumUnit.KiloGram);
 								  for (int i = 0; i < no; ++i)
 								  {
-									  val += new Measure((double) i, Unit.KiloGram);
+									  val += new Measure((double) i, EnumUnit.KiloGram);
 								  }
 								  return val;
 							  });
@@ -50,10 +50,10 @@ namespace Tests.Cureos.Measures
 		{
 			PerformTiming(() =>
 							  {
-								  var val = new Measure(0.0, Unit.KiloGram);
+								  var val = new Measure(0.0, EnumUnit.KiloGram);
 								  for (int i = 0; i < no; ++i)
 								  {
-									  val += new Measure((double) i, Unit.Gram);
+									  val += new Measure((double) i, EnumUnit.Gram);
 								  }
 								  return val;
 							  });

@@ -9,21 +9,21 @@ using Cureos.Measures.Quantities;
 
 namespace Cureos.Measures.Units
 {
-	public struct Meter : IUnit<Length>
+	public partial struct Meter : IUnit<Length>
 	{
-		public Unit EnumeratedUnit
+		public EnumUnit EnumeratedUnit
 		{
-			get { return Unit.Meter; }
+			get { throw new NotImplementedException(); }
 		}
 
-		public Length Quantity
+		public string Symbol
 		{
-			get { return default(Length); }
+			get { return "m"; }
 		}
 
-		public IUnit<Length> ReferenceUnit
+		public IQuantity<Length> ReferencedQuantity
 		{
-			get { return Quantity.ReferenceUnit; }
+			get { return Quantity.Length; }
 		}
 	}
 }

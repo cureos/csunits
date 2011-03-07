@@ -9,9 +9,9 @@ using Cureos.Measures.Quantities;
 
 namespace Cureos.Measures.Units
 {
-    public partial struct CentiMeter : IUnit<Length>
+    public partial struct CubicMeter : IUnit<Volume>
     {
-        #region Implementation of IUnit<Length>
+        #region Implementation of IUnit
 
         public EnumUnit EnumeratedUnit
         {
@@ -20,14 +20,18 @@ namespace Cureos.Measures.Units
 
         public string Symbol
         {
-            get { return "cm"; }
+            get { return "m³"; }
         }
 
         #endregion
 
-        public IQuantity<Length> ReferencedQuantity
+        #region Implementation of IUnit<Volume>
+
+        public IQuantity<Volume> ReferencedQuantity
         {
-            get { return Quantity.Length; }
+            get { return Quantity.Volume; }
         }
+
+        #endregion
     }
 }

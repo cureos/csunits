@@ -4,12 +4,12 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
-namespace Cureos.Measures.Extensions
+namespace Cureos.Measures
 {
         /// <summary>
         /// Representation of the unit dimension in terms of SI base units
         /// </summary>
-        internal sealed class QuantityDimensions
+        public sealed class QuantityDimensions
         {
             #region CONSTRUCTORS
 

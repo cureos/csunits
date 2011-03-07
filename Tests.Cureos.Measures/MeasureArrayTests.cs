@@ -25,7 +25,7 @@ namespace Tests.Cureos.Measures
 		[SetUp]
 		public void Setup()
 		{
-			_instance = new MeasureArray<Length>(new[] {1.0, 2.0, 3.0, 4.0, 5.0}, Unit.CentiMeter);
+			_instance = new MeasureArray<Length>(new[] {1.0, 2.0, 3.0, 4.0, 5.0}, EnumUnit.CentiMeter);
 		}
 
 		[TearDown]
