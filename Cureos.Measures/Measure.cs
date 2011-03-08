@@ -182,7 +182,7 @@ iAmount);
 				return new Measure<Q>(iLhs.mAmount * iRhs.mAmount);
 			}
 			throw new InvalidOperationException(String.Format("Cannot multiply {0} and {1} to measure of quantity {2}",
-															  iLhs, iRhs, default(Q)));
+															  iLhs, iRhs, default(Q).Name()));
 		}
 
 		/// <summary>
@@ -202,7 +202,7 @@ iAmount);
 				return new Measure<Q>(iNumerator.mAmount / iDenominator.mAmount);
 			}
 			throw new InvalidOperationException(String.Format("Cannot divide {0} and {1} to measure of quantity {2}",
-															  iNumerator, iDenominator, default(Q)));
+															  iNumerator, iDenominator, default(Q).Name()));
 		}
 
 		/// <summary>
@@ -267,10 +267,10 @@ iAmount);
 		#region OPERATORS
 
 		/// <summary>
-		/// Converts a measure object into a unified equivalent
+		/// Converts a unit specific measure object into a generic equivalent
 		/// </summary>
-		/// <param name="iMeasure">Measure object</param>
-		/// <returns>Unified equivalent of the specified measure object</returns>
+		/// <param name="iMeasure">Unit specific measure object</param>
+		/// <returns>Generic equivalent of the unit specific measure object</returns>
 		public static explicit operator Measure<Q>(SpecificMeasure<Q> iMeasure)
 		{
 			return new Measure<Q>(iMeasure.Unit.AmountToReferenceUnitConverter(iMeasure.Amount));

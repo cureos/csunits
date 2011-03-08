@@ -4,7 +4,7 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
-namespace Cureos.Measures.Quantities
+namespace Cureos.Measures
 {
     public static class Quantity
     {
@@ -24,7 +24,7 @@ namespace Cureos.Measures.Quantities
             return iQuantity.Dimensions.Equals(iNumerator.Dimensions - iDenominator.Dimensions);
         }
 
-        public static string ToString<Q>(this Q iQuantity) where Q : struct, IQuantity<Q>
+        public static string Name<Q>(this Q iQuantity) where Q : struct, IQuantity<Q>
         {
             return iQuantity.GetType().Name;
         }

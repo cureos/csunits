@@ -51,7 +51,7 @@
     <Compile Include="Quantities\Area.cs" />
     <Compile Include="Quantities\Energy.cs" />
     <Compile Include="Quantities\Mass.cs" />
-    <Compile Include="Quantities\Quantity.cs" />
+    <Compile Include="Quantity.cs" />
     <Compile Include="Quantities\Temperature.cs" />
     <Compile Include="Quantities\Time.cs" />
     <Compile Include="Quantities\Volume.cs" />

@@ -9,19 +9,18 @@ using Cureos.Measures;
 using Cureos.Measures.Quantities;
 using NUnit.Framework;
 
-namespace Tests.Cureos.Measures
+namespace Tests.Cureos.Measures.Quantities
 {
     [TestFixture]
-    public class MeasureQUTests
+    public class QuantityTests
     {
-        #region Test Methods
+        #region Unit tests
 
         [Test]
-        public void GetAmount_UsingIUnit_ValidConversion()
+        public void Name_OfQuantity_ReturnsShortName()
         {
-            var expected = AmountConverter.ToAmountType(500.0);
-            var instance = new SpecificMeasure<Length>(5.0, Units.Meter);
-            var actual = instance.GetAmount(Units.CentiMeter);
+            var expected = "AbsorbedDose";
+            var actual = default(AbsorbedDose).Name();
             Assert.AreEqual(expected, actual);
         }
 
