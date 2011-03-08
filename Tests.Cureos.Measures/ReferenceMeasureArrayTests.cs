@@ -12,20 +12,20 @@ using NUnit.Framework;
 namespace Tests.Cureos.Measures
 {
 //    [TestFixture]
-	public class MeasureArrayTests
+	public class ReferenceMeasureArrayTests
 	{
 	}
 
 	[TestFixture]
 	public class MeasureArrayQTests
 	{
-		private MeasureArray<Length> _instance;
+		private ReferenceMeasureArray<Length> _instance;
 
 		#region Setup and TearDown
 		[SetUp]
 		public void Setup()
 		{
-			_instance = new MeasureArray<Length>(new[] {1.0, 2.0, 3.0, 4.0, 5.0}, Units.CentiMeter);
+			_instance = new ReferenceMeasureArray<Length>(new[] {1.0, 2.0, 3.0, 4.0, 5.0}, Units.CentiMeter);
 		}
 
 		[TearDown]
@@ -49,7 +49,7 @@ namespace Tests.Cureos.Measures
 		[Test]
 		public void Indexer_AccessCenterElement_ReturnsMeasure()
 		{
-			var expected = new Measure<Length>(AmountConverter.ToAmountType(0.03));
+			var expected = new ReferenceMeasure<Length>(AmountConverter.ToAmountType(0.03));
 			var actual = _instance[2];
 			MeasureAssert.MeasuresAreEqual(expected, actual);
 		}

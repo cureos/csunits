@@ -16,108 +16,48 @@ using AmountType = System.Double;
 
 namespace Cureos.Measures
 {
-	/// <summary>
-	/// Quantity-typed representation of a single measure
-	/// </summary>
-	/// <typeparam name="Q">Struct type implementing the IQuantity interface</typeparam>
-	public struct Measure<Q> : IMeasure<Q>, IEquatable<Measure<Q>>, IComparable<Measure<Q>> where Q : struct, IQuantity<Q>
+	public class Measure<Q> : IMeasure<Q>, IEquatable<Measure<Q>>, IComparable<Measure<Q>> where Q : struct, IQuantity<Q>
 	{
 		#region MEMBER VARIABLES
 
 		private readonly AmountType mAmount;
+		private readonly IUnit<Q> mUnit;
 
 		#endregion
 
 		#region CONSTRUCTORS
 
-		/// <summary>
-		/// Initializes a measure object of the specified quantity
-		/// </summary>
-		/// <param name="iAmount">Measured amount in reference unit, double precision</param>
-		public Measure(double iAmount)
-		{
-#if DOUBLE
-			mAmount = iAmount;
-#else
-			mAmount = (AmountType)iAmount;
-#endif
-		}
-
-		/// <summary>
-		/// Initializes a measure object of the specified quantity
-		/// </summary>
-		/// <param name="iAmount">Measured amount in reference unit, single precision</param>
-		public Measure(float iAmount)
-		{
-#if !DECIMAL
-			mAmount = iAmount;
-#else
-			mAmount = (AmountType)iAmount;
-#endif
-		}
-
-		/// <summary>
-		/// Initializes a measure object of the specified quantity
-		/// </summary>
-		/// <param name="iAmount">Measured amount in reference unit, decimal precision</param>
-		public Measure(decimal iAmount)
-		{
-#if DECIMAL
-			mAmount = iAmount;
-#else
-			mAmount = (AmountType)iAmount;
-#endif
-		}
-
-		/// <summary>
-		/// Initializes a measure object of a specified unit
-		/// </summary>
-		/// <param name="iAmount">Measured amount in double precision</param>
-		/// <param name="iUnit">Unit of measure</param>
-		/// <exception cref="InvalidOperationException">is thrown if the quantity of the specified unit
-		/// is not the same as the type-specified quantity</exception>
 		public Measure(double iAmount, IUnit<Q> iUnit)
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
 #if DOUBLE
-			mAmount = iUnit.AmountToReferenceUnitConverter(iAmount);
+			mAmount = iAmount;
 #else
-			mAmount = iUnit.AmountToReferenceUnitConverter((AmountType)iAmount);
+			mAmount = (AmountType)iAmount;
 #endif
+			mUnit = iUnit;
 		}
 
-		/// <summary>
-		/// Initializes a measure object of a specified unit
-		/// </summary>
-		/// <param name="iAmount">Measured amount in single precision</param>
-		/// <param name="iUnit">Unit of measure</param>
-		/// <exception cref="InvalidOperationException">is thrown if the quantity of the specified unit
-		/// is not the same as the type-specified quantity</exception>
 		public Measure(float iAmount, IUnit<Q> iUnit)
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
 #if !DECIMAL
-			mAmount = iUnit.AmountToReferenceUnitConverter(iAmount);
+			mAmount = iAmount;
 #else
-			mAmount = iUnit.AmountToReferenceUnitConverter((AmountType)iAmount);
+			mAmount = (AmountType)iAmount;
 #endif
+			mUnit = iUnit;
 		}
 
-		/// <summary>
-		/// Initializes a measure object of a specified unit
-		/// </summary>
-		/// <param name="iAmount">Measured amount in decimal format</param>
-		/// <param name="iUnit">Unit of measure</param>
-		/// <exception cref="InvalidOperationException">is thrown if the quantity of the specified unit
-		/// is not the same as the type-specified quantity</exception>
 		public Measure(decimal iAmount, IUnit<Q> iUnit)
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
 #if DECIMAL
-			mAmount = iUnit.AmountToReferenceUnitConverter(iAmount);
+			mAmount = iAmount;
 #else
-			mAmount = iUnit.AmountToReferenceUnitConverter((AmountType)iAmount);
+			mAmount = (AmountType)iAmount;
 #endif
+			mUnit = iUnit;
 		}
 
 		#endregion
@@ -137,7 +77,7 @@ namespace Cureos.Measures
 		/// </summary>
 		public IUnit<Q> Unit
 		{
-			get { return default(Q).ReferenceUnit; }
+			get { return mUnit; }
 		}
 
 		/// <summary>
@@ -147,7 +87,7 @@ namespace Cureos.Measures
 		/// <returns>Measured amount converted into <paramref name="iUnit">specified unit</paramref></returns>
 		public AmountType GetAmount(IUnit<Q> iUnit)
 		{
-			return iUnit.AmountFromReferenceUnitConverter(mAmount);
+			return iUnit.AmountFromReferenceUnitConverter(mUnit.AmountToReferenceUnitConverter(mAmount));
 		}
 
 		#endregion
@@ -158,9 +98,9 @@ namespace Cureos.Measures
 		/// Gets a new unit specific measure based on this measure but in the <paramref name="iUnit">specified unit</paramref>
 		/// </summary>
 		/// <param name="iUnit">Unit in which the new measure should be specified</param>
-		public SpecificMeasure<Q> this[IUnit<Q> iUnit]
+		public Measure<Q> this[IUnit<Q> iUnit]
 		{
-			get { return new SpecificMeasure<Q>(GetAmount(iUnit), iUnit); }
+			get { return new Measure<Q>(GetAmount(iUnit), iUnit); }
 		}
 
 		#endregion
@@ -168,220 +108,79 @@ namespace Cureos.Measures
 		#region METHODS
 
 		/// <summary>
-		/// Multiply two measure objects
+		/// Compares the current object with another object of the same type.
 		/// </summary>
-		/// <typeparam name="Q1">Quantity type of the left-hand side measure</typeparam>
-		/// <typeparam name="Q2">Quantity type of the right-hand side measure</typeparam>
-		/// <param name="iLhs">Left-hand side measure object</param>
-		/// <param name="iRhs">Right-hand side measure object</param>
-		/// <returns>Product of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
-		public static Measure<Q> Times<Q1, Q2>(Measure<Q1> iLhs, Measure<Q2> iRhs)
-			where Q1 : struct, IQuantity<Q1>
-			where Q2 : struct, IQuantity<Q2>
+		/// <returns>
+		/// A 32-bit signed integer that indicates the relative order of the objects being compared. The return value has the following meanings: 
+		///                     Value 
+		///                     Meaning 
+		///                     Less than zero 
+		///                     This object is less than the <paramref name="other"/> parameter.
+		///                     Zero 
+		///                     This object is equal to <paramref name="other"/>. 
+		///                     Greater than zero 
+		///                     This object is greater than <paramref name="other"/>. 
+		/// </returns>
+		/// <param name="other">An object to compare with this object.
+		///                 </param>
+		public int CompareTo(Measure<Q> other)
 		{
-			if (default(Q).IsProductOf(default(Q1), default(Q2)))
-			{
-				return new Measure<Q>(iLhs.mAmount * iRhs.mAmount);
-			}
-			throw new InvalidOperationException(String.Format("Cannot multiply {0} and {1} to measure of quantity {2}",
-															  iLhs, iRhs, default(Q).Name()));
+			return mAmount.CompareTo(other.GetAmount(mUnit));
 		}
 
 		/// <summary>
-		/// Multiply two measure objects, where the right-hand side measure is any object implementing the IMeasure interface
+		/// Returns the fully qualified type name of this instance.
 		/// </summary>
-		/// <typeparam name="Q1">Quantity type of the left-hand side measure</typeparam>
-		/// <typeparam name="Q2">Quantity type of the right-hand side measure</typeparam>
-		/// <param name="iLhs">Left-hand side measure object</param>
-		/// <param name="iRhs">Right-hand side measure object</param>
-		/// <returns>Product of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
-		public static Measure<Q> Times<Q1, Q2>(Measure<Q1> iLhs, IMeasure<Q2> iRhs)
-			where Q1 : struct, IQuantity<Q1>
-			where Q2 : struct, IQuantity<Q2>
+		/// <returns>
+		/// A <see cref="T:System.String"/> containing a fully qualified type name.
+		/// </returns>
+		/// <filterpriority>2</filterpriority>
+		public override string ToString()
 		{
-			if (default(Q).IsProductOf(default(Q1), default(Q2)))
-			{
-				return new Measure<Q>(iLhs.mAmount * iRhs.GetAmount(default(Q2).ReferenceUnit));
-			}
-			throw new InvalidOperationException(String.Format("Cannot multiply {0} and {1} to measure of quantity {2}",
-															  iLhs, iRhs, default(Q).Name()));
-		}
-
-		/// <summary>
-		/// Multiply two measure objects, where the left-hand side measure is any object implementing the IMeasure interface
-		/// </summary>
-		/// <typeparam name="Q1">Quantity type of the left-hand side measure</typeparam>
-		/// <typeparam name="Q2">Quantity type of the right-hand side measure</typeparam>
-		/// <param name="iLhs">Left-hand side measure object</param>
-		/// <param name="iRhs">Right-hand side measure object</param>
-		/// <returns>Product of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
-		public static Measure<Q> Times<Q1, Q2>(IMeasure<Q1> iLhs, Measure<Q2> iRhs)
-			where Q1 : struct, IQuantity<Q1>
-			where Q2 : struct, IQuantity<Q2>
-		{
-			if (default(Q).IsProductOf(default(Q1), default(Q2)))
-			{
-				return new Measure<Q>(iLhs.GetAmount(default(Q1).ReferenceUnit) * iRhs.mAmount);
-			}
-			throw new InvalidOperationException(String.Format("Cannot multiply {0} and {1} to measure of quantity {2}",
-															  iLhs, iRhs, default(Q).Name()));
-		}
-
-		/// <summary>
-		/// Multiply two measure objects, where both measures may be any objects implementing the IMeasure interface
-		/// </summary>
-		/// <typeparam name="Q1">Quantity type of the left-hand side measure</typeparam>
-		/// <typeparam name="Q2">Quantity type of the right-hand side measure</typeparam>
-		/// <param name="iLhs">Left-hand side measure object</param>
-		/// <param name="iRhs">Right-hand side measure object</param>
-		/// <returns>Product of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
-		public static Measure<Q> Times<Q1, Q2>(IMeasure<Q1> iLhs, IMeasure<Q2> iRhs)
-			where Q1 : struct, IQuantity<Q1>
-			where Q2 : struct, IQuantity<Q2>
-		{
-			if (default(Q).IsProductOf(default(Q1), default(Q2)))
-			{
-				return new Measure<Q>(iLhs.GetAmount(default(Q1).ReferenceUnit) * iRhs.GetAmount(default(Q2).ReferenceUnit));
-			}
-			throw new InvalidOperationException(String.Format("Cannot multiply {0} and {1} to measure of quantity {2}",
-															  iLhs, iRhs, default(Q).Name()));
-		}
-
-		/// <summary>
-		/// Divide two measure objects
-		/// </summary>
-		/// <typeparam name="Q1">Quantity type of the numerator measure</typeparam>
-		/// <typeparam name="Q2">Quantity type of the denominator measure</typeparam>
-		/// <param name="iNumerator">Numerator measure object</param>
-		/// <param name="iDenominator">Denominator measure object</param>
-		/// <returns>Quotient of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
-		public static Measure<Q> Divide<Q1, Q2>(Measure<Q1> iNumerator, Measure<Q2> iDenominator)
-			where Q1 : struct, IQuantity<Q1>
-			where Q2 : struct, IQuantity<Q2>
-		{
-			if (default(Q).IsQuotientOf(default(Q1), default(Q2)))
-			{
-				return new Measure<Q>(iNumerator.mAmount / iDenominator.mAmount);
-			}
-			throw new InvalidOperationException(String.Format("Cannot divide {0} and {1} to measure of quantity {2}",
-															  iNumerator, iDenominator, default(Q).Name()));
-		}
-
-		/// <summary>
-		/// Divide two measure objects, where the right-hand side measure is any object implementing the IMeasure interface
-		/// </summary>
-		/// <typeparam name="Q1">Quantity type of the numerator measure</typeparam>
-		/// <typeparam name="Q2">Quantity type of the denominator measure</typeparam>
-		/// <param name="iNumerator">Numerator measure object</param>
-		/// <param name="iDenominator">Denominator measure object</param>
-		/// <returns>Quotient of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
-		public static Measure<Q> Divide<Q1, Q2>(Measure<Q1> iNumerator, IMeasure<Q2> iDenominator)
-			where Q1 : struct, IQuantity<Q1>
-			where Q2 : struct, IQuantity<Q2>
-		{
-			if (default(Q).IsQuotientOf(default(Q1), default(Q2)))
-			{
-				return new Measure<Q>(iNumerator.mAmount / iDenominator.GetAmount(default(Q2).ReferenceUnit));
-			}
-			throw new InvalidOperationException(String.Format("Cannot divide {0} and {1} to measure of quantity {2}",
-															  iNumerator, iDenominator, default(Q).Name()));
-		}
-
-		/// <summary>
-		/// Divide two measure objects, where the right-hand side measure is any object implementing the IMeasure interface
-		/// </summary>
-		/// <typeparam name="Q1">Quantity type of the numerator measure</typeparam>
-		/// <typeparam name="Q2">Quantity type of the denominator measure</typeparam>
-		/// <param name="iNumerator">Numerator measure object</param>
-		/// <param name="iDenominator">Denominator measure object</param>
-		/// <returns>Quotient of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
-		public static Measure<Q> Divide<Q1, Q2>(IMeasure<Q1> iNumerator, Measure<Q2> iDenominator)
-			where Q1 : struct, IQuantity<Q1>
-			where Q2 : struct, IQuantity<Q2>
-		{
-			if (default(Q).IsQuotientOf(default(Q1), default(Q2)))
-			{
-				return new Measure<Q>(iNumerator.GetAmount(default(Q1).ReferenceUnit) / iDenominator.mAmount);
-			}
-			throw new InvalidOperationException(String.Format("Cannot divide {0} and {1} to measure of quantity {2}",
-															  iNumerator, iDenominator, default(Q).Name()));
-		}
-
-		/// <summary>
-		/// Divide two measure objects, where both measures may be any objects implementing the IMeasure interface
-		/// </summary>
-		/// <typeparam name="Q1">Quantity type of the numerator measure</typeparam>
-		/// <typeparam name="Q2">Quantity type of the denominator measure</typeparam>
-		/// <param name="iNumerator">Numerator measure object</param>
-		/// <param name="iDenominator">Denominator measure object</param>
-		/// <returns>Quotient of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
-		public static Measure<Q> Divide<Q1, Q2>(IMeasure<Q1> iNumerator, IMeasure<Q2> iDenominator)
-			where Q1 : struct, IQuantity<Q1>
-			where Q2 : struct, IQuantity<Q2>
-		{
-			if (default(Q).IsQuotientOf(default(Q1), default(Q2)))
-			{
-				return new Measure<Q>(iNumerator.GetAmount(default(Q1).ReferenceUnit) / iDenominator.GetAmount(default(Q2).ReferenceUnit));
-			}
-			throw new InvalidOperationException(String.Format("Cannot divide {0} and {1} to measure of quantity {2}",
-															  iNumerator, iDenominator, default(Q).Name()));
+			return String.Format("{0} {1}", mAmount, mUnit.Symbol).Trim();
 		}
 
 		/// <summary>
 		/// Indicates whether the current object is equal to another object of the same type.
 		/// </summary>
+		/// <returns>
+		/// true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
+		/// </returns>
 		/// <param name="other">An object to compare with this object.</param>
-		/// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
 		public bool Equals(Measure<Q> other)
 		{
-			return mAmount.Equals(other.mAmount);
+			if (ReferenceEquals(null, other)) return false;
+			if (ReferenceEquals(this, other)) return true;
+			return mAmount.Equals(other.GetAmount(mUnit));
 		}
 
 		/// <summary>
-		/// Compares the current object with another object of the same type.
+		/// Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.
 		/// </summary>
-		/// <param name="other">An object to compare with this object.</param>
 		/// <returns>
-		/// A 32-bit signed integer that indicates the relative order of the objects being compared. The return value has the following meanings: 
-		/// Value               Meaning 
-		/// Less than zero      This object is less than the <paramref name="other"/> parameter.
-		/// Zero                This object is equal to <paramref name="other"/>. 
-		/// Greater than zero   This object is greater than <paramref name="other"/>. 
+		/// true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.
 		/// </returns>
-		/// <exception cref="InvalidOperationException">if the quantity of the other measure is not the same as the quantity
-		/// of this object</exception>
-		public int CompareTo(Measure<Q> other)
-		{
-			return mAmount.CompareTo(other.mAmount);
-		}
-
-		/// <summary>
-		/// Compares another object with this measure object
-		/// </summary>
-		/// <param name="obj">Object to compare with this object</param>
-		/// <returns>true if <paramref name="obj"/> is a quantity-specific Measure object that is equivalent with this object, 
-		/// false otherwise</returns>
+		/// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>.</param>
+		/// <exception cref="T:System.NullReferenceException">The <paramref name="obj"/> parameter is null.</exception>
+		/// <filterpriority>2</filterpriority>
 		public override bool Equals(object obj)
 		{
-			return obj is Measure<Q> ? Equals((Measure<Q>)obj) : false;
+			if (ReferenceEquals(null, obj)) return false;
+			if (ReferenceEquals(this, obj)) return true;
+			if (obj.GetType() != typeof(Measure<Q>)) return false;
+			return Equals((Measure<Q>)obj);
 		}
 
 		/// <summary>
-		/// Gets the Measure object hash code
+		/// Serves as a hash function for a particular type. 
 		/// </summary>
-		/// <returns>Hash code of this object</returns>
+		/// <returns>
+		/// A hash code for the current <see cref="T:System.Object"/>.
+		/// </returns>
+		/// <filterpriority>2</filterpriority>
 		public override int GetHashCode()
 		{
-			return mAmount.GetHashCode();
-		}
-
-		/// <summary>
-		/// Gets the measure represented as a string
-		/// </summary>
-		/// <returns>The measure description</returns>
-		public override string ToString()
-		{
-			return String.Format("{0} {1}", mAmount, Unit.Symbol).Trim();
+			return GetAmount(default(Q).ReferenceUnit).GetHashCode();
 		}
 
 		#endregion
@@ -389,65 +188,70 @@ namespace Cureos.Measures
 		#region OPERATORS
 
 		/// <summary>
-		/// Converts a unit specific measure object into a generic equivalent
-		/// </summary>
-		/// <param name="iMeasure">Unit specific measure object</param>
-		/// <returns>Generic equivalent of the unit specific measure object</returns>
-		public static explicit operator Measure<Q>(SpecificMeasure<Q> iMeasure)
-		{
-			return new Measure<Q>(iMeasure.Unit.AmountToReferenceUnitConverter(iMeasure.Amount));
-		}
-
-		/// <summary>
-		/// Double cast operator
-		/// </summary>
-		/// <param name="iAmount">Amount in double precision</param>
-		/// <returns>Measure object with specified amount</returns>
-		public static explicit operator Measure<Q>(double iAmount)
-		{
-			return new Measure<Q>(iAmount);
-		}
-
-		/// <summary>
-		/// Float cast operator
-		/// </summary>
-		/// <param name="iAmount">Amount in single precision</param>
-		/// <returns>Measure object with specified amount</returns>
-		public static explicit operator Measure<Q>(float iAmount)
-		{
-			return new Measure<Q>(iAmount);
-		}
-
-		/// <summary>
-		/// Decimal cast operator
-		/// </summary>
-		/// <param name="iAmount">Amount in decimal precision</param>
-		/// <returns>Measure object with specified amount</returns>
-		public static explicit operator Measure<Q>(decimal iAmount)
-		{
-			return new Measure<Q>(iAmount);
-		}
-
-		/// <summary>
-		/// Adds two measure objects
+		/// Adds two measure objects provided the measured quantities are equal
 		/// </summary>
 		/// <param name="iLhs">First measure term</param>
 		/// <param name="iRhs">Second measure term</param>
-		/// <returns>Measure object representing the sum of the two operands</returns>
-		public static Measure<Q> operator +(Measure<Q> iLhs, Measure<Q> iRhs)
+		/// <returns>Sum of the two measure objects in the unit of the <paramref name="iLhs">left-hand side measure</paramref></returns>
+		public static Measure<Q> operator +(Measure<Q> iLhs,  Measure<Q> iRhs)
 		{
-			return new Measure<Q>(iLhs.mAmount + iRhs.mAmount);
+			return new Measure<Q>(iLhs.mAmount + iRhs.GetAmount(iLhs.mUnit), iLhs.mUnit);
 		}
 
 		/// <summary>
-		/// Subtract two measure objects of the same unit
+		/// Adds two measure objects provided the measured quantities are equal
+		/// </summary>
+		/// <param name="iLhs">First measure term</param>
+		/// <param name="iRhs">Second measure term (any object implementing the IMeasure interface)</param>
+		/// <returns>Sum of the two measure objects in the unit of the <paramref name="iLhs">left-hand side measure</paramref></returns>
+		public static Measure<Q> operator +(Measure<Q> iLhs, IMeasure<Q> iRhs)
+		{
+			return new Measure<Q>(iLhs.mAmount + iRhs.GetAmount(iLhs.mUnit), iLhs.mUnit);
+		}
+
+		/// <summary>
+		/// Adds two measure objects provided the measured quantities are equal
+		/// </summary>
+		/// <param name="iLhs">First measure term (any object implementing the IMeasure interface)</param>
+		/// <param name="iRhs">Second measure term</param>
+		/// <returns>Sum of the two measure objects in the unit of the <paramref name="iLhs">left-hand side measure</paramref></returns>
+		/// <exception cref="InvalidOperationException">Is thrown if the measured quanitites are not equal</exception>
+		public static Measure<Q> operator +(IMeasure<Q> iLhs, Measure<Q> iRhs)
+		{
+			return new Measure<Q>(iLhs.Amount + iRhs.GetAmount(iLhs.Unit), iLhs.Unit);
+		}
+
+		/// <summary>
+		/// Subtract two measure objects of the same quantity
 		/// </summary>
 		/// <param name="iLhs">First measure object</param>
 		/// <param name="iRhs">Second measure object</param>
 		/// <returns>Difference of the measure objects</returns>
 		public static Measure<Q> operator -(Measure<Q> iLhs, Measure<Q> iRhs)
 		{
-			return new Measure<Q>(iLhs.mAmount - iRhs.mAmount);
+			return new Measure<Q>(iLhs.mAmount - iRhs.GetAmount(iLhs.mUnit), iLhs.mUnit);
+		}
+
+		/// <summary>
+		/// Subtract two measure objects of the same quantity
+		/// </summary>
+		/// <param name="iLhs">First measure object</param>
+		/// <param name="iRhs">Second measure object (any object implementing the IMeasure interface)</param>
+		/// <returns>Difference of the measure objects</returns>
+		public static Measure<Q> operator -(Measure<Q> iLhs, IMeasure<Q> iRhs)
+		{
+			return new Measure<Q>(iLhs.mAmount - iRhs.GetAmount(iLhs.mUnit), iLhs.mUnit);
+		}
+
+		/// <summary>
+		/// Subtract two measure objects of the same quantity
+		/// </summary>
+		/// <param name="iLhs">First measure object (any object implementing the IMeasure interface)</param>
+		/// <param name="iRhs">Second measure object</param>
+		/// <returns>Difference of the measure objects</returns>
+		public static Measure<Q> operator -(IMeasure<Q> iLhs, Measure<Q> iRhs)
+		{
+			return new Measure<Q>(iLhs.Amount - iRhs.GetAmount(iLhs.Unit), iLhs.Unit);
 		}
 
 		/// <summary>
@@ -458,18 +262,18 @@ namespace Cureos.Measures
 		/// <returns>Product of the scalar and the measure object</returns>
 		public static Measure<Q> operator *(AmountType iScalar, Measure<Q> iMeasure)
 		{
-			return new Measure<Q>(iScalar * iMeasure.mAmount);
+			return new Measure<Q>(iScalar * iMeasure.mAmount, iMeasure.mUnit);
 		}
 
 		/// <summary>
 		/// Multiply a measure object and a scalar
 		/// </summary>
-		/// <param name="iMeasure">measure object</param>
+		/// <param name="iMeasure">Measure object</param>
 		/// <param name="iScalar">Floating-point scalar</param>
 		/// <returns>Product of the measure object and the scalar</returns>
 		public static Measure<Q> operator *(Measure<Q> iMeasure, AmountType iScalar)
 		{
-			return new Measure<Q>(iMeasure.mAmount * iScalar);
+			return new Measure<Q>(iMeasure.mAmount * iScalar, iMeasure.mUnit);
 		}
 
 		/// <summary>
@@ -480,21 +284,7 @@ namespace Cureos.Measures
 		/// <returns>Quotient of the measure object and the scalar</returns>
 		public static Measure<Q> operator /(Measure<Q> iMeasure, AmountType iScalar)
 		{
-			checked
-			{
-				return new Measure<Q>(iMeasure.mAmount / iScalar);
-			}
-		}
-
-		/// <summary>
-		/// Divide two measure objects of the same unit
-		/// </summary>
-		/// <param name="iNumerator">Numerator measure</param>
-		/// <param name="iDenominator">Denominator measure</param>
-		/// <returns>Scalar quotient of the two measure objects</returns>
-		public static AmountType operator /(Measure<Q> iNumerator, Measure<Q> iDenominator)
-		{
-			return iNumerator.mAmount/iDenominator.mAmount;
+			return new Measure<Q>(iMeasure.mAmount / iScalar, iMeasure.mUnit);
 		}
 
 		/// <summary>
@@ -505,7 +295,29 @@ namespace Cureos.Measures
 		/// <returns>true if first measure object is less than second measure object; false otherwise</returns>
 		public static bool operator <(Measure<Q> iLhs, Measure<Q> iRhs)
 		{
-			return iLhs.mAmount < iRhs.mAmount;
+			return iLhs.mAmount < iRhs.GetAmount(iLhs.mUnit);
+		}
+
+		/// <summary>
+		/// Less than operator for measure objects, where right-hand side may be any object implementing the IMeasure interface
+		/// </summary>
+		/// <param name="iLhs">First object</param>
+		/// <param name="iRhs">Second object (any object implementing IMeasure interface)</param>
+		/// <returns>true if first measure object is less than second measure object; false otherwise</returns>
+		public static bool operator <(Measure<Q> iLhs, IMeasure<Q> iRhs)
+		{
+			return iLhs.mAmount < iRhs.GetAmount(iLhs.mUnit);
+		}
+
+		/// <summary>
+		/// Less than operator for measure objects, where left-hand side may be any object implementing the IMeasure interface
+		/// </summary>
+		/// <param name="iLhs">First object (any object implementing IMeasure interface)</param>
+		/// <param name="iRhs">Second object</param>
+		/// <returns>true if first measure object is less than second measure object; false otherwise</returns>
+		public static bool operator <(IMeasure<Q> iLhs, Measure<Q> iRhs)
+		{
+			return iLhs.GetAmount(iRhs.mUnit) < iRhs.mAmount;
 		}
 
 		/// <summary>
@@ -516,7 +328,29 @@ namespace Cureos.Measures
 		/// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
 		public static bool operator >(Measure<Q> iLhs, Measure<Q> iRhs)
 		{
-			return iLhs.mAmount > iRhs.mAmount;
+			return iLhs.mAmount > iRhs.GetAmount(iLhs.mUnit);
+		}
+
+		/// <summary>
+		/// Greater than operator for measure objects, where right-hand side may be any object implementing the IMeasure interface
+		/// </summary>
+		/// <param name="iLhs">First object</param>
+		/// <param name="iRhs">Second object (any object implementing IMeasure interface)</param>
+		/// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
+		public static bool operator >(Measure<Q> iLhs, IMeasure<Q> iRhs)
+		{
+			return iLhs.mAmount > iRhs.GetAmount(iLhs.mUnit);
+		}
+
+		/// <summary>
+		/// Greater than operator for measure objects, where left-hand side may be any object implementing the IMeasure interface
+		/// </summary>
+		/// <param name="iLhs">First object (any object implementing IMeasure interface)</param>
+		/// <param name="iRhs">Second object</param>
+		/// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
+		public static bool operator >(IMeasure<Q> iLhs, Measure<Q> iRhs)
+		{
+			return iLhs.GetAmount(iRhs.mUnit) > iRhs.mAmount;
 		}
 
 		/// <summary>
@@ -527,7 +361,29 @@ namespace Cureos.Measures
 		/// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
 		public static bool operator <=(Measure<Q> iLhs, Measure<Q> iRhs)
 		{
-			return iLhs.mAmount <= iRhs.mAmount;
+			return iLhs.mAmount <= iRhs.GetAmount(iLhs.mUnit);
+		}
+
+		/// <summary>
+		/// Less than or equal to operator for measure objects, where right-hand side may be any object implementing the IMeasure interface
+		/// </summary>
+		/// <param name="iLhs">First object</param>
+		/// <param name="iRhs">Second object (any object implementing IMeasure interface)</param>
+		/// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
+		public static bool operator <=(Measure<Q> iLhs, IMeasure<Q> iRhs)
+		{
+			return iLhs.mAmount <= iRhs.GetAmount(iLhs.mUnit);
+		}
+
+		/// <summary>
+		/// Less than or equal to operator for measure objects, where left-hand side may be any object implementing the IMeasure interface
+		/// </summary>
+		/// <param name="iLhs">First object (any object implementing IMeasure interface)</param>
+		/// <param name="iRhs">Second object</param>
+		/// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
+		public static bool operator <=(IMeasure<Q> iLhs, Measure<Q> iRhs)
+		{
+			return iLhs.GetAmount(iRhs.mUnit) <= iRhs.mAmount;
 		}
 
 		/// <summary>
@@ -538,7 +394,29 @@ namespace Cureos.Measures
 		/// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
 		public static bool operator >=(Measure<Q> iLhs, Measure<Q> iRhs)
 		{
-			return iLhs.mAmount >= iRhs.mAmount;
+			return iLhs.mAmount >= iRhs.GetAmount(iLhs.mUnit);
+		}
+
+		/// <summary>
+		/// Greater than or equal to operator for measure objects, where right-hand side may be any object implementing the IMeasure interface
+		/// </summary>
+		/// <param name="iLhs">First object</param>
+		/// <param name="iRhs">Second object (any object implementing IMeasure interface)</param>
+		/// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
+		public static bool operator >=(Measure<Q> iLhs, IMeasure<Q> iRhs)
+		{
+			return iLhs.mAmount >= iRhs.GetAmount(iLhs.mUnit);
+		}
+
+		/// <summary>
+		/// Greater than or equal to operator for measure objects, where left-hand side may be any object implementing the IMeasure interface
+		/// </summary>
+		/// <param name="iLhs">First object (any object implementing IMeasure interface)</param>
+		/// <param name="iRhs">Second object</param>
+		/// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
+		public static bool operator >=(IMeasure<Q> iLhs, Measure<Q> iRhs)
+		{
+			return iLhs.GetAmount(iRhs.mUnit) >= iRhs.mAmount;
 		}
 
 		/// <summary>
@@ -549,18 +427,62 @@ namespace Cureos.Measures
 		/// <returns>true if the two measure objects are equal; false otherwise</returns>
 		public static bool operator ==(Measure<Q> iLhs, Measure<Q> iRhs)
 		{
-			return iLhs.mAmount == iRhs.mAmount;
+			return iLhs.mAmount == iRhs.GetAmount(iLhs.mUnit);
 		}
 
 		/// <summary>
-		/// Inequality operator for measure objects
+		/// Equality operator for measure objects, where right-hand side may be any object implementing the IMeasure interface
+		/// </summary>
+		/// <param name="iLhs">First object</param>
+		/// <param name="iRhs">Second object (any object implementing IMeasure interface)</param>
+		/// <returns>true if the two measure objects are equal; false otherwise</returns>
+		public static bool operator ==(Measure<Q> iLhs, IMeasure<Q> iRhs)
+		{
+			return iLhs.mAmount == iRhs.GetAmount(iLhs.mUnit);
+		}
+
+		/// <summary>
+		/// Equality operator for measure objects, where left-hand side may be any object implementing the IMeasure interface
+		/// </summary>
+		/// <param name="iLhs">First object (any object implementing IMeasure interface)</param>
+		/// <param name="iRhs">Second object</param>
+		/// <returns>true if the two measure objects are equal; false otherwise</returns>
+		public static bool operator ==(IMeasure<Q> iLhs, Measure<Q> iRhs)
+		{
+			return iLhs.GetAmount(iRhs.mUnit) == iRhs.mAmount;
+		}
+
+		/// <summary>
+		/// Inquality operator for measure objects
 		/// </summary>
 		/// <param name="iLhs">First object</param>
 		/// <param name="iRhs">Second object</param>
 		/// <returns>true if the two measure objects are not equal; false if they are equal</returns>
 		public static bool operator !=(Measure<Q> iLhs, Measure<Q> iRhs)
 		{
-			return iLhs.mAmount != iRhs.mAmount;
+			return iLhs.mAmount != iRhs.GetAmount(iLhs.mUnit);
+		}
+
+		/// <summary>
+		/// Inquality operator for measure objects, where right-hand side may be any object implementing the IMeasure interface
+		/// </summary>
+		/// <param name="iLhs">First object</param>
+		/// <param name="iRhs">Second object (any object implementing IMeasure interface)</param>
+		/// <returns>true if the two measure objects are not equal; false if they are equal</returns>
+		public static bool operator !=(Measure<Q> iLhs, IMeasure<Q> iRhs)
+		{
+			return iLhs.mAmount != iRhs.GetAmount(iLhs.mUnit);
+		}
+
+		/// <summary>
+		/// Inquality operator for measure objects, where left-hand side may be any object implementing the IMeasure interface
+		/// </summary>
+		/// <param name="iLhs">First object (any object implementing IMeasure interface)</param>
+		/// <param name="iRhs">Second object</param>
+		/// <returns>true if the two measure objects are not equal; false if they are equal</returns>
+		public static bool operator !=(IMeasure<Q> iLhs, Measure<Q> iRhs)
+		{
+			return iLhs.GetAmount(iRhs.mUnit) != iRhs.mAmount;
 		}
 
 		#endregion

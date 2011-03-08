@@ -48,13 +48,13 @@
     <Compile Include="AmountComparer.cs" />
     <Compile Include="AmountConverter.cs" />
     <Compile Include="ExampleTests.cs" />
-    <Compile Include="MeasureArrayTests.cs" />
+    <Compile Include="ReferenceMeasureArrayTests.cs" />
     <Compile Include="MeasureAssert.cs" />
-    <Compile Include="MeasureTests.cs" />
+    <Compile Include="ReferenceMeasureTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quantities\QuantityTests.cs" />
     <Compile Include="TimingTests.cs" />
-    <Compile Include="SpecificMeasureTests.cs" />
+    <Compile Include="MeasureTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cureos.Measures\Cureos.Measures.csproj">

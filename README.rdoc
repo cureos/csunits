@@ -9,9 +9,9 @@ Made available under Eclipse Public License, version 1.0.
 
 Developed with Visual Studio 2010, using .NET Framework 3.5. Can also be used by Mono, at least versions 2.8 and later.
 
-Measure<Q> and SpecificMeasure<Q> are the main "work-horses" of the library. Measure<Q> is always represented in the reference unit of the associated quantity. If a different unit is specified in instantiation of Measure<Q>, the measured amount is automatically converted to the equivalent reference unit amount. On the other hand, the amount and unit used in instantiation of SpecificMeasure<Q> are maintained.
+Measure<Q> and ReferenceMeasure<Q> are the main "work-horses" of the library. ReferenceMeasure<Q> is always represented in the reference unit of the associated quantity. If a different unit is specified in instantiation of ReferenceMeasure<Q>, the measured amount is automatically converted to the equivalent reference unit amount. On the other hand, the amount and unit used in instantiation of Measure<Q> are internally maintained.
 
-Measure<Q> is declared as a struct. The main goal of this approach is to maximize calculation performance, while at the same time ensuring quantity type safety.
+ReferenceMeasure<Q> is declared as a struct and only holds one member, the amount. The main goal of this approach is to maximize calculation performance, while at the same time ensuring quantity type safety.
 
 
 == Usage examples
@@ -20,20 +20,20 @@ Measure<Q> is declared as a struct. The main goal of this approach is to maximiz
  using Cureos.Measures.Quantities;
  ...
 
- Measure<Mass> initialWgt = new Measure<Mass>(75.0);
- Measure<Mass> gainedWgt = new Measure<Mass>(2.5, Units.HectoGram);
- Measure<Mass> newWgt = initialWgt + gainedWgt;
+ ReferenceMeasure<Mass> initialWgt = new ReferenceMeasure<Mass>(75.0);
+ ReferenceMeasure<Mass> gainedWgt = new ReferenceMeasure<Mass>(2.5, Units.HectoGram);
+ ReferenceMeasure<Mass> newWgt = initialWgt + gainedWgt;
 
- SpecificMeasure<Mass> newWgtInGram = newWgt[Units.Gram];
- SpecificMeasure<Mass> initialWgtInGram = newWgtInGram - gainedWgt;
+ Measure<Mass> newWgtInGram = newWgt[Units.Gram];
+ Measure<Mass> initialWgtInGram = newWgtInGram - gainedWgt;
 
  Console.WriteLine("Initial weight: {0}", initialWgtInGram);
 
- SpecificMeasure<Length> height = new SpecificMeasure<Length>(30.0, Units.CentiMeter);
- Measure<Area> area = (Measure<Area>)0.02;
+ Measure<Length> height = new Measure<Length>(30.0, Units.CentiMeter);
+ ReferenceMeasure<Area> area = (ReferenceMeasure<Area>)0.02;
 
- var vol = Measure<Volume>.Times(height, area);
- var maxVol = new Measure<Volume>(10.0, Units.Liter);
+ var vol = ReferenceMeasure<Volume>.Times(height, area);
+ var maxVol = new ReferenceMeasure<Volume>(10.0, Units.Liter);
 
  if (vol < maxVol)
  {

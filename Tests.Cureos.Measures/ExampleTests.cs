@@ -17,20 +17,20 @@ namespace Tests.Cureos.Measures
 		[Test]
 		public void Example1()
 		{
-			Measure<Mass> initialWgt = new Measure<Mass>(75.0);
-			Measure<Mass> gainedWgt = new Measure<Mass>(2.5, Units.HectoGram);
-			Measure<Mass> newWgt = initialWgt + gainedWgt;
+			ReferenceMeasure<Mass> initialWgt = new ReferenceMeasure<Mass>(75.0);
+			ReferenceMeasure<Mass> gainedWgt = new ReferenceMeasure<Mass>(2.5, Units.HectoGram);
+			ReferenceMeasure<Mass> newWgt = initialWgt + gainedWgt;
 
-			SpecificMeasure<Mass> newWgtInGram = newWgt[Units.Gram];
-			SpecificMeasure<Mass> initialWgtInGram = newWgtInGram - gainedWgt;
+			Measure<Mass> newWgtInGram = newWgt[Units.Gram];
+			Measure<Mass> initialWgtInGram = newWgtInGram - gainedWgt;
 
 			Console.WriteLine("Initial weight: {0}", initialWgtInGram);
 
-			SpecificMeasure<Length> height = new SpecificMeasure<Length>(30.0, Units.CentiMeter);
-			Measure<Area> area = (Measure<Area>)0.02;
+			Measure<Length> height = new Measure<Length>(30.0, Units.CentiMeter);
+			ReferenceMeasure<Area> area = (ReferenceMeasure<Area>)0.02;
 
-			var vol = Measure<Volume>.Times(height, area);
-			var maxVol = new Measure<Volume>(10.0, Units.Liter);
+			var vol = ReferenceMeasure<Volume>.Times(height, area);
+			var maxVol = new ReferenceMeasure<Volume>(10.0, Units.Liter);
 
 			if (vol < maxVol)
 			{
