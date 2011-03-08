@@ -4,19 +4,12 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
-using System;
-using Cureos.Measures.Units;
 
 namespace Cureos.Measures.Quantities
 {
     public struct Mass : IQuantity<Mass>
     {
         private static readonly QuantityDimensions smkDimensions = new QuantityDimensions(0, 1, 0, 0, 0, 0, 0);
-
-        public EnumQuantity EnumeratedValue
-        {
-            get { throw new NotImplementedException(); }
-        }
 
         public QuantityDimensions Dimensions
         {
@@ -25,7 +18,7 @@ namespace Cureos.Measures.Quantities
 
         public IUnit<Mass> ReferenceUnit
         {
-            get { return Unit.KiloGram; }
+            get { return Units.KiloGram; }
         }
     }
 }

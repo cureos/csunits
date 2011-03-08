@@ -4,18 +4,10 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
-using System;
-
 namespace Cureos.Measures
 {
-/*	public interface IQuantity
-	{
-	} */
-
 	public interface IQuantity<Q> where Q : struct, IQuantity<Q>
 	{
-		EnumQuantity EnumeratedValue { get; }
-
 		QuantityDimensions Dimensions { get; }
 
 		IUnit<Q> ReferenceUnit { get; }

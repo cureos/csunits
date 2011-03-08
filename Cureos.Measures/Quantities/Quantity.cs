@@ -8,13 +8,25 @@ namespace Cureos.Measures.Quantities
 {
     public static class Quantity
     {
-        public static readonly AbsorbedDose AbsorbedDose = default(AbsorbedDose);
-        public static readonly Area Area = default(Area);
-        public static readonly Energy Energy = default(Energy);
-        public static readonly Length Length = default(Length);
-        public static readonly Mass Mass = default(Mass);
-        public static readonly Temperature Temperature = default(Temperature);
-        public static readonly Time Time = default(Time);
-        public static readonly Volume Volume = default(Volume);
+        public static bool IsProductOf<Q, Q1, Q2>(this Q iQuantity, Q1 iLhs, Q2 iRhs)
+            where Q : struct, IQuantity<Q>
+            where Q1 : struct, IQuantity<Q1>
+            where Q2 : struct, IQuantity<Q2>
+        {
+            return iQuantity.Dimensions.Equals(iLhs.Dimensions + iRhs.Dimensions);
+        }
+
+        public static bool IsQuotientOf<Q, Q1, Q2>(this Q iQuantity, Q1 iNumerator, Q2 iDenominator)
+            where Q : struct, IQuantity<Q>
+            where Q1 : struct, IQuantity<Q1>
+            where Q2 : struct, IQuantity<Q2>
+        {
+            return iQuantity.Dimensions.Equals(iNumerator.Dimensions - iDenominator.Dimensions);
+        }
+
+        public static string ToString<Q>(this Q iQuantity) where Q : struct, IQuantity<Q>
+        {
+            return iQuantity.GetType().Name;
+        }
     }
 }

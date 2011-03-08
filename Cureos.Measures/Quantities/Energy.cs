@@ -5,9 +5,6 @@
 // http://www.eclipse.org/legal/epl-v10.html
 
 
-using System;
-using Cureos.Measures.Units;
-
 namespace Cureos.Measures.Quantities
 {
     public struct Energy : IQuantity<Energy>
@@ -16,11 +13,6 @@ namespace Cureos.Measures.Quantities
 
         #region Implementation of IQuantity
 
-        public EnumQuantity EnumeratedValue
-        {
-            get { throw new NotImplementedException(); }
-        }
-
         public QuantityDimensions Dimensions
         {
             get { return smkDimensions; }
@@ -28,7 +20,7 @@ namespace Cureos.Measures.Quantities
 
         public IUnit<Energy> ReferenceUnit
         {
-            get { return Unit.Joule; }
+            get { return Units.Joule; }
         }
 
         #endregion

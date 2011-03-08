@@ -5,11 +5,7 @@
 // http://www.eclipse.org/legal/epl-v10.html
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Cureos.Measures;
-using Cureos.Measures.Extensions;
 using NUnit.Framework;
 
 #if SINGLE
@@ -26,12 +22,14 @@ namespace Tests.Cureos.Measures
     {
         private const AmountType smkEqualityTolerance = (AmountType)1.0e-7;
 
-        internal static void MeasuresAreEqual(IMeasure expected, IMeasure actual)
+        internal static void MeasuresAreEqual<Q1, Q2>(IMeasure<Q1> expected, IMeasure<Q2> actual)
+            where Q1 : struct, IQuantity<Q1>
+            where Q2 : struct, IQuantity<Q2>
         {
-            if (actual.EnumeratedUnit == expected.EnumeratedUnit)
+            if (actual.Unit.Equals(expected.Unit))
             {
                 Assert.IsTrue(Math.Abs(actual.Amount - expected.Amount) < smkEqualityTolerance,
-                    "Expected {0}, actual value {1}", expected, actual);
+                              "Expected {0}, actual value {1}", expected, actual);
             }
             else
             {
@@ -39,16 +37,15 @@ namespace Tests.Cureos.Measures
             }
         }
 
-        internal static void AmountsAreEqual(IMeasure expected, IMeasure actual)
+        internal static void AmountsAreEqual<Q1, Q2>(IMeasure<Q1> expected, IMeasure<Q2> actual)
+            where Q1 : struct, IQuantity<Q1>
+            where Q2 : struct, IQuantity<Q2>
         {
-            if (actual.EnumeratedUnit == expected.EnumeratedUnit)
+            if (typeof(Q1).Equals(typeof(Q2)))
             {
-                Assert.IsTrue(Math.Abs(actual.Amount - expected.Amount) < smkEqualityTolerance,
-                    "Expected {0}, actual value {1}", expected, actual);
-            }
-            else if (actual.GetQuantity() == expected.GetQuantity())
-            {
-                Assert.IsTrue(Math.Abs(actual.GetReferenceUnitAmount() - expected.GetReferenceUnitAmount()) < smkEqualityTolerance,
+                Assert.IsTrue(
+                    Math.Abs(actual.GetAmount(default(Q2).ReferenceUnit) - expected.GetAmount(default(Q1).ReferenceUnit)) <
+                    smkEqualityTolerance,
                     "Expected {0}, actual value {1}", expected, actual);
             }
             else

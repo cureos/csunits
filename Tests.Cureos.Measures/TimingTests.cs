@@ -7,7 +7,6 @@
 using System;
 using Cureos.Measures;
 using Cureos.Measures.Quantities;
-using Cureos.Measures.Units;
 using NUnit.Framework;
 
 namespace Tests.Cureos.Measures
@@ -36,10 +35,10 @@ namespace Tests.Cureos.Measures
 		{
 			PerformTiming(() =>
 							  {
-								  var val = new Measure(0.0, EnumUnit.KiloGram);
+								  var val = new SpecificMeasure<Mass>(0.0, Units.KiloGram);
 								  for (int i = 0; i < no; ++i)
 								  {
-									  val += new Measure((double) i, EnumUnit.KiloGram);
+									  val += new SpecificMeasure<Mass>((double) i, Units.KiloGram);
 								  }
 								  return val;
 							  });
@@ -50,10 +49,10 @@ namespace Tests.Cureos.Measures
 		{
 			PerformTiming(() =>
 							  {
-								  var val = new Measure(0.0, EnumUnit.KiloGram);
+								  var val = new SpecificMeasure<Mass>(0.0, Units.KiloGram);
 								  for (int i = 0; i < no; ++i)
 								  {
-									  val += new Measure((double) i, EnumUnit.Gram);
+									  val += new SpecificMeasure<Mass>((double) i, Units.Gram);
 								  }
 								  return val;
 							  });
@@ -78,7 +77,7 @@ namespace Tests.Cureos.Measures
 		{
 			PerformTiming(() =>
 			{
-				var val = new Measure<Length, CentiMeter>(0.0);
+				var val = new SpecificMeasure<Length>(0.0, Units.CentiMeter);
 				for (int i = 0; i < no; ++i)
 				{
 					val += new Measure<Length>((double)i);

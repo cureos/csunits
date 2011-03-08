@@ -4,19 +4,11 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
-using System;
-using Cureos.Measures.Units;
-
 namespace Cureos.Measures.Quantities
 {
     public struct AbsorbedDose : IQuantity<AbsorbedDose>
     {
         private static readonly QuantityDimensions smkDimensions = new QuantityDimensions(2, 0, -2, 0, 0, 0, 0);
-
-        public EnumQuantity EnumeratedValue
-        {
-            get { throw new NotImplementedException(); }
-        }
 
         public QuantityDimensions Dimensions
         {
@@ -25,7 +17,7 @@ namespace Cureos.Measures.Quantities
 
         public IUnit<AbsorbedDose> ReferenceUnit
         {
-            get { return Unit.Gray; }
+            get { return Units.Gray; }
         }
     }
 }

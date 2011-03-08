@@ -8,7 +8,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Cureos.Measures.Extensions;
 
 #if SINGLE
 using AmountType = System.Single;
@@ -101,15 +100,14 @@ namespace Cureos.Measures
         /// </summary>
         /// <param name="iAmounts">Array of amounts, given in the <paramref name="iUnit">specified unit</paramref></param>
         /// <param name="iUnit">Unit in which the amount array is originally specified</param>
-        public MeasureArray(IEnumerable<float> iAmounts, EnumUnit iUnit)
+        public MeasureArray(IEnumerable<float> iAmounts, IUnit<Q> iUnit)
         {
-            AssertValidUnit(iUnit);
 #if DOUBLE
-            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit((AmountType)a)).ToArray();
+            mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter((AmountType)a)).ToArray();
 #elif SINGLE
-            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit(a)).ToArray();
+            mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter(a)).ToArray();
 #elif DECIMAL
-            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit((AmountType)a)).ToArray();
+            mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter((AmountType)a)).ToArray();
 #endif
             mUnit = default(Q).ReferenceUnit;
         }
@@ -119,15 +117,14 @@ namespace Cureos.Measures
         /// </summary>
         /// <param name="iAmounts">Array of amounts, given in the <paramref name="iUnit">specified unit</paramref></param>
         /// <param name="iUnit">Unit in which the amount array is originally specified</param>
-        public MeasureArray(IEnumerable<decimal> iAmounts, EnumUnit iUnit)
+        public MeasureArray(IEnumerable<decimal> iAmounts, IUnit<Q> iUnit)
         {
-            AssertValidUnit(iUnit);
 #if DOUBLE
-            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit((AmountType)a)).ToArray();
+            mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter((AmountType)a)).ToArray();
 #elif SINGLE
-            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit((AmountType)a)).ToArray();
+            mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter((AmountType)a)).ToArray();
 #elif DECIMAL
-            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit(a)).ToArray();
+            mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter(a)).ToArray();
 #endif
             mUnit = default(Q).ReferenceUnit;
         }
@@ -203,16 +200,6 @@ namespace Cureos.Measures
         public Measure<Q> this[uint i]
         {
             get { return new Measure<Q>(mAmounts[i]); }
-        }
-
-        #endregion
-
-        #region METHODS
-
-        private static void AssertValidUnit(EnumUnit iUnit)
-        {
-            if (!Quantity<Q>.IsQuantityOf(iUnit))
-                throw new InvalidOperationException(String.Format("Unit {0} is not of quantity {1}", iUnit, Quantity<Q>.Value));
         }
 
         #endregion
