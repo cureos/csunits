@@ -31,7 +31,7 @@ namespace Tests.Cureos.Measures
             var numerator = new Measure<Area>(500.0, Units.SquareCentiMeter);
             var denominator = new Measure<Area>(5.0, Units.SquareDeciMeter);
             var actual = (double)(numerator / denominator);
-            Assert.AreEqual(expected, actual, 1.0e-7);
+            Assert.AreEqual(expected, actual, 1.0e-6);
         }
 
         [Test]

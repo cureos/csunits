@@ -26,15 +26,17 @@ namespace Tests.Cureos.Measures
 
 			Console.WriteLine("Initial weight: {0}", initialWgtInGram);
 
-			Measure<Length> height = new Measure<Length>(30.0, Units.CentiMeter);
+			SpecificMeasure<Length> height = new SpecificMeasure<Length>(30.0, Units.CentiMeter);
 			Measure<Area> area = (Measure<Area>)0.02;
 
 			var vol = Measure<Volume>.Times(height, area);
 			var maxVol = new Measure<Volume>(10.0, Units.Liter);
+
 			if (vol < maxVol)
 			{
 				Console.WriteLine("Calculated volume is within limits, actual volume: {0}", vol[Units.Liter]);
 			}
+
 #if NUNIT24
 			Assert.Ignore();
 #else

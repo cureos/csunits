@@ -2,8 +2,17 @@
 
 Simple C# framework to support Units of Measurement
 
-Copyright 2011 (c) Anders Gustafsson, Cureos AB
-Made available under Eclipse Public License, version 1.0
+Copyright 2011 (c) Anders Gustafsson, Cureos AB.
+Made available under Eclipse Public License, version 1.0.
+
+== Introduction
+
+Developed with Visual Studio 2010, using .NET Framework 3.5. Can also be used by Mono, at least versions 2.8 and later.
+
+Measure<Q> and SpecificMeasure<Q> are the main "work-horses" of the library. Measure<Q> is always represented in the reference unit of the associated quantity. If a different unit is specified in instantiation of Measure<Q>, the measured amount is automatically converted to the equivalent reference unit amount. On the other hand, the amount and unit used in instantiation of SpecificMeasure<Q> are maintained.
+
+Measure<Q> is declared as a struct. The main goal of this approach is to maximize calculation performance, while at the same time ensuring quantity type safety.
+
 
 == Usage examples
 
@@ -12,36 +21,29 @@ Made available under Eclipse Public License, version 1.0
  ...
 
  Measure<Mass> initialWgt = new Measure<Mass>(75.0);
- Measure<Mass> gainedWgt = new Measure<Mass>(2.5, Unit.HectoGram);
+ Measure<Mass> gainedWgt = new Measure<Mass>(2.5, Units.HectoGram);
  Measure<Mass> newWgt = initialWgt + gainedWgt;
 
- Measure newWgtInGram = newWgt[Unit.Gram];
- Measure initialWgtInGram = newWgtInGram - gainedWgt;
+ SpecificMeasure<Mass> newWgtInGram = newWgt[Units.Gram];
+ SpecificMeasure<Mass> initialWgtInGram = newWgtInGram - gainedWgt;
 
  Console.WriteLine("Initial weight: {0}", initialWgtInGram);
 
- Measure<Length> height = new Measure<Length>(30.0, Unit.CentiMeter);
+ SpecificMeasure<Length> height = new SpecificMeasure<Length>(30.0, Units.CentiMeter);
  Measure<Area> area = (Measure<Area>)0.02;
 
  var vol = Measure<Volume>.Times(height, area);
- var maxVol = new Measure<Volume>(10.0, Unit.Liter);
+ var maxVol = new Measure<Volume>(10.0, Units.Liter);
 
  if (vol < maxVol)
  {
-  Console.WriteLine("Calculated volume is within limits, actual volume: {0}", vol[Unit.Liter]);
+  Console.WriteLine("Calculated volume is within limits, actual volume: {0}", vol[Units.Liter]);
  }
 
 should yield the output:
 
  Initial weight: 75000 g
  Calculated volume is within limits, actual volume 6 l
-
-
-== Remarks
-
-Developed with Visual Studio 2010, using .NET Framework 3.5.
-
-The "work-horses" Measure and Measure<Q> are declared as structs. The main goal of this approach is to maximize calculation performance, while at the same time ensuring quantity type safety. In contrast, operations involving unit exposure or conversions are more costly due to dictionary look-up operations.
 
 
 == Building for specific floating-point types
@@ -57,55 +59,41 @@ With preprocessor directives, it is possible to configure the library so that th
 
 == Extending the library
 
-Quantities are identified through their dimension in terms of SI Base Units. For completeness, each quantity should have a reference unit, expressable as a combination of one or more SI base units. This is particularly important to ensure that resulting amounts are correctly erxpressed when multiplying or dividing measures.
+Quantities are identified through their dimension in terms of SI Base Units. For completeness, each quantity should have a reference unit, expressable as a combination of one or more SI base units. This is particularly important to ensure that resulting amounts are correctly expressed when multiplying or dividing measures.
 
 To extend the library with additional quantities and associated units, the following steps should be taken in project Cureos.Measures:
 
-* In the file Quantity.cs, add the new quantity to the enumeration:
-
-   public enum Quantity
-   {
-    ... ,
-    Energy
-   }
-
-* In the file QuantityExtensions.cs (Extensions sub-folder), static constructor, add the new quantity to the quantity details dictionary:
-
-   smDetailsMap = new List<QuantityDetails>
-   {
-    ... ,
-    new QuantityDetails(Quantity.Energy, new QuantityDimensions(2, 1, -2, 0, 0, 0, 0))
-   }
-
-* In the Quantities sub-folder, add a new member-less struct implementing the IQuantity interface, and have the Value property getter return the enumerated value of the new quantity:
+* In the Quantities sub-folder, add a new member-less struct implementing the IQuantity interface, and have the Dimensions property getter return the dimension signature of the new quantity:
 
    namespace Cureos.Measures.Quantities
    {
-    public struct Energy : IQuantity
+    private static readonly QuantityDimensions _dimensions = new QuantityDimensions(2, 1, -2, 0, 0, 0, 0);
+
+    public struct Energy : IQuantity<Energy>
     {
-     public Quantity Value { get { return Quantity.Energy; } }
+     public QuantityDimensions Dimensions { get { return _dimensions; } }
+	 public IUnit<Energy> ReferenceUnit { get { return REFERENCE_UNIT_DEFINED_IN_NEXT_STEP; } }
     }
    }
 
-* In the file Unit.cs, add the unit(s) associated with the quantity to the enumeration:
+* In the file Units.cs, add the unit(s) associated with the quantity to the enumeration:
 
-   public enum Unit
+   public static class Units
    {
-    ... ,
-    Joule,
-    KiloJoule
+    ... ;
+    public static readonly Unit<Energy> Joule = new Unit<Energy>("J");
+    public static readonly Unit<Energy> KiloJoule = new Unit<Energy>("kJ", Scales.Kilo);
    }
 
-* In the file UnitExtensions.cs (Extensions sub-folder), static constructor, add the new units to the unit details dictionary. The reference unit (in the example, Joule) uses a UnitDetails constructor without amount conversion specifications, whereas the secondary units are initialized using amount conversion factors/operators to and from the reference unit:
+* Insert the reference unit instance (in this case, Units.Joule) in the ReferenceUnit property getter of the new quantity type:
 
-   smUnitDetailsMap = new UnitDetails[]
-   {
-    ... ,
-    new UnitDetails(Unit.Joule, Quantity.Energy, "J"),
-    new UnitDetails(Unit.KiloJoule, Quantity.Energy, "kJ", (AmountType) 1000.0)
-   }
+    public struct Energy : IQuantity<Energy>
+    {
+     ...
+	 public IUnit<Energy> ReferenceUnit { get { return Units.Joule; } }
+    }
 
 
 == Revision
 
-Last updated on March 4, 2011 by Anders Gustafsson, anders[at]cureos[dot]com.
+Last updated on March 8, 2011 by Anders Gustafsson, anders[at]cureos[dot]com.

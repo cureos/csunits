@@ -36,7 +36,7 @@ namespace Cureos.Measures
 		/// <param name="iAmount">Measured amount in reference unit, double precision</param>
 		public Measure(double iAmount)
 		{
-#if !DECIMAL
+#if DOUBLE
 			mAmount = iAmount;
 #else
 			mAmount = (AmountType)iAmount;
@@ -79,7 +79,7 @@ namespace Cureos.Measures
 		public Measure(double iAmount, IUnit<Q> iUnit)
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
-#if !DECIMAL
+#if DOUBLE
 			mAmount = iUnit.AmountToReferenceUnitConverter(iAmount);
 #else
 			mAmount = iUnit.AmountToReferenceUnitConverter((AmountType)iAmount);

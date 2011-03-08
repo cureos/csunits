@@ -88,9 +88,9 @@ namespace Cureos.Measures
 #if DOUBLE
             mAmounts = iAmounts.Select(iUnit.AmountToReferenceUnitConverter).ToArray();
 #elif SINGLE
-            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit((AmountType)a)).ToArray();
+            mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter((AmountType)a)).ToArray();
 #elif DECIMAL
-            mAmounts = iAmounts.Select(a => iUnit.ConvertAmountToReferenceUnit((AmountType)a)).ToArray();
+            mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter((AmountType)a)).ToArray();
 #endif
             mUnit = default(Q).ReferenceUnit;
         }
@@ -105,7 +105,7 @@ namespace Cureos.Measures
 #if DOUBLE
             mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter((AmountType)a)).ToArray();
 #elif SINGLE
-            mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter(a)).ToArray();
+            mAmounts = iAmounts.Select(iUnit.AmountToReferenceUnitConverter).ToArray();
 #elif DECIMAL
             mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter((AmountType)a)).ToArray();
 #endif
@@ -124,7 +124,7 @@ namespace Cureos.Measures
 #elif SINGLE
             mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter((AmountType)a)).ToArray();
 #elif DECIMAL
-            mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter(a)).ToArray();
+            mAmounts = iAmounts.Select(iUnit.AmountToReferenceUnitConverter).ToArray();
 #endif
             mUnit = default(Q).ReferenceUnit;
         }

@@ -41,7 +41,7 @@ namespace Cureos.Measures
 		public SpecificMeasure(float iAmount, IUnit<Q> iUnit)
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
-#if SINGLE
+#if !DECIMAL
 			mAmount = iAmount;
 #else
 			mAmount = (AmountType)iAmount;
