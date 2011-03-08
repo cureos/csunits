@@ -54,36 +54,5 @@ namespace Cureos.Measures
         public Func<AmountType, AmountType> AmountFromReferenceUnitConverter { get; private set; }
 
         #endregion
-
-        #region METHODS
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != typeof (Unit<Q>)) return false;
-            return Equals((Unit<Q>) obj);
-        }
-
-        public bool Equals(Unit<Q> other)
-        {
-            if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
-            return Equals(other.Symbol, Symbol);
-        }
-
-        /// <summary>
-        /// Serves as a hash function for a particular type. 
-        /// </summary>
-        /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
-        /// </returns>
-        /// <filterpriority>2</filterpriority>
-        public override int GetHashCode()
-        {
-            return (Symbol != null ? Symbol.GetHashCode() : 0);
-        }
-
-        #endregion
     }
 }

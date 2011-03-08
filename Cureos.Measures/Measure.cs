@@ -5,7 +5,6 @@
 // http://www.eclipse.org/legal/epl-v10.html
 
 using System;
-using Cureos.Measures.Quantities;
 
 #if SINGLE
 using AmountType = System.Single;
@@ -37,11 +36,11 @@ namespace Cureos.Measures
 		/// <param name="iAmount">Measured amount in reference unit, double precision</param>
 		public Measure(double iAmount)
 		{
-			mAmount =
-#if !DOUBLE
-				(AmountType)
+#if !DECIMAL
+			mAmount = iAmount;
+#else
+			mAmount = (AmountType)iAmount;
 #endif
- iAmount;
 		}
 
 		/// <summary>
@@ -50,11 +49,11 @@ namespace Cureos.Measures
 		/// <param name="iAmount">Measured amount in reference unit, single precision</param>
 		public Measure(float iAmount)
 		{
-			mAmount =
-#if !SINGLE
- (AmountType)
+#if !DECIMAL
+			mAmount = iAmount;
+#else
+			mAmount = (AmountType)iAmount;
 #endif
-iAmount;
 		}
 
 		/// <summary>
@@ -63,11 +62,11 @@ iAmount;
 		/// <param name="iAmount">Measured amount in reference unit, decimal precision</param>
 		public Measure(decimal iAmount)
 		{
-			mAmount =
-#if !DECIMAL
- (AmountType)
+#if DECIMAL
+			mAmount = iAmount;
+#else
+			mAmount = (AmountType)iAmount;
 #endif
-iAmount;
 		}
 
 		/// <summary>
@@ -79,11 +78,12 @@ iAmount;
 		/// is not the same as the type-specified quantity</exception>
 		public Measure(double iAmount, IUnit<Q> iUnit)
 		{
-			mAmount = iUnit.AmountToReferenceUnitConverter(
-#if !DOUBLE
-				(AmountType)
+			if (iUnit == null) throw new ArgumentNullException("iUnit");
+#if !DECIMAL
+			mAmount = iUnit.AmountToReferenceUnitConverter(iAmount);
+#else
+			mAmount = iUnit.AmountToReferenceUnitConverter((AmountType)iAmount);
 #endif
-iAmount);
 		}
 
 		/// <summary>
@@ -95,11 +95,12 @@ iAmount);
 		/// is not the same as the type-specified quantity</exception>
 		public Measure(float iAmount, IUnit<Q> iUnit)
 		{
-			mAmount = iUnit.AmountToReferenceUnitConverter(
-#if !SINGLE
-(AmountType)
+			if (iUnit == null) throw new ArgumentNullException("iUnit");
+#if !DECIMAL
+			mAmount = iUnit.AmountToReferenceUnitConverter(iAmount);
+#else
+			mAmount = iUnit.AmountToReferenceUnitConverter((AmountType)iAmount);
 #endif
-iAmount);
 		}
 
 		/// <summary>
@@ -111,11 +112,12 @@ iAmount);
 		/// is not the same as the type-specified quantity</exception>
 		public Measure(decimal iAmount, IUnit<Q> iUnit)
 		{
-			mAmount = iUnit.AmountToReferenceUnitConverter(
-#if !DECIMAL
-(AmountType)
+			if (iUnit == null) throw new ArgumentNullException("iUnit");
+#if DECIMAL
+			mAmount = iUnit.AmountToReferenceUnitConverter(iAmount);
+#else
+			mAmount = iUnit.AmountToReferenceUnitConverter((AmountType)iAmount);
 #endif
-iAmount);
 		}
 
 		#endregion
@@ -186,6 +188,66 @@ iAmount);
 		}
 
 		/// <summary>
+		/// Multiply two measure objects, where the right-hand side measure is any object implementing the IMeasure interface
+		/// </summary>
+		/// <typeparam name="Q1">Quantity type of the left-hand side measure</typeparam>
+		/// <typeparam name="Q2">Quantity type of the right-hand side measure</typeparam>
+		/// <param name="iLhs">Left-hand side measure object</param>
+		/// <param name="iRhs">Right-hand side measure object</param>
+		/// <returns>Product of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
+		public static Measure<Q> Times<Q1, Q2>(Measure<Q1> iLhs, IMeasure<Q2> iRhs)
+			where Q1 : struct, IQuantity<Q1>
+			where Q2 : struct, IQuantity<Q2>
+		{
+			if (default(Q).IsProductOf(default(Q1), default(Q2)))
+			{
+				return new Measure<Q>(iLhs.mAmount * iRhs.GetAmount(default(Q2).ReferenceUnit));
+			}
+			throw new InvalidOperationException(String.Format("Cannot multiply {0} and {1} to measure of quantity {2}",
+															  iLhs, iRhs, default(Q).Name()));
+		}
+
+		/// <summary>
+		/// Multiply two measure objects, where the left-hand side measure is any object implementing the IMeasure interface
+		/// </summary>
+		/// <typeparam name="Q1">Quantity type of the left-hand side measure</typeparam>
+		/// <typeparam name="Q2">Quantity type of the right-hand side measure</typeparam>
+		/// <param name="iLhs">Left-hand side measure object</param>
+		/// <param name="iRhs">Right-hand side measure object</param>
+		/// <returns>Product of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
+		public static Measure<Q> Times<Q1, Q2>(IMeasure<Q1> iLhs, Measure<Q2> iRhs)
+			where Q1 : struct, IQuantity<Q1>
+			where Q2 : struct, IQuantity<Q2>
+		{
+			if (default(Q).IsProductOf(default(Q1), default(Q2)))
+			{
+				return new Measure<Q>(iLhs.GetAmount(default(Q1).ReferenceUnit) * iRhs.mAmount);
+			}
+			throw new InvalidOperationException(String.Format("Cannot multiply {0} and {1} to measure of quantity {2}",
+															  iLhs, iRhs, default(Q).Name()));
+		}
+
+		/// <summary>
+		/// Multiply two measure objects, where both measures may be any objects implementing the IMeasure interface
+		/// </summary>
+		/// <typeparam name="Q1">Quantity type of the left-hand side measure</typeparam>
+		/// <typeparam name="Q2">Quantity type of the right-hand side measure</typeparam>
+		/// <param name="iLhs">Left-hand side measure object</param>
+		/// <param name="iRhs">Right-hand side measure object</param>
+		/// <returns>Product of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
+		public static Measure<Q> Times<Q1, Q2>(IMeasure<Q1> iLhs, IMeasure<Q2> iRhs)
+			where Q1 : struct, IQuantity<Q1>
+			where Q2 : struct, IQuantity<Q2>
+		{
+			if (default(Q).IsProductOf(default(Q1), default(Q2)))
+			{
+				return new Measure<Q>(iLhs.GetAmount(default(Q1).ReferenceUnit) * iRhs.GetAmount(default(Q2).ReferenceUnit));
+			}
+			throw new InvalidOperationException(String.Format("Cannot multiply {0} and {1} to measure of quantity {2}",
+															  iLhs, iRhs, default(Q).Name()));
+		}
+
+		/// <summary>
 		/// Divide two measure objects
 		/// </summary>
 		/// <typeparam name="Q1">Quantity type of the numerator measure</typeparam>
@@ -200,6 +262,66 @@ iAmount);
 			if (default(Q).IsQuotientOf(default(Q1), default(Q2)))
 			{
 				return new Measure<Q>(iNumerator.mAmount / iDenominator.mAmount);
+			}
+			throw new InvalidOperationException(String.Format("Cannot divide {0} and {1} to measure of quantity {2}",
+															  iNumerator, iDenominator, default(Q).Name()));
+		}
+
+		/// <summary>
+		/// Divide two measure objects, where the right-hand side measure is any object implementing the IMeasure interface
+		/// </summary>
+		/// <typeparam name="Q1">Quantity type of the numerator measure</typeparam>
+		/// <typeparam name="Q2">Quantity type of the denominator measure</typeparam>
+		/// <param name="iNumerator">Numerator measure object</param>
+		/// <param name="iDenominator">Denominator measure object</param>
+		/// <returns>Quotient of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
+		public static Measure<Q> Divide<Q1, Q2>(Measure<Q1> iNumerator, IMeasure<Q2> iDenominator)
+			where Q1 : struct, IQuantity<Q1>
+			where Q2 : struct, IQuantity<Q2>
+		{
+			if (default(Q).IsQuotientOf(default(Q1), default(Q2)))
+			{
+				return new Measure<Q>(iNumerator.mAmount / iDenominator.GetAmount(default(Q2).ReferenceUnit));
+			}
+			throw new InvalidOperationException(String.Format("Cannot divide {0} and {1} to measure of quantity {2}",
+															  iNumerator, iDenominator, default(Q).Name()));
+		}
+
+		/// <summary>
+		/// Divide two measure objects, where the right-hand side measure is any object implementing the IMeasure interface
+		/// </summary>
+		/// <typeparam name="Q1">Quantity type of the numerator measure</typeparam>
+		/// <typeparam name="Q2">Quantity type of the denominator measure</typeparam>
+		/// <param name="iNumerator">Numerator measure object</param>
+		/// <param name="iDenominator">Denominator measure object</param>
+		/// <returns>Quotient of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
+		public static Measure<Q> Divide<Q1, Q2>(IMeasure<Q1> iNumerator, Measure<Q2> iDenominator)
+			where Q1 : struct, IQuantity<Q1>
+			where Q2 : struct, IQuantity<Q2>
+		{
+			if (default(Q).IsQuotientOf(default(Q1), default(Q2)))
+			{
+				return new Measure<Q>(iNumerator.GetAmount(default(Q1).ReferenceUnit) / iDenominator.mAmount);
+			}
+			throw new InvalidOperationException(String.Format("Cannot divide {0} and {1} to measure of quantity {2}",
+															  iNumerator, iDenominator, default(Q).Name()));
+		}
+
+		/// <summary>
+		/// Divide two measure objects, where both measures may be any objects implementing the IMeasure interface
+		/// </summary>
+		/// <typeparam name="Q1">Quantity type of the numerator measure</typeparam>
+		/// <typeparam name="Q2">Quantity type of the denominator measure</typeparam>
+		/// <param name="iNumerator">Numerator measure object</param>
+		/// <param name="iDenominator">Denominator measure object</param>
+		/// <returns>Quotient of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
+		public static Measure<Q> Divide<Q1, Q2>(IMeasure<Q1> iNumerator, IMeasure<Q2> iDenominator)
+			where Q1 : struct, IQuantity<Q1>
+			where Q2 : struct, IQuantity<Q2>
+		{
+			if (default(Q).IsQuotientOf(default(Q1), default(Q2)))
+			{
+				return new Measure<Q>(iNumerator.GetAmount(default(Q1).ReferenceUnit) / iDenominator.GetAmount(default(Q2).ReferenceUnit));
 			}
 			throw new InvalidOperationException(String.Format("Cannot divide {0} and {1} to measure of quantity {2}",
 															  iNumerator, iDenominator, default(Q).Name()));

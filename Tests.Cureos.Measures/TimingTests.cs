@@ -38,7 +38,7 @@ namespace Tests.Cureos.Measures
 								  var val = new SpecificMeasure<Mass>(0.0, Units.KiloGram);
 								  for (int i = 0; i < no; ++i)
 								  {
-									  val += new SpecificMeasure<Mass>((double) i, Units.KiloGram);
+									  val += new Measure<Mass>((double) i);
 								  }
 								  return val;
 							  });
