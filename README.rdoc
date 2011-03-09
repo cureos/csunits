@@ -76,7 +76,7 @@ To extend the library with additional quantities and associated units, the follo
     }
    }
 
-* In the file Units.cs, add the unit(s) associated with the quantity to the list of supported fields:
+* In the file Units.cs, add the unit(s) associated with the quantity to the list of supported units:
 
    public static class Units
    {
