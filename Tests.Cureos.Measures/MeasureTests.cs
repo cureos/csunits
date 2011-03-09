@@ -25,6 +25,13 @@ namespace Tests.Cureos.Measures
             Assert.AreEqual(expected, actual);
         }
 
+        [Test]
+        public void DefaultConstructor_Apply_YieldsZeroAmountStandardUnit()
+        {
+            var expected = new Measure<Temperature>(0.0, Units.Kelvin);
+            var actual = new Measure<Temperature>();
+            MeasureAssert.MeasuresAreEqual(expected, actual);
+        }
         #endregion
     }
 }
