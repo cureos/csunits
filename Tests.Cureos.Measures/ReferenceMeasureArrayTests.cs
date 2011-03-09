@@ -5,19 +5,15 @@
 // http://www.eclipse.org/legal/epl-v10.html
 
 using System;
+using System.Linq;
 using Cureos.Measures;
 using Cureos.Measures.Quantities;
 using NUnit.Framework;
 
 namespace Tests.Cureos.Measures
 {
-//    [TestFixture]
-	public class ReferenceMeasureArrayTests
-	{
-	}
-
 	[TestFixture]
-	public class MeasureArrayQTests
+	public class ReferenceMeasureArrayTests
 	{
 		private ReferenceMeasureArray<Length> _instance;
 
@@ -43,7 +39,12 @@ namespace Tests.Cureos.Measures
 		{
 			var expected = AmountConverter.ToAmountType(new[] {0.01, 0.02, 0.03, 0.04, 0.05});
 			var actual = _instance.Amounts;
+#if NUNIT24
+			for (int i = 0; i < expected.Count(); ++i)
+				Assert.IsTrue(AmountComparer.Instance.Compare(expected.ElementAt(i), actual[i]) == 0);
+#else
 			CollectionAssert.AreEqual(expected, actual, AmountComparer.Instance);
+#endif
 		}
 
 		[Test]

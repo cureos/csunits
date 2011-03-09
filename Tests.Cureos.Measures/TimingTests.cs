@@ -14,7 +14,7 @@ namespace Tests.Cureos.Measures
 	[TestFixture]
 	public class TimingTests
 	{
-		private const int no = 1000000;
+		private const double no = 1000000;
 
 		[Test]
 		public void TimeDoubleAdditions()
@@ -22,9 +22,9 @@ namespace Tests.Cureos.Measures
 			PerformTiming(() =>
 							  {
 								  double val = 0.0;
-								  for (int i = 0; i < no; ++i)
+								  for (double i = 0.0; i < no; ++i)
 								  {
-									  val += (double) i;
+									  val += i;
 								  }
 								  return val;
 							  });
@@ -36,9 +36,9 @@ namespace Tests.Cureos.Measures
 			PerformTiming(() =>
 							  {
 								  var val = new Measure<Mass>(0.0, Units.KiloGram);
-								  for (int i = 0; i < no; ++i)
+								  for (double i = 0.0; i < no; ++i)
 								  {
-									  val += new ReferenceMeasure<Mass>((double) i);
+									  val += new ReferenceMeasure<Mass>(i);
 								  }
 								  return val;
 							  });
@@ -50,9 +50,9 @@ namespace Tests.Cureos.Measures
 			PerformTiming(() =>
 							  {
 								  var val = new Measure<Mass>(0.0, Units.KiloGram);
-								  for (int i = 0; i < no; ++i)
+								  for (double i = 0.0; i < no; ++i)
 								  {
-									  val += new Measure<Mass>((double) i, Units.Gram);
+									  val += new Measure<Mass>(i, Units.Gram);
 								  }
 								  return val;
 							  });
@@ -64,9 +64,9 @@ namespace Tests.Cureos.Measures
 			PerformTiming(() =>
 							  {
 								  var val = new ReferenceMeasure<Length>(0.0);
-								  for (int i = 0; i < no; ++i)
+								  for (double i = 0.0; i < no; ++i)
 								  {
-									  val += new ReferenceMeasure<Length>((double)i);
+									  val += new ReferenceMeasure<Length>(i);
 								  }
 								  return val;
 							  });
@@ -78,9 +78,9 @@ namespace Tests.Cureos.Measures
 			PerformTiming(() =>
 			{
 				var val = new Measure<Length>(0.0, Units.CentiMeter);
-				for (int i = 0; i < no; ++i)
+				for (double i = 0.0; i < no; ++i)
 				{
-					val += new ReferenceMeasure<Length>((double)i);
+					val += new ReferenceMeasure<Length>(i);
 				}
 				return val;
 			});

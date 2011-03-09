@@ -67,16 +67,16 @@ To extend the library with additional quantities and associated units, the follo
 
    namespace Cureos.Measures.Quantities
    {
-    private static readonly QuantityDimensions _dimensions = new QuantityDimensions(2, 1, -2, 0, 0, 0, 0);
-
     public struct Energy : IQuantity<Energy>
     {
+     private static readonly QuantityDimensions _dimensions = new QuantityDimensions(2, 1, -2, 0, 0, 0, 0);
+
      public QuantityDimensions Dimensions { get { return _dimensions; } }
-	 public IUnit<Energy> ReferenceUnit { get { return REFERENCE_UNIT_DEFINED_IN_NEXT_STEP; } }
+     public IUnit<Energy> ReferenceUnit { get { return REFERENCE_UNIT_DEFINED_IN_NEXT_STEP; } }
     }
    }
 
-* In the file Units.cs, add the unit(s) associated with the quantity to the enumeration:
+* In the file Units.cs, add the unit(s) associated with the quantity to the list of supported fields:
 
    public static class Units
    {
