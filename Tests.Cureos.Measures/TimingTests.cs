@@ -17,6 +17,19 @@ namespace Tests.Cureos.Measures
 		private const double no = 1000000;
 
 		[Test]
+		public void TimeEmptyLoop()
+		{
+			PerformTiming(() =>
+							  {
+								  double val = 0.0;
+								  for (double i = 0.0; i < no; ++i)
+								  {
+								  }
+								  return val;
+							  });
+		}
+
+		[Test]
 		public void TimeDoubleAdditions()
 		{
 			PerformTiming(() =>
