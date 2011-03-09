@@ -15,7 +15,7 @@ namespace Cureos.Measures.Quantities
             get { return smkDimensions; }
         }
 
-        public IUnit<Time> ReferenceUnit
+        public IUnit<Time> StandardUnit
         {
             get { return Units.Second; }
         }

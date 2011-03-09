@@ -15,7 +15,7 @@ namespace Cureos.Measures.Quantities
             get { return smkDimensions; }
         }
 
-        public IUnit<Temperature> ReferenceUnit
+        public IUnit<Temperature> StandardUnit
         {
             get { return Units.Kelvin; }
         }

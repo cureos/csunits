@@ -15,7 +15,7 @@ namespace Cureos.Measures.Quantities
             get { return smkDimensions; }
         }
 
-        public IUnit<Volume> ReferenceUnit
+        public IUnit<Volume> StandardUnit
         {
             get { return Units.CubicMeter; }
         }

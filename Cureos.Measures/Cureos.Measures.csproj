@@ -45,7 +45,7 @@
     <Compile Include="IMeasureArray.cs" />
     <Compile Include="Unit.cs" />
     <Compile Include="Measure.cs" />
-    <Compile Include="ReferenceMeasureArray.cs" />
+    <Compile Include="StandardMeasureArray.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quantities\AbsorbedDose.cs" />
     <Compile Include="Quantities\Area.cs" />
@@ -61,7 +61,7 @@
     <Compile Include="IQuantity.cs" />
     <Compile Include="Quantities\Length.cs" />
     <Compile Include="IUnit.cs" />
-    <Compile Include="ReferenceMeasure.cs" />
+    <Compile Include="StandardMeasure.cs" />
     <Compile Include="Units.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

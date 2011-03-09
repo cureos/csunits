@@ -15,7 +15,7 @@ namespace Cureos.Measures.Quantities
             get { return smkDimensions; }
         }
 
-        public IUnit<AbsorbedDose> ReferenceUnit
+        public IUnit<AbsorbedDose> StandardUnit
         {
             get { return Units.Gray; }
         }

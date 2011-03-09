@@ -15,7 +15,7 @@ namespace Cureos.Measures.Quantities
 	        get { return smkDimensions; }
 	    }
 
-	    public IUnit<Length> ReferenceUnit
+	    public IUnit<Length> StandardUnit
 	    {
 	        get { return Units.Meter; }
 	    }

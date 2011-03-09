@@ -20,7 +20,7 @@ namespace Cureos.Measures
 	/// Quantity-typed representation of a single measure
 	/// </summary>
 	/// <typeparam name="Q">Struct type implementing the IQuantity interface</typeparam>
-	public struct ReferenceMeasure<Q> : IMeasure<Q>, IEquatable<ReferenceMeasure<Q>>, IComparable<ReferenceMeasure<Q>> where Q : struct, IQuantity<Q>
+	public struct StandardMeasure<Q> : IMeasure<Q>, IEquatable<StandardMeasure<Q>>, IComparable<StandardMeasure<Q>> where Q : struct, IQuantity<Q>
 	{
 		#region MEMBER VARIABLES
 
@@ -34,7 +34,7 @@ namespace Cureos.Measures
 		/// Initializes a measure object of the specified quantity
 		/// </summary>
 		/// <param name="iAmount">Measured amount in reference unit, double precision</param>
-		public ReferenceMeasure(double iAmount)
+		public StandardMeasure(double iAmount)
 		{
 #if DOUBLE
 			mAmount = iAmount;
@@ -47,7 +47,7 @@ namespace Cureos.Measures
 		/// Initializes a measure object of the specified quantity
 		/// </summary>
 		/// <param name="iAmount">Measured amount in reference unit, single precision</param>
-		public ReferenceMeasure(float iAmount)
+		public StandardMeasure(float iAmount)
 		{
 #if !DECIMAL
 			mAmount = iAmount;
@@ -60,7 +60,7 @@ namespace Cureos.Measures
 		/// Initializes a measure object of the specified quantity
 		/// </summary>
 		/// <param name="iAmount">Measured amount in reference unit, decimal precision</param>
-		public ReferenceMeasure(decimal iAmount)
+		public StandardMeasure(decimal iAmount)
 		{
 #if DECIMAL
 			mAmount = iAmount;
@@ -76,7 +76,7 @@ namespace Cureos.Measures
 		/// <param name="iUnit">Unit of measure</param>
 		/// <exception cref="InvalidOperationException">is thrown if the quantity of the specified unit
 		/// is not the same as the type-specified quantity</exception>
-		public ReferenceMeasure(double iAmount, IUnit<Q> iUnit)
+		public StandardMeasure(double iAmount, IUnit<Q> iUnit)
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
 #if DOUBLE
@@ -93,7 +93,7 @@ namespace Cureos.Measures
 		/// <param name="iUnit">Unit of measure</param>
 		/// <exception cref="InvalidOperationException">is thrown if the quantity of the specified unit
 		/// is not the same as the type-specified quantity</exception>
-		public ReferenceMeasure(float iAmount, IUnit<Q> iUnit)
+		public StandardMeasure(float iAmount, IUnit<Q> iUnit)
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
 #if !DECIMAL
@@ -110,7 +110,7 @@ namespace Cureos.Measures
 		/// <param name="iUnit">Unit of measure</param>
 		/// <exception cref="InvalidOperationException">is thrown if the quantity of the specified unit
 		/// is not the same as the type-specified quantity</exception>
-		public ReferenceMeasure(decimal iAmount, IUnit<Q> iUnit)
+		public StandardMeasure(decimal iAmount, IUnit<Q> iUnit)
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
 #if DECIMAL
@@ -137,7 +137,7 @@ namespace Cureos.Measures
 		/// </summary>
 		public IUnit<Q> Unit
 		{
-			get { return default(Q).ReferenceUnit; }
+			get { return default(Q).StandardUnit; }
 		}
 
 		/// <summary>
@@ -175,13 +175,13 @@ namespace Cureos.Measures
 		/// <param name="iLhs">Left-hand side measure object</param>
 		/// <param name="iRhs">Right-hand side measure object</param>
 		/// <returns>Product of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
-		public static ReferenceMeasure<Q> Times<Q1, Q2>(ReferenceMeasure<Q1> iLhs, ReferenceMeasure<Q2> iRhs)
+		public static StandardMeasure<Q> Times<Q1, Q2>(StandardMeasure<Q1> iLhs, StandardMeasure<Q2> iRhs)
 			where Q1 : struct, IQuantity<Q1>
 			where Q2 : struct, IQuantity<Q2>
 		{
 			if (default(Q).IsProductOf(default(Q1), default(Q2)))
 			{
-				return new ReferenceMeasure<Q>(iLhs.mAmount * iRhs.mAmount);
+				return new StandardMeasure<Q>(iLhs.mAmount * iRhs.mAmount);
 			}
 			throw new InvalidOperationException(String.Format("Cannot multiply {0} and {1} to measure of quantity {2}",
 															  iLhs, iRhs, default(Q).Name()));
@@ -195,13 +195,13 @@ namespace Cureos.Measures
 		/// <param name="iLhs">Left-hand side measure object</param>
 		/// <param name="iRhs">Right-hand side measure object</param>
 		/// <returns>Product of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
-		public static ReferenceMeasure<Q> Times<Q1, Q2>(ReferenceMeasure<Q1> iLhs, IMeasure<Q2> iRhs)
+		public static StandardMeasure<Q> Times<Q1, Q2>(StandardMeasure<Q1> iLhs, IMeasure<Q2> iRhs)
 			where Q1 : struct, IQuantity<Q1>
 			where Q2 : struct, IQuantity<Q2>
 		{
 			if (default(Q).IsProductOf(default(Q1), default(Q2)))
 			{
-				return new ReferenceMeasure<Q>(iLhs.mAmount * iRhs.GetAmount(default(Q2).ReferenceUnit));
+				return new StandardMeasure<Q>(iLhs.mAmount * iRhs.GetAmount(default(Q2).StandardUnit));
 			}
 			throw new InvalidOperationException(String.Format("Cannot multiply {0} and {1} to measure of quantity {2}",
 															  iLhs, iRhs, default(Q).Name()));
@@ -215,13 +215,13 @@ namespace Cureos.Measures
 		/// <param name="iLhs">Left-hand side measure object</param>
 		/// <param name="iRhs">Right-hand side measure object</param>
 		/// <returns>Product of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
-		public static ReferenceMeasure<Q> Times<Q1, Q2>(IMeasure<Q1> iLhs, ReferenceMeasure<Q2> iRhs)
+		public static StandardMeasure<Q> Times<Q1, Q2>(IMeasure<Q1> iLhs, StandardMeasure<Q2> iRhs)
 			where Q1 : struct, IQuantity<Q1>
 			where Q2 : struct, IQuantity<Q2>
 		{
 			if (default(Q).IsProductOf(default(Q1), default(Q2)))
 			{
-				return new ReferenceMeasure<Q>(iLhs.GetAmount(default(Q1).ReferenceUnit) * iRhs.mAmount);
+				return new StandardMeasure<Q>(iLhs.GetAmount(default(Q1).StandardUnit) * iRhs.mAmount);
 			}
 			throw new InvalidOperationException(String.Format("Cannot multiply {0} and {1} to measure of quantity {2}",
 															  iLhs, iRhs, default(Q).Name()));
@@ -235,13 +235,13 @@ namespace Cureos.Measures
 		/// <param name="iLhs">Left-hand side measure object</param>
 		/// <param name="iRhs">Right-hand side measure object</param>
 		/// <returns>Product of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
-		public static ReferenceMeasure<Q> Times<Q1, Q2>(IMeasure<Q1> iLhs, IMeasure<Q2> iRhs)
+		public static StandardMeasure<Q> Times<Q1, Q2>(IMeasure<Q1> iLhs, IMeasure<Q2> iRhs)
 			where Q1 : struct, IQuantity<Q1>
 			where Q2 : struct, IQuantity<Q2>
 		{
 			if (default(Q).IsProductOf(default(Q1), default(Q2)))
 			{
-				return new ReferenceMeasure<Q>(iLhs.GetAmount(default(Q1).ReferenceUnit) * iRhs.GetAmount(default(Q2).ReferenceUnit));
+				return new StandardMeasure<Q>(iLhs.GetAmount(default(Q1).StandardUnit) * iRhs.GetAmount(default(Q2).StandardUnit));
 			}
 			throw new InvalidOperationException(String.Format("Cannot multiply {0} and {1} to measure of quantity {2}",
 															  iLhs, iRhs, default(Q).Name()));
@@ -255,13 +255,13 @@ namespace Cureos.Measures
 		/// <param name="iNumerator">Numerator measure object</param>
 		/// <param name="iDenominator">Denominator measure object</param>
 		/// <returns>Quotient of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
-		public static ReferenceMeasure<Q> Divide<Q1, Q2>(ReferenceMeasure<Q1> iNumerator, ReferenceMeasure<Q2> iDenominator)
+		public static StandardMeasure<Q> Divide<Q1, Q2>(StandardMeasure<Q1> iNumerator, StandardMeasure<Q2> iDenominator)
 			where Q1 : struct, IQuantity<Q1>
 			where Q2 : struct, IQuantity<Q2>
 		{
 			if (default(Q).IsQuotientOf(default(Q1), default(Q2)))
 			{
-				return new ReferenceMeasure<Q>(iNumerator.mAmount / iDenominator.mAmount);
+				return new StandardMeasure<Q>(iNumerator.mAmount / iDenominator.mAmount);
 			}
 			throw new InvalidOperationException(String.Format("Cannot divide {0} and {1} to measure of quantity {2}",
 															  iNumerator, iDenominator, default(Q).Name()));
@@ -275,13 +275,13 @@ namespace Cureos.Measures
 		/// <param name="iNumerator">Numerator measure object</param>
 		/// <param name="iDenominator">Denominator measure object</param>
 		/// <returns>Quotient of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
-		public static ReferenceMeasure<Q> Divide<Q1, Q2>(ReferenceMeasure<Q1> iNumerator, IMeasure<Q2> iDenominator)
+		public static StandardMeasure<Q> Divide<Q1, Q2>(StandardMeasure<Q1> iNumerator, IMeasure<Q2> iDenominator)
 			where Q1 : struct, IQuantity<Q1>
 			where Q2 : struct, IQuantity<Q2>
 		{
 			if (default(Q).IsQuotientOf(default(Q1), default(Q2)))
 			{
-				return new ReferenceMeasure<Q>(iNumerator.mAmount / iDenominator.GetAmount(default(Q2).ReferenceUnit));
+				return new StandardMeasure<Q>(iNumerator.mAmount / iDenominator.GetAmount(default(Q2).StandardUnit));
 			}
 			throw new InvalidOperationException(String.Format("Cannot divide {0} and {1} to measure of quantity {2}",
 															  iNumerator, iDenominator, default(Q).Name()));
@@ -295,13 +295,13 @@ namespace Cureos.Measures
 		/// <param name="iNumerator">Numerator measure object</param>
 		/// <param name="iDenominator">Denominator measure object</param>
 		/// <returns>Quotient of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
-		public static ReferenceMeasure<Q> Divide<Q1, Q2>(IMeasure<Q1> iNumerator, ReferenceMeasure<Q2> iDenominator)
+		public static StandardMeasure<Q> Divide<Q1, Q2>(IMeasure<Q1> iNumerator, StandardMeasure<Q2> iDenominator)
 			where Q1 : struct, IQuantity<Q1>
 			where Q2 : struct, IQuantity<Q2>
 		{
 			if (default(Q).IsQuotientOf(default(Q1), default(Q2)))
 			{
-				return new ReferenceMeasure<Q>(iNumerator.GetAmount(default(Q1).ReferenceUnit) / iDenominator.mAmount);
+				return new StandardMeasure<Q>(iNumerator.GetAmount(default(Q1).StandardUnit) / iDenominator.mAmount);
 			}
 			throw new InvalidOperationException(String.Format("Cannot divide {0} and {1} to measure of quantity {2}",
 															  iNumerator, iDenominator, default(Q).Name()));
@@ -315,13 +315,13 @@ namespace Cureos.Measures
 		/// <param name="iNumerator">Numerator measure object</param>
 		/// <param name="iDenominator">Denominator measure object</param>
 		/// <returns>Quotient of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
-		public static ReferenceMeasure<Q> Divide<Q1, Q2>(IMeasure<Q1> iNumerator, IMeasure<Q2> iDenominator)
+		public static StandardMeasure<Q> Divide<Q1, Q2>(IMeasure<Q1> iNumerator, IMeasure<Q2> iDenominator)
 			where Q1 : struct, IQuantity<Q1>
 			where Q2 : struct, IQuantity<Q2>
 		{
 			if (default(Q).IsQuotientOf(default(Q1), default(Q2)))
 			{
-				return new ReferenceMeasure<Q>(iNumerator.GetAmount(default(Q1).ReferenceUnit) / iDenominator.GetAmount(default(Q2).ReferenceUnit));
+				return new StandardMeasure<Q>(iNumerator.GetAmount(default(Q1).StandardUnit) / iDenominator.GetAmount(default(Q2).StandardUnit));
 			}
 			throw new InvalidOperationException(String.Format("Cannot divide {0} and {1} to measure of quantity {2}",
 															  iNumerator, iDenominator, default(Q).Name()));
@@ -332,7 +332,7 @@ namespace Cureos.Measures
 		/// </summary>
 		/// <param name="other">An object to compare with this object.</param>
 		/// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
-		public bool Equals(ReferenceMeasure<Q> other)
+		public bool Equals(StandardMeasure<Q> other)
 		{
 			return mAmount.Equals(other.mAmount);
 		}
@@ -350,7 +350,7 @@ namespace Cureos.Measures
 		/// </returns>
 		/// <exception cref="InvalidOperationException">if the quantity of the other measure is not the same as the quantity
 		/// of this object</exception>
-		public int CompareTo(ReferenceMeasure<Q> other)
+		public int CompareTo(StandardMeasure<Q> other)
 		{
 			return mAmount.CompareTo(other.mAmount);
 		}
@@ -363,7 +363,7 @@ namespace Cureos.Measures
 		/// false otherwise</returns>
 		public override bool Equals(object obj)
 		{
-			return obj is ReferenceMeasure<Q> ? Equals((ReferenceMeasure<Q>)obj) : false;
+			return obj is StandardMeasure<Q> ? Equals((StandardMeasure<Q>)obj) : false;
 		}
 
 		/// <summary>
@@ -393,9 +393,9 @@ namespace Cureos.Measures
 		/// </summary>
 		/// <param name="iMeasure">Unit specific measure object</param>
 		/// <returns>Generic equivalent of the unit specific measure object</returns>
-		public static explicit operator ReferenceMeasure<Q>(Measure<Q> iMeasure)
+		public static explicit operator StandardMeasure<Q>(Measure<Q> iMeasure)
 		{
-			return new ReferenceMeasure<Q>(iMeasure.Unit.AmountToReferenceUnitConverter(iMeasure.Amount));
+			return new StandardMeasure<Q>(iMeasure.Unit.AmountToReferenceUnitConverter(iMeasure.Amount));
 		}
 
 		/// <summary>
@@ -403,9 +403,9 @@ namespace Cureos.Measures
 		/// </summary>
 		/// <param name="iAmount">Amount in double precision</param>
 		/// <returns>Measure object with specified amount</returns>
-		public static explicit operator ReferenceMeasure<Q>(double iAmount)
+		public static explicit operator StandardMeasure<Q>(double iAmount)
 		{
-			return new ReferenceMeasure<Q>(iAmount);
+			return new StandardMeasure<Q>(iAmount);
 		}
 
 		/// <summary>
@@ -413,9 +413,9 @@ namespace Cureos.Measures
 		/// </summary>
 		/// <param name="iAmount">Amount in single precision</param>
 		/// <returns>Measure object with specified amount</returns>
-		public static explicit operator ReferenceMeasure<Q>(float iAmount)
+		public static explicit operator StandardMeasure<Q>(float iAmount)
 		{
-			return new ReferenceMeasure<Q>(iAmount);
+			return new StandardMeasure<Q>(iAmount);
 		}
 
 		/// <summary>
@@ -423,9 +423,9 @@ namespace Cureos.Measures
 		/// </summary>
 		/// <param name="iAmount">Amount in decimal precision</param>
 		/// <returns>Measure object with specified amount</returns>
-		public static explicit operator ReferenceMeasure<Q>(decimal iAmount)
+		public static explicit operator StandardMeasure<Q>(decimal iAmount)
 		{
-			return new ReferenceMeasure<Q>(iAmount);
+			return new StandardMeasure<Q>(iAmount);
 		}
 
 		/// <summary>
@@ -434,9 +434,9 @@ namespace Cureos.Measures
 		/// <param name="iLhs">First measure term</param>
 		/// <param name="iRhs">Second measure term</param>
 		/// <returns>Measure object representing the sum of the two operands</returns>
-		public static ReferenceMeasure<Q> operator +(ReferenceMeasure<Q> iLhs, ReferenceMeasure<Q> iRhs)
+		public static StandardMeasure<Q> operator +(StandardMeasure<Q> iLhs, StandardMeasure<Q> iRhs)
 		{
-			return new ReferenceMeasure<Q>(iLhs.mAmount + iRhs.mAmount);
+			return new StandardMeasure<Q>(iLhs.mAmount + iRhs.mAmount);
 		}
 
 		/// <summary>
@@ -445,9 +445,9 @@ namespace Cureos.Measures
 		/// <param name="iLhs">First measure object</param>
 		/// <param name="iRhs">Second measure object</param>
 		/// <returns>Difference of the measure objects</returns>
-		public static ReferenceMeasure<Q> operator -(ReferenceMeasure<Q> iLhs, ReferenceMeasure<Q> iRhs)
+		public static StandardMeasure<Q> operator -(StandardMeasure<Q> iLhs, StandardMeasure<Q> iRhs)
 		{
-			return new ReferenceMeasure<Q>(iLhs.mAmount - iRhs.mAmount);
+			return new StandardMeasure<Q>(iLhs.mAmount - iRhs.mAmount);
 		}
 
 		/// <summary>
@@ -456,9 +456,9 @@ namespace Cureos.Measures
 		/// <param name="iScalar">Floating-point scalar</param>
 		/// <param name="iMeasure">Measure object</param>
 		/// <returns>Product of the scalar and the measure object</returns>
-		public static ReferenceMeasure<Q> operator *(AmountType iScalar, ReferenceMeasure<Q> iMeasure)
+		public static StandardMeasure<Q> operator *(AmountType iScalar, StandardMeasure<Q> iMeasure)
 		{
-			return new ReferenceMeasure<Q>(iScalar * iMeasure.mAmount);
+			return new StandardMeasure<Q>(iScalar * iMeasure.mAmount);
 		}
 
 		/// <summary>
@@ -467,9 +467,9 @@ namespace Cureos.Measures
 		/// <param name="iMeasure">measure object</param>
 		/// <param name="iScalar">Floating-point scalar</param>
 		/// <returns>Product of the measure object and the scalar</returns>
-		public static ReferenceMeasure<Q> operator *(ReferenceMeasure<Q> iMeasure, AmountType iScalar)
+		public static StandardMeasure<Q> operator *(StandardMeasure<Q> iMeasure, AmountType iScalar)
 		{
-			return new ReferenceMeasure<Q>(iMeasure.mAmount * iScalar);
+			return new StandardMeasure<Q>(iMeasure.mAmount * iScalar);
 		}
 
 		/// <summary>
@@ -478,11 +478,11 @@ namespace Cureos.Measures
 		/// <param name="iMeasure">measure object</param>
 		/// <param name="iScalar">Floating-point scalar</param>
 		/// <returns>Quotient of the measure object and the scalar</returns>
-		public static ReferenceMeasure<Q> operator /(ReferenceMeasure<Q> iMeasure, AmountType iScalar)
+		public static StandardMeasure<Q> operator /(StandardMeasure<Q> iMeasure, AmountType iScalar)
 		{
 			checked
 			{
-				return new ReferenceMeasure<Q>(iMeasure.mAmount / iScalar);
+				return new StandardMeasure<Q>(iMeasure.mAmount / iScalar);
 			}
 		}
 
@@ -492,7 +492,7 @@ namespace Cureos.Measures
 		/// <param name="iNumerator">Numerator measure</param>
 		/// <param name="iDenominator">Denominator measure</param>
 		/// <returns>Scalar quotient of the two measure objects</returns>
-		public static AmountType operator /(ReferenceMeasure<Q> iNumerator, ReferenceMeasure<Q> iDenominator)
+		public static AmountType operator /(StandardMeasure<Q> iNumerator, StandardMeasure<Q> iDenominator)
 		{
 			return iNumerator.mAmount/iDenominator.mAmount;
 		}
@@ -503,7 +503,7 @@ namespace Cureos.Measures
 		/// <param name="iLhs">First object</param>
 		/// <param name="iRhs">Second object</param>
 		/// <returns>true if first measure object is less than second measure object; false otherwise</returns>
-		public static bool operator <(ReferenceMeasure<Q> iLhs, ReferenceMeasure<Q> iRhs)
+		public static bool operator <(StandardMeasure<Q> iLhs, StandardMeasure<Q> iRhs)
 		{
 			return iLhs.mAmount < iRhs.mAmount;
 		}
@@ -514,7 +514,7 @@ namespace Cureos.Measures
 		/// <param name="iLhs">First object</param>
 		/// <param name="iRhs">Second object</param>
 		/// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
-		public static bool operator >(ReferenceMeasure<Q> iLhs, ReferenceMeasure<Q> iRhs)
+		public static bool operator >(StandardMeasure<Q> iLhs, StandardMeasure<Q> iRhs)
 		{
 			return iLhs.mAmount > iRhs.mAmount;
 		}
@@ -525,7 +525,7 @@ namespace Cureos.Measures
 		/// <param name="iLhs">First object</param>
 		/// <param name="iRhs">Second object</param>
 		/// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
-		public static bool operator <=(ReferenceMeasure<Q> iLhs, ReferenceMeasure<Q> iRhs)
+		public static bool operator <=(StandardMeasure<Q> iLhs, StandardMeasure<Q> iRhs)
 		{
 			return iLhs.mAmount <= iRhs.mAmount;
 		}
@@ -536,7 +536,7 @@ namespace Cureos.Measures
 		/// <param name="iLhs">First object</param>
 		/// <param name="iRhs">Second object</param>
 		/// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
-		public static bool operator >=(ReferenceMeasure<Q> iLhs, ReferenceMeasure<Q> iRhs)
+		public static bool operator >=(StandardMeasure<Q> iLhs, StandardMeasure<Q> iRhs)
 		{
 			return iLhs.mAmount >= iRhs.mAmount;
 		}
@@ -547,7 +547,7 @@ namespace Cureos.Measures
 		/// <param name="iLhs">First object</param>
 		/// <param name="iRhs">Second object</param>
 		/// <returns>true if the two measure objects are equal; false otherwise</returns>
-		public static bool operator ==(ReferenceMeasure<Q> iLhs, ReferenceMeasure<Q> iRhs)
+		public static bool operator ==(StandardMeasure<Q> iLhs, StandardMeasure<Q> iRhs)
 		{
 			return iLhs.mAmount == iRhs.mAmount;
 		}
@@ -558,7 +558,7 @@ namespace Cureos.Measures
 		/// <param name="iLhs">First object</param>
 		/// <param name="iRhs">Second object</param>
 		/// <returns>true if the two measure objects are not equal; false if they are equal</returns>
-		public static bool operator !=(ReferenceMeasure<Q> iLhs, ReferenceMeasure<Q> iRhs)
+		public static bool operator !=(StandardMeasure<Q> iLhs, StandardMeasure<Q> iRhs)
 		{
 			return iLhs.mAmount != iRhs.mAmount;
 		}

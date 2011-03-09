@@ -27,6 +27,26 @@ namespace Cureos.Measures
 
 		#region CONSTRUCTORS
 
+		public Measure()
+			: this(0.0)
+		{
+		}
+
+		public Measure(double iAmount)
+			: this(iAmount, default(Q).StandardUnit)
+		{
+		}
+
+		public Measure(float iAmount)
+			: this(iAmount, default(Q).StandardUnit)
+		{
+		}
+
+		public Measure(decimal iAmount)
+			: this(iAmount, default(Q).StandardUnit)
+		{
+		}
+
 		public Measure(double iAmount, IUnit<Q> iUnit)
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
@@ -180,7 +200,7 @@ namespace Cureos.Measures
 		/// <filterpriority>2</filterpriority>
 		public override int GetHashCode()
 		{
-			return GetAmount(default(Q).ReferenceUnit).GetHashCode();
+			return GetAmount(default(Q).StandardUnit).GetHashCode();
 		}
 
 		#endregion

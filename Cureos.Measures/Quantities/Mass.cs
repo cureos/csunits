@@ -16,7 +16,7 @@ namespace Cureos.Measures.Quantities
             get { return smkDimensions; }
         }
 
-        public IUnit<Mass> ReferenceUnit
+        public IUnit<Mass> StandardUnit
         {
             get { return Units.KiloGram; }
         }

@@ -10,7 +10,7 @@ namespace Cureos.Measures
 	{
 		QuantityDimensions Dimensions { get; }
 
-		IUnit<Q> ReferenceUnit { get; }
+		IUnit<Q> StandardUnit { get; }
 	}
 }
 

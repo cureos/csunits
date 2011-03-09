@@ -15,7 +15,7 @@ namespace Cureos.Measures.Quantities
             get { return smkDimensions; }
         }
 
-        public IUnit<Area> ReferenceUnit
+        public IUnit<Area> StandardUnit
         {
             get { return Units.SquareMeter; }
         }

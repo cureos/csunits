@@ -18,7 +18,7 @@ namespace Cureos.Measures.Quantities
             get { return smkDimensions; }
         }
 
-        public IUnit<Energy> ReferenceUnit
+        public IUnit<Energy> StandardUnit
         {
             get { return Units.Joule; }
         }
