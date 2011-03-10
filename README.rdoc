@@ -21,23 +21,23 @@ StandardMeasure<Q> is declared as a struct and only holds one member, the amount
  ...
 
  StandardMeasure<Mass> initialWgt = new StandardMeasure<Mass>(75.0);
- StandardMeasure<Mass> gainedWgt = new StandardMeasure<Mass>(2.5, Units.HectoGram);
+ StandardMeasure<Mass> gainedWgt = new StandardMeasure<Mass>(2.5, Mass.HectoGram);
  StandardMeasure<Mass> newWgt = initialWgt + gainedWgt;
 
- Measure<Mass> newWgtInGram = newWgt[Units.Gram];
+ Measure<Mass> newWgtInGram = newWgt[Mass.Gram];
  Measure<Mass> initialWgtInGram = newWgtInGram - gainedWgt;
 
  Console.WriteLine("Initial weight: {0}", initialWgtInGram);
 
- Measure<Length> height = new Measure<Length>(30.0, Units.CentiMeter);
+ Measure<Length> height = new Measure<Length>(30.0, Length.CentiMeter);
  StandardMeasure<Area> area = (StandardMeasure<Area>)0.02;
 
  var vol = StandardMeasure<Volume>.Times(height, area);
- var maxVol = new StandardMeasure<Volume>(10.0, Units.Liter);
+ var maxVol = new StandardMeasure<Volume>(10.0, Volume.Liter);
 
  if (vol < maxVol)
  {
-  Console.WriteLine("Calculated volume is within limits, actual volume: {0}", vol[Units.Liter]);
+  Console.WriteLine("Calculated volume is within limits, actual volume: {0}", vol[Volume.Liter]);
  }
 
 should yield the output:
@@ -63,35 +63,39 @@ Quantities are identified through their dimension in terms of SI Base Units. For
 
 To extend the library with additional quantities and associated units, the following steps should be taken in project Cureos.Measures:
 
-* In the Quantities sub-folder, add a new member-less struct implementing the IQuantity interface, and have the Dimensions property getter return the dimension signature of the new quantity:
+* In the Quantities sub-folder, add a new member-less struct implementing the IQuantity interface:
 
    namespace Cureos.Measures.Quantities
    {
-    public struct Energy : IQuantity<Energy>
-    {
-     private static readonly QuantityDimensions _dimensions = new QuantityDimensions(2, 1, -2, 0, 0, 0, 0);
-
-     public QuantityDimensions Dimensions { get { return _dimensions; } }
-     public IUnit<Energy> StandardUnit { get { return STANDARD_UNIT_DEFINED_IN_NEXT_STEP; } }
-    }
+     public struct Energy : IQuantity<Energy>
+     {
+     }
    }
 
-* In the file Units.cs, add the unit(s) associated with the quantity to the list of supported units. The standard unit is instantiated with a one-argument (unit symbol) constructor, whereas the secondary units are instantiated defining a conversion factor or conversion functions with regards to the standard unit:
+* Add the units supported by this quantity as static readonly public fields of the new struct. A standard unit should always be included, instantiated with the single argument (unit symbol) constructor. The secondary units are instantiated by defining a conversion factor or conversion functions with regards to the standard unit:
 
-   public static class Units
+   public struct Energy : IQuantity<Energy>
    {
-    ... ;
-    public static readonly Unit<Energy> Joule = new Unit<Energy>("J");
-    public static readonly Unit<Energy> KiloJoule = new Unit<Energy>("kJ", Scales.Kilo);
+     public static readonly Unit<Energy> Joule = new Unit<Energy>("J");
+     public static readonly Unit<Energy> KiloJoule = new Unit<Energy>("kJ", Factors.Kilo);
    }
 
-* Return the standard unit instance (in this case, Units.Joule) in the StandardUnit property getter of the new quantity type:
+* Define a static readonly private field describing the SI unit dimensions of the quantity as a combination of the SI base unit dimensions:
 
-    public struct Energy : IQuantity<Energy>
-    {
+   public struct Energy : IQuantity<Energy>
+   {
      ...
-	 public IUnit<Energy> StandardUnit { get { return Units.Joule; } }
-    }
+     private static readonly QuantityDimensions _dimensions = 2 * Length.Base + Mass.Base - 2 * Time.Base;
+   }
+
+* Implement the properties of the IQuantity interface, returning the defined dimensions and standard unit, respectively, of the new quantity:
+
+   public struct Energy : IQuantity<Energy>
+   {
+     ...
+     public QuantityDimensions Dimensions { get { return _dimensions; } }
+     public IUnit<Energy> StandardUnit { get { return Joule; } }
+   }
 
 
 == Revision

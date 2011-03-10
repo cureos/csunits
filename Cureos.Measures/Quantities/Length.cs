@@ -8,16 +8,21 @@ namespace Cureos.Measures.Quantities
 {
 	public struct Length : IQuantity<Length>
 	{
-	    private static readonly QuantityDimensions smkDimensions = new QuantityDimensions(1, 0, 0, 0, 0, 0, 0);
+        public static readonly Unit<Length> Meter = new Unit<Length>("m");
+        public static readonly Unit<Length> DeciMeter = new Unit<Length>("dm", Factors.Deci);
+        public static readonly Unit<Length> CentiMeter = new Unit<Length>("cm", Factors.Centi);
+        public static readonly Unit<Length> MilliMeter = new Unit<Length>("mm", Factors.Milli);
+
+        internal static readonly QuantityDimensions Base = new QuantityDimensions(1, 0, 0, 0, 0, 0, 0);
 
 	    public QuantityDimensions Dimensions
 	    {
-	        get { return smkDimensions; }
+	        get { return Base; }
 	    }
 
 	    public IUnit<Length> StandardUnit
 	    {
-	        get { return Units.Meter; }
+	        get { return Meter; }
 	    }
 	}
 }

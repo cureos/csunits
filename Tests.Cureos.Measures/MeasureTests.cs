@@ -20,15 +20,15 @@ namespace Tests.Cureos.Measures
         public void GetAmount_UsingIUnit_ValidConversion()
         {
             var expected = AmountConverter.ToAmountType(500.0);
-            var instance = new Measure<Length>(5.0, Units.Meter);
-            var actual = instance.GetAmount(Units.CentiMeter);
+            var instance = new Measure<Length>(5.0, Length.Meter);
+            var actual = instance.GetAmount(Length.CentiMeter);
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         public void DefaultConstructor_Apply_YieldsZeroAmountStandardUnit()
         {
-            var expected = new Measure<Temperature>(0.0, Units.Kelvin);
+            var expected = new Measure<Temperature>(0.0, Temperature.Kelvin);
             var actual = new Measure<Temperature>();
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }

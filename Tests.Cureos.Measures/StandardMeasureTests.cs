@@ -19,8 +19,8 @@ namespace Tests.Cureos.Measures
         [Test]
         public void Constructor_WithNonReferenceUnit_InitializesMeasureInReferenceUnit()
         {
-            var expected = new Measure<Time>(180.0, Units.Second);
-            var actual = new StandardMeasure<Time>(3.0, Units.Minute);
+            var expected = new Measure<Time>(180.0, Time.Second);
+            var actual = new StandardMeasure<Time>(3.0, Time.Minute);
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }
 
@@ -28,8 +28,8 @@ namespace Tests.Cureos.Measures
         public void DivisionOperator_DivideGenericSameQuantity_ReturnsScalar()
         {
             var expected = 1.0;
-            var numerator = new StandardMeasure<Area>(500.0, Units.SquareCentiMeter);
-            var denominator = new StandardMeasure<Area>(5.0, Units.SquareDeciMeter);
+            var numerator = new StandardMeasure<Area>(500.0, Area.SquareCentiMeter);
+            var denominator = new StandardMeasure<Area>(5.0, Area.SquareDeciMeter);
             var actual = (double)(numerator / denominator);
             Assert.AreEqual(expected, actual, 1.0e-6);
         }
@@ -58,7 +58,7 @@ namespace Tests.Cureos.Measures
         {
             var expected = new StandardMeasure<Area>(4.0);
             var numerator = new StandardMeasure<Volume>(8.0);
-            var denominator = new StandardMeasure<Length>(200.0, Units.CentiMeter);
+            var denominator = new StandardMeasure<Length>(200.0, Length.CentiMeter);
             var actual = StandardMeasure<Area>.Divide(numerator, denominator);
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }
@@ -68,7 +68,7 @@ namespace Tests.Cureos.Measures
         public void Divide_DivideAreaAndAreaToLength_Throws()
         {
             var numerator = new StandardMeasure<Area>(8.0);
-            var denominator = new StandardMeasure<Area>(200.0, Units.SquareDeciMeter);
+            var denominator = new StandardMeasure<Area>(200.0, Area.SquareDeciMeter);
             var throws = StandardMeasure<Length>.Divide(numerator, denominator);
         }
 
@@ -77,7 +77,7 @@ namespace Tests.Cureos.Measures
         {
             var expected = AmountConverter.ToAmountType(500.0);
             var instance = new StandardMeasure<Length>(5.0);
-            var actual = instance.GetAmount(Units.CentiMeter);
+            var actual = instance.GetAmount(Length.CentiMeter);
             Assert.AreEqual(expected, actual);
         }
 

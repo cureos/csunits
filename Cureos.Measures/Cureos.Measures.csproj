@@ -55,14 +55,13 @@
     <Compile Include="Quantities\Temperature.cs" />
     <Compile Include="Quantities\Time.cs" />
     <Compile Include="Quantities\Volume.cs" />
-    <Compile Include="Scales.cs" />
+    <Compile Include="Factors.cs" />
     <Compile Include="QuantityDimensions.cs" />
     <Compile Include="IMeasure.cs" />
     <Compile Include="IQuantity.cs" />
     <Compile Include="Quantities\Length.cs" />
     <Compile Include="IUnit.cs" />
     <Compile Include="StandardMeasure.cs" />
-    <Compile Include="Units.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -8,7 +8,7 @@ using System;
 
 namespace Cureos.Measures
 {
-    public static class Scales
+    public static class Factors
     {
 #if DOUBLE
         public const double Yotta = 1.0e24;

@@ -141,6 +141,20 @@ namespace Cureos.Measures
                     iLhs.SubstanceAmountExponent - iRhs.SubstanceAmountExponent);
             }
 
+            /// <summary>
+            /// Multiply a scalar factor to the quantity dimension object
+            /// </summary>
+            /// <param name="iExponent">Scalar exponent to multiply</param>
+            /// <param name="iRhs">Quantity dimension to be multiplied</param>
+            /// <returns>New quantity dimension with all exponents multiplied by <paramref name="iExponent">the specified factor</paramref></returns>
+            public static QuantityDimensions operator*(int iExponent, QuantityDimensions iRhs)
+            {
+                return new QuantityDimensions(iExponent * iRhs.LengthExponent, iExponent * iRhs.MassExponent,
+                    iExponent * iRhs.TimeExponent, iExponent * iRhs.ElectricCurrentExponent,
+                    iExponent * iRhs.TemperatureExponent, iExponent * iRhs.LuminousIntensityExponent,
+                    iExponent * iRhs.SubstanceAmountExponent);
+            }
+
             #endregion
          }
 }

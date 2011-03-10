@@ -8,16 +8,20 @@ namespace Cureos.Measures.Quantities
 {
     public struct Temperature : IQuantity<Temperature>
     {
-        private static readonly QuantityDimensions smkDimensions = new QuantityDimensions(0, 0, 0, 0, 1, 0, 0);
+        public static readonly Unit<Temperature> Kelvin = new Unit<Temperature>("K");
+        public static readonly Unit<Temperature> Celsius = new Unit<Temperature>("°C",
+                        a => a + Factors.CelsiusKelvinDifference, a => a - Factors.CelsiusKelvinDifference);
+
+        internal static readonly QuantityDimensions Base = new QuantityDimensions(0, 0, 0, 0, 1, 0, 0);
 
         public QuantityDimensions Dimensions
         {
-            get { return smkDimensions; }
+            get { return Base; }
         }
 
         public IUnit<Temperature> StandardUnit
         {
-            get { return Units.Kelvin; }
+            get { return Kelvin; }
         }
     }
 }

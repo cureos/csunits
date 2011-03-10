@@ -18,23 +18,23 @@ namespace Tests.Cureos.Measures
 		public void Example1()
 		{
 			StandardMeasure<Mass> initialWgt = new StandardMeasure<Mass>(75.0);
-			StandardMeasure<Mass> gainedWgt = new StandardMeasure<Mass>(2.5, Units.HectoGram);
+			StandardMeasure<Mass> gainedWgt = new StandardMeasure<Mass>(2.5, Mass.HectoGram);
 			StandardMeasure<Mass> newWgt = initialWgt + gainedWgt;
 
-			Measure<Mass> newWgtInGram = newWgt[Units.Gram];
+			Measure<Mass> newWgtInGram = newWgt[Mass.Gram];
 			Measure<Mass> initialWgtInGram = newWgtInGram - gainedWgt;
 
 			Console.WriteLine("Initial weight: {0}", initialWgtInGram);
 
-			Measure<Length> height = new Measure<Length>(30.0, Units.CentiMeter);
+			Measure<Length> height = new Measure<Length>(30.0, Length.CentiMeter);
 			StandardMeasure<Area> area = (StandardMeasure<Area>)0.02;
 
 			var vol = StandardMeasure<Volume>.Times(height, area);
-			var maxVol = new StandardMeasure<Volume>(10.0, Units.Liter);
+			var maxVol = new StandardMeasure<Volume>(10.0, Volume.Liter);
 
 			if (vol < maxVol)
 			{
-				Console.WriteLine("Calculated volume is within limits, actual volume: {0}", vol[Units.Liter]);
+				Console.WriteLine("Calculated volume is within limits, actual volume: {0}", vol[Volume.Liter]);
 			}
 
 #if NUNIT24

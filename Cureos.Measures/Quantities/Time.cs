@@ -8,16 +8,22 @@ namespace Cureos.Measures.Quantities
 {
     public struct Time : IQuantity<Time>
     {
-        private static readonly QuantityDimensions smkDimensions = new QuantityDimensions(0, 0, 1, 0, 0, 0, 0);
+        public static readonly Unit<Time> Second = new Unit<Time>("s");
+        public static readonly Unit<Time> Minute = new Unit<Time>("min", Factors.SecondsPerMinute);
+        public static readonly Unit<Time> Hour = new Unit<Time>("h", Factors.SecondsPerHour);
+        public static readonly Unit<Time> Day = new Unit<Time>("dy", Factors.SecondsPerDay);
+        public static readonly Unit<Time> Week = new Unit<Time>("wk", Factors.SecondsPerWeek);
+
+        internal static readonly QuantityDimensions Base = new QuantityDimensions(0, 0, 1, 0, 0, 0, 0);
 
         public QuantityDimensions Dimensions
         {
-            get { return smkDimensions; }
+            get { return Base; }
         }
 
         public IUnit<Time> StandardUnit
         {
-            get { return Units.Second; }
+            get { return Second; }
         }
     }
 }

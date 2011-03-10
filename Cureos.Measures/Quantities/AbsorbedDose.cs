@@ -8,7 +8,10 @@ namespace Cureos.Measures.Quantities
 {
     public struct AbsorbedDose : IQuantity<AbsorbedDose>
     {
-        private static readonly QuantityDimensions smkDimensions = new QuantityDimensions(2, 0, -2, 0, 0, 0, 0);
+        public static readonly Unit<AbsorbedDose> Gray = new Unit<AbsorbedDose>("Gy");
+        public static readonly Unit<AbsorbedDose> CentiGray = new Unit<AbsorbedDose>("cGy", Factors.Centi);
+
+        private static readonly QuantityDimensions smkDimensions = 2 * Length.Base + 2 * Time.Base;
 
         public QuantityDimensions Dimensions
         {
@@ -17,7 +20,7 @@ namespace Cureos.Measures.Quantities
 
         public IUnit<AbsorbedDose> StandardUnit
         {
-            get { return Units.Gray; }
+            get { return Gray; }
         }
     }
 }
