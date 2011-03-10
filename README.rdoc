@@ -78,7 +78,8 @@ To extend the library with additional quantities and associated units, the follo
 
    public struct Energy : IQuantity<Energy>
    {
-     private static readonly QuantityDimension _dimension = 2 * Length.BaseDimension + Mass.BaseDimension - 2 * Time.BaseDimension;
+     private static readonly QuantityDimension _dimension = 
+       2 * Length.BaseDimension + Mass.BaseDimension - 2 * Time.BaseDimension;
    }
 
 * Add the units supported by this quantity as static readonly public fields of the new struct. A standard unit should always be included, instantiated with the single argument (unit symbol) constructor. The secondary units are instantiated by defining a conversion factor or conversion functions with in relation to the standard unit:

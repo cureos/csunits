@@ -56,24 +56,17 @@ namespace Tests.Cureos.Measures
 		}
 
 		[Test]
-		[ExpectedException(typeof(IndexOutOfRangeException))]
+		[ExpectedException(typeof(ArgumentOutOfRangeException))]
 		public void Indexer_AccessElementOutOfRange_Throws()
 		{
 			var throws = _instance[6];
 		}
 
         [Test]
-        public void GetAmounts_ChangeElementInReturnedEnumerable_DoesNotAffectOriginalArray()
+        [ExpectedException(typeof(InvalidCastException))]
+        public void GetAmounts_CastToArray_Throws()
         {
-            var expected = _instance.Amounts;
-            var amounts = AmountConverter.CastToArray(_instance.Amounts)[2] = 1.0;
-            var actual = _instance.Amounts;
-#if NUNIT24
-			for (int i = 0; i < expected.Count(); ++i)
-				Assert.IsTrue(AmountComparer.Instance.Compare(expected.ElementAt(i), actual[i]) == 0);
-#else
-            CollectionAssert.AreEqual(expected, actual, AmountComparer.Instance);
-#endif
+            AmountConverter.CastToArray(_instance.Amounts);
         }
 
 		#endregion
