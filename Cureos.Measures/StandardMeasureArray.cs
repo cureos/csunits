@@ -174,11 +174,21 @@ namespace Cureos.Measures
         /// <returns>The <paramref name="i">ith</paramref> component of the measure array</returns>
         public StandardMeasure<Q> this[uint i]
         {
+            get { return this[(int) i]; }
+        }
+
+        /// <summary>
+        /// Gets the <paramref name="i">ith</paramref> measure component of the measure array
+        /// </summary>
+        /// <param name="i">Zero-based index of the measure array</param>
+        /// <returns>The <paramref name="i">ith</paramref> component of the measure array</returns>
+        public StandardMeasure<Q> this[int i]
+        {
             get
             {
                 try
                 {
-                    return this.ElementAt((int)i);
+                    return this.ElementAt(i);
                 }
                 catch (ArgumentOutOfRangeException e)
                 {
