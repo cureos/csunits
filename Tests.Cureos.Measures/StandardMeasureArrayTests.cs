@@ -61,18 +61,21 @@ namespace Tests.Cureos.Measures
 		{
 			var throws = _instance[6];
 		}
-/*
-		[Test]
-		public void GetEnumerator_Default_ShouldNotThrow()
-		{
+
+        [Test]
+        public void GetAmounts_ChangeElementInReturnedEnumerable_DoesNotAffectOriginalArray()
+        {
+            var expected = _instance.Amounts;
+            var amounts = AmountConverter.CastToArray(_instance.Amounts)[2] = 1.0;
+            var actual = _instance.Amounts;
 #if NUNIT24
-			var val = _instance.GetEnumerator();
-			Assert.Ignore();
+			for (int i = 0; i < expected.Count(); ++i)
+				Assert.IsTrue(AmountComparer.Instance.Compare(expected.ElementAt(i), actual[i]) == 0);
 #else
-			Assert.DoesNotThrow(() => { var val = _instance.GetEnumerator(); });
+            CollectionAssert.AreEqual(expected, actual, AmountComparer.Instance);
 #endif
-		}
-*/
+        }
+
 		#endregion
 	}
 }

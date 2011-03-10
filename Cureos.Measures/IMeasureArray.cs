@@ -16,16 +16,13 @@ using AmountType = System.Double;
 
 namespace Cureos.Measures
 {
-    public interface IMeasureArray
+    public interface IMeasureArray<Q> where Q : struct, IQuantity<Q>
     {
         /// <summary>
-        /// Gets the array of measured amounts in the <see cref="IMeasureArray{Q}.Unit">current unit of measure</see>
+        /// Gets the array of measured amounts in the <see cref="Unit">current unit of measure</see>
         /// </summary>
-        AmountType[] Amounts { get; }
-    }
+        IEnumerable<AmountType> Amounts { get; }
 
-    public interface IMeasureArray<Q> : IMeasureArray where Q : struct, IQuantity<Q>
-    {
         /// <summary>
         /// Gets the unit of measure
         /// </summary>

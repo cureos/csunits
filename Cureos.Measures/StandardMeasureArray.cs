@@ -140,12 +140,12 @@ namespace Cureos.Measures
 
         #endregion
         
-        #region Implementation of IMeasureArray
+        #region Implementation of IMeasureArray<Q>
 
         /// <summary>
-        /// Gets the array of measured amounts in the <see cref="IMeasureArray{Q}.Unit">current unit of measure</see>
+        /// Gets the array of measured amounts in the <see cref="Unit">current unit of measure</see>
         /// </summary>
-        public AmountType[] Amounts
+        public IEnumerable<AmountType> Amounts
         {
             get { return mAmounts; }
         }

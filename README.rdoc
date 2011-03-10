@@ -13,6 +13,8 @@ Measure<Q> and StandardMeasure<Q> are the main "work-horses" of the library. Sta
 
 StandardMeasure<Q> is declared as a struct and only holds one member, the amount. The main goal of this approach is to maximize calculation performance, while at the same time ensuring quantity type safety.
 
+There is also a StandardMeasureArray<Q> that holds an array of floating-point amounts given in the standard unit of the specified quantity.
+
 
 == Usage examples
 
