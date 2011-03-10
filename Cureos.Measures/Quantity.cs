@@ -6,6 +6,9 @@
 
 namespace Cureos.Measures
 {
+    /// <summary>
+    /// Class of extension methods related to physical quantities
+    /// </summary>
     public static class Quantity
     {
         public static bool IsProductOf<Q, Q1, Q2>(this Q iQuantity, Q1 iLhs, Q2 iRhs)

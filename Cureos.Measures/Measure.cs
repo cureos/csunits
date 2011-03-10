@@ -271,7 +271,6 @@ namespace Cureos.Measures
 		/// <param name="iLhs">First measure term (any object implementing the IMeasure interface)</param>
 		/// <param name="iRhs">Second measure term</param>
 		/// <returns>Sum of the two measure objects in the unit of the <paramref name="iLhs">left-hand side measure</paramref></returns>
-		/// <exception cref="InvalidOperationException">Is thrown if the measured quanitites are not equal</exception>
 		public static Measure<Q> operator +(IMeasure<Q> iLhs, Measure<Q> iRhs)
 		{
 			return new Measure<Q>(iLhs.Amount + iRhs.GetAmount(iLhs.Unit), iLhs.Unit);
@@ -509,7 +508,7 @@ namespace Cureos.Measures
 		}
 
 		/// <summary>
-		/// Inquality operator for measure objects
+		/// Inequality operator for measure objects
 		/// </summary>
 		/// <param name="iLhs">First object</param>
 		/// <param name="iRhs">Second object</param>
@@ -520,7 +519,7 @@ namespace Cureos.Measures
 		}
 
 		/// <summary>
-		/// Inquality operator for measure objects, where right-hand side may be any object implementing the IMeasure interface
+		/// Inequality operator for measure objects, where right-hand side may be any object implementing the IMeasure interface
 		/// </summary>
 		/// <param name="iLhs">First object</param>
 		/// <param name="iRhs">Second object (any object implementing IMeasure interface)</param>
@@ -531,7 +530,7 @@ namespace Cureos.Measures
 		}
 
 		/// <summary>
-		/// Inquality operator for measure objects, where left-hand side may be any object implementing the IMeasure interface
+		/// Inequality operator for measure objects, where left-hand side may be any object implementing the IMeasure interface
 		/// </summary>
 		/// <param name="iLhs">First object (any object implementing IMeasure interface)</param>
 		/// <param name="iRhs">Second object</param>
