@@ -80,7 +80,7 @@ namespace Cureos.Measures
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
 #if DOUBLE
-			mAmount = iUnit.AmountToReferenceUnitConverter(iAmount);
+			mAmount = iUnit.AmountToStandardUnitConverter(iAmount);
 #else
 			mAmount = iUnit.AmountToReferenceUnitConverter((AmountType)iAmount);
 #endif
@@ -97,7 +97,7 @@ namespace Cureos.Measures
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
 #if !DECIMAL
-			mAmount = iUnit.AmountToReferenceUnitConverter(iAmount);
+			mAmount = iUnit.AmountToStandardUnitConverter(iAmount);
 #else
 			mAmount = iUnit.AmountToReferenceUnitConverter((AmountType)iAmount);
 #endif
@@ -116,7 +116,7 @@ namespace Cureos.Measures
 #if DECIMAL
 			mAmount = iUnit.AmountToReferenceUnitConverter(iAmount);
 #else
-			mAmount = iUnit.AmountToReferenceUnitConverter((AmountType)iAmount);
+			mAmount = iUnit.AmountToStandardUnitConverter((AmountType)iAmount);
 #endif
 		}
 
@@ -147,7 +147,7 @@ namespace Cureos.Measures
 		/// <returns>Measured amount converted into <paramref name="iUnit">specified unit</paramref></returns>
 		public AmountType GetAmount(IUnit<Q> iUnit)
 		{
-			return iUnit.AmountFromReferenceUnitConverter(mAmount);
+			return iUnit.AmountFromStandardUnitConverter(mAmount);
 		}
 
 		#endregion
@@ -395,7 +395,7 @@ namespace Cureos.Measures
 		/// <returns>Generic equivalent of the unit specific measure object</returns>
 		public static explicit operator StandardMeasure<Q>(Measure<Q> iMeasure)
 		{
-			return new StandardMeasure<Q>(iMeasure.Unit.AmountToReferenceUnitConverter(iMeasure.Amount));
+			return new StandardMeasure<Q>(iMeasure.Unit.AmountToStandardUnitConverter(iMeasure.Amount));
 		}
 
 		/// <summary>

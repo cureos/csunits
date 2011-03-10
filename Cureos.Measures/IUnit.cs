@@ -16,15 +16,28 @@ using AmountType = System.Double;
 
 namespace Cureos.Measures
 {
+	/// <summary>
+	/// Interface representing a physical unit of a specific quantity
+	/// </summary>
+	/// <typeparam name="Q">Unit quantity</typeparam>
 	public interface IUnit<Q> where Q : struct, IQuantity<Q>
 	{
-		IQuantity<Q> ReferencedQuantity { get; }
-
+		/// <summary>
+		/// Gets the display symbol of the unit
+		/// </summary>
 		string Symbol { get; }
 
-		Func<AmountType, AmountType> AmountToReferenceUnitConverter { get; }
+		/// <summary>
+		/// Gets the amount converter function from the current unit to the standard unit 
+		/// of the specified quantity
+		/// </summary>
+		Func<AmountType, AmountType> AmountToStandardUnitConverter { get; }
 
-		Func<AmountType, AmountType> AmountFromReferenceUnitConverter { get; }
+		/// <summary>
+		/// Gets the amount converter function from the standard unit of the specified quantity
+		/// to the current unit
+		/// </summary>
+		Func<AmountType, AmountType> AmountFromStandardUnitConverter { get; }
 	}
 }
 

@@ -81,7 +81,7 @@ namespace Cureos.Measures
             if (iAmounts == null) throw new ArgumentNullException("iAmounts");
             if (iUnit == null) throw new ArgumentNullException("iUnit");
 #if DOUBLE
-            mAmounts = iAmounts.Select(iUnit.AmountToReferenceUnitConverter);
+            mAmounts = iAmounts.Select(iUnit.AmountToStandardUnitConverter);
 #else
             mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter((AmountType)a));
 #endif
@@ -99,7 +99,7 @@ namespace Cureos.Measures
 #if SINGLE
             mAmounts = iAmounts.Select(iUnit.AmountToReferenceUnitConverter);
 #elif DOUBLE
-            mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter(a));
+            mAmounts = iAmounts.Select(a => iUnit.AmountToStandardUnitConverter(a));
 #elif DECIMAL
             mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter((AmountType)a));
 #endif
@@ -117,7 +117,7 @@ namespace Cureos.Measures
 #if DECIMAL
             mAmounts = iAmounts.Select(iUnit.AmountToReferenceUnitConverter);
 #else
-            mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter((AmountType)a));
+            mAmounts = iAmounts.Select(a => iUnit.AmountToStandardUnitConverter((AmountType)a));
 #endif
         }
 
@@ -160,7 +160,7 @@ namespace Cureos.Measures
         /// <exception cref="InvalidOperationException">if the specified unit is not of the same quantity as the measure</exception>
         public IEnumerable<AmountType> GetAmounts(IUnit<Q> iUnit)
         {
-                return mAmounts.Select(iUnit.AmountFromReferenceUnitConverter);
+                return mAmounts.Select(iUnit.AmountFromStandardUnitConverter);
         }
 
         #endregion

@@ -8,6 +8,10 @@ using System;
 
 namespace Cureos.Measures
 {
+    /// <summary>
+    /// Convenience class providing factors and support methods for applying amount conversion factors in e.g.
+    /// physical unit definition
+    /// </summary>
     public static class Factors
     {
 #if DOUBLE

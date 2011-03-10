@@ -34,24 +34,19 @@ namespace Cureos.Measures
             Func<AmountType, AmountType> iAmountFromReferenceUnitConverter)
         {
             Symbol = iSymbol;
-            AmountToReferenceUnitConverter = iAmountToReferenceUnitConverter;
-            AmountFromReferenceUnitConverter = iAmountFromReferenceUnitConverter;
+            AmountToStandardUnitConverter = iAmountToReferenceUnitConverter;
+            AmountFromStandardUnitConverter = iAmountFromReferenceUnitConverter;
         }
 
         #endregion
         
         #region Implementation of IUnit<Q>
 
-        public IQuantity<Q> ReferencedQuantity
-        {
-            get { return default(Q); }
-        }
-
         public string Symbol { get; private set; }
 
-        public Func<AmountType, AmountType> AmountToReferenceUnitConverter { get; private set; }
+        public Func<AmountType, AmountType> AmountToStandardUnitConverter { get; private set; }
 
-        public Func<AmountType, AmountType> AmountFromReferenceUnitConverter { get; private set; }
+        public Func<AmountType, AmountType> AmountFromStandardUnitConverter { get; private set; }
 
         #endregion
     }

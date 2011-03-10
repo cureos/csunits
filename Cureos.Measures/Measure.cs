@@ -16,6 +16,10 @@ using AmountType = System.Double;
 
 namespace Cureos.Measures
 {
+	/// <summary>
+	/// Representation of a unit specific measure of a specific quantity
+	/// </summary>
+	/// <typeparam name="Q">Measured quantity</typeparam>
 	public class Measure<Q> : IMeasure<Q>, IEquatable<Measure<Q>>, IComparable<Measure<Q>> where Q : struct, IQuantity<Q>
 	{
 		#region MEMBER VARIABLES
@@ -27,26 +31,47 @@ namespace Cureos.Measures
 
 		#region CONSTRUCTORS
 
+		/// <summary>
+		/// Default constructor, initializes the amount to zero, unit set to standard unit of the measured quantity
+		/// </summary>
 		public Measure()
 			: this(0.0)
 		{
 		}
 
+		/// <summary>
+		/// Initializes a measure to the specified amount and standard unit of the measured quantity
+		/// </summary>
+		/// <param name="iAmount">Measured amount in standard unit of the specified quantity</param>
 		public Measure(double iAmount)
 			: this(iAmount, default(Q).StandardUnit)
 		{
 		}
 
+		/// <summary>
+		/// Initializes a measure to the specified amount and standard unit of the measured quantity
+		/// </summary>
+		/// <param name="iAmount">Measured amount in standard unit of the specified quantity</param>
 		public Measure(float iAmount)
 			: this(iAmount, default(Q).StandardUnit)
 		{
 		}
 
+		/// <summary>
+		/// Initializes a measure to the specified amount and standard unit of the measured quantity
+		/// </summary>
+		/// <param name="iAmount">Measured amount in standard unit of the specified quantity</param>
 		public Measure(decimal iAmount)
 			: this(iAmount, default(Q).StandardUnit)
 		{
 		}
 
+		/// <summary>
+		/// Initializes a measure to the specified amount and unit
+		/// </summary>
+		/// <param name="iAmount">Measured amount</param>
+		/// <param name="iUnit">Unit of measure</param>
+		/// <exception cref="ArgumentNullException">if the specified unit is null</exception>
 		public Measure(double iAmount, IUnit<Q> iUnit)
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
@@ -58,6 +83,12 @@ namespace Cureos.Measures
 			mUnit = iUnit;
 		}
 
+		/// <summary>
+		/// Initializes a measure to the specified amount and unit
+		/// </summary>
+		/// <param name="iAmount">Measured amount</param>
+		/// <param name="iUnit">Unit of measure</param>
+		/// <exception cref="ArgumentNullException">if the specified unit is null</exception>
 		public Measure(float iAmount, IUnit<Q> iUnit)
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
@@ -69,6 +100,12 @@ namespace Cureos.Measures
 			mUnit = iUnit;
 		}
 
+		/// <summary>
+		/// Initializes a measure to the specified amount and unit
+		/// </summary>
+		/// <param name="iAmount">Measured amount</param>
+		/// <param name="iUnit">Unit of measure</param>
+		/// <exception cref="ArgumentNullException">if the specified unit is null</exception>
 		public Measure(decimal iAmount, IUnit<Q> iUnit)
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
@@ -107,7 +144,7 @@ namespace Cureos.Measures
 		/// <returns>Measured amount converted into <paramref name="iUnit">specified unit</paramref></returns>
 		public AmountType GetAmount(IUnit<Q> iUnit)
 		{
-			return iUnit.AmountFromReferenceUnitConverter(mUnit.AmountToReferenceUnitConverter(mAmount));
+			return iUnit.AmountFromStandardUnitConverter(mUnit.AmountToStandardUnitConverter(mAmount));
 		}
 
 		#endregion
@@ -141,8 +178,7 @@ namespace Cureos.Measures
 		///                     Greater than zero 
 		///                     This object is greater than <paramref name="other"/>. 
 		/// </returns>
-		/// <param name="other">An object to compare with this object.
-		///                 </param>
+		/// <param name="other">An object to compare with this object.</param>
 		public int CompareTo(Measure<Q> other)
 		{
 			return mAmount.CompareTo(other.GetAmount(mUnit));

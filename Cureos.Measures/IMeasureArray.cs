@@ -16,6 +16,10 @@ using AmountType = System.Double;
 
 namespace Cureos.Measures
 {
+    /// <summary>
+    /// Interface resenting a collection of measures of a specific quantity
+    /// </summary>
+    /// <typeparam name="Q">Measured quantity</typeparam>
     public interface IMeasureArray<Q> where Q : struct, IQuantity<Q>
     {
         /// <summary>
