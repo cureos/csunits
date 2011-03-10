@@ -8,7 +8,7 @@ namespace Cureos.Measures
 {
 	public interface IQuantity<Q> where Q : struct, IQuantity<Q>
 	{
-		QuantityDimensions Dimensions { get; }
+		QuantityDimension Dimension { get; }
 
 		IUnit<Q> StandardUnit { get; }
 	}

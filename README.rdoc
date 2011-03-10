@@ -16,34 +16,34 @@ StandardMeasure<Q> is declared as a struct and only holds one member, the amount
 
 == Usage examples
 
- using Cureos.Measures;
- using Cureos.Measures.Quantities;
- ...
+  using Cureos.Measures;
+  using Cureos.Measures.Quantities;
+  ...
 
- StandardMeasure<Mass> initialWgt = new StandardMeasure<Mass>(75.0);
- StandardMeasure<Mass> gainedWgt = new StandardMeasure<Mass>(2.5, Mass.HectoGram);
- StandardMeasure<Mass> newWgt = initialWgt + gainedWgt;
+  StandardMeasure<Mass> initialWgt = new StandardMeasure<Mass>(75.0);
+  StandardMeasure<Mass> gainedWgt = new StandardMeasure<Mass>(2.5, Mass.HectoGram);
+  StandardMeasure<Mass> newWgt = initialWgt + gainedWgt;
 
- Measure<Mass> newWgtInGram = newWgt[Mass.Gram];
- Measure<Mass> initialWgtInGram = newWgtInGram - gainedWgt;
+  Measure<Mass> newWgtInGram = newWgt[Mass.Gram];
+  Measure<Mass> initialWgtInGram = newWgtInGram - gainedWgt;
 
- Console.WriteLine("Initial weight: {0}", initialWgtInGram);
+  Console.WriteLine("Initial weight: {0}", initialWgtInGram);
 
- Measure<Length> height = new Measure<Length>(30.0, Length.CentiMeter);
- StandardMeasure<Area> area = (StandardMeasure<Area>)0.02;
+  Measure<Length> height = new Measure<Length>(30.0, Length.CentiMeter);
+  StandardMeasure<Area> area = (StandardMeasure<Area>)0.02;
 
- var vol = StandardMeasure<Volume>.Times(height, area);
- var maxVol = new StandardMeasure<Volume>(10.0, Volume.Liter);
+  var vol = StandardMeasure<Volume>.Times(height, area);
+  var maxVol = new StandardMeasure<Volume>(10.0, Volume.Liter);
 
- if (vol < maxVol)
- {
-  Console.WriteLine("Calculated volume is within limits, actual volume: {0}", vol[Volume.Liter]);
- }
+  if (vol < maxVol)
+  {
+    Console.WriteLine("Calculated volume is within limits, actual volume: {0}", vol[Volume.Liter]);
+  }
 
 should yield the output:
 
- Initial weight: 75000 g
- Calculated volume is within limits, actual volume 6 l
+  Initial weight: 75000 g
+  Calculated volume is within limits, actual volume 6 l
 
 
 == Building for specific floating-point types
@@ -72,20 +72,20 @@ To extend the library with additional quantities and associated units, the follo
      }
    }
 
-* Add the units supported by this quantity as static readonly public fields of the new struct. A standard unit should always be included, instantiated with the single argument (unit symbol) constructor. The secondary units are instantiated by defining a conversion factor or conversion functions with regards to the standard unit:
-
-   public struct Energy : IQuantity<Energy>
-   {
-     public static readonly Unit<Energy> Joule = new Unit<Energy>("J");
-     public static readonly Unit<Energy> KiloJoule = new Unit<Energy>("kJ", Factors.Kilo);
-   }
-
 * Define a static readonly private field describing the SI unit dimensions of the quantity as a combination of the SI base unit dimensions:
 
    public struct Energy : IQuantity<Energy>
    {
+     private static readonly QuantityDimension _dimension = 2 * Length.BaseDimension + Mass.BaseDimension - 2 * Time.BaseDimension;
+   }
+
+* Add the units supported by this quantity as static readonly public fields of the new struct. A standard unit should always be included, instantiated with the single argument (unit symbol) constructor. The secondary units are instantiated by defining a conversion factor or conversion functions with in relation to the standard unit:
+
+   public struct Energy : IQuantity<Energy>
+   {
      ...
-     private static readonly QuantityDimensions _dimensions = 2 * Length.Base + Mass.Base - 2 * Time.Base;
+     public static readonly Unit<Energy> Joule = new Unit<Energy>("J");
+     public static readonly Unit<Energy> KiloJoule = new Unit<Energy>("kJ", Factors.Kilo);
    }
 
 * Implement the properties of the IQuantity interface, returning the defined dimensions and standard unit, respectively, of the new quantity:
@@ -93,11 +93,11 @@ To extend the library with additional quantities and associated units, the follo
    public struct Energy : IQuantity<Energy>
    {
      ...
-     public QuantityDimensions Dimensions { get { return _dimensions; } }
+     public QuantityDimension Dimension { get { return _dimension; } }
      public IUnit<Energy> StandardUnit { get { return Joule; } }
    }
 
 
 == Revision
 
-Last updated on March 9, 2011 by Anders Gustafsson, anders[at]cureos[dot]com.
+Last updated on March 10, 2011 by Anders Gustafsson, anders[at]cureos[dot]com.

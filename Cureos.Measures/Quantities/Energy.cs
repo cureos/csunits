@@ -9,16 +9,16 @@ namespace Cureos.Measures.Quantities
 {
     public struct Energy : IQuantity<Energy>
     {
+        private static readonly QuantityDimension _dimension = 2 * Length.BaseDimension + Mass.BaseDimension - 2 * Time.BaseDimension;
+
         public static readonly Unit<Energy> Joule = new Unit<Energy>("J");
         public static readonly Unit<Energy> KiloJoule = new Unit<Energy>("kJ", Factors.Kilo);
 
-        private static readonly QuantityDimensions smkDimensions = 2 * Length.Base + Mass.Base - 2 * Time.Base;
-
         #region Implementation of IQuantity
 
-        public QuantityDimensions Dimensions
+        public QuantityDimension Dimension
         {
-            get { return smkDimensions; }
+            get { return _dimension; }
         }
 
         public IUnit<Energy> StandardUnit

@@ -56,7 +56,7 @@
     <Compile Include="Quantities\Time.cs" />
     <Compile Include="Quantities\Volume.cs" />
     <Compile Include="Factors.cs" />
-    <Compile Include="QuantityDimensions.cs" />
+    <Compile Include="QuantityDimension.cs" />
     <Compile Include="IMeasure.cs" />
     <Compile Include="IQuantity.cs" />
     <Compile Include="Quantities\Length.cs" />

@@ -13,7 +13,7 @@ namespace Cureos.Measures
             where Q1 : struct, IQuantity<Q1>
             where Q2 : struct, IQuantity<Q2>
         {
-            return iQuantity.Dimensions.Equals(iLhs.Dimensions + iRhs.Dimensions);
+            return iQuantity.Dimension.Equals(iLhs.Dimension + iRhs.Dimension);
         }
 
         public static bool IsQuotientOf<Q, Q1, Q2>(this Q iQuantity, Q1 iNumerator, Q2 iDenominator)
@@ -21,7 +21,7 @@ namespace Cureos.Measures
             where Q1 : struct, IQuantity<Q1>
             where Q2 : struct, IQuantity<Q2>
         {
-            return iQuantity.Dimensions.Equals(iNumerator.Dimensions - iDenominator.Dimensions);
+            return iQuantity.Dimension.Equals(iNumerator.Dimension - iDenominator.Dimension);
         }
 
         public static string Name<Q>(this Q iQuantity) where Q : struct, IQuantity<Q>

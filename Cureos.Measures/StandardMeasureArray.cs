@@ -19,7 +19,7 @@ using AmountType = System.Double;
 
 namespace Cureos.Measures
 {
-    public class StandardMeasureArray<Q> : IEnumerable<AmountType>, IMeasureArray<Q> where Q : struct, IQuantity<Q>
+    public class StandardMeasureArray<Q> : IMeasureArray<Q> where Q : struct, IQuantity<Q>
     {
         #region MEMBER VARIABLES
 
@@ -36,6 +36,7 @@ namespace Cureos.Measures
         /// <param name="iAmounts">Array of amounts, given in the reference unit</param>
         public StandardMeasureArray(IEnumerable<double> iAmounts)
         {
+            if (iAmounts == null) throw new ArgumentNullException("iAmounts");
 #if DOUBLE
             mAmounts = iAmounts.ToArray();
 #elif SINGLE
@@ -52,6 +53,7 @@ namespace Cureos.Measures
         /// <param name="iAmounts">Array of amounts, given in the reference unit</param>
         public StandardMeasureArray(IEnumerable<float> iAmounts)
         {
+            if (iAmounts == null) throw new ArgumentNullException("iAmounts");
 #if DOUBLE
             mAmounts = iAmounts.Select(a => (AmountType)a).ToArray();
 #elif SINGLE
@@ -68,6 +70,7 @@ namespace Cureos.Measures
         /// <param name="iAmounts">Array of amounts, given in the reference unit</param>
         public StandardMeasureArray(IEnumerable<decimal> iAmounts)
         {
+            if (iAmounts == null) throw new ArgumentNullException("iAmounts");
 #if DOUBLE
             mAmounts = iAmounts.Select(a => (AmountType)a).ToArray();
 #elif SINGLE
@@ -85,6 +88,8 @@ namespace Cureos.Measures
         /// <param name="iUnit">Unit in which the amount array is originally specified</param>
         public StandardMeasureArray(IEnumerable<double> iAmounts, IUnit<Q> iUnit)
         {
+            if (iAmounts == null) throw new ArgumentNullException("iAmounts");
+            if (iUnit == null) throw new ArgumentNullException("iUnit");
 #if DOUBLE
             mAmounts = iAmounts.Select(iUnit.AmountToReferenceUnitConverter).ToArray();
 #elif SINGLE
@@ -102,8 +107,10 @@ namespace Cureos.Measures
         /// <param name="iUnit">Unit in which the amount array is originally specified</param>
         public StandardMeasureArray(IEnumerable<float> iAmounts, IUnit<Q> iUnit)
         {
+            if (iAmounts == null) throw new ArgumentNullException("iAmounts");
+            if (iUnit == null) throw new ArgumentNullException("iUnit");
 #if DOUBLE
-            mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter((AmountType)a)).ToArray();
+            mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter(a)).ToArray();
 #elif SINGLE
             mAmounts = iAmounts.Select(iUnit.AmountToReferenceUnitConverter).ToArray();
 #elif DECIMAL
@@ -119,6 +126,8 @@ namespace Cureos.Measures
         /// <param name="iUnit">Unit in which the amount array is originally specified</param>
         public StandardMeasureArray(IEnumerable<decimal> iAmounts, IUnit<Q> iUnit)
         {
+            if (iAmounts == null) throw new ArgumentNullException("iAmounts");
+            if (iUnit == null) throw new ArgumentNullException("iUnit");
 #if DOUBLE
             mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter((AmountType)a)).ToArray();
 #elif SINGLE
@@ -161,7 +170,7 @@ namespace Cureos.Measures
         }
 
         #endregion
-
+/*
         #region Implementation of IEnumerable
 
         /// <summary>
@@ -189,7 +198,7 @@ namespace Cureos.Measures
         }
 
         #endregion
-
+*/
         #region PROPERTIES
 
         /// <summary>

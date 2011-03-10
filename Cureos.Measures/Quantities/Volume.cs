@@ -8,16 +8,16 @@ namespace Cureos.Measures.Quantities
 {
     public struct Volume : IQuantity<Volume>
     {
+        private static readonly QuantityDimension _dimension = 3 * Length.BaseDimension;
+
         public static readonly Unit<Volume> CubicMeter = new Unit<Volume>("m³");
         public static readonly Unit<Volume> Liter = new Unit<Volume>("l", Factors.Cube(Factors.Deci));
         public static readonly Unit<Volume> CubicDeciMeter = new Unit<Volume>("dm³", Factors.Cube(Factors.Deci));
         public static readonly Unit<Volume> CubicCentiMeter = new Unit<Volume>("cm³", Factors.Cube(Factors.Centi));
 
-        private static readonly QuantityDimensions smkDimensions = 3 * Length.Base;
-
-        public QuantityDimensions Dimensions
+        public QuantityDimension Dimension
         {
-            get { return smkDimensions; }
+            get { return _dimension; }
         }
 
         public IUnit<Volume> StandardUnit

@@ -8,14 +8,14 @@ namespace Cureos.Measures.Quantities
 {
     public struct AbsorbedDose : IQuantity<AbsorbedDose>
     {
+        private static readonly QuantityDimension _dimension = 2 * Length.BaseDimension + 2 * Time.BaseDimension;
+
         public static readonly Unit<AbsorbedDose> Gray = new Unit<AbsorbedDose>("Gy");
         public static readonly Unit<AbsorbedDose> CentiGray = new Unit<AbsorbedDose>("cGy", Factors.Centi);
 
-        private static readonly QuantityDimensions smkDimensions = 2 * Length.Base + 2 * Time.Base;
-
-        public QuantityDimensions Dimensions
+        public QuantityDimension Dimension
         {
-            get { return smkDimensions; }
+            get { return _dimension; }
         }
 
         public IUnit<AbsorbedDose> StandardUnit
