@@ -170,42 +170,14 @@ namespace Cureos.Measures
         }
 
         #endregion
-/*
-        #region Implementation of IEnumerable
 
-        /// <summary>
-        /// Returns an enumerator that iterates through the collection.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
-        /// </returns>
-        /// <filterpriority>1</filterpriority>
-        public IEnumerator<AmountType> GetEnumerator()
-        {
-            return mAmounts.Cast<AmountType>().GetEnumerator();
-        }
-
-        /// <summary>
-        /// Returns an enumerator that iterates through a collection.
-        /// </summary>
-        /// <returns>
-        /// An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
-        /// </returns>
-        /// <filterpriority>2</filterpriority>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        #endregion
-*/
         #region PROPERTIES
 
         /// <summary>
-        /// Gets the <paramref name="i">i:th</paramref> measure component of the measure array
+        /// Gets the <paramref name="i">ith</paramref> measure component of the measure array
         /// </summary>
         /// <param name="i">Zero-based index of the measure array</param>
-        /// <returns>The <paramref name="i">i:th</paramref> component of the measure array</returns>
+        /// <returns>The <paramref name="i">ith</paramref> component of the measure array</returns>
         public StandardMeasure<Q> this[uint i]
         {
             get { return new StandardMeasure<Q>(mAmounts[i]); }
