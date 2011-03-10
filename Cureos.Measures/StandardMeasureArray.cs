@@ -19,12 +19,11 @@ using AmountType = System.Double;
 
 namespace Cureos.Measures
 {
-    public class StandardMeasureArray<Q> : IMeasureArray<Q> where Q : struct, IQuantity<Q>
+    public class StandardMeasureArray<Q> : IMeasureArray<Q>, IEnumerable<StandardMeasure<Q>> where Q : struct, IQuantity<Q>
     {
         #region MEMBER VARIABLES
 
         private readonly IEnumerable<AmountType> mAmounts;
-        private readonly IUnit<Q> mUnit;
 
         #endregion
 
@@ -42,7 +41,6 @@ namespace Cureos.Measures
 #else
             mAmounts = iAmounts.Select(a => (AmountType)a);
 #endif
-            mUnit = default(Q).StandardUnit;
         }
 
         /// <summary>
@@ -57,7 +55,6 @@ namespace Cureos.Measures
 #else
             mAmounts = iAmounts.Select(a => (AmountType)a);
 #endif
-            mUnit = default(Q).StandardUnit;
         }
 
         /// <summary>
@@ -72,7 +69,6 @@ namespace Cureos.Measures
 #else
             mAmounts = iAmounts.Select(a => (AmountType)a);
 #endif
-            mUnit = default(Q).StandardUnit;
         }
 
         /// <summary>
@@ -89,7 +85,6 @@ namespace Cureos.Measures
 #else
             mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter((AmountType)a));
 #endif
-            mUnit = default(Q).StandardUnit;
         }
 
         /// <summary>
@@ -103,10 +98,11 @@ namespace Cureos.Measures
             if (iUnit == null) throw new ArgumentNullException("iUnit");
 #if SINGLE
             mAmounts = iAmounts.Select(iUnit.AmountToReferenceUnitConverter);
-#else
+#elif DOUBLE
+            mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter(a));
+#elif DECIMAL
             mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter((AmountType)a));
 #endif
-            mUnit = default(Q).StandardUnit;
         }
 
         /// <summary>
@@ -123,7 +119,17 @@ namespace Cureos.Measures
 #else
             mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter((AmountType)a));
 #endif
-            mUnit = default(Q).StandardUnit;
+        }
+
+        /// <summary>
+        /// Initializes an array of measures, where the amounts are all given in the standard unit of the quantity
+        /// </summary>
+        /// <param name="iMeasures">Collection of measures, potentially in different units of same quantity</param>
+        public StandardMeasureArray(IEnumerable<IMeasure<Q>> iMeasures)
+        {
+            if (iMeasures == null) throw new ArgumentNullException("iMeasures");
+            IUnit<Q> unit = default(Q).StandardUnit;
+            mAmounts = iMeasures.Select(m => m.GetAmount(unit));
         }
 
         #endregion
@@ -143,7 +149,7 @@ namespace Cureos.Measures
         /// </summary>
         public IUnit<Q> Unit
         {
-            get { return mUnit; }
+            get { return default(Q).StandardUnit; }
         }
 
         /// <summary>
@@ -168,7 +174,48 @@ namespace Cureos.Measures
         /// <returns>The <paramref name="i">ith</paramref> component of the measure array</returns>
         public StandardMeasure<Q> this[uint i]
         {
-            get { return new StandardMeasure<Q>(mAmounts.ElementAt((int)i)); }
+            get
+            {
+                try
+                {
+                    return this.ElementAt((int)i);
+                }
+                catch (ArgumentOutOfRangeException e)
+                {
+                    throw new IndexOutOfRangeException("Index out of range", e);
+                }
+            }
+        }
+
+        #endregion
+
+        #region Implementation of IEnumerable
+
+        /// <summary>
+        /// Returns an enumerator that iterates through the collection.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
+        /// </returns>
+        /// <filterpriority>1</filterpriority>
+        public IEnumerator<StandardMeasure<Q>> GetEnumerator()
+        {
+            foreach (var amount in mAmounts)
+            {
+                yield return new StandardMeasure<Q>(amount);
+            }
+        }
+
+        /// <summary>
+        /// Returns an enumerator that iterates through a collection.
+        /// </summary>
+        /// <returns>
+        /// An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
+        /// </returns>
+        /// <filterpriority>2</filterpriority>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
 
         #endregion

@@ -56,18 +56,32 @@ namespace Tests.Cureos.Measures
 		}
 
 		[Test]
-		[ExpectedException(typeof(ArgumentOutOfRangeException))]
+		[ExpectedException(typeof(IndexOutOfRangeException))]
 		public void Indexer_AccessElementOutOfRange_Throws()
 		{
 			var throws = _instance[6];
 		}
 
-        [Test]
-        [ExpectedException(typeof(InvalidCastException))]
-        public void GetAmounts_CastToArray_Throws()
-        {
-            AmountConverter.CastToArray(_instance.Amounts);
-        }
+		[Test]
+		[ExpectedException(typeof(InvalidCastException))]
+		public void GetAmounts_CastToArray_Throws()
+		{
+			AmountConverter.CastToArray(_instance.Amounts);
+		}
+
+		[Test]
+		public void Enumerator_OfStandardMeasureArray_ReturnsStandardMeasureValues()
+		{
+			CollectionAssert.AllItemsAreInstancesOfType(_instance, typeof(StandardMeasure<Length>));
+		}
+
+		[Test]
+		public void Max_OnStandardMeasureArray_ReturnsMaxStandardMeasureFromArray()
+		{
+			var expected = new StandardMeasure<Length>(0.05);
+			var actual = _instance.Max();
+			MeasureAssert.MeasuresAreEqual(expected, actual);
+		}
 
 		#endregion
 	}
