@@ -13,8 +13,6 @@ namespace Cureos.Measures.Quantities
 	{
 		#region FIELDS
 
-		public static readonly QuantityDimension BaseDimension = new QuantityDimension(1, 0, 0, 0, 0, 0, 0);
-
 		public static readonly Unit<Length> Meter = new Unit<Length>("m");
 		public static readonly Unit<Length> DeciMeter = new Unit<Length>("dm", Factors.Deci);
 		public static readonly Unit<Length> CentiMeter = new Unit<Length>("cm", Factors.Centi);
@@ -29,7 +27,7 @@ namespace Cureos.Measures.Quantities
 		/// </summary>
 		public QuantityDimension Dimension
 		{
-			get { return BaseDimension; }
+			get { return QuantityDimension.Length; }
 		}
 
 		/// <summary>

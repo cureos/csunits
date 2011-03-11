@@ -13,8 +13,6 @@ namespace Cureos.Measures.Quantities
     {
         #region FIELDS
 
-        public static readonly QuantityDimension BaseDimension = new QuantityDimension(0, 0, 1, 0, 0, 0, 0);
-
         public static readonly Unit<Time> Second = new Unit<Time>("s");
         public static readonly Unit<Time> Minute = new Unit<Time>("min", Factors.SecondsPerMinute);
         public static readonly Unit<Time> Hour = new Unit<Time>("h", Factors.SecondsPerHour);
@@ -30,7 +28,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         public QuantityDimension Dimension
         {
-            get { return BaseDimension; }
+            get { return QuantityDimension.Time; }
         }
 
         /// <summary>

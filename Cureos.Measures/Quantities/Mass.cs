@@ -14,8 +14,6 @@ namespace Cureos.Measures.Quantities
     {
         #region FIELDS
 
-        public static readonly QuantityDimension BaseDimension = new QuantityDimension(0, 1, 0, 0, 0, 0, 0);
-
         public static readonly Unit<Mass> KiloGram = new Unit<Mass>("kg");
         public static readonly Unit<Mass> Tonne = new Unit<Mass>("t", Factors.Kilo);
         public static readonly Unit<Mass> HectoGram = new Unit<Mass>("hg", Factors.Deci);
@@ -30,7 +28,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         public QuantityDimension Dimension
         {
-            get { return BaseDimension; }
+            get { return QuantityDimension.Mass; }
         }
 
         /// <summary>

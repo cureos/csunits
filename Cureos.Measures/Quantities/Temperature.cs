@@ -13,8 +13,6 @@ namespace Cureos.Measures.Quantities
     {
         #region FIELDS
 
-        public static readonly QuantityDimension BaseDimension = new QuantityDimension(0, 0, 0, 0, 1, 0, 0);
-
         public static readonly Unit<Temperature> Kelvin = new Unit<Temperature>("K");
         public static readonly Unit<Temperature> Celsius = new Unit<Temperature>("°C",
                         a => a + Factors.CelsiusKelvinDifference, a => a - Factors.CelsiusKelvinDifference);
@@ -28,7 +26,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         public QuantityDimension Dimension
         {
-            get { return BaseDimension; }
+            get { return QuantityDimension.Temperature; }
         }
 
         /// <summary>

@@ -13,7 +13,7 @@ namespace Cureos.Measures.Quantities
     {
         #region FIELDS
 
-        private static readonly QuantityDimension _dimension = Length.BaseDimension ^ 2;
+        private static readonly QuantityDimension _dimension = QuantityDimension.Length ^ 2;
 
         public static readonly Unit<Area> SquareMeter = new Unit<Area>("m²");
         public static readonly Unit<Area> SquareDeciMeter = new Unit<Area>("dm²", Factors.Square(Factors.Deci));

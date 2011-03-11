@@ -14,7 +14,8 @@ namespace Cureos.Measures.Quantities
     {
         #region FIELDS
 
-        private static readonly QuantityDimension _dimension = (Length.BaseDimension ^ 2) * Mass.BaseDimension * (Time.BaseDimension ^ -2);
+        private static readonly QuantityDimension _dimension =
+            (QuantityDimension.Length ^ 2) * QuantityDimension.Mass * (QuantityDimension.Time ^ -2);
 
         public static readonly Unit<Energy> Joule = new Unit<Energy>("J");
         public static readonly Unit<Energy> KiloJoule = new Unit<Energy>("kJ", Factors.Kilo);

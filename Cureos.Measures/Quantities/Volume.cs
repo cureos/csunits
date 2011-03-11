@@ -13,7 +13,7 @@ namespace Cureos.Measures.Quantities
     {
         #region FIELDS
 
-        private static readonly QuantityDimension _dimension = Length.BaseDimension ^ 3;
+        private static readonly QuantityDimension _dimension = QuantityDimension.Length ^ 3;
 
         public static readonly Unit<Volume> CubicMeter = new Unit<Volume>("m³");
         public static readonly Unit<Volume> Liter = new Unit<Volume>("l", Factors.Cube(Factors.Deci));
