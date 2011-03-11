@@ -39,4 +39,22 @@ namespace Cureos.Measures
         /// <returns>Array of measured amounts, given in the <paramref name="iUnit">specified unit</paramref></returns>
         IEnumerable<AmountType> GetAmounts(IUnit<Q> iUnit);
     }
+
+    /// <summary>
+    /// Interface representing an array of 
+    /// </summary>
+    /// <typeparam name="Q1">Quantity type of the first measure</typeparam>
+    /// <typeparam name="Q2">Quantity type of the second measure</typeparam>
+    public interface IMeasureArray<Q1, Q2> where Q1 : struct, IQuantity<Q1> where Q2 : struct, IQuantity<Q2>
+    {
+        /// <summary>
+        /// Gets the array of first measures
+        /// </summary>
+        IMeasureArray<Q1> Measures1 { get; }
+
+        /// <summary>
+        /// Gets the array of second measures
+        /// </summary>
+        IMeasureArray<Q2> Measures2 { get; }
+    }
 }

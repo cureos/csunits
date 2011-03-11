@@ -144,7 +144,17 @@ namespace Cureos.Measures
 		/// <returns>Measured amount converted into <paramref name="iUnit">specified unit</paramref></returns>
 		public AmountType GetAmount(IUnit<Q> iUnit)
 		{
-			return iUnit.AmountFromStandardUnitConverter(mUnit.AmountToStandardUnitConverter(mAmount));
+		    if (iUnit == null) throw new ArgumentNullException("iUnit");
+		    return iUnit.AmountFromStandardUnitConverter(mUnit.AmountToStandardUnitConverter(mAmount));
+		}
+
+	    /// <summary>
+		/// Gets a new unit specific measure based on this measure but in the <paramref name="iUnit">specified unit</paramref>
+		/// </summary>
+		/// <param name="iUnit">Unit in which the new measure should be specified</param>
+		IMeasure<Q> IMeasure<Q>.this[IUnit<Q> iUnit]
+		{
+			get { return this[iUnit]; }
 		}
 
 		#endregion
@@ -157,7 +167,11 @@ namespace Cureos.Measures
 		/// <param name="iUnit">Unit in which the new measure should be specified</param>
 		public Measure<Q> this[IUnit<Q> iUnit]
 		{
-			get { return new Measure<Q>(GetAmount(iUnit), iUnit); }
+			get
+			{
+			    if (iUnit == null) throw new ArgumentNullException("iUnit");
+			    return new Measure<Q>(GetAmount(iUnit), iUnit);
+			}
 		}
 
 		#endregion
