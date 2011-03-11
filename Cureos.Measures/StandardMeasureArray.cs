@@ -19,6 +19,10 @@ using AmountType = System.Double;
 
 namespace Cureos.Measures
 {
+    /// <summary>
+    /// Representation of an array of measures, given in the standard unit of the specified quantity
+    /// </summary>
+    /// <typeparam name="Q">Measured quantity type</typeparam>
     public class StandardMeasureArray<Q> : IMeasureArray<Q>, IEnumerable<StandardMeasure<Q>> where Q : struct, IQuantity<Q>
     {
         #region MEMBER VARIABLES

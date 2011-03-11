@@ -6,8 +6,13 @@
 
 namespace Cureos.Measures.Quantities
 {
+    /// <summary>
+    /// Implementation of the time quantity
+    /// </summary>
     public struct Time : IQuantity<Time>
     {
+        #region FIELDS
+
         public static readonly QuantityDimension BaseDimension = new QuantityDimension(0, 0, 1, 0, 0, 0, 0);
 
         public static readonly Unit<Time> Second = new Unit<Time>("s");
@@ -16,14 +21,26 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Time> Day = new Unit<Time>("dy", Factors.SecondsPerDay);
         public static readonly Unit<Time> Week = new Unit<Time>("wk", Factors.SecondsPerWeek);
 
+        #endregion
+
+        #region Implementation of IQuantity<Q>
+
+        /// <summary>
+        /// Gets the physical dimension of the quantity in terms of SI units
+        /// </summary>
         public QuantityDimension Dimension
         {
             get { return BaseDimension; }
         }
 
+        /// <summary>
+        /// Gets the standard unit associated with the quantity
+        /// </summary>
         public IUnit<Time> StandardUnit
         {
             get { return Second; }
         }
+
+        #endregion
     }
 }

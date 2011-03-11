@@ -6,22 +6,39 @@
 
 namespace Cureos.Measures.Quantities
 {
+    /// <summary>
+    /// Implementation of the temperature quantity
+    /// </summary>
     public struct Temperature : IQuantity<Temperature>
     {
+        #region FIELDS
+
         public static readonly QuantityDimension BaseDimension = new QuantityDimension(0, 0, 0, 0, 1, 0, 0);
 
         public static readonly Unit<Temperature> Kelvin = new Unit<Temperature>("K");
         public static readonly Unit<Temperature> Celsius = new Unit<Temperature>("°C",
                         a => a + Factors.CelsiusKelvinDifference, a => a - Factors.CelsiusKelvinDifference);
 
+        #endregion
+
+        #region Implementation of IQuantity<Q>
+
+        /// <summary>
+        /// Gets the physical dimension of the quantity in terms of SI units
+        /// </summary>
         public QuantityDimension Dimension
         {
             get { return BaseDimension; }
         }
 
+        /// <summary>
+        /// Gets the standard unit associated with the quantity
+        /// </summary>
         public IUnit<Temperature> StandardUnit
         {
             get { return Kelvin; }
         }
+
+        #endregion
     }
 }

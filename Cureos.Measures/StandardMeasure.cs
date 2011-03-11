@@ -74,8 +74,6 @@ namespace Cureos.Measures
 		/// </summary>
 		/// <param name="iAmount">Measured amount in double precision</param>
 		/// <param name="iUnit">Unit of measure</param>
-		/// <exception cref="InvalidOperationException">is thrown if the quantity of the specified unit
-		/// is not the same as the type-specified quantity</exception>
 		public StandardMeasure(double iAmount, IUnit<Q> iUnit)
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
@@ -91,8 +89,6 @@ namespace Cureos.Measures
 		/// </summary>
 		/// <param name="iAmount">Measured amount in single precision</param>
 		/// <param name="iUnit">Unit of measure</param>
-		/// <exception cref="InvalidOperationException">is thrown if the quantity of the specified unit
-		/// is not the same as the type-specified quantity</exception>
 		public StandardMeasure(float iAmount, IUnit<Q> iUnit)
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
@@ -108,8 +104,6 @@ namespace Cureos.Measures
 		/// </summary>
 		/// <param name="iAmount">Measured amount in decimal format</param>
 		/// <param name="iUnit">Unit of measure</param>
-		/// <exception cref="InvalidOperationException">is thrown if the quantity of the specified unit
-		/// is not the same as the type-specified quantity</exception>
 		public StandardMeasure(decimal iAmount, IUnit<Q> iUnit)
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
@@ -175,6 +169,8 @@ namespace Cureos.Measures
 		/// <param name="iLhs">Left-hand side measure object</param>
 		/// <param name="iRhs">Right-hand side measure object</param>
 		/// <returns>Product of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
+		/// <exception cref="InvalidOperationException">is thrown if the quantities of the multiplied objects
+		/// cannot be combined into the quantity type of the returned object</exception>
 		public static StandardMeasure<Q> Times<Q1, Q2>(StandardMeasure<Q1> iLhs, StandardMeasure<Q2> iRhs)
 			where Q1 : struct, IQuantity<Q1>
 			where Q2 : struct, IQuantity<Q2>
@@ -195,6 +191,8 @@ namespace Cureos.Measures
 		/// <param name="iLhs">Left-hand side measure object</param>
 		/// <param name="iRhs">Right-hand side measure object</param>
 		/// <returns>Product of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
+		/// <exception cref="InvalidOperationException">is thrown if the quantities of the multiplied objects
+		/// cannot be combined into the quantity type of the returned object</exception>
 		public static StandardMeasure<Q> Times<Q1, Q2>(StandardMeasure<Q1> iLhs, IMeasure<Q2> iRhs)
 			where Q1 : struct, IQuantity<Q1>
 			where Q2 : struct, IQuantity<Q2>
@@ -215,6 +213,8 @@ namespace Cureos.Measures
 		/// <param name="iLhs">Left-hand side measure object</param>
 		/// <param name="iRhs">Right-hand side measure object</param>
 		/// <returns>Product of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
+		/// <exception cref="InvalidOperationException">is thrown if the quantities of the multiplied objects
+		/// cannot be combined into the quantity type of the returned object</exception>
 		public static StandardMeasure<Q> Times<Q1, Q2>(IMeasure<Q1> iLhs, StandardMeasure<Q2> iRhs)
 			where Q1 : struct, IQuantity<Q1>
 			where Q2 : struct, IQuantity<Q2>
@@ -235,6 +235,8 @@ namespace Cureos.Measures
 		/// <param name="iLhs">Left-hand side measure object</param>
 		/// <param name="iRhs">Right-hand side measure object</param>
 		/// <returns>Product of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
+		/// <exception cref="InvalidOperationException">is thrown if the quantities of the multiplied objects
+		/// cannot be combined into the quantity type of the returned object</exception>
 		public static StandardMeasure<Q> Times<Q1, Q2>(IMeasure<Q1> iLhs, IMeasure<Q2> iRhs)
 			where Q1 : struct, IQuantity<Q1>
 			where Q2 : struct, IQuantity<Q2>
@@ -255,6 +257,8 @@ namespace Cureos.Measures
 		/// <param name="iNumerator">Numerator measure object</param>
 		/// <param name="iDenominator">Denominator measure object</param>
 		/// <returns>Quotient of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
+		/// <exception cref="InvalidOperationException">is thrown if the quantities of the divided objects
+		/// cannot be combined into the quantity type of the returned object</exception>
 		public static StandardMeasure<Q> Divide<Q1, Q2>(StandardMeasure<Q1> iNumerator, StandardMeasure<Q2> iDenominator)
 			where Q1 : struct, IQuantity<Q1>
 			where Q2 : struct, IQuantity<Q2>
@@ -275,6 +279,8 @@ namespace Cureos.Measures
 		/// <param name="iNumerator">Numerator measure object</param>
 		/// <param name="iDenominator">Denominator measure object</param>
 		/// <returns>Quotient of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
+		/// <exception cref="InvalidOperationException">is thrown if the quantities of the divided objects
+		/// cannot be combined into the quantity type of the returned object</exception>
 		public static StandardMeasure<Q> Divide<Q1, Q2>(StandardMeasure<Q1> iNumerator, IMeasure<Q2> iDenominator)
 			where Q1 : struct, IQuantity<Q1>
 			where Q2 : struct, IQuantity<Q2>
@@ -295,6 +301,8 @@ namespace Cureos.Measures
 		/// <param name="iNumerator">Numerator measure object</param>
 		/// <param name="iDenominator">Denominator measure object</param>
 		/// <returns>Quotient of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
+		/// <exception cref="InvalidOperationException">is thrown if the quantities of the divided objects
+		/// cannot be combined into the quantity type of the returned object</exception>
 		public static StandardMeasure<Q> Divide<Q1, Q2>(IMeasure<Q1> iNumerator, StandardMeasure<Q2> iDenominator)
 			where Q1 : struct, IQuantity<Q1>
 			where Q2 : struct, IQuantity<Q2>
@@ -315,6 +323,8 @@ namespace Cureos.Measures
 		/// <param name="iNumerator">Numerator measure object</param>
 		/// <param name="iDenominator">Denominator measure object</param>
 		/// <returns>Quotient of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
+		/// <exception cref="InvalidOperationException">is thrown if the quantities of the divided objects
+		/// cannot be combined into the quantity type of the returned object</exception>
 		public static StandardMeasure<Q> Divide<Q1, Q2>(IMeasure<Q1> iNumerator, IMeasure<Q2> iDenominator)
 			where Q1 : struct, IQuantity<Q1>
 			where Q2 : struct, IQuantity<Q2>
@@ -494,7 +504,7 @@ namespace Cureos.Measures
 		/// <returns>Scalar quotient of the two measure objects</returns>
 		public static AmountType operator /(StandardMeasure<Q> iNumerator, StandardMeasure<Q> iDenominator)
 		{
-			return iNumerator.mAmount/iDenominator.mAmount;
+			return iNumerator.mAmount / iDenominator.mAmount;
 		}
 
 		/// <summary>
