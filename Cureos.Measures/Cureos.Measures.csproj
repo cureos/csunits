@@ -43,6 +43,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IMeasureArray.cs" />
+    <Compile Include="Quantities\Acceleration.cs" />
+    <Compile Include="Quantities\AmountOfSubstance.cs" />
+    <Compile Include="Quantities\ElectricCurrent.cs" />
+    <Compile Include="Quantities\LuminousIntensity.cs" />
+    <Compile Include="Quantities\MassDensity.cs" />
+    <Compile Include="Quantities\PlaneAngle.cs" />
+    <Compile Include="Quantities\SolidAngle.cs" />
+    <Compile Include="Quantities\Velocity.cs" />
     <Compile Include="Unit.cs" />
     <Compile Include="Measure.cs" />
     <Compile Include="StandardMeasureArray.cs" />
