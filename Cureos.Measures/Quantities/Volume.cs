@@ -6,18 +6,40 @@
 
 namespace Cureos.Measures.Quantities
 {
+    /// <summary>
+    /// Implementation of the volume quantity
+    /// </summary>
     public struct Volume : IQuantity<Volume>
     {
-        private static readonly QuantityDimensions smkDimensions = new QuantityDimensions(3, 0, 0, 0, 0, 0, 0);
+        #region FIELDS
 
-        public QuantityDimensions Dimensions
+        private static readonly QuantityDimension _dimension = QuantityDimension.Length ^ 3;
+
+        public static readonly Unit<Volume> CubicMeter = new Unit<Volume>("m³");
+        public static readonly Unit<Volume> Liter = new Unit<Volume>("l", Factors.Cube(Factors.Deci));
+        public static readonly Unit<Volume> CubicDeciMeter = new Unit<Volume>("dm³", Factors.Cube(Factors.Deci));
+        public static readonly Unit<Volume> CubicCentiMeter = new Unit<Volume>("cm³", Factors.Cube(Factors.Centi));
+
+        #endregion
+
+        #region Implementation of IQuantity<Q>
+
+        /// <summary>
+        /// Gets the physical dimension of the quantity in terms of SI units
+        /// </summary>
+        public QuantityDimension Dimension
         {
-            get { return smkDimensions; }
+            get { return _dimension; }
         }
 
-        public IUnit<Volume> ReferenceUnit
+        /// <summary>
+        /// Gets the standard unit associated with the quantity
+        /// </summary>
+        public IUnit<Volume> StandardUnit
         {
-            get { return Units.CubicMeter; }
+            get { return CubicMeter; }
         }
+
+        #endregion
     }
 }

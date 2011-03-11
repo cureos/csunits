@@ -16,16 +16,17 @@ using AmountType = System.Double;
 
 namespace Cureos.Measures
 {
-    public interface IMeasureArray
+    /// <summary>
+    /// Interface resenting a collection of measures of a specific quantity
+    /// </summary>
+    /// <typeparam name="Q">Measured quantity</typeparam>
+    public interface IMeasureArray<Q> where Q : struct, IQuantity<Q>
     {
         /// <summary>
-        /// Gets the array of measured amounts in the <see cref="IMeasureArray{Q}.Unit">current unit of measure</see>
+        /// Gets the array of measured amounts in the <see cref="Unit">current unit of measure</see>
         /// </summary>
-        AmountType[] Amounts { get; }
-    }
+        IEnumerable<AmountType> Amounts { get; }
 
-    public interface IMeasureArray<Q> : IMeasureArray where Q : struct, IQuantity<Q>
-    {
         /// <summary>
         /// Gets the unit of measure
         /// </summary>
@@ -37,5 +38,23 @@ namespace Cureos.Measures
         /// <param name="iUnit">Unit in which the array of measured amounts should be returned</param>
         /// <returns>Array of measured amounts, given in the <paramref name="iUnit">specified unit</paramref></returns>
         IEnumerable<AmountType> GetAmounts(IUnit<Q> iUnit);
+    }
+
+    /// <summary>
+    /// Interface representing an array of 
+    /// </summary>
+    /// <typeparam name="Q1">Quantity type of the first measure</typeparam>
+    /// <typeparam name="Q2">Quantity type of the second measure</typeparam>
+    public interface IMeasureArray<Q1, Q2> where Q1 : struct, IQuantity<Q1> where Q2 : struct, IQuantity<Q2>
+    {
+        /// <summary>
+        /// Gets the array of first measures
+        /// </summary>
+        IMeasureArray<Q1> Measures1 { get; }
+
+        /// <summary>
+        /// Gets the array of second measures
+        /// </summary>
+        IMeasureArray<Q2> Measures2 { get; }
     }
 }

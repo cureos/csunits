@@ -4,25 +4,23 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
-
 namespace Cureos.Measures.Quantities
 {
     /// <summary>
-    /// Implementation of the energy quantity
+    /// Implementation of the mass density quantity
     /// </summary>
-    public struct Energy : IQuantity<Energy>
+    public struct MassDensity : IQuantity<MassDensity>
     {
         #region FIELDS
 
-        private static readonly QuantityDimension _dimension =
-            (QuantityDimension.Length ^ 2) * QuantityDimension.Mass * (QuantityDimension.Time ^ -2);
+        private static readonly QuantityDimension _dimension = QuantityDimension.Mass * (QuantityDimension.Length ^ -3);
 
-        public static readonly Unit<Energy> Joule = new Unit<Energy>("J");
-        public static readonly Unit<Energy> KiloJoule = new Unit<Energy>("kJ", Factors.Kilo);
+        public static readonly Unit<MassDensity> KiloGramPerCubicMeter = new Unit<MassDensity>("kg/m³");
+        public static readonly Unit<MassDensity> KiloGramPerLiter = new Unit<MassDensity>("kg/l", Factors.Kilo);
+        public static readonly Unit<MassDensity> GramPerCubicCentiMeter = new Unit<MassDensity>("g/cm³", Factors.Kilo);
 
         #endregion
-
-        #region Implementation of IQuantity<Q>
+        #region Implementation of IQuantity<MassDensity>
 
         /// <summary>
         /// Gets the physical dimension of the quantity in terms of SI units
@@ -35,9 +33,9 @@ namespace Cureos.Measures.Quantities
         /// <summary>
         /// Gets the standard unit associated with the quantity
         /// </summary>
-        public IUnit<Energy> StandardUnit
+        public IUnit<MassDensity> StandardUnit
         {
-            get { return Joule; }
+            get { return KiloGramPerCubicMeter; }
         }
 
         #endregion

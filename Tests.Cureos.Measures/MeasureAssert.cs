@@ -44,7 +44,7 @@ namespace Tests.Cureos.Measures
             if (typeof(Q1).Equals(typeof(Q2)))
             {
                 Assert.IsTrue(
-                    Math.Abs(actual.GetAmount(default(Q2).ReferenceUnit) - expected.GetAmount(default(Q1).ReferenceUnit)) <
+                    Math.Abs(actual.GetAmount(default(Q2).StandardUnit) - expected.GetAmount(default(Q1).StandardUnit)) <
                     smkEqualityTolerance,
                     "Expected {0}, actual value {1}", expected, actual);
             }

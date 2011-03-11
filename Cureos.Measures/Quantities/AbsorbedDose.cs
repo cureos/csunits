@@ -6,18 +6,38 @@
 
 namespace Cureos.Measures.Quantities
 {
+    /// <summary>
+    /// Implementation of the absorbed dose quantity
+    /// </summary>
     public struct AbsorbedDose : IQuantity<AbsorbedDose>
     {
-        private static readonly QuantityDimensions smkDimensions = new QuantityDimensions(2, 0, -2, 0, 0, 0, 0);
+        #region FIELDS
 
-        public QuantityDimensions Dimensions
+        private static readonly QuantityDimension _dimension = (QuantityDimension.Length ^ 2) * (QuantityDimension.Time ^ 2);
+
+        public static readonly Unit<AbsorbedDose> Gray = new Unit<AbsorbedDose>("Gy");
+        public static readonly Unit<AbsorbedDose> CentiGray = new Unit<AbsorbedDose>("cGy", Factors.Centi);
+
+        #endregion
+
+        #region Implementation of IQuantity<Q>
+
+        /// <summary>
+        /// Gets the physical dimension of the quantity in terms of SI units
+        /// </summary>
+        public QuantityDimension Dimension
         {
-            get { return smkDimensions; }
+            get { return _dimension; }
         }
 
-        public IUnit<AbsorbedDose> ReferenceUnit
+        /// <summary>
+        /// Gets the standard unit associated with the quantity
+        /// </summary>
+        public IUnit<AbsorbedDose> StandardUnit
         {
-            get { return Units.Gray; }
+            get { return Gray; }
         }
+
+        #endregion
     }
 }

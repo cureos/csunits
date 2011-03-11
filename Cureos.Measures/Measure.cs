@@ -16,6 +16,10 @@ using AmountType = System.Double;
 
 namespace Cureos.Measures
 {
+	/// <summary>
+	/// Representation of a unit specific measure of a specific quantity
+	/// </summary>
+	/// <typeparam name="Q">Measured quantity</typeparam>
 	public class Measure<Q> : IMeasure<Q>, IEquatable<Measure<Q>>, IComparable<Measure<Q>> where Q : struct, IQuantity<Q>
 	{
 		#region MEMBER VARIABLES
@@ -27,6 +31,47 @@ namespace Cureos.Measures
 
 		#region CONSTRUCTORS
 
+		/// <summary>
+		/// Default constructor, initializes the amount to zero, unit set to standard unit of the measured quantity
+		/// </summary>
+		public Measure()
+			: this(0.0)
+		{
+		}
+
+		/// <summary>
+		/// Initializes a measure to the specified amount and standard unit of the measured quantity
+		/// </summary>
+		/// <param name="iAmount">Measured amount in standard unit of the specified quantity</param>
+		public Measure(double iAmount)
+			: this(iAmount, default(Q).StandardUnit)
+		{
+		}
+
+		/// <summary>
+		/// Initializes a measure to the specified amount and standard unit of the measured quantity
+		/// </summary>
+		/// <param name="iAmount">Measured amount in standard unit of the specified quantity</param>
+		public Measure(float iAmount)
+			: this(iAmount, default(Q).StandardUnit)
+		{
+		}
+
+		/// <summary>
+		/// Initializes a measure to the specified amount and standard unit of the measured quantity
+		/// </summary>
+		/// <param name="iAmount">Measured amount in standard unit of the specified quantity</param>
+		public Measure(decimal iAmount)
+			: this(iAmount, default(Q).StandardUnit)
+		{
+		}
+
+		/// <summary>
+		/// Initializes a measure to the specified amount and unit
+		/// </summary>
+		/// <param name="iAmount">Measured amount</param>
+		/// <param name="iUnit">Unit of measure</param>
+		/// <exception cref="ArgumentNullException">if the specified unit is null</exception>
 		public Measure(double iAmount, IUnit<Q> iUnit)
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
@@ -38,6 +83,12 @@ namespace Cureos.Measures
 			mUnit = iUnit;
 		}
 
+		/// <summary>
+		/// Initializes a measure to the specified amount and unit
+		/// </summary>
+		/// <param name="iAmount">Measured amount</param>
+		/// <param name="iUnit">Unit of measure</param>
+		/// <exception cref="ArgumentNullException">if the specified unit is null</exception>
 		public Measure(float iAmount, IUnit<Q> iUnit)
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
@@ -49,6 +100,12 @@ namespace Cureos.Measures
 			mUnit = iUnit;
 		}
 
+		/// <summary>
+		/// Initializes a measure to the specified amount and unit
+		/// </summary>
+		/// <param name="iAmount">Measured amount</param>
+		/// <param name="iUnit">Unit of measure</param>
+		/// <exception cref="ArgumentNullException">if the specified unit is null</exception>
 		public Measure(decimal iAmount, IUnit<Q> iUnit)
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
@@ -87,7 +144,17 @@ namespace Cureos.Measures
 		/// <returns>Measured amount converted into <paramref name="iUnit">specified unit</paramref></returns>
 		public AmountType GetAmount(IUnit<Q> iUnit)
 		{
-			return iUnit.AmountFromReferenceUnitConverter(mUnit.AmountToReferenceUnitConverter(mAmount));
+		    if (iUnit == null) throw new ArgumentNullException("iUnit");
+		    return iUnit.AmountFromStandardUnitConverter(mUnit.AmountToStandardUnitConverter(mAmount));
+		}
+
+	    /// <summary>
+		/// Gets a new unit specific measure based on this measure but in the <paramref name="iUnit">specified unit</paramref>
+		/// </summary>
+		/// <param name="iUnit">Unit in which the new measure should be specified</param>
+		IMeasure<Q> IMeasure<Q>.this[IUnit<Q> iUnit]
+		{
+			get { return this[iUnit]; }
 		}
 
 		#endregion
@@ -100,7 +167,11 @@ namespace Cureos.Measures
 		/// <param name="iUnit">Unit in which the new measure should be specified</param>
 		public Measure<Q> this[IUnit<Q> iUnit]
 		{
-			get { return new Measure<Q>(GetAmount(iUnit), iUnit); }
+			get
+			{
+			    if (iUnit == null) throw new ArgumentNullException("iUnit");
+			    return new Measure<Q>(GetAmount(iUnit), iUnit);
+			}
 		}
 
 		#endregion
@@ -121,8 +192,7 @@ namespace Cureos.Measures
 		///                     Greater than zero 
 		///                     This object is greater than <paramref name="other"/>. 
 		/// </returns>
-		/// <param name="other">An object to compare with this object.
-		///                 </param>
+		/// <param name="other">An object to compare with this object.</param>
 		public int CompareTo(Measure<Q> other)
 		{
 			return mAmount.CompareTo(other.GetAmount(mUnit));
@@ -180,7 +250,7 @@ namespace Cureos.Measures
 		/// <filterpriority>2</filterpriority>
 		public override int GetHashCode()
 		{
-			return GetAmount(default(Q).ReferenceUnit).GetHashCode();
+			return GetAmount(default(Q).StandardUnit).GetHashCode();
 		}
 
 		#endregion
@@ -215,7 +285,6 @@ namespace Cureos.Measures
 		/// <param name="iLhs">First measure term (any object implementing the IMeasure interface)</param>
 		/// <param name="iRhs">Second measure term</param>
 		/// <returns>Sum of the two measure objects in the unit of the <paramref name="iLhs">left-hand side measure</paramref></returns>
-		/// <exception cref="InvalidOperationException">Is thrown if the measured quanitites are not equal</exception>
 		public static Measure<Q> operator +(IMeasure<Q> iLhs, Measure<Q> iRhs)
 		{
 			return new Measure<Q>(iLhs.Amount + iRhs.GetAmount(iLhs.Unit), iLhs.Unit);
@@ -453,7 +522,7 @@ namespace Cureos.Measures
 		}
 
 		/// <summary>
-		/// Inquality operator for measure objects
+		/// Inequality operator for measure objects
 		/// </summary>
 		/// <param name="iLhs">First object</param>
 		/// <param name="iRhs">Second object</param>
@@ -464,7 +533,7 @@ namespace Cureos.Measures
 		}
 
 		/// <summary>
-		/// Inquality operator for measure objects, where right-hand side may be any object implementing the IMeasure interface
+		/// Inequality operator for measure objects, where right-hand side may be any object implementing the IMeasure interface
 		/// </summary>
 		/// <param name="iLhs">First object</param>
 		/// <param name="iRhs">Second object (any object implementing IMeasure interface)</param>
@@ -475,7 +544,7 @@ namespace Cureos.Measures
 		}
 
 		/// <summary>
-		/// Inquality operator for measure objects, where left-hand side may be any object implementing the IMeasure interface
+		/// Inequality operator for measure objects, where left-hand side may be any object implementing the IMeasure interface
 		/// </summary>
 		/// <param name="iLhs">First object (any object implementing IMeasure interface)</param>
 		/// <param name="iRhs">Second object</param>

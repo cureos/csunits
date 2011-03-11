@@ -6,19 +6,39 @@
 
 namespace Cureos.Measures.Quantities
 {
+	/// <summary>
+	/// Implementation of the length quantity
+	/// </summary>
 	public struct Length : IQuantity<Length>
 	{
-	    private static readonly QuantityDimensions smkDimensions = new QuantityDimensions(1, 0, 0, 0, 0, 0, 0);
+		#region FIELDS
 
-	    public QuantityDimensions Dimensions
-	    {
-	        get { return smkDimensions; }
-	    }
+		public static readonly Unit<Length> Meter = new Unit<Length>("m");
+		public static readonly Unit<Length> DeciMeter = new Unit<Length>("dm", Factors.Deci);
+		public static readonly Unit<Length> CentiMeter = new Unit<Length>("cm", Factors.Centi);
+		public static readonly Unit<Length> MilliMeter = new Unit<Length>("mm", Factors.Milli);
 
-	    public IUnit<Length> ReferenceUnit
-	    {
-	        get { return Units.Meter; }
-	    }
+		#endregion
+
+		#region Implementation of IQuantity<Q>
+
+		/// <summary>
+		/// Gets the physical dimension of the quantity in terms of SI units
+		/// </summary>
+		public QuantityDimension Dimension
+		{
+			get { return QuantityDimension.Length; }
+		}
+
+		/// <summary>
+		/// Gets the standard unit associated with the quantity
+		/// </summary>
+		public IUnit<Length> StandardUnit
+		{
+			get { return Meter; }
+		}
+
+		#endregion
 	}
 }
 

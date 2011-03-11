@@ -4,25 +4,26 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
+using System;
 
 namespace Cureos.Measures.Quantities
 {
     /// <summary>
-    /// Implementation of the energy quantity
+    /// Implementation of the acceleration quantity
     /// </summary>
-    public struct Energy : IQuantity<Energy>
+    public struct Acceleration : IQuantity<Acceleration>
     {
         #region FIELDS
 
-        private static readonly QuantityDimension _dimension =
-            (QuantityDimension.Length ^ 2) * QuantityDimension.Mass * (QuantityDimension.Time ^ -2);
+        private static readonly QuantityDimension _dimension = QuantityDimension.Length * (QuantityDimension.Time ^ -2);
 
-        public static readonly Unit<Energy> Joule = new Unit<Energy>("J");
-        public static readonly Unit<Energy> KiloJoule = new Unit<Energy>("kJ", Factors.Kilo);
+        public static readonly Unit<Acceleration> MeterPerSecondSquared = new Unit<Acceleration>("m/s²");
+        public static readonly Unit<Acceleration> CentiMeterPerSecondSquared = new Unit<Acceleration>("cm/s²", Factors.Centi);
+        public static readonly Unit<Acceleration> MilliMeterPerSecondSquared = new Unit<Acceleration>("mm/s²", Factors.Milli);
 
         #endregion
-
-        #region Implementation of IQuantity<Q>
+        
+        #region Implementation of IQuantity<Acceleration>
 
         /// <summary>
         /// Gets the physical dimension of the quantity in terms of SI units
@@ -35,9 +36,9 @@ namespace Cureos.Measures.Quantities
         /// <summary>
         /// Gets the standard unit associated with the quantity
         /// </summary>
-        public IUnit<Energy> StandardUnit
+        public IUnit<Acceleration> StandardUnit
         {
-            get { return Joule; }
+            get { return MeterPerSecondSquared; }
         }
 
         #endregion

@@ -8,7 +8,11 @@ using System;
 
 namespace Cureos.Measures
 {
-    public static class Scales
+    /// <summary>
+    /// Convenience class providing factors and support methods for applying amount conversion factors in e.g.
+    /// physical unit definition
+    /// </summary>
+    public static class Factors
     {
 #if DOUBLE
         public const double Yotta = 1.0e24;

@@ -12,16 +12,17 @@ using NUnit.Framework;
 namespace Tests.Cureos.Measures.Quantities
 {
     [TestFixture]
-    public class QuantityTests
+    public class VelocityTests
     {
         #region Unit tests
 
         [Test]
-        public void Name_OfQuantity_ReturnsShortName()
+        public void GetAmount_StandardMeasureToKmph_Factor3point6Larger()
         {
-            var expected = "AbsorbedDose";
-            var actual = default(AbsorbedDose).Name();
-            Assert.AreEqual(expected, actual);
+            var expected = AmountConverter.ToAmountType(90.0);
+            var velocity = new StandardMeasure<Velocity>(25.0);
+            var actual = velocity.GetAmount(Velocity.KiloMeterPerHour);
+            AmountAssert.AreEqual(expected, actual);
         }
 
         #endregion

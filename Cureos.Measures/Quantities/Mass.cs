@@ -7,18 +7,38 @@
 
 namespace Cureos.Measures.Quantities
 {
+    /// <summary>
+    /// Implementation of the mass quantity
+    /// </summary>
     public struct Mass : IQuantity<Mass>
     {
-        private static readonly QuantityDimensions smkDimensions = new QuantityDimensions(0, 1, 0, 0, 0, 0, 0);
+        #region FIELDS
 
-        public QuantityDimensions Dimensions
+        public static readonly Unit<Mass> KiloGram = new Unit<Mass>("kg");
+        public static readonly Unit<Mass> Tonne = new Unit<Mass>("t", Factors.Kilo);
+        public static readonly Unit<Mass> HectoGram = new Unit<Mass>("hg", Factors.Deci);
+        public static readonly Unit<Mass> Gram = new Unit<Mass>("g", Factors.Milli);
+
+        #endregion
+
+        #region Implementation of IQuantity<Q>
+
+        /// <summary>
+        /// Gets the physical dimension of the quantity in terms of SI units
+        /// </summary>
+        public QuantityDimension Dimension
         {
-            get { return smkDimensions; }
+            get { return QuantityDimension.Mass; }
         }
 
-        public IUnit<Mass> ReferenceUnit
+        /// <summary>
+        /// Gets the standard unit associated with the quantity
+        /// </summary>
+        public IUnit<Mass> StandardUnit
         {
-            get { return Units.KiloGram; }
+            get { return KiloGram; }
         }
+
+        #endregion
     }
 }

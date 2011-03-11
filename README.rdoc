@@ -9,41 +9,43 @@ Made available under Eclipse Public License, version 1.0.
 
 Developed with Visual Studio 2010, using .NET Framework 3.5. Can also be used by Mono, at least versions 2.8 and later.
 
-Measure<Q> and ReferenceMeasure<Q> are the main "work-horses" of the library. ReferenceMeasure<Q> is always represented in the reference unit of the associated quantity. If a different unit is specified in instantiation of ReferenceMeasure<Q>, the measured amount is automatically converted to the equivalent reference unit amount. On the other hand, the amount and unit used in instantiation of Measure<Q> are internally maintained.
+Measure<Q> and StandardMeasure<Q> are the main "work-horses" of the library. StandardMeasure<Q> is always represented in the reference unit of the associated quantity. If a different unit is specified in instantiation of StandardMeasure<Q>, the measured amount is automatically converted to the equivalent reference unit amount. On the other hand, the amount and unit used in instantiation of Measure<Q> are internally maintained.
 
-ReferenceMeasure<Q> is declared as a struct and only holds one member, the amount. The main goal of this approach is to maximize calculation performance, while at the same time ensuring quantity type safety.
+StandardMeasure<Q> is declared as a struct and only holds one member, the amount. The main goal of this approach is to maximize calculation performance, while at the same time ensuring quantity type safety.
+
+There is also a StandardMeasureArray<Q> that holds an array of floating-point amounts given in the standard unit of the specified quantity.
 
 
 == Usage examples
 
- using Cureos.Measures;
- using Cureos.Measures.Quantities;
- ...
+  using Cureos.Measures;
+  using Cureos.Measures.Quantities;
+  ...
 
- ReferenceMeasure<Mass> initialWgt = new ReferenceMeasure<Mass>(75.0);
- ReferenceMeasure<Mass> gainedWgt = new ReferenceMeasure<Mass>(2.5, Units.HectoGram);
- ReferenceMeasure<Mass> newWgt = initialWgt + gainedWgt;
+  StandardMeasure<Mass> initialWgt = new StandardMeasure<Mass>(75.0);
+  StandardMeasure<Mass> gainedWgt = new StandardMeasure<Mass>(2.5, Mass.HectoGram);
+  StandardMeasure<Mass> newWgt = initialWgt + gainedWgt;
 
- Measure<Mass> newWgtInGram = newWgt[Units.Gram];
- Measure<Mass> initialWgtInGram = newWgtInGram - gainedWgt;
+  Measure<Mass> newWgtInGram = newWgt[Mass.Gram];
+  Measure<Mass> initialWgtInGram = newWgtInGram - gainedWgt;
 
- Console.WriteLine("Initial weight: {0}", initialWgtInGram);
+  Console.WriteLine("Initial weight: {0}", initialWgtInGram);
 
- Measure<Length> height = new Measure<Length>(30.0, Units.CentiMeter);
- ReferenceMeasure<Area> area = (ReferenceMeasure<Area>)0.02;
+  Measure<Length> height = new Measure<Length>(30.0, Length.CentiMeter);
+  StandardMeasure<Area> area = (StandardMeasure<Area>)0.02;
 
- var vol = ReferenceMeasure<Volume>.Times(height, area);
- var maxVol = new ReferenceMeasure<Volume>(10.0, Units.Liter);
+  var vol = StandardMeasure<Volume>.Times(height, area);
+  var maxVol = new StandardMeasure<Volume>(10.0, Volume.Liter);
 
- if (vol < maxVol)
- {
-  Console.WriteLine("Calculated volume is within limits, actual volume: {0}", vol[Units.Liter]);
- }
+  if (vol < maxVol)
+  {
+    Console.WriteLine("Calculated volume is within limits, actual volume: {0}", vol[Volume.Liter]);
+  }
 
 should yield the output:
 
- Initial weight: 75000 g
- Calculated volume is within limits, actual volume 6 l
+  Initial weight: 75000 g
+  Calculated volume is within limits, actual volume 6 l
 
 
 == Building for specific floating-point types
@@ -59,41 +61,46 @@ With preprocessor directives, it is possible to configure the library so that th
 
 == Extending the library
 
-Quantities are identified through their dimension in terms of SI Base Units. For completeness, each quantity should have a reference unit, expressable as a combination of one or more SI base units. This is particularly important to ensure that resulting amounts are correctly expressed when multiplying or dividing measures.
+Quantities are identified through their dimension in terms of SI Base Units. For completeness, each quantity should have a standard unit, expressable as a pure combination of one or more SI base units. This is particularly important to ensure that resulting amounts are correctly expressed when multiplying or dividing measures.
 
 To extend the library with additional quantities and associated units, the following steps should be taken in project Cureos.Measures:
 
-* In the Quantities sub-folder, add a new member-less struct implementing the IQuantity interface, and have the Dimensions property getter return the dimension signature of the new quantity:
+* In the Quantities sub-folder, add a new member-less struct implementing the IQuantity interface:
 
    namespace Cureos.Measures.Quantities
    {
-    public struct Energy : IQuantity<Energy>
-    {
-     private static readonly QuantityDimensions _dimensions = new QuantityDimensions(2, 1, -2, 0, 0, 0, 0);
-
-     public QuantityDimensions Dimensions { get { return _dimensions; } }
-     public IUnit<Energy> ReferenceUnit { get { return REFERENCE_UNIT_DEFINED_IN_NEXT_STEP; } }
-    }
+     public struct Energy : IQuantity<Energy>
+     {
+     }
    }
 
-* In the file Units.cs, add the unit(s) associated with the quantity to the list of supported units:
+* Define a static readonly private field describing the SI unit dimensions of the quantity as a combination of the SI base unit dimensions:
 
-   public static class Units
+   public struct Energy : IQuantity<Energy>
    {
-    ... ;
-    public static readonly Unit<Energy> Joule = new Unit<Energy>("J");
-    public static readonly Unit<Energy> KiloJoule = new Unit<Energy>("kJ", Scales.Kilo);
+     private static readonly QuantityDimension _dimension = 
+       (QuantityDimension.Length ^ 2) * QuantityDimension.Mass * (QuantityDimension.Time ^ -2);
    }
 
-* Insert the reference unit instance (in this case, Units.Joule) in the ReferenceUnit property getter of the new quantity type:
+* Add the units supported by this quantity as static readonly public fields of the new struct. A standard unit should always be included, instantiated with the single argument (unit symbol) constructor. The secondary units are instantiated by defining a conversion factor or conversion functions with in relation to the standard unit:
 
-    public struct Energy : IQuantity<Energy>
-    {
+   public struct Energy : IQuantity<Energy>
+   {
      ...
-	 public IUnit<Energy> ReferenceUnit { get { return Units.Joule; } }
-    }
+     public static readonly Unit<Energy> Joule = new Unit<Energy>("J");
+     public static readonly Unit<Energy> KiloJoule = new Unit<Energy>("kJ", Factors.Kilo);
+   }
+
+* Implement the properties of the IQuantity interface, returning the defined dimensions and standard unit, respectively, of the new quantity:
+
+   public struct Energy : IQuantity<Energy>
+   {
+     ...
+     public QuantityDimension Dimension { get { return _dimension; } }
+     public IUnit<Energy> StandardUnit { get { return Joule; } }
+   }
 
 
 == Revision
 
-Last updated on March 8, 2011 by Anders Gustafsson, anders[at]cureos[dot]com.
+Last updated on March 10, 2011 by Anders Gustafsson, anders[at]cureos[dot]com.

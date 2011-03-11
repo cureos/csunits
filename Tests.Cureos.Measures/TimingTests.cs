@@ -48,10 +48,10 @@ namespace Tests.Cureos.Measures
 		{
 			PerformTiming(() =>
 							  {
-								  var val = new Measure<Mass>(0.0, Units.KiloGram);
+								  var val = new Measure<Mass>(0.0, Mass.KiloGram);
 								  for (double i = 0.0; i < no; ++i)
 								  {
-									  val += new ReferenceMeasure<Mass>(i);
+									  val += new StandardMeasure<Mass>(i);
 								  }
 								  return val;
 							  });
@@ -62,10 +62,10 @@ namespace Tests.Cureos.Measures
 		{
 			PerformTiming(() =>
 							  {
-								  var val = new Measure<Mass>(0.0, Units.KiloGram);
+								  var val = new Measure<Mass>(0.0, Mass.KiloGram);
 								  for (double i = 0.0; i < no; ++i)
 								  {
-									  val += new Measure<Mass>(i, Units.Gram);
+									  val += new Measure<Mass>(i, Mass.Gram);
 								  }
 								  return val;
 							  });
@@ -76,10 +76,10 @@ namespace Tests.Cureos.Measures
 		{
 			PerformTiming(() =>
 							  {
-								  var val = new ReferenceMeasure<Length>(0.0);
+								  var val = new StandardMeasure<Length>(0.0);
 								  for (double i = 0.0; i < no; ++i)
 								  {
-									  val += new ReferenceMeasure<Length>(i);
+									  val += new StandardMeasure<Length>(i);
 								  }
 								  return val;
 							  });
@@ -90,10 +90,10 @@ namespace Tests.Cureos.Measures
 		{
 			PerformTiming(() =>
 			{
-				var val = new Measure<Length>(0.0, Units.CentiMeter);
+				var val = new Measure<Length>(0.0, Length.CentiMeter);
 				for (double i = 0.0; i < no; ++i)
 				{
-					val += new ReferenceMeasure<Length>(i);
+					val += new StandardMeasure<Length>(i);
 				}
 				return val;
 			});

@@ -13,15 +13,15 @@ using NUnit.Framework;
 namespace Tests.Cureos.Measures
 {
 	[TestFixture]
-	public class ReferenceMeasureArrayTests
+	public class StandardMeasureArrayTests
 	{
-		private ReferenceMeasureArray<Length> _instance;
+		private StandardMeasureArray<Length> _instance;
 
 		#region Setup and TearDown
 		[SetUp]
 		public void Setup()
 		{
-			_instance = new ReferenceMeasureArray<Length>(new[] {1.0, 2.0, 3.0, 4.0, 5.0}, Units.CentiMeter);
+			_instance = new StandardMeasureArray<Length>(new[] {1.0, 2.0, 3.0, 4.0, 5.0}, Length.CentiMeter);
 		}
 
 		[TearDown]
@@ -50,7 +50,7 @@ namespace Tests.Cureos.Measures
 		[Test]
 		public void Indexer_AccessCenterElement_ReturnsMeasure()
 		{
-			var expected = new ReferenceMeasure<Length>(AmountConverter.ToAmountType(0.03));
+			var expected = new StandardMeasure<Length>(AmountConverter.ToAmountType(0.03));
 			var actual = _instance[2];
 			MeasureAssert.MeasuresAreEqual(expected, actual);
 		}
@@ -63,14 +63,24 @@ namespace Tests.Cureos.Measures
 		}
 
 		[Test]
-		public void GetEnumerator_Default_ShouldNotThrow()
+		[ExpectedException(typeof(InvalidCastException))]
+		public void GetAmounts_CastToArray_Throws()
 		{
-#if NUNIT24
-			var val = _instance.GetEnumerator();
-			Assert.Ignore();
-#else
-			Assert.DoesNotThrow(() => { var val = _instance.GetEnumerator(); });
-#endif
+			AmountConverter.CastToArray(_instance.Amounts);
+		}
+
+		[Test]
+		public void Enumerator_OfStandardMeasureArray_ReturnsStandardMeasureValues()
+		{
+			CollectionAssert.AllItemsAreInstancesOfType(_instance, typeof(StandardMeasure<Length>));
+		}
+
+		[Test]
+		public void Max_OnStandardMeasureArray_ReturnsMaxStandardMeasureFromArray()
+		{
+			var expected = new StandardMeasure<Length>(0.05);
+			var actual = _instance.Max();
+			MeasureAssert.MeasuresAreEqual(expected, actual);
 		}
 
 		#endregion

@@ -4,25 +4,25 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
-
 namespace Cureos.Measures.Quantities
 {
     /// <summary>
-    /// Implementation of the energy quantity
+    /// Implementation of the frequency quantity
     /// </summary>
-    public struct Energy : IQuantity<Energy>
+    public struct Frequency : IQuantity<Frequency>
     {
         #region FIELDS
 
-        private static readonly QuantityDimension _dimension =
-            (QuantityDimension.Length ^ 2) * QuantityDimension.Mass * (QuantityDimension.Time ^ -2);
+        private static readonly QuantityDimension _dimension = QuantityDimension.Time ^ -1;
 
-        public static readonly Unit<Energy> Joule = new Unit<Energy>("J");
-        public static readonly Unit<Energy> KiloJoule = new Unit<Energy>("kJ", Factors.Kilo);
+        public static readonly Unit<Frequency> Hertz = new Unit<Frequency>("Hz");
+        public static readonly Unit<Frequency> KiloHertz = new Unit<Frequency>("kHz", Factors.Kilo);
+        public static readonly Unit<Frequency> MegaHertz = new Unit<Frequency>("MHz", Factors.Mega);
+        public static readonly Unit<Frequency> GigaHertz = new Unit<Frequency>("GHz", Factors.Giga);
 
         #endregion
-
-        #region Implementation of IQuantity<Q>
+        
+        #region Implementation of IQuantity<Frequency>
 
         /// <summary>
         /// Gets the physical dimension of the quantity in terms of SI units
@@ -35,9 +35,9 @@ namespace Cureos.Measures.Quantities
         /// <summary>
         /// Gets the standard unit associated with the quantity
         /// </summary>
-        public IUnit<Energy> StandardUnit
+        public IUnit<Frequency> StandardUnit
         {
-            get { return Joule; }
+            get { return Hertz; }
         }
 
         #endregion

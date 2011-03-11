@@ -6,18 +6,39 @@
 
 namespace Cureos.Measures.Quantities
 {
+    /// <summary>
+    /// Implementation of the area quantity
+    /// </summary>
     public struct Area : IQuantity<Area>
     {
-        private static readonly QuantityDimensions smkDimensions = new QuantityDimensions(2, 0, 0, 0, 0, 0, 0);
+        #region FIELDS
 
-        public QuantityDimensions Dimensions
+        private static readonly QuantityDimension _dimension = QuantityDimension.Length ^ 2;
+
+        public static readonly Unit<Area> SquareMeter = new Unit<Area>("m²");
+        public static readonly Unit<Area> SquareDeciMeter = new Unit<Area>("dm²", Factors.Square(Factors.Deci));
+        public static readonly Unit<Area> SquareCentiMeter = new Unit<Area>("cm²", Factors.Square(Factors.Centi));
+
+        #endregion
+
+        #region Implementation of IQuantity<Q>
+
+        /// <summary>
+        /// Gets the physical dimension of the quantity in terms of SI units
+        /// </summary>
+        public QuantityDimension Dimension
         {
-            get { return smkDimensions; }
+            get { return _dimension; }
         }
 
-        public IUnit<Area> ReferenceUnit
+        /// <summary>
+        /// Gets the standard unit associated with the quantity
+        /// </summary>
+        public IUnit<Area> StandardUnit
         {
-            get { return Units.SquareMeter; }
+            get { return SquareMeter; }
         }
+
+        #endregion
     }
 }

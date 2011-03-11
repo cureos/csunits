@@ -17,24 +17,24 @@ namespace Tests.Cureos.Measures
 		[Test]
 		public void Example1()
 		{
-			ReferenceMeasure<Mass> initialWgt = new ReferenceMeasure<Mass>(75.0);
-			ReferenceMeasure<Mass> gainedWgt = new ReferenceMeasure<Mass>(2.5, Units.HectoGram);
-			ReferenceMeasure<Mass> newWgt = initialWgt + gainedWgt;
+			StandardMeasure<Mass> initialWgt = new StandardMeasure<Mass>(75.0);
+			StandardMeasure<Mass> gainedWgt = new StandardMeasure<Mass>(2.5, Mass.HectoGram);
+			StandardMeasure<Mass> newWgt = initialWgt + gainedWgt;
 
-			Measure<Mass> newWgtInGram = newWgt[Units.Gram];
+			Measure<Mass> newWgtInGram = newWgt[Mass.Gram];
 			Measure<Mass> initialWgtInGram = newWgtInGram - gainedWgt;
 
 			Console.WriteLine("Initial weight: {0}", initialWgtInGram);
 
-			Measure<Length> height = new Measure<Length>(30.0, Units.CentiMeter);
-			ReferenceMeasure<Area> area = (ReferenceMeasure<Area>)0.02;
+			Measure<Length> height = new Measure<Length>(30.0, Length.CentiMeter);
+			StandardMeasure<Area> area = (StandardMeasure<Area>)0.02;
 
-			var vol = ReferenceMeasure<Volume>.Times(height, area);
-			var maxVol = new ReferenceMeasure<Volume>(10.0, Units.Liter);
+			var vol = StandardMeasure<Volume>.Times(height, area);
+			var maxVol = new StandardMeasure<Volume>(10.0, Volume.Liter);
 
 			if (vol < maxVol)
 			{
-				Console.WriteLine("Calculated volume is within limits, actual volume: {0}", vol[Units.Liter]);
+				Console.WriteLine("Calculated volume is within limits, actual volume: {0}", vol[Volume.Liter]);
 			}
 
 #if NUNIT24
