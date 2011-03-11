@@ -47,6 +47,7 @@
     <Compile Include="Quantities\Acceleration.cs" />
     <Compile Include="Quantities\AmountOfSubstance.cs" />
     <Compile Include="Quantities\ElectricCurrent.cs" />
+    <Compile Include="Quantities\Frequency.cs" />
     <Compile Include="Quantities\LuminousIntensity.cs" />
     <Compile Include="Quantities\MassDensity.cs" />
     <Compile Include="Quantities\PlaneAngle.cs" />
