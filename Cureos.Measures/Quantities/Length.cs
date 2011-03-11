@@ -8,22 +8,22 @@ namespace Cureos.Measures.Quantities
 {
 	public struct Length : IQuantity<Length>
 	{
-        internal static readonly QuantityDimension BaseDimension = new QuantityDimension(1, 0, 0, 0, 0, 0, 0);
+		public static readonly QuantityDimension BaseDimension = new QuantityDimension(1, 0, 0, 0, 0, 0, 0);
 
-        public static readonly Unit<Length> Meter = new Unit<Length>("m");
-        public static readonly Unit<Length> DeciMeter = new Unit<Length>("dm", Factors.Deci);
-        public static readonly Unit<Length> CentiMeter = new Unit<Length>("cm", Factors.Centi);
-        public static readonly Unit<Length> MilliMeter = new Unit<Length>("mm", Factors.Milli);
+		public static readonly Unit<Length> Meter = new Unit<Length>("m");
+		public static readonly Unit<Length> DeciMeter = new Unit<Length>("dm", Factors.Deci);
+		public static readonly Unit<Length> CentiMeter = new Unit<Length>("cm", Factors.Centi);
+		public static readonly Unit<Length> MilliMeter = new Unit<Length>("mm", Factors.Milli);
 
-	    public QuantityDimension Dimension
-	    {
-	        get { return BaseDimension; }
-	    }
+		public QuantityDimension Dimension
+		{
+			get { return BaseDimension; }
+		}
 
-	    public IUnit<Length> StandardUnit
-	    {
-	        get { return Meter; }
-	    }
+		public IUnit<Length> StandardUnit
+		{
+			get { return Meter; }
+		}
 	}
 }
 

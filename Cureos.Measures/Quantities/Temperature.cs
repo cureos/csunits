@@ -8,7 +8,7 @@ namespace Cureos.Measures.Quantities
 {
     public struct Temperature : IQuantity<Temperature>
     {
-        internal static readonly QuantityDimension BaseDimension = new QuantityDimension(0, 0, 0, 0, 1, 0, 0);
+        public static readonly QuantityDimension BaseDimension = new QuantityDimension(0, 0, 0, 0, 1, 0, 0);
 
         public static readonly Unit<Temperature> Kelvin = new Unit<Temperature>("K");
         public static readonly Unit<Temperature> Celsius = new Unit<Temperature>("°C",

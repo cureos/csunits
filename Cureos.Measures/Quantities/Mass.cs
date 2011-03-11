@@ -9,7 +9,7 @@ namespace Cureos.Measures.Quantities
 {
     public struct Mass : IQuantity<Mass>
     {
-        internal static readonly QuantityDimension BaseDimension = new QuantityDimension(0, 1, 0, 0, 0, 0, 0);
+        public static readonly QuantityDimension BaseDimension = new QuantityDimension(0, 1, 0, 0, 0, 0, 0);
 
         public static readonly Unit<Mass> KiloGram = new Unit<Mass>("kg");
         public static readonly Unit<Mass> Tonne = new Unit<Mass>("t", Factors.Kilo);

@@ -8,7 +8,7 @@ namespace Cureos.Measures.Quantities
 {
     public struct Time : IQuantity<Time>
     {
-        internal static readonly QuantityDimension BaseDimension = new QuantityDimension(0, 0, 1, 0, 0, 0, 0);
+        public static readonly QuantityDimension BaseDimension = new QuantityDimension(0, 0, 1, 0, 0, 0, 0);
 
         public static readonly Unit<Time> Second = new Unit<Time>("s");
         public static readonly Unit<Time> Minute = new Unit<Time>("min", Factors.SecondsPerMinute);

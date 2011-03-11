@@ -9,7 +9,7 @@ namespace Cureos.Measures.Quantities
 {
     public struct Energy : IQuantity<Energy>
     {
-        private static readonly QuantityDimension _dimension = 2 * Length.BaseDimension + Mass.BaseDimension - 2 * Time.BaseDimension;
+        private static readonly QuantityDimension _dimension = (Length.BaseDimension ^ 2) * Mass.BaseDimension * (Time.BaseDimension ^ -2);
 
         public static readonly Unit<Energy> Joule = new Unit<Energy>("J");
         public static readonly Unit<Energy> KiloJoule = new Unit<Energy>("kJ", Factors.Kilo);

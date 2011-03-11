@@ -4,174 +4,226 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
+using System;
+
 namespace Cureos.Measures
 {
+    /// <summary>
+    /// Representation of the quantity dimension in terms of SI base units
+    /// </summary>
+    public sealed class QuantityDimension
+    {
+        #region CONSTRUCTORS
+
         /// <summary>
-        /// Representation of the quantity dimension in terms of SI base units
+        /// Intitalizes a dimensionless quantity dimension
         /// </summary>
-        public sealed class QuantityDimension
+        /// <param name="iDimensionlessDifferentiator">Scalar used to differentiate between relevant dimensionless quantities</param>
+        internal QuantityDimension(double iDimensionlessDifferentiator) :
+            this(iDimensionlessDifferentiator, 0, 0, 0, 0, 0, 0, 0)
         {
-            #region CONSTRUCTORS
+        }
 
-            /// <summary>
-            /// Initializes an instance of a quantity dimension
-            /// </summary>
-            /// <param name="iLengthExponent">Length exponent</param>
-            /// <param name="iMassExponent">Mass exponent</param>
-            /// <param name="iTimeExponent">Time exponent</param>
-            /// <param name="iElectricCurrentExponent">Electric current exponent</param>
-            /// <param name="iTemperatureExponent">Temperature exponent</param>
-            /// <param name="iLuminousIntensityExponent">Luminous intensity exponent</param>
-            /// <param name="iSubstanceAmountExponent">Substance amount exponent</param>
-            internal QuantityDimension(int iLengthExponent, int iMassExponent, int iTimeExponent, int iElectricCurrentExponent, int iTemperatureExponent,
-                int iLuminousIntensityExponent, int iSubstanceAmountExponent)
+        /// <summary>
+        /// Initializes a (linear) instance of a quantity dimension
+        /// </summary>
+        /// <param name="iLengthExponent">Length exponent</param>
+        /// <param name="iMassExponent">Mass exponent</param>
+        /// <param name="iTimeExponent">Time exponent</param>
+        /// <param name="iElectricCurrentExponent">Electric current exponent</param>
+        /// <param name="iTemperatureExponent">Temperature exponent</param>
+        /// <param name="iLuminousIntensityExponent">Luminous intensity exponent</param>
+        /// <param name="iAmountOfSubstanceExponent">Amount of substance exponent</param>
+        internal QuantityDimension(int iLengthExponent, int iMassExponent, int iTimeExponent, int iElectricCurrentExponent, int iTemperatureExponent,
+            int iLuminousIntensityExponent, int iAmountOfSubstanceExponent) :
+            this(1.0, iLengthExponent, iMassExponent, iTimeExponent, iElectricCurrentExponent,
+            iTemperatureExponent, iLuminousIntensityExponent, iAmountOfSubstanceExponent)
+        {
+        }
+
+        /// <summary>
+        /// Initializes an instance of a quantity dimension
+        /// </summary>
+        /// <param name="iDimensionlessDifferentiator">Scalar used to differentiate between relevant dimensionless quantities</param>
+        /// <param name="iLengthExponent">Length exponent</param>
+        /// <param name="iMassExponent">Mass exponent</param>
+        /// <param name="iTimeExponent">Time exponent</param>
+        /// <param name="iElectricCurrentExponent">Electric current exponent</param>
+        /// <param name="iTemperatureExponent">Temperature exponent</param>
+        /// <param name="iLuminousIntensityExponent">Luminous intensity exponent</param>
+        /// <param name="iAmountOfSubstanceExponent">Amount of substance exponent</param>
+        private QuantityDimension(double iDimensionlessDifferentiator, int iLengthExponent, int iMassExponent, int iTimeExponent, int iElectricCurrentExponent, int iTemperatureExponent,
+            int iLuminousIntensityExponent, int iAmountOfSubstanceExponent)
+        {
+            DimensionlessDifferentiator = iDimensionlessDifferentiator;
+            LengthExponent = iLengthExponent;
+            MassExponent = iMassExponent;
+            TimeExponent = iTimeExponent;
+            ElectricCurrentExponent = iElectricCurrentExponent;
+            TemperatureExponent = iTemperatureExponent;
+            LuminousIntensityExponent = iLuminousIntensityExponent;
+            AmountOfSubstanceExponent = iAmountOfSubstanceExponent;
+        }
+
+        #endregion
+
+        #region AUTO-IMPLEMENTED PROPERTIES
+
+        /// <summary>
+        /// Gets the scalar used to differentiate between relevant dimensionless quantities
+        /// </summary>
+        internal double DimensionlessDifferentiator { get; private set; }
+
+        /// <summary>
+        /// Gets the length (m) exponent
+        /// </summary>
+        internal int LengthExponent { get; private set; }
+
+        /// <summary>
+        /// Gets the mass (kg) exponent
+        /// </summary>
+        internal int MassExponent { get; private set; }
+
+        /// <summary>
+        /// Gets the time (s) exponent
+        /// </summary>
+        internal int TimeExponent { get; private set; }
+
+        /// <summary>
+        /// Gets the electric current (A) exponent
+        /// </summary>
+        internal int ElectricCurrentExponent { get; private set; }
+
+        /// <summary>
+        /// Gets the temperature (K) exponent
+        /// </summary>
+        internal int TemperatureExponent { get; private set; }
+
+        /// <summary>
+        /// Gets the luminous intensity (Cd) exponent
+        /// </summary>
+        internal int LuminousIntensityExponent { get; private set; }
+
+        /// <summary>
+        /// Gets the substance amount (mol) exponent
+        /// </summary>
+        internal int AmountOfSubstanceExponent { get; private set; }
+
+        #endregion
+
+        #region METHODS
+
+        /// <summary>
+        /// Compare this object with another quantity dimension object for equality
+        /// </summary>
+        /// <param name="other">Qunatity dimension object with which to compare equality</param>
+        /// <returns>true if all elements of this and the other object are equal, false otherwise</returns>
+        /// <remarks>Currently, the dimensionless differentiator is also compared for exact equality,
+        /// even though the element is a double. For increased stability, this comparison might need to
+        /// be made more tolerant.</remarks>
+        internal bool Equals(QuantityDimension other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return other.DimensionlessDifferentiator == DimensionlessDifferentiator &&
+                   other.LengthExponent == LengthExponent && other.MassExponent == MassExponent &&
+                   other.TimeExponent == TimeExponent &&
+                   other.ElectricCurrentExponent == ElectricCurrentExponent &&
+                   other.TemperatureExponent == TemperatureExponent &&
+                   other.LuminousIntensityExponent == LuminousIntensityExponent &&
+                   other.AmountOfSubstanceExponent == AmountOfSubstanceExponent;
+        }
+
+        /// <summary>
+        /// Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.
+        /// </summary>
+        /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>.</param>
+        /// <returns>
+        /// true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.
+        /// </returns>
+        /// <exception cref="T:System.NullReferenceException">The <paramref name="obj"/> parameter is null.</exception>
+        /// <filterpriority>2</filterpriority>
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as QuantityDimension);
+        }
+
+        /// <summary>
+        /// Serves as a hash function for a particular type. 
+        /// </summary>
+        /// <returns>
+        /// A hash code for the current <see cref="T:System.Object"/>.
+        /// </returns>
+        /// <filterpriority>2</filterpriority>
+        public override int GetHashCode()
+        {
+            unchecked
             {
-                LengthExponent = iLengthExponent;
-                MassExponent = iMassExponent;
-                TimeExponent = iTimeExponent;
-                ElectricCurrentExponent = iElectricCurrentExponent;
-                TemperatureExponent = iTemperatureExponent;
-                LuminousIntensityExponent = iLuminousIntensityExponent;
-                SubstanceAmountExponent = iSubstanceAmountExponent;
+                int result = DimensionlessDifferentiator.GetHashCode();
+                result = (result * 397) ^ LengthExponent;
+                result = (result * 397) ^ MassExponent;
+                result = (result * 397) ^ TimeExponent;
+                result = (result * 397) ^ ElectricCurrentExponent;
+                result = (result * 397) ^ TemperatureExponent;
+                result = (result * 397) ^ LuminousIntensityExponent;
+                result = (result * 397) ^ AmountOfSubstanceExponent;
+                return result;
             }
+        }
 
-            #endregion
+        #endregion
 
-            #region AUTO-IMPLEMENTED PROPERTIES
+        #region OPERATORS
 
-            /// <summary>
-            /// Gets the length (m) exponent
-            /// </summary>
-            internal int LengthExponent { get; private set; }
+        /// <summary>
+        /// Multiply two quantity dimension objects
+        /// </summary>
+        /// <param name="iLhs">First quantity dimension object</param>
+        /// <param name="iRhs">Second quantity dimension object</param>
+        /// <returns>New quantity dimension object representing the product of the two specified quantity dimensions</returns>
+        /// <remarks>Multiplication of base units correspond to addition of their respective exponents</remarks>
+        public static QuantityDimension operator *(QuantityDimension iLhs, QuantityDimension iRhs)
+        {
+            return new QuantityDimension(iLhs.DimensionlessDifferentiator * iRhs.DimensionlessDifferentiator,
+                iLhs.LengthExponent + iRhs.LengthExponent, iLhs.MassExponent + iRhs.MassExponent,
+                iLhs.TimeExponent + iRhs.TimeExponent, iLhs.ElectricCurrentExponent + iRhs.ElectricCurrentExponent,
+                iLhs.TemperatureExponent + iRhs.TemperatureExponent, iLhs.LuminousIntensityExponent + iRhs.LuminousIntensityExponent,
+                iLhs.AmountOfSubstanceExponent + iRhs.AmountOfSubstanceExponent);
+        }
 
-            /// <summary>
-            /// Gets the mass (kg) exponent
-            /// </summary>
-            internal int MassExponent { get; private set; }
+        /// <summary>
+        /// Divide two quantity dimension objects
+        /// </summary>
+        /// <param name="iLhs">Numerator quantity dimension</param>
+        /// <param name="iRhs">Denominator quantity dimension</param>
+        /// <returns>New quantity dimension representing the quotient between the two specified quantity dimensions</returns>
+        /// <remarks>Division of base units correspond to subtraction of their respective exponents</remarks>
+        public static QuantityDimension operator /(QuantityDimension iLhs, QuantityDimension iRhs)
+        {
+            return new QuantityDimension(iLhs.DimensionlessDifferentiator / iRhs.DimensionlessDifferentiator,
+                iLhs.LengthExponent - iRhs.LengthExponent, iLhs.MassExponent - iRhs.MassExponent,
+                iLhs.TimeExponent - iRhs.TimeExponent, iLhs.ElectricCurrentExponent - iRhs.ElectricCurrentExponent,
+                iLhs.TemperatureExponent - iRhs.TemperatureExponent, iLhs.LuminousIntensityExponent - iRhs.LuminousIntensityExponent,
+                iLhs.AmountOfSubstanceExponent - iRhs.AmountOfSubstanceExponent);
+        }
 
-            /// <summary>
-            /// Gets the time (s) exponent
-            /// </summary>
-            internal int TimeExponent { get; private set; }
+        /// <summary>
+        /// Compute the power of the quantity dimension object
+        /// </summary>
+        /// <param name="iDimension">Quantity dimension base in the power computation</param>
+        /// <param name="iExponent">Scalar exponent</param>
+        /// <returns>Computed power of the <paramref name="iDimension">specified quantity dimension</paramref> and the 
+        /// <paramref name="iExponent">specified exponent</paramref></returns>
+        public static QuantityDimension operator ^(QuantityDimension iDimension, int iExponent)
+        {
+            return new QuantityDimension(Math.Pow(iDimension.DimensionlessDifferentiator, iExponent),
+                iExponent * iDimension.LengthExponent, iExponent * iDimension.MassExponent,
+                iExponent * iDimension.TimeExponent, iExponent * iDimension.ElectricCurrentExponent,
+                iExponent * iDimension.TemperatureExponent, iExponent * iDimension.LuminousIntensityExponent,
+                iExponent * iDimension.AmountOfSubstanceExponent);
+        }
 
-            /// <summary>
-            /// Gets the electric current (A) exponent
-            /// </summary>
-            internal int ElectricCurrentExponent { get; private set; }
-
-            /// <summary>
-            /// Gets the temperature (K) exponent
-            /// </summary>
-            internal int TemperatureExponent { get; private set; }
-
-            /// <summary>
-            /// Gets the luminous intensity (Cd) exponent
-            /// </summary>
-            internal int LuminousIntensityExponent { get; private set; }
-
-            /// <summary>
-            /// Gets the substance amount (mol) exponent
-            /// </summary>
-            internal int SubstanceAmountExponent { get; private set; }
-
-            #endregion
-
-            #region METHODS
-
-            internal bool Equals(QuantityDimension other)
-            {
-                if (ReferenceEquals(null, other)) return false;
-                if (ReferenceEquals(this, other)) return true;
-                return other.LengthExponent == LengthExponent && other.MassExponent == MassExponent &&
-                       other.TimeExponent == TimeExponent && other.ElectricCurrentExponent == ElectricCurrentExponent &&
-                       other.TemperatureExponent == TemperatureExponent &&
-                       other.LuminousIntensityExponent == LuminousIntensityExponent &&
-                       other.SubstanceAmountExponent == SubstanceAmountExponent;
-            }
-
-            /// <summary>
-            /// Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.
-            /// </summary>
-            /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>.</param>
-            /// <returns>
-            /// true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.
-            /// </returns>
-            /// <exception cref="T:System.NullReferenceException">The <paramref name="obj"/> parameter is null.</exception>
-            /// <filterpriority>2</filterpriority>
-            public override bool Equals(object obj)
-            {
-                return Equals(obj as QuantityDimension);
-            }
-
-            /// <summary>
-            /// Serves as a hash function for a particular type. 
-            /// </summary>
-            /// <returns>
-            /// A hash code for the current <see cref="T:System.Object"/>.
-            /// </returns>
-            /// <filterpriority>2</filterpriority>
-            public override int GetHashCode()
-            {
-                unchecked
-                {
-                    int result = LengthExponent;
-                    result = (result * 397) ^ MassExponent;
-                    result = (result * 397) ^ TimeExponent;
-                    result = (result * 397) ^ ElectricCurrentExponent;
-                    result = (result * 397) ^ TemperatureExponent;
-                    result = (result * 397) ^ LuminousIntensityExponent;
-                    result = (result * 397) ^ SubstanceAmountExponent;
-                    return result;
-                }
-            }
-
-            #endregion
-
-            #region OPERATORS
-
-            /// <summary>
-            /// Add two quantity dimension objects (used in unit multiplication)
-            /// </summary>
-            /// <param name="iLhs">First quantity dimension object</param>
-            /// <param name="iRhs">Second quantity dimension object</param>
-            /// <returns>New quantity dimension object, with each exponent being the sum of the two input object exponents</returns>
-            public static QuantityDimension operator +(QuantityDimension iLhs, QuantityDimension iRhs)
-            {
-                return new QuantityDimension(iLhs.LengthExponent + iRhs.LengthExponent, iLhs.MassExponent + iRhs.MassExponent,
-                    iLhs.TimeExponent + iRhs.TimeExponent, iLhs.ElectricCurrentExponent + iRhs.ElectricCurrentExponent,
-                    iLhs.TemperatureExponent + iRhs.TemperatureExponent, iLhs.LuminousIntensityExponent + iRhs.LuminousIntensityExponent,
-                    iLhs.SubstanceAmountExponent + iRhs.SubstanceAmountExponent);
-            }
-
-            /// <summary>
-            /// Subtract two quantity dimension objects (used in unit division)
-            /// </summary>
-            /// <param name="iLhs">First quantity dimension object</param>
-            /// <param name="iRhs">Second quantity dimension object</param>
-            /// <returns>New quantity dimension object, with each exponent being the difference of the two input object exponents</returns>
-            public static QuantityDimension operator -(QuantityDimension iLhs, QuantityDimension iRhs)
-            {
-                return new QuantityDimension(iLhs.LengthExponent - iRhs.LengthExponent, iLhs.MassExponent - iRhs.MassExponent, 
-                    iLhs.TimeExponent - iRhs.TimeExponent, iLhs.ElectricCurrentExponent - iRhs.ElectricCurrentExponent, 
-                    iLhs.TemperatureExponent - iRhs.TemperatureExponent, iLhs.LuminousIntensityExponent - iRhs.LuminousIntensityExponent,
-                    iLhs.SubstanceAmountExponent - iRhs.SubstanceAmountExponent);
-            }
-
-            /// <summary>
-            /// Multiply a scalar factor to the quantity dimension object (equivalent to taking the power of a quantity)
-            /// </summary>
-            /// <param name="iExponent">Scalar exponent to multiply</param>
-            /// <param name="iRhs">Quantity dimension to be multiplied</param>
-            /// <returns>New quantity dimension with all exponents multiplied by <paramref name="iExponent">the specified factor</paramref></returns>
-            public static QuantityDimension operator*(int iExponent, QuantityDimension iRhs)
-            {
-                return new QuantityDimension(iExponent * iRhs.LengthExponent, iExponent * iRhs.MassExponent,
-                    iExponent * iRhs.TimeExponent, iExponent * iRhs.ElectricCurrentExponent,
-                    iExponent * iRhs.TemperatureExponent, iExponent * iRhs.LuminousIntensityExponent,
-                    iExponent * iRhs.SubstanceAmountExponent);
-            }
-
-            #endregion
-         }
+        #endregion
+    }
 }
 

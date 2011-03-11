@@ -8,7 +8,7 @@ namespace Cureos.Measures.Quantities
 {
     public struct Volume : IQuantity<Volume>
     {
-        private static readonly QuantityDimension _dimension = 3 * Length.BaseDimension;
+        private static readonly QuantityDimension _dimension = Length.BaseDimension ^ 3;
 
         public static readonly Unit<Volume> CubicMeter = new Unit<Volume>("m³");
         public static readonly Unit<Volume> Liter = new Unit<Volume>("l", Factors.Cube(Factors.Deci));

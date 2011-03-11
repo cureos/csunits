@@ -8,7 +8,7 @@ namespace Cureos.Measures.Quantities
 {
     public struct Area : IQuantity<Area>
     {
-        private static readonly QuantityDimension _dimension = 2 * Length.BaseDimension;
+        private static readonly QuantityDimension _dimension = Length.BaseDimension ^ 2;
 
         public static readonly Unit<Area> SquareMeter = new Unit<Area>("m²");
         public static readonly Unit<Area> SquareDeciMeter = new Unit<Area>("dm²", Factors.Square(Factors.Deci));
