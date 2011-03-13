@@ -4,8 +4,6 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
-using System;
-
 namespace Cureos.Measures.Quantities
 {
     /// <summary>
@@ -14,6 +12,8 @@ namespace Cureos.Measures.Quantities
     public struct PlaneAngle : IQuantity<PlaneAngle>
     {
         #region FIELDS
+
+        private static readonly QuantityDimension _dimension = new QuantityDimension(DimensionlessDifferentiators.Radian);
 
         public static readonly Unit<PlaneAngle> Radian = new Unit<PlaneAngle>("rad");
         public static readonly Unit<PlaneAngle> Degree = new Unit<PlaneAngle>("°", Factors.DegreesPerRadian);
@@ -27,7 +27,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         public QuantityDimension Dimension
         {
-            get { return QuantityDimension.PlaneAngle; }
+            get { return _dimension; }
         }
 
         /// <summary>

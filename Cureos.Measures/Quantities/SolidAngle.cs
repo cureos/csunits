@@ -15,7 +15,7 @@ namespace Cureos.Measures.Quantities
     {
         #region FIELDS
 
-        private static readonly QuantityDimension _dimension = QuantityDimension.PlaneAngle ^ 2;
+        private static readonly QuantityDimension _dimension = new QuantityDimension(DimensionlessDifferentiators.Steradian);
 
         public static readonly Unit<SolidAngle> Steradian = new Unit<SolidAngle>("sr");
 

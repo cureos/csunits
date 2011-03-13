@@ -46,6 +46,7 @@
     <Compile Include="IMeasureArray.cs" />
     <Compile Include="Quantities\Acceleration.cs" />
     <Compile Include="Quantities\AmountOfSubstance.cs" />
+    <Compile Include="DimensionlessDifferentiators.cs" />
     <Compile Include="Quantities\ElectricCurrent.cs" />
     <Compile Include="Quantities\Frequency.cs" />
     <Compile Include="Quantities\LuminousIntensity.cs" />

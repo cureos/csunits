@@ -15,7 +15,6 @@ namespace Cureos.Measures
     {
         #region FIELDS
 
-        public static readonly QuantityDimension PlaneAngle = new QuantityDimension(2.0 * Math.PI);
         public static readonly QuantityDimension Length = new QuantityDimension(1, 0, 0, 0, 0, 0, 0);
         public static readonly QuantityDimension Mass = new QuantityDimension(0, 1, 0, 0, 0, 0, 0);
         public static readonly QuantityDimension Time = new QuantityDimension(0, 0, 1, 0, 0, 0, 0);
@@ -32,8 +31,8 @@ namespace Cureos.Measures
         /// Intitalizes a dimensionless quantity dimension
         /// </summary>
         /// <param name="iDimensionlessDifferentiator">Scalar used to differentiate between relevant dimensionless quantities</param>
-        internal QuantityDimension(double iDimensionlessDifferentiator) :
-            this(iDimensionlessDifferentiator, 0, 0, 0, 0, 0, 0, 0)
+        internal QuantityDimension(DimensionlessDifferentiators iDimensionlessDifferentiator) :
+            this((double)iDimensionlessDifferentiator, 0, 0, 0, 0, 0, 0, 0)
         {
         }
 
