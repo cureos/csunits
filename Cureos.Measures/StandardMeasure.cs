@@ -135,15 +135,15 @@ namespace Cureos.Measures
 			get { return mAmount; }
 		}
 
-	    /// <summary>
-	    /// Gets the measured amount in the standard unit of measure for the <typeparam name="Q">specified quantity</typeparam>
-	    /// </summary>
-	    public double StandardAmount
-	    {
-	        get { return mAmount; }
-	    }
+		/// <summary>
+		/// Gets the measured amount in the standard unit of measure for the <typeparam name="Q">specified quantity</typeparam>
+		/// </summary>
+		public double StandardAmount
+		{
+			get { return mAmount; }
+		}
 
-	    /// <summary>
+		/// <summary>
 		/// Gets the unit of measure
 		/// </summary>
 		public IUnit<Q> Unit
@@ -191,194 +191,6 @@ namespace Cureos.Measures
 		#endregion
 
 		#region METHODS
-
-		public static StandardMeasure<Q> Product<Q1, Q2>(IMeasure<Q1> iFirst, int iFirstExponent, IMeasure<Q2> iSecond,
-			int iSecondExponent)
-			where Q1 : struct, IQuantity<Q1>
-			where Q2 : struct, IQuantity<Q2>
-		{
-			if (IMeasureMethods.ProductIs<Q, Q1, Q2>(iFirst, iFirstExponent, iSecond, iSecondExponent))
-			{
-				return new StandardMeasure<Q>(Math.Pow(iFirst.StandardAmount, iFirstExponent) * Math.Pow(iSecond.StandardAmount, iSecondExponent));
-			}
-			throw new InvalidOperationException(String.Format("Specified product does not yield quantity {0}", default(Q).Name()));
-		}
-
-		/// <summary>
-		/// Multiply two measure objects
-		/// </summary>
-		/// <typeparam name="Q1">Quantity type of the left-hand side measure</typeparam>
-		/// <typeparam name="Q2">Quantity type of the right-hand side measure</typeparam>
-		/// <param name="iLhs">Left-hand side measure object</param>
-		/// <param name="iRhs">Right-hand side measure object</param>
-		/// <returns>Product of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
-		/// <exception cref="InvalidOperationException">is thrown if the quantities of the multiplied objects
-		/// cannot be combined into the quantity type of the returned object</exception>
-		public static StandardMeasure<Q> Times<Q1, Q2>(StandardMeasure<Q1> iLhs, StandardMeasure<Q2> iRhs)
-			where Q1 : struct, IQuantity<Q1>
-			where Q2 : struct, IQuantity<Q2>
-		{
-			if (default(Q).IsProductOf(default(Q1), default(Q2)))
-			{
-				return new StandardMeasure<Q>(iLhs.mAmount * iRhs.mAmount);
-			}
-			throw new InvalidOperationException(String.Format("Cannot multiply {0} and {1} to measure of quantity {2}",
-															  iLhs, iRhs, default(Q).Name()));
-		}
-
-		/// <summary>
-		/// Multiply two measure objects, where the right-hand side measure is any object implementing the IMeasure interface
-		/// </summary>
-		/// <typeparam name="Q1">Quantity type of the left-hand side measure</typeparam>
-		/// <typeparam name="Q2">Quantity type of the right-hand side measure</typeparam>
-		/// <param name="iLhs">Left-hand side measure object</param>
-		/// <param name="iRhs">Right-hand side measure object</param>
-		/// <returns>Product of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
-		/// <exception cref="InvalidOperationException">is thrown if the quantities of the multiplied objects
-		/// cannot be combined into the quantity type of the returned object</exception>
-		public static StandardMeasure<Q> Times<Q1, Q2>(StandardMeasure<Q1> iLhs, IMeasure<Q2> iRhs)
-			where Q1 : struct, IQuantity<Q1>
-			where Q2 : struct, IQuantity<Q2>
-		{
-			if (default(Q).IsProductOf(default(Q1), default(Q2)))
-			{
-				return new StandardMeasure<Q>(iLhs.mAmount * iRhs.StandardAmount);
-			}
-			throw new InvalidOperationException(String.Format("Cannot multiply {0} and {1} to measure of quantity {2}",
-															  iLhs, iRhs, default(Q).Name()));
-		}
-
-		/// <summary>
-		/// Multiply two measure objects, where the left-hand side measure is any object implementing the IMeasure interface
-		/// </summary>
-		/// <typeparam name="Q1">Quantity type of the left-hand side measure</typeparam>
-		/// <typeparam name="Q2">Quantity type of the right-hand side measure</typeparam>
-		/// <param name="iLhs">Left-hand side measure object</param>
-		/// <param name="iRhs">Right-hand side measure object</param>
-		/// <returns>Product of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
-		/// <exception cref="InvalidOperationException">is thrown if the quantities of the multiplied objects
-		/// cannot be combined into the quantity type of the returned object</exception>
-		public static StandardMeasure<Q> Times<Q1, Q2>(IMeasure<Q1> iLhs, StandardMeasure<Q2> iRhs)
-			where Q1 : struct, IQuantity<Q1>
-			where Q2 : struct, IQuantity<Q2>
-		{
-			if (default(Q).IsProductOf(default(Q1), default(Q2)))
-			{
-				return new StandardMeasure<Q>(iLhs.StandardAmount * iRhs.mAmount);
-			}
-			throw new InvalidOperationException(String.Format("Cannot multiply {0} and {1} to measure of quantity {2}",
-															  iLhs, iRhs, default(Q).Name()));
-		}
-
-		/// <summary>
-		/// Multiply two measure objects, where both measures may be any objects implementing the IMeasure interface
-		/// </summary>
-		/// <typeparam name="Q1">Quantity type of the left-hand side measure</typeparam>
-		/// <typeparam name="Q2">Quantity type of the right-hand side measure</typeparam>
-		/// <param name="iLhs">Left-hand side measure object</param>
-		/// <param name="iRhs">Right-hand side measure object</param>
-		/// <returns>Product of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
-		/// <exception cref="InvalidOperationException">is thrown if the quantities of the multiplied objects
-		/// cannot be combined into the quantity type of the returned object</exception>
-		public static StandardMeasure<Q> Times<Q1, Q2>(IMeasure<Q1> iLhs, IMeasure<Q2> iRhs)
-			where Q1 : struct, IQuantity<Q1>
-			where Q2 : struct, IQuantity<Q2>
-		{
-			if (default(Q).IsProductOf(default(Q1), default(Q2)))
-			{
-				return new StandardMeasure<Q>(iLhs.StandardAmount * iRhs.StandardAmount);
-			}
-			throw new InvalidOperationException(String.Format("Cannot multiply {0} and {1} to measure of quantity {2}",
-															  iLhs, iRhs, default(Q).Name()));
-		}
-
-		/// <summary>
-		/// Divide two measure objects
-		/// </summary>
-		/// <typeparam name="Q1">Quantity type of the numerator measure</typeparam>
-		/// <typeparam name="Q2">Quantity type of the denominator measure</typeparam>
-		/// <param name="iNumerator">Numerator measure object</param>
-		/// <param name="iDenominator">Denominator measure object</param>
-		/// <returns>Quotient of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
-		/// <exception cref="InvalidOperationException">is thrown if the quantities of the divided objects
-		/// cannot be combined into the quantity type of the returned object</exception>
-		public static StandardMeasure<Q> Divide<Q1, Q2>(StandardMeasure<Q1> iNumerator, StandardMeasure<Q2> iDenominator)
-			where Q1 : struct, IQuantity<Q1>
-			where Q2 : struct, IQuantity<Q2>
-		{
-			if (default(Q).IsQuotientOf(default(Q1), default(Q2)))
-			{
-				return new StandardMeasure<Q>(iNumerator.mAmount / iDenominator.mAmount);
-			}
-			throw new InvalidOperationException(String.Format("Cannot divide {0} and {1} to measure of quantity {2}",
-															  iNumerator, iDenominator, default(Q).Name()));
-		}
-
-		/// <summary>
-		/// Divide two measure objects, where the right-hand side measure is any object implementing the IMeasure interface
-		/// </summary>
-		/// <typeparam name="Q1">Quantity type of the numerator measure</typeparam>
-		/// <typeparam name="Q2">Quantity type of the denominator measure</typeparam>
-		/// <param name="iNumerator">Numerator measure object</param>
-		/// <param name="iDenominator">Denominator measure object</param>
-		/// <returns>Quotient of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
-		/// <exception cref="InvalidOperationException">is thrown if the quantities of the divided objects
-		/// cannot be combined into the quantity type of the returned object</exception>
-		public static StandardMeasure<Q> Divide<Q1, Q2>(StandardMeasure<Q1> iNumerator, IMeasure<Q2> iDenominator)
-			where Q1 : struct, IQuantity<Q1>
-			where Q2 : struct, IQuantity<Q2>
-		{
-			if (default(Q).IsQuotientOf(default(Q1), default(Q2)))
-			{
-				return new StandardMeasure<Q>(iNumerator.mAmount / iDenominator.StandardAmount);
-			}
-			throw new InvalidOperationException(String.Format("Cannot divide {0} and {1} to measure of quantity {2}",
-															  iNumerator, iDenominator, default(Q).Name()));
-		}
-
-		/// <summary>
-		/// Divide two measure objects, where the right-hand side measure is any object implementing the IMeasure interface
-		/// </summary>
-		/// <typeparam name="Q1">Quantity type of the numerator measure</typeparam>
-		/// <typeparam name="Q2">Quantity type of the denominator measure</typeparam>
-		/// <param name="iNumerator">Numerator measure object</param>
-		/// <param name="iDenominator">Denominator measure object</param>
-		/// <returns>Quotient of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
-		/// <exception cref="InvalidOperationException">is thrown if the quantities of the divided objects
-		/// cannot be combined into the quantity type of the returned object</exception>
-		public static StandardMeasure<Q> Divide<Q1, Q2>(IMeasure<Q1> iNumerator, StandardMeasure<Q2> iDenominator)
-			where Q1 : struct, IQuantity<Q1>
-			where Q2 : struct, IQuantity<Q2>
-		{
-			if (default(Q).IsQuotientOf(default(Q1), default(Q2)))
-			{
-				return new StandardMeasure<Q>(iNumerator.StandardAmount / iDenominator.mAmount);
-			}
-			throw new InvalidOperationException(String.Format("Cannot divide {0} and {1} to measure of quantity {2}",
-															  iNumerator, iDenominator, default(Q).Name()));
-		}
-
-		/// <summary>
-		/// Divide two measure objects, where both measures may be any objects implementing the IMeasure interface
-		/// </summary>
-		/// <typeparam name="Q1">Quantity type of the numerator measure</typeparam>
-		/// <typeparam name="Q2">Quantity type of the denominator measure</typeparam>
-		/// <param name="iNumerator">Numerator measure object</param>
-		/// <param name="iDenominator">Denominator measure object</param>
-		/// <returns>Quotient of the two measure factors as a measure of the <typeparamref name="Q"/> quantity type</returns>
-		/// <exception cref="InvalidOperationException">is thrown if the quantities of the divided objects
-		/// cannot be combined into the quantity type of the returned object</exception>
-		public static StandardMeasure<Q> Divide<Q1, Q2>(IMeasure<Q1> iNumerator, IMeasure<Q2> iDenominator)
-			where Q1 : struct, IQuantity<Q1>
-			where Q2 : struct, IQuantity<Q2>
-		{
-			if (default(Q).IsQuotientOf(default(Q1), default(Q2)))
-			{
-				return new StandardMeasure<Q>(iNumerator.StandardAmount / iDenominator.StandardAmount);
-			}
-			throw new InvalidOperationException(String.Format("Cannot divide {0} and {1} to measure of quantity {2}",
-															  iNumerator, iDenominator, default(Q).Name()));
-		}
 
 		/// <summary>
 		/// Indicates whether the current object is equal to another object of the same type.

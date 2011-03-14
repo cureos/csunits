@@ -29,7 +29,7 @@ namespace Tests.Cureos.Measures
 			Measure<Length> height = new Measure<Length>(30.0, Length.CentiMeter);
 			StandardMeasure<Area> area = (StandardMeasure<Area>)0.02;
 
-			var vol = StandardMeasure<Volume>.Times(height, area);
+		    StandardMeasure<Volume> vol; ArithmeticOperations.Times(height, area, out vol);
 			var maxVol = new StandardMeasure<Volume>(10.0, Volume.Liter);
 
 			if (vol < maxVol)

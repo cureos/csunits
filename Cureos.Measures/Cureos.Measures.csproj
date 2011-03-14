@@ -49,12 +49,12 @@
     <Compile Include="DimensionlessDifferentiators.cs" />
     <Compile Include="Quantities\ElectricCurrent.cs" />
     <Compile Include="Quantities\Frequency.cs" />
-    <Compile Include="IMeasureMethods.cs" />
     <Compile Include="Quantities\LuminousIntensity.cs" />
     <Compile Include="Quantities\MassDensity.cs" />
     <Compile Include="Quantities\PlaneAngle.cs" />
     <Compile Include="Quantities\SolidAngle.cs" />
     <Compile Include="Quantities\Velocity.cs" />
+    <Compile Include="ArithmeticOperations.cs" />
     <Compile Include="Unit.cs" />
     <Compile Include="Measure.cs" />
     <Compile Include="StandardMeasureArray.cs" />
@@ -63,7 +63,6 @@
     <Compile Include="Quantities\Area.cs" />
     <Compile Include="Quantities\Energy.cs" />
     <Compile Include="Quantities\Mass.cs" />
-    <Compile Include="Quantity.cs" />
     <Compile Include="Quantities\Temperature.cs" />
     <Compile Include="Quantities\Time.cs" />
     <Compile Include="Quantities\Volume.cs" />

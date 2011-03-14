@@ -49,13 +49,13 @@
     <Compile Include="AmountAssert.cs" />
     <Compile Include="AmountComparer.cs" />
     <Compile Include="AmountConverter.cs" />
+    <Compile Include="ArithmeticOperationsTests.cs" />
     <Compile Include="ExampleTests.cs" />
     <Compile Include="Quantities\VelocityTests.cs" />
     <Compile Include="StandardMeasureArrayTests.cs" />
     <Compile Include="MeasureAssert.cs" />
     <Compile Include="StandardMeasureTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuantityTests.cs" />
     <Compile Include="TimingTests.cs" />
     <Compile Include="MeasureTests.cs" />
   </ItemGroup>

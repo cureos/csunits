@@ -35,44 +35,6 @@ namespace Tests.Cureos.Measures
         }
 
         [Test]
-        public void Times_MultiplyAreaAndLength_ReturnsVolume()
-        {
-            var expected = new StandardMeasure<Volume>(6.0);
-            var lhs = new StandardMeasure<Area>(2.0);
-            var rhs = new StandardMeasure<Length>(3.0);
-            var actual = StandardMeasure<Volume>.Times(lhs, rhs);
-            MeasureAssert.MeasuresAreEqual(expected, actual);
-        }
-
-        [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
-        public void Times_MultiplyAreaAndAreaToVolume_Throws()
-        {
-            var lhs = new StandardMeasure<Area>(2.0);
-            var rhs = new StandardMeasure<Area>(3.0);
-            var throws = StandardMeasure<Volume>.Times(lhs, rhs);
-        }
-
-        [Test]
-        public void Divide_DivideVolumeAndLength_ReturnsArea()
-        {
-            var expected = new StandardMeasure<Area>(4.0);
-            var numerator = new StandardMeasure<Volume>(8.0);
-            var denominator = new StandardMeasure<Length>(200.0, Length.CentiMeter);
-            var actual = StandardMeasure<Area>.Divide(numerator, denominator);
-            MeasureAssert.MeasuresAreEqual(expected, actual);
-        }
-
-        [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
-        public void Divide_DivideAreaAndAreaToLength_Throws()
-        {
-            var numerator = new StandardMeasure<Area>(8.0);
-            var denominator = new StandardMeasure<Area>(200.0, Area.SquareDeciMeter);
-            var throws = StandardMeasure<Length>.Divide(numerator, denominator);
-        }
-
-        [Test]
         public void GetAmount_UsingIUnit_ValidConversion()
         {
             var expected = AmountConverter.ToAmountType(500.0);
