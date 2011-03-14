@@ -27,7 +27,7 @@ namespace Cureos.Measures
     /// Representation of an array of measures, given in the standard unit of the specified quantity
     /// </summary>
     /// <typeparam name="Q">Measured quantity type</typeparam>
-    public class StandardMeasureArray<Q> : IMeasureArray<Q>, IEnumerable<StandardMeasure<Q>> where Q : struct, IQuantity<Q>
+    public class StandardMeasureArray<Q> : IEnumerable<StandardMeasure<Q>>, IMeasureArray<Q> where Q : struct, IQuantity<Q>
     {
         #region MEMBER VARIABLES
 
@@ -171,6 +171,16 @@ namespace Cureos.Measures
                 return mAmounts.Select(iUnit.AmountFromStandardUnitConverter);
         }
 
+        /// <summary>
+        /// Gets the <paramref name="i">ith</paramref> measure component of the measure array
+        /// </summary>
+        /// <param name="i">Zero-based index of the measure array</param>
+        /// <returns>The <paramref name="i">ith</paramref> component of the measure array</returns>
+        IMeasure<Q> IMeasureArray<Q>.this[int i]
+        {
+            get { return this[i]; }
+        }
+
         #endregion
 
         #region PROPERTIES
@@ -196,7 +206,7 @@ namespace Cureos.Measures
             {
                 try
                 {
-                    return this.ElementAt(i);
+                    return this.ElementAt<StandardMeasure<Q>>(i);
                 }
                 catch (ArgumentOutOfRangeException e)
                 {
@@ -217,6 +227,21 @@ namespace Cureos.Measures
         /// </returns>
         /// <filterpriority>1</filterpriority>
         public IEnumerator<StandardMeasure<Q>> GetEnumerator()
+        {
+            foreach (var amount in mAmounts)
+            {
+                yield return new StandardMeasure<Q>(amount);
+            }
+        }
+
+        /// <summary>
+        /// Returns an enumerator that iterates through the collection.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
+        /// </returns>
+        /// <filterpriority>1</filterpriority>
+        IEnumerator<IMeasure<Q>> IEnumerable<IMeasure<Q>>.GetEnumerator()
         {
             foreach (var amount in mAmounts)
             {

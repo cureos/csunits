@@ -20,7 +20,7 @@ namespace Cureos.Measures
     /// Interface resenting a collection of measures of a specific quantity
     /// </summary>
     /// <typeparam name="Q">Measured quantity</typeparam>
-    public interface IMeasureArray<Q> where Q : struct, IQuantity<Q>
+    public interface IMeasureArray<Q> : IEnumerable<IMeasure<Q>> where Q : struct, IQuantity<Q>
     {
         /// <summary>
         /// Gets the array of measured amounts in the <see cref="Unit">current unit of measure</see>
@@ -38,6 +38,13 @@ namespace Cureos.Measures
         /// <param name="iUnit">Unit in which the array of measured amounts should be returned</param>
         /// <returns>Array of measured amounts, given in the <paramref name="iUnit">specified unit</paramref></returns>
         IEnumerable<AmountType> GetAmounts(IUnit<Q> iUnit);
+
+        /// <summary>
+        /// Gets the <paramref name="i">ith</paramref> measure component of the measure array
+        /// </summary>
+        /// <param name="i">Zero-based index of the measure array</param>
+        /// <returns>The <paramref name="i">ith</paramref> component of the measure array</returns>
+        IMeasure<Q> this[int i] { get; }
     }
 
     /// <summary>

@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\EnumerableMethods.cs" />
     <Compile Include="IMeasureArray.cs" />
     <Compile Include="Quantities\Acceleration.cs" />
     <Compile Include="Quantities\AmountOfSubstance.cs" />

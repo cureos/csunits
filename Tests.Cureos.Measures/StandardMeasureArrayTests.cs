@@ -15,7 +15,7 @@ namespace Tests.Cureos.Measures
 	[TestFixture]
 	public class StandardMeasureArrayTests
 	{
-		private StandardMeasureArray<Length> _instance;
+		private IMeasureArray<Length> _instance;
 
 		#region Setup and TearDown
 		[SetUp]
@@ -79,7 +79,7 @@ namespace Tests.Cureos.Measures
 		public void Max_OnStandardMeasureArray_ReturnsMaxStandardMeasureFromArray()
 		{
 			var expected = new StandardMeasure<Length>(0.05);
-			var actual = _instance.Max();
+		    var actual = _instance.Max();
 			MeasureAssert.MeasuresAreEqual(expected, actual);
 		}
 

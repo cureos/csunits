@@ -20,7 +20,7 @@ namespace Cureos.Measures
 	/// Representation of a unit specific measure of a specific quantity
 	/// </summary>
 	/// <typeparam name="Q">Measured quantity</typeparam>
-	public class Measure<Q> : IMeasure<Q>, IEquatable<Measure<Q>>, IComparable<Measure<Q>> where Q : struct, IQuantity<Q>
+	public class Measure<Q> : IMeasure<Q> where Q : struct, IQuantity<Q>
 	{
 		#region MEMBER VARIABLES
 
@@ -144,11 +144,11 @@ namespace Cureos.Measures
 		/// <returns>Measured amount converted into <paramref name="iUnit">specified unit</paramref></returns>
 		public AmountType GetAmount(IUnit<Q> iUnit)
 		{
-		    if (iUnit == null) throw new ArgumentNullException("iUnit");
-		    return iUnit.AmountFromStandardUnitConverter(mUnit.AmountToStandardUnitConverter(mAmount));
+			if (iUnit == null) throw new ArgumentNullException("iUnit");
+			return iUnit.AmountFromStandardUnitConverter(mUnit.AmountToStandardUnitConverter(mAmount));
 		}
 
-	    /// <summary>
+		/// <summary>
 		/// Gets a new unit specific measure based on this measure but in the <paramref name="iUnit">specified unit</paramref>
 		/// </summary>
 		/// <param name="iUnit">Unit in which the new measure should be specified</param>
@@ -169,14 +169,28 @@ namespace Cureos.Measures
 		{
 			get
 			{
-			    if (iUnit == null) throw new ArgumentNullException("iUnit");
-			    return new Measure<Q>(GetAmount(iUnit), iUnit);
+				if (iUnit == null) throw new ArgumentNullException("iUnit");
+				return new Measure<Q>(GetAmount(iUnit), iUnit);
 			}
 		}
 
 		#endregion
 
 		#region METHODS
+
+		/// <summary>
+		/// Indicates whether the current object is equal to another object of the same type.
+		/// </summary>
+		/// <returns>
+		/// true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
+		/// </returns>
+		/// <param name="other">An object to compare with this object.</param>
+		public bool Equals(IMeasure<Q> other)
+		{
+			if (ReferenceEquals(null, other)) return false;
+			if (ReferenceEquals(this, other)) return true;
+			return mAmount.Equals(other.GetAmount(mUnit));
+		}
 
 		/// <summary>
 		/// Compares the current object with another object of the same type.
@@ -193,35 +207,10 @@ namespace Cureos.Measures
 		///                     This object is greater than <paramref name="other"/>. 
 		/// </returns>
 		/// <param name="other">An object to compare with this object.</param>
-		public int CompareTo(Measure<Q> other)
+		public int CompareTo(IMeasure<Q> other)
 		{
+			if (other == null) throw new ArgumentNullException("other");
 			return mAmount.CompareTo(other.GetAmount(mUnit));
-		}
-
-		/// <summary>
-		/// Returns the fully qualified type name of this instance.
-		/// </summary>
-		/// <returns>
-		/// A <see cref="T:System.String"/> containing a fully qualified type name.
-		/// </returns>
-		/// <filterpriority>2</filterpriority>
-		public override string ToString()
-		{
-			return String.Format("{0} {1}", mAmount, mUnit.Symbol).Trim();
-		}
-
-		/// <summary>
-		/// Indicates whether the current object is equal to another object of the same type.
-		/// </summary>
-		/// <returns>
-		/// true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
-		/// </returns>
-		/// <param name="other">An object to compare with this object.</param>
-		public bool Equals(Measure<Q> other)
-		{
-			if (ReferenceEquals(null, other)) return false;
-			if (ReferenceEquals(this, other)) return true;
-			return mAmount.Equals(other.GetAmount(mUnit));
 		}
 
 		/// <summary>
@@ -251,6 +240,18 @@ namespace Cureos.Measures
 		public override int GetHashCode()
 		{
 			return GetAmount(default(Q).StandardUnit).GetHashCode();
+		}
+
+		/// <summary>
+		/// Returns the fully qualified type name of this instance.
+		/// </summary>
+		/// <returns>
+		/// A <see cref="T:System.String"/> containing a fully qualified type name.
+		/// </returns>
+		/// <filterpriority>2</filterpriority>
+		public override string ToString()
+		{
+			return String.Format("{0} {1}", mAmount, mUnit.Symbol).Trim();
 		}
 
 		#endregion

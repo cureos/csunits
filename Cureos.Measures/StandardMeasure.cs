@@ -371,6 +371,18 @@ namespace Cureos.Measures
 		}
 
 		/// <summary>
+		/// Indicates whether the current object is equal to another object of the same type.
+		/// </summary>
+		/// <returns>
+		/// true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
+		/// </returns>
+		/// <param name="other">An object to compare with this object.</param>
+		public bool Equals(IMeasure<Q> other)
+		{
+			return GetAmount(other.Unit).Equals(other.Amount);
+		}
+
+		/// <summary>
 		/// Compares the current object with another object of the same type.
 		/// </summary>
 		/// <param name="other">An object to compare with this object.</param>
@@ -381,11 +393,25 @@ namespace Cureos.Measures
 		/// Zero                This object is equal to <paramref name="other"/>. 
 		/// Greater than zero   This object is greater than <paramref name="other"/>. 
 		/// </returns>
-		/// <exception cref="InvalidOperationException">if the quantity of the other measure is not the same as the quantity
-		/// of this object</exception>
 		public int CompareTo(StandardMeasure<Q> other)
 		{
 			return mAmount.CompareTo(other.mAmount);
+		}
+
+		/// <summary>
+		/// Compares the current object with another object of the same type.
+		/// </summary>
+		/// <param name="other">An object to compare with this object.</param>
+		/// <returns>
+		/// A 32-bit signed integer that indicates the relative order of the objects being compared. The return value has the following meanings: 
+		/// Value               Meaning 
+		/// Less than zero      This object is less than the <paramref name="other"/> parameter.
+		/// Zero                This object is equal to <paramref name="other"/>. 
+		/// Greater than zero   This object is greater than <paramref name="other"/>. 
+		/// </returns>
+		public int CompareTo(IMeasure<Q> other)
+		{
+			return GetAmount(other.Unit).CompareTo(other.Amount);
 		}
 
 		/// <summary>

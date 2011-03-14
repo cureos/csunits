@@ -20,7 +20,7 @@ namespace Cureos.Measures
 	/// Interface representing a scalar measure of a specific quantity
 	/// </summary>
 	/// <typeparam name="Q">Measured quantity</typeparam>
-	public interface IMeasure<Q> where Q : struct, IQuantity<Q>
+	public interface IMeasure<Q> : IComparable<IMeasure<Q>>, IEquatable<IMeasure<Q>> where Q : struct, IQuantity<Q>
 	{
 		/// <summary>
 		/// Gets the measured amount in the <see cref="Unit">current unit of measure</see>
