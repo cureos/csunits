@@ -129,7 +129,15 @@ namespace Cureos.Measures
 			get { return mAmount; }
 		}
 
-		/// <summary>
+	    /// <summary>
+	    /// Gets the measured amount in the standard unit of measure for the <typeparam name="Q">specified quantity</typeparam>
+	    /// </summary>
+	    public double StandardAmount
+	    {
+	        get { return GetAmount(default(Q).StandardUnit); }
+	    }
+
+	    /// <summary>
 		/// Gets the unit of measure
 		/// </summary>
 		public IUnit<Q> Unit
@@ -239,7 +247,7 @@ namespace Cureos.Measures
 		/// <filterpriority>2</filterpriority>
 		public override int GetHashCode()
 		{
-			return GetAmount(default(Q).StandardUnit).GetHashCode();
+			return StandardAmount.GetHashCode();
 		}
 
 		/// <summary>

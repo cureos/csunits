@@ -120,7 +120,7 @@ namespace Cureos.Measures
 		/// <param name="iMeasure">Measure object to be copied</param>
 		public StandardMeasure(IMeasure<Q> iMeasure)
 		{
-			mAmount = iMeasure.GetAmount(default(Q).StandardUnit);
+			mAmount = iMeasure.StandardAmount;
 		}
 
 		#endregion
@@ -135,7 +135,15 @@ namespace Cureos.Measures
 			get { return mAmount; }
 		}
 
-		/// <summary>
+	    /// <summary>
+	    /// Gets the measured amount in the standard unit of measure for the <typeparam name="Q">specified quantity</typeparam>
+	    /// </summary>
+	    public double StandardAmount
+	    {
+	        get { return mAmount; }
+	    }
+
+	    /// <summary>
 		/// Gets the unit of measure
 		/// </summary>
 		public IUnit<Q> Unit
@@ -184,6 +192,18 @@ namespace Cureos.Measures
 
 		#region METHODS
 
+		public static StandardMeasure<Q> Product<Q1, Q2>(IMeasure<Q1> iFirst, int iFirstExponent, IMeasure<Q2> iSecond,
+			int iSecondExponent)
+			where Q1 : struct, IQuantity<Q1>
+			where Q2 : struct, IQuantity<Q2>
+		{
+			if (IMeasureMethods.ProductIs<Q, Q1, Q2>(iFirst, iFirstExponent, iSecond, iSecondExponent))
+			{
+				return new StandardMeasure<Q>(Math.Pow(iFirst.StandardAmount, iFirstExponent) * Math.Pow(iSecond.StandardAmount, iSecondExponent));
+			}
+			throw new InvalidOperationException(String.Format("Specified product does not yield quantity {0}", default(Q).Name()));
+		}
+
 		/// <summary>
 		/// Multiply two measure objects
 		/// </summary>
@@ -222,7 +242,7 @@ namespace Cureos.Measures
 		{
 			if (default(Q).IsProductOf(default(Q1), default(Q2)))
 			{
-				return new StandardMeasure<Q>(iLhs.mAmount * iRhs.GetAmount(default(Q2).StandardUnit));
+				return new StandardMeasure<Q>(iLhs.mAmount * iRhs.StandardAmount);
 			}
 			throw new InvalidOperationException(String.Format("Cannot multiply {0} and {1} to measure of quantity {2}",
 															  iLhs, iRhs, default(Q).Name()));
@@ -244,7 +264,7 @@ namespace Cureos.Measures
 		{
 			if (default(Q).IsProductOf(default(Q1), default(Q2)))
 			{
-				return new StandardMeasure<Q>(iLhs.GetAmount(default(Q1).StandardUnit) * iRhs.mAmount);
+				return new StandardMeasure<Q>(iLhs.StandardAmount * iRhs.mAmount);
 			}
 			throw new InvalidOperationException(String.Format("Cannot multiply {0} and {1} to measure of quantity {2}",
 															  iLhs, iRhs, default(Q).Name()));
@@ -266,7 +286,7 @@ namespace Cureos.Measures
 		{
 			if (default(Q).IsProductOf(default(Q1), default(Q2)))
 			{
-				return new StandardMeasure<Q>(iLhs.GetAmount(default(Q1).StandardUnit) * iRhs.GetAmount(default(Q2).StandardUnit));
+				return new StandardMeasure<Q>(iLhs.StandardAmount * iRhs.StandardAmount);
 			}
 			throw new InvalidOperationException(String.Format("Cannot multiply {0} and {1} to measure of quantity {2}",
 															  iLhs, iRhs, default(Q).Name()));
@@ -310,7 +330,7 @@ namespace Cureos.Measures
 		{
 			if (default(Q).IsQuotientOf(default(Q1), default(Q2)))
 			{
-				return new StandardMeasure<Q>(iNumerator.mAmount / iDenominator.GetAmount(default(Q2).StandardUnit));
+				return new StandardMeasure<Q>(iNumerator.mAmount / iDenominator.StandardAmount);
 			}
 			throw new InvalidOperationException(String.Format("Cannot divide {0} and {1} to measure of quantity {2}",
 															  iNumerator, iDenominator, default(Q).Name()));
@@ -332,7 +352,7 @@ namespace Cureos.Measures
 		{
 			if (default(Q).IsQuotientOf(default(Q1), default(Q2)))
 			{
-				return new StandardMeasure<Q>(iNumerator.GetAmount(default(Q1).StandardUnit) / iDenominator.mAmount);
+				return new StandardMeasure<Q>(iNumerator.StandardAmount / iDenominator.mAmount);
 			}
 			throw new InvalidOperationException(String.Format("Cannot divide {0} and {1} to measure of quantity {2}",
 															  iNumerator, iDenominator, default(Q).Name()));
@@ -354,7 +374,7 @@ namespace Cureos.Measures
 		{
 			if (default(Q).IsQuotientOf(default(Q1), default(Q2)))
 			{
-				return new StandardMeasure<Q>(iNumerator.GetAmount(default(Q1).StandardUnit) / iDenominator.GetAmount(default(Q2).StandardUnit));
+				return new StandardMeasure<Q>(iNumerator.StandardAmount / iDenominator.StandardAmount);
 			}
 			throw new InvalidOperationException(String.Format("Cannot divide {0} and {1} to measure of quantity {2}",
 															  iNumerator, iDenominator, default(Q).Name()));

@@ -49,6 +49,7 @@
     <Compile Include="DimensionlessDifferentiators.cs" />
     <Compile Include="Quantities\ElectricCurrent.cs" />
     <Compile Include="Quantities\Frequency.cs" />
+    <Compile Include="IMeasureMethods.cs" />
     <Compile Include="Quantities\LuminousIntensity.cs" />
     <Compile Include="Quantities\MassDensity.cs" />
     <Compile Include="Quantities\PlaneAngle.cs" />

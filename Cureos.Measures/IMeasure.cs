@@ -25,10 +25,12 @@ namespace Cureos.Measures
 		/// <summary>
 		/// Gets the measured amount in the <see cref="Unit">current unit of measure</see>
 		/// </summary>
-		AmountType Amount
-		{
-			get;
-		}
+		AmountType Amount { get; }
+
+		/// <summary>
+		/// Gets the measured amount in the standard unit of measure for the <typeparam name="Q">specified quantity</typeparam>
+		/// </summary>
+		AmountType StandardAmount { get; }
 
 		/// <summary>
 		/// Gets the unit of measure
