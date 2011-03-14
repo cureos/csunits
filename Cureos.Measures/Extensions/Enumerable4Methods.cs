@@ -12,7 +12,7 @@ namespace Cureos.Measures.Extensions
     /// <summary>
     /// Extension methods applicable to IEnumerable objects
     /// </summary>
-    public static class EnumerableMethods
+    public static class Enumerable4Methods
     {
         /// <summary>
         /// Merges two sequences by using the specified predicate function.
