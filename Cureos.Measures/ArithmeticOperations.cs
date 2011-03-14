@@ -44,14 +44,14 @@ namespace Cureos.Measures
         }
 
         public static void Product<Q, Q1, Q2>(IMeasure<Q1> iFirst, int iFirstExponent, IMeasure<Q2> iSecond, 
-            int iSecondExponent, out StandardMeasure<Q> iResult)
+            int iSecondExponent, out StandardMeasure<Q> oResult)
             where Q : struct, IQuantity<Q>
             where Q1 : struct, IQuantity<Q1>
             where Q2 : struct, IQuantity<Q2>
         {
             AssertMatchingQuantities<Q, Q1, Q2>(iFirstExponent, iSecondExponent);
 #if DOUBLE
-            iResult =
+            oResult =
                 new StandardMeasure<Q>(Math.Pow(iFirst.StandardAmount, iFirstExponent) *
                                        Math.Pow(iSecond.StandardAmount, iSecondExponent));
 #else
@@ -62,7 +62,7 @@ namespace Cureos.Measures
         }
 
         public static void Product<Q, Q1, Q2, Q3>(IMeasure<Q1> iFirst, int iFirstExponent, IMeasure<Q2> iSecond, 
-            int iSecondExponent, IMeasure<Q2> iThird, int iThirdExponent, out StandardMeasure<Q> iResult)
+            int iSecondExponent, IMeasure<Q2> iThird, int iThirdExponent, out StandardMeasure<Q> oResult)
             where Q : struct, IQuantity<Q>
             where Q1 : struct, IQuantity<Q1>
             where Q2 : struct, IQuantity<Q2>
@@ -70,7 +70,7 @@ namespace Cureos.Measures
         {
             AssertMatchingQuantities<Q, Q1, Q2, Q3>(iFirstExponent, iSecondExponent, iThirdExponent);
 #if DOUBLE
-            iResult =
+            oResult =
                 new StandardMeasure<Q>(Math.Pow(iFirst.StandardAmount, iFirstExponent) *
                                        Math.Pow(iSecond.StandardAmount, iSecondExponent) *
                                        Math.Pow(iThird.StandardAmount, iThirdExponent));
