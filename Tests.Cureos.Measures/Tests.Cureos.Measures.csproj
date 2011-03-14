@@ -52,6 +52,7 @@
     <Compile Include="ArithmeticOperationsTests.cs" />
     <Compile Include="ExampleTests.cs" />
     <Compile Include="Quantities\VelocityTests.cs" />
+    <Compile Include="QuantityDimensionTests.cs" />
     <Compile Include="StandardMeasureArrayTests.cs" />
     <Compile Include="MeasureAssert.cs" />
     <Compile Include="StandardMeasureTests.cs" />

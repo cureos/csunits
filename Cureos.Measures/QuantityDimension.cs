@@ -183,6 +183,29 @@ namespace Cureos.Measures
             }
         }
 
+        /// <summary>
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// </returns>
+        /// <filterpriority>2</filterpriority>
+        public override string ToString()
+        {
+            return String.Format("{0}{1}{2}{3}{4}{5}{6}",
+                ConditionalOutput("m", LengthExponent), ConditionalOutput("kg", MassExponent),
+                ConditionalOutput("s", TimeExponent), ConditionalOutput("A", ElectricCurrentExponent),
+                ConditionalOutput("K", TemperatureExponent), ConditionalOutput("Cd", LuminousIntensityExponent),
+                ConditionalOutput("mol", AmountOfSubstanceExponent)).Trim();
+        }
+
+        private static string ConditionalOutput(string iSiUnit, int iExponent)
+        {
+            return iExponent == 0
+                       ? String.Empty
+                       : iExponent == 1 ? String.Format(" {0}", iSiUnit) : String.Format(" {0}^{1}", iSiUnit, iExponent);
+        }
+
         #endregion
 
         #region OPERATORS
