@@ -32,12 +32,12 @@ namespace Cureos.Measures.Extensions
             yield return 2;
 
             var enumerator = OddInts().GetEnumerator();
-            do
+            while (enumerator.MoveNext())
             {
                 var x = enumerator.Current;
                 var sqrt = Math.Sqrt(x);
                 if (!OddInts().TakeWhile(y => y <= sqrt).Any(y => x % y == 0)) yield return x;
-            } while (enumerator.MoveNext());
+            }
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Cureos.Measures.Extensions
 
         #region PRIVATE SUPPORT METHODS
 
-        private static IEnumerable<int> OddInts()
+        internal static IEnumerable<int> OddInts()
         {
             int start = 1;
             while (start > 0)

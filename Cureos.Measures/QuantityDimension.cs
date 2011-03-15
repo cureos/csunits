@@ -31,8 +31,8 @@ namespace Cureos.Measures
         /// Intitalizes a dimensionless quantity dimension
         /// </summary>
         /// <param name="iDimensionlessDifferentiator">Scalar used to differentiate between relevant dimensionless quantities</param>
-        internal QuantityDimension(DimensionlessDifferentiators iDimensionlessDifferentiator) :
-            this((double)iDimensionlessDifferentiator, 0, 0, 0, 0, 0, 0, 0)
+        internal QuantityDimension(int iDimensionlessDifferentiator) :
+            this(iDimensionlessDifferentiator, 0, 0, 0, 0, 0, 0, 0)
         {
         }
 

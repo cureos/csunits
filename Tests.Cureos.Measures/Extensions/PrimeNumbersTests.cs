@@ -43,10 +43,31 @@ namespace Tests.Cureos.Measures.Extensions
         public void TakeWhile_CollectionUpToValue50_MatchesPrimeNumberListTo50()
         {
             var expected = new[] { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47 };
-            var actual = _instance.TakeWhile(x => x < 50);
-            Assert.IsTrue(actual.SequenceEqual(expected));
+            var actual = _instance.TakeWhile(x => x < 50).ToArray();
+            CollectionAssert.AreEquivalent(expected, actual);
+            Assert.AreEqual(expected.Length, actual.Count());
+            Assert.IsTrue(actual.SequenceEqual(expected), "{0}", actual);
         }
 
+        [Test]
+        public void OddInts_FirstValue_Equals3()
+        {
+            var expected = 3;
+            var actual = PrimeNumbers.OddInts().First();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void ElementAt_Get100000thElement_TimeOperation()
+        {
+            var expected = 1299709;
+            var start = DateTime.Now;
+            var actual = _instance.ElementAt(99999);
+            var stop = DateTime.Now;
+            var duration = (stop - start).Ticks / 10000;
+            Console.WriteLine("Timing {0} ms", duration);
+            Assert.AreEqual(expected, actual);
+        }
         #endregion
     }
 }
