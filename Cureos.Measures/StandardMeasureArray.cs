@@ -230,7 +230,7 @@ namespace Cureos.Measures
     {
         #region MEMBER VARIABLES
 
-        private readonly IEnumerable<KeyValuePair<AmountType, AmountType>> mAmountPairs;
+        private readonly StandardMeasure<Q1, Q2>[] mMeasurePairs;
 
         #endregion
 
@@ -243,8 +243,20 @@ namespace Cureos.Measures
         public StandardMeasureArray(IEnumerable<KeyValuePair<AmountType, AmountType>> iAmountPairs)
         {
             if (iAmountPairs == null) throw new ArgumentNullException("iAmountPairs");
-            mAmountPairs = iAmountPairs.Where(kv => true);
+            mMeasurePairs = iAmountPairs.Select(kv => new StandardMeasure<Q1, Q2>(kv.Key, kv.Value)).ToArray();
         }
+
+#if !NET35
+        /// <summary>
+        /// Initializes an instance of an array of standard unit measure pairs
+        /// </summary>
+        /// <param name="iAmountPairs">Collection of pairs of amounts</param>
+        public StandardMeasureArray(IEnumerable<Tuple<AmountType, AmountType>> iAmountPairs)
+        {
+            if (iAmountPairs == null) throw new ArgumentNullException("iAmountPairs");
+            mMeasurePairs = iAmountPairs.Select(pair => new StandardMeasure<Q1, Q2>(pair.Item1, pair.Item2)).ToArray();
+        }
+#endif
 
         /// <summary>
         /// Initializes an instance of an array of standard unit measure pairs
@@ -258,7 +270,7 @@ namespace Cureos.Measures
             if (iAmounts2 == null) throw new ArgumentNullException("iAmounts2");
             if (iAmounts1.Count() != iAmounts2.Count())
                 throw new ArgumentException("Collection length is not the same as the first collection", "iAmounts2");
-            mAmountPairs = iAmounts1.Zip(iAmounts2, (a1, a2) => new KeyValuePair<AmountType, AmountType>(a1, a2));
+            mMeasurePairs = iAmounts1.Zip(iAmounts2, (a1, a2) => new StandardMeasure<Q1, Q2>(a1, a2)).ToArray();
         }
 
         /// <summary>
@@ -268,9 +280,17 @@ namespace Cureos.Measures
         public StandardMeasureArray(IEnumerable<StandardMeasure<Q1, Q2>> iMeasurePairs)
         {
             if (iMeasurePairs == null) throw new ArgumentNullException("iMeasurePairs");
-            mAmountPairs =
-                iMeasurePairs.Select(
-                    pair => new KeyValuePair<AmountType, AmountType>(pair.Measure1.Amount, pair.Measure2.Amount));
+            mMeasurePairs = iMeasurePairs.Select(pair => pair).ToArray();
+        }
+
+        /// <summary>
+        /// Initializes an instance of an array of standard unit measure pairs
+        /// </summary>
+        /// <param name="iMeasurePairs">Collection of measure pairs of arbitrary unit</param>
+        public StandardMeasureArray(IEnumerable<IMeasure<Q1, Q2>> iMeasurePairs)
+        {
+            if (iMeasurePairs == null) throw new ArgumentNullException("iMeasurePairs");
+            mMeasurePairs = iMeasurePairs.Select(pair => new StandardMeasure<Q1, Q2>(pair)).ToArray();
         }
 
         /// <summary>
@@ -284,7 +304,7 @@ namespace Cureos.Measures
             if (iMeasures2 == null) throw new ArgumentNullException("iMeasures2");
             if (iMeasures1.Count() != iMeasures2.Count())
                 throw new ArgumentException("Collection length is not the same as the first collection", "iMeasures2");
-            mAmountPairs = iMeasures1.Zip(iMeasures2, (m1, m2) => new KeyValuePair<AmountType, AmountType>(m1.Amount, m2.Amount));
+            mMeasurePairs = iMeasures1.Zip(iMeasures2, (m1, m2) => new StandardMeasure<Q1, Q2>(m1, m2)).ToArray();
         }
 
         #endregion
@@ -296,7 +316,7 @@ namespace Cureos.Measures
         /// </summary>
         public IMeasureArray<Q1> Measures1
         {
-            get { return new StandardMeasureArray<Q1>(mAmountPairs.Select(kv => kv.Key)); }
+            get { return new StandardMeasureArray<Q1>(mMeasurePairs.Select(pair => pair.Measure1)); }
         }
 
         /// <summary>
@@ -304,7 +324,17 @@ namespace Cureos.Measures
         /// </summary>
         public IMeasureArray<Q2> Measures2
         {
-            get { return new StandardMeasureArray<Q2>(mAmountPairs.Select(kv => kv.Value)); }
+            get { return new StandardMeasureArray<Q2>(mMeasurePairs.Select(pair => pair.Measure2)); }
+        }
+
+        /// <summary>
+        /// Gets the <paramref name="i">ith</paramref> element of the array of measure pairs
+        /// </summary>
+        /// <param name="i">Requested element index</param>
+        /// <returns>The <paramref name="i">ith</paramref> element of the array of measure pairs</returns>
+        IMeasure<Q1, Q2> IMeasureArray<Q1, Q2>.this[int i]
+        {
+            get { throw new NotImplementedException(); }
         }
 
         #endregion
@@ -320,7 +350,7 @@ namespace Cureos.Measures
         /// <filterpriority>1</filterpriority>
         public IEnumerator<StandardMeasure<Q1, Q2>> GetEnumerator()
         {
-            return mAmountPairs.Select(amountPair => new StandardMeasure<Q1, Q2>(amountPair.Key, amountPair.Value)).GetEnumerator();
+            return mMeasurePairs.Cast<StandardMeasure<Q1, Q2>>().GetEnumerator();
         }
 
         /// <summary>

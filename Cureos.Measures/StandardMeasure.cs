@@ -552,6 +552,15 @@ namespace Cureos.Measures
 		#region CONSTRUCTORS
 
 		/// <summary>
+		/// Initializes a pair of standard measures
+		/// </summary>
+		/// <param name="iMeasurePair">Pair of measures in arbitrary unit</param>
+		public StandardMeasure(IMeasure<Q1, Q2> iMeasurePair)
+			: this(iMeasurePair.Measure1, iMeasurePair.Measure2)
+		{
+		}
+
+		/// <summary>
 		/// Initializes a pair of standard measures from two standard measure objects
 		/// </summary>
 		/// <param name="iMeasure1">First measure object</param>

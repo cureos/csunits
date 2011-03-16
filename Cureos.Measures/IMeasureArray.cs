@@ -66,5 +66,12 @@ namespace Cureos.Measures
         /// Gets the array of second measures
         /// </summary>
         IMeasureArray<Q2> Measures2 { get; }
+
+        /// <summary>
+        /// Gets the <paramref name="i">ith</paramref> element of the array of measure pairs
+        /// </summary>
+        /// <param name="i">Requested element index</param>
+        /// <returns>The <paramref name="i">ith</paramref> element of the array of measure pairs</returns>
+        IMeasure<Q1, Q2> this[int i] { get; }
     }
 }
