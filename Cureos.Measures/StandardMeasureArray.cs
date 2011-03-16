@@ -31,7 +31,7 @@ namespace Cureos.Measures
     {
         #region MEMBER VARIABLES
 
-        private readonly IEnumerable<AmountType> mAmounts;
+        private readonly StandardMeasure<Q>[] mMeasures;
 
         #endregion
 
@@ -44,11 +44,7 @@ namespace Cureos.Measures
         public StandardMeasureArray(IEnumerable<double> iAmounts)
         {
             if (iAmounts == null) throw new ArgumentNullException("iAmounts");
-#if DOUBLE
-            mAmounts = iAmounts.Select(a => a);
-#else
-            mAmounts = iAmounts.Select(a => (AmountType)a);
-#endif
+            mMeasures = iAmounts.Select(a => new StandardMeasure<Q>(a)).ToArray();
         }
 
         /// <summary>
@@ -58,11 +54,7 @@ namespace Cureos.Measures
         public StandardMeasureArray(IEnumerable<float> iAmounts)
         {
             if (iAmounts == null) throw new ArgumentNullException("iAmounts");
-#if SINGLE
-            mAmounts = iAmounts.Select(a => a);
-#else
-            mAmounts = iAmounts.Select(a => (AmountType)a);
-#endif
+            mMeasures = iAmounts.Select(a => new StandardMeasure<Q>(a)).ToArray();
         }
 
         /// <summary>
@@ -72,11 +64,7 @@ namespace Cureos.Measures
         public StandardMeasureArray(IEnumerable<decimal> iAmounts)
         {
             if (iAmounts == null) throw new ArgumentNullException("iAmounts");
-#if DECIMAL
-            mAmounts = iAmounts.Select(a => a);
-#else
-            mAmounts = iAmounts.Select(a => (AmountType)a);
-#endif
+            mMeasures = iAmounts.Select(a => new StandardMeasure<Q>(a)).ToArray();
         }
 
         /// <summary>
@@ -88,11 +76,7 @@ namespace Cureos.Measures
         {
             if (iAmounts == null) throw new ArgumentNullException("iAmounts");
             if (iUnit == null) throw new ArgumentNullException("iUnit");
-#if DOUBLE
-            mAmounts = iAmounts.Select(iUnit.AmountToStandardUnitConverter);
-#else
-            mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter((AmountType)a));
-#endif
+            mMeasures = iAmounts.Select(a => new StandardMeasure<Q>(a, iUnit)).ToArray();
         }
 
         /// <summary>
@@ -104,13 +88,7 @@ namespace Cureos.Measures
         {
             if (iAmounts == null) throw new ArgumentNullException("iAmounts");
             if (iUnit == null) throw new ArgumentNullException("iUnit");
-#if SINGLE
-            mAmounts = iAmounts.Select(iUnit.AmountToReferenceUnitConverter);
-#elif DOUBLE
-            mAmounts = iAmounts.Select(a => iUnit.AmountToStandardUnitConverter(a));
-#elif DECIMAL
-            mAmounts = iAmounts.Select(a => iUnit.AmountToReferenceUnitConverter((AmountType)a));
-#endif
+            mMeasures = iAmounts.Select(a => new StandardMeasure<Q>(a, iUnit)).ToArray();
         }
 
         /// <summary>
@@ -122,11 +100,17 @@ namespace Cureos.Measures
         {
             if (iAmounts == null) throw new ArgumentNullException("iAmounts");
             if (iUnit == null) throw new ArgumentNullException("iUnit");
-#if DECIMAL
-            mAmounts = iAmounts.Select(iUnit.AmountToReferenceUnitConverter);
-#else
-            mAmounts = iAmounts.Select(a => iUnit.AmountToStandardUnitConverter((AmountType)a));
-#endif
+            mMeasures = iAmounts.Select(a => new StandardMeasure<Q>(a, iUnit)).ToArray();
+        }
+
+        /// <summary>
+        /// Initializes an array of measures, where the amounts are all given in the standard unit of the quantity
+        /// </summary>
+        /// <param name="iMeasures">Collection of standard measures</param>
+        public StandardMeasureArray(IEnumerable<StandardMeasure<Q>> iMeasures)
+        {
+            if (iMeasures == null) throw new ArgumentNullException("iMeasures");
+            mMeasures = iMeasures.Select(m => m).ToArray();
         }
 
         /// <summary>
@@ -136,8 +120,7 @@ namespace Cureos.Measures
         public StandardMeasureArray(IEnumerable<IMeasure<Q>> iMeasures)
         {
             if (iMeasures == null) throw new ArgumentNullException("iMeasures");
-            IUnit<Q> unit = default(Q).StandardUnit;
-            mAmounts = iMeasures.Select(m => m.GetAmount(unit));
+            mMeasures = iMeasures.Select(m => new StandardMeasure<Q>(m)).ToArray();
         }
 
         #endregion
@@ -149,7 +132,7 @@ namespace Cureos.Measures
         /// </summary>
         public IEnumerable<AmountType> Amounts
         {
-            get { return mAmounts; }
+            get { return mMeasures.Select(m => m.Amount); }
         }
 
         /// <summary>
@@ -168,7 +151,7 @@ namespace Cureos.Measures
         /// <exception cref="InvalidOperationException">if the specified unit is not of the same quantity as the measure</exception>
         public IEnumerable<AmountType> GetAmounts(IUnit<Q> iUnit)
         {
-                return mAmounts.Select(iUnit.AmountFromStandardUnitConverter);
+                return mMeasures.Select(m => m.GetAmount(iUnit));
         }
 
         /// <summary>
@@ -202,17 +185,7 @@ namespace Cureos.Measures
         /// <returns>The <paramref name="i">ith</paramref> component of the measure array</returns>
         public StandardMeasure<Q> this[int i]
         {
-            get
-            {
-                try
-                {
-                    return this.ElementAt(i);
-                }
-                catch (ArgumentOutOfRangeException e)
-                {
-                    throw new IndexOutOfRangeException("Index out of range", e);
-                }
-            }
+            get { return mMeasures[i]; }
         }
 
         #endregion
@@ -228,7 +201,7 @@ namespace Cureos.Measures
         /// <filterpriority>1</filterpriority>
         public IEnumerator<StandardMeasure<Q>> GetEnumerator()
         {
-            return mAmounts.Select(amount => new StandardMeasure<Q>(amount)).GetEnumerator();
+            return mMeasures.Cast<StandardMeasure<Q>>().GetEnumerator();
         }
 
         /// <summary>

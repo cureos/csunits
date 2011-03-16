@@ -84,13 +84,13 @@ namespace Tests.Cureos.Measures
 		}
 
 		[Test]
-		public void ElementAt_RepeatedManyTimes_TimeOperation()
+		public void Indexer_RepeatedManyTimes_TimeOperation()
 		{
-			const int noValues = 10000;
+			const int noValues = 10000000;
 			var measures = new StandardMeasureArray<Length>(new double[noValues]);
 			StandardMeasure<Length> measure;
 			DateTime start = DateTime.Now;
-			for (int i = 0; i < noValues; ++i) measure = measures.ElementAt(i);
+			for (int i = 0; i < noValues; ++i) measure = measures[i];
 			DateTime stop = DateTime.Now;
 #if NUNIT24
 			Assert.Ignore
