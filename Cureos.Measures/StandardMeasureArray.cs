@@ -206,7 +206,7 @@ namespace Cureos.Measures
             {
                 try
                 {
-                    return this.ElementAt<StandardMeasure<Q>>(i);
+                    return this.ElementAt(i);
                 }
                 catch (ArgumentOutOfRangeException e)
                 {
@@ -228,25 +228,7 @@ namespace Cureos.Measures
         /// <filterpriority>1</filterpriority>
         public IEnumerator<StandardMeasure<Q>> GetEnumerator()
         {
-            foreach (var amount in mAmounts)
-            {
-                yield return new StandardMeasure<Q>(amount);
-            }
-        }
-
-        /// <summary>
-        /// Returns an enumerator that iterates through the collection.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
-        /// </returns>
-        /// <filterpriority>1</filterpriority>
-        IEnumerator<IMeasure<Q>> IEnumerable<IMeasure<Q>>.GetEnumerator()
-        {
-            foreach (var amount in mAmounts)
-            {
-                yield return new StandardMeasure<Q>(amount);
-            }
+            return mAmounts.Select(amount => new StandardMeasure<Q>(amount)).GetEnumerator();
         }
 
         /// <summary>
@@ -365,25 +347,7 @@ namespace Cureos.Measures
         /// <filterpriority>1</filterpriority>
         public IEnumerator<StandardMeasure<Q1, Q2>> GetEnumerator()
         {
-            foreach (var amountPair in mAmountPairs)
-            {
-                yield return new StandardMeasure<Q1, Q2>(amountPair.Key, amountPair.Value);
-            }
-        }
-
-        /// <summary>
-        /// Returns an enumerator that iterates through the collection.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
-        /// </returns>
-        /// <filterpriority>1</filterpriority>
-        IEnumerator<IMeasure<Q1, Q2>> IEnumerable<IMeasure<Q1, Q2>>.GetEnumerator()
-        {
-            foreach (var amountPair in mAmountPairs)
-            {
-                yield return new StandardMeasure<Q1, Q2>(amountPair.Key, amountPair.Value);
-            }
+            return mAmountPairs.Select(amountPair => new StandardMeasure<Q1, Q2>(amountPair.Key, amountPair.Value)).GetEnumerator();
         }
 
         /// <summary>

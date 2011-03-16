@@ -15,7 +15,7 @@ namespace Tests.Cureos.Measures
 	[TestFixture]
 	public class StandardMeasureArrayTests
 	{
-		private IMeasureArray<Length> _instance;
+		private StandardMeasureArray<Length> _instance;
 
 		#region Setup and TearDown
 		[SetUp]

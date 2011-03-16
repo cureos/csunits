@@ -4,6 +4,7 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
+using System.Collections;
 using System.Collections.Generic;
 
 #if SINGLE
@@ -20,7 +21,7 @@ namespace Cureos.Measures
     /// Interface resenting a collection of measures of a specific quantity
     /// </summary>
     /// <typeparam name="Q">Measured quantity</typeparam>
-    public interface IMeasureArray<Q> : IEnumerable<IMeasure<Q>> where Q : struct, IQuantity<Q>
+    public interface IMeasureArray<Q> : IEnumerable where Q : struct, IQuantity<Q>
     {
         /// <summary>
         /// Gets the array of measured amounts in the <see cref="Unit">current unit of measure</see>
@@ -48,11 +49,11 @@ namespace Cureos.Measures
     }
 
     /// <summary>
-    /// Interface representing an array of 
+    /// Interface representing an array of pairs of measures
     /// </summary>
     /// <typeparam name="Q1">Quantity type of the first measure</typeparam>
     /// <typeparam name="Q2">Quantity type of the second measure</typeparam>
-    public interface IMeasureArray<Q1, Q2> : IEnumerable<IMeasure<Q1, Q2>>
+    public interface IMeasureArray<Q1, Q2> : IEnumerable
         where Q1 : struct, IQuantity<Q1>
         where Q2 : struct, IQuantity<Q2>
     {
