@@ -161,7 +161,7 @@ namespace Cureos.Measures
         /// <returns>The <paramref name="i">ith</paramref> component of the measure array</returns>
         IMeasure<Q> IMeasureArray<Q>.this[int i]
         {
-            get { return this[i]; }
+            get { return mMeasures[i]; }
         }
 
         #endregion
@@ -175,7 +175,7 @@ namespace Cureos.Measures
         /// <returns>The <paramref name="i">ith</paramref> component of the measure array</returns>
         public StandardMeasure<Q> this[uint i]
         {
-            get { return this[(int) i]; }
+            get { return mMeasures[i]; }
         }
 
         /// <summary>
@@ -246,6 +246,16 @@ namespace Cureos.Measures
             mMeasurePairs = iAmountPairs.Select(kv => new StandardMeasure<Q1, Q2>(kv.Key, kv.Value)).ToArray();
         }
 
+        /// <summary>
+        /// Initializes an instance of an array of standard unit measure pairs
+        /// </summary>
+        /// <param name="iMeasurePairs">Collection of pairs of measures</param>
+        public StandardMeasureArray(IEnumerable<KeyValuePair<IMeasure<Q1>, IMeasure<Q2>>> iMeasurePairs)
+        {
+            if (iMeasurePairs == null) throw new ArgumentNullException("iMeasurePairs");
+            mMeasurePairs = iMeasurePairs.Select(kv => new StandardMeasure<Q1, Q2>(kv.Key, kv.Value)).ToArray();
+        }
+
 #if !NET35
         /// <summary>
         /// Initializes an instance of an array of standard unit measure pairs
@@ -255,6 +265,16 @@ namespace Cureos.Measures
         {
             if (iAmountPairs == null) throw new ArgumentNullException("iAmountPairs");
             mMeasurePairs = iAmountPairs.Select(pair => new StandardMeasure<Q1, Q2>(pair.Item1, pair.Item2)).ToArray();
+        }
+
+        /// <summary>
+        /// Initializes an instance of an array of standard unit measure pairs
+        /// </summary>
+        /// <param name="iMeasurePairs">Collection of pairs of measures</param>
+        public StandardMeasureArray(IEnumerable<Tuple<IMeasure<Q1>, IMeasure<Q2>>> iMeasurePairs)
+        {
+            if (iMeasurePairs == null) throw new ArgumentNullException("iMeasurePairs");
+            mMeasurePairs = iMeasurePairs.Select(pair => new StandardMeasure<Q1, Q2>(pair.Item1, pair.Item2)).ToArray();
         }
 #endif
 
@@ -334,11 +354,24 @@ namespace Cureos.Measures
         /// <returns>The <paramref name="i">ith</paramref> element of the array of measure pairs</returns>
         IMeasure<Q1, Q2> IMeasureArray<Q1, Q2>.this[int i]
         {
-            get { throw new NotImplementedException(); }
+            get { return mMeasurePairs[i]; }
         }
 
         #endregion
+        #region PROPERTIES
 
+        /// <summary>
+        /// Gets the <paramref name="i">ith</paramref> element of the array of measure pairs
+        /// </summary>
+        /// <param name="i">Requested element index</param>
+        /// <returns>The <paramref name="i">ith</paramref> element of the array of measure pairs</returns>
+        public StandardMeasure<Q1, Q2> this[int i]
+        {
+            get { return mMeasurePairs[i]; }
+        }
+
+        #endregion
+        
         #region Implementation of IEnumerable
 
         /// <summary>
