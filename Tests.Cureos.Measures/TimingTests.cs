@@ -21,7 +21,7 @@ namespace Tests.Cureos.Measures
 		{
 			PerformTiming(() =>
 							  {
-								  double val = 0.0;
+								  const double val = 0.0;
 								  for (double i = 0.0; i < no; ++i)
 								  {
 								  }
@@ -44,11 +44,11 @@ namespace Tests.Cureos.Measures
 		}
 
 		[Test]
-		public void TimeMeasureAdditionsSameUnit()
+		public void TimeMeasureAdditionsStandardUnitWithStandardMeasure()
 		{
 			PerformTiming(() =>
 							  {
-								  var val = new Measure<Mass>(0.0, Mass.KiloGram);
+								  var val = new Measure<Mass>(0.0);
 								  for (double i = 0.0; i < no; ++i)
 								  {
 									  val += new StandardMeasure<Mass>(i);
@@ -58,7 +58,7 @@ namespace Tests.Cureos.Measures
 		}
 
 		[Test]
-		public void TimeMeasureAdditionsToDifferentUnit()
+		public void TimeMeasureAdditionsWithDifferentUnit()
 		{
 			PerformTiming(() =>
 							  {
@@ -72,7 +72,7 @@ namespace Tests.Cureos.Measures
 		}
 
 		[Test]
-		public void TimeGenericMeasureAdditionsSameUnit()
+		public void TimeStandardMeasureAdditions()
 		{
 			PerformTiming(() =>
 							  {
@@ -86,7 +86,7 @@ namespace Tests.Cureos.Measures
 		}
 
 		[Test]
-		public void TimeGenericMeasureAdditionsDifferentUnit()
+		public void TimeMeasureAdditionsNonStandardUnitWithStandardMeasure()
 		{
 			PerformTiming(() =>
 			{

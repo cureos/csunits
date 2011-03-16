@@ -79,8 +79,25 @@ namespace Tests.Cureos.Measures
 		public void Max_OnStandardMeasureArray_ReturnsMaxStandardMeasureFromArray()
 		{
 			var expected = new StandardMeasure<Length>(0.05);
-		    var actual = _instance.Max();
+			var actual = _instance.Max();
 			MeasureAssert.MeasuresAreEqual(expected, actual);
+		}
+
+		[Test]
+		public void ElementAt_RepeatedManyTimes_TimeOperation()
+		{
+			const int noValues = 10000;
+			var measures = new StandardMeasureArray<Length>(new double[noValues]);
+			StandardMeasure<Length> measure;
+			DateTime start = DateTime.Now;
+			for (int i = 0; i < noValues; ++i) measure = measures.ElementAt(i);
+			DateTime stop = DateTime.Now;
+#if NUNIT24
+			Assert.Ignore
+#else
+			Assert.Pass
+#endif
+				("Timing: {0} ms", (stop - start).Ticks / 10000);
 		}
 
 		#endregion
