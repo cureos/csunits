@@ -27,7 +27,7 @@ namespace Cureos.Measures
     /// Representation of an array of measures, given in the standard unit of the specified quantity
     /// </summary>
     /// <typeparam name="Q">Measured quantity type</typeparam>
-    public class StandardMeasureArray<Q> : IEnumerable<StandardMeasure<Q>>, IMeasureArray<Q> where Q : struct, IQuantity<Q>
+    public class StandardMeasureArray<Q> : IMeasureArray<Q> where Q : struct, IQuantity<Q>
     {
         #region MEMBER VARIABLES
 
@@ -199,9 +199,9 @@ namespace Cureos.Measures
         /// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
         /// </returns>
         /// <filterpriority>1</filterpriority>
-        public IEnumerator<StandardMeasure<Q>> GetEnumerator()
+        public IEnumerator<IMeasure<Q>> GetEnumerator()
         {
-            return mMeasures.Cast<StandardMeasure<Q>>().GetEnumerator();
+            return mMeasures.Cast<IMeasure<Q>>().GetEnumerator();
         }
 
         /// <summary>
@@ -224,7 +224,7 @@ namespace Cureos.Measures
     /// </summary>
     /// <typeparam name="Q1">Quantity type of the first measure</typeparam>
     /// <typeparam name="Q2">Quantity type of the second measure</typeparam>
-    public class StandardMeasureArray<Q1, Q2> : IMeasureArray<Q1, Q2>, IEnumerable<StandardMeasure<Q1, Q2>>
+    public class StandardMeasureArray<Q1, Q2> : IMeasureArray<Q1, Q2>
         where Q1 : struct, IQuantity<Q1>
         where Q2 : struct, IQuantity<Q2>
     {
@@ -358,6 +358,7 @@ namespace Cureos.Measures
         }
 
         #endregion
+
         #region PROPERTIES
 
         /// <summary>
@@ -381,9 +382,9 @@ namespace Cureos.Measures
         /// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
         /// </returns>
         /// <filterpriority>1</filterpriority>
-        public IEnumerator<StandardMeasure<Q1, Q2>> GetEnumerator()
+        public IEnumerator<IMeasure<Q1, Q2>> GetEnumerator()
         {
-            return mMeasurePairs.Cast<StandardMeasure<Q1, Q2>>().GetEnumerator();
+            return mMeasurePairs.Cast<IMeasure<Q1, Q2>>().GetEnumerator();
         }
 
         /// <summary>
