@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cureos.Measures", "Cureos.M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Cureos.Measures", "Tests.Cureos.Measures\Tests.Cureos.Measures.csproj", "{11E5CCED-98AB-4057-A950-D3400152D362}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SL.Cureos.Measures", "SL.Cureos.Measures\SL.Cureos.Measures.csproj", "{D83713ED-5538-44E9-8EA3-D34AE4C6FF2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,10 @@ Global
 		{11E5CCED-98AB-4057-A950-D3400152D362}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11E5CCED-98AB-4057-A950-D3400152D362}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11E5CCED-98AB-4057-A950-D3400152D362}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D83713ED-5538-44E9-8EA3-D34AE4C6FF2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D83713ED-5538-44E9-8EA3-D34AE4C6FF2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D83713ED-5538-44E9-8EA3-D34AE4C6FF2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D83713ED-5538-44E9-8EA3-D34AE4C6FF2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

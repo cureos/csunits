@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D83713ED-5538-44E9-8EA3-D34AE4C6FF2A}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cureos.Measures</RootNamespace>
+    <AssemblyName>Cureos.Measures</AssemblyName>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;DOUBLE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;DOUBLE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Browser" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Cureos.Measures\ArithmeticOperations.cs">
+      <Link>ArithmeticOperations.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\DimensionlessDifferentiators.cs">
+      <Link>DimensionlessDifferentiators.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Extensions\PrimeNumbers.cs">
+      <Link>Extensions\PrimeNumbers.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Factors.cs">
+      <Link>Factors.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\IMeasure.cs">
+      <Link>IMeasure.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\IMeasureArray.cs">
+      <Link>IMeasureArray.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\IQuantity.cs">
+      <Link>IQuantity.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\IUnit.cs">
+      <Link>IUnit.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Measure.cs">
+      <Link>Measure.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\AbsorbedDose.cs">
+      <Link>Quantities\AbsorbedDose.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\Acceleration.cs">
+      <Link>Quantities\Acceleration.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\AmountOfSubstance.cs">
+      <Link>Quantities\AmountOfSubstance.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\Area.cs">
+      <Link>Quantities\Area.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\ElectricCurrent.cs">
+      <Link>Quantities\ElectricCurrent.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\Energy.cs">
+      <Link>Quantities\Energy.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\Frequency.cs">
+      <Link>Quantities\Frequency.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\Length.cs">
+      <Link>Quantities\Length.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\LuminousIntensity.cs">
+      <Link>Quantities\LuminousIntensity.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\Mass.cs">
+      <Link>Quantities\Mass.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\MassDensity.cs">
+      <Link>Quantities\MassDensity.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\PlaneAngle.cs">
+      <Link>Quantities\PlaneAngle.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\SolidAngle.cs">
+      <Link>Quantities\SolidAngle.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\Temperature.cs">
+      <Link>Quantities\Temperature.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\Time.cs">
+      <Link>Quantities\Time.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\Velocity.cs">
+      <Link>Quantities\Velocity.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\Volume.cs">
+      <Link>Quantities\Volume.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\QuantityDimension.cs">
+      <Link>QuantityDimension.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\StandardMeasure.cs">
+      <Link>StandardMeasure.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\StandardMeasureArray.cs">
+      <Link>StandardMeasureArray.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Unit.cs">
+      <Link>Unit.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

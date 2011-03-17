@@ -132,7 +132,7 @@ namespace Cureos.Measures
 	    /// <summary>
 	    /// Gets the measured amount in the standard unit of measure for the <typeparam name="Q">specified quantity</typeparam>
 	    /// </summary>
-	    public double StandardAmount
+	    public AmountType StandardAmount
 	    {
 	        get { return GetAmount(default(Q).StandardUnit); }
 	    }

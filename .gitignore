@@ -14,3 +14,5 @@
 *.vs10x
 >>>>>>> master
 /test-results
+/SL.Cureos.Measures/Bin
+/SL.Cureos.Measures/obj

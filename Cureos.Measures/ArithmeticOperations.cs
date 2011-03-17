@@ -92,7 +92,7 @@ namespace Cureos.Measures
                 new StandardMeasure<Q>(Math.Pow(iFirst.StandardAmount, iFirstExponent) *
                                        Math.Pow(iSecond.StandardAmount, iSecondExponent));
 #else
-            iResult =
+            oResult =
                 new StandardMeasure<Q>(Math.Pow((double)iFirst.StandardAmount, iFirstExponent) *
                                        Math.Pow((double)iSecond.StandardAmount, iSecondExponent));
 #endif
@@ -126,7 +126,7 @@ namespace Cureos.Measures
                                        Math.Pow(iSecond.StandardAmount, iSecondExponent) *
                                        Math.Pow(iThird.StandardAmount, iThirdExponent));
 #else
-            iResult =
+            oResult =
                 new StandardMeasure<Q>(Math.Pow((double)iFirst.StandardAmount, iFirstExponent) *
                                        Math.Pow((double)iSecond.StandardAmount, iSecondExponent) *
                                        Math.Pow((double)iThird.StandardAmount, iThirdExponent));
@@ -167,7 +167,7 @@ namespace Cureos.Measures
                                        Math.Pow(iThird.StandardAmount, iThirdExponent)*
                                        Math.Pow(iFourth.StandardAmount, iFourthExponent));
 #else
-            iResult =
+            oResult =
                 new StandardMeasure<Q>(Math.Pow((double)iFirst.StandardAmount, iFirstExponent) *
                                        Math.Pow((double)iSecond.StandardAmount, iSecondExponent) *
                                        Math.Pow((double)iThird.StandardAmount, iThirdExponent) *

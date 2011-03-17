@@ -80,7 +80,7 @@ namespace Cureos.Measures
 #if DOUBLE
 			mAmount = iUnit.AmountToStandardUnitConverter(iAmount);
 #else
-			mAmount = iUnit.AmountToReferenceUnitConverter((AmountType)iAmount);
+			mAmount = iUnit.AmountToStandardUnitConverter((AmountType)iAmount);
 #endif
 		}
 
@@ -95,7 +95,7 @@ namespace Cureos.Measures
 #if !DECIMAL
 			mAmount = iUnit.AmountToStandardUnitConverter(iAmount);
 #else
-			mAmount = iUnit.AmountToReferenceUnitConverter((AmountType)iAmount);
+			mAmount = iUnit.AmountToStandardUnitConverter((AmountType)iAmount);
 #endif
 		}
 
@@ -108,7 +108,7 @@ namespace Cureos.Measures
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
 #if DECIMAL
-			mAmount = iUnit.AmountToReferenceUnitConverter(iAmount);
+			mAmount = iUnit.AmountToStandardUnitConverter(iAmount);
 #else
 			mAmount = iUnit.AmountToStandardUnitConverter((AmountType)iAmount);
 #endif
@@ -138,7 +138,7 @@ namespace Cureos.Measures
 		/// <summary>
 		/// Gets the measured amount in the standard unit of measure for the <typeparam name="Q">specified quantity</typeparam>
 		/// </summary>
-		public double StandardAmount
+		public AmountType StandardAmount
 		{
 			get { return mAmount; }
 		}
