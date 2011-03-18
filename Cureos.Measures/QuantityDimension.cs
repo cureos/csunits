@@ -64,7 +64,7 @@ namespace Cureos.Measures
         /// <param name="iTemperatureExponent">Temperature exponent</param>
         /// <param name="iLuminousIntensityExponent">Luminous intensity exponent</param>
         /// <param name="iAmountOfSubstanceExponent">Amount of substance exponent</param>
-        private QuantityDimension(double iDimensionlessDifferentiator, int iLengthExponent, int iMassExponent, int iTimeExponent, int iElectricCurrentExponent, int iTemperatureExponent,
+        internal QuantityDimension(double iDimensionlessDifferentiator, int iLengthExponent, int iMassExponent, int iTimeExponent, int iElectricCurrentExponent, int iTemperatureExponent,
             int iLuminousIntensityExponent, int iAmountOfSubstanceExponent)
         {
             DimensionlessDifferentiator = iDimensionlessDifferentiator;
