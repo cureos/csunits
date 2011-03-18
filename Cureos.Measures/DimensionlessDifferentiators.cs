@@ -32,6 +32,7 @@ namespace Cureos.Measures
         public static readonly int Pi = GetNextPrime();
         public static readonly int RelativeDensity = GetNextPrime();
         public static readonly int RefractiveIndex = GetNextPrime();
+        public static readonly int RelativePermeability = GetNextPrime();
 
         #endregion
 
