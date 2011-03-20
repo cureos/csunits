@@ -19,6 +19,14 @@ namespace Cureos.Measures.Quantities
 
         public static readonly Unit<Energy> Joule = new Unit<Energy>("J");
         public static readonly Unit<Energy> KiloJoule = new Unit<Energy>("kJ", Factors.Kilo);
+        public static readonly Unit<Energy> MegaJoule = new Unit<Energy>("MJ", Factors.Mega);
+        public static readonly Unit<Energy> GigaJoule = new Unit<Energy>("GJ", Factors.Giga);
+        public static readonly Unit<Energy> MilliJoule = new Unit<Energy>("mJ", Factors.Milli);
+        public static readonly Unit<Energy> MicroJoule = new Unit<Energy>("µJ", Factors.Micro);
+        public static readonly Unit<Energy> KiloWattHour = new Unit<Energy>("kWh", Factors.Kilo * Factors.SecondsPerHour);
+        public static readonly Unit<Energy> MegaWattHour = new Unit<Energy>("MWh", Factors.Mega * Factors.SecondsPerHour);
+        public static readonly Unit<Energy> GigaWattHour = new Unit<Energy>("GWh", Factors.Giga * Factors.SecondsPerHour);
+        public static readonly Unit<Energy> TeraWattHour = new Unit<Energy>("TWh", Factors.Tera * Factors.SecondsPerHour);
 
         #endregion
 
