@@ -16,6 +16,7 @@ namespace Cureos.Measures.Quantities
 		private static readonly QuantityDimension _dimension = new QuantityDimension(1, 1, -2, 0, 0, 0, 0);
 
 		public static readonly Unit<Force> Newton = new Unit<Force>("N");
+		public static readonly Unit<Force> KiloNewton = new Unit<Force>("kN", Factors.Kilo);
 
 		#endregion
 

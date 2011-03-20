@@ -16,6 +16,8 @@ namespace Cureos.Measures.Quantities
         #region FIELDS
 
         public static readonly Unit<AmountOfSubstance> Mole = new Unit<AmountOfSubstance>("mol");
+        public static readonly Unit<AmountOfSubstance> MilliMole = new Unit<AmountOfSubstance>("mmol", Factors.Milli);
+        public static readonly Unit<AmountOfSubstance> MicroMole = new Unit<AmountOfSubstance>("µmol", Factors.Micro);
 
         #endregion
         

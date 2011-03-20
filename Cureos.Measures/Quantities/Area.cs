@@ -16,8 +16,11 @@ namespace Cureos.Measures.Quantities
         private static readonly QuantityDimension _dimension = QuantityDimension.Length ^ 2;
 
         public static readonly Unit<Area> SquareMeter = new Unit<Area>("m²");
+        public static readonly Unit<Area> SquareKiloMeter = new Unit<Area>("km²", Factors.Square(Factors.Kilo));
         public static readonly Unit<Area> SquareDeciMeter = new Unit<Area>("dm²", Factors.Square(Factors.Deci));
         public static readonly Unit<Area> SquareCentiMeter = new Unit<Area>("cm²", Factors.Square(Factors.Centi));
+        public static readonly Unit<Area> SquareMilliMeter = new Unit<Area>("mm²", Factors.Square(Factors.Milli));
+        public static readonly Unit<Area> Barn = new Unit<Area>("b", Factors.SquareMetersPerBarn);
 
         #endregion
 

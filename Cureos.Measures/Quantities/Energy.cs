@@ -27,6 +27,11 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Energy> MegaWattHour = new Unit<Energy>("MWh", Factors.Mega * Factors.SecondsPerHour);
         public static readonly Unit<Energy> GigaWattHour = new Unit<Energy>("GWh", Factors.Giga * Factors.SecondsPerHour);
         public static readonly Unit<Energy> TeraWattHour = new Unit<Energy>("TWh", Factors.Tera * Factors.SecondsPerHour);
+        public static readonly Unit<Energy> ElectronVolt = new Unit<Energy>("eV", Factors.JoulesPerElectronVolt);
+        public static readonly Unit<Energy> KiloElectronVolt = new Unit<Energy>("keV", Factors.Kilo * Factors.JoulesPerElectronVolt);
+        public static readonly Unit<Energy> MegaElectronVolt = new Unit<Energy>("MeV", Factors.Mega * Factors.JoulesPerElectronVolt);
+        public static readonly Unit<Energy> GigaElectronVolt = new Unit<Energy>("GeV", Factors.Giga * Factors.JoulesPerElectronVolt);
+        public static readonly Unit<Energy> TeraElectronVolt = new Unit<Energy>("TeV", Factors.Tera * Factors.JoulesPerElectronVolt);
 
         #endregion
 

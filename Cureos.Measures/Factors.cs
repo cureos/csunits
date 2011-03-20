@@ -36,13 +36,18 @@ namespace Cureos.Measures
         public const double Zepto = 1.0e-21;
         public const double Yocto = 1.0e-24;
         public const double SecondsPerMinute = 60.0;
-        private const double MinutesPerHour = 60.0;
-        private const double HoursPerDay = 24.0;
-        private const double DaysPerWeek = 7.0;
-        public const double SecondsPerHour = SecondsPerMinute * MinutesPerHour;
-        public const double SecondsPerDay = SecondsPerHour * HoursPerDay;
-        public const double SecondsPerWeek = SecondsPerDay * DaysPerWeek;
+        public const double SecondsPerHour = SecondsPerMinute * 60.0;
+        public const double SecondsPerDay = SecondsPerHour * 24.0;
+        public const double SecondsPerWeek = SecondsPerDay * 7.0;
         public const double CelsiusKelvinDifference = 273.15;
+        public const double JoulesPerElectronVolt = 1.602e-19;
+        public const double MetersPerAngstrom = 1.0e-10;
+        public const double MetersPerInch = 1.0 / 0.0254;
+        public const double MetersPerFoot = MetersPerInch / 12.0;
+        public const double MetersPerYard = MetersPerFoot / 3.0;
+        public const double MetersPerMile = MetersPerYard / 1760.0;
+        public const double MetersPerNauticalMile = 1.0 / 1852.0;
+        public const double SquareMetersPerBarn = 1.0e-28;
         public static readonly double DegreesPerRadian = 180.0 / Math.PI;
 
         public static double Square(double a) { return a * a; }
@@ -69,13 +74,18 @@ namespace Cureos.Measures
         public const float Zepto = 1.0e-21f;
         public const float Yocto = 1.0e-24f;
         public const float SecondsPerMinute = 60.0f;
-        private const float MinutesPerHour = 60.0f;
-        private const float HoursPerDay = 24.0f;
-        private const float DaysPerWeek = 7.0f;
-        public const float SecondsPerHour = SecondsPerMinute * MinutesPerHour;
-        public const float SecondsPerDay = SecondsPerHour * HoursPerDay;
-        public const float SecondsPerWeek = SecondsPerDay * DaysPerWeek;
+        public const float SecondsPerHour = SecondsPerMinute * 60.0f;
+        public const float SecondsPerDay = SecondsPerHour * 24.0f;
+        public const float SecondsPerWeek = SecondsPerDay * 7.0f;
         public const float CelsiusKelvinDifference = 273.15f;
+        public const float JoulesPerElectronVolt = 1.602e-19f;
+        public const float MetersPerAngstrom = 1.0e-10f;
+        public const float MetersPerInch = 1.0f / 0.0254f;
+        public const float MetersPerFoot = MetersPerInch / 12.0f;
+        public const float MetersPerYard = MetersPerFoot / 3.0f;
+        public const float MetersPerMile = MetersPerYard / 1760.0f;
+        public const float MetersPerNauticalMile = 1.0f / 1852.0f;
+        public const float SquareMetersPerBarn = 1.0e-28f;
         public static readonly float DegreesPerRadian = 180.0f / (float)Math.PI;
 
         public static float Square(float a) { return a * a; }
@@ -102,13 +112,18 @@ namespace Cureos.Measures
         public const decimal Zepto = 1.0e-21m;
         public const decimal Yocto = 1.0e-24m;
         public const decimal SecondsPerMinute = 60.0m;
-        private const decimal MinutesPerHour = 60.0m;
-        private const decimal HoursPerDay = 24.0m;
-        private const decimal DaysPerWeek = 7.0m;
-        public const decimal SecondsPerHour = SecondsPerMinute * MinutesPerHour;
-        public const decimal SecondsPerDay = SecondsPerHour * HoursPerDay;
-        public const decimal SecondsPerWeek = SecondsPerDay * DaysPerWeek;
+        public const decimal SecondsPerHour = SecondsPerMinute * 60.0m;
+        public const decimal SecondsPerDay = SecondsPerHour * 24.0m;
+        public const decimal SecondsPerWeek = SecondsPerDay * 7.0m;
         public const decimal CelsiusKelvinDifference = 273.15m;
+        public const decimal JoulesPerElectronVolt = 1.602e-19m;
+        public const decimal MetersPerAngstrom = 1.0e-10m;
+        public const decimal MetersPerInch = 1.0m / 0.0254m;
+        public const decimal MetersPerFoot = MetersPerInch / 12.0m;
+        public const decimal MetersPerYard = MetersPerFoot / 3.0m;
+        public const decimal MetersPerMile = MetersPerYard / 1760.0m;
+        public const decimal MetersPerNauticalMile = 1.0m / 1852.0m;
+        public const decimal SquareMetersPerBarn = 1.0e-28m;
         public static readonly decimal DegreesPerRadian = 180.0m / (decimal)Math.PI;
 
         public static decimal Square(decimal a) { return a * a; }
