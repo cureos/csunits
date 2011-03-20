@@ -5,6 +5,16 @@
 // http://www.eclipse.org/legal/epl-v10.html
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
+
+#if SINGLE
+using AmountType = System.Single;
+#elif DECIMAL
+using AmountType = System.Decimal;
+#elif DOUBLE
+using AmountType = System.Double;
+#endif
 
 namespace Cureos.Measures
 {
@@ -14,6 +24,43 @@ namespace Cureos.Measures
     /// </summary>
     public static class Factors
     {
+    	#region STATIC MEMBER VARIABLES
+
+    	private static readonly Dictionary<string, AmountType> smkPrefixSymbolsMap;
+    	
+    	#endregion
+
+    	#region CONSTRUCTORS
+    	
+    	static Factors()
+    	{
+    		smkPrefixSymbolsMap = new Dictionary<string, AmountType>()
+    		{
+    			{"Y",Yotta},
+    			{"Z", Zetta},
+    			{"E", Exa},
+    			{"P", Peta},
+    			{"T", Tera},
+    			{"G", Giga},
+    			{"M", Mega},
+    			{"k", Kilo},
+    			{"h", Hecto},
+    			{"da", Deka},
+    			{"d", Deci},
+    			{"c", Centi},
+    			{"m", Milli},
+    			{"µ", Micro},
+    			{"n", Nano},
+    			{"p", Pico},
+    			{"f", Femto},
+    			{"a", Atto},
+    			{"z", Zepto},
+    			{"y", Yocto}
+    		};
+    	}
+    	
+    	#endregion
+    	
 #if DOUBLE
         public const double Yotta = 1.0e24;
         public const double Zetta = 1.0e21;
@@ -129,5 +176,14 @@ namespace Cureos.Measures
         public static decimal Square(decimal a) { return a * a; }
         public static decimal Cube(decimal a) { return a * a * a; }
 #endif
+
+		#region METHODS
+
+		internal static AmountType GetPrefixFactor(string iPrefixSymbol)
+		{
+			return smkPrefixSymbolsMap[iPrefixSymbol];
+		}
+		
+		#endregion
     }
 }

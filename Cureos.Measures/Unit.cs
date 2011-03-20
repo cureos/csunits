@@ -94,6 +94,12 @@ namespace Cureos.Measures
             return Symbol;
         }
 
+        internal static Unit<Q> Create(string iPrefixSymbol)
+        {
+        	return new Unit<Q>(String.Format("{0}{1}", iPrefixSymbol, default(Q).StandardUnit), 
+        	                   Factors.GetPrefixFactor(iPrefixSymbol));
+        }
+        
         #endregion
     }
 }
