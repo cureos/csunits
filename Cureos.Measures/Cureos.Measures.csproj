@@ -96,6 +96,8 @@
     <Compile Include="Quantities\Length.cs" />
     <Compile Include="IUnit.cs" />
     <Compile Include="StandardMeasure.cs" />
+    <Compile Include="UnitPrefix.cs" />
+    <Compile Include="UnitPrefixMethods.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
