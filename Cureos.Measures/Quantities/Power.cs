@@ -16,12 +16,12 @@ namespace Cureos.Measures.Quantities
 		private static readonly QuantityDimension _dimension = new QuantityDimension(2, 1, -3, 0, 0, 0, 0);
 
 		public static readonly Unit<Power> Watt = new Unit<Power>("W");
-		public static readonly Unit<Power> KiloWatt = Unit<Power>.Create("k");
-		public static readonly Unit<Power> MegaWatt = Unit<Power>.Create("M");
-		public static readonly Unit<Power> GigaWatt = Unit<Power>.Create("G");
-		public static readonly Unit<Power> TeraWatt = Unit<Power>.Create("T");
-		public static readonly Unit<Power> MilliWatt = Unit<Power>.Create("m");
-		public static readonly Unit<Power> MicroWatt = Unit<Power>.Create("µ");
+		public static readonly Unit<Power> KiloWatt = new Unit<Power>(UnitPrefix.Kilo);
+		public static readonly Unit<Power> MegaWatt = new Unit<Power>(UnitPrefix.Mega);
+		public static readonly Unit<Power> GigaWatt = new Unit<Power>(UnitPrefix.Giga);
+		public static readonly Unit<Power> TeraWatt = new Unit<Power>(UnitPrefix.Tera);
+		public static readonly Unit<Power> MilliWatt = new Unit<Power>(UnitPrefix.Milli);
+		public static readonly Unit<Power> MicroWatt = new Unit<Power>(UnitPrefix.Micro);
 
 		#endregion
 

@@ -57,6 +57,10 @@ namespace Cureos.Measures
             AmountFromStandardUnitConverter = iAmountFromStandardUnitConverter;
         }
         
+        /// <summary>
+        /// Convenience constructor for initializing prefixed non-standard unit
+        /// </summary>
+        /// <param name="iPrefix">Prefix to use in unit naming and scaling vis-a-vis standard unit</param>
         public Unit(UnitPrefix iPrefix) :
         	this(String.Format("{0}{1}", iPrefix.GetSymbol(), default(Q).StandardUnit), iPrefix.GetFactor())
         {
@@ -97,17 +101,6 @@ namespace Cureos.Measures
         public override string ToString()
         {
             return Symbol;
-        }
-
-        /// <summary>
-        /// Factory for creating unit from prefix specification
-        /// </summary>
-        /// <param name="iPrefixSymbol"></param>
-        /// <returns></returns>
-        internal static Unit<Q> Create(string iPrefixSymbol)
-        {
-        	return new Unit<Q>(String.Format("{0}{1}", iPrefixSymbol, default(Q).StandardUnit), 
-        	                   Factors.GetPrefixFactor(iPrefixSymbol));
         }
         
         #endregion

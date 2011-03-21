@@ -29,7 +29,7 @@ namespace Tests.Cureos.Measures
 		[Test]
 		public void CreateFromPrefix_UsingGigaPrefix_ReturnsGUTQ()
 		{
-			var newUnit = Unit<UnitTestsQuantity>.Create("G");
+			var newUnit = new Unit<UnitTestsQuantity>(UnitPrefix.Giga);
 			Assert.AreEqual("GUTQ", newUnit.Symbol);
 			AmountAssert.AreEqual(AmountConverter.ToAmountType(1.0e9), 
 			                      newUnit.AmountToStandardUnitConverter(AmountConverter.ToAmountType(1.0)));

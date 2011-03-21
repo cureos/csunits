@@ -58,11 +58,21 @@ namespace Cureos.Measures
     	
 		#region EXTENSION METHODS
 		
+		/// <summary>
+		/// Gets printed symbol associated with unit prefix
+		/// </summary>
+		/// <param name="iPrefix">Requested unit prefix</param>
+		/// <returns>Unit prefix symbol</returns>
 		public static string GetSymbol(this UnitPrefix iPrefix)
 		{
 			return smkPrefixSymbolsMap[iPrefix];
 		}
 		
+		/// <summary>
+		/// Gets scaling factor associated with unit prefix
+		/// </summary>
+		/// <param name="iPrefix">Requested unit prefix</param>
+		/// <returns>Unit prefix scaling factor</returns>
 		public static AmountType GetFactor(this UnitPrefix iPrefix)
 		{
 #if DOUBLE

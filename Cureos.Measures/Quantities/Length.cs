@@ -16,7 +16,8 @@ namespace Cureos.Measures.Quantities
 		public static readonly Unit<Length> Meter = new Unit<Length>("m");
 		public static readonly Unit<Length> KiloMeter = new Unit<Length>("km", Factors.Kilo);
 		public static readonly Unit<Length> DeciMeter = new Unit<Length>("dm", Factors.Deci);
-		public static readonly Unit<Length> CentiMeter = new Unit<Length>("cm", Factors.Centi);
+		public static readonly Unit<Length> CentiMeter = new Unit<Length>(UnitPrefix.Centi);
+//		public static readonly Unit<Length> CentiMeter = new Unit<Length>("cm", Factors.Centi);
 		public static readonly Unit<Length> MilliMeter = new Unit<Length>("mm", Factors.Milli);
 		public static readonly Unit<Length> MicroMeter = new Unit<Length>("µm", Factors.Micro);
 		public static readonly Unit<Length> NanoMeter = new Unit<Length>("nm", Factors.Nano);
