@@ -18,11 +18,11 @@ namespace Cureos.Measures.Quantities
             (QuantityDimension.Length ^ 2) * QuantityDimension.Mass * (QuantityDimension.Time ^ -2);
 
         public static readonly Unit<Energy> Joule = new Unit<Energy>("J");
-        public static readonly Unit<Energy> KiloJoule = new Unit<Energy>("kJ", Factors.Kilo);
-        public static readonly Unit<Energy> MegaJoule = new Unit<Energy>("MJ", Factors.Mega);
-        public static readonly Unit<Energy> GigaJoule = new Unit<Energy>("GJ", Factors.Giga);
-        public static readonly Unit<Energy> MilliJoule = new Unit<Energy>("mJ", Factors.Milli);
-        public static readonly Unit<Energy> MicroJoule = new Unit<Energy>("µJ", Factors.Micro);
+        public static readonly Unit<Energy> KiloJoule = new Unit<Energy>(UnitPrefix.Kilo);
+        public static readonly Unit<Energy> MegaJoule = new Unit<Energy>(UnitPrefix.Mega);
+        public static readonly Unit<Energy> GigaJoule = new Unit<Energy>(UnitPrefix.Giga);
+        public static readonly Unit<Energy> MilliJoule = new Unit<Energy>(UnitPrefix.Milli);
+        public static readonly Unit<Energy> MicroJoule = new Unit<Energy>(UnitPrefix.Micro);
         public static readonly Unit<Energy> KiloWattHour = new Unit<Energy>("kWh", Factors.Kilo * Factors.SecondsPerHour);
         public static readonly Unit<Energy> MegaWattHour = new Unit<Energy>("MWh", Factors.Mega * Factors.SecondsPerHour);
         public static readonly Unit<Energy> GigaWattHour = new Unit<Energy>("GWh", Factors.Giga * Factors.SecondsPerHour);

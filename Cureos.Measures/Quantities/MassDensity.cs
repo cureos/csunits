@@ -15,9 +15,9 @@ namespace Cureos.Measures.Quantities
 
         private static readonly QuantityDimension _dimension = QuantityDimension.Mass * (QuantityDimension.Length ^ -3);
 
-        public static readonly Unit<MassDensity> KiloGramPerCubicMeter = new Unit<MassDensity>("kg/m³");
-        public static readonly Unit<MassDensity> KiloGramPerLiter = new Unit<MassDensity>("kg/l", Factors.Kilo);
-        public static readonly Unit<MassDensity> GramPerCubicCentiMeter = new Unit<MassDensity>("g/cm³", Factors.Kilo);
+        public static readonly Unit<MassDensity> KiloGramPerCubicMeter = new Unit<MassDensity>("kg m\u207b³");
+        public static readonly Unit<MassDensity> KiloGramPerLiter = new Unit<MassDensity>("kg l\u207b¹", Factors.Kilo);
+        public static readonly Unit<MassDensity> GramPerCubicCentiMeter = new Unit<MassDensity>("g cm\u207b³", Factors.Kilo);
 
         #endregion
         #region Implementation of IQuantity<MassDensity>

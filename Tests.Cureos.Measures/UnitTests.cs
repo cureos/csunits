@@ -13,6 +13,8 @@ namespace Tests.Cureos.Measures
 	[TestFixture]
 	public class UnitTests
 	{
+		private Unit<UnitTestsQuantity> _instance;
+
 		private struct UnitTestsQuantity : IQuantity<UnitTestsQuantity>
 		{
 			public QuantityDimension Dimension
@@ -25,14 +27,41 @@ namespace Tests.Cureos.Measures
 				get { return new Unit<UnitTestsQuantity>("UTQ"); }
 			}
 		}
-			
-		[Test]
-		public void CreateFromPrefix_UsingGigaPrefix_ReturnsGUTQ()
+
+		#region Setup and TearDown
+
+		[SetUp]
+		public void Setup()
 		{
-			var newUnit = new Unit<UnitTestsQuantity>(UnitPrefix.Giga);
-			Assert.AreEqual("GUTQ", newUnit.Symbol);
-			AmountAssert.AreEqual(AmountConverter.ToAmountType(1.0e9), 
-			                      newUnit.AmountToStandardUnitConverter(AmountConverter.ToAmountType(1.0)));
+			_instance = new Unit<UnitTestsQuantity>(UnitPrefix.Giga);
 		}
+
+		[TearDown]
+		public void TearDown()
+		{
+			_instance = null;
+		}
+
+		#endregion
+
+		#region Unit tests
+
+		[Test]
+		public void SymbolGetter_InstanceUnit_ReturnsGUTQ()
+		{
+			var expected = "GUTQ";
+			var actual = _instance.Symbol;
+			Assert.AreEqual(expected, actual);
+		}
+
+		[Test]
+		public void AmountToStandardUnitConverter_InstanceUnit_ReturnsGigaTimesOriginalValue()
+		{
+			var expected = AmountConverter.ToAmountType(1.0e9);
+			var actual = _instance.AmountToStandardUnitConverter(AmountConverter.ToAmountType(1.0));
+			AmountAssert.AreEqual(expected, actual);
+		}
+
+		#endregion
 	}
 }

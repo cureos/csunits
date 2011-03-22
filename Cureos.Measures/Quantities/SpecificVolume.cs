@@ -15,7 +15,7 @@ namespace Cureos.Measures.Quantities
 		
 		private static readonly QuantityDimension _dimension = new QuantityDimension(3, -1, 0, 0, 0, 0, 0);
 
-		public static readonly Unit<SpecificVolume> CubicMeterPerKiloGram = new Unit<SpecificVolume>("m³/kg");
+		public static readonly Unit<SpecificVolume> CubicMeterPerKiloGram = new Unit<SpecificVolume>("m³ kg\u207b¹");
 
 		#endregion
 

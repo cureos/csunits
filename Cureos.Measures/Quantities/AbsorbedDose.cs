@@ -16,7 +16,7 @@ namespace Cureos.Measures.Quantities
         private static readonly QuantityDimension _dimension = (QuantityDimension.Length ^ 2) * (QuantityDimension.Time ^ 2);
 
         public static readonly Unit<AbsorbedDose> Gray = new Unit<AbsorbedDose>("Gy");
-        public static readonly Unit<AbsorbedDose> CentiGray = new Unit<AbsorbedDose>("cGy", Factors.Centi);
+        public static readonly Unit<AbsorbedDose> CentiGray = new Unit<AbsorbedDose>(UnitPrefix.Centi);
 
         #endregion
 

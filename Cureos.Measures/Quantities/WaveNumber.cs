@@ -15,8 +15,8 @@ namespace Cureos.Measures.Quantities
 		
 		private static readonly QuantityDimension _dimension = new QuantityDimension(-1, 0, 0, 0, 0, 0, 0);
 
-		public static readonly Unit<WaveNumber> ReciprocalMeter = new Unit<WaveNumber>("1/m");
-		public static readonly Unit<WaveNumber> ReciprocalCentiMeter = new Unit<WaveNumber>("1/cm", Factors.Hecto);
+		public static readonly Unit<WaveNumber> ReciprocalMeter = new Unit<WaveNumber>("m\u207b¹");
+		public static readonly Unit<WaveNumber> ReciprocalCentiMeter = new Unit<WaveNumber>("cm\u207b¹", Factors.Hecto);
 
 		#endregion
 

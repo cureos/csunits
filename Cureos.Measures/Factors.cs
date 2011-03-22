@@ -5,16 +5,6 @@
 // http://www.eclipse.org/legal/epl-v10.html
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-
-#if SINGLE
-using AmountType = System.Single;
-#elif DECIMAL
-using AmountType = System.Decimal;
-#elif DOUBLE
-using AmountType = System.Double;
-#endif
 
 namespace Cureos.Measures
 {
@@ -24,43 +14,6 @@ namespace Cureos.Measures
     /// </summary>
     public static class Factors
     {
-    	#region STATIC MEMBER VARIABLES
-
-    	private static readonly Dictionary<string, AmountType> smkPrefixSymbolsMap;
-    	
-    	#endregion
-
-    	#region CONSTRUCTORS
-    	
-    	static Factors()
-    	{
-    		smkPrefixSymbolsMap = new Dictionary<string, AmountType>()
-    		{
-    			{"Y",Yotta},
-    			{"Z", Zetta},
-    			{"E", Exa},
-    			{"P", Peta},
-    			{"T", Tera},
-    			{"G", Giga},
-    			{"M", Mega},
-    			{"k", Kilo},
-    			{"h", Hecto},
-    			{"da", Deka},
-    			{"d", Deci},
-    			{"c", Centi},
-    			{"m", Milli},
-    			{"µ", Micro},
-    			{"n", Nano},
-    			{"p", Pico},
-    			{"f", Femto},
-    			{"a", Atto},
-    			{"z", Zepto},
-    			{"y", Yocto}
-    		};
-    	}
-    	
-    	#endregion
-    	
 #if DOUBLE
         public const double Yotta = 1.0e24;
         public const double Zetta = 1.0e21;
@@ -95,7 +48,7 @@ namespace Cureos.Measures
         public const double MetersPerMile = MetersPerYard / 1760.0;
         public const double MetersPerNauticalMile = 1.0 / 1852.0;
         public const double SquareMetersPerBarn = 1.0e-28;
-        public static readonly double DegreesPerRadian = 180.0 / Math.PI;
+        public static readonly double RadiansPerDegree = Math.PI / 180.0;
 
         public static double Square(double a) { return a * a; }
         public static double Cube(double a) { return a * a * a; }
@@ -133,7 +86,7 @@ namespace Cureos.Measures
         public const float MetersPerMile = MetersPerYard / 1760.0f;
         public const float MetersPerNauticalMile = 1.0f / 1852.0f;
         public const float SquareMetersPerBarn = 1.0e-28f;
-        public static readonly float DegreesPerRadian = 180.0f / (float)Math.PI;
+        public static readonly float RadiansPerDegree = (float)Math.PI / 180.0f;
 
         public static float Square(float a) { return a * a; }
         public static float Cube(float a) { return a * a * a; }
@@ -171,19 +124,10 @@ namespace Cureos.Measures
         public const decimal MetersPerMile = MetersPerYard / 1760.0m;
         public const decimal MetersPerNauticalMile = 1.0m / 1852.0m;
         public const decimal SquareMetersPerBarn = 1.0e-28m;
-        public static readonly decimal DegreesPerRadian = 180.0m / (decimal)Math.PI;
+        public static readonly decimal RadiansPerDegree = (decimal)Math.PI / 180.0m;
 
         public static decimal Square(decimal a) { return a * a; }
         public static decimal Cube(decimal a) { return a * a * a; }
 #endif
-
-		#region METHODS
-
-		internal static AmountType GetPrefixFactor(string iPrefixSymbol)
-		{
-			return smkPrefixSymbolsMap[iPrefixSymbol];
-		}
-		
-		#endregion
     }
 }

@@ -16,9 +16,9 @@ namespace Cureos.Measures.Quantities
         private static readonly QuantityDimension _dimension = QuantityDimension.Time ^ -1;
 
         public static readonly Unit<Frequency> Hertz = new Unit<Frequency>("Hz");
-        public static readonly Unit<Frequency> KiloHertz = new Unit<Frequency>("kHz", Factors.Kilo);
-        public static readonly Unit<Frequency> MegaHertz = new Unit<Frequency>("MHz", Factors.Mega);
-        public static readonly Unit<Frequency> GigaHertz = new Unit<Frequency>("GHz", Factors.Giga);
+        public static readonly Unit<Frequency> KiloHertz = new Unit<Frequency>(UnitPrefix.Kilo);
+        public static readonly Unit<Frequency> MegaHertz = new Unit<Frequency>(UnitPrefix.Mega);
+        public static readonly Unit<Frequency> GigaHertz = new Unit<Frequency>(UnitPrefix.Giga);
 
         #endregion
         

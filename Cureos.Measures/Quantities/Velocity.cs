@@ -17,10 +17,10 @@ namespace Cureos.Measures.Quantities
 
         private static readonly QuantityDimension _dimension = QuantityDimension.Length / QuantityDimension.Time;
 
-        public static readonly Unit<Velocity> MeterPerSecond = new Unit<Velocity>("m/s");
-        public static readonly Unit<Velocity> CentiMeterPerSecond = new Unit<Velocity>("cm/s", Factors.Centi);
-        public static readonly Unit<Velocity> MilliMeterPerSecond = new Unit<Velocity>("mm/s", Factors.Milli);
-        public static readonly Unit<Velocity> KiloMeterPerHour = new Unit<Velocity>("km/h", Factors.Kilo / Factors.SecondsPerHour);
+        public static readonly Unit<Velocity> MeterPerSecond = new Unit<Velocity>("m s\u207b¹");
+        public static readonly Unit<Velocity> CentiMeterPerSecond = new Unit<Velocity>(UnitPrefix.Centi);
+        public static readonly Unit<Velocity> MilliMeterPerSecond = new Unit<Velocity>(UnitPrefix.Milli);
+        public static readonly Unit<Velocity> KiloMeterPerHour = new Unit<Velocity>("km h\u207b¹", Factors.Kilo / Factors.SecondsPerHour);
 
         #endregion
         

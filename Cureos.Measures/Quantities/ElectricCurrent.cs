@@ -16,8 +16,8 @@ namespace Cureos.Measures.Quantities
         #region FIELDS
 
         public static readonly Unit<ElectricCurrent> Ampere = new Unit<ElectricCurrent>("A");
-        public static readonly Unit<ElectricCurrent> MilliAmpere = new Unit<ElectricCurrent>("mA", Factors.Milli);
-        public static readonly Unit<ElectricCurrent> MicroAmpere = new Unit<ElectricCurrent>("µA", Factors.Micro);
+        public static readonly Unit<ElectricCurrent> MilliAmpere = new Unit<ElectricCurrent>(UnitPrefix.Milli);
+        public static readonly Unit<ElectricCurrent> MicroAmpere = new Unit<ElectricCurrent>(UnitPrefix.Micro);
 
         #endregion
         #region Implementation of IQuantity<ElectricCurrent>

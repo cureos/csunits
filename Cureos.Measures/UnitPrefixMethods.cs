@@ -19,43 +19,43 @@ namespace Cureos.Measures
 {
 	public static class UnitPrefixMethods
 	{
-    	#region STATIC MEMBER VARIABLES
+		#region STATIC MEMBER VARIABLES
 
-    	private static readonly Dictionary<UnitPrefix, string> smkPrefixSymbolsMap;
-    	
-    	#endregion
+		private static readonly Dictionary<UnitPrefix, string> smkPrefixSymbolsMap;
+		
+		#endregion
 
-    	#region CONSTRUCTORS
-    	
-    	static UnitPrefixMethods()
-    	{
-    		smkPrefixSymbolsMap = new Dictionary<UnitPrefix, string>()
-    		{
-    			{UnitPrefix.Yotta, "Y"},
-    			{UnitPrefix.Zetta, "Z"},
-    			{UnitPrefix.Exa, "E"},
-    			{UnitPrefix.Peta, "P"},
-    			{UnitPrefix.Tera, "T"},
-    			{UnitPrefix.Giga, "G"},
-    			{UnitPrefix.Mega, "M"},
-    			{UnitPrefix.Kilo, "k"},
-    			{UnitPrefix.Hecto, "h"},
-    			{UnitPrefix.Deka, "da"},
-    			{UnitPrefix.Deci, "d"},
-    			{UnitPrefix.Centi, "c"},
-    			{UnitPrefix.Milli, "m"},
-    			{UnitPrefix.Micro, "µ"},
-    			{UnitPrefix.Nano, "n"},
-    			{UnitPrefix.Pico, "p"},
-    			{UnitPrefix.Femto, "f"},
-    			{UnitPrefix.Atto, "a"},
-    			{UnitPrefix.Zepto, "z"},
-    			{UnitPrefix.Yocto, "y"}
-    		};
-    	}
-    	
-    	#endregion
-    	
+		#region CONSTRUCTORS
+
+		static UnitPrefixMethods()
+		{
+			smkPrefixSymbolsMap = new Dictionary<UnitPrefix, string>
+									  {
+										  { UnitPrefix.Yotta, "Y" },
+										  { UnitPrefix.Zetta, "Z" },
+										  { UnitPrefix.Exa, "E" },
+										  { UnitPrefix.Peta, "P" },
+										  { UnitPrefix.Tera, "T" },
+										  { UnitPrefix.Giga, "G" },
+										  { UnitPrefix.Mega, "M" },
+										  { UnitPrefix.Kilo, "k" },
+										  { UnitPrefix.Hecto, "h" },
+										  { UnitPrefix.Deka, "da" },
+										  { UnitPrefix.Deci, "d" },
+										  { UnitPrefix.Centi, "c" },
+										  { UnitPrefix.Milli, "m" },
+										  { UnitPrefix.Micro, "µ" },
+										  { UnitPrefix.Nano, "n" },
+										  { UnitPrefix.Pico, "p" },
+										  { UnitPrefix.Femto, "f" },
+										  { UnitPrefix.Atto, "a" },
+										  { UnitPrefix.Zepto, "z" },
+										  { UnitPrefix.Yocto, "y" }
+									  };
+		}
+
+		#endregion
+		
 		#region EXTENSION METHODS
 		
 		/// <summary>
