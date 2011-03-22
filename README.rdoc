@@ -7,7 +7,7 @@ Made available under Eclipse Public License, version 1.0.
 
 == Introduction
 
-Developed with Visual Studio 2010, using .NET Framework 3.5. Can also be used by Mono, at least versions 2.8 and later.
+Developed with Visual Studio 2010, using .NET Frameworks 3.5 and 4.0. Corresponding Silverlight class library included in solution. Can also be used by Mono, at least versions 2.8 and later.
 
 Measure<Q> and StandardMeasure<Q> are the main "work-horses" of the library. StandardMeasure<Q> is always represented in the reference unit of the associated quantity. If a different unit is specified in instantiation of StandardMeasure<Q>, the measured amount is automatically converted to the equivalent reference unit amount. On the other hand, the amount and unit used in instantiation of Measure<Q> are internally maintained.
 
@@ -89,7 +89,7 @@ To extend the library with additional quantities and associated units, the follo
    {
      ...
      public static readonly Unit<Energy> Joule = new Unit<Energy>("J");
-     public static readonly Unit<Energy> KiloJoule = new Unit<Energy>("kJ", Factors.Kilo);
+     public static readonly Unit<Energy> KiloJoule = new Unit<Energy>(UnitPrefix.Kilo);
    }
 
 * Implement the properties of the IQuantity interface, returning the defined dimensions and standard unit, respectively, of the new quantity:
@@ -104,4 +104,4 @@ To extend the library with additional quantities and associated units, the follo
 
 == Revision
 
-Last updated on March 10, 2011 by Anders Gustafsson, anders[at]cureos[dot]com.
+Last updated on March 22, 2011 by Anders Gustafsson, anders[at]cureos[dot]com.
