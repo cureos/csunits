@@ -12,8 +12,9 @@ namespace Cureos.Measures.Quantities
 	public struct CurrentDensity : IQuantity<CurrentDensity>
 	{
 		#region FIELDS
-		
-		private static readonly QuantityDimension _dimension = new QuantityDimension(-2, 0, 0, 1, 0, 0, 0);
+
+	    private static readonly QuantityDimension _dimension = (QuantityDimension.Length ^ -2) *
+	                                                           QuantityDimension.ElectricCurrent;
 
 		public static readonly Unit<CurrentDensity> AmperePerSquareMeter = new Unit<CurrentDensity>("A/m²");
 
@@ -29,7 +30,15 @@ namespace Cureos.Measures.Quantities
 			get { return _dimension; }
 		}
 
-		/// <summary>
+	    /// <summary>
+	    /// Gets the standard unit associated with the quantity
+	    /// </summary>
+	    IUnit IQuantity.StandardUnit
+	    {
+	        get { return StandardUnit; }
+	    }
+
+	    /// <summary>
 		/// Gets the standard unit associated with the quantity
 		/// </summary>
 		public IUnit<CurrentDensity> StandardUnit

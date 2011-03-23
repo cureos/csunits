@@ -12,8 +12,11 @@ namespace Cureos.Measures.Quantities
 	public struct Capacitance : IQuantity<Capacitance>
 	{
 		#region FIELDS
-		
-		private static readonly QuantityDimension _dimension = new QuantityDimension(-2, -1, 4, 2, 0, 0, 0);
+
+	    private static readonly QuantityDimension _dimension = (QuantityDimension.Length ^ -2) *
+	                                                           (QuantityDimension.Mass ^ -1) *
+	                                                           (QuantityDimension.Time ^ 4) *
+	                                                           (QuantityDimension.ElectricCurrent ^ 2);
 
 		public static readonly Unit<Capacitance> Farad = new Unit<Capacitance>("F");
 
@@ -29,7 +32,15 @@ namespace Cureos.Measures.Quantities
 			get { return _dimension; }
 		}
 
-		/// <summary>
+	    /// <summary>
+	    /// Gets the standard unit associated with the quantity
+	    /// </summary>
+	    IUnit IQuantity.StandardUnit
+	    {
+	        get { return StandardUnit; }
+	    }
+
+	    /// <summary>
 		/// Gets the standard unit associated with the quantity
 		/// </summary>
 		public IUnit<Capacitance> StandardUnit

@@ -66,7 +66,7 @@ Quantities are identified through their dimension in terms of SI Base Units. For
 
 To extend the library with additional quantities and associated units, the following steps should be taken in project Cureos.Measures:
 
-* In the Quantities sub-folder, add a new member-less struct implementing the IQuantity interface:
+* In the Quantities sub-folder, add a new member-less struct implementing the IQuantity<Q> interface:
 
    namespace Cureos.Measures.Quantities
    {
@@ -92,16 +92,20 @@ To extend the library with additional quantities and associated units, the follo
      public static readonly Unit<Energy> KiloJoule = new Unit<Energy>(UnitPrefix.Kilo);
    }
 
-* Implement the properties of the IQuantity interface, returning the defined dimensions and standard unit, respectively, of the new quantity:
+* Implement the properties of the IQuantity<Q> interface, returning the defined dimensions and standard unit, respectively, of the new quantity:
 
    public struct Energy : IQuantity<Energy>
    {
      ...
      public QuantityDimension Dimension { get { return _dimension; } }
      public IUnit<Energy> StandardUnit { get { return Joule; } }
+	 IUnit IQuantity.StandardUnit { get { return StandardUnit; } }
    }
+
+
+Dimensionless quantities and composite quantities consisting of dimensionless quantities require additional composition. These requirements will hopefully be described in detail on the wiki pages.
 
 
 == Revision
 
-Last updated on March 22, 2011 by Anders Gustafsson, anders[at]cureos[dot]com.
+Last updated on March 23, 2011 by Anders Gustafsson, anders[at]cureos[dot]com.

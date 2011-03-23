@@ -29,7 +29,15 @@ namespace Cureos.Measures.Quantities
 			get { return _dimension; }
 		}
 
-		/// <summary>
+	    /// <summary>
+	    /// Gets the standard unit associated with the quantity
+	    /// </summary>
+	    IUnit IQuantity.StandardUnit
+	    {
+	        get { return StandardUnit; }
+	    }
+
+	    /// <summary>
 		/// Gets the standard unit associated with the quantity
 		/// </summary>
 		public IUnit<SpecificVolume> StandardUnit

@@ -12,8 +12,10 @@ namespace Cureos.Measures.Quantities
 	public struct ElectricResistance : IQuantity<ElectricResistance>
 	{
 		#region FIELDS
-		
-		private static readonly QuantityDimension _dimension = new QuantityDimension(2, 1, -3, -2, 0, 0, 0);
+
+	    private static readonly QuantityDimension _dimension =
+	        (QuantityDimension.Length ^ 2) * QuantityDimension.Mass * (QuantityDimension.Time ^ -3) *
+	        (QuantityDimension.ElectricCurrent ^ -2);
 
 		public static readonly Unit<ElectricResistance> Ohm = new Unit<ElectricResistance>("Ω");
 
@@ -29,7 +31,15 @@ namespace Cureos.Measures.Quantities
 			get { return _dimension; }
 		}
 
-		/// <summary>
+	    /// <summary>
+	    /// Gets the standard unit associated with the quantity
+	    /// </summary>
+	    IUnit IQuantity.StandardUnit
+	    {
+	        get { return StandardUnit; }
+	    }
+
+	    /// <summary>
 		/// Gets the standard unit associated with the quantity
 		/// </summary>
 		public IUnit<ElectricResistance> StandardUnit

@@ -12,8 +12,9 @@ namespace Cureos.Measures.Quantities
 	public struct AmountConcentration : IQuantity<AmountConcentration>
 	{
 		#region FIELDS
-		
-		private static readonly QuantityDimension _dimension = new QuantityDimension(-3, 0, 0, 0, 0, 0, 1);
+
+	    private static readonly QuantityDimension _dimension = (QuantityDimension.Length ^ -3) *
+	                                                           QuantityDimension.AmountOfSubstance;
 
 		public static readonly Unit<AmountConcentration> MolePerCubicMeter = new Unit<AmountConcentration>("mol/m³");
 
@@ -29,7 +30,15 @@ namespace Cureos.Measures.Quantities
 			get { return _dimension; }
 		}
 
-		/// <summary>
+	    /// <summary>
+	    /// Gets the standard unit associated with the quantity
+	    /// </summary>
+	    IUnit IQuantity.StandardUnit
+	    {
+	        get { return StandardUnit; }
+	    }
+
+	    /// <summary>
 		/// Gets the standard unit associated with the quantity
 		/// </summary>
 		public IUnit<AmountConcentration> StandardUnit

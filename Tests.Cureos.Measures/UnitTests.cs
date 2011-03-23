@@ -21,8 +21,13 @@ namespace Tests.Cureos.Measures
 			{
 				get { return new QuantityDimension(DimensionlessDifferentiators.Steradian); }
 			}
-			
-			public IUnit<UnitTestsQuantity> StandardUnit
+
+		    IUnit IQuantity.StandardUnit
+		    {
+		        get { return StandardUnit; }
+		    }
+
+		    public IUnit<UnitTestsQuantity> StandardUnit
 			{
 				get { return new Unit<UnitTestsQuantity>("UTQ"); }
 			}

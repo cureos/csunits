@@ -12,8 +12,10 @@ namespace Cureos.Measures.Quantities
 	public struct Illuminance : IQuantity<Illuminance>
 	{
 		#region FIELDS
-		
-		private static readonly QuantityDimension _dimension = new QuantityDimension(DimensionlessDifferentiators.Steradian, -2, 0, 0, 0, 0, 1, 0);
+
+	    private static readonly QuantityDimension _dimension =
+	        new QuantityDimension(DimensionlessDifferentiators.Steradian) *
+	        (QuantityDimension.Length ^ -2) * QuantityDimension.LuminousIntensity;
 
 		public static readonly Unit<Illuminance> Lux = new Unit<Illuminance>("lx");
 
@@ -29,7 +31,15 @@ namespace Cureos.Measures.Quantities
 			get { return _dimension; }
 		}
 
-		/// <summary>
+	    /// <summary>
+	    /// Gets the standard unit associated with the quantity
+	    /// </summary>
+	    IUnit IQuantity.StandardUnit
+	    {
+	        get { return StandardUnit; }
+	    }
+
+	    /// <summary>
 		/// Gets the standard unit associated with the quantity
 		/// </summary>
 		public IUnit<Illuminance> StandardUnit

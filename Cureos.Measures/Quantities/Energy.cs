@@ -48,6 +48,14 @@ namespace Cureos.Measures.Quantities
         /// <summary>
         /// Gets the standard unit associated with the quantity
         /// </summary>
+        IUnit IQuantity.StandardUnit
+        {
+            get { return StandardUnit; }
+        }
+
+        /// <summary>
+        /// Gets the standard unit associated with the quantity
+        /// </summary>
         public IUnit<Energy> StandardUnit
         {
             get { return Joule; }

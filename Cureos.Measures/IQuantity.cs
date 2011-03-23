@@ -15,6 +15,11 @@ namespace Cureos.Measures
 		/// Gets the physical dimension of the quantity in terms of SI units
 		/// </summary>
 		QuantityDimension Dimension { get; }
+
+		/// <summary>
+		/// Gets the standard unit associated with the quantity
+		/// </summary>
+		IUnit StandardUnit { get; }
 	}
 
 	/// <summary>
@@ -26,7 +31,7 @@ namespace Cureos.Measures
 		/// <summary>
 		/// Gets the standard unit associated with the quantity
 		/// </summary>
-		IUnit<Q> StandardUnit { get; }
+		new IUnit<Q> StandardUnit { get; }
 	}
 }
 

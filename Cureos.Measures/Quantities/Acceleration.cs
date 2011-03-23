@@ -4,8 +4,6 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
-using System;
-
 namespace Cureos.Measures.Quantities
 {
     /// <summary>
@@ -31,6 +29,14 @@ namespace Cureos.Measures.Quantities
         public QuantityDimension Dimension
         {
             get { return _dimension; }
+        }
+
+        /// <summary>
+        /// Gets the standard unit associated with the quantity
+        /// </summary>
+        IUnit IQuantity.StandardUnit
+        {
+            get { return StandardUnit; }
         }
 
         /// <summary>
