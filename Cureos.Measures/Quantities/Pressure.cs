@@ -12,8 +12,9 @@ namespace Cureos.Measures.Quantities
 	public struct Pressure : IQuantity<Pressure>
 	{
 		#region FIELDS
-		
-		private static readonly QuantityDimension _dimension = new QuantityDimension(-1, 1, -2, 0, 0, 0, 0);
+
+	    private static readonly QuantityDimension _dimension = (QuantityDimension.Length ^ -1) * QuantityDimension.Mass *
+	                                                           (QuantityDimension.Time ^ -2);
 
 		public static readonly Unit<Pressure> Pascal = new Unit<Pressure>("Pa");
 

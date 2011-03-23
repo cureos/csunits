@@ -12,10 +12,11 @@ namespace Cureos.Measures.Quantities
 	public struct Luminance : IQuantity<Luminance>
 	{
 		#region FIELDS
-		
-		private static readonly QuantityDimension _dimension = new QuantityDimension(-2, 0, 0, 0, 0, 1, 0);
 
-		public static readonly Unit<Luminance> CandelaPerSquareMeter = new Unit<Luminance>("Cd/m²");
+	    private static readonly QuantityDimension _dimension = (QuantityDimension.Length ^ -2) *
+	                                                           QuantityDimension.LuminousIntensity;
+
+		public static readonly Unit<Luminance> CandelaPerSquareMeter = new Unit<Luminance>("cd/m²");
 
 		#endregion
 

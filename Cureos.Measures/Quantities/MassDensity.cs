@@ -20,6 +20,7 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<MassDensity> GramPerCubicCentiMeter = new Unit<MassDensity>("g cm\u207b³", Factors.Kilo);
 
         #endregion
+
         #region Implementation of IQuantity<MassDensity>
 
         /// <summary>

@@ -12,8 +12,10 @@ namespace Cureos.Measures.Quantities
 	public struct MagneticFlux : IQuantity<MagneticFlux>
 	{
 		#region FIELDS
-		
-		private static readonly QuantityDimension _dimension = new QuantityDimension(2, 1, -2, -1, 0, 0, 0);
+
+	    private static readonly QuantityDimension _dimension = (QuantityDimension.Length ^ 2) * QuantityDimension.Mass *
+	                                                           (QuantityDimension.Time ^ -2) *
+	                                                           (QuantityDimension.ElectricCurrent ^ -1);
 
 		public static readonly Unit<MagneticFlux> Weber = new Unit<MagneticFlux>("Wb");
 

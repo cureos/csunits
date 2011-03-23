@@ -12,8 +12,8 @@ namespace Cureos.Measures.Quantities
 	public struct MagneticFieldStrength : IQuantity<MagneticFieldStrength>
 	{
 		#region FIELDS
-		
-		private static readonly QuantityDimension _dimension = new QuantityDimension(-1, 0, 0, 1, 0, 0, 0);
+
+	    private static readonly QuantityDimension _dimension = QuantityDimension.ElectricCurrent / QuantityDimension.Length;
 
 		public static readonly Unit<MagneticFieldStrength> AmperePerMeter = new Unit<MagneticFieldStrength>("A/m");
 

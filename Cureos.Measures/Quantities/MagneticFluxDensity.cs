@@ -12,8 +12,10 @@ namespace Cureos.Measures.Quantities
 	public struct MagneticFluxDensity : IQuantity<MagneticFluxDensity>
 	{
 		#region FIELDS
-		
-		private static readonly QuantityDimension _dimension = new QuantityDimension(0, 1, -2, -1, 0, 0, 0);
+
+	    private static readonly QuantityDimension _dimension = QuantityDimension.Mass *
+	                                                           (QuantityDimension.Time ^ -2) *
+	                                                           (QuantityDimension.ElectricCurrent ^ -1);
 
 		public static readonly Unit<MagneticFluxDensity> Tesla = new Unit<MagneticFluxDensity>("T");
 
