@@ -12,8 +12,10 @@ namespace Cureos.Measures.Quantities
 	public struct ElectricPotential : IQuantity<ElectricPotential>
 	{
 		#region FIELDS
-		
-		private static readonly QuantityDimension _dimension = new QuantityDimension(2, 1, -3, -1, 0, 0, 0);
+
+	    private static readonly QuantityDimension _dimension = (QuantityDimension.Length ^ 2) *
+	                                                           QuantityDimension.Mass * (QuantityDimension.Time ^ -3) *
+	                                                           (QuantityDimension.ElectricCurrent ^ -1);
 
 		public static readonly Unit<ElectricPotential> Volt = new Unit<ElectricPotential>("V");
 

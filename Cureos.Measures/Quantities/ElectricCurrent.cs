@@ -20,6 +20,7 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<ElectricCurrent> MicroAmpere = new Unit<ElectricCurrent>(UnitPrefix.Micro);
 
         #endregion
+
         #region Implementation of IQuantity<ElectricCurrent>
 
         /// <summary>

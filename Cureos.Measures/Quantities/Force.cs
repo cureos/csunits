@@ -13,7 +13,8 @@ namespace Cureos.Measures.Quantities
 	{
 		#region FIELDS
 		
-		private static readonly QuantityDimension _dimension = new QuantityDimension(1, 1, -2, 0, 0, 0, 0);
+		private static readonly QuantityDimension _dimension = 
+			QuantityDimension.Length * QuantityDimension.Mass * (QuantityDimension.Time ^ -2);
 
 		public static readonly Unit<Force> Newton = new Unit<Force>("N");
 		public static readonly Unit<Force> KiloNewton = new Unit<Force>(UnitPrefix.Kilo);
@@ -30,15 +31,15 @@ namespace Cureos.Measures.Quantities
 			get { return _dimension; }
 		}
 
-	    /// <summary>
-	    /// Gets the standard unit associated with the quantity
-	    /// </summary>
-	    IUnit IQuantity.StandardUnit
-	    {
-	        get { return StandardUnit; }
-	    }
+		/// <summary>
+		/// Gets the standard unit associated with the quantity
+		/// </summary>
+		IUnit IQuantity.StandardUnit
+		{
+			get { return StandardUnit; }
+		}
 
-	    /// <summary>
+		/// <summary>
 		/// Gets the standard unit associated with the quantity
 		/// </summary>
 		public IUnit<Force> StandardUnit

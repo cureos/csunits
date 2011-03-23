@@ -12,8 +12,10 @@ namespace Cureos.Measures.Quantities
 	public struct ElectricConductance : IQuantity<ElectricConductance>
 	{
 		#region FIELDS
-		
-		private static readonly QuantityDimension _dimension = new QuantityDimension(-2, -1, 3, 2, 0, 0, 0);
+
+	    private static readonly QuantityDimension _dimension = (QuantityDimension.Length ^ -2) *
+	                                                           (QuantityDimension.Mass ^ -1) * (QuantityDimension.Time ^ 3) *
+	                                                           (QuantityDimension.ElectricCurrent ^ 2);
 
 		public static readonly Unit<ElectricConductance> Siemens = new Unit<ElectricConductance>("S");
 
