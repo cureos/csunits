@@ -54,6 +54,7 @@
     <Compile Include="Quantities\CatalyticActivity.cs" />
     <Compile Include="Quantities\CurrentDensity.cs" />
     <Compile Include="Quantities\DoseEquivalent.cs" />
+    <Compile Include="Quantities\DynamicViscosity.cs" />
     <Compile Include="Quantities\ElectricCharge.cs" />
     <Compile Include="Quantities\ElectricConductance.cs" />
     <Compile Include="Quantities\ElectricCurrent.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Quantities\MagneticFlux.cs" />
     <Compile Include="Quantities\MagneticFluxDensity.cs" />
     <Compile Include="Quantities\MassDensity.cs" />
+    <Compile Include="Quantities\MomentOfForce.cs" />
     <Compile Include="Quantities\PlaneAngle.cs" />
     <Compile Include="Quantities\Power.cs" />
     <Compile Include="Quantities\Pressure.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="Quantities\SolidAngle.cs" />
     <Compile Include="Quantities\SpecificVolume.cs" />
     <Compile Include="Quantities\SurfaceDensity.cs" />
+    <Compile Include="Quantities\SurfaceTension.cs" />
     <Compile Include="Quantities\Velocity.cs" />
     <Compile Include="ArithmeticOperations.cs" />
     <Compile Include="Quantities\WaveNumber.cs" />

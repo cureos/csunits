@@ -12,8 +12,9 @@ namespace Cureos.Measures.Quantities
 	public struct SpecificVolume : IQuantity<SpecificVolume>
 	{
 		#region FIELDS
-		
-		private static readonly QuantityDimension _dimension = new QuantityDimension(3, -1, 0, 0, 0, 0, 0);
+
+	    private static readonly QuantityDimension _dimension = (QuantityDimension.Length ^ 3) *
+	                                                           (QuantityDimension.Mass ^ -1);
 
 		public static readonly Unit<SpecificVolume> CubicMeterPerKiloGram = new Unit<SpecificVolume>("m³ kg\u207b¹");
 

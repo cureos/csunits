@@ -12,8 +12,8 @@ namespace Cureos.Measures.Quantities
 	public struct WaveNumber : IQuantity<WaveNumber>
 	{
 		#region FIELDS
-		
-		private static readonly QuantityDimension _dimension = new QuantityDimension(-1, 0, 0, 0, 0, 0, 0);
+
+	    private static readonly QuantityDimension _dimension = QuantityDimension.Length ^ -1;
 
 		public static readonly Unit<WaveNumber> ReciprocalMeter = new Unit<WaveNumber>("m\u207b¹");
 		public static readonly Unit<WaveNumber> ReciprocalCentiMeter = new Unit<WaveNumber>("cm\u207b¹", Factors.Hecto);

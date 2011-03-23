@@ -112,6 +112,9 @@
     <Compile Include="..\Cureos.Measures\Quantities\DoseEquivalent.cs">
       <Link>Quantities\DoseEquivalent.cs</Link>
     </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\DynamicViscosity.cs">
+      <Link>Quantities\DynamicViscosity.cs</Link>
+    </Compile>
     <Compile Include="..\Cureos.Measures\Quantities\ElectricCharge.cs">
       <Link>Quantities\ElectricCharge.cs</Link>
     </Compile>
@@ -169,6 +172,9 @@
     <Compile Include="..\Cureos.Measures\Quantities\MassDensity.cs">
       <Link>Quantities\MassDensity.cs</Link>
     </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\MomentOfForce.cs">
+      <Link>Quantities\MomentOfForce.cs</Link>
+    </Compile>
     <Compile Include="..\Cureos.Measures\Quantities\PlaneAngle.cs">
       <Link>Quantities\PlaneAngle.cs</Link>
     </Compile>
@@ -192,6 +198,9 @@
     </Compile>
     <Compile Include="..\Cureos.Measures\Quantities\SurfaceDensity.cs">
       <Link>Quantities\SurfaceDensity.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\SurfaceTension.cs">
+      <Link>Quantities\SurfaceTension.cs</Link>
     </Compile>
     <Compile Include="..\Cureos.Measures\Quantities\Temperature.cs">
       <Link>Quantities\Temperature.cs</Link>

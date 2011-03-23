@@ -12,8 +12,8 @@ namespace Cureos.Measures.Quantities
 	public struct ElectricCharge : IQuantity<ElectricCharge>
 	{
 		#region FIELDS
-		
-		private static readonly QuantityDimension _dimension = new QuantityDimension(0, 0, 1, 1, 0, 0, 0);
+
+	    private static readonly QuantityDimension _dimension = QuantityDimension.Time * QuantityDimension.ElectricCurrent;
 
 		public static readonly Unit<ElectricCharge> Coulomb = new Unit<ElectricCharge>("C");
 

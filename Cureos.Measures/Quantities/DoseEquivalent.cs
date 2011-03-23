@@ -12,8 +12,9 @@ namespace Cureos.Measures.Quantities
 	public struct DoseEquivalent : IQuantity<DoseEquivalent>
 	{
 		#region FIELDS
-		
-		private static readonly QuantityDimension _dimension = new QuantityDimension(2, 0, -2, 0, 0, 0, 0);
+
+	    private static readonly QuantityDimension _dimension = (QuantityDimension.Length ^ 2) *
+	                                                           (QuantityDimension.Time ^ -2);
 
 		public static readonly Unit<DoseEquivalent> Sievert = new Unit<DoseEquivalent>("Sv");
 
