@@ -28,7 +28,7 @@ namespace Tests.Cureos.Measures
 
 		static AmountComparer()
 		{
-			smkEqualityTolerance = AmountConverter.ToAmountType(1.0e-6);
+			smkEqualityTolerance = AmountConverter.ToAmountType(1.0e-5);
 			Instance = new AmountComparer();
 		}
 

@@ -4,7 +4,13 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
-using System;
+#if SINGLE
+using AmountType = System.Single;
+#elif DECIMAL
+using AmountType = System.Decimal;
+#elif DOUBLE
+using AmountType = System.Double;
+#endif
 
 namespace Cureos.Measures
 {
@@ -66,8 +72,8 @@ namespace Cureos.Measures
 			mFirst = new StandardMeasure<Q1>(iAmount1);
 			mSecond = new StandardMeasure<Q2>(iAmount2);
 #else
-			mMeasure1 = new StandardMeasure<Q1>((AmountType)iAmount1);
-			mMeasure2 = new StandardMeasure<Q2>((AmountType)iAmount2);
+			mFirst = new StandardMeasure<Q1>((AmountType)iAmount1);
+			mSecond = new StandardMeasure<Q2>((AmountType)iAmount2);
 #endif
 		}
 
@@ -82,8 +88,8 @@ namespace Cureos.Measures
 			mFirst = new StandardMeasure<Q1>(iAmount1);
 			mSecond = new StandardMeasure<Q2>(iAmount2);
 #else
-			mMeasure1 = new StandardMeasure<Q1>((AmountType)iAmount1);
-			mMeasure2 = new StandardMeasure<Q2>((AmountType)iAmount2);
+			mFirst = new StandardMeasure<Q1>((AmountType)iAmount1);
+			mSecond = new StandardMeasure<Q2>((AmountType)iAmount2);
 #endif
 		}
 
@@ -95,11 +101,11 @@ namespace Cureos.Measures
 		public StandardMeasureDoublet(decimal iAmount1, decimal iAmount2)
 		{
 #if DECIMAL
-			mMeasure1 = new StandardMeasure<Q1>(iAmount1);
-			mMeasure2 = new StandardMeasure<Q2>(iAmount2);
+			mFirst = new StandardMeasure<Q1>(iAmount1);
+			mSecond = new StandardMeasure<Q2>(iAmount2);
 #else
-			mFirst = new StandardMeasure<Q1>((Double)iAmount1);
-			mSecond = new StandardMeasure<Q2>((Double)iAmount2);
+			mFirst = new StandardMeasure<Q1>((AmountType)iAmount1);
+			mSecond = new StandardMeasure<Q2>((AmountType)iAmount2);
 #endif
 		}
 
