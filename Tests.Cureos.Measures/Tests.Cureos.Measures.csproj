@@ -54,6 +54,7 @@
     <Compile Include="DimensionlessDifferentiatorsTests.cs" />
     <Compile Include="ExampleTests.cs" />
     <Compile Include="Extensions\PrimeNumbersTests.cs" />
+    <Compile Include="IMeasureTests.cs" />
     <Compile Include="Quantities\VelocityTests.cs" />
     <Compile Include="Quantities\WaveNumberTests.cs" />
     <Compile Include="QuantityDimensionTests.cs" />

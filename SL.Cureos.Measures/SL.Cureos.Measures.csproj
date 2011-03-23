@@ -73,6 +73,12 @@
     <Compile Include="..\Cureos.Measures\IMeasureArray.cs">
       <Link>IMeasureArray.cs</Link>
     </Compile>
+    <Compile Include="..\Cureos.Measures\IMeasureDoublet.cs">
+      <Link>IMeasureDoublet.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\IMeasureDoubletArray.cs">
+      <Link>IMeasureDoubletArray.cs</Link>
+    </Compile>
     <Compile Include="..\Cureos.Measures\IQuantity.cs">
       <Link>IQuantity.cs</Link>
     </Compile>
@@ -225,6 +231,12 @@
     </Compile>
     <Compile Include="..\Cureos.Measures\StandardMeasureArray.cs">
       <Link>StandardMeasureArray.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\StandardMeasureDoublet.cs">
+      <Link>StandardMeasureDoublet.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\StandardMeasureDoubletArray.cs">
+      <Link>StandardMeasureDoubletArray.cs</Link>
     </Compile>
     <Compile Include="..\Cureos.Measures\Unit.cs">
       <Link>Unit.cs</Link>

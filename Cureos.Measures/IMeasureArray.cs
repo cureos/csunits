@@ -46,31 +46,4 @@ namespace Cureos.Measures
         /// <returns>The <paramref name="i">ith</paramref> component of the measure array</returns>
         IMeasure<Q> this[int i] { get; }
     }
-
-    /// <summary>
-    /// Interface representing an array of pairs of measures
-    /// </summary>
-    /// <typeparam name="Q1">Quantity type of the first measure</typeparam>
-    /// <typeparam name="Q2">Quantity type of the second measure</typeparam>
-    public interface IMeasureArray<Q1, Q2> : IEnumerable<IMeasure<Q1, Q2>>
-        where Q1 : struct, IQuantity<Q1>
-        where Q2 : struct, IQuantity<Q2>
-    {
-        /// <summary>
-        /// Gets the array of first measures
-        /// </summary>
-        IMeasureArray<Q1> Measures1 { get; }
-
-        /// <summary>
-        /// Gets the array of second measures
-        /// </summary>
-        IMeasureArray<Q2> Measures2 { get; }
-
-        /// <summary>
-        /// Gets the <paramref name="i">ith</paramref> element of the array of measure pairs
-        /// </summary>
-        /// <param name="i">Requested element index</param>
-        /// <returns>The <paramref name="i">ith</paramref> element of the array of measure pairs</returns>
-        IMeasure<Q1, Q2> this[int i] { get; }
-    }
 }

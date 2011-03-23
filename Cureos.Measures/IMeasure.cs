@@ -17,10 +17,9 @@ using AmountType = System.Double;
 namespace Cureos.Measures
 {
 	/// <summary>
-	/// Interface representing a scalar measure of a specific quantity
+	/// Interface representing a scalar measure of an arbitrary quantity
 	/// </summary>
-	/// <typeparam name="Q">Measured quantity</typeparam>
-	public interface IMeasure<Q> : IComparable<IMeasure<Q>>, IEquatable<IMeasure<Q>> where Q : struct, IQuantity<Q>
+	public interface IMeasure
 	{
 		/// <summary>
 		/// Gets the measured amount in the <see cref="Unit">current unit of measure</see>
@@ -28,14 +27,26 @@ namespace Cureos.Measures
 		AmountType Amount { get; }
 
 		/// <summary>
-		/// Gets the measured amount in the standard unit of measure for the <typeparam name="Q">specified quantity</typeparam>
+		/// Gets the measured amount in the standard unit of measure for the inherent quantity
 		/// </summary>
 		AmountType StandardAmount { get; }
 
 		/// <summary>
 		/// Gets the unit of measure
 		/// </summary>
-		IUnit<Q> Unit { get; }
+		IUnit Unit { get; }
+	}
+
+	/// <summary>
+	/// Interface representing a scalar measure of a specific quantity
+	/// </summary>
+	/// <typeparam name="Q">Measured quantity</typeparam>
+	public interface IMeasure<Q> : IMeasure, IComparable<IMeasure<Q>>, IEquatable<IMeasure<Q>> where Q : struct, IQuantity<Q>
+	{
+		/// <summary>
+		/// Gets the quantity-typed unit of measure
+		/// </summary>
+		new IUnit<Q> Unit { get; }
 
 		/// <summary>
 		/// Gets the amount of this measure in the requested unit
@@ -49,24 +60,6 @@ namespace Cureos.Measures
 		/// </summary>
 		/// <param name="iUnit">Unit in which the new measure should be specified</param>
 		IMeasure<Q> this[IUnit<Q> iUnit] { get; }
-	}
-
-	/// <summary>
-	/// Interface representing a pair of measures given in two (potentially different) quantities
-	/// </summary>
-	/// <typeparam name="Q1">Quantity type of the first measure</typeparam>
-	/// <typeparam name="Q2">Quantity type of the second measure</typeparam>
-	public interface IMeasure<Q1, Q2> where Q1 : struct, IQuantity<Q1> where Q2 : struct, IQuantity<Q2>
-	{
-		/// <summary>
-		/// Gets the first measure in the measure pair
-		/// </summary>
-		IMeasure<Q1> Measure1 { get; }
-
-		/// <summary>
-		/// Gets the second measure in the measure pair
-		/// </summary>
-		IMeasure<Q2> Measure2 { get; }
 	}
 }
 

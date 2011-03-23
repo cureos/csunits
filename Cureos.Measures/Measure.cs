@@ -138,7 +138,15 @@ namespace Cureos.Measures
 	    }
 
 	    /// <summary>
-		/// Gets the unit of measure
+	    /// Gets the unit of measure
+	    /// </summary>
+	    IUnit IMeasure.Unit
+	    {
+	        get { return Unit; }
+	    }
+
+	    /// <summary>
+		/// Gets the quantity-typed unit of measure
 		/// </summary>
 		public IUnit<Q> Unit
 		{

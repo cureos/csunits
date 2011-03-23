@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Extensions\PrimeNumbers.cs" />
     <Compile Include="IMeasureArray.cs" />
+    <Compile Include="IMeasureDoublet.cs" />
+    <Compile Include="IMeasureDoubletArray.cs" />
     <Compile Include="Quantities\Acceleration.cs" />
     <Compile Include="Quantities\Activity.cs" />
     <Compile Include="Quantities\AmountConcentration.cs" />
@@ -84,6 +86,8 @@
     <Compile Include="Quantities\Velocity.cs" />
     <Compile Include="ArithmeticOperations.cs" />
     <Compile Include="Quantities\WaveNumber.cs" />
+    <Compile Include="StandardMeasureDoublet.cs" />
+    <Compile Include="StandardMeasureDoubletArray.cs" />
     <Compile Include="Unit.cs" />
     <Compile Include="Measure.cs" />
     <Compile Include="StandardMeasureArray.cs" />

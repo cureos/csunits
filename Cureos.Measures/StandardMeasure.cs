@@ -143,8 +143,16 @@ namespace Cureos.Measures
 			get { return mAmount; }
 		}
 
-		/// <summary>
-		/// Gets the unit of measure
+	    /// <summary>
+	    /// Gets the unit of measure
+	    /// </summary>
+	    IUnit IMeasure.Unit
+	    {
+	        get { return Unit; }
+	    }
+
+	    /// <summary>
+		/// Gets the quantity-typed unit of measure
 		/// </summary>
 		public IUnit<Q> Unit
 		{
@@ -530,124 +538,6 @@ namespace Cureos.Measures
 		public static bool operator !=(StandardMeasure<Q> iLhs, IMeasure<Q> iRhs)
 		{
 			return iLhs.mAmount != iRhs.StandardAmount;
-		}
-
-		#endregion
-	}
-
-	/// <summary>
-	/// Representation of a pair of measures, given in the standard units of the respective quantities
-	/// </summary>
-	/// <typeparam name="Q1">Quantity type of the first measure</typeparam>
-	/// <typeparam name="Q2">Quantity type of the second measure</typeparam>
-	public struct StandardMeasure<Q1, Q2> : IMeasure<Q1, Q2> where Q1 : struct, IQuantity<Q1> where Q2 : struct, IQuantity<Q2>
-	{
-		#region MEMBER VARIABLES
-
-		private readonly StandardMeasure<Q1> mMeasure1;
-		private readonly StandardMeasure<Q2> mMeasure2;
-
-		#endregion
-
-		#region CONSTRUCTORS
-
-		/// <summary>
-		/// Initializes a pair of standard measures
-		/// </summary>
-		/// <param name="iMeasurePair">Pair of measures in arbitrary unit</param>
-		public StandardMeasure(IMeasure<Q1, Q2> iMeasurePair)
-			: this(iMeasurePair.Measure1, iMeasurePair.Measure2)
-		{
-		}
-
-		/// <summary>
-		/// Initializes a pair of standard measures from two standard measure objects
-		/// </summary>
-		/// <param name="iMeasure1">First measure object</param>
-		/// <param name="iMeasure2">Second measure object</param>
-		public StandardMeasure(StandardMeasure<Q1> iMeasure1, StandardMeasure<Q2> iMeasure2)
-		{
-			mMeasure1 = iMeasure1;
-			mMeasure2 = iMeasure2;
-		}
-
-		/// <summary>
-		/// Initializes a pair of standard measures
-		/// </summary>
-		/// <param name="iMeasure1">First measure object</param>
-		/// <param name="iMeasure2">Second measure object</param>
-		public StandardMeasure(IMeasure<Q1> iMeasure1, IMeasure<Q2> iMeasure2)
-		{
-			mMeasure1 = new StandardMeasure<Q1>(iMeasure1);
-			mMeasure2 = new StandardMeasure<Q2>(iMeasure2);
-		}
-
-		/// <summary>
-		/// Initializes a pair of standard measures from a pair of standard unit amounts
-		/// </summary>
-		/// <param name="iAmount1">Amount in standard units of the first measure object</param>
-		/// <param name="iAmount2">Amount in standard units of the second measure object</param>
-		public StandardMeasure(double iAmount1, double iAmount2)
-		{
-#if DOUBLE
-			mMeasure1 = new StandardMeasure<Q1>(iAmount1);
-			mMeasure2 = new StandardMeasure<Q2>(iAmount2);
-#else
-			mMeasure1 = new StandardMeasure<Q1>((AmountType)iAmount1);
-			mMeasure2 = new StandardMeasure<Q2>((AmountType)iAmount2);
-#endif
-		}
-
-		/// <summary>
-		/// Initializes a pair of standard measures from a pair of standard unit amounts
-		/// </summary>
-		/// <param name="iAmount1">Amount in standard units of the first measure object</param>
-		/// <param name="iAmount2">Amount in standard units of the second measure object</param>
-		public StandardMeasure(float iAmount1, float iAmount2)
-		{
-#if !DECIMAL
-			mMeasure1 = new StandardMeasure<Q1>(iAmount1);
-			mMeasure2 = new StandardMeasure<Q2>(iAmount2);
-#else
-			mMeasure1 = new StandardMeasure<Q1>((AmountType)iAmount1);
-			mMeasure2 = new StandardMeasure<Q2>((AmountType)iAmount2);
-#endif
-		}
-
-		/// <summary>
-		/// Initializes a pair of standard measures from a pair of standard unit amounts
-		/// </summary>
-		/// <param name="iAmount1">Amount in standard units of the first measure object</param>
-		/// <param name="iAmount2">Amount in standard units of the second measure object</param>
-		public StandardMeasure(decimal iAmount1, decimal iAmount2)
-		{
-#if DECIMAL
-			mMeasure1 = new StandardMeasure<Q1>(iAmount1);
-			mMeasure2 = new StandardMeasure<Q2>(iAmount2);
-#else
-			mMeasure1 = new StandardMeasure<Q1>((AmountType)iAmount1);
-			mMeasure2 = new StandardMeasure<Q2>((AmountType)iAmount2);
-#endif
-		}
-
-		#endregion
-
-		#region Implementation of IMeasure<Q1,Q2>
-
-		/// <summary>
-		/// Gets the first measure in the measure pair
-		/// </summary>
-		public IMeasure<Q1> Measure1
-		{
-			get { return mMeasure1; }
-		}
-
-		/// <summary>
-		/// Gets the second measure in the measure pair
-		/// </summary>
-		public IMeasure<Q2> Measure2
-		{
-			get { return mMeasure2; }
 		}
 
 		#endregion
