@@ -9,14 +9,20 @@ namespace Cureos.Measures
 	/// <summary>
 	/// Interface representing a physical quantity
 	/// </summary>
-	/// <typeparam name="Q"></typeparam>
-	public interface IQuantity<Q> where Q : struct, IQuantity<Q>
+	public interface IQuantity
 	{
 		/// <summary>
 		/// Gets the physical dimension of the quantity in terms of SI units
 		/// </summary>
 		QuantityDimension Dimension { get; }
+	}
 
+	/// <summary>
+	/// Typed interface representing a physical quantity
+	/// </summary>
+	/// <typeparam name="Q"></typeparam>
+	public interface IQuantity<Q> : IQuantity where Q : struct, IQuantity<Q>
+	{
 		/// <summary>
 		/// Gets the standard unit associated with the quantity
 		/// </summary>

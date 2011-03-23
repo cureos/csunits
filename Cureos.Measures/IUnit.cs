@@ -17,10 +17,9 @@ using AmountType = System.Double;
 namespace Cureos.Measures
 {
 	/// <summary>
-	/// Interface representing a physical unit of a specific quantity
+	/// Interface representing a physical unit
 	/// </summary>
-	/// <typeparam name="Q">Unit quantity</typeparam>
-	public interface IUnit<Q> where Q : struct, IQuantity<Q>
+	public interface IUnit
 	{
 		/// <summary>
 		/// Gets the display symbol of the unit
@@ -38,6 +37,14 @@ namespace Cureos.Measures
 		/// to the current unit
 		/// </summary>
 		Func<AmountType, AmountType> AmountFromStandardUnitConverter { get; }
+	}
+
+	/// <summary>
+	/// Interface representing a physical unit confined to a specific quantity
+	/// </summary>
+	/// <typeparam name="Q">Unit quantity</typeparam>
+	public interface IUnit<Q> : IUnit where Q : struct, IQuantity<Q>
+	{
 	}
 }
 

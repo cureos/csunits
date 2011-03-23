@@ -42,7 +42,7 @@ namespace Cureos.Measures
         public const double CelsiusKelvinDifference = 273.15;
         public const double JoulesPerElectronVolt = 1.602e-19;
         public const double MetersPerAngstrom = 1.0e-10;
-        public const double MetersPerInch = 1.0 / 0.0254;
+        public const double MetersPerInch = 0.0254;
         public const double MetersPerFoot = MetersPerInch / 12.0;
         public const double MetersPerYard = MetersPerFoot / 3.0;
         public const double MetersPerMile = MetersPerYard / 1760.0;
@@ -80,7 +80,7 @@ namespace Cureos.Measures
         public const float CelsiusKelvinDifference = 273.15f;
         public const float JoulesPerElectronVolt = 1.602e-19f;
         public const float MetersPerAngstrom = 1.0e-10f;
-        public const float MetersPerInch = 1.0f / 0.0254f;
+        public const float MetersPerInch = 0.0254f;
         public const float MetersPerFoot = MetersPerInch / 12.0f;
         public const float MetersPerYard = MetersPerFoot / 3.0f;
         public const float MetersPerMile = MetersPerYard / 1760.0f;
@@ -118,7 +118,7 @@ namespace Cureos.Measures
         public const decimal CelsiusKelvinDifference = 273.15m;
         public const decimal JoulesPerElectronVolt = 1.602e-19m;
         public const decimal MetersPerAngstrom = 1.0e-10m;
-        public const decimal MetersPerInch = 1.0m / 0.0254m;
+        public const decimal MetersPerInch = 0.0254m;
         public const decimal MetersPerFoot = MetersPerInch / 12.0m;
         public const decimal MetersPerYard = MetersPerFoot / 3.0m;
         public const decimal MetersPerMile = MetersPerYard / 1760.0m;
