@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="SilverlightUnitConverter.MainPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:meas="clr-namespace:Cureos.Measures;assembly=Cureos.Measures"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="400">
+    <UserControl.Resources>
+        <meas:Registry x:Key="registry"/>
+    </UserControl.Resources>
+    <StackPanel x:Name="LayoutRoot" Background="White">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>Quantity:</TextBlock>
+            <ComboBox x:Name="quantityComboBox" ItemsSource="{Binding Path=Quantities,Source={StaticResource registry}}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>Original unit and amount:</TextBlock>
+            <ComboBox x:Name="fromUnitComboBox" ItemsSource="{Binding Path=Units,Source={StaticResource registry}}"/>
+            <TextBox x:Name="fromAmountTextBox" Width="70"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>New unit:</TextBlock>
+            <ComboBox x:Name="toUnitComboBox" ItemsSource="{Binding Path=Units,Source={StaticResource registry}}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>New amount:</TextBlock>
+            <TextBox x:Name="toAmountTextBox" Width="70" IsReadOnly="True"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
