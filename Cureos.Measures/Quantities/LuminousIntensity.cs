@@ -4,8 +4,6 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
-using System;
-
 namespace Cureos.Measures.Quantities
 {
     /// <summary>
@@ -43,6 +41,22 @@ namespace Cureos.Measures.Quantities
         public IUnit<LuminousIntensity> StandardUnit
         {
             get { return Candela; }
+        }
+
+        #endregion
+
+        #region METHODS
+
+        /// <summary>
+        /// Returns the fully qualified type name of this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.String"/> containing a fully qualified type name.
+        /// </returns>
+        /// <filterpriority>2</filterpriority>
+        public override string ToString()
+        {
+            return GetType().Name;
         }
 
         #endregion

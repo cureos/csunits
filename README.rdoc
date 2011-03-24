@@ -100,6 +100,8 @@ To extend the library with additional quantities and associated units, the follo
      public QuantityDimension Dimension { get { return _dimension; } }
      public IUnit<Energy> StandardUnit { get { return Joule; } }
 	 IUnit IQuantity.StandardUnit { get { return StandardUnit; } }
+
+	 public override string ToString() { return GetType().Name; }
    }
 
 

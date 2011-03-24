@@ -57,6 +57,22 @@ namespace Cureos.Measures.Quantities
 		}
 
 		#endregion
-	}
+
+        #region METHODS
+
+        /// <summary>
+        /// Returns the fully qualified type name of this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.String"/> containing a fully qualified type name.
+        /// </returns>
+        /// <filterpriority>2</filterpriority>
+        public override string ToString()
+        {
+            return GetType().Name;
+        }
+
+        #endregion
+    }
 }
 
