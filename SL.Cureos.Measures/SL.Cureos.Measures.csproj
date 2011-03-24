@@ -82,9 +82,6 @@
     <Compile Include="..\Cureos.Measures\IQuantity.cs">
       <Link>IQuantity.cs</Link>
     </Compile>
-    <Compile Include="..\Cureos.Measures\IQuantityMethods.cs">
-      <Link>IQuantityMethods.cs</Link>
-    </Compile>
     <Compile Include="..\Cureos.Measures\IUnit.cs">
       <Link>IUnit.cs</Link>
     </Compile>

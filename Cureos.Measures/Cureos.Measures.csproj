@@ -47,7 +47,6 @@
     <Compile Include="IMeasureArray.cs" />
     <Compile Include="IMeasureDoublet.cs" />
     <Compile Include="IMeasureDoubletArray.cs" />
-    <Compile Include="IQuantityMethods.cs" />
     <Compile Include="Quantities\Acceleration.cs" />
     <Compile Include="Quantities\Activity.cs" />
     <Compile Include="Quantities\AmountConcentration.cs" />
