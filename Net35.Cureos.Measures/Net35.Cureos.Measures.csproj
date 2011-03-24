@@ -69,6 +69,9 @@
     <Compile Include="..\Cureos.Measures\IQuantity.cs">
       <Link>IQuantity.cs</Link>
     </Compile>
+    <Compile Include="..\Cureos.Measures\IQuantityMethods.cs">
+      <Link>IQuantityMethods.cs</Link>
+    </Compile>
     <Compile Include="..\Cureos.Measures\IUnit.cs">
       <Link>IUnit.cs</Link>
     </Compile>
@@ -212,6 +215,9 @@
     </Compile>
     <Compile Include="..\Cureos.Measures\QuantityDimension.cs">
       <Link>QuantityDimension.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Registry.cs">
+      <Link>Registry.cs</Link>
     </Compile>
     <Compile Include="..\Cureos.Measures\StandardMeasure.cs">
       <Link>StandardMeasure.cs</Link>

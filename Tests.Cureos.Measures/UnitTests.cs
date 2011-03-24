@@ -5,6 +5,7 @@
 // http://www.eclipse.org/legal/epl-v10.html
 
 using System;
+using Cureos.Measures.Quantities;
 using NUnit.Framework;
 using Cureos.Measures;
 
@@ -66,6 +67,19 @@ namespace Tests.Cureos.Measures
 			var actual = _instance.AmountToStandardUnitConverter(AmountConverter.ToAmountType(1.0));
 			AmountAssert.AreEqual(expected, actual);
 		}
+
+        [Test]
+        public void Quantity_OfLengthUnit_IsLength()
+        {
+            Assert.IsInstanceOf(typeof(Length), Length.PicoMeter.Quantity);
+        }
+
+        [Test]
+        public void Quantity_OfIUnitDefinedAsMassUnit_IsMass()
+        {
+            IUnit unit = Mass.HectoGram;
+            Assert.IsInstanceOf(typeof(Mass), unit.Quantity);
+        }
 
 		#endregion
 	}

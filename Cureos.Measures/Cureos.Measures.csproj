@@ -47,6 +47,7 @@
     <Compile Include="IMeasureArray.cs" />
     <Compile Include="IMeasureDoublet.cs" />
     <Compile Include="IMeasureDoubletArray.cs" />
+    <Compile Include="IQuantityMethods.cs" />
     <Compile Include="Quantities\Acceleration.cs" />
     <Compile Include="Quantities\Activity.cs" />
     <Compile Include="Quantities\AmountConcentration.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="StandardMeasure.cs" />
     <Compile Include="UnitPrefix.cs" />
     <Compile Include="UnitPrefixMethods.cs" />
+    <Compile Include="Registry.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

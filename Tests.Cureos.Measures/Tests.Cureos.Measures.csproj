@@ -55,8 +55,10 @@
     <Compile Include="ExampleTests.cs" />
     <Compile Include="Extensions\PrimeNumbersTests.cs" />
     <Compile Include="IMeasureTests.cs" />
+    <Compile Include="IQuantityMethodsTests.cs" />
     <Compile Include="Quantities\VelocityTests.cs" />
     <Compile Include="Quantities\WaveNumberTests.cs" />
+    <Compile Include="RegistryTests.cs" />
     <Compile Include="QuantityDimensionTests.cs" />
     <Compile Include="StandardMeasureArrayTests.cs" />
     <Compile Include="MeasureAssert.cs" />

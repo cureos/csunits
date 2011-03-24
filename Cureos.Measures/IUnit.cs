@@ -21,6 +21,11 @@ namespace Cureos.Measures
 	/// </summary>
 	public interface IUnit
 	{
+        /// <summary>
+        /// Gets the quantity associated with the unit
+        /// </summary>
+	    IQuantity Quantity { get; }
+
 		/// <summary>
 		/// Gets the display symbol of the unit
 		/// </summary>
@@ -45,6 +50,10 @@ namespace Cureos.Measures
 	/// <typeparam name="Q">Unit quantity</typeparam>
 	public interface IUnit<Q> : IUnit where Q : struct, IQuantity<Q>
 	{
+        /// <summary>
+        /// Gets the typed quantity associated with the unit
+        /// </summary>
+	    new IQuantity<Q> Quantity { get; }
 	}
 }
 

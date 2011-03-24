@@ -34,6 +34,15 @@ namespace Cureos.Measures
         }
 
         /// <summary>
+        /// Convenience constructor for initializing prefixed non-standard unit
+        /// </summary>
+        /// <param name="iPrefix">Prefix to use in unit naming and scaling vis-a-vis standard unit</param>
+        public Unit(UnitPrefix iPrefix) :
+            this(String.Format("{0}{1}", iPrefix.GetSymbol(), default(Q).StandardUnit), iPrefix.GetFactor())
+        {
+        }
+
+        /// <summary>
         /// Initialize a physical unit object
         /// </summary>
         /// <param name="iSymbol">Unit display symbol</param>
@@ -44,7 +53,7 @@ namespace Cureos.Measures
         }
 
         /// <summary>
-        /// Initiallizes a physical unit object
+        /// Initializes a physical unit object
         /// </summary>
         /// <param name="iSymbol">Unit display symbol</param>
         /// <param name="iAmountToStandardUnitConverter">Amount converter function from this unit to quantity's standard unit</param>
@@ -56,19 +65,26 @@ namespace Cureos.Measures
             AmountToStandardUnitConverter = iAmountToStandardUnitConverter;
             AmountFromStandardUnitConverter = iAmountFromStandardUnitConverter;
         }
-        
-        /// <summary>
-        /// Convenience constructor for initializing prefixed non-standard unit
-        /// </summary>
-        /// <param name="iPrefix">Prefix to use in unit naming and scaling vis-a-vis standard unit</param>
-        public Unit(UnitPrefix iPrefix) :
-        	this(String.Format("{0}{1}", iPrefix.GetSymbol(), default(Q).StandardUnit), iPrefix.GetFactor())
-        {
-        }
 
         #endregion
-        
+
         #region Implementation of IUnit<Q>
+
+        /// <summary>
+        /// Gets the quantity associated with the unit
+        /// </summary>
+        IQuantity IUnit.Quantity
+        {
+            get { return Quantity; }
+        }
+
+        /// <summary>
+        /// Gets the typed quantity associated with the unit
+        /// </summary>
+        public IQuantity<Q> Quantity
+        {
+            get { return default(Q); }
+        }
 
         /// <summary>
         /// Gets the display symbol of the unit
@@ -102,7 +118,7 @@ namespace Cureos.Measures
         {
             return Symbol;
         }
-        
+
         #endregion
     }
 }
