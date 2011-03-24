@@ -13,11 +13,7 @@ namespace Cureos.Measures
     /// <summary>
     /// Overview of quantities and units available in the class library.
     /// </summary>
-    public
-#if !SILVERLIGHT
-        static 
-#endif
-        class Registry
+    public static class Registry
     {
         #region CONSTRUCTORS
 

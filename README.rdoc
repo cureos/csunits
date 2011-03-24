@@ -92,13 +92,14 @@ To extend the library with additional quantities and associated units, the follo
      public static readonly Unit<Energy> KiloJoule = new Unit<Energy>(UnitPrefix.Kilo);
    }
 
-* Implement the properties of the IQuantity<Q> interface, returning the defined dimensions and standard unit, respectively, of the new quantity:
+* Implement the properties of the IQuantity<Q> interface, returning the defined dimensions and standard unit, respectively, of the new quantity. Optionally, override the ToString method to provide a meaningful display of the instantiated quantity:
 
    public struct Energy : IQuantity<Energy>
    {
      ...
      public QuantityDimension Dimension { get { return _dimension; } }
      public IUnit<Energy> StandardUnit { get { return Joule; } }
+
 	 IUnit IQuantity.StandardUnit { get { return StandardUnit; } }
 
 	 public override string ToString() { return GetType().Name; }

@@ -3,29 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:meas="clr-namespace:Cureos.Measures;assembly=Cureos.Measures"
+             xmlns:my="clr-namespace:SilverlightUnitConverter"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="400">
     <UserControl.Resources>
-        <meas:Registry x:Key="registry"/>
+        <my:RegistryWrapper x:Key="registryKey"/>
     </UserControl.Resources>
-    <StackPanel x:Name="LayoutRoot" Background="White">
-        <StackPanel Orientation="Horizontal">
-            <TextBlock>Quantity:</TextBlock>
-            <ComboBox x:Name="quantityComboBox" ItemsSource="{Binding Path=Quantities,Source={StaticResource registry}}"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock>Original unit and amount:</TextBlock>
-            <ComboBox x:Name="fromUnitComboBox" ItemsSource="{Binding Path=Units,Source={StaticResource registry}}"/>
-            <TextBox x:Name="fromAmountTextBox" Width="70"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock>New unit:</TextBlock>
-            <ComboBox x:Name="toUnitComboBox" ItemsSource="{Binding Path=Units,Source={StaticResource registry}}"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock>New amount:</TextBlock>
-            <TextBox x:Name="toAmountTextBox" Width="70" IsReadOnly="True"/>
-        </StackPanel>
-    </StackPanel>
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0">Quantity:</TextBlock>
+        <ComboBox Grid.Row="0"  Grid.Column="1" x:Name="quantityComboBox" ItemsSource="{Binding Path=Quantities,Source={StaticResource registryKey}}"/>
+        <TextBlock Grid.Row="1" Grid.Column="0">Original unit and amount:</TextBlock>
+        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="fromUnitComboBox" ItemsSource="{Binding Path=Units,Source={StaticResource registryKey}}"/>
+        <TextBox Grid.Row="1" Grid.Column="2" x:Name="fromAmountTextBox"/>
+        <TextBlock Grid.Row="2" Grid.Column="0">New unit:</TextBlock>
+        <ComboBox Grid.Row="2" Grid.Column="1" x:Name="toUnitComboBox" ItemsSource="{Binding Path=Units,Source={StaticResource registryKey}}"/>
+        <TextBlock Grid.Row="3" Grid.Column="0">New amount:</TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="1" x:Name="toAmountTextBox" IsReadOnly="True"/>
+    </Grid>
 </UserControl>
