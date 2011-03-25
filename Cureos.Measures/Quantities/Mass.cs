@@ -18,6 +18,8 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Mass> MetricTon = new Unit<Mass>("t", Factors.Kilo);
         public static readonly Unit<Mass> HectoGram = new Unit<Mass>("hg", Factors.Deci);
         public static readonly Unit<Mass> Gram = new Unit<Mass>("g", Factors.Milli);
+        public static readonly Unit<Mass> ElectronMass = new Unit<Mass>("m\u2091", Factors.KiloGramsPerElectronMass);
+        public static readonly Unit<Mass> AtomicMassUnit = new Unit<Mass>("u", Factors.KiloGramsPerAtomicMassUnit);
 
         #endregion
 

@@ -39,8 +39,11 @@ namespace Cureos.Measures
         public const double SecondsPerHour = SecondsPerMinute * 60.0;
         public const double SecondsPerDay = SecondsPerHour * 24.0;
         public const double SecondsPerWeek = SecondsPerDay * 7.0;
-        public const double CelsiusKelvinDifference = 273.15;
-        public const double JoulesPerElectronVolt = 1.602e-19;
+        public const double KelvinCelsiusIntercept = 273.15;
+        public const double KelvinFahrenheitIntercept = 459.67;
+        public const double KelvinFahrenheitSlope = 5.0 / 9.0;
+        public const double CoulombsPerElementaryCharge = 1.6021765314e-19;
+        public const double JoulesPerElectronVolt = CoulombsPerElementaryCharge;
         public const double MetersPerAngstrom = 1.0e-10;
         public const double MetersPerInch = 0.0254;
         public const double MetersPerFoot = MetersPerInch / 12.0;
@@ -48,6 +51,8 @@ namespace Cureos.Measures
         public const double MetersPerMile = MetersPerYard / 1760.0;
         public const double MetersPerNauticalMile = 1.0 / 1852.0;
         public const double SquareMetersPerBarn = 1.0e-28;
+        public const double KiloGramsPerElectronMass = 9.109382616e-31;
+        public const double KiloGramsPerAtomicMassUnit = 1.6605388628e-27;
         public static readonly double RadiansPerDegree = Math.PI / 180.0;
 
         public static double Square(double a) { return a * a; }
@@ -77,8 +82,11 @@ namespace Cureos.Measures
         public const float SecondsPerHour = SecondsPerMinute * 60.0f;
         public const float SecondsPerDay = SecondsPerHour * 24.0f;
         public const float SecondsPerWeek = SecondsPerDay * 7.0f;
-        public const float CelsiusKelvinDifference = 273.15f;
-        public const float JoulesPerElectronVolt = 1.602e-19f;
+        public const float KelvinCelsiusIntercept = 273.15f;
+        public const float KelvinFahrenheitIntercept = 459.67f;
+        public const float KelvinFahrenheitSlope = 5.0f / 9.0f;
+        public const float CoulombsPerElementaryCharge = 1.6021765314e-19f;
+        public const float JoulesPerElectronVolt = CoulombsPerElementaryCharge;
         public const float MetersPerAngstrom = 1.0e-10f;
         public const float MetersPerInch = 0.0254f;
         public const float MetersPerFoot = MetersPerInch / 12.0f;
@@ -86,6 +94,8 @@ namespace Cureos.Measures
         public const float MetersPerMile = MetersPerYard / 1760.0f;
         public const float MetersPerNauticalMile = 1.0f / 1852.0f;
         public const float SquareMetersPerBarn = 1.0e-28f;
+        public const float KiloGramsPerElectronMass = 9.109382616e-31f;
+        public const float KiloGramsPerAtomicMassUnit = 1.6605388628e-27f;
         public static readonly float RadiansPerDegree = (float)Math.PI / 180.0f;
 
         public static float Square(float a) { return a * a; }
@@ -115,8 +125,11 @@ namespace Cureos.Measures
         public const decimal SecondsPerHour = SecondsPerMinute * 60.0m;
         public const decimal SecondsPerDay = SecondsPerHour * 24.0m;
         public const decimal SecondsPerWeek = SecondsPerDay * 7.0m;
-        public const decimal CelsiusKelvinDifference = 273.15m;
-        public const decimal JoulesPerElectronVolt = 1.602e-19m;
+        public const decimal KelvinCelsiusIntercept = 273.15m;
+        public const decimal KelvinFahrenheitIntercept = 459.67m;
+        public const decimal KelvinFahrenheitSlope = 5.0m / 9.0m;
+        public const decimal CoulombsPerElementaryCharge = 1.6021765314e-19m;
+        public const decimal JoulesPerElectronVolt = CoulombsPerElementaryCharge;
         public const decimal MetersPerAngstrom = 1.0e-10m;
         public const decimal MetersPerInch = 0.0254m;
         public const decimal MetersPerFoot = MetersPerInch / 12.0m;
@@ -124,6 +137,8 @@ namespace Cureos.Measures
         public const decimal MetersPerMile = MetersPerYard / 1760.0m;
         public const decimal MetersPerNauticalMile = 1.0m / 1852.0m;
         public const decimal SquareMetersPerBarn = 1.0e-28m;
+        public const decimal KiloGramsPerElectronMass = 9.109382616e-31m;
+        public const decimal KiloGramsPerAtomicMassUnit = 1.6605388628e-27m;
         public static readonly decimal RadiansPerDegree = (decimal)Math.PI / 180.0m;
 
         public static decimal Square(decimal a) { return a * a; }

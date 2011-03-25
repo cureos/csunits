@@ -16,6 +16,11 @@ namespace Cureos.Measures.Quantities
 	    private static readonly QuantityDimension _dimension = QuantityDimension.Time * QuantityDimension.ElectricCurrent;
 
 		public static readonly Unit<ElectricCharge> Coulomb = new Unit<ElectricCharge>("C");
+        public static readonly Unit<ElectricCharge> MilliCoulomb = new Unit<ElectricCharge>(UnitPrefix.Milli);
+        public static readonly Unit<ElectricCharge> MicroCoulomb = new Unit<ElectricCharge>(UnitPrefix.Micro);
+        public static readonly Unit<ElectricCharge> NanoCoulomb = new Unit<ElectricCharge>(UnitPrefix.Nano);
+        public static readonly Unit<ElectricCharge> PicoCoulomb = new Unit<ElectricCharge>(UnitPrefix.Pico);
+        public static readonly Unit<ElectricCharge> ElementaryCharge = new Unit<ElectricCharge>("e", Factors.CoulombsPerElementaryCharge);
 
 		#endregion
 

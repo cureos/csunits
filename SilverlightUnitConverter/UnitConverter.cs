@@ -25,6 +25,16 @@ namespace SilverlightUnitConverter
     {
         #region Implementation of IMultiValueConverter
 
+        /// <summary>
+        /// Converts the elements in the multiple binding into a new measure amount
+        /// </summary>
+        /// <param name="values">Bound elements; it is required that the elements appear in the order from-amount, 
+        /// from-unit, to-unit</param>
+        /// <param name="targetType">Ignored</param>
+        /// <param name="parameter">Ignored</param>
+        /// <param name="culture">Culture info, applied in parsing of specified amount</param>
+        /// <returns>amount converted to the specified to-unit, or null if array of <paramref name="values"/> did
+        /// not meet the type requirements</returns>
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             double fromAmount;
@@ -37,6 +47,14 @@ namespace SilverlightUnitConverter
             return null;
         }
 
+        /// <summary>
+        /// Back converter; not supported
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetTypes"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
             throw new NotSupportedException();

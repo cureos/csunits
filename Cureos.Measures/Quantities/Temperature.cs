@@ -15,7 +15,10 @@ namespace Cureos.Measures.Quantities
 
         public static readonly Unit<Temperature> Kelvin = new Unit<Temperature>("K");
         public static readonly Unit<Temperature> Celsius = new Unit<Temperature>("°C",
-                        a => a + Factors.CelsiusKelvinDifference, a => a - Factors.CelsiusKelvinDifference);
+                        a => a + Factors.KelvinCelsiusIntercept, a => a - Factors.KelvinCelsiusIntercept);
+        public static readonly Unit<Temperature> Fahrenheit = new Unit<Temperature>("°F",
+                        a => (a + Factors.KelvinFahrenheitIntercept) * Factors.KelvinFahrenheitSlope,
+                        a => a / Factors.KelvinFahrenheitSlope - Factors.KelvinFahrenheitIntercept);
 
         #endregion
 

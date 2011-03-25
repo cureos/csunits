@@ -49,69 +49,9 @@ should yield the output:
   Calculated volume is within limits, actual volume 6 l
 
 
-== Building for specific floating-point types
-
-With preprocessor directives, it is possible to configure the library so that the measure amounts are defined in a desired floating-point value type. The following preprocessor directives are currently supported, and can be defined in the project build settings:
-
-[DOUBLE] Set amount type to System.Double
-
-[SINGLE] Set amount type to System.Single
-
-[DECIMAL] Set amount type to System.Decimal
-
-
-== Extending the library
-
-Quantities are identified through their dimension in terms of SI Base Units. For completeness, each quantity should have a standard unit, expressable as a pure combination of one or more SI base units. This is particularly important to ensure that resulting amounts are correctly expressed when multiplying or dividing measures.
-
-To extend the library with additional quantities and associated units, the following steps should be taken in project Cureos.Measures:
-
-* In the Quantities sub-folder, add a new member-less struct implementing the IQuantity<Q> interface:
-
-   namespace Cureos.Measures.Quantities
-   {
-     public struct Energy : IQuantity<Energy>
-     {
-     }
-   }
-
-* Define a static readonly private field describing the SI unit dimensions of the quantity as a combination of the SI base unit dimensions:
-
-   public struct Energy : IQuantity<Energy>
-   {
-     private static readonly QuantityDimension _dimension = 
-       (QuantityDimension.Length ^ 2) * QuantityDimension.Mass * (QuantityDimension.Time ^ -2);
-   }
-
-* Add the units supported by this quantity as static readonly public fields of the new struct. A standard unit should always be included, instantiated with the single argument (unit symbol) constructor. The secondary units are instantiated by defining a conversion factor or conversion functions with in relation to the standard unit:
-
-   public struct Energy : IQuantity<Energy>
-   {
-     ...
-     public static readonly Unit<Energy> Joule = new Unit<Energy>("J");
-     public static readonly Unit<Energy> KiloJoule = new Unit<Energy>(UnitPrefix.Kilo);
-   }
-
-* Implement the properties of the IQuantity<Q> interface, returning the defined dimensions and standard unit, respectively, of the new quantity. Optionally, override the ToString method to provide a meaningful display of the instantiated quantity:
-
-   public struct Energy : IQuantity<Energy>
-   {
-     ...
-     public QuantityDimension Dimension { get { return _dimension; } }
-     public IUnit<Energy> StandardUnit { get { return Joule; } }
-
-	 IUnit IQuantity.StandardUnit { get { return StandardUnit; } }
-
-	 public override string ToString() { return GetType().Name; }
-   }
-
-
-Dimensionless quantities and composite quantities consisting of dimensionless quantities require additional composition. These requirements will hopefully be described in detail on the wiki pages.
-
-
 == Application
 
-For pure demonstration and testing purposes, there is a very simple Silverlight 4-based unit converter application included in the solution, SilverlightUnitConverter. Implementation of this application was inspired by Andrew Cheng's (Github user hamxiaoz) feedback and usage of uomnet in his [Windows Forms application](https://github.com/hamxiaoz/cureos.uomnet.tests.winform).
+For pure demonstration and testing purposes, there is a very simple Silverlight 4-based unit converter application included in the solution, SilverlightUnitConverter. Implementation of this application was inspired by Andrew Cheng's (Github user hamxiaoz) feedback and usage of uomnet in his [https://github.com/hamxiaoz/cureos.uomnet.tests.winform Windows Forms application].
 
 
 == Revision
