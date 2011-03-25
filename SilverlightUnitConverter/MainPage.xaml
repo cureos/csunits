@@ -24,10 +24,10 @@
         <TextBlock Grid.Row="0" Grid.Column="0">Quantity:</TextBlock>
         <ComboBox Grid.Row="0"  Grid.Column="1" x:Name="quantityComboBox" ItemsSource="{Binding Path=Quantities,Source={StaticResource registryKey}}"/>
         <TextBlock Grid.Row="1" Grid.Column="0">Original unit and amount:</TextBlock>
-        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="fromUnitComboBox" ItemsSource="{Binding Path=Units,Source={StaticResource registryKey}}"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="fromUnitComboBox" ItemsSource="{Binding ElementName=quantityComboBox,Path=SelectedItem.Units}"/>
         <TextBox Grid.Row="1" Grid.Column="2" x:Name="fromAmountTextBox"/>
         <TextBlock Grid.Row="2" Grid.Column="0">New unit:</TextBlock>
-        <ComboBox Grid.Row="2" Grid.Column="1" x:Name="toUnitComboBox" ItemsSource="{Binding Path=Units,Source={StaticResource registryKey}}"/>
+        <ComboBox Grid.Row="2" Grid.Column="1" x:Name="toUnitComboBox" ItemsSource="{Binding ElementName=quantityComboBox,Path=SelectedItem.Units}"/>
         <TextBlock Grid.Row="3" Grid.Column="0">New amount:</TextBlock>
         <TextBox Grid.Row="3" Grid.Column="1" x:Name="toAmountTextBox" IsReadOnly="True"/>
     </Grid>

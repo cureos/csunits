@@ -26,7 +26,8 @@ namespace Cureos.Measures
                     Select(fieldInfo => fieldInfo.GetValue(null) as IUnit).
                     Where(obj => !ReferenceEquals(obj, null));
 
-            Quantities = Units.Select(u => u.Quantity).Distinct();
+            Quantities = Units.Select(unit => unit.Quantity).Distinct().
+                Select(quantity => new QuantityAdapter(quantity, Units.Where(unit => unit.Quantity.Equals(quantity))));
         }
 
         #endregion
@@ -36,7 +37,7 @@ namespace Cureos.Measures
         /// <summary>
         /// Gets the quantities available in this class library
         /// </summary>
-        public static IEnumerable<IQuantity> Quantities { get; private set; }
+        public static IEnumerable<QuantityAdapter> Quantities { get; private set; }
 
         /// <summary>
         /// Gets the physical units available in this class library

@@ -11,19 +11,9 @@ namespace SilverlightUnitConverter
 {
     public class RegistryWrapper
     {
-        public IEnumerable<IQuantity> Quantities
+        public IEnumerable<QuantityAdapter> Quantities
         {
             get { return Registry.Quantities; }
-        }
-
-        public IEnumerable<IUnit> Units
-        {
-            get { return Registry.Units; }
-        }
-
-        public IEnumerable<IUnit> GetUnits(IQuantity iQuantity)
-        {
-            return Registry.GetUnits(iQuantity);
         }
     }
 }

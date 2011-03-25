@@ -86,6 +86,7 @@
     <Compile Include="Quantities\Velocity.cs" />
     <Compile Include="ArithmeticOperations.cs" />
     <Compile Include="Quantities\WaveNumber.cs" />
+    <Compile Include="QuantityAdapter.cs" />
     <Compile Include="StandardMeasureDoublet.cs" />
     <Compile Include="StandardMeasureDoubletArray.cs" />
     <Compile Include="Unit.cs" />

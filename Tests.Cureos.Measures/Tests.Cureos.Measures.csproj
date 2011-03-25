@@ -57,6 +57,7 @@
     <Compile Include="IMeasureTests.cs" />
     <Compile Include="Quantities\VelocityTests.cs" />
     <Compile Include="Quantities\WaveNumberTests.cs" />
+    <Compile Include="QuantityAdapterTests.cs" />
     <Compile Include="RegistryTests.cs" />
     <Compile Include="QuantityDimensionTests.cs" />
     <Compile Include="StandardMeasureArrayTests.cs" />

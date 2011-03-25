@@ -223,6 +223,9 @@
     <Compile Include="..\Cureos.Measures\Quantities\WaveNumber.cs">
       <Link>Quantities\WaveNumber.cs</Link>
     </Compile>
+    <Compile Include="..\Cureos.Measures\QuantityAdapter.cs">
+      <Link>QuantityAdapter.cs</Link>
+    </Compile>
     <Compile Include="..\Cureos.Measures\QuantityDimension.cs">
       <Link>QuantityDimension.cs</Link>
     </Compile>

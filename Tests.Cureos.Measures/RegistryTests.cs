@@ -21,7 +21,25 @@ namespace Tests.Cureos.Measures
         public void QuantitiesGetter_CheckContainsLuminance_ReturnsTrue()
         {
             var expected = true;
-            var actual = Registry.Quantities.Contains(default(Luminance));
+            var actual = Registry.Quantities.Any(qa => qa.Quantity.Equals(default(Luminance)));
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void QuantitiesGetter_CheckTimeItemContainsHourUnit_ReturnsTrue()
+        {
+            var expected = true;
+            var actual = Registry.Quantities.Single(qa => qa.Quantity.Equals(default(Time))).Units.Contains(Time.Hour);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void QuantitiesGetter_CheckLengthItemNotContainsMeterPerSecondUnit_ReturnsFalse()
+        {
+            var expected = false;
+            var actual =
+                Registry.Quantities.Single(qa => qa.Quantity.Equals(default(Length))).Units.Contains(
+                    Velocity.MeterPerSecond);
             Assert.AreEqual(expected, actual);
         }
 
