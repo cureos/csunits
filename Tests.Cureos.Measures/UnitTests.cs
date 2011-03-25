@@ -20,7 +20,7 @@ namespace Tests.Cureos.Measures
 		{
 			public QuantityDimension Dimension
 			{
-				get { return new QuantityDimension(DimensionlessDifferentiators.Steradian); }
+				get { return QuantityDimension.Steradian; }
 			}
 
 		    IUnit IQuantity.StandardUnit

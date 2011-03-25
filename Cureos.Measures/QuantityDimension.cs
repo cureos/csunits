@@ -5,15 +5,27 @@
 // http://www.eclipse.org/legal/epl-v10.html
 
 using System;
+using System.Collections.Generic;
+using Cureos.Measures.Extensions;
 
 namespace Cureos.Measures
 {
     /// <summary>
-    /// Representation of the quantity dimension in terms of SI base units
+    /// Representation of the quantity dimension in terms of SI base units.
     /// </summary>
+    /// <remarks>
+    /// Each dimensionless quantity should be assigned a prime number, to ensure that one dimensionless
+    /// quantity does not accidentally switch into an unrelated dimensionless quantity through multiplication.
+    /// When adding a new field, unrelated to the other dimensionless quantities, assign its value by 
+    /// calling the <see cref="GetNextPrime"/> method.
+    /// The solid angle quantity steradian can be regarded as the square of the plane angle quantity
+    /// radian, and therefore its identifier is set to the square of the radian.
+    /// </remarks>
     public sealed class QuantityDimension
     {
         #region FIELDS
+
+        private static readonly IEnumerator<int> _primesEnumerator = new PrimeNumbers().GetEnumerator();
 
         public static readonly QuantityDimension Length = new QuantityDimension(1, 0, 0, 0, 0, 0, 0);
         public static readonly QuantityDimension Mass = new QuantityDimension(0, 1, 0, 0, 0, 0, 0);
@@ -23,6 +35,14 @@ namespace Cureos.Measures
         public static readonly QuantityDimension LuminousIntensity = new QuantityDimension(0, 0, 0, 0, 0, 1, 0);
         public static readonly QuantityDimension AmountOfSubstance = new QuantityDimension(0, 0, 0, 0, 0, 0, 1);
 
+        public static readonly QuantityDimension Radian = new QuantityDimension(GetNextPrime());
+        public static readonly QuantityDimension Steradian = Radian * Radian;
+        public static readonly QuantityDimension Pi = new QuantityDimension(GetNextPrime());
+        public static readonly QuantityDimension RelativeDensity = new QuantityDimension(GetNextPrime());
+        public static readonly QuantityDimension RefractiveIndex = new QuantityDimension(GetNextPrime());
+        public static readonly QuantityDimension RelativePermeability = new QuantityDimension(GetNextPrime());
+        public static readonly QuantityDimension RelativeBiologicalEffectiveness = new QuantityDimension(GetNextPrime());
+
         #endregion
         
         #region CONSTRUCTORS
@@ -31,7 +51,7 @@ namespace Cureos.Measures
         /// Intitalizes a dimensionless quantity dimension
         /// </summary>
         /// <param name="iDimensionlessDifferentiator">Scalar used to differentiate between relevant dimensionless quantities</param>
-        internal QuantityDimension(int iDimensionlessDifferentiator) :
+        private QuantityDimension(int iDimensionlessDifferentiator) :
             this(iDimensionlessDifferentiator, 0, 0, 0, 0, 0, 0, 0)
         {
         }
@@ -46,7 +66,7 @@ namespace Cureos.Measures
         /// <param name="iTemperatureExponent">Temperature exponent</param>
         /// <param name="iLuminousIntensityExponent">Luminous intensity exponent</param>
         /// <param name="iAmountOfSubstanceExponent">Amount of substance exponent</param>
-        internal QuantityDimension(int iLengthExponent, int iMassExponent, int iTimeExponent, int iElectricCurrentExponent, int iTemperatureExponent,
+        private QuantityDimension(int iLengthExponent, int iMassExponent, int iTimeExponent, int iElectricCurrentExponent, int iTemperatureExponent,
             int iLuminousIntensityExponent, int iAmountOfSubstanceExponent) :
             this(1.0, iLengthExponent, iMassExponent, iTimeExponent, iElectricCurrentExponent,
             iTemperatureExponent, iLuminousIntensityExponent, iAmountOfSubstanceExponent)
@@ -204,6 +224,13 @@ namespace Cureos.Measures
             return iExponent == 0
                        ? String.Empty
                        : iExponent == 1 ? String.Format(" {0}", iSiUnit) : String.Format(" {0}^{1}", iSiUnit, iExponent);
+        }
+
+
+        private static int GetNextPrime()
+        {
+            if (_primesEnumerator.MoveNext()) return _primesEnumerator.Current;
+            throw new InvalidOperationException("Reached the end of the Int32 prime number collection");
         }
 
         #endregion

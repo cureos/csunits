@@ -13,8 +13,6 @@ namespace Cureos.Measures.Quantities
 	{
 		#region FIELDS
 		
-		private static readonly QuantityDimension _dimension = new QuantityDimension(DimensionlessDifferentiators.RelativePermeability);
-
 		public static readonly Unit<RelativePermeability> Unity = new Unit<RelativePermeability>("");
 
 		#endregion
@@ -26,7 +24,7 @@ namespace Cureos.Measures.Quantities
 		/// </summary>
 		public QuantityDimension Dimension
 		{
-			get { return _dimension; }
+			get { return QuantityDimension.RelativePermeability; }
 		}
 
 	    /// <summary>

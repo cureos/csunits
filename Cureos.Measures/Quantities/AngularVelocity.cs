@@ -14,7 +14,7 @@ namespace Cureos.Measures.Quantities
         #region FIELDS
 
         private static readonly QuantityDimension _dimension =
-            new QuantityDimension(DimensionlessDifferentiators.Radian) * (QuantityDimension.Time ^ -1);
+            QuantityDimension.Radian * (QuantityDimension.Time ^ -1);
 
         public static readonly Unit<AngularVelocity> RadianPerSecond = new Unit<AngularVelocity>("rad s\u207b¹");
         public static readonly Unit<AngularVelocity> KiloRadianPerSecond = new Unit<AngularVelocity>(UnitPrefix.Kilo);

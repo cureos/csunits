@@ -13,8 +13,6 @@ namespace Cureos.Measures.Quantities
     {
         #region FIELDS
 
-        private static readonly QuantityDimension _dimension = new QuantityDimension(DimensionlessDifferentiators.Radian);
-
         public static readonly Unit<PlaneAngle> Radian = new Unit<PlaneAngle>("rad");
         public static readonly Unit<PlaneAngle> Degree = new Unit<PlaneAngle>("°", Factors.RadiansPerDegree);
 
@@ -27,7 +25,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         public QuantityDimension Dimension
         {
-            get { return _dimension; }
+            get { return QuantityDimension.Radian; }
         }
 
         /// <summary>

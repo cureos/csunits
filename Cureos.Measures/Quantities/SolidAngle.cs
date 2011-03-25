@@ -4,8 +4,6 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
-using System;
-
 namespace Cureos.Measures.Quantities
 {
     /// <summary>
@@ -14,8 +12,6 @@ namespace Cureos.Measures.Quantities
     public struct SolidAngle : IQuantity<SolidAngle>
     {
         #region FIELDS
-
-        private static readonly QuantityDimension _dimension = new QuantityDimension(DimensionlessDifferentiators.Steradian);
 
         public static readonly Unit<SolidAngle> Steradian = new Unit<SolidAngle>("sr");
 
@@ -28,7 +24,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         public QuantityDimension Dimension
         {
-            get { return _dimension; }
+            get { return QuantityDimension.Steradian; }
         }
 
         /// <summary>

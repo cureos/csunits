@@ -19,7 +19,7 @@ namespace Tests.Cureos.Measures
         public void ToString_ContainingUnityValues_ExponentNotDisplayed()
         {
             var expected = "m^-2 s";
-            var actual = new QuantityDimension(-2, 0, 1, 0, 0, 0, 0).ToString();
+            var actual = ((QuantityDimension.Length ^ -2) * QuantityDimension.Time).ToString();
             Assert.AreEqual(expected, actual);
         }
 
@@ -27,9 +27,18 @@ namespace Tests.Cureos.Measures
         public void ToString_DimensionlessQuantity_ReturnsEmptyString()
         {
             var expected = String.Empty;
-            var actual = new QuantityDimension(DimensionlessDifferentiators.Pi).ToString();
+            var actual = QuantityDimension.Pi.ToString();
             Assert.AreEqual(expected, actual);
         }
+
+        [Test]
+        public void Steradian_CompareToRadian_ShouldEqualSquareOfRadian()
+        {
+            var expected = QuantityDimension.Radian * QuantityDimension.Radian;
+            var actual = QuantityDimension.Steradian;
+            Assert.AreEqual(expected, actual);
+        }
+
         #endregion
     }
 }

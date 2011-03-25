@@ -13,8 +13,6 @@ namespace Cureos.Measures.Quantities
 	{
 		#region FIELDS
 		
-		private static readonly QuantityDimension _dimension = new QuantityDimension(DimensionlessDifferentiators.RefractiveIndex);
-
 		public static readonly Unit<RefractiveIndex> Unity = new Unit<RefractiveIndex>("");
 
 		#endregion
@@ -26,7 +24,7 @@ namespace Cureos.Measures.Quantities
 		/// </summary>
 		public QuantityDimension Dimension
 		{
-			get { return _dimension; }
+			get { return QuantityDimension.RefractiveIndex; }
 		}
 
 	    /// <summary>

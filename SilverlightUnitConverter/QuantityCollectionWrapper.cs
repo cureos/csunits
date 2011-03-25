@@ -5,6 +5,7 @@
 // http://www.eclipse.org/legal/epl-v10.html
 
 using System.Collections.Generic;
+using System.Linq;
 using Cureos.Measures;
 
 namespace SilverlightUnitConverter
@@ -19,7 +20,7 @@ namespace SilverlightUnitConverter
         /// </summary>
         public IEnumerable<QuantityAdapter> Quantities
         {
-            get { return QuantityCollection.Quantities; }
+            get { return QuantityCollection.Quantities.OrderBy(qa => qa.Quantity.ToString()); }
         }
     }
 }

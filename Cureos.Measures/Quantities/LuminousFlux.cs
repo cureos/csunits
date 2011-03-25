@@ -13,9 +13,8 @@ namespace Cureos.Measures.Quantities
 	{
 		#region FIELDS
 
-	    private static readonly QuantityDimension _dimension =
-	        new QuantityDimension(DimensionlessDifferentiators.Steradian) *
-	        QuantityDimension.LuminousIntensity;
+	    private static readonly QuantityDimension _dimension = 
+            QuantityDimension.Steradian * QuantityDimension.LuminousIntensity;
 
 		public static readonly Unit<LuminousFlux> Lumen = new Unit<LuminousFlux>("lm");
 
