@@ -34,7 +34,7 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="1" TextAlignment="Center" Foreground="Blue" FontSize="14">Simple unit converter</TextBlock>
         <TextBlock Grid.Row="1" Grid.Column="0" TextAlignment="Right">Quantity:</TextBlock>
-        <ComboBox Grid.Row="1"  Grid.Column="1" x:Name="quantityComboBox" DisplayMemberPath="Quantity" ItemsSource="{Binding Path=Quantities,Source={StaticResource registryKey}}"/>
+        <ComboBox Grid.Row="1"  Grid.Column="1" x:Name="quantityComboBox" DisplayMemberPath="Quantity" ItemsSource="{Binding Path=Quantities,Source={StaticResource registryKey}}" />
         <TextBlock Grid.Row="2" Grid.Column="0" TextAlignment="Right">Original amount and unit:</TextBlock>
         <TextBox Grid.Row="2" Grid.Column="1" x:Name="fromAmountTextBox" TextAlignment="Right"/>
         <ComboBox Grid.Row="2" Grid.Column="2" x:Name="fromUnitComboBox" ItemsSource="{Binding ElementName=quantityComboBox,Path=SelectedItem.Units}"/>

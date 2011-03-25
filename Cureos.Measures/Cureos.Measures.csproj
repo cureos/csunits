@@ -52,6 +52,8 @@
     <Compile Include="Quantities\AmountConcentration.cs" />
     <Compile Include="Quantities\AmountOfSubstance.cs" />
     <Compile Include="DimensionlessDifferentiators.cs" />
+    <Compile Include="Quantities\AngularAcceleration.cs" />
+    <Compile Include="Quantities\AngularVelocity.cs" />
     <Compile Include="Quantities\Capacitance.cs" />
     <Compile Include="Quantities\CatalyticActivity.cs" />
     <Compile Include="Quantities\CurrentDensity.cs" />
@@ -64,6 +66,8 @@
     <Compile Include="Quantities\ElectricResistance.cs" />
     <Compile Include="Quantities\Force.cs" />
     <Compile Include="Quantities\Frequency.cs" />
+    <Compile Include="Quantities\HeatCapacity.cs" />
+    <Compile Include="Quantities\HeatFluxDensity.cs" />
     <Compile Include="Quantities\Illuminance.cs" />
     <Compile Include="Quantities\Inductance.cs" />
     <Compile Include="Quantities\Luminance.cs" />

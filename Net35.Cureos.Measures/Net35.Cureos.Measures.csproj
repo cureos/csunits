@@ -90,6 +90,12 @@
     <Compile Include="..\Cureos.Measures\Quantities\AmountOfSubstance.cs">
       <Link>Quantities\AmountOfSubstance.cs</Link>
     </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\AngularAcceleration.cs">
+      <Link>Quantities\AngularAcceleration.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\AngularVelocity.cs">
+      <Link>Quantities\AngularVelocity.cs</Link>
+    </Compile>
     <Compile Include="..\Cureos.Measures\Quantities\Area.cs">
       <Link>Quantities\Area.cs</Link>
     </Compile>
@@ -131,6 +137,12 @@
     </Compile>
     <Compile Include="..\Cureos.Measures\Quantities\Frequency.cs">
       <Link>Quantities\Frequency.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\HeatCapacity.cs">
+      <Link>Quantities\HeatCapacity.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\HeatFluxDensity.cs">
+      <Link>Quantities\HeatFluxDensity.cs</Link>
     </Compile>
     <Compile Include="..\Cureos.Measures\Quantities\Illuminance.cs">
       <Link>Quantities\Illuminance.cs</Link>
