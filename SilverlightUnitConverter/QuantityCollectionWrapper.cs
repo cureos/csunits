@@ -9,11 +9,17 @@ using Cureos.Measures;
 
 namespace SilverlightUnitConverter
 {
-    public class RegistryWrapper
+    /// <summary>
+    /// Non-static wrapper class for accessing properties of the static QuantityCollection class
+    /// </summary>
+    public class QuantityCollectionWrapper
     {
+        /// <summary>
+        /// Gets the quantities contained in the quantities class library
+        /// </summary>
         public IEnumerable<QuantityAdapter> Quantities
         {
-            get { return Registry.Quantities; }
+            get { return QuantityCollection.Quantities; }
         }
     }
 }

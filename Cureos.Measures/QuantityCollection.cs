@@ -13,21 +13,21 @@ namespace Cureos.Measures
     /// <summary>
     /// Overview of quantities and units available in the class library.
     /// </summary>
-    public static class Registry
+    public static class QuantityCollection
     {
         #region CONSTRUCTORS
 
-        static Registry()
+        static QuantityCollection()
         {
-            Units =
+            IEnumerable<IUnit> units =
                 Assembly.GetExecutingAssembly().GetTypes().
                     Where(type => type.GetInterfaces().Contains(typeof(IQuantity))).
                     SelectMany(type => type.GetFields(BindingFlags.Public | BindingFlags.Static)).
                     Select(fieldInfo => fieldInfo.GetValue(null) as IUnit).
                     Where(obj => !ReferenceEquals(obj, null));
 
-            Quantities = Units.Select(unit => unit.Quantity).Distinct().
-                Select(quantity => new QuantityAdapter(quantity, Units.Where(unit => unit.Quantity.Equals(quantity))));
+            Quantities = units.Select(unit => unit.Quantity).Distinct().
+                Select(quantity => new QuantityAdapter(quantity, units.Where(unit => unit.Quantity.Equals(quantity))));
         }
 
         #endregion
@@ -38,25 +38,6 @@ namespace Cureos.Measures
         /// Gets the quantities available in this class library
         /// </summary>
         public static IEnumerable<QuantityAdapter> Quantities { get; private set; }
-
-        /// <summary>
-        /// Gets the physical units available in this class library
-        /// </summary>
-        public static IEnumerable<IUnit> Units { get; private set; }
-
-        #endregion
-
-        #region METHODS
-
-        /// <summary>
-        /// Gets the defined units associated with a specific quantity
-        /// </summary>
-        /// <param name="iQuantity">Quantity for which the collection of defined units is requested</param>
-        /// <returns>Enumerable collection of defined units associated with <paramref name="iQuantity"/></returns>
-        public static IEnumerable<IUnit> GetUnits(IQuantity iQuantity)
-        {
-            return Units.Where(u => u.Quantity.Equals(iQuantity));
-        }
 
         #endregion
     }

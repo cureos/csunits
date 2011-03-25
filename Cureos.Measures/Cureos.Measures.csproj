@@ -109,7 +109,7 @@
     <Compile Include="StandardMeasure.cs" />
     <Compile Include="UnitPrefix.cs" />
     <Compile Include="UnitPrefixMethods.cs" />
-    <Compile Include="Registry.cs" />
+    <Compile Include="QuantityCollection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -213,11 +213,11 @@
     <Compile Include="..\Cureos.Measures\QuantityAdapter.cs">
       <Link>QuantityAdapter.cs</Link>
     </Compile>
+    <Compile Include="..\Cureos.Measures\QuantityCollection.cs">
+      <Link>QuantityCollection.cs</Link>
+    </Compile>
     <Compile Include="..\Cureos.Measures\QuantityDimension.cs">
       <Link>QuantityDimension.cs</Link>
-    </Compile>
-    <Compile Include="..\Cureos.Measures\Registry.cs">
-      <Link>Registry.cs</Link>
     </Compile>
     <Compile Include="..\Cureos.Measures\StandardMeasure.cs">
       <Link>StandardMeasure.cs</Link>

@@ -42,20 +42,5 @@ namespace Cureos.Measures
         public IEnumerable<IUnit> Units { get; private set; }
 
         #endregion
-
-        #region METHODS
-
-        /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
-        /// </returns>
-        /// <filterpriority>2</filterpriority>
-        public override string ToString()
-        {
-            return Quantity.ToString();
-        }
-        #endregion
     }
 }

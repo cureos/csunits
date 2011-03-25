@@ -75,8 +75,13 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MultiBinding\BindingUtil.cs" />
+    <Compile Include="MultiBinding\IMultiValueConverter.cs" />
+    <Compile Include="MultiBinding\MultiBinding.cs" />
+    <Compile Include="MultiBinding\MultiBindings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegistryWrapper.cs" />
+    <Compile Include="QuantityCollectionWrapper.cs" />
+    <Compile Include="UnitConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
