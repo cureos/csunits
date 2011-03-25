@@ -17,6 +17,12 @@ namespace Cureos.Measures.Quantities
 	                                                           (QuantityDimension.Time ^ -2);
 
 		public static readonly Unit<Pressure> Pascal = new Unit<Pressure>("Pa");
+	    public static readonly Unit<Pressure> KiloPascal = new Unit<Pressure>(UnitPrefix.Kilo);
+	    public static readonly Unit<Pressure> MegaPascal = new Unit<Pressure>(UnitPrefix.Mega);
+	    public static readonly Unit<Pressure> GigaPascal = new Unit<Pressure>(UnitPrefix.Giga);
+	    public static readonly Unit<Pressure> MilliPascal = new Unit<Pressure>(UnitPrefix.Milli);
+	    public static readonly Unit<Pressure> MicroPascal = new Unit<Pressure>(UnitPrefix.Micro);
+	    public static readonly Unit<Pressure> NanoPascal = new Unit<Pressure>(UnitPrefix.Nano);
 
 		#endregion
 

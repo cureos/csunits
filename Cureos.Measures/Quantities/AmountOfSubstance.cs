@@ -16,8 +16,12 @@ namespace Cureos.Measures.Quantities
         #region FIELDS
 
         public static readonly Unit<AmountOfSubstance> Mole = new Unit<AmountOfSubstance>("mol");
+        public static readonly Unit<AmountOfSubstance> KiloMole = new Unit<AmountOfSubstance>(UnitPrefix.Kilo);
+        public static readonly Unit<AmountOfSubstance> MegaMole = new Unit<AmountOfSubstance>(UnitPrefix.Mega);
+        public static readonly Unit<AmountOfSubstance> GigaMole = new Unit<AmountOfSubstance>(UnitPrefix.Giga);
         public static readonly Unit<AmountOfSubstance> MilliMole = new Unit<AmountOfSubstance>(UnitPrefix.Milli);
         public static readonly Unit<AmountOfSubstance> MicroMole = new Unit<AmountOfSubstance>(UnitPrefix.Micro);
+        public static readonly Unit<AmountOfSubstance> NanoMole = new Unit<AmountOfSubstance>(UnitPrefix.Nano);
 
         #endregion
         

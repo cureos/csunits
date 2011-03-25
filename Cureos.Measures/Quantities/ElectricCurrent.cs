@@ -16,8 +16,11 @@ namespace Cureos.Measures.Quantities
         #region FIELDS
 
         public static readonly Unit<ElectricCurrent> Ampere = new Unit<ElectricCurrent>("A");
+        public static readonly Unit<ElectricCurrent> KiloAmpere = new Unit<ElectricCurrent>(UnitPrefix.Kilo);
         public static readonly Unit<ElectricCurrent> MilliAmpere = new Unit<ElectricCurrent>(UnitPrefix.Milli);
         public static readonly Unit<ElectricCurrent> MicroAmpere = new Unit<ElectricCurrent>(UnitPrefix.Micro);
+        public static readonly Unit<ElectricCurrent> NanoAmpere = new Unit<ElectricCurrent>(UnitPrefix.Nano);
+        public static readonly Unit<ElectricCurrent> PicoAmpere = new Unit<ElectricCurrent>(UnitPrefix.Pico);
 
         #endregion
 

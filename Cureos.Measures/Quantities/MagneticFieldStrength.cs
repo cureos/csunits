@@ -15,7 +15,13 @@ namespace Cureos.Measures.Quantities
 
 	    private static readonly QuantityDimension _dimension = QuantityDimension.ElectricCurrent / QuantityDimension.Length;
 
-		public static readonly Unit<MagneticFieldStrength> AmperePerMeter = new Unit<MagneticFieldStrength>("A/m");
+		public static readonly Unit<MagneticFieldStrength> AmperePerMeter = new Unit<MagneticFieldStrength>("A m\u207b¹");
+	    public static readonly Unit<MagneticFieldStrength> KiloAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Kilo);
+	    public static readonly Unit<MagneticFieldStrength> MegaAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Mega);
+	    public static readonly Unit<MagneticFieldStrength> GigaAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Giga);
+	    public static readonly Unit<MagneticFieldStrength> MilliAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Milli);
+	    public static readonly Unit<MagneticFieldStrength> MicroAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Micro);
+	    public static readonly Unit<MagneticFieldStrength> NanoAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Nano);
 
 		#endregion
 

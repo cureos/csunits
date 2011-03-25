@@ -18,6 +18,12 @@ namespace Cureos.Measures.Quantities
 	        (QuantityDimension.ElectricCurrent ^ -2);
 
 		public static readonly Unit<ElectricResistance> Ohm = new Unit<ElectricResistance>("Ω");
+	    public static readonly Unit<ElectricResistance> KiloOhm = new Unit<ElectricResistance>(UnitPrefix.Kilo);
+	    public static readonly Unit<ElectricResistance> MegaOhm = new Unit<ElectricResistance>(UnitPrefix.Mega);
+	    public static readonly Unit<ElectricResistance> GigaOhm = new Unit<ElectricResistance>(UnitPrefix.Giga);
+	    public static readonly Unit<ElectricResistance> MilliOhm = new Unit<ElectricResistance>(UnitPrefix.Milli);
+	    public static readonly Unit<ElectricResistance> MicroOhm = new Unit<ElectricResistance>(UnitPrefix.Micro);
+	    public static readonly Unit<ElectricResistance> NanoOhm = new Unit<ElectricResistance>(UnitPrefix.Nano);
 
 		#endregion
 

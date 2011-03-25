@@ -17,6 +17,12 @@ namespace Cureos.Measures.Quantities
 	                                                           QuantityDimension.Time;
 
 		public static readonly Unit<CatalyticActivity> Katal = new Unit<CatalyticActivity>("kat");
+	    public static readonly Unit<CatalyticActivity> KiloKatal = new Unit<CatalyticActivity>(UnitPrefix.Kilo);
+	    public static readonly Unit<CatalyticActivity> MegaKatal = new Unit<CatalyticActivity>(UnitPrefix.Mega);
+	    public static readonly Unit<CatalyticActivity> GigaKatal = new Unit<CatalyticActivity>(UnitPrefix.Giga);
+	    public static readonly Unit<CatalyticActivity> MilliKatal = new Unit<CatalyticActivity>(UnitPrefix.Milli);
+	    public static readonly Unit<CatalyticActivity> MicroKatal = new Unit<CatalyticActivity>(UnitPrefix.Micro);
+	    public static readonly Unit<CatalyticActivity> NanoKatal = new Unit<CatalyticActivity>(UnitPrefix.Nano);
 
 		#endregion
 

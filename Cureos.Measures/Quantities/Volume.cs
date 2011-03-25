@@ -19,6 +19,7 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Volume> Liter = new Unit<Volume>("l", Factors.Cube(Factors.Deci));
         public static readonly Unit<Volume> CubicDeciMeter = new Unit<Volume>("dm³", Factors.Cube(Factors.Deci));
         public static readonly Unit<Volume> CubicCentiMeter = new Unit<Volume>("cm³", Factors.Cube(Factors.Centi));
+        public static readonly Unit<Volume> CubicMilliMeter = new Unit<Volume>("mm³", Factors.Cube(Factors.Milli));
 
         #endregion
 

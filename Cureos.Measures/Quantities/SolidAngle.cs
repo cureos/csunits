@@ -14,6 +14,10 @@ namespace Cureos.Measures.Quantities
         #region FIELDS
 
         public static readonly Unit<SolidAngle> Steradian = new Unit<SolidAngle>("sr");
+        public static readonly Unit<SolidAngle> MilliSteradian = new Unit<SolidAngle>(UnitPrefix.Milli);
+        public static readonly Unit<SolidAngle> MicroSteradian = new Unit<SolidAngle>(UnitPrefix.Micro);
+        public static readonly Unit<SolidAngle> NanoSteradian = new Unit<SolidAngle>(UnitPrefix.Nano);
+        public static readonly Unit<SolidAngle> SquareDegree = new Unit<SolidAngle>("(°)²", Factors.Square(Factors.RadiansPerDegree));
 
         #endregion
 

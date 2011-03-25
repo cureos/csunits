@@ -23,6 +23,7 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Energy> GigaJoule = new Unit<Energy>(UnitPrefix.Giga);
         public static readonly Unit<Energy> MilliJoule = new Unit<Energy>(UnitPrefix.Milli);
         public static readonly Unit<Energy> MicroJoule = new Unit<Energy>(UnitPrefix.Micro);
+        public static readonly Unit<Energy> WattHour = new Unit<Energy>("Wh", Factors.SecondsPerHour);
         public static readonly Unit<Energy> KiloWattHour = new Unit<Energy>("kWh", Factors.Kilo * Factors.SecondsPerHour);
         public static readonly Unit<Energy> MegaWattHour = new Unit<Energy>("MWh", Factors.Mega * Factors.SecondsPerHour);
         public static readonly Unit<Energy> GigaWattHour = new Unit<Energy>("GWh", Factors.Giga * Factors.SecondsPerHour);

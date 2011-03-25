@@ -16,7 +16,13 @@ namespace Cureos.Measures.Quantities
 	    private static readonly QuantityDimension _dimension = (QuantityDimension.Length ^ -3) *
 	                                                           QuantityDimension.AmountOfSubstance;
 
-		public static readonly Unit<AmountConcentration> MolePerCubicMeter = new Unit<AmountConcentration>("mol/m³");
+		public static readonly Unit<AmountConcentration> MolePerCubicMeter = new Unit<AmountConcentration>("mol m\u207b³");
+	    public static readonly Unit<AmountConcentration> KiloMolePerCubicMeter = new Unit<AmountConcentration>(UnitPrefix.Kilo);
+	    public static readonly Unit<AmountConcentration> MegaMolePerCubicMeter = new Unit<AmountConcentration>(UnitPrefix.Mega);
+	    public static readonly Unit<AmountConcentration> GigaMolePerCubicMeter = new Unit<AmountConcentration>(UnitPrefix.Giga);
+	    public static readonly Unit<AmountConcentration> MilliMolePerCubicMeter = new Unit<AmountConcentration>(UnitPrefix.Milli);
+	    public static readonly Unit<AmountConcentration> MicroMolePerCubicMeter = new Unit<AmountConcentration>(UnitPrefix.Micro);
+	    public static readonly Unit<AmountConcentration> NanoMolePerCubicMeter = new Unit<AmountConcentration>(UnitPrefix.Nano);
 
 		#endregion
 

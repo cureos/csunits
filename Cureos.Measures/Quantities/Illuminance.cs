@@ -17,6 +17,12 @@ namespace Cureos.Measures.Quantities
 	        QuantityDimension.Steradian * (QuantityDimension.Length ^ -2) * QuantityDimension.LuminousIntensity;
 
 		public static readonly Unit<Illuminance> Lux = new Unit<Illuminance>("lx");
+	    public static readonly Unit<Illuminance> KiloLux = new Unit<Illuminance>(UnitPrefix.Kilo);
+	    public static readonly Unit<Illuminance> MegaLux = new Unit<Illuminance>(UnitPrefix.Mega);
+	    public static readonly Unit<Illuminance> GigaLux = new Unit<Illuminance>(UnitPrefix.Giga);
+	    public static readonly Unit<Illuminance> MilliLux = new Unit<Illuminance>(UnitPrefix.Milli);
+	    public static readonly Unit<Illuminance> MicroLux = new Unit<Illuminance>(UnitPrefix.Micro);
+	    public static readonly Unit<Illuminance> NanoLux = new Unit<Illuminance>(UnitPrefix.Nano);
 
 		#endregion
 

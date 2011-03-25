@@ -16,7 +16,13 @@ namespace Cureos.Measures.Quantities
 	    private static readonly QuantityDimension _dimension = (QuantityDimension.Length ^ -2) *
 	                                                           QuantityDimension.LuminousIntensity;
 
-		public static readonly Unit<Luminance> CandelaPerSquareMeter = new Unit<Luminance>("cd/m²");
+		public static readonly Unit<Luminance> CandelaPerSquareMeter = new Unit<Luminance>("cd m\u207b²");
+	    public static readonly Unit<Luminance> KiloCandelaPerSquareMeter = new Unit<Luminance>(UnitPrefix.Kilo);
+	    public static readonly Unit<Luminance> MegaCandelaPerSquareMeter = new Unit<Luminance>(UnitPrefix.Mega);
+	    public static readonly Unit<Luminance> GigaCandelaPerSquareMeter = new Unit<Luminance>(UnitPrefix.Giga);
+	    public static readonly Unit<Luminance> MilliCandelaPerSquareMeter = new Unit<Luminance>(UnitPrefix.Milli);
+	    public static readonly Unit<Luminance> MicroCandelaPerSquareMeter = new Unit<Luminance>(UnitPrefix.Micro);
+	    public static readonly Unit<Luminance> NanoCandelaPerSquareMeter = new Unit<Luminance>(UnitPrefix.Nano);
 
 		#endregion
 

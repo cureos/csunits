@@ -14,6 +14,12 @@ namespace Cureos.Measures.Quantities
         #region FIELDS
 
         public static readonly Unit<LuminousIntensity> Candela = new Unit<LuminousIntensity>("cd");
+        public static readonly Unit<LuminousIntensity> KiloCandela = new Unit<LuminousIntensity>(UnitPrefix.Kilo);
+        public static readonly Unit<LuminousIntensity> MegaCandela = new Unit<LuminousIntensity>(UnitPrefix.Mega);
+        public static readonly Unit<LuminousIntensity> GigaCandela = new Unit<LuminousIntensity>(UnitPrefix.Giga);
+        public static readonly Unit<LuminousIntensity> MilliCandela = new Unit<LuminousIntensity>(UnitPrefix.Milli);
+        public static readonly Unit<LuminousIntensity> MicroCandela = new Unit<LuminousIntensity>(UnitPrefix.Micro);
+        public static readonly Unit<LuminousIntensity> NanoCandela = new Unit<LuminousIntensity>(UnitPrefix.Nano);
 
         #endregion
 

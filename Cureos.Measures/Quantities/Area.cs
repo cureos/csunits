@@ -21,6 +21,8 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Area> SquareCentiMeter = new Unit<Area>("cm²", Factors.Square(Factors.Centi));
         public static readonly Unit<Area> SquareMilliMeter = new Unit<Area>("mm²", Factors.Square(Factors.Milli));
         public static readonly Unit<Area> Barn = new Unit<Area>("b", Factors.SquareMetersPerBarn);
+        public static readonly Unit<Area> Are = new Unit<Area>("a", Factors.Square(Factors.Deka));
+        public static readonly Unit<Area> Hectare = new Unit<Area>("ha", Factors.Square(Factors.Hecto));
 
         #endregion
 

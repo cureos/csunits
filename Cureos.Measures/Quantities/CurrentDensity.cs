@@ -16,7 +16,11 @@ namespace Cureos.Measures.Quantities
 	    private static readonly QuantityDimension _dimension = (QuantityDimension.Length ^ -2) *
 	                                                           QuantityDimension.ElectricCurrent;
 
-		public static readonly Unit<CurrentDensity> AmperePerSquareMeter = new Unit<CurrentDensity>("A/m²");
+		public static readonly Unit<CurrentDensity> AmperePerSquareMeter = new Unit<CurrentDensity>("A m\u207b²");
+	    public static readonly Unit<CurrentDensity> KiloAmperePerSquareMeter = new Unit<CurrentDensity>(UnitPrefix.Kilo);
+	    public static readonly Unit<CurrentDensity> MilliAmperePerSquareMeter = new Unit<CurrentDensity>(UnitPrefix.Milli);
+	    public static readonly Unit<CurrentDensity> MicroAmperePerSquareMeter = new Unit<CurrentDensity>(UnitPrefix.Micro);
+	    public static readonly Unit<CurrentDensity> NanoAmperePerSquareMeter = new Unit<CurrentDensity>(UnitPrefix.Nano);
 
 		#endregion
 

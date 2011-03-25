@@ -19,6 +19,13 @@ namespace Cureos.Measures.Quantities
 	                                                           (QuantityDimension.ElectricCurrent ^ 2);
 
 		public static readonly Unit<Capacitance> Farad = new Unit<Capacitance>("F");
+	    public static readonly Unit<Capacitance> KiloFarad = new Unit<Capacitance>(UnitPrefix.Kilo);
+	    public static readonly Unit<Capacitance> MegaFarad = new Unit<Capacitance>(UnitPrefix.Mega);
+	    public static readonly Unit<Capacitance> GigaFarad = new Unit<Capacitance>(UnitPrefix.Giga);
+	    public static readonly Unit<Capacitance> MilliFarad = new Unit<Capacitance>(UnitPrefix.Milli);
+	    public static readonly Unit<Capacitance> MicroFarad = new Unit<Capacitance>(UnitPrefix.Micro);
+	    public static readonly Unit<Capacitance> NanoFarad = new Unit<Capacitance>(UnitPrefix.Nano);
+        public static readonly Unit<Capacitance> PicoFarad = new Unit<Capacitance>(UnitPrefix.Pico);
 
 		#endregion
 

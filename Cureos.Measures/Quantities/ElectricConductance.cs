@@ -18,6 +18,10 @@ namespace Cureos.Measures.Quantities
 	                                                           (QuantityDimension.ElectricCurrent ^ 2);
 
 		public static readonly Unit<ElectricConductance> Siemens = new Unit<ElectricConductance>("S");
+	    public static readonly Unit<ElectricConductance> KiloSiemens = new Unit<ElectricConductance>(UnitPrefix.Kilo);
+	    public static readonly Unit<ElectricConductance> MilliSiemens = new Unit<ElectricConductance>(UnitPrefix.Milli);
+	    public static readonly Unit<ElectricConductance> MicroSiemens = new Unit<ElectricConductance>(UnitPrefix.Micro);
+	    public static readonly Unit<ElectricConductance> NanoSiemens = new Unit<ElectricConductance>(UnitPrefix.Nano);
 
 		#endregion
 

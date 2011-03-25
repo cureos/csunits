@@ -15,8 +15,8 @@ namespace Cureos.Measures.Quantities
 
 	    private static readonly QuantityDimension _dimension = (QuantityDimension.Length ^ -2) * QuantityDimension.Mass;
 
-		public static readonly Unit<SurfaceDensity> KiloGramPerSquareMeter = new Unit<SurfaceDensity>("kg/m²");
-		public static readonly Unit<SurfaceDensity> GramPerSquareCentiMeter = new Unit<SurfaceDensity>("g/cm²", Factors.Deka);
+		public static readonly Unit<SurfaceDensity> KiloGramPerSquareMeter = new Unit<SurfaceDensity>("kg m\u207b²");
+		public static readonly Unit<SurfaceDensity> GramPerSquareCentiMeter = new Unit<SurfaceDensity>("g cm\u207b²", Factors.Deka);
 
 		#endregion
 

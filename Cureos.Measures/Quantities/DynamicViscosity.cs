@@ -17,6 +17,10 @@ namespace Cureos.Measures.Quantities
             (QuantityDimension.Length ^ -1) * QuantityDimension.Mass * (QuantityDimension.Time ^ -1);
 
         public static readonly Unit<DynamicViscosity> PascalSecond = new Unit<DynamicViscosity>("Pa s");
+        public static readonly Unit<DynamicViscosity> KiloPascalSecond = new Unit<DynamicViscosity>(UnitPrefix.Kilo);
+        public static readonly Unit<DynamicViscosity> MegaPascalSecond = new Unit<DynamicViscosity>(UnitPrefix.Mega);
+        public static readonly Unit<DynamicViscosity> GigaPascalSecond = new Unit<DynamicViscosity>(UnitPrefix.Giga);
+        public static readonly Unit<DynamicViscosity> MilliPascalSecond = new Unit<DynamicViscosity>(UnitPrefix.Milli);
 
         #endregion
 

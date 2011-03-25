@@ -18,6 +18,12 @@ namespace Cureos.Measures.Quantities
 	                                                           (QuantityDimension.ElectricCurrent ^ -1);
 
 		public static readonly Unit<MagneticFlux> Weber = new Unit<MagneticFlux>("Wb");
+	    public static readonly Unit<MagneticFlux> KiloWeber = new Unit<MagneticFlux>(UnitPrefix.Kilo);
+	    public static readonly Unit<MagneticFlux> MegaWeber = new Unit<MagneticFlux>(UnitPrefix.Mega);
+	    public static readonly Unit<MagneticFlux> GigaWeber = new Unit<MagneticFlux>(UnitPrefix.Giga);
+	    public static readonly Unit<MagneticFlux> MilliWeber = new Unit<MagneticFlux>(UnitPrefix.Milli);
+	    public static readonly Unit<MagneticFlux> MicroWeber = new Unit<MagneticFlux>(UnitPrefix.Micro);
+	    public static readonly Unit<MagneticFlux> NanoWeber = new Unit<MagneticFlux>(UnitPrefix.Nano);
 
 		#endregion
 

@@ -15,6 +15,8 @@ namespace Cureos.Measures.Quantities
 
         public static readonly Unit<PlaneAngle> Radian = new Unit<PlaneAngle>("rad");
         public static readonly Unit<PlaneAngle> Degree = new Unit<PlaneAngle>("°", Factors.RadiansPerDegree);
+        public static readonly Unit<PlaneAngle> Minute = new Unit<PlaneAngle>("'", Factors.RadiansPerMinute);
+        public static readonly Unit<PlaneAngle> Second = new Unit<PlaneAngle>("\"", Factors.RadiansPerSecond);
 
         #endregion
         

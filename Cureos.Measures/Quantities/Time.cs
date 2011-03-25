@@ -18,6 +18,7 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Time> Hour = new Unit<Time>("h", Factors.SecondsPerHour);
         public static readonly Unit<Time> Day = new Unit<Time>("dy", Factors.SecondsPerDay);
         public static readonly Unit<Time> Week = new Unit<Time>("wk", Factors.SecondsPerWeek);
+        public static readonly Unit<Time> JulianYear = new Unit<Time>("a", Factors.SecondsPerJulianYear);
 
         #endregion
 

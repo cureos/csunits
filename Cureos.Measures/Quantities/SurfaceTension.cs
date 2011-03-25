@@ -16,6 +16,12 @@ namespace Cureos.Measures.Quantities
         private static readonly QuantityDimension _dimension = QuantityDimension.Mass * (QuantityDimension.Time ^ -2);
 
         public static readonly Unit<SurfaceTension> NewtonPerMeter = new Unit<SurfaceTension>("N m\u207b¹");
+        public static readonly Unit<SurfaceTension> KiloNewtonPerMeter = new Unit<SurfaceTension>(UnitPrefix.Kilo);
+        public static readonly Unit<SurfaceTension> MegaNewtonPerMeter = new Unit<SurfaceTension>(UnitPrefix.Mega);
+        public static readonly Unit<SurfaceTension> GigaNewtonPerMeter = new Unit<SurfaceTension>(UnitPrefix.Giga);
+        public static readonly Unit<SurfaceTension> MilliNewtonPerMeter = new Unit<SurfaceTension>(UnitPrefix.Milli);
+        public static readonly Unit<SurfaceTension> MicroNewtonPerMeter = new Unit<SurfaceTension>(UnitPrefix.Micro);
+        public static readonly Unit<SurfaceTension> NanoNewtonPerMeter = new Unit<SurfaceTension>(UnitPrefix.Nano);
 
         #endregion
 

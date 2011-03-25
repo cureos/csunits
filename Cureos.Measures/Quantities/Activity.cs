@@ -16,6 +16,13 @@ namespace Cureos.Measures.Quantities
 	    private static readonly QuantityDimension _dimension = QuantityDimension.Time ^ -1;
 
 		public static readonly Unit<Activity> Becquerel = new Unit<Activity>("Bq");
+	    public static readonly Unit<Activity> KiloBecquerel = new Unit<Activity>(UnitPrefix.Kilo);
+	    public static readonly Unit<Activity> MegaBecquerel = new Unit<Activity>(UnitPrefix.Mega);
+	    public static readonly Unit<Activity> GigaBecquerel = new Unit<Activity>(UnitPrefix.Giga);
+        public static readonly Unit<Activity> Curie = new Unit<Activity>("Ci", Factors.BecquerelPerCurie);
+        public static readonly Unit<Activity> KiloCurie = new Unit<Activity>("kCi", Factors.Kilo * Factors.BecquerelPerCurie);
+        public static readonly Unit<Activity> MilliCurie = new Unit<Activity>("mCi", Factors.Milli * Factors.BecquerelPerCurie);
+        public static readonly Unit<Activity> MicroCurie = new Unit<Activity>("µCi", Factors.Micro * Factors.BecquerelPerCurie);
 
 		#endregion
 

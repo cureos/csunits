@@ -16,6 +16,7 @@ namespace Cureos.Measures.Quantities
         private static readonly QuantityDimension _dimension = QuantityDimension.Length * (QuantityDimension.Time ^ -2);
 
         public static readonly Unit<Acceleration> MeterPerSecondSquared = new Unit<Acceleration>("m s\u207b²");
+        public static readonly Unit<Acceleration> KiloMeterPerSecondSquared = new Unit<Acceleration>(UnitPrefix.Kilo);
         public static readonly Unit<Acceleration> CentiMeterPerSecondSquared = new Unit<Acceleration>(UnitPrefix.Centi);
         public static readonly Unit<Acceleration> MilliMeterPerSecondSquared = new Unit<Acceleration>(UnitPrefix.Milli);
 

@@ -19,6 +19,9 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Frequency> KiloHertz = new Unit<Frequency>(UnitPrefix.Kilo);
         public static readonly Unit<Frequency> MegaHertz = new Unit<Frequency>(UnitPrefix.Mega);
         public static readonly Unit<Frequency> GigaHertz = new Unit<Frequency>(UnitPrefix.Giga);
+        public static readonly Unit<Frequency> MilliHertz = new Unit<Frequency>(UnitPrefix.Milli);
+        public static readonly Unit<Frequency> MicroHertz = new Unit<Frequency>(UnitPrefix.Micro);
+        public static readonly Unit<Frequency> NanoHertz = new Unit<Frequency>(UnitPrefix.Nano);
 
         #endregion
         

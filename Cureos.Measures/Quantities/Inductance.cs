@@ -18,6 +18,12 @@ namespace Cureos.Measures.Quantities
 															   (QuantityDimension.ElectricCurrent ^ -2);
 
 		public static readonly Unit<Inductance> Henry = new Unit<Inductance>("H");
+	    public static readonly Unit<Inductance> KiloHenry = new Unit<Inductance>(UnitPrefix.Kilo);
+	    public static readonly Unit<Inductance> MegaHenry = new Unit<Inductance>(UnitPrefix.Mega);
+	    public static readonly Unit<Inductance> GigaHenry = new Unit<Inductance>(UnitPrefix.Giga);
+	    public static readonly Unit<Inductance> MilliHenry = new Unit<Inductance>(UnitPrefix.Milli);
+	    public static readonly Unit<Inductance> MicroHenry = new Unit<Inductance>(UnitPrefix.Micro);
+	    public static readonly Unit<Inductance> NanoHenry = new Unit<Inductance>(UnitPrefix.Nano);
 
 		#endregion
 

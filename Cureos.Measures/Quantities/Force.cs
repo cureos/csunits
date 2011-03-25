@@ -17,7 +17,12 @@ namespace Cureos.Measures.Quantities
 			QuantityDimension.Length * QuantityDimension.Mass * (QuantityDimension.Time ^ -2);
 
 		public static readonly Unit<Force> Newton = new Unit<Force>("N");
-		public static readonly Unit<Force> KiloNewton = new Unit<Force>(UnitPrefix.Kilo);
+	    public static readonly Unit<Force> KiloNewton = new Unit<Force>(UnitPrefix.Kilo);
+	    public static readonly Unit<Force> MegaNewton = new Unit<Force>(UnitPrefix.Mega);
+	    public static readonly Unit<Force> GigaNewton = new Unit<Force>(UnitPrefix.Giga);
+	    public static readonly Unit<Force> MilliNewton = new Unit<Force>(UnitPrefix.Milli);
+	    public static readonly Unit<Force> MicroNewton = new Unit<Force>(UnitPrefix.Micro);
+	    public static readonly Unit<Force> NanoNewton = new Unit<Force>(UnitPrefix.Nano);
 
 		#endregion
 

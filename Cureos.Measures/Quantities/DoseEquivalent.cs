@@ -17,6 +17,10 @@ namespace Cureos.Measures.Quantities
 	                                                           (QuantityDimension.Time ^ -2);
 
 		public static readonly Unit<DoseEquivalent> Sievert = new Unit<DoseEquivalent>("Sv");
+	    public static readonly Unit<DoseEquivalent> KiloSievert = new Unit<DoseEquivalent>(UnitPrefix.Kilo);
+	    public static readonly Unit<DoseEquivalent> MilliSievert = new Unit<DoseEquivalent>(UnitPrefix.Milli);
+	    public static readonly Unit<DoseEquivalent> MicroSievert = new Unit<DoseEquivalent>(UnitPrefix.Micro);
+	    public static readonly Unit<DoseEquivalent> NanoSievert = new Unit<DoseEquivalent>(UnitPrefix.Nano);
 
 		#endregion
 

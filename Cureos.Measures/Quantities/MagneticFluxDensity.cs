@@ -18,6 +18,12 @@ namespace Cureos.Measures.Quantities
 	                                                           (QuantityDimension.ElectricCurrent ^ -1);
 
 		public static readonly Unit<MagneticFluxDensity> Tesla = new Unit<MagneticFluxDensity>("T");
+	    public static readonly Unit<MagneticFluxDensity> KiloTesla = new Unit<MagneticFluxDensity>(UnitPrefix.Kilo);
+	    public static readonly Unit<MagneticFluxDensity> MegaTesla = new Unit<MagneticFluxDensity>(UnitPrefix.Mega);
+	    public static readonly Unit<MagneticFluxDensity> GigaTesla = new Unit<MagneticFluxDensity>(UnitPrefix.Giga);
+	    public static readonly Unit<MagneticFluxDensity> MilliTesla = new Unit<MagneticFluxDensity>(UnitPrefix.Milli);
+	    public static readonly Unit<MagneticFluxDensity> MicroTesla = new Unit<MagneticFluxDensity>(UnitPrefix.Micro);
+	    public static readonly Unit<MagneticFluxDensity> NanoTesla = new Unit<MagneticFluxDensity>(UnitPrefix.Nano);
 
 		#endregion
 

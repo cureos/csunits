@@ -20,6 +20,8 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Mass> Gram = new Unit<Mass>("g", Factors.Milli);
         public static readonly Unit<Mass> MilliGram = new Unit<Mass>("mg", Factors.Micro);
         public static readonly Unit<Mass> MicroGram = new Unit<Mass>("µg", Factors.Nano);
+        public static readonly Unit<Mass> NanoGram = new Unit<Mass>("µg", Factors.Pico);
+        public static readonly Unit<Mass> PicoGram = new Unit<Mass>("µg", Factors.Femto);
         public static readonly Unit<Mass> ElectronMass = new Unit<Mass>("m\u2091", Factors.KiloGramsPerElectronMass);
         public static readonly Unit<Mass> AtomicMassUnit = new Unit<Mass>("u", Factors.KiloGramsPerAtomicMassUnit);
         public static readonly Unit<Mass> Dalton = new Unit<Mass>("Da", Factors.KiloGramsPerAtomicMassUnit);

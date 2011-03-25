@@ -18,6 +18,12 @@ namespace Cureos.Measures.Quantities
 	                                                           (QuantityDimension.ElectricCurrent ^ -1);
 
 		public static readonly Unit<ElectricPotential> Volt = new Unit<ElectricPotential>("V");
+	    public static readonly Unit<ElectricPotential> KiloVolt = new Unit<ElectricPotential>(UnitPrefix.Kilo);
+	    public static readonly Unit<ElectricPotential> MegaVolt = new Unit<ElectricPotential>(UnitPrefix.Mega);
+	    public static readonly Unit<ElectricPotential> GigaVolt = new Unit<ElectricPotential>(UnitPrefix.Giga);
+	    public static readonly Unit<ElectricPotential> MilliVolt = new Unit<ElectricPotential>(UnitPrefix.Milli);
+	    public static readonly Unit<ElectricPotential> MicroVolt = new Unit<ElectricPotential>(UnitPrefix.Micro);
+	    public static readonly Unit<ElectricPotential> NanoVolt = new Unit<ElectricPotential>(UnitPrefix.Nano);
 
 		#endregion
 

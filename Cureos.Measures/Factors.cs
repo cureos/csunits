@@ -39,6 +39,7 @@ namespace Cureos.Measures
         public const double SecondsPerHour = SecondsPerMinute * 60.0;
         public const double SecondsPerDay = SecondsPerHour * 24.0;
         public const double SecondsPerWeek = SecondsPerDay * 7.0;
+        public const double SecondsPerJulianYear = SecondsPerDay * 365.25;
         public const double KelvinCelsiusIntercept = 273.15;
         public const double KelvinFahrenheitIntercept = 459.67;
         public const double KelvinFahrenheitSlope = 5.0 / 9.0;
@@ -46,14 +47,17 @@ namespace Cureos.Measures
         public const double JoulesPerElectronVolt = CoulombsPerElementaryCharge;
         public const double MetersPerAngstrom = 1.0e-10;
         public const double MetersPerInch = 0.0254;
-        public const double MetersPerFoot = MetersPerInch / 12.0;
-        public const double MetersPerYard = MetersPerFoot / 3.0;
-        public const double MetersPerMile = MetersPerYard / 1760.0;
-        public const double MetersPerNauticalMile = 1.0 / 1852.0;
+        public const double MetersPerFoot = MetersPerInch * 12.0;
+        public const double MetersPerYard = MetersPerFoot * 3.0;
+        public const double MetersPerMile = MetersPerYard * 1760.0;
+        public const double MetersPerNauticalMile = 1852.0;
         public const double SquareMetersPerBarn = 1.0e-28;
         public const double KiloGramsPerElectronMass = 9.109382616e-31;
         public const double KiloGramsPerAtomicMassUnit = 1.6605388628e-27;
+        public const double BecquerelPerCurie = 3.7e10;
         public static readonly double RadiansPerDegree = Math.PI / 180.0;
+        public static readonly double RadiansPerMinute = RadiansPerDegree / 60.0;
+        public static readonly double RadiansPerSecond = RadiansPerMinute / 60.0;
 
         public static double Square(double a) { return a * a; }
         public static double Cube(double a) { return a * a * a; }
@@ -82,6 +86,7 @@ namespace Cureos.Measures
         public const float SecondsPerHour = SecondsPerMinute * 60.0f;
         public const float SecondsPerDay = SecondsPerHour * 24.0f;
         public const float SecondsPerWeek = SecondsPerDay * 7.0f;
+        public const float SecondsPerJulianYear = SecondsPerDay * 365.25f;
         public const float KelvinCelsiusIntercept = 273.15f;
         public const float KelvinFahrenheitIntercept = 459.67f;
         public const float KelvinFahrenheitSlope = 5.0f / 9.0f;
@@ -89,14 +94,17 @@ namespace Cureos.Measures
         public const float JoulesPerElectronVolt = CoulombsPerElementaryCharge;
         public const float MetersPerAngstrom = 1.0e-10f;
         public const float MetersPerInch = 0.0254f;
-        public const float MetersPerFoot = MetersPerInch / 12.0f;
-        public const float MetersPerYard = MetersPerFoot / 3.0f;
-        public const float MetersPerMile = MetersPerYard / 1760.0f;
-        public const float MetersPerNauticalMile = 1.0f / 1852.0f;
+        public const float MetersPerFoot = MetersPerInch * 12.0f;
+        public const float MetersPerYard = MetersPerFoot * 3.0f;
+        public const float MetersPerMile = MetersPerYard * 1760.0f;
+        public const float MetersPerNauticalMile = 1852.0f;
         public const float SquareMetersPerBarn = 1.0e-28f;
         public const float KiloGramsPerElectronMass = 9.109382616e-31f;
         public const float KiloGramsPerAtomicMassUnit = 1.6605388628e-27f;
+        public const float BecquerelPerCurie = 3.7e10f;
         public static readonly float RadiansPerDegree = (float)Math.PI / 180.0f;
+        public static readonly float RadiansPerMinute = RadiansPerDegree / 60.0f;
+        public static readonly float RadiansPerSecond = RadiansPerMinute / 60.0f;
 
         public static float Square(float a) { return a * a; }
         public static float Cube(float a) { return a * a * a; }
@@ -125,6 +133,7 @@ namespace Cureos.Measures
         public const decimal SecondsPerHour = SecondsPerMinute * 60.0m;
         public const decimal SecondsPerDay = SecondsPerHour * 24.0m;
         public const decimal SecondsPerWeek = SecondsPerDay * 7.0m;
+        public const decimal SecondsPerJulianYear = SecondsPerDay * 365.25m;
         public const decimal KelvinCelsiusIntercept = 273.15m;
         public const decimal KelvinFahrenheitIntercept = 459.67m;
         public const decimal KelvinFahrenheitSlope = 5.0m / 9.0m;
@@ -132,14 +141,17 @@ namespace Cureos.Measures
         public const decimal JoulesPerElectronVolt = CoulombsPerElementaryCharge;
         public const decimal MetersPerAngstrom = 1.0e-10m;
         public const decimal MetersPerInch = 0.0254m;
-        public const decimal MetersPerFoot = MetersPerInch / 12.0m;
-        public const decimal MetersPerYard = MetersPerFoot / 3.0m;
-        public const decimal MetersPerMile = MetersPerYard / 1760.0m;
-        public const decimal MetersPerNauticalMile = 1.0m / 1852.0m;
+        public const decimal MetersPerFoot = MetersPerInch * 12.0m;
+        public const decimal MetersPerYard = MetersPerFoot * 3.0m;
+        public const decimal MetersPerMile = MetersPerYard * 1760.0m;
+        public const decimal MetersPerNauticalMile = 1852.0m;
         public const decimal SquareMetersPerBarn = 1.0e-28m;
         public const decimal KiloGramsPerElectronMass = 9.109382616e-31m;
         public const decimal KiloGramsPerAtomicMassUnit = 1.6605388628e-27m;
+        public const decimal BecquerelPerCurie = 3.7e10m;
         public static readonly decimal RadiansPerDegree = (decimal)Math.PI / 180.0m;
+        public static readonly decimal RadiansPerMinute = RadiansPerDegree / 60.0m;
+        public static readonly decimal RadiansPerSecond = RadiansPerMinute / 60.0m;
 
         public static decimal Square(decimal a) { return a * a; }
         public static decimal Cube(decimal a) { return a * a * a; }

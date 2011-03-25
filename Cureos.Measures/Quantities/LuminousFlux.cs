@@ -17,6 +17,12 @@ namespace Cureos.Measures.Quantities
             QuantityDimension.Steradian * QuantityDimension.LuminousIntensity;
 
 		public static readonly Unit<LuminousFlux> Lumen = new Unit<LuminousFlux>("lm");
+	    public static readonly Unit<LuminousFlux> KiloLumen = new Unit<LuminousFlux>(UnitPrefix.Kilo);
+	    public static readonly Unit<LuminousFlux> MegaLumen = new Unit<LuminousFlux>(UnitPrefix.Mega);
+	    public static readonly Unit<LuminousFlux> GigaLumen = new Unit<LuminousFlux>(UnitPrefix.Giga);
+	    public static readonly Unit<LuminousFlux> MilliLumen = new Unit<LuminousFlux>(UnitPrefix.Milli);
+	    public static readonly Unit<LuminousFlux> MicroLumen = new Unit<LuminousFlux>(UnitPrefix.Micro);
+	    public static readonly Unit<LuminousFlux> NanoLumen = new Unit<LuminousFlux>(UnitPrefix.Nano);
 
 		#endregion
 
