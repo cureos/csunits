@@ -23,9 +23,7 @@ namespace Cureos.Measures
     /// </remarks>
     public sealed class QuantityDimension
     {
-        #region FIELDS
-
-        private static readonly IEnumerator<int> _primesEnumerator = new PrimeNumbers().GetEnumerator();
+        #region SI base quantity fields
 
         public static readonly QuantityDimension Length = new QuantityDimension(1, 0, 0, 0, 0, 0, 0);
         public static readonly QuantityDimension Mass = new QuantityDimension(0, 1, 0, 0, 0, 0, 0);
@@ -34,6 +32,12 @@ namespace Cureos.Measures
         public static readonly QuantityDimension Temperature = new QuantityDimension(0, 0, 0, 0, 1, 0, 0);
         public static readonly QuantityDimension LuminousIntensity = new QuantityDimension(0, 0, 0, 0, 0, 1, 0);
         public static readonly QuantityDimension AmountOfSubstance = new QuantityDimension(0, 0, 0, 0, 0, 0, 1);
+
+        #endregion
+
+        #region Dimensionless quantity fields
+
+        private static readonly IEnumerator<int> _primesEnumerator = new PrimeNumbers().GetEnumerator();
 
         public static readonly QuantityDimension Radian = new QuantityDimension(GetNextPrime());
         public static readonly QuantityDimension Steradian = Radian * Radian;
