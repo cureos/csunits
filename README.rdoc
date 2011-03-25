@@ -109,6 +109,11 @@ To extend the library with additional quantities and associated units, the follo
 Dimensionless quantities and composite quantities consisting of dimensionless quantities require additional composition. These requirements will hopefully be described in detail on the wiki pages.
 
 
+== Application
+
+For pure demonstration and testing purposes, there is a very simple Silverlight 4-based unit converter application included in the solution, SilverlightUnitConverter. Implementation of this application was inspired by Andrew Cheng's (Github user hamxiaoz) feedback and usage of uomnet in his [Windows Forms application](https://github.com/hamxiaoz/cureos.uomnet.tests.winform).
+
+
 == Revision
 
-Last updated on March 23, 2011 by Anders Gustafsson, anders[at]cureos[dot]com.
+Last updated on March 25, 2011 by Anders Gustafsson, anders[at]cureos[dot]com.
