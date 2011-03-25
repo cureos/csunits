@@ -51,7 +51,6 @@
     <Compile Include="AmountComparer.cs" />
     <Compile Include="AmountConverter.cs" />
     <Compile Include="ArithmeticOperationsTests.cs" />
-    <Compile Include="DimensionlessDifferentiatorsTests.cs" />
     <Compile Include="ExampleTests.cs" />
     <Compile Include="Extensions\PrimeNumbersTests.cs" />
     <Compile Include="IMeasureTests.cs" />

@@ -58,9 +58,6 @@
     <Compile Include="..\Cureos.Measures\ArithmeticOperations.cs">
       <Link>ArithmeticOperations.cs</Link>
     </Compile>
-    <Compile Include="..\Cureos.Measures\DimensionlessDifferentiators.cs">
-      <Link>DimensionlessDifferentiators.cs</Link>
-    </Compile>
     <Compile Include="..\Cureos.Measures\Extensions\PrimeNumbers.cs">
       <Link>Extensions\PrimeNumbers.cs</Link>
     </Compile>

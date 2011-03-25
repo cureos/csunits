@@ -51,7 +51,6 @@
     <Compile Include="Quantities\Activity.cs" />
     <Compile Include="Quantities\AmountConcentration.cs" />
     <Compile Include="Quantities\AmountOfSubstance.cs" />
-    <Compile Include="DimensionlessDifferentiators.cs" />
     <Compile Include="Quantities\AngularAcceleration.cs" />
     <Compile Include="Quantities\AngularVelocity.cs" />
     <Compile Include="Quantities\Capacitance.cs" />

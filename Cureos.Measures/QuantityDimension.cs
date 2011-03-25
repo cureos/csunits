@@ -226,7 +226,6 @@ namespace Cureos.Measures
                        : iExponent == 1 ? String.Format(" {0}", iSiUnit) : String.Format(" {0}^{1}", iSiUnit, iExponent);
         }
 
-
         private static int GetNextPrime()
         {
             if (_primesEnumerator.MoveNext()) return _primesEnumerator.Current;

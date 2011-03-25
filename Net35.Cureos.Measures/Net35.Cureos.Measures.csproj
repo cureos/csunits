@@ -42,9 +42,6 @@
     <Compile Include="..\Cureos.Measures\ArithmeticOperations.cs">
       <Link>ArithmeticOperations.cs</Link>
     </Compile>
-    <Compile Include="..\Cureos.Measures\DimensionlessDifferentiators.cs">
-      <Link>DimensionlessDifferentiators.cs</Link>
-    </Compile>
     <Compile Include="..\Cureos.Measures\Extensions\Enumerable4Methods.cs">
       <Link>Extensions\Enumerable4Methods.cs</Link>
     </Compile>
