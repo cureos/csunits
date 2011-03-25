@@ -51,9 +51,13 @@ should yield the output:
 
 == Application
 
-For pure demonstration and testing purposes, there is a very simple Silverlight 4-based unit converter application included in the solution, SilverlightUnitConverter. Implementation of this application was inspired by Andrew Cheng's (Github user hamxiaoz) feedback and usage of uomnet in his [https://github.com/hamxiaoz/cureos.uomnet.tests.winform Windows Forms application].
+For pure demonstration and testing purposes, there is a very simple Silverlight 4-based unit converter application included in the solution, SilverlightUnitConverter, accessible [here][SL]. Implementation of this application was inspired by Andrew Cheng's feedback and usage of uomnet in his [Windows Forms application][WF].
 
 
 == Revision
 
 Last updated on March 25, 2011 by Anders Gustafsson, anders[at]cureos[dot]com.
+
+
+[SL]: http://www.cureos.com/uomnet "Simplistic unit converter for Silverlight 4"
+[WF]: https://github.com/hamxiaoz/cureos.uomnet.tests.winform "Andrew Cheng's Winform unit converter"
