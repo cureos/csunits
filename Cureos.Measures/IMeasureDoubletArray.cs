@@ -20,12 +20,12 @@ namespace Cureos.Measures
         /// <summary>
         /// Gets the array of first measures
         /// </summary>
-        IMeasureArray<Q1> First { get; }
+        IMeasureArray<Q1> X { get; }
 
         /// <summary>
         /// Gets the array of second measures
         /// </summary>
-        IMeasureArray<Q2> Second { get; }
+        IMeasureArray<Q2> Y { get; }
 
         /// <summary>
         /// Gets the <paramref name="i">ith</paramref> element of the array of measure pairs

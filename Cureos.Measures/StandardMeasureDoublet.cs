@@ -23,8 +23,8 @@ namespace Cureos.Measures
 	{
 		#region MEMBER VARIABLES
 
-		private readonly StandardMeasure<Q1> mFirst;
-		private readonly StandardMeasure<Q2> mSecond;
+		private readonly StandardMeasure<Q1> mX;
+		private readonly StandardMeasure<Q2> mY;
 
 		#endregion
 
@@ -35,7 +35,7 @@ namespace Cureos.Measures
 		/// </summary>
 		/// <param name="iMeasureDoublet">Pair of measures in arbitrary unit</param>
 		public StandardMeasureDoublet(IMeasureDoublet<Q1, Q2> iMeasureDoublet)
-			: this(iMeasureDoublet.First, iMeasureDoublet.Second)
+			: this(iMeasureDoublet.X, iMeasureDoublet.Y)
 		{
 		}
 
@@ -44,10 +44,10 @@ namespace Cureos.Measures
 		/// </summary>
 		/// <param name="iFirst">First measure object</param>
 		/// <param name="iSecond">Second measure object</param>
-		public StandardMeasureDoublet(StandardMeasure<Q1> iFirst, StandardMeasure<Q2> iSecond)
+		public StandardMeasureDoublet(StandardMeasure<Q1> iX, StandardMeasure<Q2> iY)
 		{
-			mFirst = iFirst;
-			mSecond = iSecond;
+			mX = iX;
+			mY = iY;
 		}
 
 		/// <summary>
@@ -57,8 +57,8 @@ namespace Cureos.Measures
 		/// <param name="iMeasure2">Second measure object</param>
 		public StandardMeasureDoublet(IMeasure<Q1> iMeasure1, IMeasure<Q2> iMeasure2)
 		{
-			mFirst = new StandardMeasure<Q1>(iMeasure1);
-			mSecond = new StandardMeasure<Q2>(iMeasure2);
+			mX = new StandardMeasure<Q1>(iMeasure1);
+			mY = new StandardMeasure<Q2>(iMeasure2);
 		}
 
 		/// <summary>
@@ -69,11 +69,11 @@ namespace Cureos.Measures
 		public StandardMeasureDoublet(double iAmount1, double iAmount2)
 		{
 #if DOUBLE
-			mFirst = new StandardMeasure<Q1>(iAmount1);
-			mSecond = new StandardMeasure<Q2>(iAmount2);
+			mX = new StandardMeasure<Q1>(iAmount1);
+			mY = new StandardMeasure<Q2>(iAmount2);
 #else
-			mFirst = new StandardMeasure<Q1>((AmountType)iAmount1);
-			mSecond = new StandardMeasure<Q2>((AmountType)iAmount2);
+			mX = new StandardMeasure<Q1>((AmountType)iAmount1);
+			mY = new StandardMeasure<Q2>((AmountType)iAmount2);
 #endif
 		}
 
@@ -85,11 +85,11 @@ namespace Cureos.Measures
 		public StandardMeasureDoublet(float iAmount1, float iAmount2)
 		{
 #if !DECIMAL
-			mFirst = new StandardMeasure<Q1>(iAmount1);
-			mSecond = new StandardMeasure<Q2>(iAmount2);
+			mX = new StandardMeasure<Q1>(iAmount1);
+			mY = new StandardMeasure<Q2>(iAmount2);
 #else
-			mFirst = new StandardMeasure<Q1>((AmountType)iAmount1);
-			mSecond = new StandardMeasure<Q2>((AmountType)iAmount2);
+			mX = new StandardMeasure<Q1>((AmountType)iAmount1);
+			mY = new StandardMeasure<Q2>((AmountType)iAmount2);
 #endif
 		}
 
@@ -101,11 +101,11 @@ namespace Cureos.Measures
 		public StandardMeasureDoublet(decimal iAmount1, decimal iAmount2)
 		{
 #if DECIMAL
-			mFirst = new StandardMeasure<Q1>(iAmount1);
-			mSecond = new StandardMeasure<Q2>(iAmount2);
+			mX = new StandardMeasure<Q1>(iAmount1);
+			mY = new StandardMeasure<Q2>(iAmount2);
 #else
-			mFirst = new StandardMeasure<Q1>((AmountType)iAmount1);
-			mSecond = new StandardMeasure<Q2>((AmountType)iAmount2);
+			mX = new StandardMeasure<Q1>((AmountType)iAmount1);
+			mY = new StandardMeasure<Q2>((AmountType)iAmount2);
 #endif
 		}
 
@@ -116,17 +116,17 @@ namespace Cureos.Measures
 		/// <summary>
 		/// Gets the first measure in the measure pair
 		/// </summary>
-		public IMeasure<Q1> First
+		public IMeasure<Q1> X
 		{
-			get { return mFirst; }
+			get { return mX; }
 		}
 
 		/// <summary>
 		/// Gets the second measure in the measure pair
 		/// </summary>
-		public IMeasure<Q2> Second
+		public IMeasure<Q2> Y
 		{
-			get { return mSecond; }
+			get { return mY; }
 		}
 
 		#endregion

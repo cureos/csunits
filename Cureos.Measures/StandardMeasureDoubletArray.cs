@@ -130,17 +130,17 @@ namespace Cureos.Measures
         /// <summary>
         /// Gets the array of first measures
         /// </summary>
-        public IMeasureArray<Q1> First
+        public IMeasureArray<Q1> X
         {
-            get { return new StandardMeasureArray<Q1>(mMeasureDoublets.Select(pair => pair.First)); }
+            get { return new StandardMeasureArray<Q1>(mMeasureDoublets.Select(pair => pair.X)); }
         }
 
         /// <summary>
         /// Gets the array of second measures
         /// </summary>
-        public IMeasureArray<Q2> Second
+        public IMeasureArray<Q2> Y
         {
-            get { return new StandardMeasureArray<Q2>(mMeasureDoublets.Select(pair => pair.Second)); }
+            get { return new StandardMeasureArray<Q2>(mMeasureDoublets.Select(pair => pair.Y)); }
         }
 
         /// <summary>

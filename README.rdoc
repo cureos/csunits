@@ -1,4 +1,4 @@
-= uomnet
+= csunits
 
 Simple C# framework to support Units of Measurement
 
@@ -56,10 +56,10 @@ For pure demonstration and testing purposes, there is a very simple Silverlight 
 
 == Links
 
-* On-line version of the SilverlightUnitConverter application: http://www.cureos.com/uomnet
+* On-line version of the SilverlightUnitConverter application: http://www.cureos.com/csunits
 * Andrew Cheng's Winform unit converter: https://github.com/hamxiaoz/cureos.uomnet.tests.winform
 
 
 == Revision
 
-Last updated on March 25, 2011 by Anders Gustafsson, anders[at]cureos[dot]com, http://www.cureos.com.
+Last updated on March 28, 2011 by Anders Gustafsson, anders[at]cureos[dot]com, http://www.cureos.com.

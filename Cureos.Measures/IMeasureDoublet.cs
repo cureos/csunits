@@ -16,11 +16,11 @@ namespace Cureos.Measures
         /// <summary>
         /// Gets the first measure in the measure pair
         /// </summary>
-        IMeasure<Q1> First { get; }
+        IMeasure<Q1> X { get; }
 
         /// <summary>
         /// Gets the second measure in the measure pair
         /// </summary>
-        IMeasure<Q2> Second { get; }
+        IMeasure<Q2> Y { get; }
     }
 }
