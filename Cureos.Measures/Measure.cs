@@ -117,7 +117,7 @@ namespace Cureos.Measures
 			mUnit = iUnit;
 		}
 
-		#endregion
+        #endregion
 
 		#region Implementation of IMeasure<Q>
 
@@ -134,7 +134,7 @@ namespace Cureos.Measures
 	    /// </summary>
 	    public AmountType StandardAmount
 	    {
-	        get { return GetAmount(default(Q).StandardUnit); }
+	        get { return mUnit.AmountToStandardUnitConverter(mAmount); }
 	    }
 
 	    /// <summary>
@@ -143,6 +143,18 @@ namespace Cureos.Measures
 	    IUnit IMeasure.Unit
 	    {
 	        get { return Unit; }
+	    }
+
+	    /// <summary>
+	    /// Gets the amount of this measure in the requested unit
+	    /// </summary>
+	    /// <param name="iUnit">Unit to which the measured amount should be converted</param>
+	    /// <returns>Measured amount converted into <paramref name="iUnit">specified unit</paramref></returns>
+	    AmountType IMeasure.GetAmount(IUnit iUnit)
+	    {
+	        if (iUnit == null) throw new ArgumentNullException("iUnit");
+            if (!iUnit.Quantity.Equals(default(Q))) throw new ArgumentException("Unit is not the same quantity as measure");
+	        return iUnit.AmountFromStandardUnitConverter(StandardAmount);
 	    }
 
 	    /// <summary>
@@ -161,7 +173,7 @@ namespace Cureos.Measures
 		public AmountType GetAmount(IUnit<Q> iUnit)
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
-			return iUnit.AmountFromStandardUnitConverter(mUnit.AmountToStandardUnitConverter(mAmount));
+			return iUnit.AmountFromStandardUnitConverter(StandardAmount);
 		}
 
 		/// <summary>
@@ -208,7 +220,21 @@ namespace Cureos.Measures
 			return mAmount.Equals(other.GetAmount(mUnit));
 		}
 
-		/// <summary>
+        /// <summary>
+        /// Indicates whether the current object is equal to another object of the same type.
+        /// </summary>
+        /// <returns>
+        /// true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
+        /// </returns>
+        /// <param name="other">An object to compare with this object.</param>
+        bool IEquatable<IMeasure>.Equals(IMeasure other)
+        {
+            if (other == null) throw new ArgumentNullException("other");
+            if (!other.Unit.Quantity.Equals(default(Q))) throw new ArgumentException("Measures are of different quantities");
+            return mAmount.Equals(other.GetAmount(mUnit));
+        }
+
+	    /// <summary>
 		/// Compares the current object with another object of the same type.
 		/// </summary>
 		/// <returns>
@@ -229,7 +255,21 @@ namespace Cureos.Measures
 			return mAmount.CompareTo(other.GetAmount(mUnit));
 		}
 
-		/// <summary>
+        /// <summary>
+        /// Compares the current object with another object of the same type.
+        /// </summary>
+        /// <returns>
+        /// A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than <paramref name="other"/>. 
+        /// </returns>
+        /// <param name="other">An object to compare with this object.</param>
+        int IComparable<IMeasure>.CompareTo(IMeasure other)
+        {
+            if (other == null) throw new ArgumentNullException("other");
+            if (!other.Unit.Quantity.Equals(default(Q))) throw new ArgumentException("Measures are of different quantities");
+            return mAmount.CompareTo(other.GetAmount(mUnit));
+        }
+
+	    /// <summary>
 		/// Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.
 		/// </summary>
 		/// <returns>
@@ -258,7 +298,7 @@ namespace Cureos.Measures
 			return StandardAmount.GetHashCode();
 		}
 
-		/// <summary>
+	    /// <summary>
 		/// Returns the fully qualified type name of this instance.
 		/// </summary>
 		/// <returns>

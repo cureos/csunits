@@ -19,7 +19,7 @@ namespace Cureos.Measures
 	/// <summary>
 	/// Interface representing a scalar measure of an arbitrary quantity
 	/// </summary>
-	public interface IMeasure
+	public interface IMeasure : IComparable<IMeasure>, IEquatable<IMeasure>
 	{
 		/// <summary>
 		/// Gets the measured amount in the <see cref="Unit">current unit of measure</see>
@@ -35,6 +35,13 @@ namespace Cureos.Measures
 		/// Gets the unit of measure
 		/// </summary>
 		IUnit Unit { get; }
+
+		/// <summary>
+		/// Gets the amount of this measure in the requested unit
+		/// </summary>
+		/// <param name="iUnit">Unit to which the measured amount should be converted</param>
+		/// <returns>Measured amount converted into <paramref name="iUnit">specified unit</paramref></returns>
+		AmountType GetAmount(IUnit iUnit);
 	}
 
 	/// <summary>
