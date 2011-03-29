@@ -70,13 +70,8 @@ namespace Cureos.Measures
 		/// <param name="iAmount2">Amount in standard units of the second measure object</param>
 		public StandardMeasureDoublet(double iAmount1, double iAmount2)
 		{
-#if DOUBLE
 			mX = new StandardMeasure<Q1>(iAmount1);
 			mY = new StandardMeasure<Q2>(iAmount2);
-#else
-			mX = new StandardMeasure<Q1>((AmountType)iAmount1);
-			mY = new StandardMeasure<Q2>((AmountType)iAmount2);
-#endif
 		}
 
 		/// <summary>
@@ -86,13 +81,8 @@ namespace Cureos.Measures
 		/// <param name="iAmount2">Amount in standard units of the second measure object</param>
 		public StandardMeasureDoublet(float iAmount1, float iAmount2)
 		{
-#if !DECIMAL
 			mX = new StandardMeasure<Q1>(iAmount1);
 			mY = new StandardMeasure<Q2>(iAmount2);
-#else
-			mX = new StandardMeasure<Q1>((AmountType)iAmount1);
-			mY = new StandardMeasure<Q2>((AmountType)iAmount2);
-#endif
 		}
 
 		/// <summary>
@@ -102,13 +92,8 @@ namespace Cureos.Measures
 		/// <param name="iAmount2">Amount in standard units of the second measure object</param>
 		public StandardMeasureDoublet(decimal iAmount1, decimal iAmount2)
 		{
-#if DECIMAL
 			mX = new StandardMeasure<Q1>(iAmount1);
 			mY = new StandardMeasure<Q2>(iAmount2);
-#else
-			mX = new StandardMeasure<Q1>((AmountType)iAmount1);
-			mY = new StandardMeasure<Q2>((AmountType)iAmount2);
-#endif
 		}
 
 		#endregion

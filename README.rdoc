@@ -13,7 +13,7 @@ Measure<Q> and StandardMeasure<Q> are the main "work-horses" of the library. Sta
 
 StandardMeasure<Q> is declared as a struct and only holds one member, the amount. The main goal of this approach is to maximize calculation performance, while at the same time ensuring quantity type safety.
 
-There is also a StandardMeasureArray<Q> that holds an array of floating-point amounts given in the standard unit of the specified quantity.
+There are also StandardMeasureDoublet<Q1, Q2> and StandardMeasureTriplet<Q1, Q2, Q3> structures that holds two and three measures, respectively, of potentially different quantities.
 
 
 == Usage examples
@@ -62,4 +62,4 @@ For pure demonstration and testing purposes, there is a very simple Silverlight 
 
 == Revision
 
-Last updated on March 28, 2011 by Anders Gustafsson, anders[at]cureos[dot]com, http://www.cureos.com.
+Last updated on March 29, 2011 by Anders Gustafsson, anders[at]cureos[dot]com, http://www.cureos.com.
