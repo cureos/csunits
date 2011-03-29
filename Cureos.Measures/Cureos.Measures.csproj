@@ -44,9 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\PrimeNumbers.cs" />
-    <Compile Include="IMeasureArray.cs" />
     <Compile Include="IMeasureDoublet.cs" />
-    <Compile Include="IMeasureDoubletArray.cs" />
+    <Compile Include="IMeasureTriplet.cs" />
     <Compile Include="Quantities\Acceleration.cs" />
     <Compile Include="Quantities\Activity.cs" />
     <Compile Include="Quantities\AmountConcentration.cs" />
@@ -77,6 +76,7 @@
     <Compile Include="Quantities\MagneticFluxDensity.cs" />
     <Compile Include="Quantities\MassDensity.cs" />
     <Compile Include="Quantities\MomentOfForce.cs" />
+    <Compile Include="Quantities\Number.cs" />
     <Compile Include="Quantities\PlaneAngle.cs" />
     <Compile Include="Quantities\Power.cs" />
     <Compile Include="Quantities\Pressure.cs" />
@@ -91,10 +91,9 @@
     <Compile Include="Quantities\WaveNumber.cs" />
     <Compile Include="QuantityAdapter.cs" />
     <Compile Include="StandardMeasureDoublet.cs" />
-    <Compile Include="StandardMeasureDoubletArray.cs" />
+    <Compile Include="StandardMeasureTriplet.cs" />
     <Compile Include="Unit.cs" />
     <Compile Include="Measure.cs" />
-    <Compile Include="StandardMeasureArray.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quantities\AbsorbedDose.cs" />
     <Compile Include="Quantities\Area.cs" />

@@ -13,7 +13,7 @@ namespace Cureos.Measures.Quantities
 	{
 		#region FIELDS
 		
-		public static readonly Unit<RefractiveIndex> Unity = new Unit<RefractiveIndex>("");
+		public static readonly Unit<RefractiveIndex> One = new Unit<RefractiveIndex>("");
 
 		#endregion
 
@@ -40,7 +40,7 @@ namespace Cureos.Measures.Quantities
 		/// </summary>
 		public IUnit<RefractiveIndex> StandardUnit
 		{
-			get { return Unity; }
+			get { return One; }
 		}
 
 		#endregion

@@ -54,14 +54,11 @@
     <Compile Include="..\Cureos.Measures\IMeasure.cs">
       <Link>IMeasure.cs</Link>
     </Compile>
-    <Compile Include="..\Cureos.Measures\IMeasureArray.cs">
-      <Link>IMeasureArray.cs</Link>
-    </Compile>
     <Compile Include="..\Cureos.Measures\IMeasureDoublet.cs">
       <Link>IMeasureDoublet.cs</Link>
     </Compile>
-    <Compile Include="..\Cureos.Measures\IMeasureDoubletArray.cs">
-      <Link>IMeasureDoubletArray.cs</Link>
+    <Compile Include="..\Cureos.Measures\IMeasureTriplet.cs">
+      <Link>IMeasureTriplet.cs</Link>
     </Compile>
     <Compile Include="..\Cureos.Measures\IQuantity.cs">
       <Link>IQuantity.cs</Link>
@@ -177,6 +174,9 @@
     <Compile Include="..\Cureos.Measures\Quantities\MomentOfForce.cs">
       <Link>Quantities\MomentOfForce.cs</Link>
     </Compile>
+    <Compile Include="..\Cureos.Measures\Quantities\Number.cs">
+      <Link>Quantities\Number.cs</Link>
+    </Compile>
     <Compile Include="..\Cureos.Measures\Quantities\PlaneAngle.cs">
       <Link>Quantities\PlaneAngle.cs</Link>
     </Compile>
@@ -231,14 +231,11 @@
     <Compile Include="..\Cureos.Measures\StandardMeasure.cs">
       <Link>StandardMeasure.cs</Link>
     </Compile>
-    <Compile Include="..\Cureos.Measures\StandardMeasureArray.cs">
-      <Link>StandardMeasureArray.cs</Link>
-    </Compile>
     <Compile Include="..\Cureos.Measures\StandardMeasureDoublet.cs">
       <Link>StandardMeasureDoublet.cs</Link>
     </Compile>
-    <Compile Include="..\Cureos.Measures\StandardMeasureDoubletArray.cs">
-      <Link>StandardMeasureDoubletArray.cs</Link>
+    <Compile Include="..\Cureos.Measures\StandardMeasureTriplet.cs">
+      <Link>StandardMeasureTriplet.cs</Link>
     </Compile>
     <Compile Include="..\Cureos.Measures\Unit.cs">
       <Link>Unit.cs</Link>

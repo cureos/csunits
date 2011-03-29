@@ -4,34 +4,32 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
-using System.Collections.Generic;
-
 namespace Cureos.Measures
 {
     /// <summary>
-    /// Interface representing an array of pairs of measures
+    /// Interface representing a triplet of measures given in three (potentially different) quantities
     /// </summary>
     /// <typeparam name="Q1">Quantity type of the first measure</typeparam>
     /// <typeparam name="Q2">Quantity type of the second measure</typeparam>
-    public interface IMeasureDoubletArray<Q1, Q2> : IEnumerable<IMeasureDoublet<Q1, Q2>>
+    /// <typeparam name="Q3">Quantity type of the third measure</typeparam>
+    public interface IMeasureTriplet<Q1, Q2, Q3>
         where Q1 : struct, IQuantity<Q1>
         where Q2 : struct, IQuantity<Q2>
+        where Q3 : struct, IQuantity<Q3>
     {
         /// <summary>
-        /// Gets the array of first measures
+        /// Gets the first measure in the measure triplet
         /// </summary>
-        IMeasureArray<Q1> X { get; }
+        IMeasure<Q1> X { get; }
 
         /// <summary>
-        /// Gets the array of second measures
+        /// Gets the second measure in the measure triplet
         /// </summary>
-        IMeasureArray<Q2> Y { get; }
+        IMeasure<Q2> Y { get; }
 
         /// <summary>
-        /// Gets the <paramref name="i">ith</paramref> element of the array of measure pairs
+        /// Gets the third measure in the measure triplet
         /// </summary>
-        /// <param name="i">Requested element index</param>
-        /// <returns>The <paramref name="i">ith</paramref> element of the array of measure pairs</returns>
-        IMeasureDoublet<Q1, Q2> this[int i] { get; }
+        IMeasure<Q3> Z { get; }
     }
 }

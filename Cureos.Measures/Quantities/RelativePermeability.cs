@@ -13,7 +13,7 @@ namespace Cureos.Measures.Quantities
 	{
 		#region FIELDS
 		
-		public static readonly Unit<RelativePermeability> Unity = new Unit<RelativePermeability>("");
+		public static readonly Unit<RelativePermeability> One = new Unit<RelativePermeability>("");
 
 		#endregion
 
@@ -40,7 +40,7 @@ namespace Cureos.Measures.Quantities
 		/// </summary>
 		public IUnit<RelativePermeability> StandardUnit
 		{
-			get { return Unity; }
+			get { return One; }
 		}
 
 		#endregion
