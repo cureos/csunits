@@ -22,9 +22,7 @@ namespace Tests.Cureos.Measures
     {
         private const AmountType smkEqualityTolerance = (AmountType)1.0e-7;
 
-        internal static void MeasuresAreEqual<Q1, Q2>(IMeasure<Q1> expected, IMeasure<Q2> actual)
-            where Q1 : struct, IQuantity<Q1>
-            where Q2 : struct, IQuantity<Q2>
+        internal static void MeasuresAreEqual(IMeasure expected, IMeasure actual)
         {
             if (actual.Unit.Equals(expected.Unit))
             {

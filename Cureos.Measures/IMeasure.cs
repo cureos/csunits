@@ -42,7 +42,13 @@ namespace Cureos.Measures
 		/// <param name="iUnit">Unit to which the measured amount should be converted</param>
 		/// <returns>Measured amount converted into <paramref name="iUnit">specified unit</paramref></returns>
 		AmountType GetAmount(IUnit iUnit);
-	}
+
+        /// <summary>
+        /// Gets a new unit specific measure based on this measure but in the <paramref name="iUnit">specified unit</paramref>
+        /// </summary>
+        /// <param name="iUnit">Unit in which the new measure should be specified</param>
+        IMeasure this[IUnit iUnit] { get; }
+    }
 
 	/// <summary>
 	/// Interface representing a scalar measure of a specific quantity

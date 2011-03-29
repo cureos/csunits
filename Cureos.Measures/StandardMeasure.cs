@@ -164,6 +164,17 @@ namespace Cureos.Measures
         }
 
 	    /// <summary>
+	    /// Gets a new unit specific measure based on this measure but in the <paramref name="iUnit">specified unit</paramref>
+	    /// </summary>
+	    /// <param name="iUnit">Unit in which the new measure should be specified</param>
+        /// <exception cref="ArgumentNullException">if specified unit is null or if specified unit is not of the 
+        /// <typeparamref name="Q">valid quantity</typeparamref></exception>
+        IMeasure IMeasure.this[IUnit iUnit]
+	    {
+	        get { return this[iUnit as IUnit<Q>]; }
+	    }
+
+	    /// <summary>
 		/// Gets the quantity-typed unit of measure
 		/// </summary>
 		public IUnit<Q> Unit

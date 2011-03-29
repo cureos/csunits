@@ -32,6 +32,24 @@ namespace Tests.Cureos.Measures
             var actual = new Measure<Temperature>();
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }
+
+        [Test]
+        public void Indexer_SameQuantityNonGenericInterface_YieldsValidMeasureOBject()
+        {
+            var expected = new Measure<Volume>(5000.0, Volume.Liter);
+            IMeasure meas = new StandardMeasure<Volume>(5.0);
+            var actual = meas[Volume.Liter];
+            MeasureAssert.MeasuresAreEqual(expected, actual);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Indexer_DifferentQuantitiesNonGenericInterface_Throws()
+        {
+            IMeasure meas = new StandardMeasure<SpecificVolume>(1.0);
+            var throws = meas[Volume.CubicMeter];
+        }
+
         #endregion
     }
 }
