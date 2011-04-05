@@ -4,6 +4,7 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -28,6 +29,17 @@ namespace Cureos.Measures
 
             Quantities = units.Select(unit => unit.Quantity).Distinct().
                 Select(quantity => new QuantityAdapter(quantity, units.Where(unit => unit.Quantity.Equals(quantity))));
+
+            Assembly.GetExecutingAssembly().GetTypes().
+                SelectMany(type => type.GetFields(BindingFlags.Public | BindingFlags.Static)).
+                Where(fieldInfo => fieldInfo.FieldType.GetInterfaces().Contains(typeof(IUnit))).
+                Any(fieldInfo =>
+                        {
+                            var unit = (IUnit) fieldInfo.GetValue(null);
+                            unit.DisplayName = String.Format("{0} | {1}", 
+                                fieldInfo.Name, String.IsNullOrEmpty(unit.Symbol) ? "<none>" : unit.Symbol);
+                            return false;
+                        });
         }
 
         #endregion

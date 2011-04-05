@@ -31,6 +31,11 @@ namespace Cureos.Measures
 		/// </summary>
 		string Symbol { get; }
 
+        /// <summary>
+        /// Gets or sets the fully qualified display name of the unit
+        /// </summary>
+        string DisplayName { get; set; }
+
 		/// <summary>
 		/// Gets the amount converter function from the current unit to the standard unit 
 		/// of the specified quantity

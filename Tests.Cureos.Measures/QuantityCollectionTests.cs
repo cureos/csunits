@@ -43,6 +43,14 @@ namespace Tests.Cureos.Measures
             Assert.AreEqual(expected, actual);
         }
 
+        [Test]
+        public void DisplayName_OfUnit_EqualsFieldNamePlusSymbol()
+        {
+            var dummy = QuantityCollection.Quantities;
+            var expected = "Hectare | ha";
+            var actual = Area.Hectare.DisplayName;
+            StringAssert.AreEqualIgnoringCase(expected, actual);
+        }
         #endregion
     }
 }

@@ -81,6 +81,13 @@ namespace Tests.Cureos.Measures
             Assert.IsInstanceOf(typeof(Mass), unit.Quantity);
         }
 
+        [Test]
+        public void DisplayNameGetter_NoExplicitDefinition_ReturnsFieldNameAndSymbol()
+        {
+            var expected = "Hectare | ha";
+            var actual = Area.Hectare.DisplayName;
+            StringAssert.AreEqualIgnoringCase(expected, actual);
+        }
 		#endregion
 	}
 }

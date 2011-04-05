@@ -62,6 +62,7 @@ namespace Cureos.Measures
             Func<AmountType, AmountType> iAmountFromStandardUnitConverter)
         {
             Symbol = iSymbol;
+            DisplayName = String.Empty;
             AmountToStandardUnitConverter = iAmountToStandardUnitConverter;
             AmountFromStandardUnitConverter = iAmountFromStandardUnitConverter;
         }
@@ -90,6 +91,11 @@ namespace Cureos.Measures
         /// Gets the display symbol of the unit
         /// </summary>
         public string Symbol { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the fully qualified display name of the unit
+        /// </summary>
+        public string DisplayName { get; set; }
 
         /// <summary>
         /// Gets the amount converter function from the current unit to the standard unit 
