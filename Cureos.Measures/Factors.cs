@@ -52,6 +52,7 @@ namespace Cureos.Measures
         public const double MetersPerMile = MetersPerYard * 1760.0;
         public const double MetersPerNauticalMile = 1852.0;
         public const double SquareMetersPerBarn = 1.0e-28;
+        public const double CubicMetersPerUSLiquidGallon = 3.78541178e-3;
         public const double KiloGramsPerElectronMass = 9.109382616e-31;
         public const double KiloGramsPerAtomicMassUnit = 1.6605388628e-27;
         public const double BecquerelPerCurie = 3.7e10;
@@ -99,6 +100,7 @@ namespace Cureos.Measures
         public const float MetersPerMile = MetersPerYard * 1760.0f;
         public const float MetersPerNauticalMile = 1852.0f;
         public const float SquareMetersPerBarn = 1.0e-28f;
+        public const float CubicMetersPerUSLiquidGallon = 3.78541178e-3f;
         public const float KiloGramsPerElectronMass = 9.109382616e-31f;
         public const float KiloGramsPerAtomicMassUnit = 1.6605388628e-27f;
         public const float BecquerelPerCurie = 3.7e10f;
@@ -146,6 +148,7 @@ namespace Cureos.Measures
         public const decimal MetersPerMile = MetersPerYard * 1760.0m;
         public const decimal MetersPerNauticalMile = 1852.0m;
         public const decimal SquareMetersPerBarn = 1.0e-28m;
+        public const decimal CubicMetersPerUSLiquidGallon = 3.78541178e-3m;
         public const decimal KiloGramsPerElectronMass = 9.109382616e-31m;
         public const decimal KiloGramsPerAtomicMassUnit = 1.6605388628e-27m;
         public const decimal BecquerelPerCurie = 3.7e10m;
