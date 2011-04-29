@@ -34,7 +34,7 @@ namespace Cureos.Measures
         public static readonly QuantityDimension Length = new QuantityDimension(1, 0, 0, 0, 0, 0, 0);
         public static readonly QuantityDimension Mass = new QuantityDimension(0, 1, 0, 0, 0, 0, 0);
         public static readonly QuantityDimension Time = new QuantityDimension(0, 0, 1, 0, 0, 0, 0);
-        public static readonly QuantityDimension ElectricCurrent = new QuantityDimension(10, 0, 0, 1, 0, 0, 0);
+        public static readonly QuantityDimension ElectricCurrent = new QuantityDimension(0, 0, 0, 1, 0, 0, 0);
         public static readonly QuantityDimension Temperature = new QuantityDimension(0, 0, 0, 0, 1, 0, 0);
         public static readonly QuantityDimension LuminousIntensity = new QuantityDimension(0, 0, 0, 0, 0, 1, 0);
         public static readonly QuantityDimension AmountOfSubstance = new QuantityDimension(0, 0, 0, 0, 0, 0, 1);
