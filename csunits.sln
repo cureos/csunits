@@ -16,6 +16,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Net35.Cureos.Measures", "Ne
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SilverlightUnitConverter", "SilverlightUnitConverter\SilverlightUnitConverter.csproj", "{03F10008-D188-4650-B32A-39151E3E8295}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WP7.Cureos.Measures", "WP7.Cureos.Measures\WP7.Cureos.Measures.csproj", "{CE10AC31-5F0D-437C-A2B4-53CD11017F42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WP7UnitConverter", "WP7UnitConverter\WP7UnitConverter.csproj", "{78C29962-90EB-49F2-B77B-3114EBE8C4DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +46,16 @@ Global
 		{03F10008-D188-4650-B32A-39151E3E8295}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03F10008-D188-4650-B32A-39151E3E8295}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03F10008-D188-4650-B32A-39151E3E8295}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE10AC31-5F0D-437C-A2B4-53CD11017F42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE10AC31-5F0D-437C-A2B4-53CD11017F42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE10AC31-5F0D-437C-A2B4-53CD11017F42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE10AC31-5F0D-437C-A2B4-53CD11017F42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78C29962-90EB-49F2-B77B-3114EBE8C4DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78C29962-90EB-49F2-B77B-3114EBE8C4DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78C29962-90EB-49F2-B77B-3114EBE8C4DF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{78C29962-90EB-49F2-B77B-3114EBE8C4DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78C29962-90EB-49F2-B77B-3114EBE8C4DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78C29962-90EB-49F2-B77B-3114EBE8C4DF}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

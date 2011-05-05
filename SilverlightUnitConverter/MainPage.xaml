@@ -4,54 +4,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:my="clr-namespace:SilverlightUnitConverter"
-             xmlns:mb="clr-namespace:SLMultiBinding"
              mc:Ignorable="d"
              d:DesignHeight="200" d:DesignWidth="500">
     <UserControl.Resources>
-        <my:QuantityCollectionWrapper x:Key="registryKey"/>
-        <my:UnitConverter x:Key="unitConverterKey" />
         <Style TargetType="TextBlock">
             <Setter Property="Margin" Value="3"/>
         </Style>
-        <Style TargetType="TextBox">
-            <Setter Property="Margin" Value="3"/>
-        </Style>
-        <Style TargetType="ComboBox">
-            <Setter Property="Margin" Value="3"/>
-        </Style>
     </UserControl.Resources>
-    <Grid x:Name="LayoutRoot" Background="White">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="120"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="1" TextAlignment="Center" Foreground="Blue" FontSize="14">Simple unit converter</TextBlock>
-        <TextBlock Grid.Row="1" Grid.Column="0" TextAlignment="Right">Quantity:</TextBlock>
-        <ComboBox Grid.Row="1"  Grid.Column="1" x:Name="quantityComboBox" DisplayMemberPath="Quantity" ItemsSource="{Binding Path=Quantities,Source={StaticResource registryKey}}" />
-        <TextBlock Grid.Row="2" Grid.Column="0" TextAlignment="Right">Original amount and unit:</TextBlock>
-        <TextBox Grid.Row="2" Grid.Column="1" x:Name="fromAmountTextBox" TextAlignment="Right"/>
-        <ComboBox Grid.Row="2" Grid.Column="2" x:Name="fromUnitComboBox" ItemsSource="{Binding ElementName=quantityComboBox,Path=SelectedItem.Units}"/>
-        <TextBlock Grid.Row="3" Grid.Column="0" TextAlignment="Right">New amount and unit:</TextBlock>
-        <TextBox Grid.Row="3" Grid.Column="1" x:Name="toAmountTextBox" IsReadOnly="True" TextAlignment="Right">
-            <mb:BindingUtil.MultiBindings>
-                <mb:MultiBindings>
-                    <mb:MultiBinding TargetProperty="Text" Converter="{StaticResource unitConverterKey}">
-                        <mb:BindingCollection>
-                            <Binding ElementName="fromAmountTextBox" Path="Text"/>
-                            <Binding ElementName="fromUnitComboBox" Path="SelectedItem"/>
-                            <Binding ElementName="toUnitComboBox" Path="SelectedItem"/>
-                        </mb:BindingCollection>
-                    </mb:MultiBinding>
-                </mb:MultiBindings>
-            </mb:BindingUtil.MultiBindings>
-        </TextBox>
-        <ComboBox Grid.Row="3" Grid.Column="2" x:Name="toUnitComboBox" ItemsSource="{Binding ElementName=quantityComboBox,Path=SelectedItem.Units}"/>
-    </Grid>
+    <StackPanel x:Name="LayoutRoot" Background="White">
+        <TextBlock TextAlignment="Center" Foreground="Blue" FontSize="14">Simple unit converter</TextBlock>
+        <my:UnitConverterControl/>
+    </StackPanel>
 </UserControl>
