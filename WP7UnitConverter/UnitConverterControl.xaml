@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="SilverlightUnitConverter.UnitConverterControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:my="clr-namespace:SilverlightUnitConverter"
+    xmlns:mb="clr-namespace:SLMultiBinding"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="320" d:DesignWidth="720">
+    <UserControl.Resources>
+        <my:QuantityCollectionWrapper x:Key="registryKey"/>
+        <my:UnitConverter x:Key="unitConverterKey" />
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Margin" Value="3"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="3"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="240"/>
+            <ColumnDefinition Width="160"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" x:Name="quantityText" TextAlignment="Right" VerticalAlignment="Center">Quantity:</TextBlock>
+        <toolkit:ListPicker Grid.Row="0"  Grid.Column="1" x:Name="quantityComboBox" DisplayMemberPath="Quantity" ItemsSource="{Binding Path=Quantities,Source={StaticResource registryKey}}" ListPickerMode="Normal" />
+        <TextBlock Grid.Row="1" Grid.Column="0" x:Name="fromText" TextAlignment="Right" VerticalAlignment="Center">Original amount and unit:</TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="fromAmountTextBox" TextAlignment="Right"/>
+        <toolkit:ListPicker Grid.Row="1" Grid.Column="2" x:Name="fromUnitComboBox" ItemsSource="{Binding ElementName=quantityComboBox,Path=SelectedItem.Units}" />
+        <TextBlock Grid.Row="2" Grid.Column="0" x:Name="toText" TextAlignment="Right" VerticalAlignment="Center">New amount and unit:</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="toAmountTextBox" IsReadOnly="True" TextAlignment="Right">
+            <mb:BindingUtil.MultiBindings>
+                <mb:MultiBindings>
+                    <mb:MultiBinding TargetProperty="Text" Converter="{StaticResource unitConverterKey}">
+                        <mb:BindingCollection>
+                            <Binding ElementName="fromAmountTextBox" Path="Text"/>
+                            <Binding ElementName="fromUnitComboBox" Path="SelectedItem"/>
+                            <Binding ElementName="toUnitComboBox" Path="SelectedItem"/>
+                        </mb:BindingCollection>
+                    </mb:MultiBinding>
+                </mb:MultiBindings>
+            </mb:BindingUtil.MultiBindings>
+        </TextBox>
+        <toolkit:ListPicker Grid.Row="2" Grid.Column="2" x:Name="toUnitComboBox" ItemsSource="{Binding ElementName=quantityComboBox,Path=SelectedItem.Units}" />
+    </Grid>
+</UserControl>
