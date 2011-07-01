@@ -25,3 +25,5 @@
 /WP7UnitConverter/Bin
 /WP7UnitConverter/obj
 *.docstates
+Monodroid.Cureos.Measures/
+MonodroidUnitConverter/
