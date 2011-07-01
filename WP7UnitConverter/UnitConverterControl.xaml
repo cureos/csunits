@@ -36,7 +36,13 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" x:Name="quantityText" TextAlignment="Right" VerticalAlignment="Center">Quantity:</TextBlock>
-        <toolkit:ListPicker Grid.Row="0"  Grid.Column="1" x:Name="quantityComboBox" DisplayMemberPath="Quantity" ItemsSource="{Binding Path=Quantities,Source={StaticResource registryKey}}" ListPickerMode="Normal" />
+        <toolkit:ListPicker Grid.Row="0"  Grid.Column="1" x:Name="quantityComboBox" DisplayMemberPath="Quantity" ItemsSource="{Binding Path=Quantities,Source={StaticResource registryKey}}" ListPickerMode="Normal">
+            <toolkit:ListPicker.FullModeItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Quantity}"/>
+                </DataTemplate>
+            </toolkit:ListPicker.FullModeItemTemplate>
+        </toolkit:ListPicker>
         <Image Grid.Row="0" Grid.Column="2" Source="Resources/symbol.png" VerticalAlignment="Center" HorizontalAlignment="Right" Height="48" Margin="0,0,15,0"/>
         <TextBlock Grid.Row="1" Grid.Column="0" x:Name="fromText" TextAlignment="Right" VerticalAlignment="Center">Original amount and unit:</TextBlock>
         <TextBox Grid.Row="1" Grid.Column="1" x:Name="fromAmountTextBox" TextAlignment="Right"/>
