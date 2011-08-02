@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WP7.Cureos.Measures", "WP7.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WP7UnitConverter", "WP7UnitConverter\WP7UnitConverter.csproj", "{78C29962-90EB-49F2-B77B-3114EBE8C4DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cureos.Measures (Portable)", "Cureos.Measures (Portable)\Cureos.Measures (Portable).csproj", "{5B645D84-92D7-4CF0-B838-AE9993095ED5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,10 @@ Global
 		{78C29962-90EB-49F2-B77B-3114EBE8C4DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78C29962-90EB-49F2-B77B-3114EBE8C4DF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{78C29962-90EB-49F2-B77B-3114EBE8C4DF}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{5B645D84-92D7-4CF0-B838-AE9993095ED5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B645D84-92D7-4CF0-B838-AE9993095ED5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B645D84-92D7-4CF0-B838-AE9993095ED5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B645D84-92D7-4CF0-B838-AE9993095ED5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -27,3 +27,5 @@
 *.docstates
 Monodroid.Cureos.Measures/
 MonodroidUnitConverter/
+Cureos.Measures (Portable)/bin/
+Cureos.Measures (Portable)/obj/

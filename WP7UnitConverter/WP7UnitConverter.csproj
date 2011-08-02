@@ -116,9 +116,9 @@
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WP7.Cureos.Measures\WP7.Cureos.Measures.csproj">
-      <Project>{CE10AC31-5F0D-437C-A2B4-53CD11017F42}</Project>
-      <Name>WP7.Cureos.Measures</Name>
+    <ProjectReference Include="..\Cureos.Measures %28Portable%29\Cureos.Measures %28Portable%29.csproj">
+      <Project>{5B645D84-92D7-4CF0-B838-AE9993095ED5}</Project>
+      <Name>Cureos.Measures %28Portable%29</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
@@ -132,7 +132,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="03f10008-d188-4650-b32a-39151e3e8295" />
+      <UserProperties ProjectLinkReference="03f10008-d188-4650-b32a-39151e3e8295" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

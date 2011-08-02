@@ -104,9 +104,9 @@
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SL.Cureos.Measures\SL.Cureos.Measures.csproj">
-      <Project>{D83713ED-5538-44E9-8EA3-D34AE4C6FF2A}</Project>
-      <Name>SL.Cureos.Measures</Name>
+    <ProjectReference Include="..\Cureos.Measures %28Portable%29\Cureos.Measures %28Portable%29.csproj">
+      <Project>{5B645D84-92D7-4CF0-B838-AE9993095ED5}</Project>
+      <Name>Cureos.Measures %28Portable%29</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
