@@ -52,6 +52,7 @@
     <Compile Include="AmountConverter.cs" />
     <Compile Include="ArithmeticOperationsTests.cs" />
     <Compile Include="ExampleTests.cs" />
+    <Compile Include="Linq\StandardMeasureEnumerableTests.cs" />
     <Compile Include="PrimeNumbersTests.cs" />
     <Compile Include="IMeasureDoubletAssert.cs" />
     <Compile Include="IMeasureTests.cs" />
