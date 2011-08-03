@@ -57,7 +57,7 @@ should yield the output:
 
 == Application
 
-For pure demonstration and testing purposes, there are very simple Silverlight 4 and Windows Phone ("Mango") unit converter applications included in the solution, SilverlightUnitConverter. Implementation of these applications were inspired by Andrew Cheng's feedback and usage of csunits in his Windows Forms application.
+For pure demonstration and testing purposes, there are very simple Silverlight 4 and Windows Phone ("Mango") unit converter applications included in the solution, SilverlightUnitConverter and WP7UnitConverter, respectively. Implementation of these applications were inspired by Andrew Cheng's feedback and usage of csunits in his Windows Forms application.
 
 
 == Links
