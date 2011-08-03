@@ -5,10 +5,9 @@
 // http://www.eclipse.org/legal/epl-v10.html
 
 using System;
-using Cureos.Measures;
 using NUnit.Framework;
 
-namespace Tests.Cureos.Measures
+namespace Cureos.Measures
 {
     [TestFixture]
     public class QuantityDimensionTests

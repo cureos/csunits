@@ -14,7 +14,7 @@ using AmountType = System.Decimal;
 using AmountType = System.Double;
 #endif
 
-namespace Tests.Cureos.Measures
+namespace Cureos.Measures
 {
     public static class AmountAssert
     {

@@ -4,12 +4,9 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
-using System;
-using Cureos.Measures;
-using Cureos.Measures.Quantities;
 using NUnit.Framework;
 
-namespace Tests.Cureos.Measures.Quantities
+namespace Cureos.Measures.Quantities
 {
     [TestFixture]
     public class VelocityTests

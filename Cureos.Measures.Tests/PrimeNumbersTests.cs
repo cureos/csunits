@@ -6,10 +6,9 @@
 
 using System;
 using System.Linq;
-using Cureos.Measures;
 using NUnit.Framework;
 
-namespace Tests.Cureos.Measures
+namespace Cureos.Measures
 {
     [TestFixture]
     public class PrimeNumbersTests

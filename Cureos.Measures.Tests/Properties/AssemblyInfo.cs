@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Tests.Cureos.Measures")]
+[assembly: AssemblyTitle("Cureos.Measures.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("Tests.Cureos.Measures")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2011")]
+[assembly: AssemblyCompany("Cureos AB")]
+[assembly: AssemblyProduct("Cureos.Measures.Tests")]
+[assembly: AssemblyCopyright("Copyright © Cureos AB 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("8b993da7-063f-4731-94f2-a20e2b227b6e")]
+[assembly: Guid("29dbf402-cd4b-4e1e-a7a6-49f1adbd1101")]
 
 // Version information for an assembly consists of the following four values:
 //

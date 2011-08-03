@@ -4,10 +4,9 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
-using Cureos.Measures;
 using NUnit.Framework;
 
-namespace Tests.Cureos.Measures
+namespace Cureos.Measures
 {
     public static class IMeasureTripletAssert
     {

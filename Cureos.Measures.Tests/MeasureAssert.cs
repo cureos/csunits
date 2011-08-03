@@ -5,7 +5,6 @@
 // http://www.eclipse.org/legal/epl-v10.html
 
 using System;
-using Cureos.Measures;
 using NUnit.Framework;
 
 #if SINGLE
@@ -16,7 +15,7 @@ using AmountType = System.Decimal;
 using AmountType = System.Double;
 #endif
 
-namespace Tests.Cureos.Measures
+namespace Cureos.Measures
 {
     public static class MeasureAssert
     {

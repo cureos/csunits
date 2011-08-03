@@ -6,8 +6,6 @@
 
 using System;
 using System.Collections;
-using NUnit.Framework;
-
 #if SINGLE
 using AmountType = System.Single;
 #elif DECIMAL
@@ -16,7 +14,7 @@ using AmountType = System.Decimal;
 using AmountType = System.Double;
 #endif
 
-namespace Tests.Cureos.Measures
+namespace Cureos.Measures
 {
 	public class AmountComparer : IComparer
 	{

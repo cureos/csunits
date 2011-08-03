@@ -4,12 +4,10 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
-using System;
 using Cureos.Measures.Quantities;
 using NUnit.Framework;
-using Cureos.Measures;
 
-namespace Tests.Cureos.Measures
+namespace Cureos.Measures
 {
 	[TestFixture]
 	public class UnitTests
@@ -23,12 +21,12 @@ namespace Tests.Cureos.Measures
 				get { return QuantityDimension.Steradian; }
 			}
 
-		    IUnit IQuantity.StandardUnit
-		    {
-		        get { return StandardUnit; }
-		    }
+			IUnit IQuantity.StandardUnit
+			{
+				get { return StandardUnit; }
+			}
 
-		    public IUnit<UnitTestsQuantity> StandardUnit
+			public IUnit<UnitTestsQuantity> StandardUnit
 			{
 				get { return new Unit<UnitTestsQuantity>("UTQ"); }
 			}
@@ -68,26 +66,26 @@ namespace Tests.Cureos.Measures
 			AmountAssert.AreEqual(expected, actual);
 		}
 
-        [Test]
-        public void Quantity_OfLengthUnit_IsLength()
-        {
-            Assert.IsInstanceOf(typeof(Length), Length.PicoMeter.Quantity);
-        }
+		[Test]
+		public void Quantity_OfLengthUnit_IsLength()
+		{
+			Assert.IsInstanceOf(typeof(Length), Length.PicoMeter.Quantity);
+		}
 
-        [Test]
-        public void Quantity_OfIUnitDefinedAsMassUnit_IsMass()
-        {
-            IUnit unit = Mass.HectoGram;
-            Assert.IsInstanceOf(typeof(Mass), unit.Quantity);
-        }
+		[Test]
+		public void Quantity_OfIUnitDefinedAsMassUnit_IsMass()
+		{
+			IUnit unit = Mass.HectoGram;
+			Assert.IsInstanceOf(typeof(Mass), unit.Quantity);
+		}
 
-        [Test]
-        public void DisplayNameGetter_NoExplicitDefinition_ReturnsFieldNameAndSymbol()
-        {
-            var expected = "Hectare | ha";
-            var actual = Area.Hectare.DisplayName;
-            StringAssert.AreEqualIgnoringCase(expected, actual);
-        }
+		[Test]
+		public void DisplayNameGetter_NoExplicitDefinition_ReturnsFieldNameAndSymbol()
+		{
+			var expected = "Hectare | ha";
+			var actual = Area.Hectare.DisplayName;
+			StringAssert.AreEqualIgnoringCase(expected, actual);
+		}
 		#endregion
 	}
 }

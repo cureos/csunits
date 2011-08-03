@@ -4,7 +4,6 @@
 // which accompanies this distribution, and is available at
 // http://www.eclipse.org/legal/epl-v10.html
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,7 +15,7 @@ using AmountType = System.Decimal;
 using AmountType = System.Double;
 #endif
 
-namespace Tests.Cureos.Measures
+namespace Cureos.Measures
 {
     internal static class AmountConverter
     {
