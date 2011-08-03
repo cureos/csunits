@@ -4,8 +4,6 @@
 *.suo
 *.userprefs
 <<<<<<< HEAD
-/Tests.Cureos.Measures/bin
-/Tests.Cureos.Measures/obj
 /Cureos.Measures/obj
 /Cureos.Measures/bin
 *.vs10x
@@ -14,20 +12,16 @@
 *.vs10x
 >>>>>>> master
 /test-results
-/SL.Cureos.Measures/Bin
-/SL.Cureos.Measures/obj
 /Net35.Cureos.Measures/bin
 /Net35.Cureos.Measures/obj
 /SilverlightUnitConverter/Bin
 /SilverlightUnitConverter/obj
-/WP7.Cureos.Measures/Bin
-/WP7.Cureos.Measures/obj
 /WP7UnitConverter/Bin
 /WP7UnitConverter/obj
 *.docstates
-Monodroid.Cureos.Measures/
-MonodroidUnitConverter/
-Cureos.Measures (Portable)/bin/
-Cureos.Measures (Portable)/obj/
 Cureos.Measures.Tests/bin/
 Cureos.Measures.Tests/obj/
+Monodroid.Cureos.Measures/bin/
+Monodroid.Cureos.Measures/obj/
+/MonodroidUnitConverter/Bin
+/MonodroidUnitConverter/obj
