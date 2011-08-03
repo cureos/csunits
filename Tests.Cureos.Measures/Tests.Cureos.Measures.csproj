@@ -52,7 +52,7 @@
     <Compile Include="AmountConverter.cs" />
     <Compile Include="ArithmeticOperationsTests.cs" />
     <Compile Include="ExampleTests.cs" />
-    <Compile Include="Extensions\PrimeNumbersTests.cs" />
+    <Compile Include="PrimeNumbersTests.cs" />
     <Compile Include="IMeasureDoubletAssert.cs" />
     <Compile Include="IMeasureTests.cs" />
     <Compile Include="IMeasureTripletAssert.cs" />
@@ -72,7 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cureos.Measures\Cureos.Measures.csproj">
-      <Project>{E55BFB0E-0074-404F-A988-7C1E245DF752}</Project>
+      <Project>{A89BF529-9E02-4B80-8C4B-94168313DE47}</Project>
       <Name>Cureos.Measures</Name>
     </ProjectReference>
   </ItemGroup>

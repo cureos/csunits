@@ -9,7 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Cureos.Measures.Extensions
+namespace Cureos.Measures
 {
     /// <summary>
     /// Support class for generating a (nearly) unbounded collection of primes.

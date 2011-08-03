@@ -3,16 +3,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E55BFB0E-0074-404F-A988-7C1E245DF752}</ProjectGuid>
+    <ProjectGuid>{A89BF529-9E02-4B80-8C4B-94168313DE47}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Cureos.Measures</RootNamespace>
     <AssemblyName>Cureos.Measures</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile2</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,25 +32,32 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Core">
-    </Reference>
-    <Reference Include="System.Xml.Linq">
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-    </Reference>
-    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\PrimeNumbers.cs" />
+    <Compile Include="ArithmeticOperations.cs" />
+    <Compile Include="Factors.cs" />
+    <Compile Include="IMeasure.cs" />
     <Compile Include="IMeasureDoublet.cs" />
     <Compile Include="IMeasureTriplet.cs" />
+    <Compile Include="IQuantity.cs" />
+    <Compile Include="IUnit.cs" />
+    <Compile Include="Measure.cs" />
+    <Compile Include="PrimeNumbers.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quantities\AbsorbedDose.cs" />
     <Compile Include="Quantities\Acceleration.cs" />
     <Compile Include="Quantities\Activity.cs" />
     <Compile Include="Quantities\AmountConcentration.cs" />
     <Compile Include="Quantities\AmountOfSubstance.cs" />
     <Compile Include="Quantities\AngularAcceleration.cs" />
     <Compile Include="Quantities\AngularVelocity.cs" />
+    <Compile Include="Quantities\Area.cs" />
     <Compile Include="Quantities\Capacitance.cs" />
     <Compile Include="Quantities\CatalyticActivity.cs" />
     <Compile Include="Quantities\CurrentDensity.cs" />
@@ -62,18 +68,21 @@
     <Compile Include="Quantities\ElectricCurrent.cs" />
     <Compile Include="Quantities\ElectricPotential.cs" />
     <Compile Include="Quantities\ElectricResistance.cs" />
+    <Compile Include="Quantities\Energy.cs" />
     <Compile Include="Quantities\Force.cs" />
     <Compile Include="Quantities\Frequency.cs" />
     <Compile Include="Quantities\HeatCapacity.cs" />
     <Compile Include="Quantities\HeatFluxDensity.cs" />
     <Compile Include="Quantities\Illuminance.cs" />
     <Compile Include="Quantities\Inductance.cs" />
+    <Compile Include="Quantities\Length.cs" />
     <Compile Include="Quantities\Luminance.cs" />
     <Compile Include="Quantities\LuminousFlux.cs" />
     <Compile Include="Quantities\LuminousIntensity.cs" />
     <Compile Include="Quantities\MagneticFieldStrength.cs" />
     <Compile Include="Quantities\MagneticFlux.cs" />
     <Compile Include="Quantities\MagneticFluxDensity.cs" />
+    <Compile Include="Quantities\Mass.cs" />
     <Compile Include="Quantities\MassDensity.cs" />
     <Compile Include="Quantities\MomentOfForce.cs" />
     <Compile Include="Quantities\Number.cs" />
@@ -86,34 +95,22 @@
     <Compile Include="Quantities\SpecificVolume.cs" />
     <Compile Include="Quantities\SurfaceDensity.cs" />
     <Compile Include="Quantities\SurfaceTension.cs" />
+    <Compile Include="Quantities\Temperature.cs" />
+    <Compile Include="Quantities\Time.cs" />
     <Compile Include="Quantities\Velocity.cs" />
-    <Compile Include="ArithmeticOperations.cs" />
+    <Compile Include="Quantities\Volume.cs" />
     <Compile Include="Quantities\WaveNumber.cs" />
     <Compile Include="QuantityAdapter.cs" />
+    <Compile Include="QuantityCollection.cs" />
+    <Compile Include="QuantityDimension.cs" />
+    <Compile Include="StandardMeasure.cs" />
     <Compile Include="StandardMeasureDoublet.cs" />
     <Compile Include="StandardMeasureTriplet.cs" />
     <Compile Include="Unit.cs" />
-    <Compile Include="Measure.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Quantities\AbsorbedDose.cs" />
-    <Compile Include="Quantities\Area.cs" />
-    <Compile Include="Quantities\Energy.cs" />
-    <Compile Include="Quantities\Mass.cs" />
-    <Compile Include="Quantities\Temperature.cs" />
-    <Compile Include="Quantities\Time.cs" />
-    <Compile Include="Quantities\Volume.cs" />
-    <Compile Include="Factors.cs" />
-    <Compile Include="QuantityDimension.cs" />
-    <Compile Include="IMeasure.cs" />
-    <Compile Include="IQuantity.cs" />
-    <Compile Include="Quantities\Length.cs" />
-    <Compile Include="IUnit.cs" />
-    <Compile Include="StandardMeasure.cs" />
     <Compile Include="UnitPrefix.cs" />
     <Compile Include="UnitPrefixMethods.cs" />
-    <Compile Include="QuantityCollection.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -121,6 +118,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup />
-  <ItemGroup />
 </Project>

@@ -2,12 +2,18 @@
 
 Simple C# framework to support Units of Measurement
 
-Copyright 2011 (c) Anders Gustafsson, Cureos AB.
+Copyright 2011 (c) Anders Gustafsson, Cureos AB.  
 Made available under Eclipse Public License, version 1.0.
+
+
+== Prerequisites
+
+Visual Studio 2010 Service Pack 1 or higher with Portable Library Tools (http://msdn.microsoft.com/en-us/library/gg597391.aspx) extension.
+
 
 == Introduction
 
-Developed with Visual Studio 2010, using .NET Frameworks 3.5 and 4.0. Corresponding Silverlight class library included in solution. Can also be used by Mono, at least versions 2.8 and later.
+Developed with Visual Studio 2010, using .NET Frameworks 3.5 and 4.0. The .NET 4.0 class library is portable and can without modifications be included in Silverlight 4 and Windows Phone ("Mango") applications. Source code can also be compiled using Mono, at least versions 2.8 and later.
 
 Measure<Q> and StandardMeasure<Q> are the main "work-horses" of the library. StandardMeasure<Q> is always represented in the reference unit of the associated quantity. If a different unit is specified in instantiation of StandardMeasure<Q>, the measured amount is automatically converted to the equivalent reference unit amount. On the other hand, the amount and unit used in instantiation of Measure<Q> are internally maintained.
 
@@ -51,7 +57,7 @@ should yield the output:
 
 == Application
 
-For pure demonstration and testing purposes, there is a very simple Silverlight 4-based unit converter application included in the solution, SilverlightUnitConverter. Implementation of this application was inspired by Andrew Cheng's feedback and usage of uomnet in his Windows Forms application.
+For pure demonstration and testing purposes, there are very simple Silverlight 4 and Windows Phone ("Mango") unit converter applications included in the solution, SilverlightUnitConverter. Implementation of these applications were inspired by Andrew Cheng's feedback and usage of csunits in his Windows Forms application.
 
 
 == Links
@@ -62,4 +68,4 @@ For pure demonstration and testing purposes, there is a very simple Silverlight 
 
 == Revision
 
-Last updated on March 31, 2011 by Anders Gustafsson, anders[at]cureos[dot]com, http://www.cureos.com.
+Last updated on August 3, 2011 by Anders Gustafsson, anders[at]cureos[dot]com, http://www.cureos.com.

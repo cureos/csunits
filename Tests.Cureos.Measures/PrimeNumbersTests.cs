@@ -5,12 +5,11 @@
 // http://www.eclipse.org/legal/epl-v10.html
 
 using System;
-using System.Collections;
 using System.Linq;
-using Cureos.Measures.Extensions;
+using Cureos.Measures;
 using NUnit.Framework;
 
-namespace Tests.Cureos.Measures.Extensions
+namespace Tests.Cureos.Measures
 {
     [TestFixture]
     public class PrimeNumbersTests

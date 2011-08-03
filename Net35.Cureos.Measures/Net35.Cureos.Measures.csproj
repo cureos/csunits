@@ -42,12 +42,6 @@
     <Compile Include="..\Cureos.Measures\ArithmeticOperations.cs">
       <Link>ArithmeticOperations.cs</Link>
     </Compile>
-    <Compile Include="..\Cureos.Measures\Extensions\Enumerable4Methods.cs">
-      <Link>Extensions\Enumerable4Methods.cs</Link>
-    </Compile>
-    <Compile Include="..\Cureos.Measures\Extensions\PrimeNumbers.cs">
-      <Link>Extensions\PrimeNumbers.cs</Link>
-    </Compile>
     <Compile Include="..\Cureos.Measures\Factors.cs">
       <Link>Factors.cs</Link>
     </Compile>
@@ -68,6 +62,9 @@
     </Compile>
     <Compile Include="..\Cureos.Measures\Measure.cs">
       <Link>Measure.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\PrimeNumbers.cs">
+      <Link>PrimeNumbers.cs</Link>
     </Compile>
     <Compile Include="..\Cureos.Measures\Quantities\AbsorbedDose.cs">
       <Link>Quantities\AbsorbedDose.cs</Link>
@@ -246,12 +243,13 @@
     <Compile Include="..\Cureos.Measures\UnitPrefixMethods.cs">
       <Link>UnitPrefixMethods.cs</Link>
     </Compile>
+    <Compile Include="Extensions\Enumerable4Methods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties ProjectLinkReference="e55bfb0e-0074-404f-a988-7c1e245df752" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
+      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="e55bfb0e-0074-404f-a988-7c1e245df752" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
