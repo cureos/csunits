@@ -1,14 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-<Button  
-    android:id="@+id/myButton"
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/hello"
-    />
-</LinearLayout>
+  <TableRow>
+    <Spinner
+      android:id="@+id/QuantitySpinner"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      />
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      />
+    <ImageView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_weight="1.0"
+      android:layout_gravity="right"
+      android:src="@drawable/logo"
+      />
+  </TableRow>
+  <TableRow>
+    <EditText
+      android:id="@+id/FromAmountEditText"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      />
+    <Spinner
+      android:id="@+id/FromUnitSpinner"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      />
+  </TableRow>
+  <TableRow>
+    <EditText
+      android:id="@+id/ToAmountEditText"
+      android:editable="false"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      />
+    <Spinner
+      android:id="@+id/ToUnitSpinner"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      />
+  </TableRow>
+</TableLayout>
 
