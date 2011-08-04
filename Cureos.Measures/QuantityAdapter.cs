@@ -42,5 +42,14 @@ namespace Cureos.Measures
         public IEnumerable<IUnit> Units { get; private set; }
 
         #endregion
+		
+		#region OVERRIDDEN METHODS
+		
+		public override string ToString ()
+		{
+			return Quantity.ToString();
+		}
+		
+		#endregion
     }
 }
