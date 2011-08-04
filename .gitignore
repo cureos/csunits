@@ -25,3 +25,5 @@ Monodroid.Cureos.Measures/bin/
 Monodroid.Cureos.Measures/obj/
 /MonodroidUnitConverter/bin
 /MonodroidUnitConverter/obj
+
+MonodroidUnitConverter/Resources/Resource.designer.cs
