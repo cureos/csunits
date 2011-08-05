@@ -24,6 +24,7 @@ namespace Cureos.Measures
     {
         #region PRIVATE STATIC MEMBERS
 
+        private const double EPSILON = Double.Epsilon;
         private static readonly IEnumerator<int> _primesEnumerator = new PrimeNumbers().GetEnumerator();
 
         #endregion
@@ -51,6 +52,7 @@ namespace Cureos.Measures
         public static readonly QuantityDimension RefractiveIndex = new QuantityDimension(GetNextPrime());
         public static readonly QuantityDimension RelativePermeability = new QuantityDimension(GetNextPrime());
         public static readonly QuantityDimension RelativeBiologicalEffectiveness = new QuantityDimension(GetNextPrime());
+        public static readonly QuantityDimension BiologicallyEffectiveDoseDifferentiator = new QuantityDimension(GetNextPrime());
 
         #endregion
         
@@ -155,24 +157,28 @@ namespace Cureos.Measures
         #region METHODS
 
         /// <summary>
+        /// Compare the exponents of this object with another quantity dimension object for dimensional equality
+        /// </summary>
+        /// <param name="other">Quantity dimension object with which to compare dimensional equality</param>
+        /// <returns>true if all exponent elements of this and the other object are equal, false otherwise</returns>
+        internal bool ExponentsEquals(QuantityDimension other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return AreExponentsEqualTo(other);
+        }
+
+        /// <summary>
         /// Compare this object with another quantity dimension object for equality
         /// </summary>
-        /// <param name="other">Qunatity dimension object with which to compare equality</param>
+        /// <param name="other">Quantity dimension object with which to compare equality</param>
         /// <returns>true if all elements of this and the other object are equal, false otherwise</returns>
-        /// <remarks>Currently, the dimensionless differentiator is also compared for exact equality,
-        /// even though the element is a double. For increased stability, this comparison might need to
-        /// be made more tolerant.</remarks>
         internal bool Equals(QuantityDimension other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return other.DimensionlessDifferentiator == DimensionlessDifferentiator &&
-                   other.LengthExponent == LengthExponent && other.MassExponent == MassExponent &&
-                   other.TimeExponent == TimeExponent &&
-                   other.ElectricCurrentExponent == ElectricCurrentExponent &&
-                   other.TemperatureExponent == TemperatureExponent &&
-                   other.LuminousIntensityExponent == LuminousIntensityExponent &&
-                   other.AmountOfSubstanceExponent == AmountOfSubstanceExponent;
+            return Math.Abs(other.DimensionlessDifferentiator - DimensionlessDifferentiator) < EPSILON &&
+                   AreExponentsEqualTo(other);
         }
 
         /// <summary>
@@ -226,6 +232,16 @@ namespace Cureos.Measures
                 ConditionalOutput("s", TimeExponent), ConditionalOutput("A", ElectricCurrentExponent),
                 ConditionalOutput("K", TemperatureExponent), ConditionalOutput("Cd", LuminousIntensityExponent),
                 ConditionalOutput("mol", AmountOfSubstanceExponent)).Trim();
+        }
+
+        private bool AreExponentsEqualTo(QuantityDimension other)
+        {
+            return other.LengthExponent == LengthExponent && other.MassExponent == MassExponent &&
+                   other.TimeExponent == TimeExponent &&
+                   other.ElectricCurrentExponent == ElectricCurrentExponent &&
+                   other.TemperatureExponent == TemperatureExponent &&
+                   other.LuminousIntensityExponent == LuminousIntensityExponent &&
+                   other.AmountOfSubstanceExponent == AmountOfSubstanceExponent;
         }
 
         private static string ConditionalOutput(string iSiUnit, int iExponent)

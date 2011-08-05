@@ -143,38 +143,38 @@ namespace Cureos.Measures
 			get { return mAmount; }
 		}
 
-	    /// <summary>
-	    /// Gets the unit of measure
-	    /// </summary>
-	    IUnit IMeasure.Unit
-	    {
-	        get { return Unit; }
-	    }
+		/// <summary>
+		/// Gets the unit of measure
+		/// </summary>
+		IUnit IMeasure.Unit
+		{
+			get { return Unit; }
+		}
 
-	    /// <summary>
-	    /// Gets the amount of this measure in the requested unit
-	    /// </summary>
-	    /// <param name="iUnit">Unit to which the measured amount should be converted</param>
-	    /// <returns>Measured amount converted into <paramref name="iUnit">specified unit</paramref></returns>
-	    AmountType IMeasure.GetAmount(IUnit iUnit)
-	    {
-            if (iUnit == null) throw new ArgumentNullException("iUnit");
-            if (!iUnit.Quantity.Equals(default(Q))) throw new ArgumentException("Unit is not the same quantity as measure");
-            return iUnit.AmountFromStandardUnitConverter(mAmount);
-        }
+		/// <summary>
+		/// Gets the amount of this measure in the requested unit
+		/// </summary>
+		/// <param name="iUnit">Unit to which the measured amount should be converted</param>
+		/// <returns>Measured amount converted into <paramref name="iUnit">specified unit</paramref></returns>
+		AmountType IMeasure.GetAmount(IUnit iUnit)
+		{
+			if (iUnit == null) throw new ArgumentNullException("iUnit");
+			if (!iUnit.Quantity.Equals(default(Q))) throw new ArgumentException("Unit is not the same quantity as measure");
+			return iUnit.AmountFromStandardUnitConverter(mAmount);
+		}
 
-	    /// <summary>
-	    /// Gets a new unit specific measure based on this measure but in the <paramref name="iUnit">specified unit</paramref>
-	    /// </summary>
-	    /// <param name="iUnit">Unit in which the new measure should be specified</param>
-        /// <exception cref="ArgumentNullException">if specified unit is null or if specified unit is not of the 
-        /// <typeparamref name="Q">valid quantity</typeparamref></exception>
-        IMeasure IMeasure.this[IUnit iUnit]
-	    {
-	        get { return this[iUnit as IUnit<Q>]; }
-	    }
+		/// <summary>
+		/// Gets a new unit specific measure based on this measure but in the <paramref name="iUnit">specified unit</paramref>
+		/// </summary>
+		/// <param name="iUnit">Unit in which the new measure should be specified</param>
+		/// <exception cref="ArgumentNullException">if specified unit is null or if specified unit is not of the 
+		/// <typeparamref name="Q">valid quantity</typeparamref></exception>
+		IMeasure IMeasure.this[IUnit iUnit]
+		{
+			get { return this[iUnit as IUnit<Q>]; }
+		}
 
-	    /// <summary>
+		/// <summary>
 		/// Gets the quantity-typed unit of measure
 		/// </summary>
 		public IUnit<Q> Unit
@@ -245,21 +245,21 @@ namespace Cureos.Measures
 			return GetAmount(other.Unit).Equals(other.Amount);
 		}
 
-        /// <summary>
-        /// Indicates whether the current object is equal to another object of the same type.
-        /// </summary>
-        /// <returns>
-        /// true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
-        /// </returns>
-        /// <param name="other">An object to compare with this object.</param>
-        bool IEquatable<IMeasure>.Equals(IMeasure other)
-        {
-            if (other == null) throw new ArgumentNullException("other");
-            if (!other.Unit.Quantity.Equals(default(Q))) throw new ArgumentException("Measures are of different quantities");
-            return mAmount.Equals(other.StandardAmount);
-        }
+		/// <summary>
+		/// Indicates whether the current object is equal to another object of the same type.
+		/// </summary>
+		/// <returns>
+		/// true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
+		/// </returns>
+		/// <param name="other">An object to compare with this object.</param>
+		bool IEquatable<IMeasure>.Equals(IMeasure other)
+		{
+			if (other == null) throw new ArgumentNullException("other");
+			if (!other.Unit.Quantity.Equals(default(Q))) throw new ArgumentException("Measures are of different quantities");
+			return mAmount.Equals(other.StandardAmount);
+		}
 
-	    /// <summary>
+		/// <summary>
 		/// Compares the current object with another object of the same type.
 		/// </summary>
 		/// <param name="other">An object to compare with this object.</param>
@@ -291,21 +291,21 @@ namespace Cureos.Measures
 			return GetAmount(other.Unit).CompareTo(other.Amount);
 		}
 
-        /// <summary>
-        /// Compares the current object with another object of the same type.
-        /// </summary>
-        /// <returns>
-        /// A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than <paramref name="other"/>. 
-        /// </returns>
-        /// <param name="other">An object to compare with this object.</param>
-        int IComparable<IMeasure>.CompareTo(IMeasure other)
-        {
-            if (other == null) throw new ArgumentNullException("other");
-            if (!other.Unit.Quantity.Equals(default(Q))) throw new ArgumentException("Measures are of different quantities");
-            return mAmount.CompareTo(other.StandardAmount);
-        }
+		/// <summary>
+		/// Compares the current object with another object of the same type.
+		/// </summary>
+		/// <returns>
+		/// A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than <paramref name="other"/>. 
+		/// </returns>
+		/// <param name="other">An object to compare with this object.</param>
+		int IComparable<IMeasure>.CompareTo(IMeasure other)
+		{
+			if (other == null) throw new ArgumentNullException("other");
+			if (!other.Unit.Quantity.Equals(default(Q))) throw new ArgumentException("Measures are of different quantities");
+			return mAmount.CompareTo(other.StandardAmount);
+		}
 
-        /// <summary>
+		/// <summary>
 		/// Compares another object with this measure object
 		/// </summary>
 		/// <param name="obj">Object to compare with this object</param>
@@ -313,7 +313,7 @@ namespace Cureos.Measures
 		/// false otherwise</returns>
 		public override bool Equals(object obj)
 		{
-			return obj is StandardMeasure<Q> ? Equals((StandardMeasure<Q>)obj) : false;
+			return obj is StandardMeasure<Q> && Equals((StandardMeasure<Q>)obj);
 		}
 
 		/// <summary>
@@ -325,13 +325,21 @@ namespace Cureos.Measures
 			return mAmount.GetHashCode();
 		}
 
-	    /// <summary>
+		/// <summary>
 		/// Gets the measure represented as a string
 		/// </summary>
 		/// <returns>The measure description</returns>
 		public override string ToString()
 		{
 			return String.Format("{0} {1}", mAmount, Unit.Symbol).Trim();
+		}
+
+		public StandardMeasure<Qout> CastTo<Qout>() where Qout :  struct, IQuantity<Qout>
+		{
+            if (!default(Qout).Dimension.ExponentsEquals(default(Q).Dimension))
+                throw new InvalidOperationException("Cannot cast measure to quantity with different dimensions");
+
+			return new StandardMeasure<Qout>(mAmount);
 		}
 
 		#endregion
