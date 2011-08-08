@@ -22,6 +22,17 @@ namespace Cureos.Measures
 	/// <typeparam name="Q">Struct type implementing the IQuantity interface</typeparam>
 	public struct StandardMeasure<Q> : IMeasure<Q>, IEquatable<StandardMeasure<Q>>, IComparable<StandardMeasure<Q>> where Q : struct, IQuantity<Q>
 	{
+		#region FIELDS
+
+// ReSharper disable StaticFieldInGenericType
+		/// <summary>
+		/// Convenience representation of the zero-value standard measure
+		/// </summary>
+		public static readonly StandardMeasure<Q> Zero;
+// ReSharper restore StaticFieldInGenericType
+
+		#endregion
+
 		#region MEMBER VARIABLES
 
 		private readonly AmountType mAmount;
@@ -334,10 +345,17 @@ namespace Cureos.Measures
 			return String.Format("{0} {1}", mAmount, Unit.Symbol).Trim();
 		}
 
-		public StandardMeasure<Qout> CastTo<Qout>() where Qout :  struct, IQuantity<Qout>
+		/// <summary>
+		/// Cast standard measure to specified quantity when SI quantity dimensions are equal
+		/// </summary>
+		/// <typeparam name="Qout">Quantity to which the standard measure should be cast</typeparam>
+		/// <returns>Standard measure in the requested quantity</returns>
+		/// <exception cref="InvalidCastException">Thrown if the SI quantity dimensions of this quantity and the
+		/// requested quantity differs (only the dimensionless differntiator is allowed to differ)</exception>
+		public StandardMeasure<Qout> Cast<Qout>() where Qout :  struct, IQuantity<Qout>
 		{
-            if (!default(Qout).Dimension.ExponentsEquals(default(Q).Dimension))
-                throw new InvalidOperationException("Cannot cast measure to quantity with different dimensions");
+			if (!default(Qout).Dimension.ExponentsEquals(default(Q).Dimension))
+				throw new InvalidCastException("Cannot cast measure to quantity with different dimensions");
 
 			return new StandardMeasure<Qout>(mAmount);
 		}
