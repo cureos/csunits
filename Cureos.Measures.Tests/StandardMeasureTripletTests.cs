@@ -107,6 +107,15 @@ namespace Cureos.Measures
             IMeasureTripletAssert.AreEqual(expected, actual);
         }
 
+        [Test]
+        public void IMeasureXAccessor_CheckReturnType_ShouldBeIMeasure()
+        {
+            var expected = typeof(IMeasure<Time>);
+            IMeasureTriplet<Time, Power, ElectricPotential> triplet = _instance;
+            var actual = triplet.X;
+            Assert.IsInstanceOf(expected, actual);
+        }
+
         #endregion
     }
 }

@@ -113,20 +113,20 @@ namespace Cureos.Measures
 
         #endregion
 
-        #region Implementation of IMeasure<Q1,Q2>
+        #region PROPERTIES
 
         /// <summary>
-        /// Gets the first measure in the measure pair
+        /// Gets the first measure in the measure triplet
         /// </summary>
-        public IMeasure<Q1> X
+        public StandardMeasure<Q1> X
         {
             get { return mX; }
         }
 
         /// <summary>
-        /// Gets the second measure in the measure pair
+        /// Gets the second measure in the measure triplet
         /// </summary>
-        public IMeasure<Q2> Y
+        public StandardMeasure<Q2> Y
         {
             get { return mY; }
         }
@@ -134,7 +134,35 @@ namespace Cureos.Measures
         /// <summary>
         /// Gets the third measure in the measure triplet
         /// </summary>
-        public IMeasure<Q3> Z
+        public StandardMeasure<Q3> Z
+        {
+            get { return mZ; }
+        }
+
+        #endregion
+
+        #region Implementation of IMeasure<Q1,Q2,Q3>
+
+        /// <summary>
+        /// Gets the first measure in the measure triplet
+        /// </summary>
+        IMeasure<Q1> IMeasureTriplet<Q1, Q2, Q3>.X
+        {
+            get { return mX; }
+        }
+
+        /// <summary>
+        /// Gets the second measure in the measure triplet
+        /// </summary>
+        IMeasure<Q2> IMeasureTriplet<Q1, Q2, Q3>.Y
+        {
+            get { return mY; }
+        }
+
+        /// <summary>
+        /// Gets the third measure in the measure triplet
+        /// </summary>
+        IMeasure<Q3> IMeasureTriplet<Q1, Q2, Q3>.Z
         {
             get { return mZ; }
         }
