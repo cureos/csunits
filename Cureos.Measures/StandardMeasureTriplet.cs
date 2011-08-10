@@ -11,7 +11,7 @@ using AmountType = System.Single;
 #elif DECIMAL
 using AmountType = System.Decimal;
 #elif DOUBLE
-
+using AmountType = System.Double;
 #endif
 
 namespace Cureos.Measures
@@ -192,6 +192,50 @@ namespace Cureos.Measures
         }
 
         /// <summary>
+        /// Apply multiplicative factor on the measure triplet 
+        /// </summary>
+        /// <param name="iLhs">Multiplicative factor</param>
+        /// <param name="iRhs">Measure triplet</param>
+        /// <returns>Product of the measure triplet and the multiplicative factor</returns>
+        public static StandardMeasureTriplet<Q1, Q2, Q3> operator *(AmountType iLhs, StandardMeasureTriplet<Q1, Q2, Q3> iRhs)
+        {
+            return new StandardMeasureTriplet<Q1, Q2, Q3>(iLhs * iRhs.mX.Amount, iLhs * iRhs.mY.Amount, iLhs * iRhs.mZ.Amount);
+        }
+
+        /// <summary>
+        /// Apply multiplicative factor on the measure triplet 
+        /// </summary>
+        /// <param name="iLhs">Multiplicative factor</param>
+        /// <param name="iRhs">Measure triplet</param>
+        /// <returns>Product of the measure triplet and the multiplicative factor</returns>
+        public static StandardMeasureTriplet<Q1, Q2, Q3> operator *(StandardMeasure<Number> iLhs, StandardMeasureTriplet<Q1, Q2, Q3> iRhs)
+        {
+            return new StandardMeasureTriplet<Q1, Q2, Q3>(iLhs.Amount * iRhs.mX.Amount, iLhs.Amount * iRhs.mY.Amount, iLhs.Amount * iRhs.mZ.Amount);
+        }
+
+        /// <summary>
+        /// Apply multiplicative factor on the measure triplet 
+        /// </summary>
+        /// <param name="iLhs">Measure triplet</param>
+        /// <param name="iRhs">Multiplicative factor</param>
+        /// <returns>Product of the measure triplet and the multiplicative factor</returns>
+        public static StandardMeasureTriplet<Q1, Q2, Q3> operator *(StandardMeasureTriplet<Q1, Q2, Q3> iLhs, AmountType iRhs)
+        {
+            return iRhs * iLhs;
+        }
+
+        /// <summary>
+        /// Apply multiplicative factor on the measure triplet 
+        /// </summary>
+        /// <param name="iLhs">Measure triplet</param>
+        /// <param name="iRhs">Multiplicative factor</param>
+        /// <returns>Product of the measure triplet and the multiplicative factor</returns>
+        public static StandardMeasureTriplet<Q1, Q2, Q3> operator *(StandardMeasureTriplet<Q1, Q2, Q3> iLhs, StandardMeasure<Number> iRhs)
+        {
+            return iRhs * iLhs;
+        }
+
+        /// <summary>
         /// Multiplies one measure triplet with a number triplet
         /// </summary>
         /// <param name="iLhs">Measure triplet</param>
@@ -215,6 +259,29 @@ namespace Cureos.Measures
             return new StandardMeasureTriplet<Q1, Q2, Q3>(iLhs.mX.Amount * iRhs.X.StandardAmount,
                                                           iLhs.mY.Amount * iRhs.Y.StandardAmount,
                                                           iLhs.mZ.Amount * iRhs.Z.StandardAmount);
+        }
+
+        /// <summary>
+        /// Apply scalar denominator on the measure triplet 
+        /// </summary>
+        /// <param name="iLhs">Measure triplet</param>
+        /// <param name="iRhs">Scalar denominator</param>
+        /// <returns>Quotient of the measure triplet and the scalar denominator</returns>
+        public static StandardMeasureTriplet<Q1, Q2, Q3> operator /(StandardMeasureTriplet<Q1, Q2, Q3> iLhs, AmountType iRhs)
+        {
+            return new StandardMeasureTriplet<Q1, Q2, Q3>(iLhs.mX.Amount / iRhs, iLhs.mY.Amount / iRhs, iLhs.mZ.Amount / iRhs);
+        }
+
+        /// <summary>
+        /// Apply scalar denominator on the measure triplet 
+        /// </summary>
+        /// <param name="iLhs">Measure triplet</param>
+        /// <param name="iRhs">Scalar denominator</param>
+        /// <returns>Quotient of the measure triplet and the scalar denominator</returns>
+        public static StandardMeasureTriplet<Q1, Q2, Q3> operator /(StandardMeasureTriplet<Q1, Q2, Q3> iLhs, StandardMeasure<Number> iRhs)
+        {
+            return new StandardMeasureTriplet<Q1, Q2, Q3>(iLhs.mX.Amount / iRhs.Amount, iLhs.mY.Amount / iRhs.Amount,
+                                                          iLhs.mZ.Amount / iRhs.Amount);
         }
 
         /// <summary>

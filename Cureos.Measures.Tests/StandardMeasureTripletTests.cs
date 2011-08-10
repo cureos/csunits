@@ -75,6 +75,38 @@ namespace Cureos.Measures
             IMeasureTripletAssert.AreEqual(expected, actual);
         }
 
+        [Test]
+        public void TimesOperator_MultiplyScalarRhs_AllMeasuresEquallyScaled()
+        {
+            var expected = new StandardMeasureTriplet<Time, Power, ElectricPotential>(15.0, 0.36, 1.8);;
+            var actual = _instance * 3.0;
+            IMeasureTripletAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void TimesOperator_MultiplyScalarLhs_AllMeasuresEquallyScaled()
+        {
+            var expected = new StandardMeasureTriplet<Time, Power, ElectricPotential>(15.0, 0.36, 1.8); ;
+            var actual = 3.0 * _instance;
+            IMeasureTripletAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void TimesOperator_MultiplyNumberLhs_AllMeasuresEquallyScaled()
+        {
+            var expected = new StandardMeasureTriplet<Time, Power, ElectricPotential>(15.0, 0.36, 1.8); ;
+            var actual = _instance * new StandardMeasure<Number>(3.0);
+            IMeasureTripletAssert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void TimesOperator_MultiplyNumberRhs_AllMeasuresEquallyScaled()
+        {
+            var expected = new StandardMeasureTriplet<Time, Power, ElectricPotential>(15.0, 0.36, 1.8); ;
+            var actual = new StandardMeasure<Number>(3.0) * _instance;
+            IMeasureTripletAssert.AreEqual(expected, actual);
+        }
+
         #endregion
     }
 }

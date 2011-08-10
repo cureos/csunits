@@ -27,3 +27,4 @@ Monodroid.Cureos.Measures/obj/
 /MonodroidUnitConverter/obj
 
 MonodroidUnitConverter/Resources/Resource.designer.cs
+*.dotCover
