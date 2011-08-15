@@ -28,7 +28,7 @@ namespace Cureos.Measures
 		/// <summary>
 		/// Convenience representation of the zero-value standard measure
 		/// </summary>
-		public static readonly StandardMeasure<Q> Zero;
+		public static readonly IMeasure<Q> Zero = new StandardMeasure<Q>();
 // ReSharper restore StaticFieldInGenericType
 
 		#endregion

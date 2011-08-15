@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{453B22A5-83C9-4142-B559-8416908DC704}</ProjectGuid>
+    <ProjectTypeGuids>{E613F3A2-FE9C-494F-B74E-F63BCB86FEA6};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MonotouchUnitConverter</RootNamespace>
+    <MainNibFile>MainWindow.xib</MainNibFile>
+    <AssemblyName>MonotouchUnitConverter</AssemblyName>
+    <MtouchMinimumOS>3.0</MtouchMinimumOS>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>True</MtouchDebug>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <ConsolePause>false</ConsolePause>
+    <MtouchUseSGen>false</MtouchUseSGen>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchArch>ARMv6</MtouchArch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>False</MtouchDebug>
+    <MtouchUseSGen>false</MtouchUseSGen>
+    <ConsolePause>false</ConsolePause>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchArch>ARMv6</MtouchArch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchUseSGen>false</MtouchUseSGen>
+    <MtouchDebug>True</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <ConsolePause>false</ConsolePause>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchUseSGen>false</MtouchUseSGen>
+    <MtouchDebug>False</MtouchDebug>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="monotouch" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="MainWindow.xib.designer.cs">
+      <DependentUpon>MainWindow.xib</DependentUpon>
+    </Compile>
+    <Compile Include="QuantityPickerViewModel.cs" />
+    <Compile Include="UnitPickerViewModel.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Page Include="MainWindow.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Monotouch.Cureos.Measures\Monotouch.Cureos.Measures.csproj">
+      <Project>{F0C2A4C3-628D-4DDF-998D-524E4FAB0F1C}</Project>
+      <Name>Monotouch.Cureos.Measures</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

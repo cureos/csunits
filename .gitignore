@@ -28,3 +28,7 @@ Monodroid.Cureos.Measures/obj/
 
 MonodroidUnitConverter/Resources/Resource.designer.cs
 *.dotCover
+.DS_Store
+MonotouchUnitConverter/bin/
+MonotouchUnitConverter/obj/
+Monotouch.Cureos.Measures/bin/
