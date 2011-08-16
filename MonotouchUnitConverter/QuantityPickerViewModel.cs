@@ -14,11 +14,13 @@ namespace MonotouchUnitConverter
 
 		#region CONSTRUCTORS
 		
-		public QuantityPickerViewModel(UIPickerView iFromUnitPicker, UIPickerView iToUnitPicker)
+		public QuantityPickerViewModel(UIPickerView iQuantityPicker, UIPickerView iFromUnitPicker, UIPickerView iToUnitPicker)
 		{
 			mQuantities = QuantityCollection.Quantities.OrderBy(qa => qa.Quantity.ToString());
 			mFromUnitPicker = iFromUnitPicker;
 			mToUnitPicker = iToUnitPicker;
+			
+			Selected(iQuantityPicker, 0, 0);
 		}
 		
 		#endregion
@@ -42,9 +44,8 @@ namespace MonotouchUnitConverter
 		
 		public override void Selected (UIPickerView pickerView, int row, int component)
 		{
-			var unitsModel = new UnitPickerViewModel(mQuantities.ElementAt(row).Units);
-			mFromUnitPicker.Model = unitsModel;
-			mToUnitPicker.Model = unitsModel;
+			mFromUnitPicker.Model = new UnitPickerViewModel(mFromUnitPicker, mQuantities.ElementAt(row).Units);
+			mToUnitPicker.Model = new UnitPickerViewModel(mToUnitPicker, mQuantities.ElementAt(row).Units);
 			
 			mFromUnitPicker.ReloadAllComponents();
 			mToUnitPicker.ReloadAllComponents();

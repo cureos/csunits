@@ -28,6 +28,9 @@ namespace MonotouchUnitConverter {
 		private MonoTouch.UIKit.UIPickerView __mt_toUnitSelector;
 		
 		#pragma warning disable 0169
+		[MonoTouch.Foundation.Export("fromAmountEntered:")]
+		partial void fromAmountEntered (MonoTouch.UIKit.UITextField sender);
+
 		[MonoTouch.Foundation.Connect("window")]
 		private MonoTouch.UIKit.UIWindow window {
 			get {
