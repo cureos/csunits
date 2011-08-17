@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using MonoTouch.Foundation;
@@ -22,14 +23,26 @@ namespace MonotouchUnitConverter
 		// This method is invoked when the application has loaded its UI and its ready to run
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
-			var pickerViewScalingTransform = new MonoTouch.CoreGraphics.CGAffineTransform(0.65f, 0.0f, 0.0f, 0.65f, 0.0f, 0.0f);
-			quantitySelector.Transform = pickerViewScalingTransform;
-			fromUnitSelector.Transform = pickerViewScalingTransform;
-			toUnitSelector.Transform = pickerViewScalingTransform;
+			var quantityPickerViewScalingTransform = new MonoTouch.CoreGraphics.CGAffineTransform(0.8f, 0.0f, 0.0f, 0.8f, 0.0f, 0.0f);
+			quantitySelector.Transform = quantityPickerViewScalingTransform;
+
+			var unitPickerViewScalingTransform = new MonoTouch.CoreGraphics.CGAffineTransform(0.6f, 0.0f, 0.0f, 0.6f, 0.0f, 0.0f);
+			fromUnitSelector.Transform = unitPickerViewScalingTransform;
+			toUnitSelector.Transform = unitPickerViewScalingTransform;
 			
-			quantitySelector.Model = new QuantityPickerViewModel(quantitySelector, fromUnitSelector, toUnitSelector);
-			
+			var quantityModel = new QuantityPickerViewModel(quantitySelector, fromUnitSelector, toUnitSelector);
+			quantityModel.UnitPickerUnitChanged += OnAmountUnitValuesChanged;
+			quantitySelector.Model = quantityModel;
+
+			fromAmountEditor.Ended += OnAmountUnitValuesChanged;
 			fromAmountEditor.ShouldReturn = delegate { return fromAmountEditor.ResignFirstResponder(); };
+			
+			using (var myImage = new UIImageView(new RectangleF(2f, 24f, 60f, 52f)))
+			{
+			    myImage.Image = UIImage.FromFile("Assets/cureos-symbol.png");
+			    myImage.Opaque = true;
+			    window.AddSubview(myImage);
+			}
 			
 			window.MakeKeyAndVisible();
 	
@@ -40,12 +53,12 @@ namespace MonotouchUnitConverter
 		public override void OnActivated (UIApplication application)
 		{
 		}
-		
-		partial void fromAmountEntered (MonoTouch.UIKit.UITextField sender)
+
+		private void OnAmountUnitValuesChanged (object sender, EventArgs e)
 		{
 			double fromAmount;
 			IUnit fromUnit, toUnit;
-			if (Double.TryParse(sender.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out fromAmount) &&
+			if (Double.TryParse(fromAmountEditor.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out fromAmount) &&
 				(fromUnit = (fromUnitSelector.Model as UnitPickerViewModel).SelectedUnit) != null &&
 				(toUnit = (toUnitSelector.Model as UnitPickerViewModel).SelectedUnit) != null)
 			{

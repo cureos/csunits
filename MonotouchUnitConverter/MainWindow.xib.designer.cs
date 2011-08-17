@@ -15,8 +15,6 @@ namespace MonotouchUnitConverter {
 	[MonoTouch.Foundation.Register("AppDelegate")]
 	public partial class AppDelegate {
 		
-		private MonoTouch.UIKit.UIWindow __mt_window;
-		
 		private MonoTouch.UIKit.UITextField __mt_fromAmountEditor;
 		
 		private MonoTouch.UIKit.UITextField __mt_toAmountEditor;
@@ -27,22 +25,9 @@ namespace MonotouchUnitConverter {
 		
 		private MonoTouch.UIKit.UIPickerView __mt_toUnitSelector;
 		
-		#pragma warning disable 0169
-		[MonoTouch.Foundation.Export("fromAmountEntered:")]
-		partial void fromAmountEntered (MonoTouch.UIKit.UITextField sender);
-
-		[MonoTouch.Foundation.Connect("window")]
-		private MonoTouch.UIKit.UIWindow window {
-			get {
-				this.__mt_window = ((MonoTouch.UIKit.UIWindow)(this.GetNativeField("window")));
-				return this.__mt_window;
-			}
-			set {
-				this.__mt_window = value;
-				this.SetNativeField("window", value);
-			}
-		}
+		private MonoTouch.UIKit.UIWindow __mt_window;
 		
+		#pragma warning disable 0169
 		[MonoTouch.Foundation.Connect("fromAmountEditor")]
 		private MonoTouch.UIKit.UITextField fromAmountEditor {
 			get {
@@ -100,6 +85,18 @@ namespace MonotouchUnitConverter {
 			set {
 				this.__mt_toUnitSelector = value;
 				this.SetNativeField("toUnitSelector", value);
+			}
+		}
+		
+		[MonoTouch.Foundation.Connect("window")]
+		private MonoTouch.UIKit.UIWindow window {
+			get {
+				this.__mt_window = ((MonoTouch.UIKit.UIWindow)(this.GetNativeField("window")));
+				return this.__mt_window;
+			}
+			set {
+				this.__mt_window = value;
+				this.SetNativeField("window", value);
 			}
 		}
 	}
