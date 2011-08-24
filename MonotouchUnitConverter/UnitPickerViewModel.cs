@@ -12,10 +12,22 @@ namespace MonotouchUnitConverter
 		
 		# region CONSTRUCTORS
 		
-		public UnitPickerViewModel(IEnumerable<IUnit> iUnits)
+		public UnitPickerViewModel(UIPickerView iUnitPicker, IEnumerable<IUnit> iUnits)
 		{
 			mUnits = iUnits;
 		}
+		
+		#endregion
+		
+		#region AUTO-IMPLEMENTED PROPERTIES
+		
+		public IUnit SelectedUnit { get; private set; }
+		
+		#endregion
+		
+		#region EVENTS
+		
+		public event EventHandler UnitChanged;
 		
 		#endregion
 		
@@ -34,6 +46,12 @@ namespace MonotouchUnitConverter
 		public override string GetTitle (UIPickerView picker, int row, int component)
 		{
 			return mUnits.ElementAt(row).Symbol;
+		}
+		
+		public override void Selected (UIPickerView picker, int row, int component)
+		{
+			SelectedUnit = mUnits.ElementAt(row);
+			if (UnitChanged != null) UnitChanged(this, EventArgs.Empty);
 		}
 		
 		#endregion
