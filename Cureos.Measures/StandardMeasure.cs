@@ -22,17 +22,6 @@ namespace Cureos.Measures
 	/// <typeparam name="Q">Struct type implementing the IQuantity interface</typeparam>
 	public struct StandardMeasure<Q> : IMeasure<Q>, IEquatable<StandardMeasure<Q>>, IComparable<StandardMeasure<Q>> where Q : struct, IQuantity<Q>
 	{
-		#region FIELDS
-
-// ReSharper disable StaticFieldInGenericType
-		/// <summary>
-		/// Convenience representation of the zero-value standard measure
-		/// </summary>
-		public static readonly IMeasure<Q> Zero = new StandardMeasure<Q>();
-// ReSharper restore StaticFieldInGenericType
-
-		#endregion
-
 		#region MEMBER VARIABLES
 
 		private readonly AmountType mAmount;
@@ -40,6 +29,15 @@ namespace Cureos.Measures
 		#endregion
 
 		#region CONSTRUCTORS
+
+		/// <summary>
+		/// Static constructor for defining static class properties
+		/// </summary>
+		static StandardMeasure()
+		{
+			Zero = new StandardMeasure<Q>(Constants.Zero);
+			Epsilon = new StandardMeasure<Q>(Constants.MachineEpsilon);
+		}
 
 		/// <summary>
 		/// Initializes a measure object of the specified quantity
@@ -215,7 +213,7 @@ namespace Cureos.Measures
 
 		#endregion
 
-		#region PROPERTIES
+		#region INDEXERS
 
 		/// <summary>
 		/// Gets a new unit specific measure based on this measure but in the <paramref name="iUnit">specified unit</paramref>
@@ -232,6 +230,14 @@ namespace Cureos.Measures
 
 		#endregion
 
+		#region PROPERTIES
+
+		public static StandardMeasure<Q> Zero { get; private set; }
+
+		public static StandardMeasure<Q> Epsilon { get; private set; }
+
+		#endregion
+
 		#region METHODS
 
 		/// <summary>
@@ -242,6 +248,17 @@ namespace Cureos.Measures
 		public bool Equals(StandardMeasure<Q> other)
 		{
 			return mAmount.Equals(other.mAmount);
+		}
+
+		/// <summary>
+		/// Indicates whether the current measure is equal to another measure of the same quantity within a given tolerance
+		/// </summary>
+		/// <param name="other">A measure to compare with this measure</param>
+		/// <param name="tol">The tolerance with which the compared measures may differ</param>
+		/// <returns>true if this and other are equal within the given tolerance, false otherwise</returns>
+		public bool Equals(StandardMeasure<Q> other, StandardMeasure<Q> tol)
+		{
+			return Math.Abs(mAmount - other.mAmount) <= tol.mAmount;
 		}
 
 		/// <summary>
@@ -618,5 +635,24 @@ namespace Cureos.Measures
 		}
 
 		#endregion
+	}
+
+	/// <summary>
+	/// Utility class for operations on StandardMeasure objects
+	/// </summary>
+	public static class StandardMeasure
+	{
+		/// <summary>
+		/// Compare two nullable standard measures for approximate equivalence
+		/// </summary>
+		/// <typeparam name="Q">Struct type implementing the IQuantity{Q} interface</typeparam>
+		/// <param name="iLhs">First nullable standard measure subject to comparison</param>
+		/// <param name="iRhs">Second nullable standard measure subject to comparison</param>
+		/// <param name="iTol">Tolerance of the difference between the two measures</param>
+		/// <returns>true if both objects have values and the difference is less than the specified tolerance, false otherwise</returns>
+		public static bool AreEqual<Q>(StandardMeasure<Q>? iLhs, StandardMeasure<Q>? iRhs, StandardMeasure<Q> iTol) where Q : struct, IQuantity<Q>
+		{
+			return iLhs.HasValue && iRhs.HasValue && iLhs.Value.Equals(iRhs.Value, iTol);
+		}
 	}
 }

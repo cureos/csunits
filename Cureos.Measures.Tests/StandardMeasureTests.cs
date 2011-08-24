@@ -41,6 +41,66 @@ namespace Cureos.Measures
             Assert.AreEqual(expected, actual);
         }
 
+        [Test]
+        public void AreEqual_BothArgumentsHaveValuesValuesWithinTolerance_ReturnsTrue()
+        {
+            StandardMeasure<AmountConcentration>? lhs = new StandardMeasure<AmountConcentration>(5.0);
+            StandardMeasure<AmountConcentration>? rhs = new StandardMeasure<AmountConcentration>(5.0001);
+            StandardMeasure<AmountConcentration> tol = new StandardMeasure<AmountConcentration>(0.001);
+
+            var expected = true;
+            var actual = StandardMeasure.AreEqual(lhs, rhs, tol);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void AreEqual_BothArgumentsHaveValuesValuesNotWithinTolerance_ReturnsFalse()
+        {
+            StandardMeasure<AmountConcentration>? lhs = new StandardMeasure<AmountConcentration>(5.0);
+            StandardMeasure<AmountConcentration>? rhs = new StandardMeasure<AmountConcentration>(5.001);
+            StandardMeasure<AmountConcentration> tol = new StandardMeasure<AmountConcentration>(0.0001);
+
+            var expected = false;
+            var actual = StandardMeasure.AreEqual(lhs, rhs, tol);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void AreEqual_LhsArgumentHasValue_ReturnsFalse()
+        {
+            StandardMeasure<AmountConcentration>? lhs = new StandardMeasure<AmountConcentration>(5.0);
+            StandardMeasure<AmountConcentration>? rhs = null;
+            StandardMeasure<AmountConcentration> tol = StandardMeasure<AmountConcentration>.Zero;
+
+            var expected = false;
+            var actual = StandardMeasure.AreEqual(lhs, rhs, tol);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void AreEqual_RhsArgumentHasValue_ReturnsFalse()
+        {
+            StandardMeasure<AmountConcentration>? lhs = null;
+            StandardMeasure<AmountConcentration>? rhs = new StandardMeasure<AmountConcentration>(5.0);
+            StandardMeasure<AmountConcentration> tol = StandardMeasure<AmountConcentration>.Zero;
+
+            var expected = false;
+            var actual = StandardMeasure.AreEqual(lhs, rhs, tol);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void AreEqual_NoArgumentHasValue_ReturnsFalse()
+        {
+            StandardMeasure<AmountConcentration>? lhs = null;
+            StandardMeasure<AmountConcentration>? rhs = null;
+            StandardMeasure<AmountConcentration> tol = StandardMeasure<AmountConcentration>.Zero;
+
+            var expected = false;
+            var actual = StandardMeasure.AreEqual(lhs, rhs, tol);
+            Assert.AreEqual(expected, actual);
+        }
+
         #endregion
     }
 }

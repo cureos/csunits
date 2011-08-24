@@ -48,6 +48,7 @@
     <Compile Include="IQuantity.cs" />
     <Compile Include="IUnit.cs" />
     <Compile Include="Linq\StandardMeasureEnumerable.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Measure.cs" />
     <Compile Include="PrimeNumbers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
