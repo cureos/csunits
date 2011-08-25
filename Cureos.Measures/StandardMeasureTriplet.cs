@@ -364,4 +364,39 @@ namespace Cureos.Measures
 
         #endregion
     }
+
+    /// <summary>
+    /// Utility class for operations on StandardMeasureTriplet objects
+    /// </summary>
+    public static class StandardMeasureTriplet
+    {
+        /// <summary>
+        /// Compare two nullable standard measure triplets containing a single quantity for approximate equivalence
+        /// </summary>
+        /// <typeparam name="Q">Struct type implementing the IQuantity{Q} interface</typeparam>
+        /// <param name="iLhs">First nullable standard measure triplet subject to comparison</param>
+        /// <param name="iRhs">Second nullable standard measure triplet subject to comparison</param>
+        /// <param name="iTol">Tolerance of the difference between the two measures</param>
+        /// <returns>true if both objects have values and the difference is less than the specified tolerance, false otherwise</returns>
+        public static bool AreEqual<Q>(StandardMeasureTriplet<Q, Q, Q>? iLhs, 
+            StandardMeasureTriplet<Q, Q, Q>? iRhs, StandardMeasure<Q> iTol) where Q : struct, IQuantity<Q>
+        {
+            return iLhs.HasValue && iRhs.HasValue && iLhs.Value.X.Equals(iRhs.Value.X, iTol) &&
+                iLhs.Value.Y.Equals(iRhs.Value.Y, iTol) && iLhs.Value.Z.Equals(iRhs.Value.Z, iTol);
+        }
+
+        /// <summary>
+        /// Compare two standard measure triplets containing a single quantity for approximate equivalence
+        /// </summary>
+        /// <typeparam name="Q">Struct type implementing the IQuantity{Q} interface</typeparam>
+        /// <param name="iLhs">First standard measure triplet subject to comparison</param>
+        /// <param name="iRhs">Second standard measure triplet subject to comparison</param>
+        /// <param name="iTol">Tolerance of the difference between the two measures</param>
+        /// <returns>true if the difference between each coordinate is less than the specified tolerance, false otherwise</returns>
+        public static bool AreEqual<Q>(StandardMeasureTriplet<Q, Q, Q> iLhs,
+            StandardMeasureTriplet<Q, Q, Q> iRhs, StandardMeasure<Q> iTol) where Q : struct, IQuantity<Q>
+        {
+            return iLhs.X.Equals(iRhs.X, iTol) && iLhs.Y.Equals(iRhs.Y, iTol) && iLhs.Z.Equals(iRhs.Z, iTol);
+        }
+    }
 }
