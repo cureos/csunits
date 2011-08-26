@@ -30,6 +30,7 @@ namespace Cureos.Measures
 
 		#region CONSTRUCTORS
 
+#if !MONO
 		/// <summary>
 		/// Static constructor for defining static class properties
 		/// </summary>
@@ -38,7 +39,8 @@ namespace Cureos.Measures
 			Zero = new StandardMeasure<Q>(Constants.Zero);
 			Epsilon = new StandardMeasure<Q>(Constants.MachineEpsilon);
 		}
-
+#endif
+		
 		/// <summary>
 		/// Initializes a measure object of the specified quantity
 		/// </summary>
@@ -230,14 +232,16 @@ namespace Cureos.Measures
 
 		#endregion
 
+#if !MONO
 		#region PROPERTIES
-
+		
 		public static StandardMeasure<Q> Zero { get; private set; }
 
 		public static StandardMeasure<Q> Epsilon { get; private set; }
 
 		#endregion
-
+#endif
+		
 		#region METHODS
 
 		/// <summary>

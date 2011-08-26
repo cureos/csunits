@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monotouch.Cureos.Measures", "Monotouch.Cureos.Measures\Monotouch.Cureos.Measures.csproj", "{F0C2A4C3-628D-4DDF-998D-524E4FAB0F1C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonotouchUnitConverter", "MonotouchUnitConverter\MonotouchUnitConverter.csproj", "{453B22A5-83C9-4142-B559-8416908DC704}"
