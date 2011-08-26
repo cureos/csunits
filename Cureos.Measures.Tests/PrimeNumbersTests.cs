@@ -56,6 +56,7 @@ namespace Cureos.Measures
         }
 
         [Test]
+        [Category("Timing")]
         public void ElementAt_Get100000thElement_TimeOperation()
         {
             var expected = 1299709;
