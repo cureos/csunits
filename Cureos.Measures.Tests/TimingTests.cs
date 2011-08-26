@@ -11,6 +11,7 @@ using NUnit.Framework;
 namespace Cureos.Measures
 {
 	[TestFixture]
+	[Category("Timing")]
 	public class TimingTests
 	{
 		private const double no = 1000000;
