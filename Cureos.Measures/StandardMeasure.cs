@@ -11,6 +11,7 @@ using AmountType = System.Single;
 #elif DECIMAL
 using AmountType = System.Decimal;
 #elif DOUBLE
+using Cureos.Measures.Quantities;
 using AmountType = System.Double;
 #endif
 
@@ -492,6 +493,42 @@ namespace Cureos.Measures
 			checked
 			{
 				return new StandardMeasure<Q>(iMeasure.mAmount / iScalar);
+			}
+		}
+
+		/// <summary>
+		/// Multiply a (dimensionless) number and a measure object
+		/// </summary>
+		/// <param name="iNumber">Floating-point number</param>
+		/// <param name="iMeasure">Measure object</param>
+		/// <returns>Product of the number and the measure object</returns>
+		public static StandardMeasure<Q> operator *(StandardMeasure<Number> iNumber, StandardMeasure<Q> iMeasure)
+		{
+			return new StandardMeasure<Q>(iNumber.mAmount * iMeasure.mAmount);
+		}
+
+		/// <summary>
+		/// Multiply a measure object and a (dimensionless)
+		/// </summary>
+		/// <param name="iMeasure">measure object</param>
+		/// <param name="iNumber">Floating-point number</param>
+		/// <returns>Product of the measure object and the number</returns>
+		public static StandardMeasure<Q> operator *(StandardMeasure<Q> iMeasure, StandardMeasure<Number> iNumber)
+		{
+			return new StandardMeasure<Q>(iMeasure.mAmount * iNumber.mAmount);
+		}
+
+		/// <summary>
+		/// Divide a measure object with a (dimensionless) number
+		/// </summary>
+		/// <param name="iMeasure">measure object</param>
+		/// <param name="iNumber">Floating-point number</param>
+		/// <returns>Quotient of the measure object and the number</returns>
+		public static StandardMeasure<Q> operator /(StandardMeasure<Q> iMeasure, StandardMeasure<Number> iNumber)
+		{
+			checked
+			{
+				return new StandardMeasure<Q>(iMeasure.mAmount / iNumber.mAmount);
 			}
 		}
 

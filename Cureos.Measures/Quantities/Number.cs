@@ -13,7 +13,7 @@ namespace Cureos.Measures.Quantities
     {
         #region FIELDS
 
-        private static readonly QuantityDimension _dimension = QuantityDimension.Number ^ 1;
+        private static readonly QuantityDimension _dimension = QuantityDimension.Number;
 
         public static readonly Unit<Number> One = new Unit<Number>("");
 
