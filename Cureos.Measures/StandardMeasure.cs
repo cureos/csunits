@@ -5,13 +5,13 @@
 // http://www.eclipse.org/legal/epl-v10.html
 
 using System;
+using Cureos.Measures.Quantities;
 
 #if SINGLE
 using AmountType = System.Single;
 #elif DECIMAL
 using AmountType = System.Decimal;
 #elif DOUBLE
-using Cureos.Measures.Quantities;
 using AmountType = System.Double;
 #endif
 
