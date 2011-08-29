@@ -7,22 +7,21 @@
 namespace Cureos.Measures.Quantities
 {
     /// <summary>
-    /// Implementation of the biologically effective dose (BED) quantity
+    /// Implementation of the radioactive source absorbed dose rate quantity
     /// </summary>
-    public struct BiologicallyEffectiveDose : IQuantity<BiologicallyEffectiveDose>
+    public struct RadioactiveAbsorbedDoseRate : IQuantity<RadioactiveAbsorbedDoseRate>
     {
         #region FIELDS
 
-        private static readonly QuantityDimension _dimension =
-            QuantityDimension.BiologicallyEffectiveDoseRatio * (QuantityDimension.Length ^ 2) *
-            (QuantityDimension.Time ^ 2);
+        private static readonly QuantityDimension _dimension =(QuantityDimension.Length ^ 2) * QuantityDimension.Time;
 
-        public static readonly Unit<BiologicallyEffectiveDose> Gray = new Unit<BiologicallyEffectiveDose>("Gy");
-        public static readonly Unit<BiologicallyEffectiveDose> CentiGray = new Unit<BiologicallyEffectiveDose>(UnitPrefix.Centi);
+        public static readonly Unit<RadioactiveAbsorbedDoseRate> GrayPerSecond = new Unit<RadioactiveAbsorbedDoseRate>("Gy s\u207b¹");
+        public static readonly Unit<RadioactiveAbsorbedDoseRate> GrayPerMinute = new Unit<RadioactiveAbsorbedDoseRate>("Gy min\u207b¹", Constants.One / Factors.SecondsPerMinute);
+        public static readonly Unit<RadioactiveAbsorbedDoseRate> CentiGrayPerMinute = new Unit<RadioactiveAbsorbedDoseRate>("cGy min\u207b¹", Factors.Centi / Factors.SecondsPerMinute);
 
         #endregion
 
-        #region Implementation of IQuantity<Q>
+        #region Implementation of IQuantity<RadioactiveAbsorbedDoseRate>
 
         /// <summary>
         /// Gets the physical dimension of the quantity in terms of SI units
@@ -43,9 +42,9 @@ namespace Cureos.Measures.Quantities
         /// <summary>
         /// Gets the standard unit associated with the quantity
         /// </summary>
-        public IUnit<BiologicallyEffectiveDose> StandardUnit
+        public IUnit<RadioactiveAbsorbedDoseRate> StandardUnit
         {
-            get { return Gray; }
+            get { return GrayPerSecond; }
         }
 
         #endregion

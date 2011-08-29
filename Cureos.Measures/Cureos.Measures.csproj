@@ -79,6 +79,8 @@
     <Compile Include="Quantities\Illuminance.cs" />
     <Compile Include="Quantities\Inductance.cs" />
     <Compile Include="Quantities\Length.cs" />
+    <Compile Include="Quantities\LinearAcceleratorAbsorbedDoseRate.cs" />
+    <Compile Include="Quantities\LinearAcceleratorMeterset.cs" />
     <Compile Include="Quantities\Luminance.cs" />
     <Compile Include="Quantities\LuminousFlux.cs" />
     <Compile Include="Quantities\LuminousIntensity.cs" />
@@ -92,6 +94,7 @@
     <Compile Include="Quantities\PlaneAngle.cs" />
     <Compile Include="Quantities\Power.cs" />
     <Compile Include="Quantities\Pressure.cs" />
+    <Compile Include="Quantities\RadioactiveAbsorbedDoseRate.cs" />
     <Compile Include="Quantities\RefractiveIndex.cs" />
     <Compile Include="Quantities\RelativePermeability.cs" />
     <Compile Include="Quantities\SolidAngle.cs" />

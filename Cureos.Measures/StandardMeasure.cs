@@ -376,7 +376,7 @@ namespace Cureos.Measures
 		/// requested quantity differs (only the dimensionless differntiator is allowed to differ)</exception>
 		public StandardMeasure<Qout> Cast<Qout>() where Qout :  struct, IQuantity<Qout>
 		{
-			if (!default(Qout).Dimension.ExponentsEquals(default(Q).Dimension))
+			if (!default(Qout).Dimension.ExponentsEqual(default(Q).Dimension))
 				throw new InvalidCastException("Cannot cast measure to quantity with different dimensions");
 
 			return new StandardMeasure<Qout>(mAmount);

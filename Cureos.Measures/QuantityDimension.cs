@@ -52,7 +52,8 @@ namespace Cureos.Measures
         public static readonly QuantityDimension RefractiveIndex = new QuantityDimension(GetNextPrime());
         public static readonly QuantityDimension RelativePermeability = new QuantityDimension(GetNextPrime());
         public static readonly QuantityDimension RelativeBiologicalEffectiveness = new QuantityDimension(GetNextPrime());
-        public static readonly QuantityDimension BiologicallyEffectiveDoseDifferentiator = new QuantityDimension(GetNextPrime());
+        public static readonly QuantityDimension BiologicallyEffectiveDoseRatio = new QuantityDimension(GetNextPrime());
+        public static readonly QuantityDimension LinearAcceleratorMeterset = new QuantityDimension(GetNextPrime());
 
         #endregion
         
@@ -161,7 +162,7 @@ namespace Cureos.Measures
         /// </summary>
         /// <param name="other">Quantity dimension object with which to compare dimensional equality</param>
         /// <returns>true if all exponent elements of this and the other object are equal, false otherwise</returns>
-        internal bool ExponentsEquals(QuantityDimension other)
+        internal bool ExponentsEqual(QuantityDimension other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;

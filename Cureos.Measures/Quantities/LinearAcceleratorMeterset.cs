@@ -7,22 +7,19 @@
 namespace Cureos.Measures.Quantities
 {
     /// <summary>
-    /// Implementation of the biologically effective dose (BED) quantity
+    /// Implementation of the specific quantity
     /// </summary>
-    public struct BiologicallyEffectiveDose : IQuantity<BiologicallyEffectiveDose>
+    public struct LinearAcceleratorMeterset : IQuantity<LinearAcceleratorMeterset>
     {
         #region FIELDS
 
-        private static readonly QuantityDimension _dimension =
-            QuantityDimension.BiologicallyEffectiveDoseRatio * (QuantityDimension.Length ^ 2) *
-            (QuantityDimension.Time ^ 2);
+        private static readonly QuantityDimension _dimension = QuantityDimension.LinearAcceleratorMeterset;
 
-        public static readonly Unit<BiologicallyEffectiveDose> Gray = new Unit<BiologicallyEffectiveDose>("Gy");
-        public static readonly Unit<BiologicallyEffectiveDose> CentiGray = new Unit<BiologicallyEffectiveDose>(UnitPrefix.Centi);
+        public static readonly Unit<LinearAcceleratorMeterset> MonitorUnit = new Unit<LinearAcceleratorMeterset>("MU");
 
         #endregion
 
-        #region Implementation of IQuantity<Q>
+        #region Implementation of IQuantity<LinearAcceleratorAbsorbedDoseRate>
 
         /// <summary>
         /// Gets the physical dimension of the quantity in terms of SI units
@@ -43,9 +40,9 @@ namespace Cureos.Measures.Quantities
         /// <summary>
         /// Gets the standard unit associated with the quantity
         /// </summary>
-        public IUnit<BiologicallyEffectiveDose> StandardUnit
+        public IUnit<LinearAcceleratorMeterset> StandardUnit
         {
-            get { return Gray; }
+            get { return MonitorUnit; }
         }
 
         #endregion
