@@ -60,7 +60,6 @@
     <Compile Include="Quantities\AngularAcceleration.cs" />
     <Compile Include="Quantities\AngularVelocity.cs" />
     <Compile Include="Quantities\Area.cs" />
-    <Compile Include="Quantities\BiologicallyEffectiveDose.cs" />
     <Compile Include="Quantities\Capacitance.cs" />
     <Compile Include="Quantities\CatalyticActivity.cs" />
     <Compile Include="Quantities\CurrentDensity.cs" />
