@@ -93,6 +93,7 @@
     <Compile Include="Quantities\PlaneAngle.cs" />
     <Compile Include="Quantities\Power.cs" />
     <Compile Include="Quantities\Pressure.cs" />
+    <Compile Include="Quantities\Probability.cs" />
     <Compile Include="Quantities\RadioactiveAbsorbedDoseRate.cs" />
     <Compile Include="Quantities\RefractiveIndex.cs" />
     <Compile Include="Quantities\RelativePermeability.cs" />
