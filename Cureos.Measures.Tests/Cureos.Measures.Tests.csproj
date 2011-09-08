@@ -48,6 +48,7 @@
     <Compile Include="IMeasureDoubletAssert.cs" />
     <Compile Include="IMeasureTests.cs" />
     <Compile Include="IMeasureTripletAssert.cs" />
+    <Compile Include="Linq\ConversionsTests.cs" />
     <Compile Include="Linq\StandardMeasureEnumerableTests.cs" />
     <Compile Include="MeasureAssert.cs" />
     <Compile Include="MeasureTests.cs" />
