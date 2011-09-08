@@ -12,14 +12,13 @@
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <AssemblyName>Monodroid.Cureos.Measures</AssemblyName>
-    <TargetFrameworkVersion>v2.2</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG,DOUBLE</DefineConstants>
+    <DefineConstants>DEBUG,DOUBLE,MONO</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -34,7 +33,7 @@
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <ConsolePause>false</ConsolePause>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
-    <DefineConstants>DOUBLE</DefineConstants>
+    <DefineConstants>DOUBLE,MONO</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -254,6 +253,9 @@
     </Compile>
     <Compile Include="..\Cureos.Measures\Quantities\WaveNumber.cs">
       <Link>Quantities\WaveNumber.cs</Link>
+    </Compile>
+    <Compile Include="..\Cureos.Measures\Constants.cs">
+      <Link>Constants.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
