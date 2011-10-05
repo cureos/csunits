@@ -32,3 +32,6 @@ MonodroidUnitConverter/Resources/Resource.designer.cs
 MonotouchUnitConverter/bin/
 MonotouchUnitConverter/obj/
 Monotouch.Cureos.Measures/bin/
+
+*.crunchproject.local.xml
+*.crunchsolution.*
