@@ -35,3 +35,5 @@ Monotouch.Cureos.Measures/bin/
 
 *.crunchproject.local.xml
 *.crunchsolution.*
+/desktop.ini
+/git.ico
