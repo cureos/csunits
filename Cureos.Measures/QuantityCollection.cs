@@ -52,5 +52,14 @@ namespace Cureos.Measures
         public static IEnumerable<QuantityAdapter> Quantities { get; private set; }
 
         #endregion
+		
+		#region INDEXERS
+		
+		public static QuantityAdapter GetQuantity(string label)
+		{
+			return Quantities.Single(qa => qa.Quantity.ToString().Equals(label));
+		}
+		
+		#endregion
     }
 }
