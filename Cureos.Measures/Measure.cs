@@ -309,16 +309,47 @@ namespace Cureos.Measures
 			return StandardAmount.GetHashCode();
 		}
 
-	    /// <summary>
-		/// Returns the fully qualified type name of this instance.
+	  	/// <summary>
+		/// Returns the actual value with the quantity suffixed
 		/// </summary>
 		/// <returns>
-		/// A <see cref="T:System.String"/> containing a fully qualified type name.
+		/// A <see cref="T:System.String"/> containing a the actual value with the quantity symbol appended
 		/// </returns>
 		/// <filterpriority>2</filterpriority>
 		public override string ToString()
 		{
 			return String.Format("{0} {1}", mAmount, mUnit.Symbol).Trim();
+		}
+
+		/// <summary>
+		/// Returns the actual value in formatted form with the quantity suffixed
+		/// </summary>
+		/// <param name="format">Format string to display the value with</param>
+		/// <returns>A <see cref="T:System.String"/> containing a the actual value in formatted form with the quantity symbol appended</returns>
+		public string ToString(string format)
+		{
+			return String.Format("{0} {1}", mAmount.ToString(format), mUnit.Symbol).Trim();
+		}
+		
+		/// <summary>
+		/// Returns the actual value in formatted form with the quantity suffixed
+		/// </summary>
+		/// <param name="provider">Formatting provider to format the value with</param>
+		/// <returns></returns>
+		public string ToString(IFormatProvider provider)
+		{
+			return String.Format("{0} {1}", mAmount.ToString(provider), mUnit.Symbol).Trim();
+		}
+		
+		/// <summary>
+		/// Returns the actual value in formatted form with the quantity suffixed
+		/// </summary>
+		/// <param name="format">Format string to display the value with</param>
+		/// <param name="provider">Formatting provider to format the value with</param>
+		/// <returns></returns>
+		public string ToString(string format, IFormatProvider provider)
+		{
+			return String.Format("{0} {1}", mAmount.ToString(format, provider), mUnit.Symbol).Trim();
 		}
 
 		#endregion
