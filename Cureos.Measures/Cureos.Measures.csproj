@@ -50,6 +50,7 @@
     <Compile Include="Linq\Conversions.cs" />
     <Compile Include="Linq\StandardMeasureEnumerable.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Measure.Creation.cs" />
     <Compile Include="Measure.cs" />
     <Compile Include="PrimeNumbers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,6 +115,8 @@
     <Compile Include="StandardMeasureDoublet.cs" />
     <Compile Include="StandardMeasureTriplet.cs" />
     <Compile Include="Unit.cs" />
+    <Compile Include="Unit.Parsing.cs" />
+    <Compile Include="UnitNotFoundException.cs" />
     <Compile Include="UnitPrefix.cs" />
     <Compile Include="UnitPrefixMethods.cs" />
   </ItemGroup>
