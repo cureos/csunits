@@ -39,3 +39,5 @@ Monotouch.Cureos.Measures/bin/
 *.ncrunchproject
 /desktop.ini
 /git.ico
+[Bb]ackup/
+UpgradeLog.htm
