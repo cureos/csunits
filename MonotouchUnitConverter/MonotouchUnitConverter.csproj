@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -89,11 +89,11 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="EventHandlingRadioElement.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\Monotouch.Cureos.Measures\Monotouch.Cureos.Measures.csproj">
-      <Project>{D2D09E6D-6EA8-4B64-A048-6AB534DFC12C}</Project>
-      <Name>Monotouch.Cureos.Measures</Name>
+    <ProjectReference Include="..\Cureos.Measures\Cureos.Measures.csproj">
+      <Project>{a89bf529-9e02-4b80-8c4b-94168313de47}</Project>
+      <Name>Cureos.Measures</Name>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
 </Project>
