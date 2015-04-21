@@ -1,9 +1,9 @@
-# csunits
+# CSUnits
 
 Simple C# framework to support Units of Measurement
 
 Copyright 2011-2015 (c) Anders Gustafsson, Cureos AB.  
-Made available under Eclipse Public License, version 1.0.
+Made available under GNU Lesser General Public License, LGPL, version 3.
 
 
 ## Prerequisites
@@ -22,7 +22,7 @@ Developed with Visual Studio 2010, using .NET Frameworks 3.5 and 4.0. The latter
 There are also `StandardMeasureDoublet<Q1, Q2>` and `StandardMeasureTriplet<Q1, Q2, Q3>` structures that holds two and three measures, respectively, of potentially different quantities.
 
 
-== Usage examples
+## Usage examples
 
     using Cureos.Measures;
     using Cureos.Measures.Quantities;
@@ -51,10 +51,10 @@ There are also `StandardMeasureDoublet<Q1, Q2>` and `StandardMeasureTriplet<Q1, 
 
 should yield the output:
 
-> Initial weight: 75000 g
+> Initial weight: 75000 g  
 > Calculated volume is within limits, actual volume 6 l
 
 
-== Application
+## Application
 
-For pure demonstration and testing purposes, there are very simple unit converter applications included in the solution. Implementation of these applications were inspired by Andrew Cheng's feedback and usage of csunits in a [Windows Forms application](https://github.com/hamxiaoz/cureos.uomnet.tests.winform).
+For pure demonstration and testing purposes, there are very simple unit converter applications included in the solution. Implementation of these applications were inspired by Andrew Cheng's feedback and usage of CSUnits in a [Windows Forms application](https://github.com/hamxiaoz/cureos.uomnet.tests.winform).
