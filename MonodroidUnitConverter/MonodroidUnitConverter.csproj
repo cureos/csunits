@@ -15,7 +15,9 @@
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AssemblyName>MonodroidUnitConverter</AssemblyName>
-    <TargetFrameworkVersion>v2.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v2.3</TargetFrameworkVersion>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <AndroidUseLatestPlatformSdk />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,12 +63,15 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\Monodroid.Cureos.Measures\Monodroid.Cureos.Measures.csproj">
-      <Project>{BB5E91EF-94E4-4B66-A798-BDE8DDAB2290}</Project>
-      <Name>Monodroid.Cureos.Measures</Name>
-    </ProjectReference>
+    <AndroidResource Include="Resources\drawable\Logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Logo.png" />
+    <Content Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cureos.Measures\Cureos.Measures.csproj">
+      <Project>{a89bf529-9e02-4b80-8c4b-94168313de47}</Project>
+      <Name>Cureos.Measures</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

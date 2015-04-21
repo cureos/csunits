@@ -17,60 +17,60 @@ using Activity = Android.App.Activity;
 
 namespace MonodroidUnitConverter
 {
-	[Activity (Label = "Cureos Unit Converter", MainLauncher = true)]
-	public class UnitConverterActivity : Activity
-	{
-		#region PRIVATE FIELDS
+    [Activity (Label = "Cureos Unit Converter", MainLauncher = true)]
+    public class UnitConverterActivity : Activity
+    {
+        #region PRIVATE FIELDS
 
-	    private QuantityAdapter[] mQuantities;
+        private QuantityAdapter[] mQuantities;
 
-		private Spinner mQuantitySpinner;
-		private Spinner mFromUnitSpinner;
-		private Spinner mToUnitSpinner;
+        private Spinner mQuantitySpinner;
+        private Spinner mFromUnitSpinner;
+        private Spinner mToUnitSpinner;
 
         private EditText mFromAmountEditText;
         private EditText mToAmountEditText;
 
-		#endregion
+        #endregion
 
-		#region OVERRIDDEN METHODS
-		
-		protected override void OnCreate(Bundle bundle)
-		{
-			base.OnCreate(bundle);
+        #region OVERRIDDEN METHODS
+        
+        protected override void OnCreate(Bundle bundle)
+        {
+            base.OnCreate(bundle);
 
-			SetContentView(Resource.Layout.Main);
+            SetContentView(Resource.Layout.Main);
             InitializeFields();
         }
 
-	    #endregion
+        #endregion
 
-		#region PRIVATE METHODS
+        #region PRIVATE METHODS
 
-	    private void InitializeFields()
-	    {
-	        mQuantities = QuantityCollection.Quantities.OrderBy(qa => qa.ToString()).ToArray();
+        private void InitializeFields()
+        {
+            mQuantities = QuantityCollection.Quantities.OrderBy(qa => qa.ToString()).ToArray();
 
             var adapter = new ArrayAdapter<QuantityAdapter>(this, Android.Resource.Layout.SimpleSpinnerItem, mQuantities);
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
 
-	        mQuantitySpinner = FindViewById<Spinner>(Resource.Id.QuantitySpinner);
+            mQuantitySpinner = FindViewById<Spinner>(Resource.Id.QuantitySpinner);
             mQuantitySpinner.Adapter = adapter;
             mQuantitySpinner.ItemSelected += QuantitySpinner_ItemSelected;
 
-	        mFromAmountEditText = FindViewById<EditText>(Resource.Id.FromAmountEditText);
+            mFromAmountEditText = FindViewById<EditText>(Resource.Id.FromAmountEditText);
             mFromAmountEditText.TextChanged += FromAmountEditText_TextChanged;
 
-	        mFromUnitSpinner = FindViewById<Spinner>(Resource.Id.FromUnitSpinner);
+            mFromUnitSpinner = FindViewById<Spinner>(Resource.Id.FromUnitSpinner);
             mFromUnitSpinner.ItemSelected += UnitSpinner_ItemSelected;
 
-	        mToAmountEditText = FindViewById<EditText>(Resource.Id.ToAmountEditText);
+            mToAmountEditText = FindViewById<EditText>(Resource.Id.ToAmountEditText);
 
-	        mToUnitSpinner = FindViewById<Spinner>(Resource.Id.ToUnitSpinner);
-	        mToUnitSpinner.ItemSelected += UnitSpinner_ItemSelected;
-	    }
+            mToUnitSpinner = FindViewById<Spinner>(Resource.Id.ToUnitSpinner);
+            mToUnitSpinner.ItemSelected += UnitSpinner_ItemSelected;
+        }
 
-        private void QuantitySpinner_ItemSelected(object sender, ItemEventArgs e)
+        private void QuantitySpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             if (e.Position > -1)
             {
@@ -95,17 +95,17 @@ namespace MonodroidUnitConverter
             UpdateToAmount();
         }
 
-        private void UnitSpinner_ItemSelected(object sender, ItemEventArgs e)
+        private void UnitSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             UpdateToAmount();
         }
 
-	    private void UpdateToAmount()
-	    {
-	        var fromUnitPos = mFromUnitSpinner.SelectedItemPosition;
-	        var toUnitPos = mToUnitSpinner.SelectedItemPosition;
+        private void UpdateToAmount()
+        {
+            var fromUnitPos = mFromUnitSpinner.SelectedItemPosition;
+            var toUnitPos = mToUnitSpinner.SelectedItemPosition;
 
-	        double fromAmount;
+            double fromAmount;
             if (fromUnitPos > -1 && toUnitPos > -1 && 
                 double.TryParse(mFromAmountEditText.Text, NumberStyles.Number, CultureInfo.CurrentCulture, out fromAmount))
             {
@@ -122,10 +122,10 @@ namespace MonodroidUnitConverter
                 mToAmountEditText.Text = string.Empty;
             }
 
-	    }
+        }
 
-	    #endregion
-	}
+        #endregion
+    }
 }
 
 
