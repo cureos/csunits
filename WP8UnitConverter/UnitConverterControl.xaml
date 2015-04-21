@@ -36,7 +36,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" x:Name="quantityText" TextAlignment="Right" VerticalAlignment="Center">Quantity:</TextBlock>
-        <toolkit:ListPicker Grid.Row="0"  Grid.Column="1" x:Name="quantityComboBox" DisplayMemberPath="Quantity" ItemsSource="{Binding Path=Quantities,Source={StaticResource registryKey}}" ListPickerMode="Normal">
+        <toolkit:ListPicker Grid.Row="0"  Grid.Column="1" x:Name="quantityComboBox" DisplayMemberPath="Quantity" ItemsSource="{Binding Path=Quantities,Source={StaticResource registryKey}}">
             <toolkit:ListPicker.FullModeItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Quantity}"/>
