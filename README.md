@@ -8,7 +8,7 @@ Made available under GNU Lesser General Public License, LGPL, version 3.
 
 ## Prerequisites
 
-Visual Studio 2010 Service Pack 1 or higher with Portable Library Tools (http://msdn.microsoft.com/en-us/library/gg597391.aspx) extension.
+Visual Studio 2010 Service Pack 1 or higher with [Portable Library Tools](http://msdn.microsoft.com/en-us/library/gg597391.aspx) extension.
 
 
 ## Introduction
