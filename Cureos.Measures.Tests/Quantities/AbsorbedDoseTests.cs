@@ -36,6 +36,14 @@ namespace Cureos.Measures.Quantities
             Assert.AreEqual(expected, actual);
         }
 
+        [Test]
+        public void LessThan_CompareTwoInstances_YieldsValidComparisonResult()
+        {
+            var lhs = new AbsorbedDose(1.0, AbsorbedDose.CentiGray);
+            var rhs = new AbsorbedDose(0.02);
+            Assert.IsTrue(lhs < rhs);
+        }
+
         #endregion
     }
 }
