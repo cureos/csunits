@@ -19,7 +19,7 @@
               continue;
           }
 
-          ProcessTemplate(@"T4\QuantityTemplate.ttinclude", name+".generated.cs", name);  
+          ProcessTemplate(@"T4\QuantityTemplate.ttinclude", name+".g.cs", name);  
           generated.Add(name,0);
     }
     DeleteOldOutputs();

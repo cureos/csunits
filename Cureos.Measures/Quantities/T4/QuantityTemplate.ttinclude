@@ -4,7 +4,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.IO" #>
 <#@ import namespace="System.Linq" #>
-<# 
+<#
     if (!string.IsNullOrWhiteSpace(ClassName)) {
         string templateDirectory = Path.GetDirectoryName(Host.TemplateFile);
         string outputFilePath = Path.Combine(templateDirectory, "T4", "Quantities.csv");
@@ -15,8 +15,9 @@
                     .SingleOrDefault(s => s.Substring(0, s.IndexOf(',')).Equals(ClassName));
 
         if (line != null) {
-            var values=line.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            var displayName = values[1];
+            var values=line.Split(',');
+            var displayName = String.IsNullOrWhiteSpace(values[1]) ? values[0] : values[1];
+			var displayNameLower = displayName.ToLowerInvariant();
             var length = Int32.Parse(values[2]);
             var mass = Int32.Parse(values[3]);
             var time = Int32.Parse(values[4]);
@@ -25,10 +26,19 @@
             var luminous = Int32.Parse(values[7]);
             var substance = Int32.Parse(values[8]);
 
-            // TODO Standard unit
+            var stdUnit = values[9];
+			var stdUnitSymbol = values[10];
 
-            var hiExponent = Int32.Parse(values[11]);
-            var loExponent = Int32.Parse(values[12]);
+            var loExp = Int32.Parse(values[11]);
+            var hiExp = Int32.Parse(values[12]);
+			
+			var prefixes = new Dictionary<int, string> {
+				{ -24, "Yocto" }, { -21, "Zepto" }, { -18, "Atto" }, { -15, "Femto" }, { -12, "Pico" }, { -9, "Nano" }, 
+				{ -6, "Micro" }, { -3, "Milli" }, { -2, "Centi" }, { -1, "Deci" }, { 1, "Deka" }, { 2, "Hecto" }, 
+				{ 3, "Kilo" }, { 6, "Mega" }, { 9, "Giga" }, { 12, "Tera" }, { 15, "Peta" }, { 18, "Exa" }, 
+				{ 21, "Zetta" }, { 24, "Yotta" }};
+
+			var selPrefixes = prefixes.Where(kv => loExp <= kv.Key && kv.Key <= hiExp).Select(kv => kv.Value).ToList();
 
             var unitSpecs = new List<Tuple<string, string, string>>();
             for (var i = 13; i < values.Length; i += 3) {
@@ -62,13 +72,23 @@
 namespace Cureos.Measures.Quantities
 {
     /// <summary>
-    /// Implementation of the <#= displayName #> quantity
+    /// Implementation of the <#= displayNameLower #> quantity
     /// </summary>
     public partial struct <#= ClassName #> : IQuantity<<#= ClassName #>>
     {
         #region FIELDS
 
-        private static readonly QuantityDimension _dimension = new QuantityDimension(<#= length #>, <#= mass #>, <#= time #>, <#= current #>, <#= temperature #>, <#= luminous #>, <#= substance #>);
+        private static readonly QuantityDimension dimension = new QuantityDimension(<#= length #>, <#= mass #>, <#= time #>, <#= current #>, <#= temperature #>, <#= luminous #>, <#= substance #>);
+
+        public static readonly Unit<<#= ClassName #>> <#= stdUnit #> = new Unit<<#= ClassName #>>("<#= stdUnitSymbol #>");
+
+<#
+			foreach (var selPrefix in selPrefixes) {
+#>
+        public static readonly Unit<<#= ClassName #>> <#= selPrefix #><#= stdUnit #> = new Unit<<#= ClassName #>>(UnitPrefix.<#= selPrefix #>);
+<#
+			}
+#>
 
 <#
             foreach (var unitSpec in unitSpecs) {
@@ -80,6 +100,50 @@ namespace Cureos.Measures.Quantities
 <#
             }
 #>
+
+        #endregion
+
+        #region Implementation of IQuantity<<#= ClassName #>>
+
+        /// <summary>
+        /// Gets the physical dimension of the quantity in terms of SI units
+        /// </summary>
+        public QuantityDimension Dimension
+        {
+            get { return dimension; }
+        }
+
+        /// <summary>
+        /// Gets the standard unit associated with the quantity
+        /// </summary>
+        IUnit IQuantity.StandardUnit
+        {
+            get { return this.StandardUnit; }
+        }
+
+        /// <summary>
+        /// Gets the standard unit associated with the quantity
+        /// </summary>
+        public IUnit<<#= ClassName #>> StandardUnit
+        {
+            get { return <#= stdUnit #>; }
+        }
+
+        #endregion
+
+        #region METHODS
+
+        /// <summary>
+        /// Returns the fully qualified type name of this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.String"/> containing a fully qualified type name.
+        /// </returns>
+        /// <filterpriority>2</filterpriority>
+        public override string ToString()
+        {
+            return "<#= displayName #>";
+        }
 
         #endregion
     }

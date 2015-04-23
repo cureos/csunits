@@ -54,6 +54,7 @@
     <Compile Include="MeasureTests.cs" />
     <Compile Include="PrimeNumbersTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quantities\AbsorbedDoseTests.cs" />
     <Compile Include="Quantities\VelocityTests.cs" />
     <Compile Include="Quantities\WaveNumberTests.cs" />
     <Compile Include="QuantityAdapterTests.cs" />

@@ -1,4 +1,4 @@
-/*
+﻿/*
  *  Copyright (c) 2011-2015, Cureos AB.
  *  All rights reserved.
  *  http://www.cureos.com
@@ -19,22 +19,22 @@
  *  License along with CSUnits. If not, see http://www.gnu.org/licenses/.
  */
 
-/*
- * This file is auto-generated.
- */
-
 namespace Cureos.Measures.Quantities
 {
-    /// <summary>
-    /// Implementation of the Absorbed dose quantity
-    /// </summary>
-    public partial struct AbsorbedDose2 : IQuantity<AbsorbedDose2>
+    using NUnit.Framework;
+
+    [TestFixture]
+    public class AbsorbedDoseTests
     {
-        #region FIELDS
+        #region Unit tests
 
-        private static readonly QuantityDimension _dimension = new QuantityDimension(2, 0, 2, 0, 0, 0, 0);
-
-        public static readonly Unit<AbsorbedDose2> Rad = new Unit<AbsorbedDose2>("rad", Factors.Centi);
+        [Test]
+        public void AbsorbedDose_StandardUnit_IsGray()
+        {
+            var expected = AbsorbedDose.Gray;
+            var actual = new AbsorbedDose().StandardUnit;
+            Assert.AreEqual(expected, actual);
+        }
 
         #endregion
     }

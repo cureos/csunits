@@ -72,11 +72,12 @@
     <Compile Include="Measure.cs" />
     <Compile Include="PrimeNumbers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Quantities\AbsorbedDose.cs" />
-    <Compile Include="Quantities\AbsorbedDose2.generated.cs">
+    <Compile Include="Quantities\AbsorbedDose.g.cs">
       <DependentUpon>CodeGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="Quantities\Acceleration.cs" />
+    <Compile Include="Quantities\Acceleration.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Quantities\Activity.cs" />
     <Compile Include="Quantities\AmountConcentration.cs" />
     <Compile Include="Quantities\AmountOfSubstance.cs" />
