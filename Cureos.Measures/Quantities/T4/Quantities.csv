@@ -1,0 +1,9 @@
+﻿// 1. Quantity class name
+// 2. Quantity display name
+// 3-9. Quantity dimension exponents for length, mass, time, electric current, temperature, luminous intensity, amount of substance
+// 10. Standard unit field name
+// 11. Standard unit display name
+// 12. Upper standard unit prefix exponent
+// 13. Lower standard unit prefix exponent
+// 14.-16., 17.-19. etc. Additional unit triplets (Unit field name, unit symbol, Factors class conversion factor vs. standard unit)
+AbsorbedDose2,Absorbed dose,2,0,2,0,0,0,0,Gray,Gy,3,-6,Rad,rad,Centi

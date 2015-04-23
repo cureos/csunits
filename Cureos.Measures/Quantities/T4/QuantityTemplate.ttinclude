@@ -1,0 +1,94 @@
+﻿<#@ template hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Runtime.Remoting.Messaging" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<# 
+    if (!string.IsNullOrWhiteSpace(ClassName)) {
+        string templateDirectory = Path.GetDirectoryName(Host.TemplateFile);
+        string outputFilePath = Path.Combine(templateDirectory, "T4", "Quantities.csv");
+        var lines=File.ReadAllLines(outputFilePath);
+
+        var line = lines
+                    .Where(s => !String.IsNullOrWhiteSpace(s) && !s.Trim().StartsWith("//"))
+                    .SingleOrDefault(s => s.Substring(0, s.IndexOf(',')).Equals(ClassName));
+
+        if (line != null) {
+            var values=line.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            var displayName = values[1];
+            var length = Int32.Parse(values[2]);
+            var mass = Int32.Parse(values[3]);
+            var time = Int32.Parse(values[4]);
+            var current = Int32.Parse(values[5]);
+            var temperature = Int32.Parse(values[6]);
+            var luminous = Int32.Parse(values[7]);
+            var substance = Int32.Parse(values[8]);
+
+            // TODO Standard unit
+
+            var hiExponent = Int32.Parse(values[11]);
+            var loExponent = Int32.Parse(values[12]);
+
+            var unitSpecs = new List<Tuple<string, string, string>>();
+            for (var i = 13; i < values.Length; i += 3) {
+                unitSpecs.Add(Tuple.Create(values[i], values[i + 1], values[i + 2]));
+            }
+#>/*
+ *  Copyright (c) 2011-2015, Cureos AB.
+ *  All rights reserved.
+ *  http://www.cureos.com
+ *
+ *	This file is part of CSUnits.
+ *
+ *  CSUnits is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  CSUnits is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public
+ *  License along with CSUnits. If not, see http://www.gnu.org/licenses/.
+ */
+
+/*
+ * This file is auto-generated.
+ */
+
+namespace Cureos.Measures.Quantities
+{
+    /// <summary>
+    /// Implementation of the <#= displayName #> quantity
+    /// </summary>
+    public partial struct <#= ClassName #> : IQuantity<<#= ClassName #>>
+    {
+        #region FIELDS
+
+        private static readonly QuantityDimension _dimension = new QuantityDimension(<#= length #>, <#= mass #>, <#= time #>, <#= current #>, <#= temperature #>, <#= luminous #>, <#= substance #>);
+
+<#
+            foreach (var unitSpec in unitSpecs) {
+                var unitName = unitSpec.Item1;
+                var unitSymbol = unitSpec.Item2;
+                var factor = unitSpec.Item3;
+#>
+        public static readonly Unit<<#= ClassName #>> <#= unitName #> = new Unit<<#= ClassName #>>("<#= unitSymbol #>", Factors.<#= factor #>);
+<#
+            }
+#>
+
+        #endregion
+    }
+}
+<#		}
+    }#>
+<#+
+    string ClassName
+    {
+        get { return (string)CallContext.GetData("MyParameter"); }
+    }
+#>

@@ -73,6 +73,9 @@
     <Compile Include="PrimeNumbers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quantities\AbsorbedDose.cs" />
+    <Compile Include="Quantities\AbsorbedDose2.generated.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Quantities\Acceleration.cs" />
     <Compile Include="Quantities\Activity.cs" />
     <Compile Include="Quantities\AmountConcentration.cs" />
@@ -82,6 +85,11 @@
     <Compile Include="Quantities\Area.cs" />
     <Compile Include="Quantities\Capacitance.cs" />
     <Compile Include="Quantities\CatalyticActivity.cs" />
+    <Compile Include="Quantities\CodeGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Quantities\CurrentDensity.cs" />
     <Compile Include="Quantities\DoseEquivalent.cs" />
     <Compile Include="Quantities\DynamicViscosity.cs" />
@@ -147,6 +155,18 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Quantities\CodeGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CodeGenerator.cs</LastGenOutput>
+    </None>
+    <None Include="Quantities\T4\MultiOutput.ttinclude" />
+    <None Include="Quantities\T4\Quantities.csv" />
+    <None Include="Quantities\T4\QuantityTemplate.ttinclude" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
