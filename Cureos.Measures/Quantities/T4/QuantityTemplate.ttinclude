@@ -18,19 +18,20 @@
             var values=line.Split(',');
             var displayName = String.IsNullOrWhiteSpace(values[1]) ? values[0] : values[1];
             var displayNameLower = displayName.ToLowerInvariant();
-            var length = Int32.Parse(values[2]);
-            var mass = Int32.Parse(values[3]);
-            var time = Int32.Parse(values[4]);
-            var current = Int32.Parse(values[5]);
-            var temperature = Int32.Parse(values[6]);
-            var luminous = Int32.Parse(values[7]);
-            var substance = Int32.Parse(values[8]);
+            var differentiator = values[2];
+            var length = Int32.Parse(values[3]);
+            var mass = Int32.Parse(values[4]);
+            var time = Int32.Parse(values[5]);
+            var current = Int32.Parse(values[6]);
+            var temperature = Int32.Parse(values[7]);
+            var luminous = Int32.Parse(values[8]);
+            var substance = Int32.Parse(values[9]);
 
-            var stdUnit = values[9];
-            var stdUnitSymbol = values[10];
+            var stdUnit = values[10];
+            var stdUnitSymbol = values[11];
 
-            var loExp = Int32.Parse(values[11]);
-            var hiExp = Int32.Parse(values[12]);
+            var loExp = Int32.Parse(values[12]);
+            var hiExp = Int32.Parse(values[13]);
             
             var prefixes = new Dictionary<int, string> {
                 { -24, "Yocto" }, { -21, "Zepto" }, { -18, "Atto" }, { -15, "Femto" }, { -12, "Pico" }, { -9, "Nano" }, 
@@ -41,7 +42,7 @@
             var selPrefixes = prefixes.Where(kv => loExp <= kv.Key && kv.Key <= hiExp).Select(kv => kv.Value).ToList();
 
             var unitSpecs = new List<Tuple<string, string, string>>();
-            for (var i = 13; i < values.Length; i += 3) {
+            for (var i = 14; i < values.Length; i += 3) {
                 var factor = String.Join(" * ", values[i + 2].Split('*').Select(s => "Factors." + s));
                 unitSpecs.Add(Tuple.Create(values[i], values[i + 1], factor));
             }
@@ -88,8 +89,17 @@ namespace Cureos.Measures.Quantities
     public partial struct <#= ClassName #> : IQuantity<<#= ClassName #>>, IMeasure<<#= ClassName #>>
     {
         #region FIELDS
-
+<#
+            if (String.IsNullOrWhiteSpace(differentiator)) {
+#>
         private static readonly QuantityDimension dimension = new QuantityDimension(<#= length #>, <#= mass #>, <#= time #>, <#= current #>, <#= temperature #>, <#= luminous #>, <#= substance #>);
+<#
+            } else {
+#>
+        private static readonly QuantityDimension dimension = QuantityDimension.<#= differentiator #> * new QuantityDimension(<#= length #>, <#= mass #>, <#= time #>, <#= current #>, <#= temperature #>, <#= luminous #>, <#= substance #>);
+<#
+            }
+#>
 
         public static readonly Unit<<#= ClassName #>> <#= stdUnit #> = new Unit<<#= ClassName #>>("<#= stdUnitSymbol #>");
 
@@ -240,10 +250,9 @@ namespace Cureos.Measures.Quantities
         /// <summary>
         /// Gets the measured amount in the standard unit of measure for the <#= displayNameLower #> specified quantity</typeparam>
         /// </summary
-        [DataMember]
         public AmountType StandardAmount
         {
-            get { return this.standardAmount; }
+            get { return this.unit.AmountToStandardUnitConverter(this.amount); }
         }
 
         /// <summary>

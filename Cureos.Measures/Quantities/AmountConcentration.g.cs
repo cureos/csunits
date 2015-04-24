@@ -38,11 +38,9 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the amount concentration quantity
     /// </summary>
-    [DataContract]
     public partial struct AmountConcentration : IQuantity<AmountConcentration>, IMeasure<AmountConcentration>
     {
         #region FIELDS
-
         private static readonly QuantityDimension dimension = new QuantityDimension(-3, 0, 0, 0, 0, 0, 1);
 
         public static readonly Unit<AmountConcentration> MolePerCubicMeter = new Unit<AmountConcentration>("mol m\u207b³");
@@ -57,9 +55,8 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<AmountConcentration> KiloMolePerCubicMeter = new Unit<AmountConcentration>(UnitPrefix.Kilo);
 
 
-        private AmountType amount;
-
-        private IUnit<AmountConcentration> unit;
+        private readonly AmountType amount;
+        private readonly IUnit<AmountConcentration> unit;
 
         #endregion
 
@@ -186,10 +183,9 @@ namespace Cureos.Measures.Quantities
         /// <summary>
         /// Gets the measured amount in the standard unit of measure for the amount concentration specified quantity</typeparam>
         /// </summary
-        [DataMember]
         public AmountType StandardAmount
         {
-            get { return this.standardAmount; }
+            get { return this.unit.AmountToStandardUnitConverter(this.amount); }
         }
 
         /// <summary>

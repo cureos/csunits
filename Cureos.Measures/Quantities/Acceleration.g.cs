@@ -38,11 +38,9 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the acceleration quantity
     /// </summary>
-    [DataContract]
     public partial struct Acceleration : IQuantity<Acceleration>, IMeasure<Acceleration>
     {
         #region FIELDS
-
         private static readonly QuantityDimension dimension = new QuantityDimension(1, 0, -2, 0, 0, 0, 0);
 
         public static readonly Unit<Acceleration> MeterPerSecondSquared = new Unit<Acceleration>("m s\u207b²");
@@ -55,9 +53,8 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Acceleration> KiloMeterPerSecondSquared = new Unit<Acceleration>(UnitPrefix.Kilo);
 
 
-        private AmountType amount;
-
-        private IUnit<Acceleration> unit;
+        private readonly AmountType amount;
+        private readonly IUnit<Acceleration> unit;
 
         #endregion
 
@@ -184,10 +181,9 @@ namespace Cureos.Measures.Quantities
         /// <summary>
         /// Gets the measured amount in the standard unit of measure for the acceleration specified quantity</typeparam>
         /// </summary
-        [DataMember]
         public AmountType StandardAmount
         {
-            get { return this.standardAmount; }
+            get { return this.unit.AmountToStandardUnitConverter(this.amount); }
         }
 
         /// <summary>

@@ -87,7 +87,9 @@
     <Compile Include="Quantities\AmountOfSubstance.g.cs">
       <DependentUpon>CodeGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="Quantities\AngularAcceleration.cs" />
+    <Compile Include="Quantities\AngularAcceleration.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Quantities\AngularVelocity.cs" />
     <Compile Include="Quantities\Area.cs" />
     <Compile Include="Quantities\Capacitance.cs" />

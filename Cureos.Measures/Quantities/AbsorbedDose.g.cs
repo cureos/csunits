@@ -38,11 +38,9 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the absorbed dose quantity
     /// </summary>
-    [DataContract]
     public partial struct AbsorbedDose : IQuantity<AbsorbedDose>, IMeasure<AbsorbedDose>
     {
         #region FIELDS
-
         private static readonly QuantityDimension dimension = new QuantityDimension(2, 0, 2, 0, 0, 0, 0);
 
         public static readonly Unit<AbsorbedDose> Gray = new Unit<AbsorbedDose>("Gy");
@@ -57,9 +55,8 @@ namespace Cureos.Measures.Quantities
 
         public static readonly Unit<AbsorbedDose> Rad = new Unit<AbsorbedDose>("rad", Factors.Centi);
 
-        private AmountType amount;
-
-        private IUnit<AbsorbedDose> unit;
+        private readonly AmountType amount;
+        private readonly IUnit<AbsorbedDose> unit;
 
         #endregion
 
@@ -186,10 +183,9 @@ namespace Cureos.Measures.Quantities
         /// <summary>
         /// Gets the measured amount in the standard unit of measure for the absorbed dose specified quantity</typeparam>
         /// </summary
-        [DataMember]
         public AmountType StandardAmount
         {
-            get { return this.standardAmount; }
+            get { return this.unit.AmountToStandardUnitConverter(this.amount); }
         }
 
         /// <summary>

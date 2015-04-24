@@ -38,11 +38,9 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the amount of substance quantity
     /// </summary>
-    [DataContract]
     public partial struct AmountOfSubstance : IQuantity<AmountOfSubstance>, IMeasure<AmountOfSubstance>
     {
         #region FIELDS
-
         private static readonly QuantityDimension dimension = new QuantityDimension(0, 0, 0, 0, 0, 0, 1);
 
         public static readonly Unit<AmountOfSubstance> Mole = new Unit<AmountOfSubstance>("mol");
@@ -57,9 +55,8 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<AmountOfSubstance> KiloMole = new Unit<AmountOfSubstance>(UnitPrefix.Kilo);
 
 
-        private AmountType amount;
-
-        private IUnit<AmountOfSubstance> unit;
+        private readonly AmountType amount;
+        private readonly IUnit<AmountOfSubstance> unit;
 
         #endregion
 
@@ -186,10 +183,9 @@ namespace Cureos.Measures.Quantities
         /// <summary>
         /// Gets the measured amount in the standard unit of measure for the amount of substance specified quantity</typeparam>
         /// </summary
-        [DataMember]
         public AmountType StandardAmount
         {
-            get { return this.standardAmount; }
+            get { return this.unit.AmountToStandardUnitConverter(this.amount); }
         }
 
         /// <summary>
