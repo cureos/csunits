@@ -41,6 +41,7 @@ namespace Cureos.Measures.Quantities
     public partial struct AbsorbedDose : IQuantity<AbsorbedDose>, IMeasure<AbsorbedDose>
     {
         #region FIELDS
+
         private static readonly QuantityDimension dimension = new QuantityDimension(2, 0, 2, 0, 0, 0, 0);
 
         public static readonly Unit<AbsorbedDose> Gray = new Unit<AbsorbedDose>("Gy");
@@ -181,7 +182,7 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Gets the measured amount in the standard unit of measure for the absorbed dose specified quantity</typeparam>
+        /// Gets the measured amount in the standard unit of measure for the absorbed dose quantity</typeparam>
         /// </summary
         public AmountType StandardAmount
         {
@@ -368,7 +369,7 @@ namespace Cureos.Measures.Quantities
         /// <filterpriority>2</filterpriority>
         public override string ToString()
         {
-            return String.Format("{0} {1} (Absorbed dose)", this.amount, this.unit.Symbol).Trim();
+            return String.Format("{0} {1} (absorbed dose)", this.amount, this.unit.Symbol).Trim();
         }
 
         /// <summary>
@@ -378,7 +379,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>A <see cref="T:System.String"/> containing a the actual value in formatted form with the quantity symbol appended</returns>
         public string ToString(string format)
         {
-            return String.Format("{0} {1} (Absorbed dose)", this.amount.ToString(format), this.unit.Symbol).Trim();
+            return String.Format("{0} {1} (absorbed dose)", this.amount.ToString(format), this.unit.Symbol).Trim();
         }
         
         /// <summary>
@@ -388,7 +389,7 @@ namespace Cureos.Measures.Quantities
         /// <returns></returns>
         public string ToString(IFormatProvider provider)
         {
-            return String.Format("{0} {1} (Absorbed dose)", this.amount.ToString(provider), this.unit.Symbol).Trim();
+            return String.Format("{0} {1} (absorbed dose)", this.amount.ToString(provider), this.unit.Symbol).Trim();
         }
         
         /// <summary>
@@ -399,13 +400,43 @@ namespace Cureos.Measures.Quantities
         /// <returns></returns>
         public string ToString(string format, IFormatProvider provider)
         {
-            return String.Format("{0} {1} (Absorbed dose)", this.amount.ToString(format, provider), this.unit.Symbol).Trim();
+            return String.Format("{0} {1} (absorbed dose)", this.amount.ToString(format, provider), this.unit.Symbol).Trim();
         }
         
         #endregion
 
         #region OPERATORS
 
+        /// <summary>
+        /// Casts a float value to a AbsorbedDose object
+        /// </summary>
+        /// <param name="standardAmount">Standard amount</param>
+        /// <returns>AbsorbedDose representation of <paramref name="standardAmount"/> in Unit.Gray</returns>
+        public static explicit operator AbsorbedDose(float standardAmount)
+        {
+            return new AbsorbedDose(standardAmount);
+        }
+
+        /// <summary>
+        /// Casts a double value to a AbsorbedDose object
+        /// </summary>
+        /// <param name="standardAmount">Standard amount</param>
+        /// <returns>AbsorbedDose representation of <paramref name="standardAmount"/> in Unit.Gray</returns>
+        public static explicit operator AbsorbedDose(double standardAmount)
+        {
+            return new AbsorbedDose(standardAmount);
+        }
+
+        /// <summary>
+        /// Casts a decimal value to a AbsorbedDose object
+        /// </summary>
+        /// <param name="standardAmount">Standard amount</param>
+        /// <returns>AbsorbedDose representation of <paramref name="standardAmount"/> in Unit.Gray</returns>
+        public static explicit operator AbsorbedDose(decimal standardAmount)
+        {
+            return new AbsorbedDose(standardAmount);
+        }
+        
         /// <summary>
         /// Adds two measure objects provided the measured quantities are equal
         /// </summary>

@@ -7,9 +7,15 @@
 // 12. Lower standard unit prefix exponent
 // 13. Upper standard unit prefix exponent
 // 14.-16., 17.-19. etc. Additional unit triplets (Unit field name, unit symbol, Factors class conversion factor vs. standard unit)
-AbsorbedDose,Absorbed dose,,2,0,2,0,0,0,0,Gray,Gy,-6,3,Rad,rad,Centi
+AbsorbedDose,,,2,0,2,0,0,0,0,Gray,Gy,-6,3,Rad,rad,Centi
 Acceleration,,,1,0,-2,0,0,0,0,MeterPerSecondSquared,m s\u207b²,-3,3
 Activity,,,0,0,-1,0,0,0,0,Becquerel,Bq,3,9,Curie,Ci,BecquerelPerCurie,KiloCurie,kCi,Kilo*BecquerelPerCurie,MilliCurie,mCi,Milli*BecquerelPerCurie,MicroCurie,µCi,Micro*BecquerelPerCurie
-AmountConcentration,Amount concentration,,-3,0,0,0,0,0,1,MolePerCubicMeter,mol m\u207b³,-9,3
-AmountOfSubstance,Amount of substance,,0,0,0,0,0,0,1,Mole,mol,-9,3
-AngularAcceleration,Angular acceleration,Radian,0,0,-2,0,0,0,0,RadianPerSecondSquared,rad s\u207b²,-9,3
+AmountConcentration,,,-3,0,0,0,0,0,1,MolePerCubicMeter,mol m\u207b³,-9,3
+AmountOfSubstance,,,0,0,0,0,0,0,1,Mole,mol,-9,3
+AngularAcceleration,,Radian,0,0,-2,0,0,0,0,RadianPerSecondSquared,rad s\u207b²,-9,3
+AngularVelocity,,Radian,0,0,-1,0,0,0,0,RadianPerSecond,rad s\u207b¹,-9,3
+Area,,,2,0,0,0,0,0,0,SquareMeter,m²,0,0,SquareKiloMeter,km²,Kilo*Kilo,SquareDeciMeter,dm²,Deci*Deci,SquareCentiMeter,cm²,Centi*Centi,SquareMilliMeter,mm²,Milli*Milli,Barn,b,SquareMetersPerBarn,Are,a,Deka,Hectare,ha,Hecto
+Capacitance,,,-2,-1,4,2,0,0,0,Farad,F,-12,3
+CatalyticActivity,,,0,0,-1,0,0,0,1,Katal,kat,-9,3
+Temperature,,,0,0,0,0,1,0,0,Kelvin,K,0,0
+

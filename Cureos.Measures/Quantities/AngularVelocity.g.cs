@@ -36,37 +36,38 @@ namespace Cureos.Measures.Quantities
 #endif
 
     /// <summary>
-    /// Implementation of the activity quantity
+    /// Implementation of the angular velocity quantity
     /// </summary>
-    public partial struct Activity : IQuantity<Activity>, IMeasure<Activity>
+    public partial struct AngularVelocity : IQuantity<AngularVelocity>, IMeasure<AngularVelocity>
     {
         #region FIELDS
 
-        private static readonly QuantityDimension dimension = new QuantityDimension(0, 0, -1, 0, 0, 0, 0);
+        private static readonly QuantityDimension dimension = QuantityDimension.Radian * new QuantityDimension(0, 0, -1, 0, 0, 0, 0);
 
-        public static readonly Unit<Activity> Becquerel = new Unit<Activity>("Bq");
+        public static readonly Unit<AngularVelocity> RadianPerSecond = new Unit<AngularVelocity>("rad s\u207b¹");
 
-        public static readonly Unit<Activity> KiloBecquerel = new Unit<Activity>(UnitPrefix.Kilo);
-        public static readonly Unit<Activity> MegaBecquerel = new Unit<Activity>(UnitPrefix.Mega);
-        public static readonly Unit<Activity> GigaBecquerel = new Unit<Activity>(UnitPrefix.Giga);
+        public static readonly Unit<AngularVelocity> NanoRadianPerSecond = new Unit<AngularVelocity>(UnitPrefix.Nano);
+        public static readonly Unit<AngularVelocity> MicroRadianPerSecond = new Unit<AngularVelocity>(UnitPrefix.Micro);
+        public static readonly Unit<AngularVelocity> MilliRadianPerSecond = new Unit<AngularVelocity>(UnitPrefix.Milli);
+        public static readonly Unit<AngularVelocity> CentiRadianPerSecond = new Unit<AngularVelocity>(UnitPrefix.Centi);
+        public static readonly Unit<AngularVelocity> DeciRadianPerSecond = new Unit<AngularVelocity>(UnitPrefix.Deci);
+        public static readonly Unit<AngularVelocity> DekaRadianPerSecond = new Unit<AngularVelocity>(UnitPrefix.Deka);
+        public static readonly Unit<AngularVelocity> HectoRadianPerSecond = new Unit<AngularVelocity>(UnitPrefix.Hecto);
+        public static readonly Unit<AngularVelocity> KiloRadianPerSecond = new Unit<AngularVelocity>(UnitPrefix.Kilo);
 
-        public static readonly Unit<Activity> Curie = new Unit<Activity>("Ci", Factors.BecquerelPerCurie);
-        public static readonly Unit<Activity> KiloCurie = new Unit<Activity>("kCi", Factors.Kilo * Factors.BecquerelPerCurie);
-        public static readonly Unit<Activity> MilliCurie = new Unit<Activity>("mCi", Factors.Milli * Factors.BecquerelPerCurie);
-        public static readonly Unit<Activity> MicroCurie = new Unit<Activity>("µCi", Factors.Micro * Factors.BecquerelPerCurie);
 
         private readonly AmountType amount;
-        private readonly IUnit<Activity> unit;
+        private readonly IUnit<AngularVelocity> unit;
 
         #endregion
 
         #region CONSTRUCTORS
 
         /// <summary>
-        /// Initializes a Activity object from an object implementing the IMeasure&lt;Activity&gt; interface
+        /// Initializes a AngularVelocity object from an object implementing the IMeasure&lt;AngularVelocity&gt; interface
         /// </summary>
-        /// <param name="other">Object implemeting the IMeasure&lt;Activity&gt; interface</param>
-        public Activity(IMeasure<Activity> other)
+        /// <param name="other">Object implemeting the IMeasure&lt;AngularVelocity&gt; interface</param>
+        public AngularVelocity(IMeasure<AngularVelocity> other)
             : this(other.Amount, other.Unit)
         {
         }
@@ -75,8 +76,8 @@ namespace Cureos.Measures.Quantities
         /// Initializes a measure to the specified amount and standard unit of the measured quantity
         /// </summary>
         /// <param name="amount">Measured amount in standard unit of the specified quantity</param>
-        public Activity(double amount)
-            : this(amount, default(Activity).StandardUnit)
+        public AngularVelocity(double amount)
+            : this(amount, default(AngularVelocity).StandardUnit)
         {
         }
 
@@ -84,8 +85,8 @@ namespace Cureos.Measures.Quantities
         /// Initializes a measure to the specified amount and standard unit of the measured quantity
         /// </summary>
         /// <param name="amount">Measured amount in standard unit of the specified quantity</param>
-        public Activity(float amount)
-            : this(amount, default(Activity).StandardUnit)
+        public AngularVelocity(float amount)
+            : this(amount, default(AngularVelocity).StandardUnit)
         {
         }
 
@@ -93,8 +94,8 @@ namespace Cureos.Measures.Quantities
         /// Initializes a measure to the specified amount and standard unit of the measured quantity
         /// </summary>
         /// <param name="amount">Measured amount in standard unit of the specified quantity</param>
-        public Activity(decimal amount)
-            : this(amount, default(Activity).StandardUnit)
+        public AngularVelocity(decimal amount)
+            : this(amount, default(AngularVelocity).StandardUnit)
         {
         }
 
@@ -104,7 +105,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Measured amount</param>
         /// <param name="unit">Unit of measure</param>
         /// <exception cref="ArgumentNullException">if the specified unit is null</exception>
-        public Activity(double amount, IUnit<Activity> unit)
+        public AngularVelocity(double amount, IUnit<AngularVelocity> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
 
@@ -118,7 +119,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Measured amount</param>
         /// <param name="unit">Unit of measure</param>
         /// <exception cref="ArgumentNullException">if the specified unit is null</exception>
-        public Activity(float amount, IUnit<Activity> unit)
+        public AngularVelocity(float amount, IUnit<AngularVelocity> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
 
@@ -132,7 +133,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Measured amount</param>
         /// <param name="unit">Unit of measure</param>
         /// <exception cref="ArgumentNullException">if the specified unit is null</exception>
-        public Activity(decimal amount, IUnit<Activity> unit)
+        public AngularVelocity(decimal amount, IUnit<AngularVelocity> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
 
@@ -142,7 +143,7 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
-        #region Implementation of IQuantity<Activity>
+        #region Implementation of IQuantity<AngularVelocity>
 
         /// <summary>
         /// Gets the physical dimension of the quantity in terms of SI units
@@ -163,14 +164,14 @@ namespace Cureos.Measures.Quantities
         /// <summary>
         /// Gets the standard unit associated with the quantity
         /// </summary>
-        public IUnit<Activity> StandardUnit
+        public IUnit<AngularVelocity> StandardUnit
         {
-            get { return Becquerel; }
+            get { return RadianPerSecond; }
         }
 
         #endregion
 
-        #region Implementation of IMeasure<Activity>
+        #region Implementation of IMeasure<AngularVelocity>
 
         /// <summary>
         /// Gets the measured amount in the <see cref="Unit">current unit of measure</see>
@@ -181,7 +182,7 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Gets the measured amount in the standard unit of measure for the activity quantity</typeparam>
+        /// Gets the measured amount in the standard unit of measure for the angular velocity quantity</typeparam>
         /// </summary
         public AmountType StandardAmount
         {
@@ -204,7 +205,7 @@ namespace Cureos.Measures.Quantities
         AmountType IMeasure.GetAmount(IUnit unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            if (!unit.Quantity.Equals(default(Activity))) throw new ArgumentException("Unit is not the same quantity as measure");
+            if (!unit.Quantity.Equals(default(AngularVelocity))) throw new ArgumentException("Unit is not the same quantity as measure");
             return unit.AmountFromStandardUnitConverter(this.StandardAmount);
         }
 
@@ -216,13 +217,13 @@ namespace Cureos.Measures.Quantities
         /// <typeparamref name="Q">valid quantity</typeparamref></exception>
         IMeasure IMeasure.this[IUnit unit]
         {
-            get { return this[unit as IUnit<Activity>]; }
+            get { return this[unit as IUnit<AngularVelocity>]; }
         }
 
         /// <summary>
         /// Gets the quantity-typed unit of measure
         /// </summary>
-        public IUnit<Activity> Unit
+        public IUnit<AngularVelocity> Unit
         {
             get { return this.unit; }
         }
@@ -232,7 +233,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
         /// <returns>Measured amount converted into <paramref name="unit">specified unit</paramref></returns>
-        public AmountType GetAmount(IUnit<Activity> unit)
+        public AmountType GetAmount(IUnit<AngularVelocity> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
             return unit.AmountFromStandardUnitConverter(this.StandardAmount);
@@ -242,7 +243,7 @@ namespace Cureos.Measures.Quantities
         /// Gets a new unit specific measure based on this measure but in the <paramref name="unit">specified unit</paramref>
         /// </summary>
         /// <param name="unit">Unit in which the new measure should be specified</param>
-        IMeasure<Activity> IMeasure<Activity>.this[IUnit<Activity> unit]
+        IMeasure<AngularVelocity> IMeasure<AngularVelocity>.this[IUnit<AngularVelocity> unit]
         {
             get { return this[unit]; }
         }
@@ -254,7 +255,7 @@ namespace Cureos.Measures.Quantities
         /// true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
         /// </returns>
         /// <param name="other">An object to compare with this object.</param>
-        public bool Equals(IMeasure<Activity> other)
+        public bool Equals(IMeasure<AngularVelocity> other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
@@ -271,7 +272,7 @@ namespace Cureos.Measures.Quantities
         bool IEquatable<IMeasure>.Equals(IMeasure other)
         {
             if (other == null) throw new ArgumentNullException("other");
-            if (!other.Unit.Quantity.Equals(default(Activity))) throw new ArgumentException("Measures are of different quantities");
+            if (!other.Unit.Quantity.Equals(default(AngularVelocity))) throw new ArgumentException("Measures are of different quantities");
             return this.amount.Equals(other.GetAmount(this.unit));
         }
 
@@ -290,7 +291,7 @@ namespace Cureos.Measures.Quantities
         ///                     This object is greater than <paramref name="other"/>. 
         /// </returns>
         /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(IMeasure<Activity> other)
+        public int CompareTo(IMeasure<AngularVelocity> other)
         {
             if (other == null) throw new ArgumentNullException("other");
             return this.amount.CompareTo(other.GetAmount(this.unit));
@@ -306,7 +307,7 @@ namespace Cureos.Measures.Quantities
         int IComparable<IMeasure>.CompareTo(IMeasure other)
         {
             if (other == null) throw new ArgumentNullException("other");
-            if (!other.Unit.Quantity.Equals(default(Activity))) throw new ArgumentException("Measures are of different quantities");
+            if (!other.Unit.Quantity.Equals(default(AngularVelocity))) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.GetAmount(this.unit));
         }
 
@@ -318,12 +319,12 @@ namespace Cureos.Measures.Quantities
         /// Gets a new unit specific measure based on this measure but in the <paramref name="unit">specified unit</paramref>
         /// </summary>
         /// <param name="unit">Unit in which the new measure should be specified</param>
-        public Activity this[IUnit<Activity> unit]
+        public AngularVelocity this[IUnit<AngularVelocity> unit]
         {
             get
             {
                 if (unit == null) throw new ArgumentNullException("unit");
-                return new Activity(this.GetAmount(unit), unit);
+                return new AngularVelocity(this.GetAmount(unit), unit);
             }
         }
 
@@ -343,8 +344,8 @@ namespace Cureos.Measures.Quantities
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
-            if (obj.GetType() != typeof(IMeasure<Activity>)) return false;
-            return this.Equals((IMeasure<Activity>)obj);
+            if (obj.GetType() != typeof(IMeasure<AngularVelocity>)) return false;
+            return this.Equals((IMeasure<AngularVelocity>)obj);
         }
 
         /// <summary>
@@ -368,7 +369,7 @@ namespace Cureos.Measures.Quantities
         /// <filterpriority>2</filterpriority>
         public override string ToString()
         {
-            return String.Format("{0} {1} (activity)", this.amount, this.unit.Symbol).Trim();
+            return String.Format("{0} {1} (angular velocity)", this.amount, this.unit.Symbol).Trim();
         }
 
         /// <summary>
@@ -378,7 +379,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>A <see cref="T:System.String"/> containing a the actual value in formatted form with the quantity symbol appended</returns>
         public string ToString(string format)
         {
-            return String.Format("{0} {1} (activity)", this.amount.ToString(format), this.unit.Symbol).Trim();
+            return String.Format("{0} {1} (angular velocity)", this.amount.ToString(format), this.unit.Symbol).Trim();
         }
         
         /// <summary>
@@ -388,7 +389,7 @@ namespace Cureos.Measures.Quantities
         /// <returns></returns>
         public string ToString(IFormatProvider provider)
         {
-            return String.Format("{0} {1} (activity)", this.amount.ToString(provider), this.unit.Symbol).Trim();
+            return String.Format("{0} {1} (angular velocity)", this.amount.ToString(provider), this.unit.Symbol).Trim();
         }
         
         /// <summary>
@@ -399,7 +400,7 @@ namespace Cureos.Measures.Quantities
         /// <returns></returns>
         public string ToString(string format, IFormatProvider provider)
         {
-            return String.Format("{0} {1} (activity)", this.amount.ToString(format, provider), this.unit.Symbol).Trim();
+            return String.Format("{0} {1} (angular velocity)", this.amount.ToString(format, provider), this.unit.Symbol).Trim();
         }
         
         #endregion
@@ -407,33 +408,33 @@ namespace Cureos.Measures.Quantities
         #region OPERATORS
 
         /// <summary>
-        /// Casts a float value to a Activity object
+        /// Casts a float value to a AngularVelocity object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Activity representation of <paramref name="standardAmount"/> in Unit.Becquerel</returns>
-        public static explicit operator Activity(float standardAmount)
+        /// <returns>AngularVelocity representation of <paramref name="standardAmount"/> in Unit.RadianPerSecond</returns>
+        public static explicit operator AngularVelocity(float standardAmount)
         {
-            return new Activity(standardAmount);
+            return new AngularVelocity(standardAmount);
         }
 
         /// <summary>
-        /// Casts a double value to a Activity object
+        /// Casts a double value to a AngularVelocity object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Activity representation of <paramref name="standardAmount"/> in Unit.Becquerel</returns>
-        public static explicit operator Activity(double standardAmount)
+        /// <returns>AngularVelocity representation of <paramref name="standardAmount"/> in Unit.RadianPerSecond</returns>
+        public static explicit operator AngularVelocity(double standardAmount)
         {
-            return new Activity(standardAmount);
+            return new AngularVelocity(standardAmount);
         }
 
         /// <summary>
-        /// Casts a decimal value to a Activity object
+        /// Casts a decimal value to a AngularVelocity object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Activity representation of <paramref name="standardAmount"/> in Unit.Becquerel</returns>
-        public static explicit operator Activity(decimal standardAmount)
+        /// <returns>AngularVelocity representation of <paramref name="standardAmount"/> in Unit.RadianPerSecond</returns>
+        public static explicit operator AngularVelocity(decimal standardAmount)
         {
-            return new Activity(standardAmount);
+            return new AngularVelocity(standardAmount);
         }
         
         /// <summary>
@@ -442,9 +443,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First measure term</param>
         /// <param name="rhs">Second measure term</param>
         /// <returns>Sum of the two measure objects in the unit of the <paramref name="lhs">left-hand side measure</paramref></returns>
-        public static Activity operator +(Activity lhs,  Activity rhs)
+        public static AngularVelocity operator +(AngularVelocity lhs,  AngularVelocity rhs)
         {
-            return new Activity(lhs.amount + rhs.GetAmount(lhs.unit), lhs.unit);
+            return new AngularVelocity(lhs.amount + rhs.GetAmount(lhs.unit), lhs.unit);
         }
 
         /// <summary>
@@ -453,9 +454,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First measure term</param>
         /// <param name="rhs">Second measure term (any object implementing the IMeasure interface)</param>
         /// <returns>Sum of the two measure objects in the unit of the <paramref name="lhs">left-hand side measure</paramref></returns>
-        public static Activity operator +(Activity lhs, IMeasure<Activity> rhs)
+        public static AngularVelocity operator +(AngularVelocity lhs, IMeasure<AngularVelocity> rhs)
         {
-            return new Activity(lhs.amount + rhs.GetAmount(lhs.unit), lhs.unit);
+            return new AngularVelocity(lhs.amount + rhs.GetAmount(lhs.unit), lhs.unit);
         }
 
         /// <summary>
@@ -464,9 +465,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First measure object</param>
         /// <param name="rhs">Second measure object</param>
         /// <returns>Difference of the measure objects</returns>
-        public static Activity operator -(Activity lhs, Activity rhs)
+        public static AngularVelocity operator -(AngularVelocity lhs, AngularVelocity rhs)
         {
-            return new Activity(lhs.amount - rhs.GetAmount(lhs.unit), lhs.unit);
+            return new AngularVelocity(lhs.amount - rhs.GetAmount(lhs.unit), lhs.unit);
         }
 
         /// <summary>
@@ -475,9 +476,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First measure object</param>
         /// <param name="rhs">Second measure object (any object implementing the IMeasure interface)</param>
         /// <returns>Difference of the measure objects</returns>
-        public static Activity operator -(Activity lhs, IMeasure<Activity> rhs)
+        public static AngularVelocity operator -(AngularVelocity lhs, IMeasure<AngularVelocity> rhs)
         {
-            return new Activity(lhs.amount - rhs.GetAmount(lhs.unit), lhs.unit);
+            return new AngularVelocity(lhs.amount - rhs.GetAmount(lhs.unit), lhs.unit);
         }
 
         /// <summary>
@@ -486,9 +487,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="scalar">Floating-point scalar</param>
         /// <param name="iMeasure">Measure object</param>
         /// <returns>Product of the scalar and the measure object</returns>
-        public static Activity operator *(AmountType scalar, Activity iMeasure)
+        public static AngularVelocity operator *(AmountType scalar, AngularVelocity iMeasure)
         {
-            return new Activity(scalar * iMeasure.amount, iMeasure.unit);
+            return new AngularVelocity(scalar * iMeasure.amount, iMeasure.unit);
         }
 
         /// <summary>
@@ -497,9 +498,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="iMeasure">Measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Product of the measure object and the scalar</returns>
-        public static Activity operator *(Activity iMeasure, AmountType scalar)
+        public static AngularVelocity operator *(AngularVelocity iMeasure, AmountType scalar)
         {
-            return new Activity(iMeasure.amount * scalar, iMeasure.unit);
+            return new AngularVelocity(iMeasure.amount * scalar, iMeasure.unit);
         }
 
         /// <summary>
@@ -508,9 +509,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="iMeasure">measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Quotient of the measure object and the scalar</returns>
-        public static Activity operator /(Activity iMeasure, AmountType scalar)
+        public static AngularVelocity operator /(AngularVelocity iMeasure, AmountType scalar)
         {
-            return new Activity(iMeasure.amount / scalar, iMeasure.unit);
+            return new AngularVelocity(iMeasure.amount / scalar, iMeasure.unit);
         }
 
         /// <summary>
@@ -519,7 +520,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object</param>
         /// <returns>true if first measure object is less than second measure object; false otherwise</returns>
-        public static bool operator <(Activity lhs, Activity rhs)
+        public static bool operator <(AngularVelocity lhs, AngularVelocity rhs)
         {
             return lhs.amount < rhs.GetAmount(lhs.unit);
         }
@@ -530,7 +531,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if first measure object is less than second measure object; false otherwise</returns>
-        public static bool operator <(Activity lhs, IMeasure<Activity> rhs)
+        public static bool operator <(AngularVelocity lhs, IMeasure<AngularVelocity> rhs)
         {
             return lhs.amount < rhs.GetAmount(lhs.unit);
         }
@@ -541,7 +542,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object</param>
         /// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
-        public static bool operator >(Activity lhs, Activity rhs)
+        public static bool operator >(AngularVelocity lhs, AngularVelocity rhs)
         {
             return lhs.amount > rhs.GetAmount(lhs.unit);
         }
@@ -552,7 +553,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
-        public static bool operator >(Activity lhs, IMeasure<Activity> rhs)
+        public static bool operator >(AngularVelocity lhs, IMeasure<AngularVelocity> rhs)
         {
             return lhs.amount > rhs.GetAmount(lhs.unit);
         }
@@ -563,7 +564,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object</param>
         /// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
-        public static bool operator <=(Activity lhs, Activity rhs)
+        public static bool operator <=(AngularVelocity lhs, AngularVelocity rhs)
         {
             return lhs.amount <= rhs.GetAmount(lhs.unit);
         }
@@ -574,7 +575,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
-        public static bool operator <=(Activity lhs, IMeasure<Activity> rhs)
+        public static bool operator <=(AngularVelocity lhs, IMeasure<AngularVelocity> rhs)
         {
             return lhs.amount <= rhs.GetAmount(lhs.unit);
         }
@@ -585,7 +586,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object</param>
         /// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
-        public static bool operator >=(Activity lhs, Activity rhs)
+        public static bool operator >=(AngularVelocity lhs, AngularVelocity rhs)
         {
             return lhs.amount >= rhs.GetAmount(lhs.unit);
         }
@@ -596,7 +597,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
-        public static bool operator >=(Activity lhs, IMeasure<Activity> rhs)
+        public static bool operator >=(AngularVelocity lhs, IMeasure<AngularVelocity> rhs)
         {
             return lhs.amount >= rhs.GetAmount(lhs.unit);
         }
@@ -607,7 +608,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object</param>
         /// <returns>true if the two measure objects are equal; false otherwise</returns>
-        public static bool operator ==(Activity lhs, Activity rhs)
+        public static bool operator ==(AngularVelocity lhs, AngularVelocity rhs)
         {
             return lhs.amount == rhs.GetAmount(lhs.unit);
         }
@@ -618,7 +619,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if the two measure objects are equal; false otherwise</returns>
-        public static bool operator ==(Activity lhs, IMeasure<Activity> rhs)
+        public static bool operator ==(AngularVelocity lhs, IMeasure<AngularVelocity> rhs)
         {
             return lhs.amount == rhs.GetAmount(lhs.unit);
         }
@@ -629,7 +630,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object</param>
         /// <returns>true if the two measure objects are not equal; false if they are equal</returns>
-        public static bool operator !=(Activity lhs, Activity rhs)
+        public static bool operator !=(AngularVelocity lhs, AngularVelocity rhs)
         {
             return lhs.amount != rhs.GetAmount(lhs.unit);
         }
@@ -640,7 +641,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if the two measure objects are not equal; false if they are equal</returns>
-        public static bool operator !=(Activity lhs, IMeasure<Activity> rhs)
+        public static bool operator !=(AngularVelocity lhs, IMeasure<AngularVelocity> rhs)
         {
             return lhs.amount != rhs.GetAmount(lhs.unit);
         }

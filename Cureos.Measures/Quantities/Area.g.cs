@@ -36,37 +36,37 @@ namespace Cureos.Measures.Quantities
 #endif
 
     /// <summary>
-    /// Implementation of the activity quantity
+    /// Implementation of the area quantity
     /// </summary>
-    public partial struct Activity : IQuantity<Activity>, IMeasure<Activity>
+    public partial struct Area : IQuantity<Area>, IMeasure<Area>
     {
         #region FIELDS
 
-        private static readonly QuantityDimension dimension = new QuantityDimension(0, 0, -1, 0, 0, 0, 0);
+        private static readonly QuantityDimension dimension = new QuantityDimension(2, 0, 0, 0, 0, 0, 0);
 
-        public static readonly Unit<Activity> Becquerel = new Unit<Activity>("Bq");
+        public static readonly Unit<Area> SquareMeter = new Unit<Area>("m²");
 
-        public static readonly Unit<Activity> KiloBecquerel = new Unit<Activity>(UnitPrefix.Kilo);
-        public static readonly Unit<Activity> MegaBecquerel = new Unit<Activity>(UnitPrefix.Mega);
-        public static readonly Unit<Activity> GigaBecquerel = new Unit<Activity>(UnitPrefix.Giga);
 
-        public static readonly Unit<Activity> Curie = new Unit<Activity>("Ci", Factors.BecquerelPerCurie);
-        public static readonly Unit<Activity> KiloCurie = new Unit<Activity>("kCi", Factors.Kilo * Factors.BecquerelPerCurie);
-        public static readonly Unit<Activity> MilliCurie = new Unit<Activity>("mCi", Factors.Milli * Factors.BecquerelPerCurie);
-        public static readonly Unit<Activity> MicroCurie = new Unit<Activity>("µCi", Factors.Micro * Factors.BecquerelPerCurie);
+        public static readonly Unit<Area> SquareKiloMeter = new Unit<Area>("km²", Factors.Kilo * Factors.Kilo);
+        public static readonly Unit<Area> SquareDeciMeter = new Unit<Area>("dm²", Factors.Deci * Factors.Deci);
+        public static readonly Unit<Area> SquareCentiMeter = new Unit<Area>("cm²", Factors.Centi * Factors.Centi);
+        public static readonly Unit<Area> SquareMilliMeter = new Unit<Area>("mm²", Factors.Milli * Factors.Milli);
+        public static readonly Unit<Area> Barn = new Unit<Area>("b", Factors.SquareMetersPerBarn);
+        public static readonly Unit<Area> Are = new Unit<Area>("a", Factors.Deka);
+        public static readonly Unit<Area> Hectare = new Unit<Area>("ha", Factors.Hecto);
 
         private readonly AmountType amount;
-        private readonly IUnit<Activity> unit;
+        private readonly IUnit<Area> unit;
 
         #endregion
 
         #region CONSTRUCTORS
 
         /// <summary>
-        /// Initializes a Activity object from an object implementing the IMeasure&lt;Activity&gt; interface
+        /// Initializes a Area object from an object implementing the IMeasure&lt;Area&gt; interface
         /// </summary>
-        /// <param name="other">Object implemeting the IMeasure&lt;Activity&gt; interface</param>
-        public Activity(IMeasure<Activity> other)
+        /// <param name="other">Object implemeting the IMeasure&lt;Area&gt; interface</param>
+        public Area(IMeasure<Area> other)
             : this(other.Amount, other.Unit)
         {
         }
@@ -75,8 +75,8 @@ namespace Cureos.Measures.Quantities
         /// Initializes a measure to the specified amount and standard unit of the measured quantity
         /// </summary>
         /// <param name="amount">Measured amount in standard unit of the specified quantity</param>
-        public Activity(double amount)
-            : this(amount, default(Activity).StandardUnit)
+        public Area(double amount)
+            : this(amount, default(Area).StandardUnit)
         {
         }
 
@@ -84,8 +84,8 @@ namespace Cureos.Measures.Quantities
         /// Initializes a measure to the specified amount and standard unit of the measured quantity
         /// </summary>
         /// <param name="amount">Measured amount in standard unit of the specified quantity</param>
-        public Activity(float amount)
-            : this(amount, default(Activity).StandardUnit)
+        public Area(float amount)
+            : this(amount, default(Area).StandardUnit)
         {
         }
 
@@ -93,8 +93,8 @@ namespace Cureos.Measures.Quantities
         /// Initializes a measure to the specified amount and standard unit of the measured quantity
         /// </summary>
         /// <param name="amount">Measured amount in standard unit of the specified quantity</param>
-        public Activity(decimal amount)
-            : this(amount, default(Activity).StandardUnit)
+        public Area(decimal amount)
+            : this(amount, default(Area).StandardUnit)
         {
         }
 
@@ -104,7 +104,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Measured amount</param>
         /// <param name="unit">Unit of measure</param>
         /// <exception cref="ArgumentNullException">if the specified unit is null</exception>
-        public Activity(double amount, IUnit<Activity> unit)
+        public Area(double amount, IUnit<Area> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
 
@@ -118,7 +118,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Measured amount</param>
         /// <param name="unit">Unit of measure</param>
         /// <exception cref="ArgumentNullException">if the specified unit is null</exception>
-        public Activity(float amount, IUnit<Activity> unit)
+        public Area(float amount, IUnit<Area> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
 
@@ -132,7 +132,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Measured amount</param>
         /// <param name="unit">Unit of measure</param>
         /// <exception cref="ArgumentNullException">if the specified unit is null</exception>
-        public Activity(decimal amount, IUnit<Activity> unit)
+        public Area(decimal amount, IUnit<Area> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
 
@@ -142,7 +142,7 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
-        #region Implementation of IQuantity<Activity>
+        #region Implementation of IQuantity<Area>
 
         /// <summary>
         /// Gets the physical dimension of the quantity in terms of SI units
@@ -163,14 +163,14 @@ namespace Cureos.Measures.Quantities
         /// <summary>
         /// Gets the standard unit associated with the quantity
         /// </summary>
-        public IUnit<Activity> StandardUnit
+        public IUnit<Area> StandardUnit
         {
-            get { return Becquerel; }
+            get { return SquareMeter; }
         }
 
         #endregion
 
-        #region Implementation of IMeasure<Activity>
+        #region Implementation of IMeasure<Area>
 
         /// <summary>
         /// Gets the measured amount in the <see cref="Unit">current unit of measure</see>
@@ -181,7 +181,7 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Gets the measured amount in the standard unit of measure for the activity quantity</typeparam>
+        /// Gets the measured amount in the standard unit of measure for the area quantity</typeparam>
         /// </summary
         public AmountType StandardAmount
         {
@@ -204,7 +204,7 @@ namespace Cureos.Measures.Quantities
         AmountType IMeasure.GetAmount(IUnit unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            if (!unit.Quantity.Equals(default(Activity))) throw new ArgumentException("Unit is not the same quantity as measure");
+            if (!unit.Quantity.Equals(default(Area))) throw new ArgumentException("Unit is not the same quantity as measure");
             return unit.AmountFromStandardUnitConverter(this.StandardAmount);
         }
 
@@ -216,13 +216,13 @@ namespace Cureos.Measures.Quantities
         /// <typeparamref name="Q">valid quantity</typeparamref></exception>
         IMeasure IMeasure.this[IUnit unit]
         {
-            get { return this[unit as IUnit<Activity>]; }
+            get { return this[unit as IUnit<Area>]; }
         }
 
         /// <summary>
         /// Gets the quantity-typed unit of measure
         /// </summary>
-        public IUnit<Activity> Unit
+        public IUnit<Area> Unit
         {
             get { return this.unit; }
         }
@@ -232,7 +232,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
         /// <returns>Measured amount converted into <paramref name="unit">specified unit</paramref></returns>
-        public AmountType GetAmount(IUnit<Activity> unit)
+        public AmountType GetAmount(IUnit<Area> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
             return unit.AmountFromStandardUnitConverter(this.StandardAmount);
@@ -242,7 +242,7 @@ namespace Cureos.Measures.Quantities
         /// Gets a new unit specific measure based on this measure but in the <paramref name="unit">specified unit</paramref>
         /// </summary>
         /// <param name="unit">Unit in which the new measure should be specified</param>
-        IMeasure<Activity> IMeasure<Activity>.this[IUnit<Activity> unit]
+        IMeasure<Area> IMeasure<Area>.this[IUnit<Area> unit]
         {
             get { return this[unit]; }
         }
@@ -254,7 +254,7 @@ namespace Cureos.Measures.Quantities
         /// true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
         /// </returns>
         /// <param name="other">An object to compare with this object.</param>
-        public bool Equals(IMeasure<Activity> other)
+        public bool Equals(IMeasure<Area> other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
@@ -271,7 +271,7 @@ namespace Cureos.Measures.Quantities
         bool IEquatable<IMeasure>.Equals(IMeasure other)
         {
             if (other == null) throw new ArgumentNullException("other");
-            if (!other.Unit.Quantity.Equals(default(Activity))) throw new ArgumentException("Measures are of different quantities");
+            if (!other.Unit.Quantity.Equals(default(Area))) throw new ArgumentException("Measures are of different quantities");
             return this.amount.Equals(other.GetAmount(this.unit));
         }
 
@@ -290,7 +290,7 @@ namespace Cureos.Measures.Quantities
         ///                     This object is greater than <paramref name="other"/>. 
         /// </returns>
         /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(IMeasure<Activity> other)
+        public int CompareTo(IMeasure<Area> other)
         {
             if (other == null) throw new ArgumentNullException("other");
             return this.amount.CompareTo(other.GetAmount(this.unit));
@@ -306,7 +306,7 @@ namespace Cureos.Measures.Quantities
         int IComparable<IMeasure>.CompareTo(IMeasure other)
         {
             if (other == null) throw new ArgumentNullException("other");
-            if (!other.Unit.Quantity.Equals(default(Activity))) throw new ArgumentException("Measures are of different quantities");
+            if (!other.Unit.Quantity.Equals(default(Area))) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.GetAmount(this.unit));
         }
 
@@ -318,12 +318,12 @@ namespace Cureos.Measures.Quantities
         /// Gets a new unit specific measure based on this measure but in the <paramref name="unit">specified unit</paramref>
         /// </summary>
         /// <param name="unit">Unit in which the new measure should be specified</param>
-        public Activity this[IUnit<Activity> unit]
+        public Area this[IUnit<Area> unit]
         {
             get
             {
                 if (unit == null) throw new ArgumentNullException("unit");
-                return new Activity(this.GetAmount(unit), unit);
+                return new Area(this.GetAmount(unit), unit);
             }
         }
 
@@ -343,8 +343,8 @@ namespace Cureos.Measures.Quantities
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
-            if (obj.GetType() != typeof(IMeasure<Activity>)) return false;
-            return this.Equals((IMeasure<Activity>)obj);
+            if (obj.GetType() != typeof(IMeasure<Area>)) return false;
+            return this.Equals((IMeasure<Area>)obj);
         }
 
         /// <summary>
@@ -368,7 +368,7 @@ namespace Cureos.Measures.Quantities
         /// <filterpriority>2</filterpriority>
         public override string ToString()
         {
-            return String.Format("{0} {1} (activity)", this.amount, this.unit.Symbol).Trim();
+            return String.Format("{0} {1} (area)", this.amount, this.unit.Symbol).Trim();
         }
 
         /// <summary>
@@ -378,7 +378,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>A <see cref="T:System.String"/> containing a the actual value in formatted form with the quantity symbol appended</returns>
         public string ToString(string format)
         {
-            return String.Format("{0} {1} (activity)", this.amount.ToString(format), this.unit.Symbol).Trim();
+            return String.Format("{0} {1} (area)", this.amount.ToString(format), this.unit.Symbol).Trim();
         }
         
         /// <summary>
@@ -388,7 +388,7 @@ namespace Cureos.Measures.Quantities
         /// <returns></returns>
         public string ToString(IFormatProvider provider)
         {
-            return String.Format("{0} {1} (activity)", this.amount.ToString(provider), this.unit.Symbol).Trim();
+            return String.Format("{0} {1} (area)", this.amount.ToString(provider), this.unit.Symbol).Trim();
         }
         
         /// <summary>
@@ -399,7 +399,7 @@ namespace Cureos.Measures.Quantities
         /// <returns></returns>
         public string ToString(string format, IFormatProvider provider)
         {
-            return String.Format("{0} {1} (activity)", this.amount.ToString(format, provider), this.unit.Symbol).Trim();
+            return String.Format("{0} {1} (area)", this.amount.ToString(format, provider), this.unit.Symbol).Trim();
         }
         
         #endregion
@@ -407,33 +407,33 @@ namespace Cureos.Measures.Quantities
         #region OPERATORS
 
         /// <summary>
-        /// Casts a float value to a Activity object
+        /// Casts a float value to a Area object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Activity representation of <paramref name="standardAmount"/> in Unit.Becquerel</returns>
-        public static explicit operator Activity(float standardAmount)
+        /// <returns>Area representation of <paramref name="standardAmount"/> in Unit.SquareMeter</returns>
+        public static explicit operator Area(float standardAmount)
         {
-            return new Activity(standardAmount);
+            return new Area(standardAmount);
         }
 
         /// <summary>
-        /// Casts a double value to a Activity object
+        /// Casts a double value to a Area object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Activity representation of <paramref name="standardAmount"/> in Unit.Becquerel</returns>
-        public static explicit operator Activity(double standardAmount)
+        /// <returns>Area representation of <paramref name="standardAmount"/> in Unit.SquareMeter</returns>
+        public static explicit operator Area(double standardAmount)
         {
-            return new Activity(standardAmount);
+            return new Area(standardAmount);
         }
 
         /// <summary>
-        /// Casts a decimal value to a Activity object
+        /// Casts a decimal value to a Area object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Activity representation of <paramref name="standardAmount"/> in Unit.Becquerel</returns>
-        public static explicit operator Activity(decimal standardAmount)
+        /// <returns>Area representation of <paramref name="standardAmount"/> in Unit.SquareMeter</returns>
+        public static explicit operator Area(decimal standardAmount)
         {
-            return new Activity(standardAmount);
+            return new Area(standardAmount);
         }
         
         /// <summary>
@@ -442,9 +442,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First measure term</param>
         /// <param name="rhs">Second measure term</param>
         /// <returns>Sum of the two measure objects in the unit of the <paramref name="lhs">left-hand side measure</paramref></returns>
-        public static Activity operator +(Activity lhs,  Activity rhs)
+        public static Area operator +(Area lhs,  Area rhs)
         {
-            return new Activity(lhs.amount + rhs.GetAmount(lhs.unit), lhs.unit);
+            return new Area(lhs.amount + rhs.GetAmount(lhs.unit), lhs.unit);
         }
 
         /// <summary>
@@ -453,9 +453,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First measure term</param>
         /// <param name="rhs">Second measure term (any object implementing the IMeasure interface)</param>
         /// <returns>Sum of the two measure objects in the unit of the <paramref name="lhs">left-hand side measure</paramref></returns>
-        public static Activity operator +(Activity lhs, IMeasure<Activity> rhs)
+        public static Area operator +(Area lhs, IMeasure<Area> rhs)
         {
-            return new Activity(lhs.amount + rhs.GetAmount(lhs.unit), lhs.unit);
+            return new Area(lhs.amount + rhs.GetAmount(lhs.unit), lhs.unit);
         }
 
         /// <summary>
@@ -464,9 +464,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First measure object</param>
         /// <param name="rhs">Second measure object</param>
         /// <returns>Difference of the measure objects</returns>
-        public static Activity operator -(Activity lhs, Activity rhs)
+        public static Area operator -(Area lhs, Area rhs)
         {
-            return new Activity(lhs.amount - rhs.GetAmount(lhs.unit), lhs.unit);
+            return new Area(lhs.amount - rhs.GetAmount(lhs.unit), lhs.unit);
         }
 
         /// <summary>
@@ -475,9 +475,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First measure object</param>
         /// <param name="rhs">Second measure object (any object implementing the IMeasure interface)</param>
         /// <returns>Difference of the measure objects</returns>
-        public static Activity operator -(Activity lhs, IMeasure<Activity> rhs)
+        public static Area operator -(Area lhs, IMeasure<Area> rhs)
         {
-            return new Activity(lhs.amount - rhs.GetAmount(lhs.unit), lhs.unit);
+            return new Area(lhs.amount - rhs.GetAmount(lhs.unit), lhs.unit);
         }
 
         /// <summary>
@@ -486,9 +486,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="scalar">Floating-point scalar</param>
         /// <param name="iMeasure">Measure object</param>
         /// <returns>Product of the scalar and the measure object</returns>
-        public static Activity operator *(AmountType scalar, Activity iMeasure)
+        public static Area operator *(AmountType scalar, Area iMeasure)
         {
-            return new Activity(scalar * iMeasure.amount, iMeasure.unit);
+            return new Area(scalar * iMeasure.amount, iMeasure.unit);
         }
 
         /// <summary>
@@ -497,9 +497,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="iMeasure">Measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Product of the measure object and the scalar</returns>
-        public static Activity operator *(Activity iMeasure, AmountType scalar)
+        public static Area operator *(Area iMeasure, AmountType scalar)
         {
-            return new Activity(iMeasure.amount * scalar, iMeasure.unit);
+            return new Area(iMeasure.amount * scalar, iMeasure.unit);
         }
 
         /// <summary>
@@ -508,9 +508,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="iMeasure">measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Quotient of the measure object and the scalar</returns>
-        public static Activity operator /(Activity iMeasure, AmountType scalar)
+        public static Area operator /(Area iMeasure, AmountType scalar)
         {
-            return new Activity(iMeasure.amount / scalar, iMeasure.unit);
+            return new Area(iMeasure.amount / scalar, iMeasure.unit);
         }
 
         /// <summary>
@@ -519,7 +519,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object</param>
         /// <returns>true if first measure object is less than second measure object; false otherwise</returns>
-        public static bool operator <(Activity lhs, Activity rhs)
+        public static bool operator <(Area lhs, Area rhs)
         {
             return lhs.amount < rhs.GetAmount(lhs.unit);
         }
@@ -530,7 +530,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if first measure object is less than second measure object; false otherwise</returns>
-        public static bool operator <(Activity lhs, IMeasure<Activity> rhs)
+        public static bool operator <(Area lhs, IMeasure<Area> rhs)
         {
             return lhs.amount < rhs.GetAmount(lhs.unit);
         }
@@ -541,7 +541,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object</param>
         /// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
-        public static bool operator >(Activity lhs, Activity rhs)
+        public static bool operator >(Area lhs, Area rhs)
         {
             return lhs.amount > rhs.GetAmount(lhs.unit);
         }
@@ -552,7 +552,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
-        public static bool operator >(Activity lhs, IMeasure<Activity> rhs)
+        public static bool operator >(Area lhs, IMeasure<Area> rhs)
         {
             return lhs.amount > rhs.GetAmount(lhs.unit);
         }
@@ -563,7 +563,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object</param>
         /// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
-        public static bool operator <=(Activity lhs, Activity rhs)
+        public static bool operator <=(Area lhs, Area rhs)
         {
             return lhs.amount <= rhs.GetAmount(lhs.unit);
         }
@@ -574,7 +574,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
-        public static bool operator <=(Activity lhs, IMeasure<Activity> rhs)
+        public static bool operator <=(Area lhs, IMeasure<Area> rhs)
         {
             return lhs.amount <= rhs.GetAmount(lhs.unit);
         }
@@ -585,7 +585,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object</param>
         /// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
-        public static bool operator >=(Activity lhs, Activity rhs)
+        public static bool operator >=(Area lhs, Area rhs)
         {
             return lhs.amount >= rhs.GetAmount(lhs.unit);
         }
@@ -596,7 +596,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
-        public static bool operator >=(Activity lhs, IMeasure<Activity> rhs)
+        public static bool operator >=(Area lhs, IMeasure<Area> rhs)
         {
             return lhs.amount >= rhs.GetAmount(lhs.unit);
         }
@@ -607,7 +607,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object</param>
         /// <returns>true if the two measure objects are equal; false otherwise</returns>
-        public static bool operator ==(Activity lhs, Activity rhs)
+        public static bool operator ==(Area lhs, Area rhs)
         {
             return lhs.amount == rhs.GetAmount(lhs.unit);
         }
@@ -618,7 +618,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if the two measure objects are equal; false otherwise</returns>
-        public static bool operator ==(Activity lhs, IMeasure<Activity> rhs)
+        public static bool operator ==(Area lhs, IMeasure<Area> rhs)
         {
             return lhs.amount == rhs.GetAmount(lhs.unit);
         }
@@ -629,7 +629,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object</param>
         /// <returns>true if the two measure objects are not equal; false if they are equal</returns>
-        public static bool operator !=(Activity lhs, Activity rhs)
+        public static bool operator !=(Area lhs, Area rhs)
         {
             return lhs.amount != rhs.GetAmount(lhs.unit);
         }
@@ -640,7 +640,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if the two measure objects are not equal; false if they are equal</returns>
-        public static bool operator !=(Activity lhs, IMeasure<Activity> rhs)
+        public static bool operator !=(Area lhs, IMeasure<Area> rhs)
         {
             return lhs.amount != rhs.GetAmount(lhs.unit);
         }

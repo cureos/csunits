@@ -16,8 +16,7 @@
 
         if (line != null) {
             var values=line.Split(',');
-            var displayName = String.IsNullOrWhiteSpace(values[1]) ? values[0] : values[1];
-            var displayNameLower = displayName.ToLowerInvariant();
+            var displayName = String.IsNullOrWhiteSpace(values[1]) ? DisplayName : values[1];
             var differentiator = values[2];
             var length = Int32.Parse(values[3]);
             var mass = Int32.Parse(values[4]);
@@ -84,11 +83,12 @@ namespace Cureos.Measures.Quantities
 #endif
 
     /// <summary>
-    /// Implementation of the <#= displayNameLower #> quantity
+    /// Implementation of the <#= displayName #> quantity
     /// </summary>
     public partial struct <#= ClassName #> : IQuantity<<#= ClassName #>>, IMeasure<<#= ClassName #>>
     {
         #region FIELDS
+
 <#
             if (String.IsNullOrWhiteSpace(differentiator)) {
 #>
@@ -104,7 +104,18 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<<#= ClassName #>> <#= stdUnit #> = new Unit<<#= ClassName #>>("<#= stdUnitSymbol #>");
 
 <#
-            foreach (var selPrefix in selPrefixes) {
+            if (ClassName.Equals("Temperature")) {
+#>
+        public static readonly Unit<Temperature> Celsius = new Unit<Temperature>("°C",
+                        a => a + Factors.KelvinCelsiusIntercept, a => a - Factors.KelvinCelsiusIntercept);
+        public static readonly Unit<Temperature> Fahrenheit = new Unit<Temperature>("°F",
+                        a => (a + Factors.KelvinFahrenheitIntercept) * Factors.KelvinFahrenheitSlope,
+                        a => a / Factors.KelvinFahrenheitSlope - Factors.KelvinFahrenheitIntercept);
+<#
+            } else {
+#>
+<#
+                foreach (var selPrefix in selPrefixes) {
 #>
         public static readonly Unit<<#= ClassName #>> <#= selPrefix #><#= stdUnit #> = new Unit<<#= ClassName #>>(UnitPrefix.<#= selPrefix #>);
 <#
@@ -112,13 +123,14 @@ namespace Cureos.Measures.Quantities
 #>
 
 <#
-            foreach (var unitSpec in unitSpecs) {
-                var unitName = unitSpec.Item1;
-                var unitSymbol = unitSpec.Item2;
-                var factor = unitSpec.Item3;
+                foreach (var unitSpec in unitSpecs) {
+                    var unitName = unitSpec.Item1;
+                    var unitSymbol = unitSpec.Item2;
+                    var factor = unitSpec.Item3;
 #>
         public static readonly Unit<<#= ClassName #>> <#= unitName #> = new Unit<<#= ClassName #>>("<#= unitSymbol #>", <#= factor #>);
 <#
+                }
             }
 #>
 
@@ -248,7 +260,7 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Gets the measured amount in the standard unit of measure for the <#= displayNameLower #> specified quantity</typeparam>
+        /// Gets the measured amount in the standard unit of measure for the <#= displayName #> quantity</typeparam>
         /// </summary
         public AmountType StandardAmount
         {
@@ -474,6 +486,36 @@ namespace Cureos.Measures.Quantities
         #region OPERATORS
 
         /// <summary>
+        /// Casts a float value to a <#= ClassName #> object
+        /// </summary>
+        /// <param name="standardAmount">Standard amount</param>
+        /// <returns><#= ClassName #> representation of <paramref name="standardAmount"/> in unit <#= stdUnit #></returns>
+        public static explicit operator <#= ClassName #>(float standardAmount)
+        {
+            return new <#= ClassName #>(standardAmount);
+        }
+
+        /// <summary>
+        /// Casts a double value to a <#= ClassName #> object
+        /// </summary>
+        /// <param name="standardAmount">Standard amount</param>
+        /// <returns><#= ClassName #> representation of <paramref name="standardAmount"/> in unit <#= stdUnit #></returns>
+        public static explicit operator <#= ClassName #>(double standardAmount)
+        {
+            return new <#= ClassName #>(standardAmount);
+        }
+
+        /// <summary>
+        /// Casts a decimal value to a <#= ClassName #> object
+        /// </summary>
+        /// <param name="standardAmount">Standard amount</param>
+        /// <returns><#= ClassName #> representation of <paramref name="standardAmount"/> in unit <#= stdUnit #></returns>
+        public static explicit operator <#= ClassName #>(decimal standardAmount)
+        {
+            return new <#= ClassName #>(standardAmount);
+        }
+        
+        /// <summary>
         /// Adds two measure objects provided the measured quantities are equal
         /// </summary>
         /// <param name="lhs">First measure term</param>
@@ -691,5 +733,18 @@ namespace Cureos.Measures.Quantities
     string ClassName
     {
         get { return (string)CallContext.GetData("MyParameter"); }
+    }
+
+    string DisplayName
+    {
+        get {
+            var className = ClassName;
+            var displayName = className.Substring(0,1);
+            for (var i = 1; i < className.Length; i++) {
+                if (Char.IsUpper(className[i])) displayName += " ";
+                displayName += className[i];
+            }
+            return displayName.ToLowerInvariant();
+        }
     }
 #>

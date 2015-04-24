@@ -90,10 +90,18 @@
     <Compile Include="Quantities\AngularAcceleration.g.cs">
       <DependentUpon>CodeGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="Quantities\AngularVelocity.cs" />
-    <Compile Include="Quantities\Area.cs" />
-    <Compile Include="Quantities\Capacitance.cs" />
-    <Compile Include="Quantities\CatalyticActivity.cs" />
+    <Compile Include="Quantities\AngularVelocity.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\Area.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\Capacitance.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\CatalyticActivity.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Quantities\CodeGenerator.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -138,7 +146,9 @@
     <Compile Include="Quantities\SpecificVolume.cs" />
     <Compile Include="Quantities\SurfaceDensity.cs" />
     <Compile Include="Quantities\SurfaceTension.cs" />
-    <Compile Include="Quantities\Temperature.cs" />
+    <Compile Include="Quantities\Temperature.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Quantities\Time.cs" />
     <Compile Include="Quantities\Velocity.cs" />
     <Compile Include="Quantities\Volume.cs" />

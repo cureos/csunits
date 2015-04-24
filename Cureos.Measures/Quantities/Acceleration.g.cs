@@ -41,6 +41,7 @@ namespace Cureos.Measures.Quantities
     public partial struct Acceleration : IQuantity<Acceleration>, IMeasure<Acceleration>
     {
         #region FIELDS
+
         private static readonly QuantityDimension dimension = new QuantityDimension(1, 0, -2, 0, 0, 0, 0);
 
         public static readonly Unit<Acceleration> MeterPerSecondSquared = new Unit<Acceleration>("m s\u207b²");
@@ -179,7 +180,7 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Gets the measured amount in the standard unit of measure for the acceleration specified quantity</typeparam>
+        /// Gets the measured amount in the standard unit of measure for the acceleration quantity</typeparam>
         /// </summary
         public AmountType StandardAmount
         {
@@ -366,7 +367,7 @@ namespace Cureos.Measures.Quantities
         /// <filterpriority>2</filterpriority>
         public override string ToString()
         {
-            return String.Format("{0} {1} (Acceleration)", this.amount, this.unit.Symbol).Trim();
+            return String.Format("{0} {1} (acceleration)", this.amount, this.unit.Symbol).Trim();
         }
 
         /// <summary>
@@ -376,7 +377,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>A <see cref="T:System.String"/> containing a the actual value in formatted form with the quantity symbol appended</returns>
         public string ToString(string format)
         {
-            return String.Format("{0} {1} (Acceleration)", this.amount.ToString(format), this.unit.Symbol).Trim();
+            return String.Format("{0} {1} (acceleration)", this.amount.ToString(format), this.unit.Symbol).Trim();
         }
         
         /// <summary>
@@ -386,7 +387,7 @@ namespace Cureos.Measures.Quantities
         /// <returns></returns>
         public string ToString(IFormatProvider provider)
         {
-            return String.Format("{0} {1} (Acceleration)", this.amount.ToString(provider), this.unit.Symbol).Trim();
+            return String.Format("{0} {1} (acceleration)", this.amount.ToString(provider), this.unit.Symbol).Trim();
         }
         
         /// <summary>
@@ -397,13 +398,43 @@ namespace Cureos.Measures.Quantities
         /// <returns></returns>
         public string ToString(string format, IFormatProvider provider)
         {
-            return String.Format("{0} {1} (Acceleration)", this.amount.ToString(format, provider), this.unit.Symbol).Trim();
+            return String.Format("{0} {1} (acceleration)", this.amount.ToString(format, provider), this.unit.Symbol).Trim();
         }
         
         #endregion
 
         #region OPERATORS
 
+        /// <summary>
+        /// Casts a float value to a Acceleration object
+        /// </summary>
+        /// <param name="standardAmount">Standard amount</param>
+        /// <returns>Acceleration representation of <paramref name="standardAmount"/> in Unit.MeterPerSecondSquared</returns>
+        public static explicit operator Acceleration(float standardAmount)
+        {
+            return new Acceleration(standardAmount);
+        }
+
+        /// <summary>
+        /// Casts a double value to a Acceleration object
+        /// </summary>
+        /// <param name="standardAmount">Standard amount</param>
+        /// <returns>Acceleration representation of <paramref name="standardAmount"/> in Unit.MeterPerSecondSquared</returns>
+        public static explicit operator Acceleration(double standardAmount)
+        {
+            return new Acceleration(standardAmount);
+        }
+
+        /// <summary>
+        /// Casts a decimal value to a Acceleration object
+        /// </summary>
+        /// <param name="standardAmount">Standard amount</param>
+        /// <returns>Acceleration representation of <paramref name="standardAmount"/> in Unit.MeterPerSecondSquared</returns>
+        public static explicit operator Acceleration(decimal standardAmount)
+        {
+            return new Acceleration(standardAmount);
+        }
+        
         /// <summary>
         /// Adds two measure objects provided the measured quantities are equal
         /// </summary>
