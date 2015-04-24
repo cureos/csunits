@@ -17,6 +17,7 @@ AngularVelocity,,Radian,0,0,-1,0,0,0,0,RadianPerSecond,rad s\u207b¹,-9,3
 Area,,,2,0,0,0,0,0,0,SquareMeter,m²,0,0,SquareKiloMeter,km²,Kilo*Kilo,SquareDeciMeter,dm²,Deci*Deci,SquareCentiMeter,cm²,Centi*Centi,SquareMilliMeter,mm²,Milli*Milli,Barn,b,SquareMetersPerBarn,Are,a,Deka,Hectare,ha,Hecto
 Capacitance,,,-2,-1,4,2,0,0,0,Farad,F,-12,3
 CatalyticActivity,,,0,0,-1,0,0,0,1,Katal,kat,-9,3
+Number,,Number,0,0,0,0,0,0,0,One,,0,0,Percent,%,Centi,Permille,\u2030,Milli,PartsPerMillion,ppm,Micro
 Temperature,,,0,0,0,0,1,0,0,Kelvin,K,0,0
 Volume,,,3,0,0,0,0,0,0,CubicMeter,m³,0,0,CubicDeciMeter,dm³,Deci*Deci*Deci,CubicCentiMeter,cm³,Centi*Centi*Centi,CubicMilliMeter,mm³,Milli*Milli*Milli,Liter,l,Deci*Deci*Deci,USLiquidGallon,gal,CubicMetersPerUSLiquidGallon
 

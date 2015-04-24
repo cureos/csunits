@@ -134,7 +134,9 @@
     <Compile Include="Quantities\Mass.cs" />
     <Compile Include="Quantities\MassDensity.cs" />
     <Compile Include="Quantities\MomentOfForce.cs" />
-    <Compile Include="Quantities\Number.cs" />
+    <Compile Include="Quantities\Number.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Quantities\PlaneAngle.cs" />
     <Compile Include="Quantities\Power.cs" />
     <Compile Include="Quantities\Pressure.cs" />

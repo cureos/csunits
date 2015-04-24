@@ -94,6 +94,10 @@ namespace Cureos.Measures.Quantities
 #>
         private static readonly QuantityDimension dimension = new QuantityDimension(<#= length #>, <#= mass #>, <#= time #>, <#= current #>, <#= temperature #>, <#= luminous #>, <#= substance #>);
 <#
+            } else if (length == 0 && mass == 0 && time == 0 && current == 0 && temperature == 0 && luminous == 0 && substance == 0) {
+#>
+        private static readonly QuantityDimension dimension = QuantityDimension.<#= differentiator #>;
+<#
             } else {
 #>
         private static readonly QuantityDimension dimension = QuantityDimension.<#= differentiator #> * new QuantityDimension(<#= length #>, <#= mass #>, <#= time #>, <#= current #>, <#= temperature #>, <#= luminous #>, <#= substance #>);
