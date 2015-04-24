@@ -8,3 +8,6 @@
 // 14.-16., 17.-19. etc. Additional unit triplets (Unit field name, unit symbol, Factors class conversion factor vs. standard unit)
 AbsorbedDose,Absorbed dose,2,0,2,0,0,0,0,Gray,Gy,-6,3,Rad,rad,Centi
 Acceleration,,1,0,-2,0,0,0,0,MeterPerSecondSquared,m s\u207b²,-3,3
+Activity,,0,0,-1,0,0,0,0,Becquerel,Bq,3,9,Curie,Ci,BecquerelPerCurie,KiloCurie,kCi,Kilo*BecquerelPerCurie,MilliCurie,mCi,Milli*BecquerelPerCurie,MicroCurie,µCi,Micro*BecquerelPerCurie
+AmountConcentration,Amount concentration,-3,0,0,0,0,0,1,MolePerCubicMeter,mol m\u207b³,-9,3
+AmountOfSubstance,Amount of substance,0,0,0,0,0,0,1,Mole,mol,-9,3

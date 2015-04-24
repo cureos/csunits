@@ -78,9 +78,15 @@
     <Compile Include="Quantities\Acceleration.g.cs">
       <DependentUpon>CodeGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="Quantities\Activity.cs" />
-    <Compile Include="Quantities\AmountConcentration.cs" />
-    <Compile Include="Quantities\AmountOfSubstance.cs" />
+    <Compile Include="Quantities\Activity.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\AmountConcentration.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\AmountOfSubstance.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Quantities\AngularAcceleration.cs" />
     <Compile Include="Quantities\AngularVelocity.cs" />
     <Compile Include="Quantities\Area.cs" />

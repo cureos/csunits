@@ -38,6 +38,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the acceleration quantity
     /// </summary>
+    [DataContract]
     public partial struct Acceleration : IQuantity<Acceleration>, IMeasure<Acceleration>
     {
         #region FIELDS
@@ -54,12 +55,22 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Acceleration> KiloMeterPerSecondSquared = new Unit<Acceleration>(UnitPrefix.Kilo);
 
 
-        private readonly AmountType amount;
-        private readonly IUnit<Acceleration> unit;
+        private AmountType amount;
+
+        private IUnit<Acceleration> unit;
 
         #endregion
 
         #region CONSTRUCTORS
+
+        /// <summary>
+        /// Initializes a Acceleration object from an object implementing the IMeasure&lt;Acceleration&gt; interface
+        /// </summary>
+        /// <param name="other">Object implemeting the IMeasure&lt;Acceleration&gt; interface</param>
+        public Acceleration(IMeasure<Acceleration> other)
+            : this(other.Amount, other.Unit)
+        {
+        }
 
         /// <summary>
         /// Initializes a measure to the specified amount and standard unit of the measured quantity
@@ -97,11 +108,8 @@ namespace Cureos.Measures.Quantities
         public Acceleration(double amount, IUnit<Acceleration> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-#if DOUBLE
-            this.amount = amount;
-#else
+
             this.amount = (AmountType)amount;
-#endif
             this.unit = unit;
         }
 
@@ -114,11 +122,8 @@ namespace Cureos.Measures.Quantities
         public Acceleration(float amount, IUnit<Acceleration> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-#if !DECIMAL
-            this.amount = amount;
-#else
+
             this.amount = (AmountType)amount;
-#endif
             this.unit = unit;
         }
 
@@ -131,11 +136,8 @@ namespace Cureos.Measures.Quantities
         public Acceleration(decimal amount, IUnit<Acceleration> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-#if DECIMAL
-            this.amount = amount;
-#else
+
             this.amount = (AmountType)amount;
-#endif
             this.unit = unit;
         }
 
@@ -181,10 +183,11 @@ namespace Cureos.Measures.Quantities
 
         /// <summary>
         /// Gets the measured amount in the standard unit of measure for the acceleration specified quantity</typeparam>
-        /// </summary>
+        /// </summary
+        [DataMember]
         public AmountType StandardAmount
         {
-            get { return this.unit.AmountToStandardUnitConverter(this.amount); }
+            get { return this.standardAmount; }
         }
 
         /// <summary>
@@ -400,7 +403,7 @@ namespace Cureos.Measures.Quantities
         {
             return String.Format("{0} {1} (Acceleration)", this.amount.ToString(format, provider), this.unit.Symbol).Trim();
         }
-
+        
         #endregion
 
         #region OPERATORS

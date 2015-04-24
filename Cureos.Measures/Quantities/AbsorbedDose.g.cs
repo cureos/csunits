@@ -38,6 +38,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the absorbed dose quantity
     /// </summary>
+    [DataContract]
     public partial struct AbsorbedDose : IQuantity<AbsorbedDose>, IMeasure<AbsorbedDose>
     {
         #region FIELDS
@@ -56,12 +57,22 @@ namespace Cureos.Measures.Quantities
 
         public static readonly Unit<AbsorbedDose> Rad = new Unit<AbsorbedDose>("rad", Factors.Centi);
 
-        private readonly AmountType amount;
-        private readonly IUnit<AbsorbedDose> unit;
+        private AmountType amount;
+
+        private IUnit<AbsorbedDose> unit;
 
         #endregion
 
         #region CONSTRUCTORS
+
+        /// <summary>
+        /// Initializes a AbsorbedDose object from an object implementing the IMeasure&lt;AbsorbedDose&gt; interface
+        /// </summary>
+        /// <param name="other">Object implemeting the IMeasure&lt;AbsorbedDose&gt; interface</param>
+        public AbsorbedDose(IMeasure<AbsorbedDose> other)
+            : this(other.Amount, other.Unit)
+        {
+        }
 
         /// <summary>
         /// Initializes a measure to the specified amount and standard unit of the measured quantity
@@ -99,11 +110,8 @@ namespace Cureos.Measures.Quantities
         public AbsorbedDose(double amount, IUnit<AbsorbedDose> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-#if DOUBLE
-            this.amount = amount;
-#else
+
             this.amount = (AmountType)amount;
-#endif
             this.unit = unit;
         }
 
@@ -116,11 +124,8 @@ namespace Cureos.Measures.Quantities
         public AbsorbedDose(float amount, IUnit<AbsorbedDose> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-#if !DECIMAL
-            this.amount = amount;
-#else
+
             this.amount = (AmountType)amount;
-#endif
             this.unit = unit;
         }
 
@@ -133,11 +138,8 @@ namespace Cureos.Measures.Quantities
         public AbsorbedDose(decimal amount, IUnit<AbsorbedDose> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-#if DECIMAL
-            this.amount = amount;
-#else
+
             this.amount = (AmountType)amount;
-#endif
             this.unit = unit;
         }
 
@@ -183,10 +185,11 @@ namespace Cureos.Measures.Quantities
 
         /// <summary>
         /// Gets the measured amount in the standard unit of measure for the absorbed dose specified quantity</typeparam>
-        /// </summary>
+        /// </summary
+        [DataMember]
         public AmountType StandardAmount
         {
-            get { return this.unit.AmountToStandardUnitConverter(this.amount); }
+            get { return this.standardAmount; }
         }
 
         /// <summary>
@@ -402,7 +405,7 @@ namespace Cureos.Measures.Quantities
         {
             return String.Format("{0} {1} (Absorbed dose)", this.amount.ToString(format, provider), this.unit.Symbol).Trim();
         }
-
+        
         #endregion
 
         #region OPERATORS
