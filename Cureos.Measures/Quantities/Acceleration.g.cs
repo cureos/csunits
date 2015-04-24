@@ -409,7 +409,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a float value to a Acceleration object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Acceleration representation of <paramref name="standardAmount"/> in Unit.MeterPerSecondSquared</returns>
+        /// <returns>Acceleration representation of <paramref name="standardAmount"/> in unit MeterPerSecondSquared</returns>
         public static explicit operator Acceleration(float standardAmount)
         {
             return new Acceleration(standardAmount);
@@ -419,7 +419,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a double value to a Acceleration object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Acceleration representation of <paramref name="standardAmount"/> in Unit.MeterPerSecondSquared</returns>
+        /// <returns>Acceleration representation of <paramref name="standardAmount"/> in unit MeterPerSecondSquared</returns>
         public static explicit operator Acceleration(double standardAmount)
         {
             return new Acceleration(standardAmount);
@@ -429,7 +429,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a decimal value to a Acceleration object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Acceleration representation of <paramref name="standardAmount"/> in Unit.MeterPerSecondSquared</returns>
+        /// <returns>Acceleration representation of <paramref name="standardAmount"/> in unit MeterPerSecondSquared</returns>
         public static explicit operator Acceleration(decimal standardAmount)
         {
             return new Acceleration(standardAmount);

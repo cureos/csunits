@@ -411,7 +411,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a float value to a AngularAcceleration object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>AngularAcceleration representation of <paramref name="standardAmount"/> in Unit.RadianPerSecondSquared</returns>
+        /// <returns>AngularAcceleration representation of <paramref name="standardAmount"/> in unit RadianPerSecondSquared</returns>
         public static explicit operator AngularAcceleration(float standardAmount)
         {
             return new AngularAcceleration(standardAmount);
@@ -421,7 +421,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a double value to a AngularAcceleration object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>AngularAcceleration representation of <paramref name="standardAmount"/> in Unit.RadianPerSecondSquared</returns>
+        /// <returns>AngularAcceleration representation of <paramref name="standardAmount"/> in unit RadianPerSecondSquared</returns>
         public static explicit operator AngularAcceleration(double standardAmount)
         {
             return new AngularAcceleration(standardAmount);
@@ -431,7 +431,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a decimal value to a AngularAcceleration object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>AngularAcceleration representation of <paramref name="standardAmount"/> in Unit.RadianPerSecondSquared</returns>
+        /// <returns>AngularAcceleration representation of <paramref name="standardAmount"/> in unit RadianPerSecondSquared</returns>
         public static explicit operator AngularAcceleration(decimal standardAmount)
         {
             return new AngularAcceleration(standardAmount);

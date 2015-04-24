@@ -410,7 +410,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a float value to a Activity object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Activity representation of <paramref name="standardAmount"/> in Unit.Becquerel</returns>
+        /// <returns>Activity representation of <paramref name="standardAmount"/> in unit Becquerel</returns>
         public static explicit operator Activity(float standardAmount)
         {
             return new Activity(standardAmount);
@@ -420,7 +420,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a double value to a Activity object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Activity representation of <paramref name="standardAmount"/> in Unit.Becquerel</returns>
+        /// <returns>Activity representation of <paramref name="standardAmount"/> in unit Becquerel</returns>
         public static explicit operator Activity(double standardAmount)
         {
             return new Activity(standardAmount);
@@ -430,7 +430,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a decimal value to a Activity object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Activity representation of <paramref name="standardAmount"/> in Unit.Becquerel</returns>
+        /// <returns>Activity representation of <paramref name="standardAmount"/> in unit Becquerel</returns>
         public static explicit operator Activity(decimal standardAmount)
         {
             return new Activity(standardAmount);

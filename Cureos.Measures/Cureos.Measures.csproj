@@ -151,7 +151,9 @@
     </Compile>
     <Compile Include="Quantities\Time.cs" />
     <Compile Include="Quantities\Velocity.cs" />
-    <Compile Include="Quantities\Volume.cs" />
+    <Compile Include="Quantities\Volume.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Quantities\WaveNumber.cs" />
     <Compile Include="QuantityAdapter.cs" />
     <Compile Include="QuantityCollection.cs" />

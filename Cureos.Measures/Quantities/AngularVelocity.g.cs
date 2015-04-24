@@ -411,7 +411,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a float value to a AngularVelocity object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>AngularVelocity representation of <paramref name="standardAmount"/> in Unit.RadianPerSecond</returns>
+        /// <returns>AngularVelocity representation of <paramref name="standardAmount"/> in unit RadianPerSecond</returns>
         public static explicit operator AngularVelocity(float standardAmount)
         {
             return new AngularVelocity(standardAmount);
@@ -421,7 +421,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a double value to a AngularVelocity object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>AngularVelocity representation of <paramref name="standardAmount"/> in Unit.RadianPerSecond</returns>
+        /// <returns>AngularVelocity representation of <paramref name="standardAmount"/> in unit RadianPerSecond</returns>
         public static explicit operator AngularVelocity(double standardAmount)
         {
             return new AngularVelocity(standardAmount);
@@ -431,7 +431,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a decimal value to a AngularVelocity object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>AngularVelocity representation of <paramref name="standardAmount"/> in Unit.RadianPerSecond</returns>
+        /// <returns>AngularVelocity representation of <paramref name="standardAmount"/> in unit RadianPerSecond</returns>
         public static explicit operator AngularVelocity(decimal standardAmount)
         {
             return new AngularVelocity(standardAmount);

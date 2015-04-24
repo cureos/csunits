@@ -407,7 +407,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a float value to a Temperature object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Temperature representation of <paramref name="standardAmount"/> in Unit.Kelvin</returns>
+        /// <returns>Temperature representation of <paramref name="standardAmount"/> in unit Kelvin</returns>
         public static explicit operator Temperature(float standardAmount)
         {
             return new Temperature(standardAmount);
@@ -417,7 +417,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a double value to a Temperature object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Temperature representation of <paramref name="standardAmount"/> in Unit.Kelvin</returns>
+        /// <returns>Temperature representation of <paramref name="standardAmount"/> in unit Kelvin</returns>
         public static explicit operator Temperature(double standardAmount)
         {
             return new Temperature(standardAmount);
@@ -427,7 +427,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a decimal value to a Temperature object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Temperature representation of <paramref name="standardAmount"/> in Unit.Kelvin</returns>
+        /// <returns>Temperature representation of <paramref name="standardAmount"/> in unit Kelvin</returns>
         public static explicit operator Temperature(decimal standardAmount)
         {
             return new Temperature(standardAmount);

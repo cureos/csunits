@@ -411,7 +411,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a float value to a AmountConcentration object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>AmountConcentration representation of <paramref name="standardAmount"/> in Unit.MolePerCubicMeter</returns>
+        /// <returns>AmountConcentration representation of <paramref name="standardAmount"/> in unit MolePerCubicMeter</returns>
         public static explicit operator AmountConcentration(float standardAmount)
         {
             return new AmountConcentration(standardAmount);
@@ -421,7 +421,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a double value to a AmountConcentration object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>AmountConcentration representation of <paramref name="standardAmount"/> in Unit.MolePerCubicMeter</returns>
+        /// <returns>AmountConcentration representation of <paramref name="standardAmount"/> in unit MolePerCubicMeter</returns>
         public static explicit operator AmountConcentration(double standardAmount)
         {
             return new AmountConcentration(standardAmount);
@@ -431,7 +431,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a decimal value to a AmountConcentration object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>AmountConcentration representation of <paramref name="standardAmount"/> in Unit.MolePerCubicMeter</returns>
+        /// <returns>AmountConcentration representation of <paramref name="standardAmount"/> in unit MolePerCubicMeter</returns>
         public static explicit operator AmountConcentration(decimal standardAmount)
         {
             return new AmountConcentration(standardAmount);

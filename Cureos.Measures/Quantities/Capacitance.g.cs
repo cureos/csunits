@@ -412,7 +412,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a float value to a Capacitance object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Capacitance representation of <paramref name="standardAmount"/> in Unit.Farad</returns>
+        /// <returns>Capacitance representation of <paramref name="standardAmount"/> in unit Farad</returns>
         public static explicit operator Capacitance(float standardAmount)
         {
             return new Capacitance(standardAmount);
@@ -422,7 +422,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a double value to a Capacitance object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Capacitance representation of <paramref name="standardAmount"/> in Unit.Farad</returns>
+        /// <returns>Capacitance representation of <paramref name="standardAmount"/> in unit Farad</returns>
         public static explicit operator Capacitance(double standardAmount)
         {
             return new Capacitance(standardAmount);
@@ -432,7 +432,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a decimal value to a Capacitance object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Capacitance representation of <paramref name="standardAmount"/> in Unit.Farad</returns>
+        /// <returns>Capacitance representation of <paramref name="standardAmount"/> in unit Farad</returns>
         public static explicit operator Capacitance(decimal standardAmount)
         {
             return new Capacitance(standardAmount);

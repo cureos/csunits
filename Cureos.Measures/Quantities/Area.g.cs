@@ -410,7 +410,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a float value to a Area object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Area representation of <paramref name="standardAmount"/> in Unit.SquareMeter</returns>
+        /// <returns>Area representation of <paramref name="standardAmount"/> in unit SquareMeter</returns>
         public static explicit operator Area(float standardAmount)
         {
             return new Area(standardAmount);
@@ -420,7 +420,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a double value to a Area object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Area representation of <paramref name="standardAmount"/> in Unit.SquareMeter</returns>
+        /// <returns>Area representation of <paramref name="standardAmount"/> in unit SquareMeter</returns>
         public static explicit operator Area(double standardAmount)
         {
             return new Area(standardAmount);
@@ -430,7 +430,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a decimal value to a Area object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Area representation of <paramref name="standardAmount"/> in Unit.SquareMeter</returns>
+        /// <returns>Area representation of <paramref name="standardAmount"/> in unit SquareMeter</returns>
         public static explicit operator Area(decimal standardAmount)
         {
             return new Area(standardAmount);

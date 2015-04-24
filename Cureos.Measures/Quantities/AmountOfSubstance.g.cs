@@ -411,7 +411,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a float value to a AmountOfSubstance object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>AmountOfSubstance representation of <paramref name="standardAmount"/> in Unit.Mole</returns>
+        /// <returns>AmountOfSubstance representation of <paramref name="standardAmount"/> in unit Mole</returns>
         public static explicit operator AmountOfSubstance(float standardAmount)
         {
             return new AmountOfSubstance(standardAmount);
@@ -421,7 +421,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a double value to a AmountOfSubstance object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>AmountOfSubstance representation of <paramref name="standardAmount"/> in Unit.Mole</returns>
+        /// <returns>AmountOfSubstance representation of <paramref name="standardAmount"/> in unit Mole</returns>
         public static explicit operator AmountOfSubstance(double standardAmount)
         {
             return new AmountOfSubstance(standardAmount);
@@ -431,7 +431,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a decimal value to a AmountOfSubstance object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>AmountOfSubstance representation of <paramref name="standardAmount"/> in Unit.Mole</returns>
+        /// <returns>AmountOfSubstance representation of <paramref name="standardAmount"/> in unit Mole</returns>
         public static explicit operator AmountOfSubstance(decimal standardAmount)
         {
             return new AmountOfSubstance(standardAmount);

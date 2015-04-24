@@ -411,7 +411,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a float value to a AbsorbedDose object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>AbsorbedDose representation of <paramref name="standardAmount"/> in Unit.Gray</returns>
+        /// <returns>AbsorbedDose representation of <paramref name="standardAmount"/> in unit Gray</returns>
         public static explicit operator AbsorbedDose(float standardAmount)
         {
             return new AbsorbedDose(standardAmount);
@@ -421,7 +421,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a double value to a AbsorbedDose object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>AbsorbedDose representation of <paramref name="standardAmount"/> in Unit.Gray</returns>
+        /// <returns>AbsorbedDose representation of <paramref name="standardAmount"/> in unit Gray</returns>
         public static explicit operator AbsorbedDose(double standardAmount)
         {
             return new AbsorbedDose(standardAmount);
@@ -431,7 +431,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a decimal value to a AbsorbedDose object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>AbsorbedDose representation of <paramref name="standardAmount"/> in Unit.Gray</returns>
+        /// <returns>AbsorbedDose representation of <paramref name="standardAmount"/> in unit Gray</returns>
         public static explicit operator AbsorbedDose(decimal standardAmount)
         {
             return new AbsorbedDose(standardAmount);
