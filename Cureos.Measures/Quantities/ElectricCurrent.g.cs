@@ -36,24 +36,25 @@ namespace Cureos.Measures.Quantities
 #endif
 
     /// <summary>
-    /// Implementation of the angular velocity quantity
+    /// Implementation of the electric current quantity
     /// </summary>
-    public partial struct AngularVelocity : IQuantity<AngularVelocity>, IMeasure<AngularVelocity>
+    public partial struct ElectricCurrent : IQuantity<ElectricCurrent>, IMeasure<ElectricCurrent>
     {
         #region FIELDS
 
-        private static readonly QuantityDimension dimension = QuantityDimension.Radian * new QuantityDimension(0, 0, -1, 0, 0, 0, 0);
+        private static readonly QuantityDimension dimension = new QuantityDimension(0, 0, 0, 1, 0, 0, 0);
 
-        public static readonly Unit<AngularVelocity> RadianPerSecond = new Unit<AngularVelocity>("rad s\u207b¹");
+        public static readonly Unit<ElectricCurrent> Ampere = new Unit<ElectricCurrent>("A");
 
-        public static readonly Unit<AngularVelocity> NanoRadianPerSecond = new Unit<AngularVelocity>(UnitPrefix.Nano);
-        public static readonly Unit<AngularVelocity> MicroRadianPerSecond = new Unit<AngularVelocity>(UnitPrefix.Micro);
-        public static readonly Unit<AngularVelocity> MilliRadianPerSecond = new Unit<AngularVelocity>(UnitPrefix.Milli);
-        public static readonly Unit<AngularVelocity> CentiRadianPerSecond = new Unit<AngularVelocity>(UnitPrefix.Centi);
-        public static readonly Unit<AngularVelocity> DeciRadianPerSecond = new Unit<AngularVelocity>(UnitPrefix.Deci);
-        public static readonly Unit<AngularVelocity> DekaRadianPerSecond = new Unit<AngularVelocity>(UnitPrefix.Deka);
-        public static readonly Unit<AngularVelocity> HectoRadianPerSecond = new Unit<AngularVelocity>(UnitPrefix.Hecto);
-        public static readonly Unit<AngularVelocity> KiloRadianPerSecond = new Unit<AngularVelocity>(UnitPrefix.Kilo);
+        public static readonly Unit<ElectricCurrent> PicoAmpere = new Unit<ElectricCurrent>(UnitPrefix.Pico);
+        public static readonly Unit<ElectricCurrent> NanoAmpere = new Unit<ElectricCurrent>(UnitPrefix.Nano);
+        public static readonly Unit<ElectricCurrent> MicroAmpere = new Unit<ElectricCurrent>(UnitPrefix.Micro);
+        public static readonly Unit<ElectricCurrent> MilliAmpere = new Unit<ElectricCurrent>(UnitPrefix.Milli);
+        public static readonly Unit<ElectricCurrent> CentiAmpere = new Unit<ElectricCurrent>(UnitPrefix.Centi);
+        public static readonly Unit<ElectricCurrent> DeciAmpere = new Unit<ElectricCurrent>(UnitPrefix.Deci);
+        public static readonly Unit<ElectricCurrent> DekaAmpere = new Unit<ElectricCurrent>(UnitPrefix.Deka);
+        public static readonly Unit<ElectricCurrent> HectoAmpere = new Unit<ElectricCurrent>(UnitPrefix.Hecto);
+        public static readonly Unit<ElectricCurrent> KiloAmpere = new Unit<ElectricCurrent>(UnitPrefix.Kilo);
 
 
         private readonly AmountType amount;
@@ -63,10 +64,10 @@ namespace Cureos.Measures.Quantities
         #region CONSTRUCTORS
 
         /// <summary>
-        /// Initializes a AngularVelocity object from an object implementing the IMeasure&lt;AngularVelocity&gt; interface
+        /// Initializes a ElectricCurrent object from an object implementing the IMeasure&lt;ElectricCurrent&gt; interface
         /// </summary>
-        /// <param name="other">Object implemeting the IMeasure&lt;AngularVelocity&gt; interface</param>
-        public AngularVelocity(IMeasure<AngularVelocity> other)
+        /// <param name="other">Object implemeting the IMeasure&lt;ElectricCurrent&gt; interface</param>
+        public ElectricCurrent(IMeasure<ElectricCurrent> other)
             : this(other.Amount, other.Unit)
         {
         }
@@ -75,7 +76,7 @@ namespace Cureos.Measures.Quantities
         /// Initializes a measure to the specified amount and standard unit of the measured quantity
         /// </summary>
         /// <param name="amount">Measured amount in standard unit of the specified quantity</param>
-        public AngularVelocity(double amount)
+        public ElectricCurrent(double amount)
         {
             this.amount = (AmountType)amount;
         }
@@ -84,7 +85,7 @@ namespace Cureos.Measures.Quantities
         /// Initializes a measure to the specified amount and standard unit of the measured quantity
         /// </summary>
         /// <param name="amount">Measured amount in standard unit of the specified quantity</param>
-        public AngularVelocity(float amount)
+        public ElectricCurrent(float amount)
         {
             this.amount = (AmountType)amount;
         }
@@ -93,7 +94,7 @@ namespace Cureos.Measures.Quantities
         /// Initializes a measure to the specified amount and standard unit of the measured quantity
         /// </summary>
         /// <param name="amount">Measured amount in standard unit of the specified quantity</param>
-        public AngularVelocity(decimal amount)
+        public ElectricCurrent(decimal amount)
         {
             this.amount = (AmountType)amount;
         }
@@ -104,7 +105,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Measured amount</param>
         /// <param name="unit">Unit of measure</param>
         /// <exception cref="ArgumentNullException">if the specified unit is null</exception>
-        public AngularVelocity(double amount, IUnit<AngularVelocity> unit)
+        public ElectricCurrent(double amount, IUnit<ElectricCurrent> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
             this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
@@ -116,7 +117,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Measured amount</param>
         /// <param name="unit">Unit of measure</param>
         /// <exception cref="ArgumentNullException">if the specified unit is null</exception>
-        public AngularVelocity(float amount, IUnit<AngularVelocity> unit)
+        public ElectricCurrent(float amount, IUnit<ElectricCurrent> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
             this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
@@ -128,7 +129,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Measured amount</param>
         /// <param name="unit">Unit of measure</param>
         /// <exception cref="ArgumentNullException">if the specified unit is null</exception>
-        public AngularVelocity(decimal amount, IUnit<AngularVelocity> unit)
+        public ElectricCurrent(decimal amount, IUnit<ElectricCurrent> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
             this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
@@ -136,7 +137,7 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
-        #region Implementation of IQuantity<AngularVelocity>
+        #region Implementation of IQuantity<ElectricCurrent>
 
         /// <summary>
         /// Gets the physical dimension of the quantity in terms of SI units
@@ -157,14 +158,14 @@ namespace Cureos.Measures.Quantities
         /// <summary>
         /// Gets the standard unit associated with the quantity
         /// </summary>
-        public IUnit<AngularVelocity> StandardUnit
+        public IUnit<ElectricCurrent> StandardUnit
         {
-            get { return RadianPerSecond; }
+            get { return Ampere; }
         }
 
         #endregion
 
-        #region Implementation of IMeasure<AngularVelocity>
+        #region Implementation of IMeasure<ElectricCurrent>
 
         /// <summary>
         /// Gets the measured amount in the <see cref="Unit">current unit of measure</see>
@@ -175,7 +176,7 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Gets the measured amount in the standard unit of measure for the angular velocity quantity</typeparam>
+        /// Gets the measured amount in the standard unit of measure for the electric current quantity</typeparam>
         /// </summary
         public AmountType StandardAmount
         {
@@ -198,7 +199,7 @@ namespace Cureos.Measures.Quantities
         AmountType IMeasure.GetAmount(IUnit unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            if (!unit.Quantity.Equals(default(AngularVelocity))) throw new ArgumentException("Unit is not the same quantity as measure");
+            if (!unit.Quantity.Equals(default(ElectricCurrent))) throw new ArgumentException("Unit is not the same quantity as measure");
             return unit.AmountFromStandardUnitConverter(this.amount);
         }
 
@@ -210,13 +211,13 @@ namespace Cureos.Measures.Quantities
         /// <typeparamref name="Q">valid quantity</typeparamref></exception>
         IMeasure IMeasure.this[IUnit unit]
         {
-            get { return this[unit as IUnit<AngularVelocity>]; }
+            get { return this[unit as IUnit<ElectricCurrent>]; }
         }
 
         /// <summary>
         /// Gets the quantity-typed unit of measure
         /// </summary>
-        public IUnit<AngularVelocity> Unit
+        public IUnit<ElectricCurrent> Unit
         {
             get { return this.StandardUnit; }
         }
@@ -226,7 +227,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
         /// <returns>Measured amount converted into <paramref name="unit">specified unit</paramref></returns>
-        public AmountType GetAmount(IUnit<AngularVelocity> unit)
+        public AmountType GetAmount(IUnit<ElectricCurrent> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
             return unit.AmountFromStandardUnitConverter(this.amount);
@@ -236,7 +237,7 @@ namespace Cureos.Measures.Quantities
         /// Gets a new unit specific measure based on this measure but in the <paramref name="unit">specified unit</paramref>
         /// </summary>
         /// <param name="unit">Unit in which the new measure should be specified</param>
-        IMeasure<AngularVelocity> IMeasure<AngularVelocity>.this[IUnit<AngularVelocity> unit]
+        IMeasure<ElectricCurrent> IMeasure<ElectricCurrent>.this[IUnit<ElectricCurrent> unit]
         {
             get { return this[unit]; }
         }
@@ -248,7 +249,7 @@ namespace Cureos.Measures.Quantities
         /// true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
         /// </returns>
         /// <param name="other">An object to compare with this object.</param>
-        public bool Equals(IMeasure<AngularVelocity> other)
+        public bool Equals(IMeasure<ElectricCurrent> other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
@@ -265,7 +266,7 @@ namespace Cureos.Measures.Quantities
         bool IEquatable<IMeasure>.Equals(IMeasure other)
         {
             if (other == null) throw new ArgumentNullException("other");
-            if (!other.Unit.Quantity.Equals(default(AngularVelocity))) throw new ArgumentException("Measures are of different quantities");
+            if (!other.Unit.Quantity.Equals(default(ElectricCurrent))) throw new ArgumentException("Measures are of different quantities");
             return this.amount.Equals(other.GetAmount(this.Unit));
         }
 
@@ -284,7 +285,7 @@ namespace Cureos.Measures.Quantities
         ///                     This object is greater than <paramref name="other"/>. 
         /// </returns>
         /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(IMeasure<AngularVelocity> other)
+        public int CompareTo(IMeasure<ElectricCurrent> other)
         {
             if (other == null) throw new ArgumentNullException("other");
             return this.amount.CompareTo(other.GetAmount(this.Unit));
@@ -300,7 +301,7 @@ namespace Cureos.Measures.Quantities
         int IComparable<IMeasure>.CompareTo(IMeasure other)
         {
             if (other == null) throw new ArgumentNullException("other");
-            if (!other.Unit.Quantity.Equals(default(AngularVelocity))) throw new ArgumentException("Measures are of different quantities");
+            if (!other.Unit.Quantity.Equals(default(ElectricCurrent))) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.GetAmount(this.Unit));
         }
 
@@ -312,12 +313,12 @@ namespace Cureos.Measures.Quantities
         /// Gets a new unit preserving measure based on this measure but in the <paramref name="unit">specified unit</paramref>
         /// </summary>
         /// <param name="unit">Unit in which the new measure should be specified</param>
-        public UnitPreservingMeasure<AngularVelocity> this[IUnit<AngularVelocity> unit]
+        public UnitPreservingMeasure<ElectricCurrent> this[IUnit<ElectricCurrent> unit]
         {
             get
             {
                 if (unit == null) throw new ArgumentNullException("unit");
-                return new UnitPreservingMeasure<AngularVelocity>(this.GetAmount(unit), unit);
+                return new UnitPreservingMeasure<ElectricCurrent>(this.GetAmount(unit), unit);
             }
         }
 
@@ -337,8 +338,8 @@ namespace Cureos.Measures.Quantities
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
-            if (obj.GetType() != typeof(IMeasure<AngularVelocity>)) return false;
-            return this.Equals((IMeasure<AngularVelocity>)obj);
+            if (obj.GetType() != typeof(IMeasure<ElectricCurrent>)) return false;
+            return this.Equals((IMeasure<ElectricCurrent>)obj);
         }
 
         /// <summary>
@@ -362,7 +363,7 @@ namespace Cureos.Measures.Quantities
         /// <filterpriority>2</filterpriority>
         public override string ToString()
         {
-            return String.Format("{0} {1} (angular velocity)", this.amount, this.Unit.Symbol).Trim();
+            return String.Format("{0} {1} (electric current)", this.amount, this.Unit.Symbol).Trim();
         }
 
         /// <summary>
@@ -372,7 +373,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>A <see cref="T:System.String"/> containing a the actual value in formatted form with the quantity symbol appended</returns>
         public string ToString(string format)
         {
-            return String.Format("{0} {1} (angular velocity)", this.amount.ToString(format), this.Unit.Symbol).Trim();
+            return String.Format("{0} {1} (electric current)", this.amount.ToString(format), this.Unit.Symbol).Trim();
         }
         
         /// <summary>
@@ -382,7 +383,7 @@ namespace Cureos.Measures.Quantities
         /// <returns></returns>
         public string ToString(IFormatProvider provider)
         {
-            return String.Format("{0} {1} (angular velocity)", this.amount.ToString(provider), this.Unit.Symbol).Trim();
+            return String.Format("{0} {1} (electric current)", this.amount.ToString(provider), this.Unit.Symbol).Trim();
         }
         
         /// <summary>
@@ -393,7 +394,7 @@ namespace Cureos.Measures.Quantities
         /// <returns></returns>
         public string ToString(string format, IFormatProvider provider)
         {
-            return String.Format("{0} {1} (angular velocity)", this.amount.ToString(format, provider), this.Unit.Symbol).Trim();
+            return String.Format("{0} {1} (electric current)", this.amount.ToString(format, provider), this.Unit.Symbol).Trim();
         }
         
         #endregion
@@ -401,33 +402,33 @@ namespace Cureos.Measures.Quantities
         #region OPERATORS
 
         /// <summary>
-        /// Casts a float value to a AngularVelocity object
+        /// Casts a float value to a ElectricCurrent object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>AngularVelocity representation of <paramref name="standardAmount"/> in unit RadianPerSecond</returns>
-        public static explicit operator AngularVelocity(float standardAmount)
+        /// <returns>ElectricCurrent representation of <paramref name="standardAmount"/> in unit Ampere</returns>
+        public static explicit operator ElectricCurrent(float standardAmount)
         {
-            return new AngularVelocity(standardAmount);
+            return new ElectricCurrent(standardAmount);
         }
 
         /// <summary>
-        /// Casts a double value to a AngularVelocity object
+        /// Casts a double value to a ElectricCurrent object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>AngularVelocity representation of <paramref name="standardAmount"/> in unit RadianPerSecond</returns>
-        public static explicit operator AngularVelocity(double standardAmount)
+        /// <returns>ElectricCurrent representation of <paramref name="standardAmount"/> in unit Ampere</returns>
+        public static explicit operator ElectricCurrent(double standardAmount)
         {
-            return new AngularVelocity(standardAmount);
+            return new ElectricCurrent(standardAmount);
         }
 
         /// <summary>
-        /// Casts a decimal value to a AngularVelocity object
+        /// Casts a decimal value to a ElectricCurrent object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>AngularVelocity representation of <paramref name="standardAmount"/> in unit RadianPerSecond</returns>
-        public static explicit operator AngularVelocity(decimal standardAmount)
+        /// <returns>ElectricCurrent representation of <paramref name="standardAmount"/> in unit Ampere</returns>
+        public static explicit operator ElectricCurrent(decimal standardAmount)
         {
-            return new AngularVelocity(standardAmount);
+            return new ElectricCurrent(standardAmount);
         }
         
         /// <summary>
@@ -436,9 +437,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First measure term</param>
         /// <param name="rhs">Second measure term</param>
         /// <returns>Sum of the two measure objects in the unit of the <paramref name="lhs">left-hand side measure</paramref></returns>
-        public static AngularVelocity operator +(AngularVelocity lhs,  AngularVelocity rhs)
+        public static ElectricCurrent operator +(ElectricCurrent lhs,  ElectricCurrent rhs)
         {
-            return new AngularVelocity(lhs.amount + rhs.amount);
+            return new ElectricCurrent(lhs.amount + rhs.amount);
         }
 
         /// <summary>
@@ -447,9 +448,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First measure term</param>
         /// <param name="rhs">Second measure term (any object implementing the IMeasure interface)</param>
         /// <returns>Sum of the two measure objects in the unit of the <paramref name="lhs">left-hand side measure</paramref></returns>
-        public static AngularVelocity operator +(AngularVelocity lhs, IMeasure<AngularVelocity> rhs)
+        public static ElectricCurrent operator +(ElectricCurrent lhs, IMeasure<ElectricCurrent> rhs)
         {
-            return new AngularVelocity(lhs.amount + rhs.StandardAmount);
+            return new ElectricCurrent(lhs.amount + rhs.StandardAmount);
         }
 
         /// <summary>
@@ -458,9 +459,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First measure object</param>
         /// <param name="rhs">Second measure object</param>
         /// <returns>Difference of the measure objects</returns>
-        public static AngularVelocity operator -(AngularVelocity lhs, AngularVelocity rhs)
+        public static ElectricCurrent operator -(ElectricCurrent lhs, ElectricCurrent rhs)
         {
-            return new AngularVelocity(lhs.amount - rhs.amount);
+            return new ElectricCurrent(lhs.amount - rhs.amount);
         }
 
         /// <summary>
@@ -469,9 +470,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First measure object</param>
         /// <param name="rhs">Second measure object (any object implementing the IMeasure interface)</param>
         /// <returns>Difference of the measure objects</returns>
-        public static AngularVelocity operator -(AngularVelocity lhs, IMeasure<AngularVelocity> rhs)
+        public static ElectricCurrent operator -(ElectricCurrent lhs, IMeasure<ElectricCurrent> rhs)
         {
-            return new AngularVelocity(lhs.amount - rhs.StandardAmount);
+            return new ElectricCurrent(lhs.amount - rhs.StandardAmount);
         }
 
         /// <summary>
@@ -480,9 +481,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="scalar">Floating-point scalar</param>
         /// <param name="measure">Measure object</param>
         /// <returns>Product of the scalar and the measure object</returns>
-        public static AngularVelocity operator *(AmountType scalar, AngularVelocity measure)
+        public static ElectricCurrent operator *(AmountType scalar, ElectricCurrent measure)
         {
-            return new AngularVelocity(scalar * measure.amount);
+            return new ElectricCurrent(scalar * measure.amount);
         }
 
         /// <summary>
@@ -491,9 +492,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="measure">Measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Product of the measure object and the scalar</returns>
-        public static AngularVelocity operator *(AngularVelocity measure, AmountType scalar)
+        public static ElectricCurrent operator *(ElectricCurrent measure, AmountType scalar)
         {
-            return new AngularVelocity(measure.amount * scalar);
+            return new ElectricCurrent(measure.amount * scalar);
         }
 
         /// <summary>
@@ -502,9 +503,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="iMeasure">measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Quotient of the measure object and the scalar</returns>
-        public static AngularVelocity operator /(AngularVelocity measure, AmountType scalar)
+        public static ElectricCurrent operator /(ElectricCurrent measure, AmountType scalar)
         {
-            return new AngularVelocity(measure.amount / scalar);
+            return new ElectricCurrent(measure.amount / scalar);
         }
 
         /// <summary>
@@ -513,7 +514,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object</param>
         /// <returns>true if first measure object is less than second measure object; false otherwise</returns>
-        public static bool operator <(AngularVelocity lhs, AngularVelocity rhs)
+        public static bool operator <(ElectricCurrent lhs, ElectricCurrent rhs)
         {
             return lhs.amount < rhs.amount;
         }
@@ -524,7 +525,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if first measure object is less than second measure object; false otherwise</returns>
-        public static bool operator <(AngularVelocity lhs, IMeasure<AngularVelocity> rhs)
+        public static bool operator <(ElectricCurrent lhs, IMeasure<ElectricCurrent> rhs)
         {
             return lhs.amount < rhs.StandardAmount;
         }
@@ -535,7 +536,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object</param>
         /// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
-        public static bool operator >(AngularVelocity lhs, AngularVelocity rhs)
+        public static bool operator >(ElectricCurrent lhs, ElectricCurrent rhs)
         {
             return lhs.amount > rhs.amount;
         }
@@ -546,7 +547,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
-        public static bool operator >(AngularVelocity lhs, IMeasure<AngularVelocity> rhs)
+        public static bool operator >(ElectricCurrent lhs, IMeasure<ElectricCurrent> rhs)
         {
             return lhs.amount > rhs.StandardAmount;
         }
@@ -557,7 +558,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object</param>
         /// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
-        public static bool operator <=(AngularVelocity lhs, AngularVelocity rhs)
+        public static bool operator <=(ElectricCurrent lhs, ElectricCurrent rhs)
         {
             return lhs.amount <= rhs.amount;
         }
@@ -568,7 +569,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
-        public static bool operator <=(AngularVelocity lhs, IMeasure<AngularVelocity> rhs)
+        public static bool operator <=(ElectricCurrent lhs, IMeasure<ElectricCurrent> rhs)
         {
             return lhs.amount <= rhs.StandardAmount;
         }
@@ -579,7 +580,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object</param>
         /// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
-        public static bool operator >=(AngularVelocity lhs, AngularVelocity rhs)
+        public static bool operator >=(ElectricCurrent lhs, ElectricCurrent rhs)
         {
             return lhs.amount >= rhs.amount;
         }
@@ -590,7 +591,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
-        public static bool operator >=(AngularVelocity lhs, IMeasure<AngularVelocity> rhs)
+        public static bool operator >=(ElectricCurrent lhs, IMeasure<ElectricCurrent> rhs)
         {
             return lhs.amount >= rhs.StandardAmount;
         }
@@ -601,7 +602,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object</param>
         /// <returns>true if the two measure objects are equal; false otherwise</returns>
-        public static bool operator ==(AngularVelocity lhs, AngularVelocity rhs)
+        public static bool operator ==(ElectricCurrent lhs, ElectricCurrent rhs)
         {
             return lhs.amount == rhs.amount;
         }
@@ -612,7 +613,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if the two measure objects are equal; false otherwise</returns>
-        public static bool operator ==(AngularVelocity lhs, IMeasure<AngularVelocity> rhs)
+        public static bool operator ==(ElectricCurrent lhs, IMeasure<ElectricCurrent> rhs)
         {
             return lhs.amount == rhs.StandardAmount;
         }
@@ -623,7 +624,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object</param>
         /// <returns>true if the two measure objects are not equal; false if they are equal</returns>
-        public static bool operator !=(AngularVelocity lhs, AngularVelocity rhs)
+        public static bool operator !=(ElectricCurrent lhs, ElectricCurrent rhs)
         {
             return lhs.amount != rhs.amount;
         }
@@ -634,7 +635,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if the two measure objects are not equal; false if they are equal</returns>
-        public static bool operator !=(AngularVelocity lhs, IMeasure<AngularVelocity> rhs)
+        public static bool operator !=(ElectricCurrent lhs, IMeasure<ElectricCurrent> rhs)
         {
             return lhs.amount != rhs.StandardAmount;
         }

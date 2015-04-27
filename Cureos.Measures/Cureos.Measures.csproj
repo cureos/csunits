@@ -69,6 +69,35 @@
     <Compile Include="Linq\Conversions.cs" />
     <Compile Include="Linq\MeasureEnumerable.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Quantities\CodeGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\CurrentDensity.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\DoseEquivalent.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\DynamicViscosity.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\ElectricCharge.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\ElectricConductance.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\ElectricCurrent.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\ElectricPotential.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\ElectricResistance.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="UnitPreservingMeasure.cs" />
     <Compile Include="PrimeNumbers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -102,19 +131,6 @@
     <Compile Include="Quantities\CatalyticActivity.g.cs">
       <DependentUpon>CodeGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="Quantities\CodeGenerator.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CodeGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Quantities\CurrentDensity.cs" />
-    <Compile Include="Quantities\DoseEquivalent.cs" />
-    <Compile Include="Quantities\DynamicViscosity.cs" />
-    <Compile Include="Quantities\ElectricCharge.cs" />
-    <Compile Include="Quantities\ElectricConductance.cs" />
-    <Compile Include="Quantities\ElectricCurrent.cs" />
-    <Compile Include="Quantities\ElectricPotential.cs" />
-    <Compile Include="Quantities\ElectricResistance.cs" />
     <Compile Include="Quantities\Energy.cs" />
     <Compile Include="Quantities\Force.cs" />
     <Compile Include="Quantities\Frequency.cs" />

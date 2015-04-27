@@ -42,7 +42,7 @@ namespace Cureos.Measures.Quantities
     {
         #region FIELDS
 
-        private static readonly QuantityDimension dimension = new QuantityDimension(2, 0, 2, 0, 0, 0, 0);
+        private static readonly QuantityDimension dimension = new QuantityDimension(2, 0, -2, 0, 0, 0, 0);
 
         public static readonly Unit<AbsorbedDose> Gray = new Unit<AbsorbedDose>("Gy");
 

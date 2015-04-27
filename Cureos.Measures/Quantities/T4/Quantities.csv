@@ -7,7 +7,7 @@
 // 12. Lower standard unit prefix exponent
 // 13. Upper standard unit prefix exponent
 // 14.-16., 17.-19. etc. Additional unit triplets (Unit field name, unit symbol, Factors class conversion factor vs. standard unit)
-AbsorbedDose,,,2,0,2,0,0,0,0,Gray,Gy,-6,3,Rad,rad,Centi
+AbsorbedDose,,,2,0,-2,0,0,0,0,Gray,Gy,-6,3,Rad,rad,Centi
 Acceleration,,,1,0,-2,0,0,0,0,MeterPerSecondSquared,m s\u207b²,-3,3
 Activity,,,0,0,-1,0,0,0,0,Becquerel,Bq,3,9,Curie,Ci,BecquerelPerCurie,KiloCurie,kCi,Kilo*BecquerelPerCurie,MilliCurie,mCi,Milli*BecquerelPerCurie,MicroCurie,µCi,Micro*BecquerelPerCurie
 AmountConcentration,,,-3,0,0,0,0,0,1,MolePerCubicMeter,mol m\u207b³,-9,3
@@ -17,6 +17,14 @@ AngularVelocity,,Radian,0,0,-1,0,0,0,0,RadianPerSecond,rad s\u207b¹,-9,3
 Area,,,2,0,0,0,0,0,0,SquareMeter,m²,0,0,SquareKiloMeter,km²,Kilo*Kilo,SquareDeciMeter,dm²,Deci*Deci,SquareCentiMeter,cm²,Centi*Centi,SquareMilliMeter,mm²,Milli*Milli,Barn,b,SquareMetersPerBarn,Are,a,Deka,Hectare,ha,Hecto
 Capacitance,,,-2,-1,4,2,0,0,0,Farad,F,-12,3
 CatalyticActivity,,,0,0,-1,0,0,0,1,Katal,kat,-9,3
+CurrentDensity,,,-2,0,0,1,0,0,0,AmperePerSquareMeter,A m\u207b²,-9,3
+DoseEquivalent,,,2,0,-2,0,0,0,0,Sievert,Sv,-9,3
+DynamicViscosity,,,-1,1,-1,0,0,0,0,PascalSecond,Pa s,-3,9
+ElectricCharge,,,0,0,1,1,0,0,0,Coulomb,C,-12,-3,ElementaryCharge,e,CoulombsPerElementaryCharge
+ElectricConductance,,,-2,-1,3,2,0,0,0,Siemens,S,-9,3
+ElectricCurrent,,,0,0,0,1,0,0,0,Ampere,A,-12,3
+ElectricPotential,,,2,1,-3,-1,0,0,0,Volt,V,-9,9
+ElectricResistance,,,2,1,-3,-2,0,0,0,Ohm,Ω,-9,9
 Number,,Number,0,0,0,0,0,0,0,One,,0,0,Percent,%,Centi,Permille,\u2030,Milli,PartsPerMillion,ppm,Micro
 Temperature,,,0,0,0,0,1,0,0,Kelvin,K,0,0
 Volume,,,3,0,0,0,0,0,0,CubicMeter,m³,0,0,CubicDeciMeter,dm³,Deci*Deci*Deci,CubicCentiMeter,cm³,Centi*Centi*Centi,CubicMilliMeter,mm³,Milli*Milli*Milli,Liter,l,Deci*Deci*Deci,USLiquidGallon,gal,CubicMetersPerUSLiquidGallon
