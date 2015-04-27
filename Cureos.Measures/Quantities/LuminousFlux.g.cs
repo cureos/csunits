@@ -59,7 +59,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<LuminousFlux> MegaLumen = new Unit<LuminousFlux>(UnitPrefix.Mega);
         public static readonly Unit<LuminousFlux> GigaLumen = new Unit<LuminousFlux>(UnitPrefix.Giga);
 
-
         [DataMember]
         private readonly AmountType amount;
 

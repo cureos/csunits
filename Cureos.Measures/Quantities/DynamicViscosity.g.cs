@@ -57,7 +57,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<DynamicViscosity> MegaPascalSecond = new Unit<DynamicViscosity>(UnitPrefix.Mega);
         public static readonly Unit<DynamicViscosity> GigaPascalSecond = new Unit<DynamicViscosity>(UnitPrefix.Giga);
 
-
         [DataMember]
         private readonly AmountType amount;
 

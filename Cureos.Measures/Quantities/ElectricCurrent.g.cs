@@ -58,7 +58,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<ElectricCurrent> HectoAmpere = new Unit<ElectricCurrent>(UnitPrefix.Hecto);
         public static readonly Unit<ElectricCurrent> KiloAmpere = new Unit<ElectricCurrent>(UnitPrefix.Kilo);
 
-
         [DataMember]
         private readonly AmountType amount;
 

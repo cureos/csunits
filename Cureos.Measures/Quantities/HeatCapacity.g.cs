@@ -59,7 +59,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<HeatCapacity> MegaJoulePerKelvin = new Unit<HeatCapacity>(UnitPrefix.Mega);
         public static readonly Unit<HeatCapacity> GigaJoulePerKelvin = new Unit<HeatCapacity>(UnitPrefix.Giga);
 
-
         [DataMember]
         private readonly AmountType amount;
 

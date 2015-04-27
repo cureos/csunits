@@ -48,8 +48,6 @@ namespace Cureos.Measures.Quantities
 
         public static readonly Unit<RefractiveIndex> One = new Unit<RefractiveIndex>("");
 
-
-
         [DataMember]
         private readonly AmountType amount;
 

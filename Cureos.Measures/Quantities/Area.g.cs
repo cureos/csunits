@@ -48,7 +48,6 @@ namespace Cureos.Measures.Quantities
 
         public static readonly Unit<Area> SquareMeter = new Unit<Area>("m²");
 
-
         public static readonly Unit<Area> SquareKiloMeter = new Unit<Area>("km²", Factors.Kilo * Factors.Kilo);
         public static readonly Unit<Area> SquareDeciMeter = new Unit<Area>("dm²", Factors.Deci * Factors.Deci);
         public static readonly Unit<Area> SquareCentiMeter = new Unit<Area>("cm²", Factors.Centi * Factors.Centi);

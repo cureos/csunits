@@ -48,7 +48,6 @@ namespace Cureos.Measures.Quantities
 
         public static readonly Unit<WaveNumber> ReciprocalMeter = new Unit<WaveNumber>("m\u207b¹");
 
-
         public static readonly Unit<WaveNumber> ReciprocalCentiMeter = new Unit<WaveNumber>("cm\u207b¹", Factors.Hecto);
         public static readonly Unit<WaveNumber> ReciprocalMilliMeter = new Unit<WaveNumber>("mm\u207b¹", Factors.Kilo);
 

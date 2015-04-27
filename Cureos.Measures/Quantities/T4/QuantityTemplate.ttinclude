@@ -91,6 +91,7 @@ namespace Cureos.Measures.Quantities
     {
         #region FIELDS
 
+        // ReSharper disable once InconsistentNaming
 <#
             if (String.IsNullOrWhiteSpace(differentiator)) {
 #>
@@ -108,10 +109,10 @@ namespace Cureos.Measures.Quantities
 #>
 
         public static readonly Unit<<#= ClassName #>> <#= stdUnit #> = new Unit<<#= ClassName #>>("<#= stdUnitSymbol #>");
-
 <#
             if (ClassName.Equals("Temperature")) {
 #>
+
         public static readonly Unit<Temperature> Celsius = new Unit<Temperature>("°C",
                         a => a + Factors.KelvinCelsiusIntercept, a => a - Factors.KelvinCelsiusIntercept);
         public static readonly Unit<Temperature> Fahrenheit = new Unit<Temperature>("°F",
@@ -119,25 +120,33 @@ namespace Cureos.Measures.Quantities
                         a => a / Factors.KelvinFahrenheitSlope - Factors.KelvinFahrenheitIntercept);
 <#
             } else {
+                if (selPrefixes.Count > 0) {
 #>
+
 <#
+                }
+
                 foreach (var selPrefix in selPrefixes) {
 #>
         public static readonly Unit<<#= ClassName #>> <#= selPrefix #><#= stdUnit #> = new Unit<<#= ClassName #>>(UnitPrefix.<#= selPrefix #>);
 <#
             }
+
+            if (unitSpecs.Count > 0) {
 #>
 
 <#
-                foreach (var unitSpec in unitSpecs) {
-                    var unitName = unitSpec.Item1;
-                    var unitSymbol = unitSpec.Item2;
-                    var factor = unitSpec.Item3;
+            }
+
+            foreach (var unitSpec in unitSpecs) {
+                var unitName = unitSpec.Item1;
+                var unitSymbol = unitSpec.Item2;
+                var factor = unitSpec.Item3;
 #>
         public static readonly Unit<<#= ClassName #>> <#= unitName #> = new Unit<<#= ClassName #>>("<#= unitSymbol #>", <#= factor #>);
 <#
-                }
             }
+        }
 #>
 
         [DataMember]

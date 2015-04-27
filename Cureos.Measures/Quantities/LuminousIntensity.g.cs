@@ -59,7 +59,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<LuminousIntensity> MegaCandela = new Unit<LuminousIntensity>(UnitPrefix.Mega);
         public static readonly Unit<LuminousIntensity> GigaCandela = new Unit<LuminousIntensity>(UnitPrefix.Giga);
 
-
         [DataMember]
         private readonly AmountType amount;
 

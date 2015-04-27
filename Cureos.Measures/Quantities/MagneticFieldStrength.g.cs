@@ -59,7 +59,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<MagneticFieldStrength> MegaAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Mega);
         public static readonly Unit<MagneticFieldStrength> GigaAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Giga);
 
-
         [DataMember]
         private readonly AmountType amount;
 

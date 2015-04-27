@@ -59,7 +59,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<AmountOfSubstance> MegaMole = new Unit<AmountOfSubstance>(UnitPrefix.Mega);
         public static readonly Unit<AmountOfSubstance> GigaMole = new Unit<AmountOfSubstance>(UnitPrefix.Giga);
 
-
         [DataMember]
         private readonly AmountType amount;
 

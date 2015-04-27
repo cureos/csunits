@@ -48,7 +48,6 @@ namespace Cureos.Measures.Quantities
 
         public static readonly Unit<MassDensity> KiloGramPerCubicMeter = new Unit<MassDensity>("kg m\u207b³");
 
-
         public static readonly Unit<MassDensity> KiloGramPerLiter = new Unit<MassDensity>("kg/l", Factors.Kilo);
         public static readonly Unit<MassDensity> GramPerCubicCentiMeter = new Unit<MassDensity>("g cm\u207b³", Factors.Kilo);
         public static readonly Unit<MassDensity> GramPerCubicMilliMeter = new Unit<MassDensity>("g mm\u207b³", Factors.Mega);

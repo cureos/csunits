@@ -59,7 +59,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Power> MegaWatt = new Unit<Power>(UnitPrefix.Mega);
         public static readonly Unit<Power> GigaWatt = new Unit<Power>(UnitPrefix.Giga);
 
-
         [DataMember]
         private readonly AmountType amount;
 

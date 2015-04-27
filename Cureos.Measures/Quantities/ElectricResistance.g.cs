@@ -59,7 +59,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<ElectricResistance> MegaOhm = new Unit<ElectricResistance>(UnitPrefix.Mega);
         public static readonly Unit<ElectricResistance> GigaOhm = new Unit<ElectricResistance>(UnitPrefix.Giga);
 
-
         [DataMember]
         private readonly AmountType amount;
 

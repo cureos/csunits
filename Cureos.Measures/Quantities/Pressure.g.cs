@@ -59,7 +59,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Pressure> MegaPascal = new Unit<Pressure>(UnitPrefix.Mega);
         public static readonly Unit<Pressure> GigaPascal = new Unit<Pressure>(UnitPrefix.Giga);
 
-
         [DataMember]
         private readonly AmountType amount;
 

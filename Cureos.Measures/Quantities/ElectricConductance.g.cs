@@ -59,7 +59,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<ElectricConductance> MegaSiemens = new Unit<ElectricConductance>(UnitPrefix.Mega);
         public static readonly Unit<ElectricConductance> GigaSiemens = new Unit<ElectricConductance>(UnitPrefix.Giga);
 
-
         [DataMember]
         private readonly AmountType amount;
 

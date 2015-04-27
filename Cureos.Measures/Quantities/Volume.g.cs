@@ -48,7 +48,6 @@ namespace Cureos.Measures.Quantities
 
         public static readonly Unit<Volume> CubicMeter = new Unit<Volume>("m³");
 
-
         public static readonly Unit<Volume> CubicDeciMeter = new Unit<Volume>("dm³", Factors.Deci * Factors.Deci * Factors.Deci);
         public static readonly Unit<Volume> CubicCentiMeter = new Unit<Volume>("cm³", Factors.Centi * Factors.Centi * Factors.Centi);
         public static readonly Unit<Volume> CubicMilliMeter = new Unit<Volume>("mm³", Factors.Milli * Factors.Milli * Factors.Milli);

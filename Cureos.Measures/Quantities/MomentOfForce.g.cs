@@ -59,7 +59,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<MomentOfForce> MegaNewtonMeter = new Unit<MomentOfForce>(UnitPrefix.Mega);
         public static readonly Unit<MomentOfForce> GigaNewtonMeter = new Unit<MomentOfForce>(UnitPrefix.Giga);
 
-
         [DataMember]
         private readonly AmountType amount;
 

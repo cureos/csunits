@@ -48,7 +48,6 @@ namespace Cureos.Measures.Quantities
 
         public static readonly Unit<Time> Second = new Unit<Time>("s");
 
-
         public static readonly Unit<Time> Minute = new Unit<Time>("min", Factors.SecondsPerMinute);
         public static readonly Unit<Time> Hour = new Unit<Time>("h", Factors.SecondsPerHour);
         public static readonly Unit<Time> Day = new Unit<Time>("dy", Factors.SecondsPerDay);

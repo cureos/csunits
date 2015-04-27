@@ -59,7 +59,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Force> MegaNewton = new Unit<Force>(UnitPrefix.Mega);
         public static readonly Unit<Force> GigaNewton = new Unit<Force>(UnitPrefix.Giga);
 
-
         [DataMember]
         private readonly AmountType amount;
 

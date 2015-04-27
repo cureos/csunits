@@ -59,7 +59,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<CurrentDensity> MegaAmperePerSquareMeter = new Unit<CurrentDensity>(UnitPrefix.Mega);
         public static readonly Unit<CurrentDensity> GigaAmperePerSquareMeter = new Unit<CurrentDensity>(UnitPrefix.Giga);
 
-
         [DataMember]
         private readonly AmountType amount;
 

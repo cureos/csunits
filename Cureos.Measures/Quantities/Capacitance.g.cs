@@ -58,7 +58,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Capacitance> HectoFarad = new Unit<Capacitance>(UnitPrefix.Hecto);
         public static readonly Unit<Capacitance> KiloFarad = new Unit<Capacitance>(UnitPrefix.Kilo);
 
-
         [DataMember]
         private readonly AmountType amount;
 

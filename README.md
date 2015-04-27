@@ -13,7 +13,7 @@ Visual Studio 2010 Service Pack 1 or higher with [Portable Library Tools](http:/
 
 ## Introduction
 
-Developed with Visual Studio 2010, using .NET Frameworks 3.5 and 4.0. The latter class library is portable and can without modifications be included in Silverlight 5, Windows Phone 8+ (Silverlight and non-Silverlight), Windows 8+, Xamarin.Android and Xamarin.iOS applications.
+Developed with Visual Studio 2010. The *Cureos.Measures* class library is portable and can without modifications be included in .NET 4+, Silverlight 5, Windows Phone 8+ (Silverlight and non-Silverlight), Windows 8+, Xamarin.Android and Xamarin.iOS applications.
 
 `Measure<Q>` and `UnitPreservingMeasure<Q>` are the main "work-horses" of the library. `Measure<Q>` is always represented in the reference unit of the associated quantity. If a different unit is specified in instantiation of `Measure<Q>`, the measured amount is automatically converted to the equivalent reference unit amount. On the other hand, the amount and unit used in instantiation of `UnitPreservingMeasure<Q>` are internally maintained.
 

@@ -59,7 +59,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<ElectricPotential> MegaVolt = new Unit<ElectricPotential>(UnitPrefix.Mega);
         public static readonly Unit<ElectricPotential> GigaVolt = new Unit<ElectricPotential>(UnitPrefix.Giga);
 
-
         [DataMember]
         private readonly AmountType amount;
 

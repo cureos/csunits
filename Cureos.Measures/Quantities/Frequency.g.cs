@@ -59,7 +59,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Frequency> MegaHertz = new Unit<Frequency>(UnitPrefix.Mega);
         public static readonly Unit<Frequency> GigaHertz = new Unit<Frequency>(UnitPrefix.Giga);
 
-
         [DataMember]
         private readonly AmountType amount;
 

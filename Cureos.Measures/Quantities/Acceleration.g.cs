@@ -55,7 +55,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Acceleration> HectoMeterPerSecondSquared = new Unit<Acceleration>(UnitPrefix.Hecto);
         public static readonly Unit<Acceleration> KiloMeterPerSecondSquared = new Unit<Acceleration>(UnitPrefix.Kilo);
 
-
         [DataMember]
         private readonly AmountType amount;
 

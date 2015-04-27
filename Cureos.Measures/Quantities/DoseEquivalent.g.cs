@@ -57,7 +57,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<DoseEquivalent> HectoSievert = new Unit<DoseEquivalent>(UnitPrefix.Hecto);
         public static readonly Unit<DoseEquivalent> KiloSievert = new Unit<DoseEquivalent>(UnitPrefix.Kilo);
 
-
         [DataMember]
         private readonly AmountType amount;
 

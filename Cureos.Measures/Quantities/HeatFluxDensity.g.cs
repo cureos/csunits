@@ -59,7 +59,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<HeatFluxDensity> MegaWattPerSquareMeter = new Unit<HeatFluxDensity>(UnitPrefix.Mega);
         public static readonly Unit<HeatFluxDensity> GigaWattPerSquareMeter = new Unit<HeatFluxDensity>(UnitPrefix.Giga);
 
-
         [DataMember]
         private readonly AmountType amount;
 

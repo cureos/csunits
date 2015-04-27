@@ -48,8 +48,6 @@ namespace Cureos.Measures.Quantities
 
         public static readonly Unit<RelativePermeability> One = new Unit<RelativePermeability>("");
 
-
-
         [DataMember]
         private readonly AmountType amount;
 

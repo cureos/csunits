@@ -59,7 +59,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<AngularAcceleration> MegaRadianPerSecondSquared = new Unit<AngularAcceleration>(UnitPrefix.Mega);
         public static readonly Unit<AngularAcceleration> GigaRadianPerSecondSquared = new Unit<AngularAcceleration>(UnitPrefix.Giga);
 
-
         [DataMember]
         private readonly AmountType amount;
 

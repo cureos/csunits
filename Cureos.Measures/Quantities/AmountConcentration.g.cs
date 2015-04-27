@@ -59,7 +59,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<AmountConcentration> MegaMolePerCubicMeter = new Unit<AmountConcentration>(UnitPrefix.Mega);
         public static readonly Unit<AmountConcentration> GigaMolePerCubicMeter = new Unit<AmountConcentration>(UnitPrefix.Giga);
 
-
         [DataMember]
         private readonly AmountType amount;
 

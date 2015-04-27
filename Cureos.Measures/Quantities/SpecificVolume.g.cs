@@ -48,8 +48,6 @@ namespace Cureos.Measures.Quantities
 
         public static readonly Unit<SpecificVolume> CubicMeterPerKiloGram = new Unit<SpecificVolume>("m³ kg\u207b¹");
 
-
-
         [DataMember]
         private readonly AmountType amount;
 

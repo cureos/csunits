@@ -48,8 +48,6 @@ namespace Cureos.Measures.Quantities
 
         public static readonly Unit<Number> One = new Unit<Number>("");
 
-
-
         [DataMember]
         private readonly AmountType amount;
 

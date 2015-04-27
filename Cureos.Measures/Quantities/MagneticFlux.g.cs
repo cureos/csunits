@@ -59,7 +59,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<MagneticFlux> MegaWeber = new Unit<MagneticFlux>(UnitPrefix.Mega);
         public static readonly Unit<MagneticFlux> GigaWeber = new Unit<MagneticFlux>(UnitPrefix.Giga);
 
-
         [DataMember]
         private readonly AmountType amount;
 

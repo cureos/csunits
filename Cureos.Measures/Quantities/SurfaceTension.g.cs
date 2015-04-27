@@ -59,7 +59,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<SurfaceTension> MegaNewtonPerMeter = new Unit<SurfaceTension>(UnitPrefix.Mega);
         public static readonly Unit<SurfaceTension> GigaNewtonPerMeter = new Unit<SurfaceTension>(UnitPrefix.Giga);
 
-
         [DataMember]
         private readonly AmountType amount;
 

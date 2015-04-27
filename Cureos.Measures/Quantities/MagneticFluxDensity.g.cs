@@ -59,7 +59,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<MagneticFluxDensity> MegaTesla = new Unit<MagneticFluxDensity>(UnitPrefix.Mega);
         public static readonly Unit<MagneticFluxDensity> GigaTesla = new Unit<MagneticFluxDensity>(UnitPrefix.Giga);
 
-
         [DataMember]
         private readonly AmountType amount;
 

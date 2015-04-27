@@ -57,7 +57,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<CatalyticActivity> HectoKatal = new Unit<CatalyticActivity>(UnitPrefix.Hecto);
         public static readonly Unit<CatalyticActivity> KiloKatal = new Unit<CatalyticActivity>(UnitPrefix.Kilo);
 
-
         [DataMember]
         private readonly AmountType amount;
 

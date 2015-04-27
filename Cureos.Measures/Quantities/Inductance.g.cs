@@ -59,7 +59,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Inductance> MegaHenry = new Unit<Inductance>(UnitPrefix.Mega);
         public static readonly Unit<Inductance> GigaHenry = new Unit<Inductance>(UnitPrefix.Giga);
 
-
         [DataMember]
         private readonly AmountType amount;
 
