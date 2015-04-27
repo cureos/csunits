@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the time quantity
     /// </summary>
+    [DataContract]
     public partial struct Time : IQuantity<Time>, IMeasure<Time>
     {
         #region FIELDS
@@ -53,6 +55,7 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Time> Week = new Unit<Time>("wk", Factors.SecondsPerWeek);
         public static readonly Unit<Time> JulianYear = new Unit<Time>("a", Factors.SecondsPerJulianYear);
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the inductance quantity
     /// </summary>
+    [DataContract]
     public partial struct Inductance : IQuantity<Inductance>, IMeasure<Inductance>
     {
         #region FIELDS
@@ -58,6 +60,7 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Inductance> GigaHenry = new Unit<Inductance>(UnitPrefix.Giga);
 
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

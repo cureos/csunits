@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the solid angle quantity
     /// </summary>
+    [DataContract]
     public partial struct SolidAngle : IQuantity<SolidAngle>, IMeasure<SolidAngle>
     {
         #region FIELDS
@@ -52,6 +54,7 @@ namespace Cureos.Measures.Quantities
 
         public static readonly Unit<SolidAngle> SquareDegree = new Unit<SolidAngle>("(°)²", Factors.RadiansPerDegree * Factors.RadiansPerDegree);
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

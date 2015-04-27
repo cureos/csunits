@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the temperature quantity
     /// </summary>
+    [DataContract]
     public partial struct Temperature : IQuantity<Temperature>, IMeasure<Temperature>
     {
         #region FIELDS
@@ -52,6 +54,7 @@ namespace Cureos.Measures.Quantities
                         a => (a + Factors.KelvinFahrenheitIntercept) * Factors.KelvinFahrenheitSlope,
                         a => a / Factors.KelvinFahrenheitSlope - Factors.KelvinFahrenheitIntercept);
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

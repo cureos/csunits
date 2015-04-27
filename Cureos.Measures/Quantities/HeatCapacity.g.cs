@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the heat capacity quantity
     /// </summary>
+    [DataContract]
     public partial struct HeatCapacity : IQuantity<HeatCapacity>, IMeasure<HeatCapacity>
     {
         #region FIELDS
@@ -58,6 +60,7 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<HeatCapacity> GigaJoulePerKelvin = new Unit<HeatCapacity>(UnitPrefix.Giga);
 
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the velocity quantity
     /// </summary>
+    [DataContract]
     public partial struct Velocity : IQuantity<Velocity>, IMeasure<Velocity>
     {
         #region FIELDS
@@ -57,6 +59,7 @@ namespace Cureos.Measures.Quantities
 
         public static readonly Unit<Velocity> KiloMeterPerHour = new Unit<Velocity>("km h\u207b¹", Factors.Kilo / Factors.SecondsPerHour);
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

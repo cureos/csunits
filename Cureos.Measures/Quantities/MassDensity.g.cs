@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the mass density quantity
     /// </summary>
+    [DataContract]
     public partial struct MassDensity : IQuantity<MassDensity>, IMeasure<MassDensity>
     {
         #region FIELDS
@@ -51,6 +53,7 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<MassDensity> GramPerCubicCentiMeter = new Unit<MassDensity>("g cm\u207b³", Factors.Kilo);
         public static readonly Unit<MassDensity> GramPerCubicMilliMeter = new Unit<MassDensity>("g mm\u207b³", Factors.Mega);
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

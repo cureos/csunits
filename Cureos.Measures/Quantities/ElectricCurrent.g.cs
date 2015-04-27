@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the electric current quantity
     /// </summary>
+    [DataContract]
     public partial struct ElectricCurrent : IQuantity<ElectricCurrent>, IMeasure<ElectricCurrent>
     {
         #region FIELDS
@@ -57,6 +59,7 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<ElectricCurrent> KiloAmpere = new Unit<ElectricCurrent>(UnitPrefix.Kilo);
 
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

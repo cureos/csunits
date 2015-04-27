@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the area quantity
     /// </summary>
+    [DataContract]
     public partial struct Area : IQuantity<Area>, IMeasure<Area>
     {
         #region FIELDS
@@ -55,6 +57,7 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Area> Are = new Unit<Area>("a", Factors.Deka);
         public static readonly Unit<Area> Hectare = new Unit<Area>("ha", Factors.Hecto);
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

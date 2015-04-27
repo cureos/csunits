@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the volume quantity
     /// </summary>
+    [DataContract]
     public partial struct Volume : IQuantity<Volume>, IMeasure<Volume>
     {
         #region FIELDS
@@ -53,6 +55,7 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Volume> Liter = new Unit<Volume>("l", Factors.Deci * Factors.Deci * Factors.Deci);
         public static readonly Unit<Volume> USLiquidGallon = new Unit<Volume>("gal", Factors.CubicMetersPerUSLiquidGallon);
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

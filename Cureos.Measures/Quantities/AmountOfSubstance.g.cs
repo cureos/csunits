@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the amount of substance quantity
     /// </summary>
+    [DataContract]
     public partial struct AmountOfSubstance : IQuantity<AmountOfSubstance>, IMeasure<AmountOfSubstance>
     {
         #region FIELDS
@@ -58,6 +60,7 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<AmountOfSubstance> GigaMole = new Unit<AmountOfSubstance>(UnitPrefix.Giga);
 
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

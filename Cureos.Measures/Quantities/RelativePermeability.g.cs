@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the relative permeability quantity
     /// </summary>
+    [DataContract]
     public partial struct RelativePermeability : IQuantity<RelativePermeability>, IMeasure<RelativePermeability>
     {
         #region FIELDS
@@ -48,6 +50,7 @@ namespace Cureos.Measures.Quantities
 
 
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

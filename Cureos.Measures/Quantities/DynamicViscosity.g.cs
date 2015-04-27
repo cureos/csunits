@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the dynamic viscosity quantity
     /// </summary>
+    [DataContract]
     public partial struct DynamicViscosity : IQuantity<DynamicViscosity>, IMeasure<DynamicViscosity>
     {
         #region FIELDS
@@ -56,6 +58,7 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<DynamicViscosity> GigaPascalSecond = new Unit<DynamicViscosity>(UnitPrefix.Giga);
 
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

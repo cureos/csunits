@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the activity quantity
     /// </summary>
+    [DataContract]
     public partial struct Activity : IQuantity<Activity>, IMeasure<Activity>
     {
         #region FIELDS
@@ -55,6 +57,7 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Activity> MilliCurie = new Unit<Activity>("mCi", Factors.Milli * Factors.BecquerelPerCurie);
         public static readonly Unit<Activity> MicroCurie = new Unit<Activity>("µCi", Factors.Micro * Factors.BecquerelPerCurie);
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

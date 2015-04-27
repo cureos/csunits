@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the electric charge quantity
     /// </summary>
+    [DataContract]
     public partial struct ElectricCharge : IQuantity<ElectricCharge>, IMeasure<ElectricCharge>
     {
         #region FIELDS
@@ -53,6 +55,7 @@ namespace Cureos.Measures.Quantities
 
         public static readonly Unit<ElectricCharge> ElementaryCharge = new Unit<ElectricCharge>("e", Factors.CoulombsPerElementaryCharge);
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

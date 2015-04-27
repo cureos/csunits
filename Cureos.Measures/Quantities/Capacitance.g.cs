@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the capacitance quantity
     /// </summary>
+    [DataContract]
     public partial struct Capacitance : IQuantity<Capacitance>, IMeasure<Capacitance>
     {
         #region FIELDS
@@ -57,6 +59,7 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Capacitance> KiloFarad = new Unit<Capacitance>(UnitPrefix.Kilo);
 
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

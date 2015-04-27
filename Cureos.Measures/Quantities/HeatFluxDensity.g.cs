@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the heat flux density quantity
     /// </summary>
+    [DataContract]
     public partial struct HeatFluxDensity : IQuantity<HeatFluxDensity>, IMeasure<HeatFluxDensity>
     {
         #region FIELDS
@@ -58,6 +60,7 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<HeatFluxDensity> GigaWattPerSquareMeter = new Unit<HeatFluxDensity>(UnitPrefix.Giga);
 
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

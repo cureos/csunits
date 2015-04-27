@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the absorbed dose quantity
     /// </summary>
+    [DataContract]
     public partial struct AbsorbedDose : IQuantity<AbsorbedDose>, IMeasure<AbsorbedDose>
     {
         #region FIELDS
@@ -57,6 +59,7 @@ namespace Cureos.Measures.Quantities
 
         public static readonly Unit<AbsorbedDose> Rad = new Unit<AbsorbedDose>("rad", Factors.Centi);
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

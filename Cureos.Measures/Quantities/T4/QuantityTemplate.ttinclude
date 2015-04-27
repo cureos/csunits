@@ -73,6 +73,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -85,6 +86,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the <#= displayName #> quantity
     /// </summary>
+    [DataContract]
     public partial struct <#= ClassName #> : IQuantity<<#= ClassName #>>, IMeasure<<#= ClassName #>>
     {
         #region FIELDS
@@ -138,6 +140,7 @@ namespace Cureos.Measures.Quantities
             }
 #>
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the length quantity
     /// </summary>
+    [DataContract]
     public partial struct Length : IQuantity<Length>, IMeasure<Length>
     {
         #region FIELDS
@@ -63,6 +65,7 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Length> Mile = new Unit<Length>("mi", Factors.MetersPerMile);
         public static readonly Unit<Length> NauticalMile = new Unit<Length>("M", Factors.MetersPerNauticalMile);
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the magnetic flux density quantity
     /// </summary>
+    [DataContract]
     public partial struct MagneticFluxDensity : IQuantity<MagneticFluxDensity>, IMeasure<MagneticFluxDensity>
     {
         #region FIELDS
@@ -58,6 +60,7 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<MagneticFluxDensity> GigaTesla = new Unit<MagneticFluxDensity>(UnitPrefix.Giga);
 
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

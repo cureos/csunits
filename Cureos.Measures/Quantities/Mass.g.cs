@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the mass quantity
     /// </summary>
+    [DataContract]
     public partial struct Mass : IQuantity<Mass>, IMeasure<Mass>
     {
         #region FIELDS
@@ -64,6 +66,7 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Mass> KiloDalton = new Unit<Mass>("kDa", Factors.Kilo * Factors.KiloGramsPerAtomicMassUnit);
         public static readonly Unit<Mass> MegaDalton = new Unit<Mass>("MDa", Factors.Mega * Factors.KiloGramsPerAtomicMassUnit);
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

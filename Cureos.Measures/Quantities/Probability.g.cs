@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the probability quantity
     /// </summary>
+    [DataContract]
     public partial struct Probability : IQuantity<Probability>, IMeasure<Probability>
     {
         #region FIELDS
@@ -51,6 +53,7 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Probability> Permille = new Unit<Probability>("\u2030", Factors.Milli);
         public static readonly Unit<Probability> PartsPerMillion = new Unit<Probability>("ppm", Factors.Micro);
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

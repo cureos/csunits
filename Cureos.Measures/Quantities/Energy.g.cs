@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the energy quantity
     /// </summary>
+    [DataContract]
     public partial struct Energy : IQuantity<Energy>, IMeasure<Energy>
     {
         #region FIELDS
@@ -68,6 +70,7 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Energy> GigaElectronVolt = new Unit<Energy>("GeV", Factors.Giga * Factors.JoulesPerElectronVolt);
         public static readonly Unit<Energy> TeraElectronVolt = new Unit<Energy>("TeV", Factors.Tera * Factors.JoulesPerElectronVolt);
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the plane angle quantity
     /// </summary>
+    [DataContract]
     public partial struct PlaneAngle : IQuantity<PlaneAngle>, IMeasure<PlaneAngle>
     {
         #region FIELDS
@@ -51,6 +53,7 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<PlaneAngle> Minute = new Unit<PlaneAngle>("'", Factors.RadiansPerMinute);
         public static readonly Unit<PlaneAngle> Second = new Unit<PlaneAngle>("\"", Factors.RadiansPerSecond);
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion

@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -38,6 +39,7 @@ namespace Cureos.Measures.Quantities
     /// <summary>
     /// Implementation of the dose equivalent quantity
     /// </summary>
+    [DataContract]
     public partial struct DoseEquivalent : IQuantity<DoseEquivalent>, IMeasure<DoseEquivalent>
     {
         #region FIELDS
@@ -56,6 +58,7 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<DoseEquivalent> KiloSievert = new Unit<DoseEquivalent>(UnitPrefix.Kilo);
 
 
+        [DataMember]
         private readonly AmountType amount;
 
         #endregion
