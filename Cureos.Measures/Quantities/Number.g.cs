@@ -52,7 +52,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Number> PartsPerMillion = new Unit<Number>("ppm", Factors.Micro);
 
         private readonly AmountType amount;
-        private readonly IUnit<Number> unit;
 
         #endregion
 
@@ -72,8 +71,8 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Measured amount in standard unit of the specified quantity</param>
         public Number(double amount)
-            : this(amount, default(Number).StandardUnit)
         {
+            this.amount = (AmountType)amount;
         }
 
         /// <summary>
@@ -81,8 +80,8 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Measured amount in standard unit of the specified quantity</param>
         public Number(float amount)
-            : this(amount, default(Number).StandardUnit)
         {
+            this.amount = (AmountType)amount;
         }
 
         /// <summary>
@@ -90,8 +89,8 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Measured amount in standard unit of the specified quantity</param>
         public Number(decimal amount)
-            : this(amount, default(Number).StandardUnit)
         {
+            this.amount = (AmountType)amount;
         }
 
         /// <summary>
@@ -103,9 +102,7 @@ namespace Cureos.Measures.Quantities
         public Number(double amount, IUnit<Number> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-
-            this.amount = (AmountType)amount;
-            this.unit = unit;
+            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
         }
 
         /// <summary>
@@ -117,9 +114,7 @@ namespace Cureos.Measures.Quantities
         public Number(float amount, IUnit<Number> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-
-            this.amount = (AmountType)amount;
-            this.unit = unit;
+            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
         }
 
         /// <summary>
@@ -131,9 +126,7 @@ namespace Cureos.Measures.Quantities
         public Number(decimal amount, IUnit<Number> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-
-            this.amount = (AmountType)amount;
-            this.unit = unit;
+            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
         }
 
         #endregion
@@ -181,7 +174,7 @@ namespace Cureos.Measures.Quantities
         /// </summary
         public AmountType StandardAmount
         {
-            get { return this.unit.AmountToStandardUnitConverter(this.amount); }
+            get { return this.amount; }
         }
 
         /// <summary>
@@ -189,7 +182,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         IUnit IMeasure.Unit
         {
-            get { return this.Unit; }
+            get { return this.StandardUnit; }
         }
 
         /// <summary>
@@ -201,7 +194,7 @@ namespace Cureos.Measures.Quantities
         {
             if (unit == null) throw new ArgumentNullException("unit");
             if (!unit.Quantity.Equals(default(Number))) throw new ArgumentException("Unit is not the same quantity as measure");
-            return unit.AmountFromStandardUnitConverter(this.StandardAmount);
+            return unit.AmountFromStandardUnitConverter(this.amount);
         }
 
         /// <summary>
@@ -220,7 +213,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         public IUnit<Number> Unit
         {
-            get { return this.unit; }
+            get { return this.StandardUnit; }
         }
 
         /// <summary>
@@ -231,7 +224,7 @@ namespace Cureos.Measures.Quantities
         public AmountType GetAmount(IUnit<Number> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            return unit.AmountFromStandardUnitConverter(this.StandardAmount);
+            return unit.AmountFromStandardUnitConverter(this.amount);
         }
 
         /// <summary>
@@ -254,7 +247,7 @@ namespace Cureos.Measures.Quantities
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return this.amount.Equals(other.GetAmount(this.unit));
+            return this.amount.Equals(other.GetAmount(this.Unit));
         }
 
         /// <summary>
@@ -268,7 +261,7 @@ namespace Cureos.Measures.Quantities
         {
             if (other == null) throw new ArgumentNullException("other");
             if (!other.Unit.Quantity.Equals(default(Number))) throw new ArgumentException("Measures are of different quantities");
-            return this.amount.Equals(other.GetAmount(this.unit));
+            return this.amount.Equals(other.GetAmount(this.Unit));
         }
 
         /// <summary>
@@ -289,7 +282,7 @@ namespace Cureos.Measures.Quantities
         public int CompareTo(IMeasure<Number> other)
         {
             if (other == null) throw new ArgumentNullException("other");
-            return this.amount.CompareTo(other.GetAmount(this.unit));
+            return this.amount.CompareTo(other.GetAmount(this.Unit));
         }
 
         /// <summary>
@@ -303,7 +296,7 @@ namespace Cureos.Measures.Quantities
         {
             if (other == null) throw new ArgumentNullException("other");
             if (!other.Unit.Quantity.Equals(default(Number))) throw new ArgumentException("Measures are of different quantities");
-            return this.amount.CompareTo(other.GetAmount(this.unit));
+            return this.amount.CompareTo(other.GetAmount(this.Unit));
         }
 
         #endregion
@@ -311,15 +304,15 @@ namespace Cureos.Measures.Quantities
         #region INDEXERS
 
         /// <summary>
-        /// Gets a new unit specific measure based on this measure but in the <paramref name="unit">specified unit</paramref>
+        /// Gets a new unit preserving measure based on this measure but in the <paramref name="unit">specified unit</paramref>
         /// </summary>
         /// <param name="unit">Unit in which the new measure should be specified</param>
-        public Number this[IUnit<Number> unit]
+        public Measure<Number> this[IUnit<Number> unit]
         {
             get
             {
                 if (unit == null) throw new ArgumentNullException("unit");
-                return new Number(this.GetAmount(unit), unit);
+                return new Measure<Number>(this.GetAmount(unit), unit);
             }
         }
 
@@ -364,7 +357,7 @@ namespace Cureos.Measures.Quantities
         /// <filterpriority>2</filterpriority>
         public override string ToString()
         {
-            return String.Format("{0} {1} (number)", this.amount, this.unit.Symbol).Trim();
+            return String.Format("{0} {1} (number)", this.amount, this.Unit.Symbol).Trim();
         }
 
         /// <summary>
@@ -374,7 +367,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>A <see cref="T:System.String"/> containing a the actual value in formatted form with the quantity symbol appended</returns>
         public string ToString(string format)
         {
-            return String.Format("{0} {1} (number)", this.amount.ToString(format), this.unit.Symbol).Trim();
+            return String.Format("{0} {1} (number)", this.amount.ToString(format), this.Unit.Symbol).Trim();
         }
         
         /// <summary>
@@ -384,7 +377,7 @@ namespace Cureos.Measures.Quantities
         /// <returns></returns>
         public string ToString(IFormatProvider provider)
         {
-            return String.Format("{0} {1} (number)", this.amount.ToString(provider), this.unit.Symbol).Trim();
+            return String.Format("{0} {1} (number)", this.amount.ToString(provider), this.Unit.Symbol).Trim();
         }
         
         /// <summary>
@@ -395,7 +388,7 @@ namespace Cureos.Measures.Quantities
         /// <returns></returns>
         public string ToString(string format, IFormatProvider provider)
         {
-            return String.Format("{0} {1} (number)", this.amount.ToString(format, provider), this.unit.Symbol).Trim();
+            return String.Format("{0} {1} (number)", this.amount.ToString(format, provider), this.Unit.Symbol).Trim();
         }
         
         #endregion
@@ -440,7 +433,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>Sum of the two measure objects in the unit of the <paramref name="lhs">left-hand side measure</paramref></returns>
         public static Number operator +(Number lhs,  Number rhs)
         {
-            return new Number(lhs.amount + rhs.GetAmount(lhs.unit), lhs.unit);
+            return new Number(lhs.amount + rhs.amount);
         }
 
         /// <summary>
@@ -451,7 +444,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>Sum of the two measure objects in the unit of the <paramref name="lhs">left-hand side measure</paramref></returns>
         public static Number operator +(Number lhs, IMeasure<Number> rhs)
         {
-            return new Number(lhs.amount + rhs.GetAmount(lhs.unit), lhs.unit);
+            return new Number(lhs.amount + rhs.StandardAmount);
         }
 
         /// <summary>
@@ -462,7 +455,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>Difference of the measure objects</returns>
         public static Number operator -(Number lhs, Number rhs)
         {
-            return new Number(lhs.amount - rhs.GetAmount(lhs.unit), lhs.unit);
+            return new Number(lhs.amount - rhs.amount);
         }
 
         /// <summary>
@@ -473,29 +466,29 @@ namespace Cureos.Measures.Quantities
         /// <returns>Difference of the measure objects</returns>
         public static Number operator -(Number lhs, IMeasure<Number> rhs)
         {
-            return new Number(lhs.amount - rhs.GetAmount(lhs.unit), lhs.unit);
+            return new Number(lhs.amount - rhs.StandardAmount);
         }
 
         /// <summary>
         /// Multiply a scalar and a measure object
         /// </summary>
         /// <param name="scalar">Floating-point scalar</param>
-        /// <param name="iMeasure">Measure object</param>
+        /// <param name="measure">Measure object</param>
         /// <returns>Product of the scalar and the measure object</returns>
-        public static Number operator *(AmountType scalar, Number iMeasure)
+        public static Number operator *(AmountType scalar, Number measure)
         {
-            return new Number(scalar * iMeasure.amount, iMeasure.unit);
+            return new Number(scalar * measure.amount);
         }
 
         /// <summary>
         /// Multiply a measure object and a scalar
         /// </summary>
-        /// <param name="iMeasure">Measure object</param>
+        /// <param name="measure">Measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Product of the measure object and the scalar</returns>
-        public static Number operator *(Number iMeasure, AmountType scalar)
+        public static Number operator *(Number measure, AmountType scalar)
         {
-            return new Number(iMeasure.amount * scalar, iMeasure.unit);
+            return new Number(measure.amount * scalar);
         }
 
         /// <summary>
@@ -504,9 +497,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="iMeasure">measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Quotient of the measure object and the scalar</returns>
-        public static Number operator /(Number iMeasure, AmountType scalar)
+        public static Number operator /(Number measure, AmountType scalar)
         {
-            return new Number(iMeasure.amount / scalar, iMeasure.unit);
+            return new Number(measure.amount / scalar);
         }
 
         /// <summary>
@@ -517,7 +510,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>true if first measure object is less than second measure object; false otherwise</returns>
         public static bool operator <(Number lhs, Number rhs)
         {
-            return lhs.amount < rhs.GetAmount(lhs.unit);
+            return lhs.amount < rhs.amount;
         }
 
         /// <summary>
@@ -528,7 +521,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>true if first measure object is less than second measure object; false otherwise</returns>
         public static bool operator <(Number lhs, IMeasure<Number> rhs)
         {
-            return lhs.amount < rhs.GetAmount(lhs.unit);
+            return lhs.amount < rhs.StandardAmount;
         }
 
         /// <summary>
@@ -539,7 +532,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
         public static bool operator >(Number lhs, Number rhs)
         {
-            return lhs.amount > rhs.GetAmount(lhs.unit);
+            return lhs.amount > rhs.amount;
         }
 
         /// <summary>
@@ -550,7 +543,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
         public static bool operator >(Number lhs, IMeasure<Number> rhs)
         {
-            return lhs.amount > rhs.GetAmount(lhs.unit);
+            return lhs.amount > rhs.StandardAmount;
         }
 
         /// <summary>
@@ -561,7 +554,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
         public static bool operator <=(Number lhs, Number rhs)
         {
-            return lhs.amount <= rhs.GetAmount(lhs.unit);
+            return lhs.amount <= rhs.amount;
         }
 
         /// <summary>
@@ -572,7 +565,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
         public static bool operator <=(Number lhs, IMeasure<Number> rhs)
         {
-            return lhs.amount <= rhs.GetAmount(lhs.unit);
+            return lhs.amount <= rhs.StandardAmount;
         }
 
         /// <summary>
@@ -583,7 +576,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
         public static bool operator >=(Number lhs, Number rhs)
         {
-            return lhs.amount >= rhs.GetAmount(lhs.unit);
+            return lhs.amount >= rhs.amount;
         }
 
         /// <summary>
@@ -594,7 +587,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
         public static bool operator >=(Number lhs, IMeasure<Number> rhs)
         {
-            return lhs.amount >= rhs.GetAmount(lhs.unit);
+            return lhs.amount >= rhs.StandardAmount;
         }
 
         /// <summary>
@@ -605,7 +598,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>true if the two measure objects are equal; false otherwise</returns>
         public static bool operator ==(Number lhs, Number rhs)
         {
-            return lhs.amount == rhs.GetAmount(lhs.unit);
+            return lhs.amount == rhs.amount;
         }
 
         /// <summary>
@@ -616,7 +609,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>true if the two measure objects are equal; false otherwise</returns>
         public static bool operator ==(Number lhs, IMeasure<Number> rhs)
         {
-            return lhs.amount == rhs.GetAmount(lhs.unit);
+            return lhs.amount == rhs.StandardAmount;
         }
 
         /// <summary>
@@ -627,7 +620,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>true if the two measure objects are not equal; false if they are equal</returns>
         public static bool operator !=(Number lhs, Number rhs)
         {
-            return lhs.amount != rhs.GetAmount(lhs.unit);
+            return lhs.amount != rhs.amount;
         }
 
         /// <summary>
@@ -638,7 +631,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>true if the two measure objects are not equal; false if they are equal</returns>
         public static bool operator !=(Number lhs, IMeasure<Number> rhs)
         {
-            return lhs.amount != rhs.GetAmount(lhs.unit);
+            return lhs.amount != rhs.StandardAmount;
         }
 
         #endregion
