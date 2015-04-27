@@ -47,9 +47,6 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<Number> One = new Unit<Number>("");
 
 
-        public static readonly Unit<Number> Percent = new Unit<Number>("%", Factors.Centi);
-        public static readonly Unit<Number> Permille = new Unit<Number>("\u2030", Factors.Milli);
-        public static readonly Unit<Number> PartsPerMillion = new Unit<Number>("ppm", Factors.Micro);
 
         private readonly AmountType amount;
 

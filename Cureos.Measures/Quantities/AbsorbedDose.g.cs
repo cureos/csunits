@@ -46,6 +46,7 @@ namespace Cureos.Measures.Quantities
 
         public static readonly Unit<AbsorbedDose> Gray = new Unit<AbsorbedDose>("Gy");
 
+        public static readonly Unit<AbsorbedDose> NanoGray = new Unit<AbsorbedDose>(UnitPrefix.Nano);
         public static readonly Unit<AbsorbedDose> MicroGray = new Unit<AbsorbedDose>(UnitPrefix.Micro);
         public static readonly Unit<AbsorbedDose> MilliGray = new Unit<AbsorbedDose>(UnitPrefix.Milli);
         public static readonly Unit<AbsorbedDose> CentiGray = new Unit<AbsorbedDose>(UnitPrefix.Centi);

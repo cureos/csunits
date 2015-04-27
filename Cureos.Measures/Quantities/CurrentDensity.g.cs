@@ -54,6 +54,8 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<CurrentDensity> DekaAmperePerSquareMeter = new Unit<CurrentDensity>(UnitPrefix.Deka);
         public static readonly Unit<CurrentDensity> HectoAmperePerSquareMeter = new Unit<CurrentDensity>(UnitPrefix.Hecto);
         public static readonly Unit<CurrentDensity> KiloAmperePerSquareMeter = new Unit<CurrentDensity>(UnitPrefix.Kilo);
+        public static readonly Unit<CurrentDensity> MegaAmperePerSquareMeter = new Unit<CurrentDensity>(UnitPrefix.Mega);
+        public static readonly Unit<CurrentDensity> GigaAmperePerSquareMeter = new Unit<CurrentDensity>(UnitPrefix.Giga);
 
 
         private readonly AmountType amount;

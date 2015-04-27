@@ -1,51 +1,4 @@
-﻿<#@ template hostspecific="true" language="C#" #>
-<#@ assembly name="System.Core" #>
-<#@ import namespace="System.Runtime.Remoting.Messaging" #>
-<#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="System.IO" #>
-<#@ import namespace="System.Linq" #>
-<#
-    if (!string.IsNullOrWhiteSpace(ClassName)) {
-        string templateDirectory = Path.GetDirectoryName(Host.TemplateFile);
-        string outputFilePath = Path.Combine(templateDirectory, "T4", "Quantities.csv");
-        var lines=File.ReadAllLines(outputFilePath);
-
-        var line = lines
-                    .Where(s => !String.IsNullOrWhiteSpace(s) && !s.Trim().StartsWith("//"))
-                    .SingleOrDefault(s => s.Substring(0, s.IndexOf(',')).Equals(ClassName));
-
-        if (line != null) {
-            var values=line.Split(',');
-            var displayName = String.IsNullOrWhiteSpace(values[1]) ? DisplayName : values[1];
-            var differentiator = values[2];
-            var length = Int32.Parse(values[3]);
-            var mass = Int32.Parse(values[4]);
-            var time = Int32.Parse(values[5]);
-            var current = Int32.Parse(values[6]);
-            var temperature = Int32.Parse(values[7]);
-            var luminous = Int32.Parse(values[8]);
-            var substance = Int32.Parse(values[9]);
-
-            var stdUnit = values[10];
-            var stdUnitSymbol = values[11];
-
-            var loExp = Int32.Parse(values[12]);
-            var hiExp = Int32.Parse(values[13]);
-            
-            var prefixes = new Dictionary<int, string> {
-                { -24, "Yocto" }, { -21, "Zepto" }, { -18, "Atto" }, { -15, "Femto" }, { -12, "Pico" }, { -9, "Nano" }, 
-                { -6, "Micro" }, { -3, "Milli" }, { -2, "Centi" }, { -1, "Deci" }, { 1, "Deka" }, { 2, "Hecto" }, 
-                { 3, "Kilo" }, { 6, "Mega" }, { 9, "Giga" }, { 12, "Tera" }, { 15, "Peta" }, { 18, "Exa" }, 
-                { 21, "Zetta" }, { 24, "Yotta" }};
-
-            var selPrefixes = prefixes.Where(kv => loExp <= kv.Key && kv.Key <= hiExp).Select(kv => kv.Value).ToList();
-
-            var unitSpecs = new List<Tuple<string, string, string>>();
-            for (var i = 14; i < values.Length; i += 3) {
-                var factor = "Factors." + values[i + 2].Replace("*", " * Factors.").Replace("/", " / Factors.");
-                unitSpecs.Add(Tuple.Create(values[i], values[i + 1], factor));
-            }
-#>/*
+/*
  *  Copyright (c) 2011-2015, Cureos AB.
  *  All rights reserved.
  *  http://www.cureos.com
@@ -83,60 +36,27 @@ namespace Cureos.Measures.Quantities
 #endif
 
     /// <summary>
-    /// Implementation of the <#= displayName #> quantity
+    /// Implementation of the pressure quantity
     /// </summary>
-    public partial struct <#= ClassName #> : IQuantity<<#= ClassName #>>, IMeasure<<#= ClassName #>>
+    public partial struct Pressure : IQuantity<Pressure>, IMeasure<Pressure>
     {
         #region FIELDS
 
-<#
-            if (String.IsNullOrWhiteSpace(differentiator)) {
-#>
-        private static readonly QuantityDimension dimension = new QuantityDimension(<#= length #>, <#= mass #>, <#= time #>, <#= current #>, <#= temperature #>, <#= luminous #>, <#= substance #>);
-<#
-            } else if (length == 0 && mass == 0 && time == 0 && current == 0 && temperature == 0 && luminous == 0 && substance == 0) {
-#>
-        private static readonly QuantityDimension dimension = QuantityDimension.<#= differentiator #>;
-<#
-            } else {
-#>
-        private static readonly QuantityDimension dimension = QuantityDimension.<#= differentiator #> * new QuantityDimension(<#= length #>, <#= mass #>, <#= time #>, <#= current #>, <#= temperature #>, <#= luminous #>, <#= substance #>);
-<#
-            }
-#>
+        private static readonly QuantityDimension dimension = new QuantityDimension(-1, 1, -2, 0, 0, 0, 0);
 
-        public static readonly Unit<<#= ClassName #>> <#= stdUnit #> = new Unit<<#= ClassName #>>("<#= stdUnitSymbol #>");
+        public static readonly Unit<Pressure> Pascal = new Unit<Pressure>("Pa");
 
-<#
-            if (ClassName.Equals("Temperature")) {
-#>
-        public static readonly Unit<Temperature> Celsius = new Unit<Temperature>("°C",
-                        a => a + Factors.KelvinCelsiusIntercept, a => a - Factors.KelvinCelsiusIntercept);
-        public static readonly Unit<Temperature> Fahrenheit = new Unit<Temperature>("°F",
-                        a => (a + Factors.KelvinFahrenheitIntercept) * Factors.KelvinFahrenheitSlope,
-                        a => a / Factors.KelvinFahrenheitSlope - Factors.KelvinFahrenheitIntercept);
-<#
-            } else {
-#>
-<#
-                foreach (var selPrefix in selPrefixes) {
-#>
-        public static readonly Unit<<#= ClassName #>> <#= selPrefix #><#= stdUnit #> = new Unit<<#= ClassName #>>(UnitPrefix.<#= selPrefix #>);
-<#
-            }
-#>
+        public static readonly Unit<Pressure> NanoPascal = new Unit<Pressure>(UnitPrefix.Nano);
+        public static readonly Unit<Pressure> MicroPascal = new Unit<Pressure>(UnitPrefix.Micro);
+        public static readonly Unit<Pressure> MilliPascal = new Unit<Pressure>(UnitPrefix.Milli);
+        public static readonly Unit<Pressure> CentiPascal = new Unit<Pressure>(UnitPrefix.Centi);
+        public static readonly Unit<Pressure> DeciPascal = new Unit<Pressure>(UnitPrefix.Deci);
+        public static readonly Unit<Pressure> DekaPascal = new Unit<Pressure>(UnitPrefix.Deka);
+        public static readonly Unit<Pressure> HectoPascal = new Unit<Pressure>(UnitPrefix.Hecto);
+        public static readonly Unit<Pressure> KiloPascal = new Unit<Pressure>(UnitPrefix.Kilo);
+        public static readonly Unit<Pressure> MegaPascal = new Unit<Pressure>(UnitPrefix.Mega);
+        public static readonly Unit<Pressure> GigaPascal = new Unit<Pressure>(UnitPrefix.Giga);
 
-<#
-                foreach (var unitSpec in unitSpecs) {
-                    var unitName = unitSpec.Item1;
-                    var unitSymbol = unitSpec.Item2;
-                    var factor = unitSpec.Item3;
-#>
-        public static readonly Unit<<#= ClassName #>> <#= unitName #> = new Unit<<#= ClassName #>>("<#= unitSymbol #>", <#= factor #>);
-<#
-                }
-            }
-#>
 
         private readonly AmountType amount;
 
@@ -145,10 +65,10 @@ namespace Cureos.Measures.Quantities
         #region CONSTRUCTORS
 
         /// <summary>
-        /// Initializes a <#= ClassName #> object from an object implementing the IMeasure&lt;<#= ClassName #>&gt; interface
+        /// Initializes a Pressure object from an object implementing the IMeasure&lt;Pressure&gt; interface
         /// </summary>
-        /// <param name="other">Object implemeting the IMeasure&lt;<#= ClassName #>&gt; interface</param>
-        public <#= ClassName #>(IMeasure<<#= ClassName #>> other)
+        /// <param name="other">Object implemeting the IMeasure&lt;Pressure&gt; interface</param>
+        public Pressure(IMeasure<Pressure> other)
             : this(other.Amount, other.Unit)
         {
         }
@@ -157,7 +77,7 @@ namespace Cureos.Measures.Quantities
         /// Initializes a measure to the specified amount and standard unit of the measured quantity
         /// </summary>
         /// <param name="amount">Measured amount in standard unit of the specified quantity</param>
-        public <#= ClassName #>(double amount)
+        public Pressure(double amount)
         {
             this.amount = (AmountType)amount;
         }
@@ -166,7 +86,7 @@ namespace Cureos.Measures.Quantities
         /// Initializes a measure to the specified amount and standard unit of the measured quantity
         /// </summary>
         /// <param name="amount">Measured amount in standard unit of the specified quantity</param>
-        public <#= ClassName #>(float amount)
+        public Pressure(float amount)
         {
             this.amount = (AmountType)amount;
         }
@@ -175,7 +95,7 @@ namespace Cureos.Measures.Quantities
         /// Initializes a measure to the specified amount and standard unit of the measured quantity
         /// </summary>
         /// <param name="amount">Measured amount in standard unit of the specified quantity</param>
-        public <#= ClassName #>(decimal amount)
+        public Pressure(decimal amount)
         {
             this.amount = (AmountType)amount;
         }
@@ -186,7 +106,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Measured amount</param>
         /// <param name="unit">Unit of measure</param>
         /// <exception cref="ArgumentNullException">if the specified unit is null</exception>
-        public <#= ClassName #>(double amount, IUnit<<#= ClassName #>> unit)
+        public Pressure(double amount, IUnit<Pressure> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
             this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
@@ -198,7 +118,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Measured amount</param>
         /// <param name="unit">Unit of measure</param>
         /// <exception cref="ArgumentNullException">if the specified unit is null</exception>
-        public <#= ClassName #>(float amount, IUnit<<#= ClassName #>> unit)
+        public Pressure(float amount, IUnit<Pressure> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
             this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
@@ -210,7 +130,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Measured amount</param>
         /// <param name="unit">Unit of measure</param>
         /// <exception cref="ArgumentNullException">if the specified unit is null</exception>
-        public <#= ClassName #>(decimal amount, IUnit<<#= ClassName #>> unit)
+        public Pressure(decimal amount, IUnit<Pressure> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
             this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
@@ -218,7 +138,7 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
-        #region Implementation of IQuantity<<#= ClassName #>>
+        #region Implementation of IQuantity<Pressure>
 
         /// <summary>
         /// Gets the physical dimension of the quantity in terms of SI units
@@ -239,14 +159,14 @@ namespace Cureos.Measures.Quantities
         /// <summary>
         /// Gets the standard unit associated with the quantity
         /// </summary>
-        public IUnit<<#= ClassName #>> StandardUnit
+        public IUnit<Pressure> StandardUnit
         {
-            get { return <#= stdUnit #>; }
+            get { return Pascal; }
         }
 
         #endregion
 
-        #region Implementation of IMeasure<<#= ClassName #>>
+        #region Implementation of IMeasure<Pressure>
 
         /// <summary>
         /// Gets the measured amount in the <see cref="Unit">current unit of measure</see>
@@ -257,7 +177,7 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Gets the measured amount in the standard unit of measure for the <#= displayName #> quantity</typeparam>
+        /// Gets the measured amount in the standard unit of measure for the pressure quantity</typeparam>
         /// </summary
         public AmountType StandardAmount
         {
@@ -280,7 +200,7 @@ namespace Cureos.Measures.Quantities
         AmountType IMeasure.GetAmount(IUnit unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            if (!unit.Quantity.Equals(default(<#= ClassName #>))) throw new ArgumentException("Unit is not the same quantity as measure");
+            if (!unit.Quantity.Equals(default(Pressure))) throw new ArgumentException("Unit is not the same quantity as measure");
             return unit.AmountFromStandardUnitConverter(this.amount);
         }
 
@@ -292,13 +212,13 @@ namespace Cureos.Measures.Quantities
         /// <typeparamref name="Q">valid quantity</typeparamref></exception>
         IMeasure IMeasure.this[IUnit unit]
         {
-            get { return this[unit as IUnit<<#= ClassName #>>]; }
+            get { return this[unit as IUnit<Pressure>]; }
         }
 
         /// <summary>
         /// Gets the quantity-typed unit of measure
         /// </summary>
-        public IUnit<<#= ClassName #>> Unit
+        public IUnit<Pressure> Unit
         {
             get { return this.StandardUnit; }
         }
@@ -308,7 +228,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
         /// <returns>Measured amount converted into <paramref name="unit">specified unit</paramref></returns>
-        public AmountType GetAmount(IUnit<<#= ClassName #>> unit)
+        public AmountType GetAmount(IUnit<Pressure> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
             return unit.AmountFromStandardUnitConverter(this.amount);
@@ -318,7 +238,7 @@ namespace Cureos.Measures.Quantities
         /// Gets a new unit specific measure based on this measure but in the <paramref name="unit">specified unit</paramref>
         /// </summary>
         /// <param name="unit">Unit in which the new measure should be specified</param>
-        IMeasure<<#= ClassName #>> IMeasure<<#= ClassName #>>.this[IUnit<<#= ClassName #>> unit]
+        IMeasure<Pressure> IMeasure<Pressure>.this[IUnit<Pressure> unit]
         {
             get { return this[unit]; }
         }
@@ -330,7 +250,7 @@ namespace Cureos.Measures.Quantities
         /// true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
         /// </returns>
         /// <param name="other">An object to compare with this object.</param>
-        public bool Equals(IMeasure<<#= ClassName #>> other)
+        public bool Equals(IMeasure<Pressure> other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
@@ -347,7 +267,7 @@ namespace Cureos.Measures.Quantities
         bool IEquatable<IMeasure>.Equals(IMeasure other)
         {
             if (other == null) throw new ArgumentNullException("other");
-            if (!other.Unit.Quantity.Equals(default(<#= ClassName #>))) throw new ArgumentException("Measures are of different quantities");
+            if (!other.Unit.Quantity.Equals(default(Pressure))) throw new ArgumentException("Measures are of different quantities");
             return this.amount.Equals(other.GetAmount(this.Unit));
         }
 
@@ -366,7 +286,7 @@ namespace Cureos.Measures.Quantities
         ///                     This object is greater than <paramref name="other"/>. 
         /// </returns>
         /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(IMeasure<<#= ClassName #>> other)
+        public int CompareTo(IMeasure<Pressure> other)
         {
             if (other == null) throw new ArgumentNullException("other");
             return this.amount.CompareTo(other.GetAmount(this.Unit));
@@ -382,7 +302,7 @@ namespace Cureos.Measures.Quantities
         int IComparable<IMeasure>.CompareTo(IMeasure other)
         {
             if (other == null) throw new ArgumentNullException("other");
-            if (!other.Unit.Quantity.Equals(default(<#= ClassName #>))) throw new ArgumentException("Measures are of different quantities");
+            if (!other.Unit.Quantity.Equals(default(Pressure))) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.GetAmount(this.Unit));
         }
 
@@ -394,12 +314,12 @@ namespace Cureos.Measures.Quantities
         /// Gets a new unit preserving measure based on this measure but in the <paramref name="unit">specified unit</paramref>
         /// </summary>
         /// <param name="unit">Unit in which the new measure should be specified</param>
-        public UnitPreservingMeasure<<#= ClassName #>> this[IUnit<<#= ClassName #>> unit]
+        public UnitPreservingMeasure<Pressure> this[IUnit<Pressure> unit]
         {
             get
             {
                 if (unit == null) throw new ArgumentNullException("unit");
-                return new UnitPreservingMeasure<<#= ClassName #>>(this.GetAmount(unit), unit);
+                return new UnitPreservingMeasure<Pressure>(this.GetAmount(unit), unit);
             }
         }
 
@@ -419,8 +339,8 @@ namespace Cureos.Measures.Quantities
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
-            if (obj.GetType() != typeof(IMeasure<<#= ClassName #>>)) return false;
-            return this.Equals((IMeasure<<#= ClassName #>>)obj);
+            if (obj.GetType() != typeof(IMeasure<Pressure>)) return false;
+            return this.Equals((IMeasure<Pressure>)obj);
         }
 
         /// <summary>
@@ -444,7 +364,7 @@ namespace Cureos.Measures.Quantities
         /// <filterpriority>2</filterpriority>
         public override string ToString()
         {
-            return String.Format("{0} {1} (<#= displayName #>)", this.amount, this.Unit.Symbol).Trim();
+            return String.Format("{0} {1} (pressure)", this.amount, this.Unit.Symbol).Trim();
         }
 
         /// <summary>
@@ -454,7 +374,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>A <see cref="T:System.String"/> containing a the actual value in formatted form with the quantity symbol appended</returns>
         public string ToString(string format)
         {
-            return String.Format("{0} {1} (<#= displayName #>)", this.amount.ToString(format), this.Unit.Symbol).Trim();
+            return String.Format("{0} {1} (pressure)", this.amount.ToString(format), this.Unit.Symbol).Trim();
         }
         
         /// <summary>
@@ -464,7 +384,7 @@ namespace Cureos.Measures.Quantities
         /// <returns></returns>
         public string ToString(IFormatProvider provider)
         {
-            return String.Format("{0} {1} (<#= displayName #>)", this.amount.ToString(provider), this.Unit.Symbol).Trim();
+            return String.Format("{0} {1} (pressure)", this.amount.ToString(provider), this.Unit.Symbol).Trim();
         }
         
         /// <summary>
@@ -475,7 +395,7 @@ namespace Cureos.Measures.Quantities
         /// <returns></returns>
         public string ToString(string format, IFormatProvider provider)
         {
-            return String.Format("{0} {1} (<#= displayName #>)", this.amount.ToString(format, provider), this.Unit.Symbol).Trim();
+            return String.Format("{0} {1} (pressure)", this.amount.ToString(format, provider), this.Unit.Symbol).Trim();
         }
         
         #endregion
@@ -483,33 +403,33 @@ namespace Cureos.Measures.Quantities
         #region OPERATORS
 
         /// <summary>
-        /// Casts a float value to a <#= ClassName #> object
+        /// Casts a float value to a Pressure object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns><#= ClassName #> representation of <paramref name="standardAmount"/> in unit <#= stdUnit #></returns>
-        public static explicit operator <#= ClassName #>(float standardAmount)
+        /// <returns>Pressure representation of <paramref name="standardAmount"/> in unit Pascal</returns>
+        public static explicit operator Pressure(float standardAmount)
         {
-            return new <#= ClassName #>(standardAmount);
+            return new Pressure(standardAmount);
         }
 
         /// <summary>
-        /// Casts a double value to a <#= ClassName #> object
+        /// Casts a double value to a Pressure object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns><#= ClassName #> representation of <paramref name="standardAmount"/> in unit <#= stdUnit #></returns>
-        public static explicit operator <#= ClassName #>(double standardAmount)
+        /// <returns>Pressure representation of <paramref name="standardAmount"/> in unit Pascal</returns>
+        public static explicit operator Pressure(double standardAmount)
         {
-            return new <#= ClassName #>(standardAmount);
+            return new Pressure(standardAmount);
         }
 
         /// <summary>
-        /// Casts a decimal value to a <#= ClassName #> object
+        /// Casts a decimal value to a Pressure object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns><#= ClassName #> representation of <paramref name="standardAmount"/> in unit <#= stdUnit #></returns>
-        public static explicit operator <#= ClassName #>(decimal standardAmount)
+        /// <returns>Pressure representation of <paramref name="standardAmount"/> in unit Pascal</returns>
+        public static explicit operator Pressure(decimal standardAmount)
         {
-            return new <#= ClassName #>(standardAmount);
+            return new Pressure(standardAmount);
         }
         
         /// <summary>
@@ -518,9 +438,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First measure term</param>
         /// <param name="rhs">Second measure term</param>
         /// <returns>Sum of the two measure objects in the unit of the <paramref name="lhs">left-hand side measure</paramref></returns>
-        public static <#= ClassName #> operator +(<#= ClassName #> lhs,  <#= ClassName #> rhs)
+        public static Pressure operator +(Pressure lhs,  Pressure rhs)
         {
-            return new <#= ClassName #>(lhs.amount + rhs.amount);
+            return new Pressure(lhs.amount + rhs.amount);
         }
 
         /// <summary>
@@ -529,9 +449,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First measure term</param>
         /// <param name="rhs">Second measure term (any object implementing the IMeasure interface)</param>
         /// <returns>Sum of the two measure objects in the unit of the <paramref name="lhs">left-hand side measure</paramref></returns>
-        public static <#= ClassName #> operator +(<#= ClassName #> lhs, IMeasure<<#= ClassName #>> rhs)
+        public static Pressure operator +(Pressure lhs, IMeasure<Pressure> rhs)
         {
-            return new <#= ClassName #>(lhs.amount + rhs.StandardAmount);
+            return new Pressure(lhs.amount + rhs.StandardAmount);
         }
 
         /// <summary>
@@ -540,9 +460,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First measure object</param>
         /// <param name="rhs">Second measure object</param>
         /// <returns>Difference of the measure objects</returns>
-        public static <#= ClassName #> operator -(<#= ClassName #> lhs, <#= ClassName #> rhs)
+        public static Pressure operator -(Pressure lhs, Pressure rhs)
         {
-            return new <#= ClassName #>(lhs.amount - rhs.amount);
+            return new Pressure(lhs.amount - rhs.amount);
         }
 
         /// <summary>
@@ -551,9 +471,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First measure object</param>
         /// <param name="rhs">Second measure object (any object implementing the IMeasure interface)</param>
         /// <returns>Difference of the measure objects</returns>
-        public static <#= ClassName #> operator -(<#= ClassName #> lhs, IMeasure<<#= ClassName #>> rhs)
+        public static Pressure operator -(Pressure lhs, IMeasure<Pressure> rhs)
         {
-            return new <#= ClassName #>(lhs.amount - rhs.StandardAmount);
+            return new Pressure(lhs.amount - rhs.StandardAmount);
         }
 
         /// <summary>
@@ -562,9 +482,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="scalar">Floating-point scalar</param>
         /// <param name="measure">Measure object</param>
         /// <returns>Product of the scalar and the measure object</returns>
-        public static <#= ClassName #> operator *(AmountType scalar, <#= ClassName #> measure)
+        public static Pressure operator *(AmountType scalar, Pressure measure)
         {
-            return new <#= ClassName #>(scalar * measure.amount);
+            return new Pressure(scalar * measure.amount);
         }
 
         /// <summary>
@@ -573,9 +493,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="measure">Measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Product of the measure object and the scalar</returns>
-        public static <#= ClassName #> operator *(<#= ClassName #> measure, AmountType scalar)
+        public static Pressure operator *(Pressure measure, AmountType scalar)
         {
-            return new <#= ClassName #>(measure.amount * scalar);
+            return new Pressure(measure.amount * scalar);
         }
 
         /// <summary>
@@ -584,9 +504,9 @@ namespace Cureos.Measures.Quantities
         /// <param name="iMeasure">measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Quotient of the measure object and the scalar</returns>
-        public static <#= ClassName #> operator /(<#= ClassName #> measure, AmountType scalar)
+        public static Pressure operator /(Pressure measure, AmountType scalar)
         {
-            return new <#= ClassName #>(measure.amount / scalar);
+            return new Pressure(measure.amount / scalar);
         }
 
         /// <summary>
@@ -595,7 +515,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object</param>
         /// <returns>true if first measure object is less than second measure object; false otherwise</returns>
-        public static bool operator <(<#= ClassName #> lhs, <#= ClassName #> rhs)
+        public static bool operator <(Pressure lhs, Pressure rhs)
         {
             return lhs.amount < rhs.amount;
         }
@@ -606,7 +526,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if first measure object is less than second measure object; false otherwise</returns>
-        public static bool operator <(<#= ClassName #> lhs, IMeasure<<#= ClassName #>> rhs)
+        public static bool operator <(Pressure lhs, IMeasure<Pressure> rhs)
         {
             return lhs.amount < rhs.StandardAmount;
         }
@@ -617,7 +537,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object</param>
         /// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
-        public static bool operator >(<#= ClassName #> lhs, <#= ClassName #> rhs)
+        public static bool operator >(Pressure lhs, Pressure rhs)
         {
             return lhs.amount > rhs.amount;
         }
@@ -628,7 +548,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
-        public static bool operator >(<#= ClassName #> lhs, IMeasure<<#= ClassName #>> rhs)
+        public static bool operator >(Pressure lhs, IMeasure<Pressure> rhs)
         {
             return lhs.amount > rhs.StandardAmount;
         }
@@ -639,7 +559,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object</param>
         /// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
-        public static bool operator <=(<#= ClassName #> lhs, <#= ClassName #> rhs)
+        public static bool operator <=(Pressure lhs, Pressure rhs)
         {
             return lhs.amount <= rhs.amount;
         }
@@ -650,7 +570,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
-        public static bool operator <=(<#= ClassName #> lhs, IMeasure<<#= ClassName #>> rhs)
+        public static bool operator <=(Pressure lhs, IMeasure<Pressure> rhs)
         {
             return lhs.amount <= rhs.StandardAmount;
         }
@@ -661,7 +581,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object</param>
         /// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
-        public static bool operator >=(<#= ClassName #> lhs, <#= ClassName #> rhs)
+        public static bool operator >=(Pressure lhs, Pressure rhs)
         {
             return lhs.amount >= rhs.amount;
         }
@@ -672,7 +592,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
-        public static bool operator >=(<#= ClassName #> lhs, IMeasure<<#= ClassName #>> rhs)
+        public static bool operator >=(Pressure lhs, IMeasure<Pressure> rhs)
         {
             return lhs.amount >= rhs.StandardAmount;
         }
@@ -683,7 +603,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object</param>
         /// <returns>true if the two measure objects are equal; false otherwise</returns>
-        public static bool operator ==(<#= ClassName #> lhs, <#= ClassName #> rhs)
+        public static bool operator ==(Pressure lhs, Pressure rhs)
         {
             return lhs.amount == rhs.amount;
         }
@@ -694,7 +614,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if the two measure objects are equal; false otherwise</returns>
-        public static bool operator ==(<#= ClassName #> lhs, IMeasure<<#= ClassName #>> rhs)
+        public static bool operator ==(Pressure lhs, IMeasure<Pressure> rhs)
         {
             return lhs.amount == rhs.StandardAmount;
         }
@@ -705,7 +625,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object</param>
         /// <returns>true if the two measure objects are not equal; false if they are equal</returns>
-        public static bool operator !=(<#= ClassName #> lhs, <#= ClassName #> rhs)
+        public static bool operator !=(Pressure lhs, Pressure rhs)
         {
             return lhs.amount != rhs.amount;
         }
@@ -716,7 +636,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="lhs">First object</param>
         /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if the two measure objects are not equal; false if they are equal</returns>
-        public static bool operator !=(<#= ClassName #> lhs, IMeasure<<#= ClassName #>> rhs)
+        public static bool operator !=(Pressure lhs, IMeasure<Pressure> rhs)
         {
             return lhs.amount != rhs.StandardAmount;
         }
@@ -724,24 +644,3 @@ namespace Cureos.Measures.Quantities
         #endregion
     }
 }
-<#		}
-    }#>
-<#+
-    string ClassName
-    {
-        get { return (string)CallContext.GetData("MyParameter"); }
-    }
-
-    string DisplayName
-    {
-        get {
-            var className = ClassName;
-            var displayName = className.Substring(0,1);
-            for (var i = 1; i < className.Length; i++) {
-                if (Char.IsUpper(className[i])) displayName += " ";
-                displayName += className[i];
-            }
-            return displayName.ToLowerInvariant();
-        }
-    }
-#>

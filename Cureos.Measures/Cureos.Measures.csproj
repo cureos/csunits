@@ -98,6 +98,99 @@
     <Compile Include="Quantities\ElectricResistance.g.cs">
       <DependentUpon>CodeGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="Quantities\Energy.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\Force.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\Frequency.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\HeatCapacity.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\HeatFluxDensity.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\Illuminance.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\Inductance.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\Length.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\Luminance.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\LuminousFlux.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\LuminousIntensity.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\MagneticFieldStrength.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\MagneticFlux.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\MagneticFluxDensity.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\Mass.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\MassDensity.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\MomentOfForce.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\Number.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\PlaneAngle.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\Power.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\Pressure.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\Probability.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\RefractiveIndex.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\RelativePermeability.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\SolidAngle.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\SpecificVolume.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\SurfaceDensity.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\SurfaceTension.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\Time.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\Velocity.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\WaveNumber.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="UnitPreservingMeasure.cs" />
     <Compile Include="PrimeNumbers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -131,48 +224,15 @@
     <Compile Include="Quantities\CatalyticActivity.g.cs">
       <DependentUpon>CodeGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="Quantities\Energy.cs" />
-    <Compile Include="Quantities\Force.cs" />
-    <Compile Include="Quantities\Frequency.cs" />
-    <Compile Include="Quantities\HeatCapacity.cs" />
-    <Compile Include="Quantities\HeatFluxDensity.cs" />
-    <Compile Include="Quantities\Illuminance.cs" />
-    <Compile Include="Quantities\Inductance.cs" />
-    <Compile Include="Quantities\Length.cs" />
     <Compile Include="Quantities\LinearAcceleratorAbsorbedDoseRate.cs" />
     <Compile Include="Quantities\LinearAcceleratorMeterset.cs" />
-    <Compile Include="Quantities\Luminance.cs" />
-    <Compile Include="Quantities\LuminousFlux.cs" />
-    <Compile Include="Quantities\LuminousIntensity.cs" />
-    <Compile Include="Quantities\MagneticFieldStrength.cs" />
-    <Compile Include="Quantities\MagneticFlux.cs" />
-    <Compile Include="Quantities\MagneticFluxDensity.cs" />
-    <Compile Include="Quantities\Mass.cs" />
-    <Compile Include="Quantities\MassDensity.cs" />
-    <Compile Include="Quantities\MomentOfForce.cs" />
-    <Compile Include="Quantities\Number.g.cs">
-      <DependentUpon>CodeGenerator.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Quantities\PlaneAngle.cs" />
-    <Compile Include="Quantities\Power.cs" />
-    <Compile Include="Quantities\Pressure.cs" />
-    <Compile Include="Quantities\Probability.cs" />
     <Compile Include="Quantities\RadioactiveAbsorbedDoseRate.cs" />
-    <Compile Include="Quantities\RefractiveIndex.cs" />
-    <Compile Include="Quantities\RelativePermeability.cs" />
-    <Compile Include="Quantities\SolidAngle.cs" />
-    <Compile Include="Quantities\SpecificVolume.cs" />
-    <Compile Include="Quantities\SurfaceDensity.cs" />
-    <Compile Include="Quantities\SurfaceTension.cs" />
     <Compile Include="Quantities\Temperature.g.cs">
       <DependentUpon>CodeGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="Quantities\Time.cs" />
-    <Compile Include="Quantities\Velocity.cs" />
     <Compile Include="Quantities\Volume.g.cs">
       <DependentUpon>CodeGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="Quantities\WaveNumber.cs" />
     <Compile Include="QuantityAdapter.cs" />
     <Compile Include="QuantityCollection.cs" />
     <Compile Include="QuantityDimension.cs" />

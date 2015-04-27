@@ -54,6 +54,8 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<ElectricConductance> DekaSiemens = new Unit<ElectricConductance>(UnitPrefix.Deka);
         public static readonly Unit<ElectricConductance> HectoSiemens = new Unit<ElectricConductance>(UnitPrefix.Hecto);
         public static readonly Unit<ElectricConductance> KiloSiemens = new Unit<ElectricConductance>(UnitPrefix.Kilo);
+        public static readonly Unit<ElectricConductance> MegaSiemens = new Unit<ElectricConductance>(UnitPrefix.Mega);
+        public static readonly Unit<ElectricConductance> GigaSiemens = new Unit<ElectricConductance>(UnitPrefix.Giga);
 
 
         private readonly AmountType amount;

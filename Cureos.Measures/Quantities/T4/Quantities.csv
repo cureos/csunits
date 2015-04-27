@@ -7,25 +7,55 @@
 // 12. Lower standard unit prefix exponent
 // 13. Upper standard unit prefix exponent
 // 14.-16., 17.-19. etc. Additional unit triplets (Unit field name, unit symbol, Factors class conversion factor vs. standard unit)
-AbsorbedDose,,,2,0,-2,0,0,0,0,Gray,Gy,-6,3,Rad,rad,Centi
+AbsorbedDose,,,2,0,-2,0,0,0,0,Gray,Gy,-9,3,Rad,rad,Centi
 Acceleration,,,1,0,-2,0,0,0,0,MeterPerSecondSquared,m s\u207b²,-3,3
 Activity,,,0,0,-1,0,0,0,0,Becquerel,Bq,3,9,Curie,Ci,BecquerelPerCurie,KiloCurie,kCi,Kilo*BecquerelPerCurie,MilliCurie,mCi,Milli*BecquerelPerCurie,MicroCurie,µCi,Micro*BecquerelPerCurie
-AmountConcentration,,,-3,0,0,0,0,0,1,MolePerCubicMeter,mol m\u207b³,-9,3
-AmountOfSubstance,,,0,0,0,0,0,0,1,Mole,mol,-9,3
-AngularAcceleration,,Radian,0,0,-2,0,0,0,0,RadianPerSecondSquared,rad s\u207b²,-9,3
-AngularVelocity,,Radian,0,0,-1,0,0,0,0,RadianPerSecond,rad s\u207b¹,-9,3
+AmountConcentration,,,-3,0,0,0,0,0,1,MolePerCubicMeter,mol m\u207b³,-9,9
+AmountOfSubstance,,,0,0,0,0,0,0,1,Mole,mol,-9,9
+AngularAcceleration,,Radian,0,0,-2,0,0,0,0,RadianPerSecondSquared,rad s\u207b²,-9,9
+AngularVelocity,,Radian,0,0,-1,0,0,0,0,RadianPerSecond,rad s\u207b¹,-9,9
 Area,,,2,0,0,0,0,0,0,SquareMeter,m²,0,0,SquareKiloMeter,km²,Kilo*Kilo,SquareDeciMeter,dm²,Deci*Deci,SquareCentiMeter,cm²,Centi*Centi,SquareMilliMeter,mm²,Milli*Milli,Barn,b,SquareMetersPerBarn,Are,a,Deka,Hectare,ha,Hecto
 Capacitance,,,-2,-1,4,2,0,0,0,Farad,F,-12,3
 CatalyticActivity,,,0,0,-1,0,0,0,1,Katal,kat,-9,3
-CurrentDensity,,,-2,0,0,1,0,0,0,AmperePerSquareMeter,A m\u207b²,-9,3
+CurrentDensity,,,-2,0,0,1,0,0,0,AmperePerSquareMeter,A m\u207b²,-9,9
 DoseEquivalent,,,2,0,-2,0,0,0,0,Sievert,Sv,-9,3
 DynamicViscosity,,,-1,1,-1,0,0,0,0,PascalSecond,Pa s,-3,9
 ElectricCharge,,,0,0,1,1,0,0,0,Coulomb,C,-12,-3,ElementaryCharge,e,CoulombsPerElementaryCharge
-ElectricConductance,,,-2,-1,3,2,0,0,0,Siemens,S,-9,3
+ElectricConductance,,,-2,-1,3,2,0,0,0,Siemens,S,-9,9
 ElectricCurrent,,,0,0,0,1,0,0,0,Ampere,A,-12,3
 ElectricPotential,,,2,1,-3,-1,0,0,0,Volt,V,-9,9
 ElectricResistance,,,2,1,-3,-2,0,0,0,Ohm,Ω,-9,9
-Number,,Number,0,0,0,0,0,0,0,One,,0,0,Percent,%,Centi,Permille,\u2030,Milli,PartsPerMillion,ppm,Micro
+Energy,,,2,1,-2,0,0,0,0,Joule,J,-9,9,WattHour,Wh,SecondsPerHour,KiloWattHour,kWh,Kilo*SecondsPerHour,MegaWattHour,MWh,Mega*SecondsPerHour,GigaWattHour,GWh,Giga*SecondsPerHour,TeraWattHour,TWh,Tera*SecondsPerHour,ElectronVolt,eV,JoulesPerElectronVolt,KiloElectronVolt,keV,Kilo*JoulesPerElectronVolt,MegaElectronVolt,MeV,Mega*JoulesPerElectronVolt,GigaElectronVolt,GeV,Giga*JoulesPerElectronVolt,TeraElectronVolt,TeV,Tera*JoulesPerElectronVolt
+Force,,,1,1,-2,0,0,0,0,Newton,N,-9,9
+Frequency,,,0,0,-1,0,0,0,0,Hertz,Hz,-9,9
+HeatCapacity,,,2,1,-2,0,-1,0,0,JoulePerKelvin,J K\u207b¹,-9,9
+HeatFluxDensity,,,0,1,-3,0,0,0,0,WattPerSquareMeter,W m\u207b²,-9,9
+Illuminance,,Steradian,-2,0,0,0,0,1,0,Lux,lx,-9,9
+Inductance,,,2,1,-2,-2,0,0,0,Henry,H,-9,9
+Length,,,1,0,0,0,0,0,0,Meter,m,-12,3,Angstrom,Å,MetersPerAngstrom,Inch,in,MetersPerInch,Foot,ft,MetersPerFoot,Yard,yd,MetersPerYard,Mile,mi,MetersPerMile,NauticalMile,M,MetersPerNauticalMile
+Luminance,,,-2,0,0,0,0,1,0,CandelaPerSquareMeter,cd m\u207b²,-9,9
+LuminousFlux,,Steradian,0,0,0,0,0,1,0,Lumen,lm,-9,9
+LuminousIntensity,,,0,0,0,0,0,1,0,Candela,cd,-9,9
+MagneticFieldStrength,,,-1,0,0,1,0,0,0,AmperePerMeter,A m\u207b¹,-9,9
+MagneticFlux,,,2,1,-2,-1,0,0,0,Weber,Wb,-9,9
+MagneticFluxDensity,,,0,1,-2,-1,0,0,0,Tesla,T,-9,9
+Mass,,,0,1,0,0,0,0,0,KiloGram,kg,0,0,MetricTon,t,Kilo,HectoGram,hg,Deci,Gram,g,Milli,MilliGram,mg,Micro,MicroGram,µg,Nano,NanoGram,ng,Pico,PicoGram,pg,Femto,ElectronMass,m\u2091,KiloGramsPerElectronMass,AtomicMassUnit,u,KiloGramsPerAtomicMassUnit,Dalton,Da,KiloGramsPerAtomicMassUnit,PicoDalton,pDa,Pico*KiloGramsPerAtomicMassUnit,NanoDalton,nDa,Nano*KiloGramsPerAtomicMassUnit,MicroDalton,µDa,Micro*KiloGramsPerAtomicMassUnit,MilliDalton,mDa,Milli*KiloGramsPerAtomicMassUnit,KiloDalton,kDa,Kilo*KiloGramsPerAtomicMassUnit,MegaDalton,MDa,Mega*KiloGramsPerAtomicMassUnit
+MassDensity,,,-3,1,0,0,0,0,0,KiloGramPerCubicMeter,kg m\u207b³,0,0,KiloGramPerLiter,kg/l,Kilo,GramPerCubicCentiMeter,g cm\u207b³,Kilo,GramPerCubicMilliMeter,g mm\u207b³,Mega
+MomentOfForce,,,2,1,-2,0,0,0,0,NewtonMeter,Nm,-9,9
+Number,,Number,0,0,0,0,0,0,0,One,,0,0
+PlaneAngle,,Radian,0,0,0,0,0,0,0,Radian,rad,0,0,Degree,°,RadiansPerDegree,Minute,',RadiansPerMinute,Second,\",RadiansPerSecond
+Power,,,2,1,-3,0,0,0,0,Watt,W,-9,9
+Pressure,,,-1,1,-2,0,0,0,0,Pascal,Pa,-9,9
+Probability,,Number,0,0,0,0,0,0,0,Number,,0,0,Percent,%,Centi,Permille,\u2030,Milli,PartsPerMillion,ppm,Micro
+RefractiveIndex,,RefractiveIndex,0,0,0,0,0,0,0,One,,0,0
+RelativePermeability,,RelativePermeability,0,0,0,0,0,0,0,One,,0,0
+SolidAngle,,Steradian,0,0,0,0,0,0,0,Steradian,sr,-9,-3,SquareDegree,(°)²,RadiansPerDegree*RadiansPerDegree
+SpecificVolume,,,3,-1,0,0,0,0,0,CubicMeterPerKiloGram,m³ kg\u207b¹,0,0
+SurfaceDensity,,,-2,1,0,0,0,0,0,KiloGramPerSquareMeter,kg m\u207b²,0,0,GramPerSquareCentiMeter,g cm\u207b²,Deka
+SurfaceTension,,,0,1,-2,0,0,0,0,NewtonPerMeter,N m\u207b¹,-9,9
 Temperature,,,0,0,0,0,1,0,0,Kelvin,K,0,0
+Time,,,0,0,1,0,0,0,0,Second,s,0,0,Minute,min,SecondsPerMinute,Hour,h,SecondsPerHour,Day,dy,SecondsPerDay,Week,wk,SecondsPerWeek,JulianYear,a,SecondsPerJulianYear
+Velocity,,,1,0,-1,0,0,0,0,MeterPerSecond,m s\u207b¹,-9,3,KiloMeterPerHour,km h\u207b¹,Kilo/SecondsPerHour
 Volume,,,3,0,0,0,0,0,0,CubicMeter,m³,0,0,CubicDeciMeter,dm³,Deci*Deci*Deci,CubicCentiMeter,cm³,Centi*Centi*Centi,CubicMilliMeter,mm³,Milli*Milli*Milli,Liter,l,Deci*Deci*Deci,USLiquidGallon,gal,CubicMetersPerUSLiquidGallon
+WaveNumber,,,-1,0,0,0,0,0,0,ReciprocalMeter,m\u207b¹,0,0,ReciprocalCentiMeter,cm\u207b¹,Hecto,ReciprocalMilliMeter,mm\u207b¹,Kilo
 

@@ -54,6 +54,8 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<AmountConcentration> DekaMolePerCubicMeter = new Unit<AmountConcentration>(UnitPrefix.Deka);
         public static readonly Unit<AmountConcentration> HectoMolePerCubicMeter = new Unit<AmountConcentration>(UnitPrefix.Hecto);
         public static readonly Unit<AmountConcentration> KiloMolePerCubicMeter = new Unit<AmountConcentration>(UnitPrefix.Kilo);
+        public static readonly Unit<AmountConcentration> MegaMolePerCubicMeter = new Unit<AmountConcentration>(UnitPrefix.Mega);
+        public static readonly Unit<AmountConcentration> GigaMolePerCubicMeter = new Unit<AmountConcentration>(UnitPrefix.Giga);
 
 
         private readonly AmountType amount;

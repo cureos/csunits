@@ -54,6 +54,8 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<AngularAcceleration> DekaRadianPerSecondSquared = new Unit<AngularAcceleration>(UnitPrefix.Deka);
         public static readonly Unit<AngularAcceleration> HectoRadianPerSecondSquared = new Unit<AngularAcceleration>(UnitPrefix.Hecto);
         public static readonly Unit<AngularAcceleration> KiloRadianPerSecondSquared = new Unit<AngularAcceleration>(UnitPrefix.Kilo);
+        public static readonly Unit<AngularAcceleration> MegaRadianPerSecondSquared = new Unit<AngularAcceleration>(UnitPrefix.Mega);
+        public static readonly Unit<AngularAcceleration> GigaRadianPerSecondSquared = new Unit<AngularAcceleration>(UnitPrefix.Giga);
 
 
         private readonly AmountType amount;

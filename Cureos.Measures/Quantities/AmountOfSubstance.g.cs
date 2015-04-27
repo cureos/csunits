@@ -54,6 +54,8 @@ namespace Cureos.Measures.Quantities
         public static readonly Unit<AmountOfSubstance> DekaMole = new Unit<AmountOfSubstance>(UnitPrefix.Deka);
         public static readonly Unit<AmountOfSubstance> HectoMole = new Unit<AmountOfSubstance>(UnitPrefix.Hecto);
         public static readonly Unit<AmountOfSubstance> KiloMole = new Unit<AmountOfSubstance>(UnitPrefix.Kilo);
+        public static readonly Unit<AmountOfSubstance> MegaMole = new Unit<AmountOfSubstance>(UnitPrefix.Mega);
+        public static readonly Unit<AmountOfSubstance> GigaMole = new Unit<AmountOfSubstance>(UnitPrefix.Giga);
 
 
         private readonly AmountType amount;
