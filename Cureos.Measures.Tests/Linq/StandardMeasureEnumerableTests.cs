@@ -18,8 +18,8 @@ namespace Cureos.Measures.Linq
         [Test]
         public void ToStandardMeasures_DoubleNoUnitConversion_ReturningNonConvertedStandardMeasures()
         {
-            var measures = new[] { 1.0, 2.0, 3.0, -2.0 }.ToStandardMeasures<Length>();
-            var expected = new StandardMeasure<Length>(3.0);
+            var measures = new[] { 1.0, 2.0, 3.0, -2.0 }.ToMeasures<Length>();
+            var expected = new Measure<Length>(3.0);
             var actual = measures.ElementAt(2);
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }
@@ -27,8 +27,8 @@ namespace Cureos.Measures.Linq
         [Test]
         public void ToStandardMeasures_DecimalWithUnitConversion_ReturningConvertedStandardMeasures()
         {
-            var measures = new[] { 1.0m, 2.0m, 3.0m, -2.0m }.ToStandardMeasures(ElectricCurrent.MilliAmpere);
-            var expected = new StandardMeasure<ElectricCurrent>(0.002m);
+            var measures = new[] { 1.0m, 2.0m, 3.0m, -2.0m }.ToMeasures(ElectricCurrent.MilliAmpere);
+            var expected = new Measure<ElectricCurrent>(0.002m);
             var actual = measures.ElementAt(1);
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }

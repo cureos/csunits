@@ -48,10 +48,10 @@ namespace Cureos.Measures
 		{
 			PerformTiming(() =>
 							  {
-								  var val = new Measure<Mass>(0.0);
+								  var val = new UnitPreservingMeasure<Mass>(0.0);
 								  for (double i = 0.0; i < no; ++i)
 								  {
-									  val += new StandardMeasure<Mass>(i);
+									  val += new Measure<Mass>(i);
 								  }
 								  return val;
 							  });
@@ -62,10 +62,10 @@ namespace Cureos.Measures
 		{
 			PerformTiming(() =>
 							  {
-								  var val = new Measure<Mass>(0.0, Mass.KiloGram);
+								  var val = new UnitPreservingMeasure<Mass>(0.0, Mass.KiloGram);
 								  for (double i = 0.0; i < no; ++i)
 								  {
-									  val += new Measure<Mass>(i, Mass.Gram);
+									  val += new UnitPreservingMeasure<Mass>(i, Mass.Gram);
 								  }
 								  return val;
 							  });
@@ -76,10 +76,10 @@ namespace Cureos.Measures
 		{
 			PerformTiming(() =>
 							  {
-								  var val = new StandardMeasure<Length>(0.0);
+								  var val = new Measure<Length>(0.0);
 								  for (double i = 0.0; i < no; ++i)
 								  {
-									  val += new StandardMeasure<Length>(i);
+									  val += new Measure<Length>(i);
 								  }
 								  return val;
 							  });
@@ -90,10 +90,10 @@ namespace Cureos.Measures
 		{
 			PerformTiming(() =>
 			{
-				var val = new Measure<Length>(0.0, Length.CentiMeter);
+				var val = new UnitPreservingMeasure<Length>(0.0, Length.CentiMeter);
 				for (double i = 0.0; i < no; ++i)
 				{
-					val += new StandardMeasure<Length>(i);
+					val += new Measure<Length>(i);
 				}
 				return val;
 			});

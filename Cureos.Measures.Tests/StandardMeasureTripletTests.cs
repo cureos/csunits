@@ -14,7 +14,7 @@ namespace Cureos.Measures
     {
         #region Fields
 
-        private StandardMeasureTriplet<Time, Power, ElectricPotential> _instance;
+        private MeasureTriplet<Time, Power, ElectricPotential> _instance;
 
         #endregion
 
@@ -23,7 +23,7 @@ namespace Cureos.Measures
         [SetUp]
         public void Setup()
         {
-            _instance = new StandardMeasureTriplet<Time, Power, ElectricPotential>(5.0, 0.12, 0.6);
+            _instance = new MeasureTriplet<Time, Power, ElectricPotential>(5.0, 0.12, 0.6);
         }
 
         [TearDown]
@@ -38,7 +38,7 @@ namespace Cureos.Measures
         [Test]
         public void PlusOperator_AddInstanceWithItself_ReturnsDoubleInstance()
         {
-            var expected = new StandardMeasureTriplet<Time, Power, ElectricPotential>(10.0, 0.24, 1.2);
+            var expected = new MeasureTriplet<Time, Power, ElectricPotential>(10.0, 0.24, 1.2);
             var actual = _instance + _instance;
             IMeasureTripletAssert.AreEqual(expected, actual);
         }
@@ -46,7 +46,7 @@ namespace Cureos.Measures
         [Test]
         public void MinusOperator_SubtractInstanceWithItself_ReturnsZero()
         {
-            var expected = new StandardMeasureTriplet<Time, Power, ElectricPotential>(0.0, 0.0, 0.0);
+            var expected = new MeasureTriplet<Time, Power, ElectricPotential>(0.0, 0.0, 0.0);
             var actual = _instance - _instance;
             IMeasureTripletAssert.AreEqual(expected, actual);
         }
@@ -54,23 +54,23 @@ namespace Cureos.Measures
         [Test]
         public void TimesOperator_MultiplyBy2And3And4_ReturnsDoubleTimeThreeTimesPowerFourTimesPotential()
         {
-            var expected = new StandardMeasureTriplet<Time, Power, ElectricPotential>(10.0, 0.36, 2.4);
-            var actual = _instance * new StandardMeasureTriplet<Number, Number, Number>(2.0, 3.0, 4.0);
+            var expected = new MeasureTriplet<Time, Power, ElectricPotential>(10.0, 0.36, 2.4);
+            var actual = _instance * new MeasureTriplet<Number, Number, Number>(2.0, 3.0, 4.0);
             IMeasureTripletAssert.AreEqual(expected, actual);
         }
 
         [Test]
         public void DivideOperator_DivideBy2And3And4_ReturnsHalfTimeOneThirdPowerOneFourthPotential()
         {
-            var expected = new StandardMeasureTriplet<Time, Power, ElectricPotential>(2.5, 0.04, 0.15);
-            var actual = _instance / new StandardMeasureTriplet<Number, Number, Number>(2.0, 3.0, 4.0);
+            var expected = new MeasureTriplet<Time, Power, ElectricPotential>(2.5, 0.04, 0.15);
+            var actual = _instance / new MeasureTriplet<Number, Number, Number>(2.0, 3.0, 4.0);
             IMeasureTripletAssert.AreEqual(expected, actual);
         }
 
         [Test]
         public void DivideOperator_DivideByItself_ReturnsUnityDoublet()
         {
-            var expected = new StandardMeasureTriplet<Number, Number, Number>(1.0, 1.0, 1.0);
+            var expected = new MeasureTriplet<Number, Number, Number>(1.0, 1.0, 1.0);
             var actual = _instance / _instance;
             IMeasureTripletAssert.AreEqual(expected, actual);
         }
@@ -78,7 +78,7 @@ namespace Cureos.Measures
         [Test]
         public void TimesOperator_MultiplyScalarRhs_AllMeasuresEquallyScaled()
         {
-            var expected = new StandardMeasureTriplet<Time, Power, ElectricPotential>(15.0, 0.36, 1.8);;
+            var expected = new MeasureTriplet<Time, Power, ElectricPotential>(15.0, 0.36, 1.8);;
             var actual = _instance * 3.0;
             IMeasureTripletAssert.AreEqual(expected, actual);
         }
@@ -86,7 +86,7 @@ namespace Cureos.Measures
         [Test]
         public void TimesOperator_MultiplyScalarLhs_AllMeasuresEquallyScaled()
         {
-            var expected = new StandardMeasureTriplet<Time, Power, ElectricPotential>(15.0, 0.36, 1.8); ;
+            var expected = new MeasureTriplet<Time, Power, ElectricPotential>(15.0, 0.36, 1.8); ;
             var actual = 3.0 * _instance;
             IMeasureTripletAssert.AreEqual(expected, actual);
         }
@@ -94,16 +94,16 @@ namespace Cureos.Measures
         [Test]
         public void TimesOperator_MultiplyNumberLhs_AllMeasuresEquallyScaled()
         {
-            var expected = new StandardMeasureTriplet<Time, Power, ElectricPotential>(15.0, 0.36, 1.8); ;
-            var actual = _instance * new StandardMeasure<Number>(3.0);
+            var expected = new MeasureTriplet<Time, Power, ElectricPotential>(15.0, 0.36, 1.8); ;
+            var actual = _instance * new Measure<Number>(3.0);
             IMeasureTripletAssert.AreEqual(expected, actual);
         }
 
         [Test]
         public void TimesOperator_MultiplyNumberRhs_AllMeasuresEquallyScaled()
         {
-            var expected = new StandardMeasureTriplet<Time, Power, ElectricPotential>(15.0, 0.36, 1.8); ;
-            var actual = new StandardMeasure<Number>(3.0) * _instance;
+            var expected = new MeasureTriplet<Time, Power, ElectricPotential>(15.0, 0.36, 1.8); ;
+            var actual = new Measure<Number>(3.0) * _instance;
             IMeasureTripletAssert.AreEqual(expected, actual);
         }
 

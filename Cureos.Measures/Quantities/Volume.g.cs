@@ -1,4 +1,4 @@
-/*
+﻿/*
  *  Copyright (c) 2011-2015, Cureos AB.
  *  All rights reserved.
  *  http://www.cureos.com
@@ -309,12 +309,12 @@ namespace Cureos.Measures.Quantities
         /// Gets a new unit preserving measure based on this measure but in the <paramref name="unit">specified unit</paramref>
         /// </summary>
         /// <param name="unit">Unit in which the new measure should be specified</param>
-        public Measure<Volume> this[IUnit<Volume> unit]
+        public UnitPreservingMeasure<Volume> this[IUnit<Volume> unit]
         {
             get
             {
                 if (unit == null) throw new ArgumentNullException("unit");
-                return new Measure<Volume>(this.GetAmount(unit), unit);
+                return new UnitPreservingMeasure<Volume>(this.GetAmount(unit), unit);
             }
         }
 

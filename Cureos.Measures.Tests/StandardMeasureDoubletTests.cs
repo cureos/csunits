@@ -14,7 +14,7 @@ namespace Cureos.Measures
     {
         #region Fields
 
-        private StandardMeasureDoublet<Time, Power> _instance;
+        private MeasureDoublet<Time, Power> _instance;
 
         #endregion
 
@@ -23,7 +23,7 @@ namespace Cureos.Measures
         [SetUp]
         public void Setup()
         {
-            _instance = new StandardMeasureDoublet<Time, Power>(5.0, 0.12);
+            _instance = new MeasureDoublet<Time, Power>(5.0, 0.12);
         }
 
         [TearDown]
@@ -38,7 +38,7 @@ namespace Cureos.Measures
         [Test]
         public void PlusOperator_AddInstanceWithItself_ReturnsDoubleInstance()
         {
-            var expected = new StandardMeasureDoublet<Time, Power>(10.0, 0.24);
+            var expected = new MeasureDoublet<Time, Power>(10.0, 0.24);
             var actual = _instance + _instance;
             IMeasureDoubletAssert.AreEqual(expected, actual);
         }
@@ -46,7 +46,7 @@ namespace Cureos.Measures
         [Test]
         public void MinusOperator_SubtractInstanceWithItself_ReturnsZero()
         {
-            var expected = new StandardMeasureDoublet<Time, Power>(0.0, 0.0);
+            var expected = new MeasureDoublet<Time, Power>(0.0, 0.0);
             var actual = _instance - _instance;
             IMeasureDoubletAssert.AreEqual(expected, actual);
         }
@@ -54,23 +54,23 @@ namespace Cureos.Measures
         [Test]
         public void TimesOperator_MultiplyBy2And3_ReturnsDoubleTimeThreeTimesPower()
         {
-            var expected = new StandardMeasureDoublet<Time, Power>(10.0, 0.36);
-            var actual = _instance * new StandardMeasureDoublet<Number, Number>(2.0, 3.0);
+            var expected = new MeasureDoublet<Time, Power>(10.0, 0.36);
+            var actual = _instance * new MeasureDoublet<Number, Number>(2.0, 3.0);
             IMeasureDoubletAssert.AreEqual(expected, actual);
         }
 
         [Test]
         public void DivideOperator_DivideBy2And3_ReturnsHalfTimeOneThirdPower()
         {
-            var expected = new StandardMeasureDoublet<Time, Power>(2.5, 0.04);
-            var actual = _instance / new StandardMeasureDoublet<Number, Number>(2.0, 3.0);
+            var expected = new MeasureDoublet<Time, Power>(2.5, 0.04);
+            var actual = _instance / new MeasureDoublet<Number, Number>(2.0, 3.0);
             IMeasureDoubletAssert.AreEqual(expected, actual);
         }
 
         [Test]
         public void DivideOperator_DivideByItself_ReturnsUnityDoublet()
         {
-            var expected = new StandardMeasureDoublet<Number, Number>(1.0, 1.0);
+            var expected = new MeasureDoublet<Number, Number>(1.0, 1.0);
             var actual = _instance / _instance;
             IMeasureDoubletAssert.AreEqual(expected, actual);
         }

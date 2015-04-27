@@ -18,10 +18,10 @@ namespace Cureos.Measures
         [Test]
         public void Times_MultiplyAreaAndLength_ReturnsVolume()
         {
-            var expected = new StandardMeasure<Volume>(6.0);
-            var lhs = new StandardMeasure<Area>(2.0);
-            var rhs = new StandardMeasure<Length>(3.0);
-            StandardMeasure<Volume> actual; ArithmeticOperations.Times(lhs, rhs, out actual);
+            var expected = new Measure<Volume>(6.0);
+            var lhs = new Measure<Area>(2.0);
+            var rhs = new Measure<Length>(3.0);
+            Measure<Volume> actual; ArithmeticOperations.Times(lhs, rhs, out actual);
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }
 
@@ -29,18 +29,18 @@ namespace Cureos.Measures
         [ExpectedException(typeof(InvalidOperationException))]
         public void Times_MultiplyAreaAndAreaToVolume_Throws()
         {
-            var lhs = new StandardMeasure<Area>(2.0);
-            var rhs = new StandardMeasure<Area>(3.0);
-            StandardMeasure<Volume> throws; ArithmeticOperations.Times(lhs, rhs, out throws);
+            var lhs = new Measure<Area>(2.0);
+            var rhs = new Measure<Area>(3.0);
+            Measure<Volume> throws; ArithmeticOperations.Times(lhs, rhs, out throws);
         }
 
         [Test]
         public void Divide_DivideVolumeAndLength_ReturnsArea()
         {
-            var expected = new StandardMeasure<Area>(4.0);
-            var numerator = new StandardMeasure<Volume>(8.0);
-            var denominator = new StandardMeasure<Length>(200.0, Length.CentiMeter);
-            StandardMeasure<Area> actual; ArithmeticOperations.Divide(numerator, denominator, out actual);
+            var expected = new Measure<Area>(4.0);
+            var numerator = new Measure<Volume>(8.0);
+            var denominator = new Measure<Length>(200.0, Length.CentiMeter);
+            Measure<Area> actual; ArithmeticOperations.Divide(numerator, denominator, out actual);
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }
 
@@ -48,17 +48,17 @@ namespace Cureos.Measures
         [ExpectedException(typeof(InvalidOperationException))]
         public void Divide_DivideAreaAndAreaToLength_Throws()
         {
-            var numerator = new StandardMeasure<Area>(8.0);
-            var denominator = new StandardMeasure<Area>(200.0, Area.SquareDeciMeter);
-            StandardMeasure<Length> throws; ArithmeticOperations.Divide(numerator, denominator, out throws);
+            var numerator = new Measure<Area>(8.0);
+            var denominator = new Measure<Area>(200.0, Area.SquareDeciMeter);
+            Measure<Length> throws; ArithmeticOperations.Divide(numerator, denominator, out throws);
         }
 
         [Test]
         public void Power_LengthRaisedWith3_ReturnsVolume()
         {
-            var expected = new Measure<Volume>(1.0, Volume.CubicDeciMeter);
-            var len = new Measure<Length>(1.0, Length.DeciMeter);
-            StandardMeasure<Volume> actual; ArithmeticOperations.Power(len, 3, out actual);
+            var expected = new UnitPreservingMeasure<Volume>(1.0, Volume.CubicDeciMeter);
+            var len = new UnitPreservingMeasure<Length>(1.0, Length.DeciMeter);
+            Measure<Volume> actual; ArithmeticOperations.Power(len, 3, out actual);
             MeasureAssert.AmountsAreEqual(expected, actual);
         }
 

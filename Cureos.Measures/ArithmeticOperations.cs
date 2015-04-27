@@ -22,13 +22,13 @@ namespace Cureos.Measures
         /// <param name="iFirst">First measure to multiply</param>
         /// <param name="iSecond">Second measure to multiply</param>
         /// <param name="oResult">Measure resulting from multiplication, given in standard unit of quantity</param>
-        public static void Times<Q, Q1, Q2>(IMeasure<Q1> iFirst, IMeasure<Q2> iSecond, out StandardMeasure<Q> oResult)
+        public static void Times<Q, Q1, Q2>(IMeasure<Q1> iFirst, IMeasure<Q2> iSecond, out Measure<Q> oResult)
             where Q : struct, IQuantity<Q>
             where Q1 : struct, IQuantity<Q1>
             where Q2 : struct, IQuantity<Q2>
         {
             AssertMatchingQuantities<Q, Q1, Q2>(1, 1);
-            oResult = new StandardMeasure<Q>(iFirst.StandardAmount * iSecond.StandardAmount);
+            oResult = new Measure<Q>(iFirst.StandardAmount * iSecond.StandardAmount);
         }
 
         /// <summary>
@@ -40,13 +40,13 @@ namespace Cureos.Measures
         /// <param name="iNumerator">Numerator measure</param>
         /// <param name="iDenominator">Denominator measure</param>
         /// <param name="oResult">Resulting measure quotient, given in standard unit of quantity</param>
-        public static void Divide<Q, Q1, Q2>(IMeasure<Q1> iNumerator, IMeasure<Q2> iDenominator, out StandardMeasure<Q> oResult)
+        public static void Divide<Q, Q1, Q2>(IMeasure<Q1> iNumerator, IMeasure<Q2> iDenominator, out Measure<Q> oResult)
             where Q : struct, IQuantity<Q>
             where Q1 : struct, IQuantity<Q1>
             where Q2 : struct, IQuantity<Q2>
         {
             AssertMatchingQuantities<Q, Q1, Q2>(1, -1);
-            oResult = new StandardMeasure<Q>(iNumerator.StandardAmount / iDenominator.StandardAmount);
+            oResult = new Measure<Q>(iNumerator.StandardAmount / iDenominator.StandardAmount);
         }
 
         /// <summary>
@@ -57,13 +57,13 @@ namespace Cureos.Measures
         /// <param name="iBase">Base measure</param>
         /// <param name="iExponent">Exponent</param>
         /// <param name="oResult">Resulting measure, given in standard unit of the specified quantity</param>
-        public static void Power<Q, Q1>(IMeasure<Q1> iBase, int iExponent, out StandardMeasure<Q> oResult)
+        public static void Power<Q, Q1>(IMeasure<Q1> iBase, int iExponent, out Measure<Q> oResult)
             where Q : struct, IQuantity<Q>
             where Q1 : struct, IQuantity<Q1>
         {
             AssertMatchingQuantities<Q, Q1>(iExponent);
 #if DOUBLE
-            oResult = new StandardMeasure<Q>(Math.Pow(iBase.StandardAmount, iExponent));
+            oResult = new Measure<Q>(Math.Pow(iBase.StandardAmount, iExponent));
 #else
             oResult = new StandardMeasure<Q>(Math.Pow((double)iBase.StandardAmount, iExponent));
 #endif
@@ -81,7 +81,7 @@ namespace Cureos.Measures
         /// <param name="iSecondExponent">Exponent to which the second measure should be raised</param>
         /// <param name="oResult">Measure resulting from multiplication, given in standard unit of quantity</param>
         public static void Product<Q, Q1, Q2>(IMeasure<Q1> iFirst, int iFirstExponent, IMeasure<Q2> iSecond, 
-            int iSecondExponent, out StandardMeasure<Q> oResult)
+            int iSecondExponent, out Measure<Q> oResult)
             where Q : struct, IQuantity<Q>
             where Q1 : struct, IQuantity<Q1>
             where Q2 : struct, IQuantity<Q2>
@@ -89,7 +89,7 @@ namespace Cureos.Measures
             AssertMatchingQuantities<Q, Q1, Q2>(iFirstExponent, iSecondExponent);
 #if DOUBLE
             oResult =
-                new StandardMeasure<Q>(Math.Pow(iFirst.StandardAmount, iFirstExponent) *
+                new Measure<Q>(Math.Pow(iFirst.StandardAmount, iFirstExponent) *
                                        Math.Pow(iSecond.StandardAmount, iSecondExponent));
 #else
             oResult =
@@ -113,7 +113,7 @@ namespace Cureos.Measures
         /// <param name="iThirdExponent">Exponent to which the third measure should be raised</param>
         /// <param name="oResult">Measure resulting from multiplication, given in standard unit of quantity</param>
         public static void Product<Q, Q1, Q2, Q3>(IMeasure<Q1> iFirst, int iFirstExponent, IMeasure<Q2> iSecond, 
-            int iSecondExponent, IMeasure<Q3> iThird, int iThirdExponent, out StandardMeasure<Q> oResult)
+            int iSecondExponent, IMeasure<Q3> iThird, int iThirdExponent, out Measure<Q> oResult)
             where Q : struct, IQuantity<Q>
             where Q1 : struct, IQuantity<Q1>
             where Q2 : struct, IQuantity<Q2>
@@ -122,7 +122,7 @@ namespace Cureos.Measures
             AssertMatchingQuantities<Q, Q1, Q2, Q3>(iFirstExponent, iSecondExponent, iThirdExponent);
 #if DOUBLE
             oResult =
-                new StandardMeasure<Q>(Math.Pow(iFirst.StandardAmount, iFirstExponent) *
+                new Measure<Q>(Math.Pow(iFirst.StandardAmount, iFirstExponent) *
                                        Math.Pow(iSecond.StandardAmount, iSecondExponent) *
                                        Math.Pow(iThird.StandardAmount, iThirdExponent));
 #else
@@ -152,7 +152,7 @@ namespace Cureos.Measures
         /// <param name="oResult">Measure resulting from multiplication, given in standard unit of quantity</param>
         public static void Product<Q, Q1, Q2, Q3, Q4>(IMeasure<Q1> iFirst, int iFirstExponent, IMeasure<Q2> iSecond,
             int iSecondExponent, IMeasure<Q3> iThird, int iThirdExponent, IMeasure<Q4> iFourth, int iFourthExponent, 
-            out StandardMeasure<Q> oResult)
+            out Measure<Q> oResult)
             where Q : struct, IQuantity<Q>
             where Q1 : struct, IQuantity<Q1>
             where Q2 : struct, IQuantity<Q2>
@@ -162,7 +162,7 @@ namespace Cureos.Measures
             AssertMatchingQuantities<Q, Q1, Q2, Q3, Q4>(iFirstExponent, iSecondExponent, iThirdExponent, iFourthExponent);
 #if DOUBLE
             oResult =
-                new StandardMeasure<Q>(Math.Pow(iFirst.StandardAmount, iFirstExponent)*
+                new Measure<Q>(Math.Pow(iFirst.StandardAmount, iFirstExponent)*
                                        Math.Pow(iSecond.StandardAmount, iSecondExponent)*
                                        Math.Pow(iThird.StandardAmount, iThirdExponent)*
                                        Math.Pow(iFourth.StandardAmount, iFourthExponent));

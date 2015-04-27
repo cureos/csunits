@@ -16,20 +16,20 @@ namespace Cureos.Measures
 		[Test]
 		public void Example1()
 		{
-			StandardMeasure<Mass> initialWgt = new StandardMeasure<Mass>(75.0);
-			StandardMeasure<Mass> gainedWgt = new StandardMeasure<Mass>(2.5, Mass.HectoGram);
-			StandardMeasure<Mass> newWgt = initialWgt + gainedWgt;
+			Measure<Mass> initialWgt = new Measure<Mass>(75.0);
+			Measure<Mass> gainedWgt = new Measure<Mass>(2.5, Mass.HectoGram);
+			Measure<Mass> newWgt = initialWgt + gainedWgt;
 
-			Measure<Mass> newWgtInGram = newWgt[Mass.Gram];
-			Measure<Mass> initialWgtInGram = newWgtInGram - gainedWgt;
+			UnitPreservingMeasure<Mass> newWgtInGram = newWgt[Mass.Gram];
+			UnitPreservingMeasure<Mass> initialWgtInGram = newWgtInGram - gainedWgt;
 
 			Console.WriteLine("Initial weight: {0}", initialWgtInGram);
 
-			Measure<Length> height = new Measure<Length>(30.0, Length.CentiMeter);
-			StandardMeasure<Area> area = (StandardMeasure<Area>)0.02;
+			UnitPreservingMeasure<Length> height = new UnitPreservingMeasure<Length>(30.0, Length.CentiMeter);
+			Measure<Area> area = (Measure<Area>)0.02;
 
-		    StandardMeasure<Volume> vol; ArithmeticOperations.Times(height, area, out vol);
-			var maxVol = new StandardMeasure<Volume>(10.0, Volume.Liter);
+		    Measure<Volume> vol; ArithmeticOperations.Times(height, area, out vol);
+			var maxVol = new Measure<Volume>(10.0, Volume.Liter);
 
 			if (vol < maxVol)
 			{

@@ -16,7 +16,7 @@ namespace Cureos.Measures.Linq
         [Test]
         public void To_DecimalAndLengthUnit_ReturnsMeasureInSpecifiedAmountAndUnit()
         {
-            var expected = new Measure<Length>(3.0m, Length.MilliMeter);
+            var expected = new UnitPreservingMeasure<Length>(3.0m, Length.MilliMeter);
             var actual = 3.0m.To(Length.MilliMeter);
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }
@@ -24,7 +24,7 @@ namespace Cureos.Measures.Linq
         [Test]
         public void From_FloatAndVolumeUnit_ReturnsStandardVolumeMeasure()
         {
-            var expected = new Measure<Volume>(0.002f, Volume.CubicMeter);
+            var expected = new UnitPreservingMeasure<Volume>(0.002f, Volume.CubicMeter);
             var actual = 2.0f.From(Volume.Liter);
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }

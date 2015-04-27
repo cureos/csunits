@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Cureos.Measures.Linq
 {
-    public static class StandardMeasureEnumerable
+    public static class MeasureEnumerable
     {
         /// <summary>
         /// Cast collection of amounts into corresponding StandardMeasure enumerable
@@ -17,9 +17,9 @@ namespace Cureos.Measures.Linq
         /// <typeparam name="Q">Quantity of measurements</typeparam>
         /// <param name="iAmounts">Collection of amounts to be cast into a collection of standard measures</param>
         /// <returns>Collection of standard measures</returns>
-        public static IEnumerable<StandardMeasure<Q>> ToStandardMeasures<Q>(this IEnumerable<double> iAmounts) where Q : struct, IQuantity<Q>
+        public static IEnumerable<Measure<Q>> ToMeasures<Q>(this IEnumerable<double> iAmounts) where Q : struct, IQuantity<Q>
         {
-            return iAmounts.Select(val => new StandardMeasure<Q>(val));
+            return iAmounts.Select(val => new Measure<Q>(val));
         }
 
         /// <summary>
@@ -29,9 +29,9 @@ namespace Cureos.Measures.Linq
         /// <param name="iAmounts">Collection of amounts to be cast into a collection of standard measures</param>
         /// <param name="iUnit">Unit in which the amounts are specified</param>
         /// <returns>Collection of standard measures, converted from specified unit into quantity's standard unit</returns>
-        public static IEnumerable<StandardMeasure<Q>> ToStandardMeasures<Q>(this IEnumerable<double> iAmounts, IUnit<Q> iUnit) where Q : struct, IQuantity<Q>
+        public static IEnumerable<Measure<Q>> ToMeasures<Q>(this IEnumerable<double> iAmounts, IUnit<Q> iUnit) where Q : struct, IQuantity<Q>
         {
-            return iAmounts.Select(val => new StandardMeasure<Q>(val, iUnit));
+            return iAmounts.Select(val => new Measure<Q>(val, iUnit));
         }
 
         /// <summary>
@@ -40,9 +40,9 @@ namespace Cureos.Measures.Linq
         /// <typeparam name="Q">Quantity of measurements</typeparam>
         /// <param name="iAmounts">Collection of amounts to be cast into a collection of standard measures</param>
         /// <returns>Collection of standard measures</returns>
-        public static IEnumerable<StandardMeasure<Q>> ToStandardMeasures<Q>(this IEnumerable<float> iAmounts) where Q : struct, IQuantity<Q>
+        public static IEnumerable<Measure<Q>> ToMeasures<Q>(this IEnumerable<float> iAmounts) where Q : struct, IQuantity<Q>
         {
-            return iAmounts.Select(val => new StandardMeasure<Q>(val));
+            return iAmounts.Select(val => new Measure<Q>(val));
         }
 
         /// <summary>
@@ -52,9 +52,9 @@ namespace Cureos.Measures.Linq
         /// <param name="iAmounts">Collection of amounts to be cast into a collection of standard measures</param>
         /// <param name="iUnit">Unit in which the amounts are specified</param>
         /// <returns>Collection of standard measures, converted from specified unit into quantity's standard unit</returns>
-        public static IEnumerable<StandardMeasure<Q>> ToStandardMeasures<Q>(this IEnumerable<float> iAmounts, IUnit<Q> iUnit) where Q : struct, IQuantity<Q>
+        public static IEnumerable<Measure<Q>> ToMeasures<Q>(this IEnumerable<float> iAmounts, IUnit<Q> iUnit) where Q : struct, IQuantity<Q>
         {
-            return iAmounts.Select(val => new StandardMeasure<Q>(val, iUnit));
+            return iAmounts.Select(val => new Measure<Q>(val, iUnit));
         }
 
         /// <summary>
@@ -63,9 +63,9 @@ namespace Cureos.Measures.Linq
         /// <typeparam name="Q">Quantity of measurements</typeparam>
         /// <param name="iAmounts">Collection of amounts to be cast into a collection of standard measures</param>
         /// <returns>Collection of standard measures</returns>
-        public static IEnumerable<StandardMeasure<Q>> ToStandardMeasures<Q>(this IEnumerable<decimal> iAmounts) where Q : struct, IQuantity<Q>
+        public static IEnumerable<Measure<Q>> ToMeasures<Q>(this IEnumerable<decimal> iAmounts) where Q : struct, IQuantity<Q>
         {
-            return iAmounts.Select(val => new StandardMeasure<Q>(val));
+            return iAmounts.Select(val => new Measure<Q>(val));
         }
 
         /// <summary>
@@ -75,9 +75,9 @@ namespace Cureos.Measures.Linq
         /// <param name="iAmounts">Collection of amounts to be cast into a collection of standard measures</param>
         /// <param name="iUnit">Unit in which the amounts are specified</param>
         /// <returns>Collection of standard measures, converted from specified unit into quantity's standard unit</returns>
-        public static IEnumerable<StandardMeasure<Q>> ToStandardMeasures<Q>(this IEnumerable<decimal> iAmounts, IUnit<Q> iUnit) where Q : struct, IQuantity<Q>
+        public static IEnumerable<Measure<Q>> ToMeasures<Q>(this IEnumerable<decimal> iAmounts, IUnit<Q> iUnit) where Q : struct, IQuantity<Q>
         {
-            return iAmounts.Select(val => new StandardMeasure<Q>(val, iUnit));
+            return iAmounts.Select(val => new Measure<Q>(val, iUnit));
         }
     }
 }
