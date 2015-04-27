@@ -40,10 +40,11 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the plane angle quantity
     /// </summary>
     [DataContract]
-    public partial struct PlaneAngle : IQuantity<PlaneAngle>, IMeasure<PlaneAngle>
+    public partial struct PlaneAngle : IQuantity<PlaneAngle>, IMeasure<PlaneAngle>, IEquatable<PlaneAngle>, IComparable<PlaneAngle>
     {
         #region FIELDS
 
+        // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = QuantityDimension.Radian;
 
         public static readonly Unit<PlaneAngle> Radian = new Unit<PlaneAngle>("rad");
@@ -60,7 +61,7 @@ namespace Cureos.Measures.Quantities
         #region CONSTRUCTORS
 
         /// <summary>
-        /// Initializes a PlaneAngle object from an object implementing the IMeasure&lt;PlaneAngle&gt; interface
+        /// Initializes a plane angle object from an object implementing the IMeasure&lt;PlaneAngle&gt; interface
         /// </summary>
         /// <param name="other">Object implemeting the IMeasure&lt;PlaneAngle&gt; interface</param>
         public PlaneAngle(IMeasure<PlaneAngle> other)
@@ -172,8 +173,8 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Gets the measured amount in the standard unit of measure for the plane angle quantity</typeparam>
-        /// </summary
+        /// Gets the measured amount in the standard unit of measure for the plane angle quantity
+        /// </summary>
         public AmountType StandardAmount
         {
             get { return this.amount; }
@@ -204,7 +205,6 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="unit">Unit in which the new measure should be specified</param>
         /// <exception cref="ArgumentNullException">if specified unit is null or if specified unit is not of the 
-        /// <typeparamref name="Q">valid quantity</typeparamref></exception>
         IMeasure IMeasure.this[IUnit unit]
         {
             get { return this[unit as IUnit<PlaneAngle>]; }
@@ -245,10 +245,9 @@ namespace Cureos.Measures.Quantities
         /// true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
         /// </returns>
         /// <param name="other">An object to compare with this object.</param>
-        public bool Equals(IMeasure<PlaneAngle> other)
+        bool IEquatable<IMeasure<PlaneAngle>>.Equals(IMeasure<PlaneAngle> other)
         {
             if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
             return this.amount.Equals(other.GetAmount(this.Unit));
         }
 
@@ -270,18 +269,14 @@ namespace Cureos.Measures.Quantities
         /// Compares the current object with another object of the same type.
         /// </summary>
         /// <returns>
-        /// A 32-bit signed integer that indicates the relative order of the objects being compared. The return value has the following meanings: 
-        ///                     Value 
-        ///                     Meaning 
-        ///                     Less than zero 
-        ///                     This object is less than the <paramref name="other"/> parameter.
-        ///                     Zero 
-        ///                     This object is equal to <paramref name="other"/>. 
-        ///                     Greater than zero 
-        ///                     This object is greater than <paramref name="other"/>. 
+        /// A 32-bit signed integer that indicates the relative order of the objects being compared. The return value has the following meanings:  
+        ///    Value              Meaning 
+        ///    Less than zero     This object is less than the <paramref name="other"/> parameter.
+        ///    Zero               This object is equal to <paramref name="other"/>. 
+        ///    Greater than zero  This object is greater than <paramref name="other"/>. 
         /// </returns>
         /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(IMeasure<PlaneAngle> other)
+        int IComparable<IMeasure<PlaneAngle>>.CompareTo(IMeasure<PlaneAngle> other)
         {
             if (other == null) throw new ArgumentNullException("other");
             return this.amount.CompareTo(other.GetAmount(this.Unit));
@@ -291,7 +286,11 @@ namespace Cureos.Measures.Quantities
         /// Compares the current object with another object of the same type.
         /// </summary>
         /// <returns>
-        /// A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than <paramref name="other"/>. 
+        /// A value that indicates the relative order of the objects being compared. The return value has the following meanings:  
+        ///    Value              Meaning 
+        ///    Less than zero     This object is less than the <paramref name="other"/> parameter.
+        ///    Zero               This object is equal to <paramref name="other"/>. 
+        ///    Greater than zero  This object is greater than <paramref name="other"/>. 
         /// </returns>
         /// <param name="other">An object to compare with this object.</param>
         int IComparable<IMeasure>.CompareTo(IMeasure other)
@@ -299,6 +298,42 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!other.Unit.Quantity.Equals(default(PlaneAngle))) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.GetAmount(this.Unit));
+        }
+
+        #endregion
+
+        #region Implementation of IEquatable<PlaneAngle>
+
+        /// <summary>
+        /// Indicates whether the current object is equal to another object of the same type.
+        /// </summary>
+        /// <returns>
+        /// true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
+        /// </returns>
+        /// <param name="other">An object to compare with this object.</param>
+        public bool Equals(PlaneAngle other)
+        {
+            return this.amount.Equals(other.amount);
+        }
+
+        #endregion
+
+        #region Implementation of IComparable<PlaneAngle>
+
+        /// <summary>
+        /// Compares the current object with another object of the same type.
+        /// </summary>
+        /// <returns>
+        /// A 32-bit signed integer that indicates the relative order of the objects being compared. The return value has the following meanings:  
+        ///    Value              Meaning 
+        ///    Less than zero     This object is less than the <paramref name="other"/> parameter.
+        ///    Zero               This object is equal to <paramref name="other"/>. 
+        ///    Greater than zero  This object is greater than <paramref name="other"/>. 
+        /// </returns>
+        /// <param name="other">An object to compare with this object.</param>
+        public int CompareTo(PlaneAngle other)
+        {
+            return this.amount.CompareTo(other.amount);
         }
 
         #endregion
@@ -496,7 +531,7 @@ namespace Cureos.Measures.Quantities
         /// <summary>
         /// Divide a measure object with a scalar
         /// </summary>
-        /// <param name="iMeasure">measure object</param>
+        /// <param name="measure">measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Quotient of the measure object and the scalar</returns>
         public static PlaneAngle operator /(PlaneAngle measure, AmountType scalar)
