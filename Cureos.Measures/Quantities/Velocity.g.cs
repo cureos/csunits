@@ -232,9 +232,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>Measured amount converted into <paramref name="unit">specified unit</paramref></returns>
         AmountType IMeasure.GetAmount(IUnit unit)
         {
-            if (unit == null) throw new ArgumentNullException("unit");
-            if (!(unit.Quantity is Velocity)) throw new ArgumentException("Unit is not the same quantity as measure");
-            return unit.AmountFromStandardUnitConverter(this.amount);
+            return this.GetAmount(unit as IUnit<Velocity>);
         }
 
         /// <summary>
@@ -286,7 +284,7 @@ namespace Cureos.Measures.Quantities
         bool IEquatable<IMeasure<Velocity>>.Equals(IMeasure<Velocity> other)
         {
             if (ReferenceEquals(null, other)) return false;
-            return this.amount.Equals(other.GetAmount(this.Unit));
+            return this.amount.Equals(other.StandardAmount);
         }
 
         /// <summary>
@@ -298,9 +296,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="other">An object to compare with this object.</param>
         bool IEquatable<IMeasure>.Equals(IMeasure other)
         {
-            if (other == null) throw new ArgumentNullException("other");
-            if (!(other.Unit.Quantity is Velocity)) throw new ArgumentException("Measures are of different quantities");
-            return this.amount.Equals(other.GetAmount(this.Unit));
+            return this.Equals(other as IMeasure<Velocity>);
         }
 
         /// <summary>
@@ -317,7 +313,7 @@ namespace Cureos.Measures.Quantities
         int IComparable<IMeasure<Velocity>>.CompareTo(IMeasure<Velocity> other)
         {
             if (other == null) throw new ArgumentNullException("other");
-            return this.amount.CompareTo(other.GetAmount(this.Unit));
+            return this.amount.CompareTo(other.StandardAmount);
         }
 
         /// <summary>
@@ -334,8 +330,8 @@ namespace Cureos.Measures.Quantities
         int IComparable<IMeasure>.CompareTo(IMeasure other)
         {
             if (other == null) throw new ArgumentNullException("other");
-            if (!(other.Unit.Quantity is Velocity)) throw new ArgumentException("Measures are of different quantities");
-            return this.amount.CompareTo(other.GetAmount(this.Unit));
+            if (!(other.Unit.Quantity is IMeasure<Velocity>)) throw new ArgumentException("Measures are of different quantities");
+            return this.amount.CompareTo(other.StandardAmount);
         }
 
         #endregion
@@ -418,9 +414,7 @@ namespace Cureos.Measures.Quantities
         /// <filterpriority>2</filterpriority>
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (obj.GetType() != typeof(IMeasure<Velocity>)) return false;
-            return this.Equals((IMeasure<Velocity>)obj);
+            return obj is IMeasure<Velocity> && this.Equals((IMeasure<Velocity>)obj);
         }
 
         /// <summary>

@@ -243,9 +243,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>Measured amount converted into <paramref name="unit">specified unit</paramref></returns>
         AmountType IMeasure.GetAmount(IUnit unit)
         {
-            if (unit == null) throw new ArgumentNullException("unit");
-            if (!(unit.Quantity is Energy)) throw new ArgumentException("Unit is not the same quantity as measure");
-            return unit.AmountFromStandardUnitConverter(this.amount);
+            return this.GetAmount(unit as IUnit<Energy>);
         }
 
         /// <summary>
@@ -297,7 +295,7 @@ namespace Cureos.Measures.Quantities
         bool IEquatable<IMeasure<Energy>>.Equals(IMeasure<Energy> other)
         {
             if (ReferenceEquals(null, other)) return false;
-            return this.amount.Equals(other.GetAmount(this.Unit));
+            return this.amount.Equals(other.StandardAmount);
         }
 
         /// <summary>
@@ -309,9 +307,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="other">An object to compare with this object.</param>
         bool IEquatable<IMeasure>.Equals(IMeasure other)
         {
-            if (other == null) throw new ArgumentNullException("other");
-            if (!(other.Unit.Quantity is Energy)) throw new ArgumentException("Measures are of different quantities");
-            return this.amount.Equals(other.GetAmount(this.Unit));
+            return this.Equals(other as IMeasure<Energy>);
         }
 
         /// <summary>
@@ -328,7 +324,7 @@ namespace Cureos.Measures.Quantities
         int IComparable<IMeasure<Energy>>.CompareTo(IMeasure<Energy> other)
         {
             if (other == null) throw new ArgumentNullException("other");
-            return this.amount.CompareTo(other.GetAmount(this.Unit));
+            return this.amount.CompareTo(other.StandardAmount);
         }
 
         /// <summary>
@@ -345,8 +341,8 @@ namespace Cureos.Measures.Quantities
         int IComparable<IMeasure>.CompareTo(IMeasure other)
         {
             if (other == null) throw new ArgumentNullException("other");
-            if (!(other.Unit.Quantity is Energy)) throw new ArgumentException("Measures are of different quantities");
-            return this.amount.CompareTo(other.GetAmount(this.Unit));
+            if (!(other.Unit.Quantity is IMeasure<Energy>)) throw new ArgumentException("Measures are of different quantities");
+            return this.amount.CompareTo(other.StandardAmount);
         }
 
         #endregion
@@ -429,9 +425,7 @@ namespace Cureos.Measures.Quantities
         /// <filterpriority>2</filterpriority>
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (obj.GetType() != typeof(IMeasure<Energy>)) return false;
-            return this.Equals((IMeasure<Energy>)obj);
+            return obj is IMeasure<Energy> && this.Equals((IMeasure<Energy>)obj);
         }
 
         /// <summary>

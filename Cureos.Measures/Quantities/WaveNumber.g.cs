@@ -224,9 +224,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>Measured amount converted into <paramref name="unit">specified unit</paramref></returns>
         AmountType IMeasure.GetAmount(IUnit unit)
         {
-            if (unit == null) throw new ArgumentNullException("unit");
-            if (!(unit.Quantity is WaveNumber)) throw new ArgumentException("Unit is not the same quantity as measure");
-            return unit.AmountFromStandardUnitConverter(this.amount);
+            return this.GetAmount(unit as IUnit<WaveNumber>);
         }
 
         /// <summary>
@@ -278,7 +276,7 @@ namespace Cureos.Measures.Quantities
         bool IEquatable<IMeasure<WaveNumber>>.Equals(IMeasure<WaveNumber> other)
         {
             if (ReferenceEquals(null, other)) return false;
-            return this.amount.Equals(other.GetAmount(this.Unit));
+            return this.amount.Equals(other.StandardAmount);
         }
 
         /// <summary>
@@ -290,9 +288,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="other">An object to compare with this object.</param>
         bool IEquatable<IMeasure>.Equals(IMeasure other)
         {
-            if (other == null) throw new ArgumentNullException("other");
-            if (!(other.Unit.Quantity is WaveNumber)) throw new ArgumentException("Measures are of different quantities");
-            return this.amount.Equals(other.GetAmount(this.Unit));
+            return this.Equals(other as IMeasure<WaveNumber>);
         }
 
         /// <summary>
@@ -309,7 +305,7 @@ namespace Cureos.Measures.Quantities
         int IComparable<IMeasure<WaveNumber>>.CompareTo(IMeasure<WaveNumber> other)
         {
             if (other == null) throw new ArgumentNullException("other");
-            return this.amount.CompareTo(other.GetAmount(this.Unit));
+            return this.amount.CompareTo(other.StandardAmount);
         }
 
         /// <summary>
@@ -326,8 +322,8 @@ namespace Cureos.Measures.Quantities
         int IComparable<IMeasure>.CompareTo(IMeasure other)
         {
             if (other == null) throw new ArgumentNullException("other");
-            if (!(other.Unit.Quantity is WaveNumber)) throw new ArgumentException("Measures are of different quantities");
-            return this.amount.CompareTo(other.GetAmount(this.Unit));
+            if (!(other.Unit.Quantity is IMeasure<WaveNumber>)) throw new ArgumentException("Measures are of different quantities");
+            return this.amount.CompareTo(other.StandardAmount);
         }
 
         #endregion
@@ -410,9 +406,7 @@ namespace Cureos.Measures.Quantities
         /// <filterpriority>2</filterpriority>
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
-            if (obj.GetType() != typeof(IMeasure<WaveNumber>)) return false;
-            return this.Equals((IMeasure<WaveNumber>)obj);
+            return obj is IMeasure<WaveNumber> && this.Equals((IMeasure<WaveNumber>)obj);
         }
 
         /// <summary>
