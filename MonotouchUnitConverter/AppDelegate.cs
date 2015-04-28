@@ -42,7 +42,7 @@ namespace MonotouchUnitConverter
 			
 			var quantityRootElement = new RootElement("Quantity", _quantityGroup) { new Section() };
 			quantityRootElement[0].AddAll(QuantityCollection.Quantities.Select(qty => {
-				var elem = new EventHandlingRadioElement(qty.Quantity.ToString(), "Qty");
+				var elem = new EventHandlingRadioElement(qty.Quantity.DisplayName, "Qty");
 				elem.OnSelected += OnQuantitySelected;
 				return elem as Element;
 			}));
