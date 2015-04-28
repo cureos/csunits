@@ -16,7 +16,9 @@ namespace Cureos.Measures
 
 		private struct UnitTestsQuantity : IQuantity<UnitTestsQuantity>
 		{
-			public QuantityDimension Dimension
+		    public string DisplayName { get; private set; }
+
+		    public QuantityDimension Dimension
 			{
 				get { return QuantityDimension.Steradian; }
 			}
@@ -30,6 +32,11 @@ namespace Cureos.Measures
 			{
 				get { return new Unit<UnitTestsQuantity>("UTQ"); }
 			}
+
+		    public bool Equals(IQuantity other)
+		    {
+		        return other is UnitTestsQuantity;
+		    }
 		}
 
 		#region Setup and TearDown

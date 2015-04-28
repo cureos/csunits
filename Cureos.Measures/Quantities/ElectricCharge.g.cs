@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Globalization;
     using System.Runtime.Serialization;
 
 #if SINGLE
@@ -64,7 +65,7 @@ namespace Cureos.Measures.Quantities
         #region CONSTRUCTORS
 
         /// <summary>
-        /// Initializes a electric charge object from an object implementing the IMeasure&lt;ElectricCharge&gt; interface
+        /// Initializes a electric charge object from an object implementing the IMeasure<ElectricCharge> interface
         /// </summary>
         /// <param name="other">Object implemeting the IMeasure&lt;ElectricCharge&gt; interface</param>
         public ElectricCharge(IMeasure<ElectricCharge> other)
@@ -140,6 +141,14 @@ namespace Cureos.Measures.Quantities
         #region Implementation of IQuantity<ElectricCharge>
 
         /// <summary>
+        /// Gets the display name of the quantity
+        /// </summary>
+        public string DisplayName 
+        { 
+            get { return "Electric Charge"; } 
+        }
+
+        /// <summary>
         /// Gets the physical dimension of the quantity in terms of SI units
         /// </summary>
         public QuantityDimension Dimension
@@ -161,6 +170,15 @@ namespace Cureos.Measures.Quantities
         public IUnit<ElectricCharge> StandardUnit
         {
             get { return Coulomb; }
+        }
+
+        bool IEquatable<IQuantity>.Equals(IQuantity other)
+        {
+            if (other == null)
+            {
+                throw new ArgumentNullException("other");
+            }
+            return other is ElectricCharge;
         }
 
         #endregion
@@ -347,12 +365,14 @@ namespace Cureos.Measures.Quantities
         /// Gets a new unit preserving measure based on this measure but in the <paramref name="unit">specified unit</paramref>
         /// </summary>
         /// <param name="unit">Unit in which the new measure should be specified</param>
-        public UnitPreservingMeasure<ElectricCharge> this[IUnit<ElectricCharge> unit]
+        public IMeasure<ElectricCharge> this[IUnit<ElectricCharge> unit]
         {
             get
             {
                 if (unit == null) throw new ArgumentNullException("unit");
-                return new UnitPreservingMeasure<ElectricCharge>(this.GetAmount(unit), unit);
+                return unit.IsStandardUnit
+                    ? (IMeasure<ElectricCharge>)this
+                    : new UnitPreservingMeasure<ElectricCharge>(this.GetAmount(unit), unit);
             }
         }
 
@@ -397,7 +417,7 @@ namespace Cureos.Measures.Quantities
         /// <filterpriority>2</filterpriority>
         public override string ToString()
         {
-            return String.Format("{0} {1} (electric charge)", this.amount, this.Unit.Symbol).Trim();
+            return this.ToString("G", CultureInfo.CurrentCulture);
         }
 
         /// <summary>
@@ -407,7 +427,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>A <see cref="T:System.String"/> containing a the actual value in formatted form with the quantity symbol appended</returns>
         public string ToString(string format)
         {
-            return String.Format("{0} {1} (electric charge)", this.amount.ToString(format), this.Unit.Symbol).Trim();
+            return this.ToString(format, CultureInfo.CurrentCulture);
         }
         
         /// <summary>
@@ -417,7 +437,7 @@ namespace Cureos.Measures.Quantities
         /// <returns></returns>
         public string ToString(IFormatProvider provider)
         {
-            return String.Format("{0} {1} (electric charge)", this.amount.ToString(provider), this.Unit.Symbol).Trim();
+            return this.ToString("G", provider);
         }
         
         /// <summary>
@@ -428,7 +448,7 @@ namespace Cureos.Measures.Quantities
         /// <returns></returns>
         public string ToString(string format, IFormatProvider provider)
         {
-            return String.Format("{0} {1} (electric charge)", this.amount.ToString(format, provider), this.Unit.Symbol).Trim();
+            return String.Format("({0}) {1} {2}", this.DisplayName, this.amount.ToString(format, provider), this.Unit.Symbol).TrimEnd();
         }
         
         #endregion

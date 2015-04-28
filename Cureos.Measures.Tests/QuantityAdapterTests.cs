@@ -40,9 +40,8 @@ namespace Cureos.Measures
         [Test]
         public void QuantityGetter_CompareWithQuantityUsedInConstructor_AreEqual()
         {
-            var expected = default(Force);
             var actual = _instance.Quantity;
-            Assert.AreEqual(expected, actual);
+            Assert.IsInstanceOf<Force>(actual);
         }
 
         [Test]

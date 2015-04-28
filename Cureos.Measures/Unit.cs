@@ -1,21 +1,36 @@
-// Copyright (c) 2011 Anders Gustafsson, Cureos AB.
-// All rights reserved. This software and the accompanying materials
-// are made available under the terms of the Eclipse Public License v1.0
-// which accompanies this distribution, and is available at
-// http://www.eclipse.org/legal/epl-v10.html
-
-using System;
-
-#if SINGLE
-using AmountType = System.Single;
-#elif DECIMAL
-using AmountType = System.Decimal;
-#elif DOUBLE
-using AmountType = System.Double;
-#endif
+/*
+ *  Copyright (c) 2011-2015, Cureos AB.
+ *  All rights reserved.
+ *  http://www.cureos.com
+ *
+ *	This file is part of CSUnits.
+ *
+ *  CSUnits is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  CSUnits is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public
+ *  License along with CSUnits. If not, see http://www.gnu.org/licenses/.
+ */
 
 namespace Cureos.Measures
 {
+    using System;
+
+#if SINGLE
+    using AmountType = System.Single;
+#elif DECIMAL
+    using AmountType = System.Decimal;
+#elif DOUBLE
+    using AmountType = System.Double;
+#endif
+
     /// <summary>
     /// Representation of a physical unit of a specific quanity
     /// </summary>
@@ -29,7 +44,7 @@ namespace Cureos.Measures
         /// </summary>
         /// <param name="iSymbol">Unit display symbol</param>
         public Unit(string iSymbol) :
-            this(iSymbol, a => a, a => a)
+            this(true, iSymbol, a => a, a => a)
         {
         }
 
@@ -37,8 +52,8 @@ namespace Cureos.Measures
         /// Convenience constructor for initializing prefixed non-standard unit
         /// </summary>
         /// <param name="iPrefix">Prefix to use in unit naming and scaling vis-a-vis standard unit</param>
-        public Unit(UnitPrefix iPrefix) :
-            this(String.Format("{0}{1}", iPrefix.GetSymbol(), default(Q).StandardUnit), iPrefix.GetFactor())
+        public Unit(UnitPrefix iPrefix)
+            : this(String.Format("{0}{1}", iPrefix.GetSymbol(), default(Q).StandardUnit), iPrefix.GetFactor())
         {
         }
 
@@ -47,8 +62,9 @@ namespace Cureos.Measures
         /// </summary>
         /// <param name="iSymbol">Unit display symbol</param>
         /// <param name="iToStandardUnitFactor">Amount converter factor from this unit to quantity's standard unit</param>
-        public Unit(string iSymbol, AmountType iToStandardUnitFactor) :
-            this(iSymbol, a => a * iToStandardUnitFactor, a => a / iToStandardUnitFactor)
+        public Unit(string iSymbol, AmountType iToStandardUnitFactor)
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            : this(iToStandardUnitFactor == Constants.One, iSymbol, a => a * iToStandardUnitFactor, a => a / iToStandardUnitFactor)
         {
         }
 
@@ -58,13 +74,32 @@ namespace Cureos.Measures
         /// <param name="iSymbol">Unit display symbol</param>
         /// <param name="iAmountToStandardUnitConverter">Amount converter function from this unit to quantity's standard unit</param>
         /// <param name="iAmountFromStandardUnitConverter">Amount converter function from quantity's standard unit to this unit</param>
-        public Unit(string iSymbol, Func<AmountType, AmountType> iAmountToStandardUnitConverter,
+        public Unit(
+            string iSymbol,
+            Func<AmountType, AmountType> iAmountToStandardUnitConverter,
+            Func<AmountType, AmountType> iAmountFromStandardUnitConverter)
+            : this(false, iSymbol, iAmountToStandardUnitConverter, iAmountFromStandardUnitConverter)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a physical unit object
+        /// </summary>
+        /// <param name="isStandardUnit">True if the unit is a standard unit of the associated quantity, false otherwise</param>
+        /// <param name="iSymbol">Unit display symbol</param>
+        /// <param name="iAmountToStandardUnitConverter">Amount converter function from this unit to quantity's standard unit</param>
+        /// <param name="iAmountFromStandardUnitConverter">Amount converter function from quantity's standard unit to this unit</param>
+        private Unit(
+            bool isStandardUnit,
+            string iSymbol,
+            Func<AmountType, AmountType> iAmountToStandardUnitConverter,
             Func<AmountType, AmountType> iAmountFromStandardUnitConverter)
         {
-            Symbol = iSymbol;
-            DisplayName = String.Empty;
-            AmountToStandardUnitConverter = iAmountToStandardUnitConverter;
-            AmountFromStandardUnitConverter = iAmountFromStandardUnitConverter;
+            this.IsStandardUnit = isStandardUnit;
+            this.Symbol = iSymbol;
+            this.DisplayName = String.Empty;
+            this.AmountToStandardUnitConverter = iAmountToStandardUnitConverter;
+            this.AmountFromStandardUnitConverter = iAmountFromStandardUnitConverter;
         }
 
         #endregion
@@ -76,8 +111,13 @@ namespace Cureos.Measures
         /// </summary>
         IQuantity IUnit.Quantity
         {
-            get { return Quantity; }
+            get { return this.Quantity; }
         }
+
+        /// <summary>
+        /// Gets true if the unit is a standard unit of the associated quantity, false otherwise
+        /// </summary>
+        public bool IsStandardUnit { get; private set; }
 
         /// <summary>
         /// Gets the typed quantity associated with the unit
@@ -122,7 +162,7 @@ namespace Cureos.Measures
         /// <filterpriority>2</filterpriority>
         public override string ToString()
         {
-            return Symbol;
+            return this.Symbol;
         }
 
         #endregion

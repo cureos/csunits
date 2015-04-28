@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Globalization;
     using System.Runtime.Serialization;
 
 #if SINGLE
@@ -63,7 +64,7 @@ namespace Cureos.Measures.Quantities
         #region CONSTRUCTORS
 
         /// <summary>
-        /// Initializes a temperature object from an object implementing the IMeasure&lt;Temperature&gt; interface
+        /// Initializes a temperature object from an object implementing the IMeasure<Temperature> interface
         /// </summary>
         /// <param name="other">Object implemeting the IMeasure&lt;Temperature&gt; interface</param>
         public Temperature(IMeasure<Temperature> other)
@@ -139,6 +140,14 @@ namespace Cureos.Measures.Quantities
         #region Implementation of IQuantity<Temperature>
 
         /// <summary>
+        /// Gets the display name of the quantity
+        /// </summary>
+        public string DisplayName 
+        { 
+            get { return "Temperature"; } 
+        }
+
+        /// <summary>
         /// Gets the physical dimension of the quantity in terms of SI units
         /// </summary>
         public QuantityDimension Dimension
@@ -160,6 +169,15 @@ namespace Cureos.Measures.Quantities
         public IUnit<Temperature> StandardUnit
         {
             get { return Kelvin; }
+        }
+
+        bool IEquatable<IQuantity>.Equals(IQuantity other)
+        {
+            if (other == null)
+            {
+                throw new ArgumentNullException("other");
+            }
+            return other is Temperature;
         }
 
         #endregion
@@ -346,12 +364,14 @@ namespace Cureos.Measures.Quantities
         /// Gets a new unit preserving measure based on this measure but in the <paramref name="unit">specified unit</paramref>
         /// </summary>
         /// <param name="unit">Unit in which the new measure should be specified</param>
-        public UnitPreservingMeasure<Temperature> this[IUnit<Temperature> unit]
+        public IMeasure<Temperature> this[IUnit<Temperature> unit]
         {
             get
             {
                 if (unit == null) throw new ArgumentNullException("unit");
-                return new UnitPreservingMeasure<Temperature>(this.GetAmount(unit), unit);
+                return unit.IsStandardUnit
+                    ? (IMeasure<Temperature>)this
+                    : new UnitPreservingMeasure<Temperature>(this.GetAmount(unit), unit);
             }
         }
 
@@ -396,7 +416,7 @@ namespace Cureos.Measures.Quantities
         /// <filterpriority>2</filterpriority>
         public override string ToString()
         {
-            return String.Format("{0} {1} (temperature)", this.amount, this.Unit.Symbol).Trim();
+            return this.ToString("G", CultureInfo.CurrentCulture);
         }
 
         /// <summary>
@@ -406,7 +426,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>A <see cref="T:System.String"/> containing a the actual value in formatted form with the quantity symbol appended</returns>
         public string ToString(string format)
         {
-            return String.Format("{0} {1} (temperature)", this.amount.ToString(format), this.Unit.Symbol).Trim();
+            return this.ToString(format, CultureInfo.CurrentCulture);
         }
         
         /// <summary>
@@ -416,7 +436,7 @@ namespace Cureos.Measures.Quantities
         /// <returns></returns>
         public string ToString(IFormatProvider provider)
         {
-            return String.Format("{0} {1} (temperature)", this.amount.ToString(provider), this.Unit.Symbol).Trim();
+            return this.ToString("G", provider);
         }
         
         /// <summary>
@@ -427,7 +447,7 @@ namespace Cureos.Measures.Quantities
         /// <returns></returns>
         public string ToString(string format, IFormatProvider provider)
         {
-            return String.Format("{0} {1} (temperature)", this.amount.ToString(format, provider), this.Unit.Symbol).Trim();
+            return String.Format("({0}) {1} {2}", this.DisplayName, this.amount.ToString(format, provider), this.Unit.Symbol).TrimEnd();
         }
         
         #endregion

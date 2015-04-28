@@ -6,6 +6,8 @@
 
 namespace Cureos.Measures.Quantities
 {
+    using System;
+
     /// <summary>
     /// Implementation of the specific quantity
     /// </summary>
@@ -19,7 +21,9 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
-        #region Implementation of IQuantity<LinearAcceleratorAbsorbedDoseRate>
+        #region Implementation of IQuantity<LinearAcceleratorMeterset>
+
+        public string DisplayName { get; private set; }
 
         /// <summary>
         /// Gets the physical dimension of the quantity in terms of SI units
@@ -43,6 +47,15 @@ namespace Cureos.Measures.Quantities
         public IUnit<LinearAcceleratorMeterset> StandardUnit
         {
             get { return MonitorUnit; }
+        }
+
+        public bool Equals(IQuantity other)
+        {
+            if (other == null)
+            {
+                throw new ArgumentNullException("other");
+            }
+            return other is LinearAcceleratorMeterset;
         }
 
         #endregion

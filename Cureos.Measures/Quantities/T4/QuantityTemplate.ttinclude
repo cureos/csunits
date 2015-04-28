@@ -17,6 +17,7 @@
         if (line != null) {
             var values=line.Split(',');
             var displayName = String.IsNullOrWhiteSpace(values[1]) ? DisplayName : values[1];
+            var displayNameLower = displayName.ToLowerInvariant();
             var differentiator = values[2];
             var length = Int32.Parse(values[3]);
             var mass = Int32.Parse(values[4]);
@@ -73,6 +74,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Globalization;
     using System.Runtime.Serialization;
 
 #if SINGLE
@@ -84,7 +86,7 @@ namespace Cureos.Measures.Quantities
 #endif
 
     /// <summary>
-    /// Implementation of the <#= displayName #> quantity
+    /// Implementation of the <#= displayNameLower #> quantity
     /// </summary>
     [DataContract]
     public partial struct <#= ClassName #> : IQuantity<<#= ClassName #>>, IMeasure<<#= ClassName #>>, IEquatable<<#= ClassName #>>, IComparable<<#= ClassName #>>
@@ -157,7 +159,7 @@ namespace Cureos.Measures.Quantities
         #region CONSTRUCTORS
 
         /// <summary>
-        /// Initializes a <#= displayName #> object from an object implementing the IMeasure&lt;<#= ClassName #>&gt; interface
+        /// Initializes a <#= displayNameLower #> object from an object implementing the IMeasure<<#= ClassName #>> interface
         /// </summary>
         /// <param name="other">Object implemeting the IMeasure&lt;<#= ClassName #>&gt; interface</param>
         public <#= ClassName #>(IMeasure<<#= ClassName #>> other)
@@ -233,6 +235,14 @@ namespace Cureos.Measures.Quantities
         #region Implementation of IQuantity<<#= ClassName #>>
 
         /// <summary>
+        /// Gets the display name of the quantity
+        /// </summary>
+        public string DisplayName 
+        { 
+            get { return "<#= displayName #>"; } 
+        }
+
+        /// <summary>
         /// Gets the physical dimension of the quantity in terms of SI units
         /// </summary>
         public QuantityDimension Dimension
@@ -256,6 +266,15 @@ namespace Cureos.Measures.Quantities
             get { return <#= stdUnit #>; }
         }
 
+        bool IEquatable<IQuantity>.Equals(IQuantity other)
+        {
+            if (other == null)
+            {
+                throw new ArgumentNullException("other");
+            }
+            return other is <#= ClassName #>;
+        }
+
         #endregion
 
         #region Implementation of IMeasure<<#= ClassName #>>
@@ -269,7 +288,7 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Gets the measured amount in the standard unit of measure for the <#= displayName #> quantity
+        /// Gets the measured amount in the standard unit of measure for the <#= displayNameLower #> quantity
         /// </summary>
         public AmountType StandardAmount
         {
@@ -440,12 +459,14 @@ namespace Cureos.Measures.Quantities
         /// Gets a new unit preserving measure based on this measure but in the <paramref name="unit">specified unit</paramref>
         /// </summary>
         /// <param name="unit">Unit in which the new measure should be specified</param>
-        public UnitPreservingMeasure<<#= ClassName #>> this[IUnit<<#= ClassName #>> unit]
+        public IMeasure<<#= ClassName #>> this[IUnit<<#= ClassName #>> unit]
         {
             get
             {
                 if (unit == null) throw new ArgumentNullException("unit");
-                return new UnitPreservingMeasure<<#= ClassName #>>(this.GetAmount(unit), unit);
+                return unit.IsStandardUnit
+                    ? (IMeasure<<#= ClassName #>>)this
+                    : new UnitPreservingMeasure<<#= ClassName #>>(this.GetAmount(unit), unit);
             }
         }
 
@@ -490,7 +511,7 @@ namespace Cureos.Measures.Quantities
         /// <filterpriority>2</filterpriority>
         public override string ToString()
         {
-            return String.Format("{0} {1} (<#= displayName #>)", this.amount, this.Unit.Symbol).Trim();
+            return this.ToString("G", CultureInfo.CurrentCulture);
         }
 
         /// <summary>
@@ -500,7 +521,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>A <see cref="T:System.String"/> containing a the actual value in formatted form with the quantity symbol appended</returns>
         public string ToString(string format)
         {
-            return String.Format("{0} {1} (<#= displayName #>)", this.amount.ToString(format), this.Unit.Symbol).Trim();
+            return this.ToString(format, CultureInfo.CurrentCulture);
         }
         
         /// <summary>
@@ -510,7 +531,7 @@ namespace Cureos.Measures.Quantities
         /// <returns></returns>
         public string ToString(IFormatProvider provider)
         {
-            return String.Format("{0} {1} (<#= displayName #>)", this.amount.ToString(provider), this.Unit.Symbol).Trim();
+            return this.ToString("G", provider);
         }
         
         /// <summary>
@@ -521,7 +542,7 @@ namespace Cureos.Measures.Quantities
         /// <returns></returns>
         public string ToString(string format, IFormatProvider provider)
         {
-            return String.Format("{0} {1} (<#= displayName #>)", this.amount.ToString(format, provider), this.Unit.Symbol).Trim();
+            return String.Format("({0}) {1} {2}", this.DisplayName, this.amount.ToString(format, provider), this.Unit.Symbol).TrimEnd();
         }
         
         #endregion
@@ -782,12 +803,12 @@ namespace Cureos.Measures.Quantities
     {
         get {
             var className = ClassName;
-            var displayName = className.Substring(0,1);
+            var displayName = className.Substring(0, 1);
             for (var i = 1; i < className.Length; i++) {
                 if (Char.IsUpper(className[i])) displayName += " ";
                 displayName += className[i];
             }
-            return displayName.ToLowerInvariant();
+            return displayName;
         }
     }
 #>

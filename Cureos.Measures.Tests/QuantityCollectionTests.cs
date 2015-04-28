@@ -19,7 +19,7 @@ namespace Cureos.Measures
         public void QuantitiesGetter_CheckContainsLuminance_ReturnsTrue()
         {
             var expected = true;
-            var actual = QuantityCollection.Quantities.Any(qa => qa.Quantity.Equals(default(Luminance)));
+            var actual = QuantityCollection.Quantities.Any(qa => qa.Quantity is Luminance);
             Assert.AreEqual(expected, actual);
         }
 
@@ -27,7 +27,7 @@ namespace Cureos.Measures
         public void QuantitiesGetter_CheckTimeItemContainsHourUnit_ReturnsTrue()
         {
             var expected = true;
-            var actual = QuantityCollection.Quantities.Single(qa => qa.Quantity.Equals(default(Time))).Units.Contains(Time.Hour);
+            var actual = QuantityCollection.Quantities.Single(qa => qa.Quantity is Time).Units.Contains(Time.Hour);
             Assert.AreEqual(expected, actual);
         }
 
@@ -36,7 +36,7 @@ namespace Cureos.Measures
         {
             var expected = false;
             var actual =
-                QuantityCollection.Quantities.Single(qa => qa.Quantity.Equals(default(Length))).Units.Contains(
+                QuantityCollection.Quantities.Single(qa => qa.Quantity is Length).Units.Contains(
                     Velocity.MeterPerSecond);
             Assert.AreEqual(expected, actual);
         }

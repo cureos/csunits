@@ -26,6 +26,7 @@
 namespace Cureos.Measures.Quantities
 {
     using System;
+    using System.Globalization;
     using System.Runtime.Serialization;
 
 #if SINGLE
@@ -68,7 +69,7 @@ namespace Cureos.Measures.Quantities
         #region CONSTRUCTORS
 
         /// <summary>
-        /// Initializes a angular velocity object from an object implementing the IMeasure&lt;AngularVelocity&gt; interface
+        /// Initializes a angular velocity object from an object implementing the IMeasure<AngularVelocity> interface
         /// </summary>
         /// <param name="other">Object implemeting the IMeasure&lt;AngularVelocity&gt; interface</param>
         public AngularVelocity(IMeasure<AngularVelocity> other)
@@ -144,6 +145,14 @@ namespace Cureos.Measures.Quantities
         #region Implementation of IQuantity<AngularVelocity>
 
         /// <summary>
+        /// Gets the display name of the quantity
+        /// </summary>
+        public string DisplayName 
+        { 
+            get { return "Angular Velocity"; } 
+        }
+
+        /// <summary>
         /// Gets the physical dimension of the quantity in terms of SI units
         /// </summary>
         public QuantityDimension Dimension
@@ -165,6 +174,15 @@ namespace Cureos.Measures.Quantities
         public IUnit<AngularVelocity> StandardUnit
         {
             get { return RadianPerSecond; }
+        }
+
+        bool IEquatable<IQuantity>.Equals(IQuantity other)
+        {
+            if (other == null)
+            {
+                throw new ArgumentNullException("other");
+            }
+            return other is AngularVelocity;
         }
 
         #endregion
@@ -351,12 +369,14 @@ namespace Cureos.Measures.Quantities
         /// Gets a new unit preserving measure based on this measure but in the <paramref name="unit">specified unit</paramref>
         /// </summary>
         /// <param name="unit">Unit in which the new measure should be specified</param>
-        public UnitPreservingMeasure<AngularVelocity> this[IUnit<AngularVelocity> unit]
+        public IMeasure<AngularVelocity> this[IUnit<AngularVelocity> unit]
         {
             get
             {
                 if (unit == null) throw new ArgumentNullException("unit");
-                return new UnitPreservingMeasure<AngularVelocity>(this.GetAmount(unit), unit);
+                return unit.IsStandardUnit
+                    ? (IMeasure<AngularVelocity>)this
+                    : new UnitPreservingMeasure<AngularVelocity>(this.GetAmount(unit), unit);
             }
         }
 
@@ -401,7 +421,7 @@ namespace Cureos.Measures.Quantities
         /// <filterpriority>2</filterpriority>
         public override string ToString()
         {
-            return String.Format("{0} {1} (angular velocity)", this.amount, this.Unit.Symbol).Trim();
+            return this.ToString("G", CultureInfo.CurrentCulture);
         }
 
         /// <summary>
@@ -411,7 +431,7 @@ namespace Cureos.Measures.Quantities
         /// <returns>A <see cref="T:System.String"/> containing a the actual value in formatted form with the quantity symbol appended</returns>
         public string ToString(string format)
         {
-            return String.Format("{0} {1} (angular velocity)", this.amount.ToString(format), this.Unit.Symbol).Trim();
+            return this.ToString(format, CultureInfo.CurrentCulture);
         }
         
         /// <summary>
@@ -421,7 +441,7 @@ namespace Cureos.Measures.Quantities
         /// <returns></returns>
         public string ToString(IFormatProvider provider)
         {
-            return String.Format("{0} {1} (angular velocity)", this.amount.ToString(provider), this.Unit.Symbol).Trim();
+            return this.ToString("G", provider);
         }
         
         /// <summary>
@@ -432,7 +452,7 @@ namespace Cureos.Measures.Quantities
         /// <returns></returns>
         public string ToString(string format, IFormatProvider provider)
         {
-            return String.Format("{0} {1} (angular velocity)", this.amount.ToString(format, provider), this.Unit.Symbol).Trim();
+            return String.Format("({0}) {1} {2}", this.DisplayName, this.amount.ToString(format, provider), this.Unit.Symbol).TrimEnd();
         }
         
         #endregion

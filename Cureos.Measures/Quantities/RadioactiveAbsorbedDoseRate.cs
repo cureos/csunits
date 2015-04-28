@@ -6,6 +6,8 @@
 
 namespace Cureos.Measures.Quantities
 {
+    using System;
+
     /// <summary>
     /// Implementation of the radioactive source absorbed dose rate quantity
     /// </summary>
@@ -22,6 +24,8 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IQuantity<RadioactiveAbsorbedDoseRate>
+
+        public string DisplayName { get; private set; }
 
         /// <summary>
         /// Gets the physical dimension of the quantity in terms of SI units
@@ -45,6 +49,15 @@ namespace Cureos.Measures.Quantities
         public IUnit<RadioactiveAbsorbedDoseRate> StandardUnit
         {
             get { return GrayPerSecond; }
+        }
+
+        public bool Equals(IQuantity other)
+        {
+            if (other == null)
+            {
+                throw new ArgumentNullException("other");
+            }
+            return other is RadioactiveAbsorbedDoseRate;
         }
 
         #endregion
