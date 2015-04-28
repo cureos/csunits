@@ -37,6 +37,14 @@ namespace Cureos.Measures
     /// <typeparam name="Q">Quantity type with which the unit is associated</typeparam>
     public sealed class Unit<Q> : IUnit<Q> where Q : struct, IQuantity<Q>
     {
+        #region FIELDS
+
+        private readonly Func<double, double> convertAmountToStandardUnit;
+
+        private readonly Func<double, double> convertStandardAmountToUnit;
+
+        #endregion
+
         #region CONSTRUCTORS
 
         /// <summary>
@@ -76,9 +84,9 @@ namespace Cureos.Measures
         /// <param name="iAmountFromStandardUnitConverter">Amount converter function from quantity's standard unit to this unit</param>
         public Unit(
             string iSymbol,
-            Func<AmountType, AmountType> iAmountToStandardUnitConverter,
-            Func<AmountType, AmountType> iAmountFromStandardUnitConverter)
-            : this(false, iSymbol, iAmountToStandardUnitConverter, iAmountFromStandardUnitConverter)
+            Func<AmountType, AmountType> iConvertAmountToStandardUnit,
+            Func<AmountType, AmountType> iConvertStandardAmountToUnit)
+            : this(false, iSymbol, iConvertAmountToStandardUnit, iConvertStandardAmountToUnit)
         {
         }
 
@@ -98,8 +106,8 @@ namespace Cureos.Measures
             this.IsStandardUnit = isStandardUnit;
             this.Symbol = iSymbol;
             this.DisplayName = String.Empty;
-            this.ConvertAmountToStandardUnit = iConvertAmountToStandardUnit;
-            this.ConvertStandardAmountToUnit = iConvertStandardAmountToUnit;
+            this.convertAmountToStandardUnit = iConvertAmountToStandardUnit;
+            this.convertStandardAmountToUnit = iConvertStandardAmountToUnit;
         }
 
         #endregion
@@ -141,13 +149,25 @@ namespace Cureos.Measures
         /// Gets the amount converter function from the current unit to the standard unit 
         /// of the specified quantity
         /// </summary>
-        public Func<AmountType, AmountType> ConvertAmountToStandardUnit { get; private set; }
+        public Func<AmountType, AmountType> ConvertAmountToStandardUnit
+        {
+            get
+            {
+                return this.convertAmountToStandardUnit;
+            }
+        }
 
         /// <summary>
         /// Gets the amount converter function from the standard unit of the specified quantity
         /// to the current unit
         /// </summary>
-        public Func<AmountType, AmountType> ConvertStandardAmountToUnit { get; private set; }
+        public Func<AmountType, AmountType> ConvertStandardAmountToUnit
+        {
+            get
+            {
+                return this.convertStandardAmountToUnit;
+            }
+        }
 
         #endregion
 
