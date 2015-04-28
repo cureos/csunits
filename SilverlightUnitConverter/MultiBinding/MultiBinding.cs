@@ -277,7 +277,7 @@ namespace SLMultiBinding
   public class BindingCollection : Collection<BindingBase>
   {
     // Fields
-    private readonly BindingCollectionChangedCallback _collectionChangedCallback;
+    private readonly BindingCollectionChangedCallback _collectionChangedCallback = null;
 
 
     protected override void ClearItems()
