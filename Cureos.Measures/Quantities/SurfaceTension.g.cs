@@ -124,7 +124,7 @@ namespace Cureos.Measures.Quantities
         public SurfaceTension(double amount, IUnit<SurfaceTension> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace Cureos.Measures.Quantities
         public SurfaceTension(float amount, IUnit<SurfaceTension> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace Cureos.Measures.Quantities
         public SurfaceTension(decimal amount, IUnit<SurfaceTension> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         #endregion
@@ -262,7 +262,7 @@ namespace Cureos.Measures.Quantities
         public AmountType GetAmount(IUnit<SurfaceTension> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            return unit.AmountFromStandardUnitConverter(this.amount);
+            return unit.ConvertStandardAmountToUnit(this.amount);
         }
 
         /// <summary>

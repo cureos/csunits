@@ -90,7 +90,7 @@ namespace Cureos.Measures
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
 #if DOUBLE
-			mAmount = iUnit.AmountToStandardUnitConverter(iAmount);
+			mAmount = iUnit.ConvertAmountToStandardUnit(iAmount);
 #else
 			mAmount = iUnit.AmountToStandardUnitConverter((AmountType)iAmount);
 #endif
@@ -105,7 +105,7 @@ namespace Cureos.Measures
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
 #if !DECIMAL
-			mAmount = iUnit.AmountToStandardUnitConverter(iAmount);
+			mAmount = iUnit.ConvertAmountToStandardUnit(iAmount);
 #else
 			mAmount = iUnit.AmountToStandardUnitConverter((AmountType)iAmount);
 #endif
@@ -122,7 +122,7 @@ namespace Cureos.Measures
 #if DECIMAL
 			mAmount = iUnit.AmountToStandardUnitConverter(iAmount);
 #else
-			mAmount = iUnit.AmountToStandardUnitConverter((AmountType)iAmount);
+			mAmount = iUnit.ConvertAmountToStandardUnit((AmountType)iAmount);
 #endif
 		}
 
@@ -172,7 +172,7 @@ namespace Cureos.Measures
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
 			if (!iUnit.Quantity.Equals(default(Q))) throw new ArgumentException("Unit is not the same quantity as measure");
-			return iUnit.AmountFromStandardUnitConverter(mAmount);
+			return iUnit.ConvertStandardAmountToUnit(mAmount);
 		}
 
 		/// <summary>
@@ -202,7 +202,7 @@ namespace Cureos.Measures
 		public AmountType GetAmount(IUnit<Q> iUnit)
 		{
 			if (iUnit == null) throw new ArgumentNullException("iUnit");
-			return iUnit.AmountFromStandardUnitConverter(mAmount);
+			return iUnit.ConvertStandardAmountToUnit(mAmount);
 		}
 
 		/// <summary>

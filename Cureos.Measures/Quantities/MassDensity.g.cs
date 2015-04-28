@@ -117,7 +117,7 @@ namespace Cureos.Measures.Quantities
         public MassDensity(double amount, IUnit<MassDensity> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace Cureos.Measures.Quantities
         public MassDensity(float amount, IUnit<MassDensity> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace Cureos.Measures.Quantities
         public MassDensity(decimal amount, IUnit<MassDensity> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         #endregion
@@ -255,7 +255,7 @@ namespace Cureos.Measures.Quantities
         public AmountType GetAmount(IUnit<MassDensity> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            return unit.AmountFromStandardUnitConverter(this.amount);
+            return unit.ConvertStandardAmountToUnit(this.amount);
         }
 
         /// <summary>

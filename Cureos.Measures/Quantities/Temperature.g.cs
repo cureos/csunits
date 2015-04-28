@@ -119,7 +119,7 @@ namespace Cureos.Measures.Quantities
         public Temperature(double amount, IUnit<Temperature> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace Cureos.Measures.Quantities
         public Temperature(float amount, IUnit<Temperature> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace Cureos.Measures.Quantities
         public Temperature(decimal amount, IUnit<Temperature> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         #endregion
@@ -257,7 +257,7 @@ namespace Cureos.Measures.Quantities
         public AmountType GetAmount(IUnit<Temperature> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            return unit.AmountFromStandardUnitConverter(this.amount);
+            return unit.ConvertStandardAmountToUnit(this.amount);
         }
 
         /// <summary>

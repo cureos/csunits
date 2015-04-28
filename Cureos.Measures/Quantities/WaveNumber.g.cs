@@ -116,7 +116,7 @@ namespace Cureos.Measures.Quantities
         public WaveNumber(double amount, IUnit<WaveNumber> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace Cureos.Measures.Quantities
         public WaveNumber(float amount, IUnit<WaveNumber> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         /// <summary>
@@ -140,7 +140,7 @@ namespace Cureos.Measures.Quantities
         public WaveNumber(decimal amount, IUnit<WaveNumber> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         #endregion
@@ -254,7 +254,7 @@ namespace Cureos.Measures.Quantities
         public AmountType GetAmount(IUnit<WaveNumber> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            return unit.AmountFromStandardUnitConverter(this.amount);
+            return unit.ConvertStandardAmountToUnit(this.amount);
         }
 
         /// <summary>

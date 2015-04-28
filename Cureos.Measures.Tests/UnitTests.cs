@@ -69,7 +69,7 @@ namespace Cureos.Measures
 		public void AmountToStandardUnitConverter_InstanceUnit_ReturnsGigaTimesOriginalValue()
 		{
 			var expected = AmountConverter.ToAmountType(1.0e9);
-			var actual = _instance.AmountToStandardUnitConverter(AmountConverter.ToAmountType(1.0));
+			var actual = _instance.ConvertAmountToStandardUnit(AmountConverter.ToAmountType(1.0));
 			AmountAssert.AreEqual(expected, actual);
 		}
 

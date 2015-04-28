@@ -42,7 +42,7 @@ namespace SilverlightUnitConverter
             if (values.Length == 3 && Double.TryParse(values[0].ToString(), NumberStyles.Number, culture, out fromAmount) &&
                 (fromUnit = values[1] as IUnit) != null && (toUnit = values[2] as IUnit) != null)
             {
-                return toUnit.AmountFromStandardUnitConverter(fromUnit.AmountToStandardUnitConverter(fromAmount));
+                return toUnit.ConvertStandardAmountToUnit(fromUnit.ConvertAmountToStandardUnit(fromAmount));
             }
             return null;
         }

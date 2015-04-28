@@ -113,7 +113,7 @@ namespace Cureos.Measures.Quantities
         public Number(double amount, IUnit<Number> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace Cureos.Measures.Quantities
         public Number(float amount, IUnit<Number> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace Cureos.Measures.Quantities
         public Number(decimal amount, IUnit<Number> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         #endregion
@@ -251,7 +251,7 @@ namespace Cureos.Measures.Quantities
         public AmountType GetAmount(IUnit<Number> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            return unit.AmountFromStandardUnitConverter(this.amount);
+            return unit.ConvertStandardAmountToUnit(this.amount);
         }
 
         /// <summary>

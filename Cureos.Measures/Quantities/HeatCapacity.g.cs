@@ -124,7 +124,7 @@ namespace Cureos.Measures.Quantities
         public HeatCapacity(double amount, IUnit<HeatCapacity> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace Cureos.Measures.Quantities
         public HeatCapacity(float amount, IUnit<HeatCapacity> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace Cureos.Measures.Quantities
         public HeatCapacity(decimal amount, IUnit<HeatCapacity> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         #endregion
@@ -262,7 +262,7 @@ namespace Cureos.Measures.Quantities
         public AmountType GetAmount(IUnit<HeatCapacity> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            return unit.AmountFromStandardUnitConverter(this.amount);
+            return unit.ConvertStandardAmountToUnit(this.amount);
         }
 
         /// <summary>

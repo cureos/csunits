@@ -60,13 +60,13 @@ namespace Cureos.Measures
         /// Gets the amount converter function from the current unit to the standard unit 
         /// of the specified quantity
         /// </summary>
-        Func<AmountType, AmountType> AmountToStandardUnitConverter { get; }
+        Func<AmountType, AmountType> ConvertAmountToStandardUnit { get; }
 
         /// <summary>
         /// Gets the amount converter function from the standard unit of the specified quantity
         /// to the current unit
         /// </summary>
-        Func<AmountType, AmountType> AmountFromStandardUnitConverter { get; }
+        Func<AmountType, AmountType> ConvertStandardAmountToUnit { get; }
     }
 
     /// <summary>

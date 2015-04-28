@@ -134,7 +134,7 @@ namespace Cureos.Measures
         /// </summary>
         public AmountType StandardAmount
         {
-            get { return mUnit.AmountToStandardUnitConverter(mAmount); }
+            get { return mUnit.ConvertAmountToStandardUnit(mAmount); }
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace Cureos.Measures
         {
             if (iUnit == null) throw new ArgumentNullException("iUnit");
             if (!iUnit.Quantity.Equals(default(Q))) throw new ArgumentException("Unit is not the same quantity as measure");
-            return iUnit.AmountFromStandardUnitConverter(StandardAmount);
+            return iUnit.ConvertStandardAmountToUnit(StandardAmount);
         }
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace Cureos.Measures
         public AmountType GetAmount(IUnit<Q> iUnit)
         {
             if (iUnit == null) throw new ArgumentNullException("iUnit");
-            return iUnit.AmountFromStandardUnitConverter(StandardAmount);
+            return iUnit.ConvertStandardAmountToUnit(StandardAmount);
         }
 
         /// <summary>

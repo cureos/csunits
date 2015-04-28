@@ -131,7 +131,7 @@ namespace MonodroidUnitConverter
                 var toUnit = quantity.Units.ElementAt(toUnitPos);
 
                 mToAmountEditText.Text =
-                    toUnit.AmountFromStandardUnitConverter(fromUnit.AmountToStandardUnitConverter(fromAmount)).ToString(
+                    toUnit.ConvertStandardAmountToUnit(fromUnit.ConvertAmountToStandardUnit(fromAmount)).ToString(
                         CultureInfo.CurrentCulture);
             }
             else

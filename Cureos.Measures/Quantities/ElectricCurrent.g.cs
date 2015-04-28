@@ -123,7 +123,7 @@ namespace Cureos.Measures.Quantities
         public ElectricCurrent(double amount, IUnit<ElectricCurrent> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace Cureos.Measures.Quantities
         public ElectricCurrent(float amount, IUnit<ElectricCurrent> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace Cureos.Measures.Quantities
         public ElectricCurrent(decimal amount, IUnit<ElectricCurrent> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         #endregion
@@ -261,7 +261,7 @@ namespace Cureos.Measures.Quantities
         public AmountType GetAmount(IUnit<ElectricCurrent> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            return unit.AmountFromStandardUnitConverter(this.amount);
+            return unit.ConvertStandardAmountToUnit(this.amount);
         }
 
         /// <summary>

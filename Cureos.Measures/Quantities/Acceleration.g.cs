@@ -120,7 +120,7 @@ namespace Cureos.Measures.Quantities
         public Acceleration(double amount, IUnit<Acceleration> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace Cureos.Measures.Quantities
         public Acceleration(float amount, IUnit<Acceleration> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace Cureos.Measures.Quantities
         public Acceleration(decimal amount, IUnit<Acceleration> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         #endregion
@@ -258,7 +258,7 @@ namespace Cureos.Measures.Quantities
         public AmountType GetAmount(IUnit<Acceleration> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            return unit.AmountFromStandardUnitConverter(this.amount);
+            return unit.ConvertStandardAmountToUnit(this.amount);
         }
 
         /// <summary>

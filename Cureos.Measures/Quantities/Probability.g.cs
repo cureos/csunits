@@ -117,7 +117,7 @@ namespace Cureos.Measures.Quantities
         public Probability(double amount, IUnit<Probability> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace Cureos.Measures.Quantities
         public Probability(float amount, IUnit<Probability> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace Cureos.Measures.Quantities
         public Probability(decimal amount, IUnit<Probability> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            this.amount = unit.AmountToStandardUnitConverter((AmountType)amount);
+            this.amount = unit.ConvertAmountToStandardUnit((AmountType)amount);
         }
 
         #endregion
@@ -255,7 +255,7 @@ namespace Cureos.Measures.Quantities
         public AmountType GetAmount(IUnit<Probability> unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            return unit.AmountFromStandardUnitConverter(this.amount);
+            return unit.ConvertStandardAmountToUnit(this.amount);
         }
 
         /// <summary>
