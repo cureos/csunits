@@ -68,6 +68,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static HeatCapacity()
+        {
+            Zero = new HeatCapacity(Constants.Zero);
+            Epsilon = new HeatCapacity(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a heat capacity object from an object implementing the IMeasure&lt;HeatCapacity&gt; interface
         /// </summary>
@@ -384,6 +395,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static HeatCapacity Zero { get; private set; }
+
+        public static HeatCapacity Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

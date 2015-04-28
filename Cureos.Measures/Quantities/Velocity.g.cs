@@ -68,6 +68,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static Velocity()
+        {
+            Zero = new Velocity(Constants.Zero);
+            Epsilon = new Velocity(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a velocity object from an object implementing the IMeasure&lt;Velocity&gt; interface
         /// </summary>
@@ -384,6 +395,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static Velocity Zero { get; private set; }
+
+        public static Velocity Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

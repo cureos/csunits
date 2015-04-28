@@ -66,6 +66,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static Activity()
+        {
+            Zero = new Activity(Constants.Zero);
+            Epsilon = new Activity(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a activity object from an object implementing the IMeasure&lt;Activity&gt; interface
         /// </summary>
@@ -382,6 +393,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static Activity Zero { get; private set; }
+
+        public static Activity Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

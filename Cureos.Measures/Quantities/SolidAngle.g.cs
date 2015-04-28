@@ -63,6 +63,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static SolidAngle()
+        {
+            Zero = new SolidAngle(Constants.Zero);
+            Epsilon = new SolidAngle(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a solid angle object from an object implementing the IMeasure&lt;SolidAngle&gt; interface
         /// </summary>
@@ -379,6 +390,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static SolidAngle Zero { get; private set; }
+
+        public static SolidAngle Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

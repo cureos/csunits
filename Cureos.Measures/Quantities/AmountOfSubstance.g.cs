@@ -68,6 +68,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static AmountOfSubstance()
+        {
+            Zero = new AmountOfSubstance(Constants.Zero);
+            Epsilon = new AmountOfSubstance(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a amount of substance object from an object implementing the IMeasure&lt;AmountOfSubstance&gt; interface
         /// </summary>
@@ -384,6 +395,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static AmountOfSubstance Zero { get; private set; }
+
+        public static AmountOfSubstance Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

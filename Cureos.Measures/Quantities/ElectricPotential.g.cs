@@ -68,6 +68,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static ElectricPotential()
+        {
+            Zero = new ElectricPotential(Constants.Zero);
+            Epsilon = new ElectricPotential(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a electric potential object from an object implementing the IMeasure&lt;ElectricPotential&gt; interface
         /// </summary>
@@ -384,6 +395,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static ElectricPotential Zero { get; private set; }
+
+        public static ElectricPotential Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

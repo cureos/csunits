@@ -67,6 +67,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static Capacitance()
+        {
+            Zero = new Capacitance(Constants.Zero);
+            Epsilon = new Capacitance(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a capacitance object from an object implementing the IMeasure&lt;Capacitance&gt; interface
         /// </summary>
@@ -383,6 +394,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static Capacitance Zero { get; private set; }
+
+        public static Capacitance Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

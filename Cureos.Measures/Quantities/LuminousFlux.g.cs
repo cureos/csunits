@@ -68,6 +68,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static LuminousFlux()
+        {
+            Zero = new LuminousFlux(Constants.Zero);
+            Epsilon = new LuminousFlux(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a luminous flux object from an object implementing the IMeasure&lt;LuminousFlux&gt; interface
         /// </summary>
@@ -384,6 +395,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static LuminousFlux Zero { get; private set; }
+
+        public static LuminousFlux Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

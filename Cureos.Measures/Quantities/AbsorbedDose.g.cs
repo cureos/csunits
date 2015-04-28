@@ -68,6 +68,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static AbsorbedDose()
+        {
+            Zero = new AbsorbedDose(Constants.Zero);
+            Epsilon = new AbsorbedDose(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a absorbed dose object from an object implementing the IMeasure&lt;AbsorbedDose&gt; interface
         /// </summary>
@@ -384,6 +395,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static AbsorbedDose Zero { get; private set; }
+
+        public static AbsorbedDose Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

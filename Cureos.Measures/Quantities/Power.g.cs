@@ -68,6 +68,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static Power()
+        {
+            Zero = new Power(Constants.Zero);
+            Epsilon = new Power(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a power object from an object implementing the IMeasure&lt;Power&gt; interface
         /// </summary>
@@ -384,6 +395,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static Power Zero { get; private set; }
+
+        public static Power Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

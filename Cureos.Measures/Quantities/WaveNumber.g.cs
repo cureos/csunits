@@ -60,6 +60,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static WaveNumber()
+        {
+            Zero = new WaveNumber(Constants.Zero);
+            Epsilon = new WaveNumber(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a wave number object from an object implementing the IMeasure&lt;WaveNumber&gt; interface
         /// </summary>
@@ -376,6 +387,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static WaveNumber Zero { get; private set; }
+
+        public static WaveNumber Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

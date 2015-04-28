@@ -68,6 +68,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static Luminance()
+        {
+            Zero = new Luminance(Constants.Zero);
+            Epsilon = new Luminance(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a luminance object from an object implementing the IMeasure&lt;Luminance&gt; interface
         /// </summary>
@@ -384,6 +395,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static Luminance Zero { get; private set; }
+
+        public static Luminance Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

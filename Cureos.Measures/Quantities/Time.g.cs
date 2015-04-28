@@ -63,6 +63,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static Time()
+        {
+            Zero = new Time(Constants.Zero);
+            Epsilon = new Time(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a time object from an object implementing the IMeasure&lt;Time&gt; interface
         /// </summary>
@@ -379,6 +390,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static Time Zero { get; private set; }
+
+        public static Time Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

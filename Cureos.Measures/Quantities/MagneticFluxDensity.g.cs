@@ -68,6 +68,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static MagneticFluxDensity()
+        {
+            Zero = new MagneticFluxDensity(Constants.Zero);
+            Epsilon = new MagneticFluxDensity(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a magnetic flux density object from an object implementing the IMeasure&lt;MagneticFluxDensity&gt; interface
         /// </summary>
@@ -384,6 +395,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static MagneticFluxDensity Zero { get; private set; }
+
+        public static MagneticFluxDensity Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

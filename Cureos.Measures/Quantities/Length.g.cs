@@ -74,6 +74,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static Length()
+        {
+            Zero = new Length(Constants.Zero);
+            Epsilon = new Length(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a length object from an object implementing the IMeasure&lt;Length&gt; interface
         /// </summary>
@@ -390,6 +401,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static Length Zero { get; private set; }
+
+        public static Length Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

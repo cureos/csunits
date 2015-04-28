@@ -222,7 +222,7 @@ namespace Cureos.Measures
 		/// Gets a new unit specific measure based on this measure but in the <paramref name="iUnit">specified unit</paramref>
 		/// </summary>
 		/// <param name="iUnit">Unit in which the new measure should be specified</param>
-		public UnitPreservingMeasure<Q> this[IUnit<Q> iUnit]
+		public IMeasure<Q> this[IUnit<Q> iUnit]
 		{
 			get
 			{

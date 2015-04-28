@@ -61,6 +61,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static PlaneAngle()
+        {
+            Zero = new PlaneAngle(Constants.Zero);
+            Epsilon = new PlaneAngle(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a plane angle object from an object implementing the IMeasure&lt;PlaneAngle&gt; interface
         /// </summary>
@@ -377,6 +388,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static PlaneAngle Zero { get; private set; }
+
+        public static PlaneAngle Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

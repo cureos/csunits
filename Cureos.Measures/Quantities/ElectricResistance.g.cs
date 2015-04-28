@@ -68,6 +68,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static ElectricResistance()
+        {
+            Zero = new ElectricResistance(Constants.Zero);
+            Epsilon = new ElectricResistance(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a electric resistance object from an object implementing the IMeasure&lt;ElectricResistance&gt; interface
         /// </summary>
@@ -384,6 +395,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static ElectricResistance Zero { get; private set; }
+
+        public static ElectricResistance Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

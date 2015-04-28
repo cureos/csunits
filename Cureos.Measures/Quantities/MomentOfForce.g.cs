@@ -68,6 +68,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static MomentOfForce()
+        {
+            Zero = new MomentOfForce(Constants.Zero);
+            Epsilon = new MomentOfForce(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a moment of force object from an object implementing the IMeasure&lt;MomentOfForce&gt; interface
         /// </summary>
@@ -384,6 +395,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static MomentOfForce Zero { get; private set; }
+
+        public static MomentOfForce Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

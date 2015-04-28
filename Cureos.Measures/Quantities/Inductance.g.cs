@@ -68,6 +68,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static Inductance()
+        {
+            Zero = new Inductance(Constants.Zero);
+            Epsilon = new Inductance(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a inductance object from an object implementing the IMeasure&lt;Inductance&gt; interface
         /// </summary>
@@ -384,6 +395,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static Inductance Zero { get; private set; }
+
+        public static Inductance Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

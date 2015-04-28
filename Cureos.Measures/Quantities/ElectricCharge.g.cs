@@ -64,6 +64,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static ElectricCharge()
+        {
+            Zero = new ElectricCharge(Constants.Zero);
+            Epsilon = new ElectricCharge(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a electric charge object from an object implementing the IMeasure&lt;ElectricCharge&gt; interface
         /// </summary>
@@ -380,6 +391,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static ElectricCharge Zero { get; private set; }
+
+        public static ElectricCharge Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

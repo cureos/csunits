@@ -66,6 +66,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static DoseEquivalent()
+        {
+            Zero = new DoseEquivalent(Constants.Zero);
+            Epsilon = new DoseEquivalent(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a dose equivalent object from an object implementing the IMeasure&lt;DoseEquivalent&gt; interface
         /// </summary>
@@ -382,6 +393,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static DoseEquivalent Zero { get; private set; }
+
+        public static DoseEquivalent Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

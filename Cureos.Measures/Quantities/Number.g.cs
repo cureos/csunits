@@ -57,6 +57,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static Number()
+        {
+            Zero = new Number(Constants.Zero);
+            Epsilon = new Number(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a number object from an object implementing the IMeasure&lt;Number&gt; interface
         /// </summary>
@@ -373,6 +384,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static Number Zero { get; private set; }
+
+        public static Number Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

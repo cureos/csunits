@@ -74,6 +74,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static Mass()
+        {
+            Zero = new Mass(Constants.Zero);
+            Epsilon = new Mass(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a mass object from an object implementing the IMeasure&lt;Mass&gt; interface
         /// </summary>
@@ -390,6 +401,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static Mass Zero { get; private set; }
+
+        public static Mass Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

@@ -68,6 +68,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static MagneticFieldStrength()
+        {
+            Zero = new MagneticFieldStrength(Constants.Zero);
+            Epsilon = new MagneticFieldStrength(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a magnetic field strength object from an object implementing the IMeasure&lt;MagneticFieldStrength&gt; interface
         /// </summary>
@@ -384,6 +395,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static MagneticFieldStrength Zero { get; private set; }
+
+        public static MagneticFieldStrength Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

@@ -63,6 +63,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static Volume()
+        {
+            Zero = new Volume(Constants.Zero);
+            Epsilon = new Volume(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a volume object from an object implementing the IMeasure&lt;Volume&gt; interface
         /// </summary>
@@ -379,6 +390,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static Volume Zero { get; private set; }
+
+        public static Volume Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

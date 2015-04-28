@@ -68,6 +68,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static Pressure()
+        {
+            Zero = new Pressure(Constants.Zero);
+            Epsilon = new Pressure(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a pressure object from an object implementing the IMeasure&lt;Pressure&gt; interface
         /// </summary>
@@ -384,6 +395,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static Pressure Zero { get; private set; }
+
+        public static Pressure Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>

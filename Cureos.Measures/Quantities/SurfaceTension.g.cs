@@ -68,6 +68,17 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
+#if !MONO
+        /// <summary>
+        /// Static constructor for defining static class properties
+        /// </summary>
+        static SurfaceTension()
+        {
+            Zero = new SurfaceTension(Constants.Zero);
+            Epsilon = new SurfaceTension(Constants.MachineEpsilon);
+        }
+#endif
+        
         /// <summary>
         /// Initializes a surface tension object from an object implementing the IMeasure&lt;SurfaceTension&gt; interface
         /// </summary>
@@ -384,6 +395,16 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
+#if !MONO
+        #region PROPERTIES
+        
+        public static SurfaceTension Zero { get; private set; }
+
+        public static SurfaceTension Epsilon { get; private set; }
+
+        #endregion
+#endif
+        
         #region METHODS
 
         /// <summary>
