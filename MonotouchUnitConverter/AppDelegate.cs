@@ -10,7 +10,9 @@ using Cureos.Measures;
 
 namespace MonotouchUnitConverter
 {
-	// The UIApplicationDelegate for the application. This class is responsible for launching the 
+    using Cureos.Measures.Collections;
+
+    // The UIApplicationDelegate for the application. This class is responsible for launching the 
 	// User Interface of the application, as well as listening (and optionally responding) to 
 	// application events from iOS.
 	[Register ("AppDelegate")]

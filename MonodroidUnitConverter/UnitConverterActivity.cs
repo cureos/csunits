@@ -17,6 +17,8 @@ using Activity = Android.App.Activity;
 
 namespace MonodroidUnitConverter
 {
+    using Cureos.Measures.Collections;
+
     [Activity (Label = "Cureos Unit Converter", MainLauncher = true)]
     public class UnitConverterActivity : Activity
     {

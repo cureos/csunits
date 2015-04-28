@@ -24,6 +24,7 @@ namespace SilverlightUnitConverter
     using System.Collections.Generic;
     using System.Linq;
     using Cureos.Measures;
+    using Cureos.Measures.Collections;
 
     /// <summary>
     /// Non-static wrapper class for accessing properties of the static QuantityCollection class
