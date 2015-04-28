@@ -48,13 +48,13 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(0, 0, 1, 0, 0, 0, 0);
 
-        public static readonly Unit<Time> Second = new Unit<Time>("s");
+        public static readonly IUnit<Time> Second = new Unit<Time>("s");
 
-        public static readonly Unit<Time> Minute = new Unit<Time>("min", Factors.SecondsPerMinute);
-        public static readonly Unit<Time> Hour = new Unit<Time>("h", Factors.SecondsPerHour);
-        public static readonly Unit<Time> Day = new Unit<Time>("dy", Factors.SecondsPerDay);
-        public static readonly Unit<Time> Week = new Unit<Time>("wk", Factors.SecondsPerWeek);
-        public static readonly Unit<Time> JulianYear = new Unit<Time>("a", Factors.SecondsPerJulianYear);
+        public static readonly IUnit<Time> Minute = new Unit<Time>("min", Factors.SecondsPerMinute);
+        public static readonly IUnit<Time> Hour = new Unit<Time>("h", Factors.SecondsPerHour);
+        public static readonly IUnit<Time> Day = new Unit<Time>("dy", Factors.SecondsPerDay);
+        public static readonly IUnit<Time> Week = new Unit<Time>("wk", Factors.SecondsPerWeek);
+        public static readonly IUnit<Time> JulianYear = new Unit<Time>("a", Factors.SecondsPerJulianYear);
 
         [DataMember]
         private readonly AmountType amount;

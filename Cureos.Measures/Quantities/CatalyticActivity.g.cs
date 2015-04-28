@@ -48,16 +48,16 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(0, 0, -1, 0, 0, 0, 1);
 
-        public static readonly Unit<CatalyticActivity> Katal = new Unit<CatalyticActivity>("kat");
+        public static readonly IUnit<CatalyticActivity> Katal = new Unit<CatalyticActivity>("kat");
 
-        public static readonly Unit<CatalyticActivity> NanoKatal = new Unit<CatalyticActivity>(UnitPrefix.Nano);
-        public static readonly Unit<CatalyticActivity> MicroKatal = new Unit<CatalyticActivity>(UnitPrefix.Micro);
-        public static readonly Unit<CatalyticActivity> MilliKatal = new Unit<CatalyticActivity>(UnitPrefix.Milli);
-        public static readonly Unit<CatalyticActivity> CentiKatal = new Unit<CatalyticActivity>(UnitPrefix.Centi);
-        public static readonly Unit<CatalyticActivity> DeciKatal = new Unit<CatalyticActivity>(UnitPrefix.Deci);
-        public static readonly Unit<CatalyticActivity> DekaKatal = new Unit<CatalyticActivity>(UnitPrefix.Deka);
-        public static readonly Unit<CatalyticActivity> HectoKatal = new Unit<CatalyticActivity>(UnitPrefix.Hecto);
-        public static readonly Unit<CatalyticActivity> KiloKatal = new Unit<CatalyticActivity>(UnitPrefix.Kilo);
+        public static readonly IUnit<CatalyticActivity> NanoKatal = new Unit<CatalyticActivity>(UnitPrefix.Nano);
+        public static readonly IUnit<CatalyticActivity> MicroKatal = new Unit<CatalyticActivity>(UnitPrefix.Micro);
+        public static readonly IUnit<CatalyticActivity> MilliKatal = new Unit<CatalyticActivity>(UnitPrefix.Milli);
+        public static readonly IUnit<CatalyticActivity> CentiKatal = new Unit<CatalyticActivity>(UnitPrefix.Centi);
+        public static readonly IUnit<CatalyticActivity> DeciKatal = new Unit<CatalyticActivity>(UnitPrefix.Deci);
+        public static readonly IUnit<CatalyticActivity> DekaKatal = new Unit<CatalyticActivity>(UnitPrefix.Deka);
+        public static readonly IUnit<CatalyticActivity> HectoKatal = new Unit<CatalyticActivity>(UnitPrefix.Hecto);
+        public static readonly IUnit<CatalyticActivity> KiloKatal = new Unit<CatalyticActivity>(UnitPrefix.Kilo);
 
         [DataMember]
         private readonly AmountType amount;

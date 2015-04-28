@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(2, 1, -3, -1, 0, 0, 0);
 
-        public static readonly Unit<ElectricPotential> Volt = new Unit<ElectricPotential>("V");
+        public static readonly IUnit<ElectricPotential> Volt = new Unit<ElectricPotential>("V");
 
-        public static readonly Unit<ElectricPotential> NanoVolt = new Unit<ElectricPotential>(UnitPrefix.Nano);
-        public static readonly Unit<ElectricPotential> MicroVolt = new Unit<ElectricPotential>(UnitPrefix.Micro);
-        public static readonly Unit<ElectricPotential> MilliVolt = new Unit<ElectricPotential>(UnitPrefix.Milli);
-        public static readonly Unit<ElectricPotential> CentiVolt = new Unit<ElectricPotential>(UnitPrefix.Centi);
-        public static readonly Unit<ElectricPotential> DeciVolt = new Unit<ElectricPotential>(UnitPrefix.Deci);
-        public static readonly Unit<ElectricPotential> DekaVolt = new Unit<ElectricPotential>(UnitPrefix.Deka);
-        public static readonly Unit<ElectricPotential> HectoVolt = new Unit<ElectricPotential>(UnitPrefix.Hecto);
-        public static readonly Unit<ElectricPotential> KiloVolt = new Unit<ElectricPotential>(UnitPrefix.Kilo);
-        public static readonly Unit<ElectricPotential> MegaVolt = new Unit<ElectricPotential>(UnitPrefix.Mega);
-        public static readonly Unit<ElectricPotential> GigaVolt = new Unit<ElectricPotential>(UnitPrefix.Giga);
+        public static readonly IUnit<ElectricPotential> NanoVolt = new Unit<ElectricPotential>(UnitPrefix.Nano);
+        public static readonly IUnit<ElectricPotential> MicroVolt = new Unit<ElectricPotential>(UnitPrefix.Micro);
+        public static readonly IUnit<ElectricPotential> MilliVolt = new Unit<ElectricPotential>(UnitPrefix.Milli);
+        public static readonly IUnit<ElectricPotential> CentiVolt = new Unit<ElectricPotential>(UnitPrefix.Centi);
+        public static readonly IUnit<ElectricPotential> DeciVolt = new Unit<ElectricPotential>(UnitPrefix.Deci);
+        public static readonly IUnit<ElectricPotential> DekaVolt = new Unit<ElectricPotential>(UnitPrefix.Deka);
+        public static readonly IUnit<ElectricPotential> HectoVolt = new Unit<ElectricPotential>(UnitPrefix.Hecto);
+        public static readonly IUnit<ElectricPotential> KiloVolt = new Unit<ElectricPotential>(UnitPrefix.Kilo);
+        public static readonly IUnit<ElectricPotential> MegaVolt = new Unit<ElectricPotential>(UnitPrefix.Mega);
+        public static readonly IUnit<ElectricPotential> GigaVolt = new Unit<ElectricPotential>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

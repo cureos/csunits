@@ -48,17 +48,17 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(0, 0, 0, 1, 0, 0, 0);
 
-        public static readonly Unit<ElectricCurrent> Ampere = new Unit<ElectricCurrent>("A");
+        public static readonly IUnit<ElectricCurrent> Ampere = new Unit<ElectricCurrent>("A");
 
-        public static readonly Unit<ElectricCurrent> PicoAmpere = new Unit<ElectricCurrent>(UnitPrefix.Pico);
-        public static readonly Unit<ElectricCurrent> NanoAmpere = new Unit<ElectricCurrent>(UnitPrefix.Nano);
-        public static readonly Unit<ElectricCurrent> MicroAmpere = new Unit<ElectricCurrent>(UnitPrefix.Micro);
-        public static readonly Unit<ElectricCurrent> MilliAmpere = new Unit<ElectricCurrent>(UnitPrefix.Milli);
-        public static readonly Unit<ElectricCurrent> CentiAmpere = new Unit<ElectricCurrent>(UnitPrefix.Centi);
-        public static readonly Unit<ElectricCurrent> DeciAmpere = new Unit<ElectricCurrent>(UnitPrefix.Deci);
-        public static readonly Unit<ElectricCurrent> DekaAmpere = new Unit<ElectricCurrent>(UnitPrefix.Deka);
-        public static readonly Unit<ElectricCurrent> HectoAmpere = new Unit<ElectricCurrent>(UnitPrefix.Hecto);
-        public static readonly Unit<ElectricCurrent> KiloAmpere = new Unit<ElectricCurrent>(UnitPrefix.Kilo);
+        public static readonly IUnit<ElectricCurrent> PicoAmpere = new Unit<ElectricCurrent>(UnitPrefix.Pico);
+        public static readonly IUnit<ElectricCurrent> NanoAmpere = new Unit<ElectricCurrent>(UnitPrefix.Nano);
+        public static readonly IUnit<ElectricCurrent> MicroAmpere = new Unit<ElectricCurrent>(UnitPrefix.Micro);
+        public static readonly IUnit<ElectricCurrent> MilliAmpere = new Unit<ElectricCurrent>(UnitPrefix.Milli);
+        public static readonly IUnit<ElectricCurrent> CentiAmpere = new Unit<ElectricCurrent>(UnitPrefix.Centi);
+        public static readonly IUnit<ElectricCurrent> DeciAmpere = new Unit<ElectricCurrent>(UnitPrefix.Deci);
+        public static readonly IUnit<ElectricCurrent> DekaAmpere = new Unit<ElectricCurrent>(UnitPrefix.Deka);
+        public static readonly IUnit<ElectricCurrent> HectoAmpere = new Unit<ElectricCurrent>(UnitPrefix.Hecto);
+        public static readonly IUnit<ElectricCurrent> KiloAmpere = new Unit<ElectricCurrent>(UnitPrefix.Kilo);
 
         [DataMember]
         private readonly AmountType amount;

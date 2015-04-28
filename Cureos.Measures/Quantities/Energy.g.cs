@@ -48,29 +48,29 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(2, 1, -2, 0, 0, 0, 0);
 
-        public static readonly Unit<Energy> Joule = new Unit<Energy>("J");
+        public static readonly IUnit<Energy> Joule = new Unit<Energy>("J");
 
-        public static readonly Unit<Energy> NanoJoule = new Unit<Energy>(UnitPrefix.Nano);
-        public static readonly Unit<Energy> MicroJoule = new Unit<Energy>(UnitPrefix.Micro);
-        public static readonly Unit<Energy> MilliJoule = new Unit<Energy>(UnitPrefix.Milli);
-        public static readonly Unit<Energy> CentiJoule = new Unit<Energy>(UnitPrefix.Centi);
-        public static readonly Unit<Energy> DeciJoule = new Unit<Energy>(UnitPrefix.Deci);
-        public static readonly Unit<Energy> DekaJoule = new Unit<Energy>(UnitPrefix.Deka);
-        public static readonly Unit<Energy> HectoJoule = new Unit<Energy>(UnitPrefix.Hecto);
-        public static readonly Unit<Energy> KiloJoule = new Unit<Energy>(UnitPrefix.Kilo);
-        public static readonly Unit<Energy> MegaJoule = new Unit<Energy>(UnitPrefix.Mega);
-        public static readonly Unit<Energy> GigaJoule = new Unit<Energy>(UnitPrefix.Giga);
+        public static readonly IUnit<Energy> NanoJoule = new Unit<Energy>(UnitPrefix.Nano);
+        public static readonly IUnit<Energy> MicroJoule = new Unit<Energy>(UnitPrefix.Micro);
+        public static readonly IUnit<Energy> MilliJoule = new Unit<Energy>(UnitPrefix.Milli);
+        public static readonly IUnit<Energy> CentiJoule = new Unit<Energy>(UnitPrefix.Centi);
+        public static readonly IUnit<Energy> DeciJoule = new Unit<Energy>(UnitPrefix.Deci);
+        public static readonly IUnit<Energy> DekaJoule = new Unit<Energy>(UnitPrefix.Deka);
+        public static readonly IUnit<Energy> HectoJoule = new Unit<Energy>(UnitPrefix.Hecto);
+        public static readonly IUnit<Energy> KiloJoule = new Unit<Energy>(UnitPrefix.Kilo);
+        public static readonly IUnit<Energy> MegaJoule = new Unit<Energy>(UnitPrefix.Mega);
+        public static readonly IUnit<Energy> GigaJoule = new Unit<Energy>(UnitPrefix.Giga);
 
-        public static readonly Unit<Energy> WattHour = new Unit<Energy>("Wh", Factors.SecondsPerHour);
-        public static readonly Unit<Energy> KiloWattHour = new Unit<Energy>("kWh", Factors.Kilo * Factors.SecondsPerHour);
-        public static readonly Unit<Energy> MegaWattHour = new Unit<Energy>("MWh", Factors.Mega * Factors.SecondsPerHour);
-        public static readonly Unit<Energy> GigaWattHour = new Unit<Energy>("GWh", Factors.Giga * Factors.SecondsPerHour);
-        public static readonly Unit<Energy> TeraWattHour = new Unit<Energy>("TWh", Factors.Tera * Factors.SecondsPerHour);
-        public static readonly Unit<Energy> ElectronVolt = new Unit<Energy>("eV", Factors.JoulesPerElectronVolt);
-        public static readonly Unit<Energy> KiloElectronVolt = new Unit<Energy>("keV", Factors.Kilo * Factors.JoulesPerElectronVolt);
-        public static readonly Unit<Energy> MegaElectronVolt = new Unit<Energy>("MeV", Factors.Mega * Factors.JoulesPerElectronVolt);
-        public static readonly Unit<Energy> GigaElectronVolt = new Unit<Energy>("GeV", Factors.Giga * Factors.JoulesPerElectronVolt);
-        public static readonly Unit<Energy> TeraElectronVolt = new Unit<Energy>("TeV", Factors.Tera * Factors.JoulesPerElectronVolt);
+        public static readonly IUnit<Energy> WattHour = new Unit<Energy>("Wh", Factors.SecondsPerHour);
+        public static readonly IUnit<Energy> KiloWattHour = new Unit<Energy>("kWh", Factors.Kilo * Factors.SecondsPerHour);
+        public static readonly IUnit<Energy> MegaWattHour = new Unit<Energy>("MWh", Factors.Mega * Factors.SecondsPerHour);
+        public static readonly IUnit<Energy> GigaWattHour = new Unit<Energy>("GWh", Factors.Giga * Factors.SecondsPerHour);
+        public static readonly IUnit<Energy> TeraWattHour = new Unit<Energy>("TWh", Factors.Tera * Factors.SecondsPerHour);
+        public static readonly IUnit<Energy> ElectronVolt = new Unit<Energy>("eV", Factors.JoulesPerElectronVolt);
+        public static readonly IUnit<Energy> KiloElectronVolt = new Unit<Energy>("keV", Factors.Kilo * Factors.JoulesPerElectronVolt);
+        public static readonly IUnit<Energy> MegaElectronVolt = new Unit<Energy>("MeV", Factors.Mega * Factors.JoulesPerElectronVolt);
+        public static readonly IUnit<Energy> GigaElectronVolt = new Unit<Energy>("GeV", Factors.Giga * Factors.JoulesPerElectronVolt);
+        public static readonly IUnit<Energy> TeraElectronVolt = new Unit<Energy>("TeV", Factors.Tera * Factors.JoulesPerElectronVolt);
 
         [DataMember]
         private readonly AmountType amount;

@@ -48,16 +48,16 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(-1, 1, -1, 0, 0, 0, 0);
 
-        public static readonly Unit<DynamicViscosity> PascalSecond = new Unit<DynamicViscosity>("Pa s");
+        public static readonly IUnit<DynamicViscosity> PascalSecond = new Unit<DynamicViscosity>("Pa s");
 
-        public static readonly Unit<DynamicViscosity> MilliPascalSecond = new Unit<DynamicViscosity>(UnitPrefix.Milli);
-        public static readonly Unit<DynamicViscosity> CentiPascalSecond = new Unit<DynamicViscosity>(UnitPrefix.Centi);
-        public static readonly Unit<DynamicViscosity> DeciPascalSecond = new Unit<DynamicViscosity>(UnitPrefix.Deci);
-        public static readonly Unit<DynamicViscosity> DekaPascalSecond = new Unit<DynamicViscosity>(UnitPrefix.Deka);
-        public static readonly Unit<DynamicViscosity> HectoPascalSecond = new Unit<DynamicViscosity>(UnitPrefix.Hecto);
-        public static readonly Unit<DynamicViscosity> KiloPascalSecond = new Unit<DynamicViscosity>(UnitPrefix.Kilo);
-        public static readonly Unit<DynamicViscosity> MegaPascalSecond = new Unit<DynamicViscosity>(UnitPrefix.Mega);
-        public static readonly Unit<DynamicViscosity> GigaPascalSecond = new Unit<DynamicViscosity>(UnitPrefix.Giga);
+        public static readonly IUnit<DynamicViscosity> MilliPascalSecond = new Unit<DynamicViscosity>(UnitPrefix.Milli);
+        public static readonly IUnit<DynamicViscosity> CentiPascalSecond = new Unit<DynamicViscosity>(UnitPrefix.Centi);
+        public static readonly IUnit<DynamicViscosity> DeciPascalSecond = new Unit<DynamicViscosity>(UnitPrefix.Deci);
+        public static readonly IUnit<DynamicViscosity> DekaPascalSecond = new Unit<DynamicViscosity>(UnitPrefix.Deka);
+        public static readonly IUnit<DynamicViscosity> HectoPascalSecond = new Unit<DynamicViscosity>(UnitPrefix.Hecto);
+        public static readonly IUnit<DynamicViscosity> KiloPascalSecond = new Unit<DynamicViscosity>(UnitPrefix.Kilo);
+        public static readonly IUnit<DynamicViscosity> MegaPascalSecond = new Unit<DynamicViscosity>(UnitPrefix.Mega);
+        public static readonly IUnit<DynamicViscosity> GigaPascalSecond = new Unit<DynamicViscosity>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

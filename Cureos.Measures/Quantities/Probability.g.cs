@@ -48,11 +48,11 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = QuantityDimension.Number;
 
-        public static readonly Unit<Probability> Number = new Unit<Probability>("");
+        public static readonly IUnit<Probability> Number = new Unit<Probability>("");
 
-        public static readonly Unit<Probability> Percent = new Unit<Probability>("%", Factors.Centi);
-        public static readonly Unit<Probability> Permille = new Unit<Probability>("\u2030", Factors.Milli);
-        public static readonly Unit<Probability> PartsPerMillion = new Unit<Probability>("ppm", Factors.Micro);
+        public static readonly IUnit<Probability> Percent = new Unit<Probability>("%", Factors.Centi);
+        public static readonly IUnit<Probability> Permille = new Unit<Probability>("\u2030", Factors.Milli);
+        public static readonly IUnit<Probability> PartsPerMillion = new Unit<Probability>("ppm", Factors.Micro);
 
         [DataMember]
         private readonly AmountType amount;

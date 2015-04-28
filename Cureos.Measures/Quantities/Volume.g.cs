@@ -48,13 +48,13 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(3, 0, 0, 0, 0, 0, 0);
 
-        public static readonly Unit<Volume> CubicMeter = new Unit<Volume>("m³");
+        public static readonly IUnit<Volume> CubicMeter = new Unit<Volume>("m³");
 
-        public static readonly Unit<Volume> CubicDeciMeter = new Unit<Volume>("dm³", Factors.Deci * Factors.Deci * Factors.Deci);
-        public static readonly Unit<Volume> CubicCentiMeter = new Unit<Volume>("cm³", Factors.Centi * Factors.Centi * Factors.Centi);
-        public static readonly Unit<Volume> CubicMilliMeter = new Unit<Volume>("mm³", Factors.Milli * Factors.Milli * Factors.Milli);
-        public static readonly Unit<Volume> Liter = new Unit<Volume>("l", Factors.Deci * Factors.Deci * Factors.Deci);
-        public static readonly Unit<Volume> USLiquidGallon = new Unit<Volume>("gal", Factors.CubicMetersPerUSLiquidGallon);
+        public static readonly IUnit<Volume> CubicDeciMeter = new Unit<Volume>("dm³", Factors.Deci * Factors.Deci * Factors.Deci);
+        public static readonly IUnit<Volume> CubicCentiMeter = new Unit<Volume>("cm³", Factors.Centi * Factors.Centi * Factors.Centi);
+        public static readonly IUnit<Volume> CubicMilliMeter = new Unit<Volume>("mm³", Factors.Milli * Factors.Milli * Factors.Milli);
+        public static readonly IUnit<Volume> Liter = new Unit<Volume>("l", Factors.Deci * Factors.Deci * Factors.Deci);
+        public static readonly IUnit<Volume> USLiquidGallon = new Unit<Volume>("gal", Factors.CubicMetersPerUSLiquidGallon);
 
         [DataMember]
         private readonly AmountType amount;

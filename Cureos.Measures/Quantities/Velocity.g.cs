@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(1, 0, -1, 0, 0, 0, 0);
 
-        public static readonly Unit<Velocity> MeterPerSecond = new Unit<Velocity>("m s\u207b¹");
+        public static readonly IUnit<Velocity> MeterPerSecond = new Unit<Velocity>("m s\u207b¹");
 
-        public static readonly Unit<Velocity> NanoMeterPerSecond = new Unit<Velocity>(UnitPrefix.Nano);
-        public static readonly Unit<Velocity> MicroMeterPerSecond = new Unit<Velocity>(UnitPrefix.Micro);
-        public static readonly Unit<Velocity> MilliMeterPerSecond = new Unit<Velocity>(UnitPrefix.Milli);
-        public static readonly Unit<Velocity> CentiMeterPerSecond = new Unit<Velocity>(UnitPrefix.Centi);
-        public static readonly Unit<Velocity> DeciMeterPerSecond = new Unit<Velocity>(UnitPrefix.Deci);
-        public static readonly Unit<Velocity> DekaMeterPerSecond = new Unit<Velocity>(UnitPrefix.Deka);
-        public static readonly Unit<Velocity> HectoMeterPerSecond = new Unit<Velocity>(UnitPrefix.Hecto);
-        public static readonly Unit<Velocity> KiloMeterPerSecond = new Unit<Velocity>(UnitPrefix.Kilo);
+        public static readonly IUnit<Velocity> NanoMeterPerSecond = new Unit<Velocity>(UnitPrefix.Nano);
+        public static readonly IUnit<Velocity> MicroMeterPerSecond = new Unit<Velocity>(UnitPrefix.Micro);
+        public static readonly IUnit<Velocity> MilliMeterPerSecond = new Unit<Velocity>(UnitPrefix.Milli);
+        public static readonly IUnit<Velocity> CentiMeterPerSecond = new Unit<Velocity>(UnitPrefix.Centi);
+        public static readonly IUnit<Velocity> DeciMeterPerSecond = new Unit<Velocity>(UnitPrefix.Deci);
+        public static readonly IUnit<Velocity> DekaMeterPerSecond = new Unit<Velocity>(UnitPrefix.Deka);
+        public static readonly IUnit<Velocity> HectoMeterPerSecond = new Unit<Velocity>(UnitPrefix.Hecto);
+        public static readonly IUnit<Velocity> KiloMeterPerSecond = new Unit<Velocity>(UnitPrefix.Kilo);
 
-        public static readonly Unit<Velocity> KiloMeterPerHour = new Unit<Velocity>("km h\u207b¹", Factors.Kilo / Factors.SecondsPerHour);
+        public static readonly IUnit<Velocity> KiloMeterPerHour = new Unit<Velocity>("km h\u207b¹", Factors.Kilo / Factors.SecondsPerHour);
 
         [DataMember]
         private readonly AmountType amount;

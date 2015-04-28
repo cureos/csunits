@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(-1, 0, 0, 1, 0, 0, 0);
 
-        public static readonly Unit<MagneticFieldStrength> AmperePerMeter = new Unit<MagneticFieldStrength>("A m\u207b¹");
+        public static readonly IUnit<MagneticFieldStrength> AmperePerMeter = new Unit<MagneticFieldStrength>("A m\u207b¹");
 
-        public static readonly Unit<MagneticFieldStrength> NanoAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Nano);
-        public static readonly Unit<MagneticFieldStrength> MicroAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Micro);
-        public static readonly Unit<MagneticFieldStrength> MilliAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Milli);
-        public static readonly Unit<MagneticFieldStrength> CentiAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Centi);
-        public static readonly Unit<MagneticFieldStrength> DeciAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Deci);
-        public static readonly Unit<MagneticFieldStrength> DekaAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Deka);
-        public static readonly Unit<MagneticFieldStrength> HectoAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Hecto);
-        public static readonly Unit<MagneticFieldStrength> KiloAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Kilo);
-        public static readonly Unit<MagneticFieldStrength> MegaAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Mega);
-        public static readonly Unit<MagneticFieldStrength> GigaAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Giga);
+        public static readonly IUnit<MagneticFieldStrength> NanoAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Nano);
+        public static readonly IUnit<MagneticFieldStrength> MicroAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Micro);
+        public static readonly IUnit<MagneticFieldStrength> MilliAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Milli);
+        public static readonly IUnit<MagneticFieldStrength> CentiAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Centi);
+        public static readonly IUnit<MagneticFieldStrength> DeciAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Deci);
+        public static readonly IUnit<MagneticFieldStrength> DekaAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Deka);
+        public static readonly IUnit<MagneticFieldStrength> HectoAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Hecto);
+        public static readonly IUnit<MagneticFieldStrength> KiloAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Kilo);
+        public static readonly IUnit<MagneticFieldStrength> MegaAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Mega);
+        public static readonly IUnit<MagneticFieldStrength> GigaAmperePerMeter = new Unit<MagneticFieldStrength>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

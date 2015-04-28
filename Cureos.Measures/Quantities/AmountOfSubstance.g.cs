@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(0, 0, 0, 0, 0, 0, 1);
 
-        public static readonly Unit<AmountOfSubstance> Mole = new Unit<AmountOfSubstance>("mol");
+        public static readonly IUnit<AmountOfSubstance> Mole = new Unit<AmountOfSubstance>("mol");
 
-        public static readonly Unit<AmountOfSubstance> NanoMole = new Unit<AmountOfSubstance>(UnitPrefix.Nano);
-        public static readonly Unit<AmountOfSubstance> MicroMole = new Unit<AmountOfSubstance>(UnitPrefix.Micro);
-        public static readonly Unit<AmountOfSubstance> MilliMole = new Unit<AmountOfSubstance>(UnitPrefix.Milli);
-        public static readonly Unit<AmountOfSubstance> CentiMole = new Unit<AmountOfSubstance>(UnitPrefix.Centi);
-        public static readonly Unit<AmountOfSubstance> DeciMole = new Unit<AmountOfSubstance>(UnitPrefix.Deci);
-        public static readonly Unit<AmountOfSubstance> DekaMole = new Unit<AmountOfSubstance>(UnitPrefix.Deka);
-        public static readonly Unit<AmountOfSubstance> HectoMole = new Unit<AmountOfSubstance>(UnitPrefix.Hecto);
-        public static readonly Unit<AmountOfSubstance> KiloMole = new Unit<AmountOfSubstance>(UnitPrefix.Kilo);
-        public static readonly Unit<AmountOfSubstance> MegaMole = new Unit<AmountOfSubstance>(UnitPrefix.Mega);
-        public static readonly Unit<AmountOfSubstance> GigaMole = new Unit<AmountOfSubstance>(UnitPrefix.Giga);
+        public static readonly IUnit<AmountOfSubstance> NanoMole = new Unit<AmountOfSubstance>(UnitPrefix.Nano);
+        public static readonly IUnit<AmountOfSubstance> MicroMole = new Unit<AmountOfSubstance>(UnitPrefix.Micro);
+        public static readonly IUnit<AmountOfSubstance> MilliMole = new Unit<AmountOfSubstance>(UnitPrefix.Milli);
+        public static readonly IUnit<AmountOfSubstance> CentiMole = new Unit<AmountOfSubstance>(UnitPrefix.Centi);
+        public static readonly IUnit<AmountOfSubstance> DeciMole = new Unit<AmountOfSubstance>(UnitPrefix.Deci);
+        public static readonly IUnit<AmountOfSubstance> DekaMole = new Unit<AmountOfSubstance>(UnitPrefix.Deka);
+        public static readonly IUnit<AmountOfSubstance> HectoMole = new Unit<AmountOfSubstance>(UnitPrefix.Hecto);
+        public static readonly IUnit<AmountOfSubstance> KiloMole = new Unit<AmountOfSubstance>(UnitPrefix.Kilo);
+        public static readonly IUnit<AmountOfSubstance> MegaMole = new Unit<AmountOfSubstance>(UnitPrefix.Mega);
+        public static readonly IUnit<AmountOfSubstance> GigaMole = new Unit<AmountOfSubstance>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

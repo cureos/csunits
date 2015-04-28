@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(0, 0, -1, 0, 0, 0, 0);
 
-        public static readonly Unit<Frequency> Hertz = new Unit<Frequency>("Hz");
+        public static readonly IUnit<Frequency> Hertz = new Unit<Frequency>("Hz");
 
-        public static readonly Unit<Frequency> NanoHertz = new Unit<Frequency>(UnitPrefix.Nano);
-        public static readonly Unit<Frequency> MicroHertz = new Unit<Frequency>(UnitPrefix.Micro);
-        public static readonly Unit<Frequency> MilliHertz = new Unit<Frequency>(UnitPrefix.Milli);
-        public static readonly Unit<Frequency> CentiHertz = new Unit<Frequency>(UnitPrefix.Centi);
-        public static readonly Unit<Frequency> DeciHertz = new Unit<Frequency>(UnitPrefix.Deci);
-        public static readonly Unit<Frequency> DekaHertz = new Unit<Frequency>(UnitPrefix.Deka);
-        public static readonly Unit<Frequency> HectoHertz = new Unit<Frequency>(UnitPrefix.Hecto);
-        public static readonly Unit<Frequency> KiloHertz = new Unit<Frequency>(UnitPrefix.Kilo);
-        public static readonly Unit<Frequency> MegaHertz = new Unit<Frequency>(UnitPrefix.Mega);
-        public static readonly Unit<Frequency> GigaHertz = new Unit<Frequency>(UnitPrefix.Giga);
+        public static readonly IUnit<Frequency> NanoHertz = new Unit<Frequency>(UnitPrefix.Nano);
+        public static readonly IUnit<Frequency> MicroHertz = new Unit<Frequency>(UnitPrefix.Micro);
+        public static readonly IUnit<Frequency> MilliHertz = new Unit<Frequency>(UnitPrefix.Milli);
+        public static readonly IUnit<Frequency> CentiHertz = new Unit<Frequency>(UnitPrefix.Centi);
+        public static readonly IUnit<Frequency> DeciHertz = new Unit<Frequency>(UnitPrefix.Deci);
+        public static readonly IUnit<Frequency> DekaHertz = new Unit<Frequency>(UnitPrefix.Deka);
+        public static readonly IUnit<Frequency> HectoHertz = new Unit<Frequency>(UnitPrefix.Hecto);
+        public static readonly IUnit<Frequency> KiloHertz = new Unit<Frequency>(UnitPrefix.Kilo);
+        public static readonly IUnit<Frequency> MegaHertz = new Unit<Frequency>(UnitPrefix.Mega);
+        public static readonly IUnit<Frequency> GigaHertz = new Unit<Frequency>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

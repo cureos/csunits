@@ -48,11 +48,11 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(-3, 1, 0, 0, 0, 0, 0);
 
-        public static readonly Unit<MassDensity> KiloGramPerCubicMeter = new Unit<MassDensity>("kg m\u207b³");
+        public static readonly IUnit<MassDensity> KiloGramPerCubicMeter = new Unit<MassDensity>("kg m\u207b³");
 
-        public static readonly Unit<MassDensity> KiloGramPerLiter = new Unit<MassDensity>("kg/l", Factors.Kilo);
-        public static readonly Unit<MassDensity> GramPerCubicCentiMeter = new Unit<MassDensity>("g cm\u207b³", Factors.Kilo);
-        public static readonly Unit<MassDensity> GramPerCubicMilliMeter = new Unit<MassDensity>("g mm\u207b³", Factors.Mega);
+        public static readonly IUnit<MassDensity> KiloGramPerLiter = new Unit<MassDensity>("kg/l", Factors.Kilo);
+        public static readonly IUnit<MassDensity> GramPerCubicCentiMeter = new Unit<MassDensity>("g cm\u207b³", Factors.Kilo);
+        public static readonly IUnit<MassDensity> GramPerCubicMilliMeter = new Unit<MassDensity>("g mm\u207b³", Factors.Mega);
 
         [DataMember]
         private readonly AmountType amount;

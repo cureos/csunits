@@ -48,24 +48,24 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(1, 0, 0, 0, 0, 0, 0);
 
-        public static readonly Unit<Length> Meter = new Unit<Length>("m");
+        public static readonly IUnit<Length> Meter = new Unit<Length>("m");
 
-        public static readonly Unit<Length> PicoMeter = new Unit<Length>(UnitPrefix.Pico);
-        public static readonly Unit<Length> NanoMeter = new Unit<Length>(UnitPrefix.Nano);
-        public static readonly Unit<Length> MicroMeter = new Unit<Length>(UnitPrefix.Micro);
-        public static readonly Unit<Length> MilliMeter = new Unit<Length>(UnitPrefix.Milli);
-        public static readonly Unit<Length> CentiMeter = new Unit<Length>(UnitPrefix.Centi);
-        public static readonly Unit<Length> DeciMeter = new Unit<Length>(UnitPrefix.Deci);
-        public static readonly Unit<Length> DekaMeter = new Unit<Length>(UnitPrefix.Deka);
-        public static readonly Unit<Length> HectoMeter = new Unit<Length>(UnitPrefix.Hecto);
-        public static readonly Unit<Length> KiloMeter = new Unit<Length>(UnitPrefix.Kilo);
+        public static readonly IUnit<Length> PicoMeter = new Unit<Length>(UnitPrefix.Pico);
+        public static readonly IUnit<Length> NanoMeter = new Unit<Length>(UnitPrefix.Nano);
+        public static readonly IUnit<Length> MicroMeter = new Unit<Length>(UnitPrefix.Micro);
+        public static readonly IUnit<Length> MilliMeter = new Unit<Length>(UnitPrefix.Milli);
+        public static readonly IUnit<Length> CentiMeter = new Unit<Length>(UnitPrefix.Centi);
+        public static readonly IUnit<Length> DeciMeter = new Unit<Length>(UnitPrefix.Deci);
+        public static readonly IUnit<Length> DekaMeter = new Unit<Length>(UnitPrefix.Deka);
+        public static readonly IUnit<Length> HectoMeter = new Unit<Length>(UnitPrefix.Hecto);
+        public static readonly IUnit<Length> KiloMeter = new Unit<Length>(UnitPrefix.Kilo);
 
-        public static readonly Unit<Length> Angstrom = new Unit<Length>("Å", Factors.MetersPerAngstrom);
-        public static readonly Unit<Length> Inch = new Unit<Length>("in", Factors.MetersPerInch);
-        public static readonly Unit<Length> Foot = new Unit<Length>("ft", Factors.MetersPerFoot);
-        public static readonly Unit<Length> Yard = new Unit<Length>("yd", Factors.MetersPerYard);
-        public static readonly Unit<Length> Mile = new Unit<Length>("mi", Factors.MetersPerMile);
-        public static readonly Unit<Length> NauticalMile = new Unit<Length>("M", Factors.MetersPerNauticalMile);
+        public static readonly IUnit<Length> Angstrom = new Unit<Length>("Å", Factors.MetersPerAngstrom);
+        public static readonly IUnit<Length> Inch = new Unit<Length>("in", Factors.MetersPerInch);
+        public static readonly IUnit<Length> Foot = new Unit<Length>("ft", Factors.MetersPerFoot);
+        public static readonly IUnit<Length> Yard = new Unit<Length>("yd", Factors.MetersPerYard);
+        public static readonly IUnit<Length> Mile = new Unit<Length>("mi", Factors.MetersPerMile);
+        public static readonly IUnit<Length> NauticalMile = new Unit<Length>("M", Factors.MetersPerNauticalMile);
 
         [DataMember]
         private readonly AmountType amount;

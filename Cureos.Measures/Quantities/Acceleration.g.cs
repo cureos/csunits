@@ -48,14 +48,14 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(1, 0, -2, 0, 0, 0, 0);
 
-        public static readonly Unit<Acceleration> MeterPerSecondSquared = new Unit<Acceleration>("m s\u207b²");
+        public static readonly IUnit<Acceleration> MeterPerSecondSquared = new Unit<Acceleration>("m s\u207b²");
 
-        public static readonly Unit<Acceleration> MilliMeterPerSecondSquared = new Unit<Acceleration>(UnitPrefix.Milli);
-        public static readonly Unit<Acceleration> CentiMeterPerSecondSquared = new Unit<Acceleration>(UnitPrefix.Centi);
-        public static readonly Unit<Acceleration> DeciMeterPerSecondSquared = new Unit<Acceleration>(UnitPrefix.Deci);
-        public static readonly Unit<Acceleration> DekaMeterPerSecondSquared = new Unit<Acceleration>(UnitPrefix.Deka);
-        public static readonly Unit<Acceleration> HectoMeterPerSecondSquared = new Unit<Acceleration>(UnitPrefix.Hecto);
-        public static readonly Unit<Acceleration> KiloMeterPerSecondSquared = new Unit<Acceleration>(UnitPrefix.Kilo);
+        public static readonly IUnit<Acceleration> MilliMeterPerSecondSquared = new Unit<Acceleration>(UnitPrefix.Milli);
+        public static readonly IUnit<Acceleration> CentiMeterPerSecondSquared = new Unit<Acceleration>(UnitPrefix.Centi);
+        public static readonly IUnit<Acceleration> DeciMeterPerSecondSquared = new Unit<Acceleration>(UnitPrefix.Deci);
+        public static readonly IUnit<Acceleration> DekaMeterPerSecondSquared = new Unit<Acceleration>(UnitPrefix.Deka);
+        public static readonly IUnit<Acceleration> HectoMeterPerSecondSquared = new Unit<Acceleration>(UnitPrefix.Hecto);
+        public static readonly IUnit<Acceleration> KiloMeterPerSecondSquared = new Unit<Acceleration>(UnitPrefix.Kilo);
 
         [DataMember]
         private readonly AmountType amount;

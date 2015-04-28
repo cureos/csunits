@@ -48,15 +48,15 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(2, 0, 0, 0, 0, 0, 0);
 
-        public static readonly Unit<Area> SquareMeter = new Unit<Area>("m²");
+        public static readonly IUnit<Area> SquareMeter = new Unit<Area>("m²");
 
-        public static readonly Unit<Area> SquareKiloMeter = new Unit<Area>("km²", Factors.Kilo * Factors.Kilo);
-        public static readonly Unit<Area> SquareDeciMeter = new Unit<Area>("dm²", Factors.Deci * Factors.Deci);
-        public static readonly Unit<Area> SquareCentiMeter = new Unit<Area>("cm²", Factors.Centi * Factors.Centi);
-        public static readonly Unit<Area> SquareMilliMeter = new Unit<Area>("mm²", Factors.Milli * Factors.Milli);
-        public static readonly Unit<Area> Barn = new Unit<Area>("b", Factors.SquareMetersPerBarn);
-        public static readonly Unit<Area> Are = new Unit<Area>("a", Factors.Deka);
-        public static readonly Unit<Area> Hectare = new Unit<Area>("ha", Factors.Hecto);
+        public static readonly IUnit<Area> SquareKiloMeter = new Unit<Area>("km²", Factors.Kilo * Factors.Kilo);
+        public static readonly IUnit<Area> SquareDeciMeter = new Unit<Area>("dm²", Factors.Deci * Factors.Deci);
+        public static readonly IUnit<Area> SquareCentiMeter = new Unit<Area>("cm²", Factors.Centi * Factors.Centi);
+        public static readonly IUnit<Area> SquareMilliMeter = new Unit<Area>("mm²", Factors.Milli * Factors.Milli);
+        public static readonly IUnit<Area> Barn = new Unit<Area>("b", Factors.SquareMetersPerBarn);
+        public static readonly IUnit<Area> Are = new Unit<Area>("a", Factors.Deka);
+        public static readonly IUnit<Area> Hectare = new Unit<Area>("ha", Factors.Hecto);
 
         [DataMember]
         private readonly AmountType amount;

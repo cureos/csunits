@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(2, 1, -2, -2, 0, 0, 0);
 
-        public static readonly Unit<Inductance> Henry = new Unit<Inductance>("H");
+        public static readonly IUnit<Inductance> Henry = new Unit<Inductance>("H");
 
-        public static readonly Unit<Inductance> NanoHenry = new Unit<Inductance>(UnitPrefix.Nano);
-        public static readonly Unit<Inductance> MicroHenry = new Unit<Inductance>(UnitPrefix.Micro);
-        public static readonly Unit<Inductance> MilliHenry = new Unit<Inductance>(UnitPrefix.Milli);
-        public static readonly Unit<Inductance> CentiHenry = new Unit<Inductance>(UnitPrefix.Centi);
-        public static readonly Unit<Inductance> DeciHenry = new Unit<Inductance>(UnitPrefix.Deci);
-        public static readonly Unit<Inductance> DekaHenry = new Unit<Inductance>(UnitPrefix.Deka);
-        public static readonly Unit<Inductance> HectoHenry = new Unit<Inductance>(UnitPrefix.Hecto);
-        public static readonly Unit<Inductance> KiloHenry = new Unit<Inductance>(UnitPrefix.Kilo);
-        public static readonly Unit<Inductance> MegaHenry = new Unit<Inductance>(UnitPrefix.Mega);
-        public static readonly Unit<Inductance> GigaHenry = new Unit<Inductance>(UnitPrefix.Giga);
+        public static readonly IUnit<Inductance> NanoHenry = new Unit<Inductance>(UnitPrefix.Nano);
+        public static readonly IUnit<Inductance> MicroHenry = new Unit<Inductance>(UnitPrefix.Micro);
+        public static readonly IUnit<Inductance> MilliHenry = new Unit<Inductance>(UnitPrefix.Milli);
+        public static readonly IUnit<Inductance> CentiHenry = new Unit<Inductance>(UnitPrefix.Centi);
+        public static readonly IUnit<Inductance> DeciHenry = new Unit<Inductance>(UnitPrefix.Deci);
+        public static readonly IUnit<Inductance> DekaHenry = new Unit<Inductance>(UnitPrefix.Deka);
+        public static readonly IUnit<Inductance> HectoHenry = new Unit<Inductance>(UnitPrefix.Hecto);
+        public static readonly IUnit<Inductance> KiloHenry = new Unit<Inductance>(UnitPrefix.Kilo);
+        public static readonly IUnit<Inductance> MegaHenry = new Unit<Inductance>(UnitPrefix.Mega);
+        public static readonly IUnit<Inductance> GigaHenry = new Unit<Inductance>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

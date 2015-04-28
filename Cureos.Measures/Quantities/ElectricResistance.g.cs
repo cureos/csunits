@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(2, 1, -3, -2, 0, 0, 0);
 
-        public static readonly Unit<ElectricResistance> Ohm = new Unit<ElectricResistance>("Ω");
+        public static readonly IUnit<ElectricResistance> Ohm = new Unit<ElectricResistance>("Ω");
 
-        public static readonly Unit<ElectricResistance> NanoOhm = new Unit<ElectricResistance>(UnitPrefix.Nano);
-        public static readonly Unit<ElectricResistance> MicroOhm = new Unit<ElectricResistance>(UnitPrefix.Micro);
-        public static readonly Unit<ElectricResistance> MilliOhm = new Unit<ElectricResistance>(UnitPrefix.Milli);
-        public static readonly Unit<ElectricResistance> CentiOhm = new Unit<ElectricResistance>(UnitPrefix.Centi);
-        public static readonly Unit<ElectricResistance> DeciOhm = new Unit<ElectricResistance>(UnitPrefix.Deci);
-        public static readonly Unit<ElectricResistance> DekaOhm = new Unit<ElectricResistance>(UnitPrefix.Deka);
-        public static readonly Unit<ElectricResistance> HectoOhm = new Unit<ElectricResistance>(UnitPrefix.Hecto);
-        public static readonly Unit<ElectricResistance> KiloOhm = new Unit<ElectricResistance>(UnitPrefix.Kilo);
-        public static readonly Unit<ElectricResistance> MegaOhm = new Unit<ElectricResistance>(UnitPrefix.Mega);
-        public static readonly Unit<ElectricResistance> GigaOhm = new Unit<ElectricResistance>(UnitPrefix.Giga);
+        public static readonly IUnit<ElectricResistance> NanoOhm = new Unit<ElectricResistance>(UnitPrefix.Nano);
+        public static readonly IUnit<ElectricResistance> MicroOhm = new Unit<ElectricResistance>(UnitPrefix.Micro);
+        public static readonly IUnit<ElectricResistance> MilliOhm = new Unit<ElectricResistance>(UnitPrefix.Milli);
+        public static readonly IUnit<ElectricResistance> CentiOhm = new Unit<ElectricResistance>(UnitPrefix.Centi);
+        public static readonly IUnit<ElectricResistance> DeciOhm = new Unit<ElectricResistance>(UnitPrefix.Deci);
+        public static readonly IUnit<ElectricResistance> DekaOhm = new Unit<ElectricResistance>(UnitPrefix.Deka);
+        public static readonly IUnit<ElectricResistance> HectoOhm = new Unit<ElectricResistance>(UnitPrefix.Hecto);
+        public static readonly IUnit<ElectricResistance> KiloOhm = new Unit<ElectricResistance>(UnitPrefix.Kilo);
+        public static readonly IUnit<ElectricResistance> MegaOhm = new Unit<ElectricResistance>(UnitPrefix.Mega);
+        public static readonly IUnit<ElectricResistance> GigaOhm = new Unit<ElectricResistance>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

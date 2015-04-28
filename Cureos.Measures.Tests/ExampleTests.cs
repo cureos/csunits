@@ -16,12 +16,12 @@ namespace Cureos.Measures
 		[Test]
 		public void Example1()
 		{
-			Measure<Mass> initialWgt = new Measure<Mass>(75.0);
-			Measure<Mass> gainedWgt = new Measure<Mass>(2.5, Mass.HectoGram);
-			Measure<Mass> newWgt = initialWgt + gainedWgt;
+			Mass initialWgt = new Mass(75.0);
+			Mass gainedWgt = new Mass(2.5, Mass.HectoGram);
+			Mass newWgt = initialWgt + gainedWgt;
 
-			UnitPreservingMeasure<Mass> newWgtInGram = newWgt[Mass.Gram];
-			UnitPreservingMeasure<Mass> initialWgtInGram = newWgtInGram - gainedWgt;
+			var newWgtInGram = (UnitPreservingMeasure<Mass>)newWgt[Mass.Gram];
+			var initialWgtInGram = newWgtInGram - gainedWgt;
 
 			Console.WriteLine("Initial weight: {0}", initialWgtInGram);
 

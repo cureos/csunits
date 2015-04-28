@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(2, 1, -2, 0, -1, 0, 0);
 
-        public static readonly Unit<HeatCapacity> JoulePerKelvin = new Unit<HeatCapacity>("J K\u207b¹");
+        public static readonly IUnit<HeatCapacity> JoulePerKelvin = new Unit<HeatCapacity>("J K\u207b¹");
 
-        public static readonly Unit<HeatCapacity> NanoJoulePerKelvin = new Unit<HeatCapacity>(UnitPrefix.Nano);
-        public static readonly Unit<HeatCapacity> MicroJoulePerKelvin = new Unit<HeatCapacity>(UnitPrefix.Micro);
-        public static readonly Unit<HeatCapacity> MilliJoulePerKelvin = new Unit<HeatCapacity>(UnitPrefix.Milli);
-        public static readonly Unit<HeatCapacity> CentiJoulePerKelvin = new Unit<HeatCapacity>(UnitPrefix.Centi);
-        public static readonly Unit<HeatCapacity> DeciJoulePerKelvin = new Unit<HeatCapacity>(UnitPrefix.Deci);
-        public static readonly Unit<HeatCapacity> DekaJoulePerKelvin = new Unit<HeatCapacity>(UnitPrefix.Deka);
-        public static readonly Unit<HeatCapacity> HectoJoulePerKelvin = new Unit<HeatCapacity>(UnitPrefix.Hecto);
-        public static readonly Unit<HeatCapacity> KiloJoulePerKelvin = new Unit<HeatCapacity>(UnitPrefix.Kilo);
-        public static readonly Unit<HeatCapacity> MegaJoulePerKelvin = new Unit<HeatCapacity>(UnitPrefix.Mega);
-        public static readonly Unit<HeatCapacity> GigaJoulePerKelvin = new Unit<HeatCapacity>(UnitPrefix.Giga);
+        public static readonly IUnit<HeatCapacity> NanoJoulePerKelvin = new Unit<HeatCapacity>(UnitPrefix.Nano);
+        public static readonly IUnit<HeatCapacity> MicroJoulePerKelvin = new Unit<HeatCapacity>(UnitPrefix.Micro);
+        public static readonly IUnit<HeatCapacity> MilliJoulePerKelvin = new Unit<HeatCapacity>(UnitPrefix.Milli);
+        public static readonly IUnit<HeatCapacity> CentiJoulePerKelvin = new Unit<HeatCapacity>(UnitPrefix.Centi);
+        public static readonly IUnit<HeatCapacity> DeciJoulePerKelvin = new Unit<HeatCapacity>(UnitPrefix.Deci);
+        public static readonly IUnit<HeatCapacity> DekaJoulePerKelvin = new Unit<HeatCapacity>(UnitPrefix.Deka);
+        public static readonly IUnit<HeatCapacity> HectoJoulePerKelvin = new Unit<HeatCapacity>(UnitPrefix.Hecto);
+        public static readonly IUnit<HeatCapacity> KiloJoulePerKelvin = new Unit<HeatCapacity>(UnitPrefix.Kilo);
+        public static readonly IUnit<HeatCapacity> MegaJoulePerKelvin = new Unit<HeatCapacity>(UnitPrefix.Mega);
+        public static readonly IUnit<HeatCapacity> GigaJoulePerKelvin = new Unit<HeatCapacity>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

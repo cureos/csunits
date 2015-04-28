@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = QuantityDimension.Steradian * new QuantityDimension(0, 0, 0, 0, 0, 1, 0);
 
-        public static readonly Unit<LuminousFlux> Lumen = new Unit<LuminousFlux>("lm");
+        public static readonly IUnit<LuminousFlux> Lumen = new Unit<LuminousFlux>("lm");
 
-        public static readonly Unit<LuminousFlux> NanoLumen = new Unit<LuminousFlux>(UnitPrefix.Nano);
-        public static readonly Unit<LuminousFlux> MicroLumen = new Unit<LuminousFlux>(UnitPrefix.Micro);
-        public static readonly Unit<LuminousFlux> MilliLumen = new Unit<LuminousFlux>(UnitPrefix.Milli);
-        public static readonly Unit<LuminousFlux> CentiLumen = new Unit<LuminousFlux>(UnitPrefix.Centi);
-        public static readonly Unit<LuminousFlux> DeciLumen = new Unit<LuminousFlux>(UnitPrefix.Deci);
-        public static readonly Unit<LuminousFlux> DekaLumen = new Unit<LuminousFlux>(UnitPrefix.Deka);
-        public static readonly Unit<LuminousFlux> HectoLumen = new Unit<LuminousFlux>(UnitPrefix.Hecto);
-        public static readonly Unit<LuminousFlux> KiloLumen = new Unit<LuminousFlux>(UnitPrefix.Kilo);
-        public static readonly Unit<LuminousFlux> MegaLumen = new Unit<LuminousFlux>(UnitPrefix.Mega);
-        public static readonly Unit<LuminousFlux> GigaLumen = new Unit<LuminousFlux>(UnitPrefix.Giga);
+        public static readonly IUnit<LuminousFlux> NanoLumen = new Unit<LuminousFlux>(UnitPrefix.Nano);
+        public static readonly IUnit<LuminousFlux> MicroLumen = new Unit<LuminousFlux>(UnitPrefix.Micro);
+        public static readonly IUnit<LuminousFlux> MilliLumen = new Unit<LuminousFlux>(UnitPrefix.Milli);
+        public static readonly IUnit<LuminousFlux> CentiLumen = new Unit<LuminousFlux>(UnitPrefix.Centi);
+        public static readonly IUnit<LuminousFlux> DeciLumen = new Unit<LuminousFlux>(UnitPrefix.Deci);
+        public static readonly IUnit<LuminousFlux> DekaLumen = new Unit<LuminousFlux>(UnitPrefix.Deka);
+        public static readonly IUnit<LuminousFlux> HectoLumen = new Unit<LuminousFlux>(UnitPrefix.Hecto);
+        public static readonly IUnit<LuminousFlux> KiloLumen = new Unit<LuminousFlux>(UnitPrefix.Kilo);
+        public static readonly IUnit<LuminousFlux> MegaLumen = new Unit<LuminousFlux>(UnitPrefix.Mega);
+        public static readonly IUnit<LuminousFlux> GigaLumen = new Unit<LuminousFlux>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;
