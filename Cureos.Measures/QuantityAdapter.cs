@@ -1,61 +1,76 @@
-// Copyright (c) 2011 Anders Gustafsson, Cureos AB.
-// All rights reserved. This software and the accompanying materials
-// are made available under the terms of the Eclipse Public License v1.0
-// which accompanies this distribution, and is available at
-// http://www.eclipse.org/legal/epl-v10.html
+/*
+ *  Copyright (c) 2011-2015, Cureos AB.
+ *  All rights reserved.
+ *  http://www.cureos.com
+ *
+ *	This file is part of CSUnits.
+ *
+ *  CSUnits is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  CSUnits is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public
+ *  License along with CSUnits. If not, see http://www.gnu.org/licenses/.
+ */
 
-using System;
-using System.Collections.Generic;
 
 namespace Cureos.Measures
 {
-	/// <summary>
-	/// Convenience class for accessing a quantity and its associated units
-	/// </summary>
-	public class QuantityAdapter
-	{
-		#region CONSTRUCTORS
+    using System.Collections.Generic;
 
-		/// <summary>
-		/// Initializes an instance of a wrapper object containing a quantity and its associated units
-		/// </summary>
-		/// <param name="iQuantity">Quantity</param>
-		/// <param name="iUnits">Units associated with the quantity</param>
-		public QuantityAdapter(IQuantity iQuantity, IEnumerable<IUnit> iUnits)
-		{
-			Quantity = iQuantity;
-			Units = iUnits;
-		}
+    /// <summary>
+    /// Convenience class for accessing a quantity and its associated units
+    /// </summary>
+    public class QuantityAdapter
+    {
+        #region CONSTRUCTORS
 
-		#endregion
+        /// <summary>
+        /// Initializes an instance of a wrapper object containing a quantity and its associated units
+        /// </summary>
+        /// <param name="iQuantity">Quantity</param>
+        /// <param name="iUnits">Units associated with the quantity</param>
+        public QuantityAdapter(IQuantity iQuantity, IEnumerable<IUnit> iUnits)
+        {
+            this.Quantity = iQuantity;
+            this.Units = iUnits;
+        }
 
-		#region AUTO-IMPLEMENTED PROPERTIES
+        #endregion
 
-		/// <summary>
-		/// Gets the contained quantity
-		/// </summary>
-		public IQuantity Quantity { get; private set; }
+        #region AUTO-IMPLEMENTED PROPERTIES
 
-		/// <summary>
-		/// Gets the units associated with the quantity
-		/// </summary>
-		public IEnumerable<IUnit> Units { get; private set; }
+        /// <summary>
+        /// Gets the contained quantity
+        /// </summary>
+        public IQuantity Quantity { get; private set; }
 
-		#endregion
-		
-		#region OVERRIDDEN METHODS
+        /// <summary>
+        /// Gets the units associated with the quantity
+        /// </summary>
+        public IEnumerable<IUnit> Units { get; private set; }
 
-		/// <summary>
-		/// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
-		/// </summary>
-		/// <returns>
-		/// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
-		/// </returns>
-		public override string ToString ()
-		{
-			return Quantity.ToString();
-		}
-		
-		#endregion
-	}
+        #endregion
+        
+        #region OVERRIDDEN METHODS
+
+        /// <summary>
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// </returns>
+        public override string ToString ()
+        {
+            return this.Quantity.DisplayName;
+        }
+        
+        #endregion
+    }
 }
