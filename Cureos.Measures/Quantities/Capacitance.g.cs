@@ -48,17 +48,17 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(-2, -1, 4, 2, 0, 0, 0);
 
-        public static readonly IUnit<Capacitance> Farad = new Unit<Capacitance>("F");
+        public static readonly IUnit<Capacitance> Farad = new ConstantConverterUnit<Capacitance>("F");
 
-        public static readonly IUnit<Capacitance> PicoFarad = new Unit<Capacitance>(UnitPrefix.Pico);
-        public static readonly IUnit<Capacitance> NanoFarad = new Unit<Capacitance>(UnitPrefix.Nano);
-        public static readonly IUnit<Capacitance> MicroFarad = new Unit<Capacitance>(UnitPrefix.Micro);
-        public static readonly IUnit<Capacitance> MilliFarad = new Unit<Capacitance>(UnitPrefix.Milli);
-        public static readonly IUnit<Capacitance> CentiFarad = new Unit<Capacitance>(UnitPrefix.Centi);
-        public static readonly IUnit<Capacitance> DeciFarad = new Unit<Capacitance>(UnitPrefix.Deci);
-        public static readonly IUnit<Capacitance> DekaFarad = new Unit<Capacitance>(UnitPrefix.Deka);
-        public static readonly IUnit<Capacitance> HectoFarad = new Unit<Capacitance>(UnitPrefix.Hecto);
-        public static readonly IUnit<Capacitance> KiloFarad = new Unit<Capacitance>(UnitPrefix.Kilo);
+        public static readonly IUnit<Capacitance> PicoFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Pico);
+        public static readonly IUnit<Capacitance> NanoFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Nano);
+        public static readonly IUnit<Capacitance> MicroFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Micro);
+        public static readonly IUnit<Capacitance> MilliFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Milli);
+        public static readonly IUnit<Capacitance> CentiFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Centi);
+        public static readonly IUnit<Capacitance> DeciFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Deci);
+        public static readonly IUnit<Capacitance> DekaFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Deka);
+        public static readonly IUnit<Capacitance> HectoFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Hecto);
+        public static readonly IUnit<Capacitance> KiloFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Kilo);
 
         [DataMember]
         private readonly AmountType amount;

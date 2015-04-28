@@ -28,7 +28,7 @@ namespace Cureos.Measures
 	[TestFixture]
 	public class UnitTests
 	{
-		private Unit<UnitTestsQuantity> _instance;
+		private ConstantConverterUnit<UnitTestsQuantity> _instance;
 
 		private struct UnitTestsQuantity : IQuantity<UnitTestsQuantity>
 		{
@@ -46,7 +46,7 @@ namespace Cureos.Measures
 
 			public IUnit<UnitTestsQuantity> StandardUnit
 			{
-				get { return new Unit<UnitTestsQuantity>("UTQ"); }
+				get { return new ConstantConverterUnit<UnitTestsQuantity>("UTQ"); }
 			}
 
 		    public bool Equals(IQuantity other)
@@ -60,7 +60,7 @@ namespace Cureos.Measures
 		[SetUp]
 		public void Setup()
 		{
-			_instance = new Unit<UnitTestsQuantity>(UnitPrefix.Giga);
+			_instance = new ConstantConverterUnit<UnitTestsQuantity>(UnitPrefix.Giga);
 		}
 
 		[TearDown]

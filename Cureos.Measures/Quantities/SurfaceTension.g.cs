@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(0, 1, -2, 0, 0, 0, 0);
 
-        public static readonly IUnit<SurfaceTension> NewtonPerMeter = new Unit<SurfaceTension>("N m\u207b¹");
+        public static readonly IUnit<SurfaceTension> NewtonPerMeter = new ConstantConverterUnit<SurfaceTension>("N m\u207b¹");
 
-        public static readonly IUnit<SurfaceTension> NanoNewtonPerMeter = new Unit<SurfaceTension>(UnitPrefix.Nano);
-        public static readonly IUnit<SurfaceTension> MicroNewtonPerMeter = new Unit<SurfaceTension>(UnitPrefix.Micro);
-        public static readonly IUnit<SurfaceTension> MilliNewtonPerMeter = new Unit<SurfaceTension>(UnitPrefix.Milli);
-        public static readonly IUnit<SurfaceTension> CentiNewtonPerMeter = new Unit<SurfaceTension>(UnitPrefix.Centi);
-        public static readonly IUnit<SurfaceTension> DeciNewtonPerMeter = new Unit<SurfaceTension>(UnitPrefix.Deci);
-        public static readonly IUnit<SurfaceTension> DekaNewtonPerMeter = new Unit<SurfaceTension>(UnitPrefix.Deka);
-        public static readonly IUnit<SurfaceTension> HectoNewtonPerMeter = new Unit<SurfaceTension>(UnitPrefix.Hecto);
-        public static readonly IUnit<SurfaceTension> KiloNewtonPerMeter = new Unit<SurfaceTension>(UnitPrefix.Kilo);
-        public static readonly IUnit<SurfaceTension> MegaNewtonPerMeter = new Unit<SurfaceTension>(UnitPrefix.Mega);
-        public static readonly IUnit<SurfaceTension> GigaNewtonPerMeter = new Unit<SurfaceTension>(UnitPrefix.Giga);
+        public static readonly IUnit<SurfaceTension> NanoNewtonPerMeter = new ConstantConverterUnit<SurfaceTension>(UnitPrefix.Nano);
+        public static readonly IUnit<SurfaceTension> MicroNewtonPerMeter = new ConstantConverterUnit<SurfaceTension>(UnitPrefix.Micro);
+        public static readonly IUnit<SurfaceTension> MilliNewtonPerMeter = new ConstantConverterUnit<SurfaceTension>(UnitPrefix.Milli);
+        public static readonly IUnit<SurfaceTension> CentiNewtonPerMeter = new ConstantConverterUnit<SurfaceTension>(UnitPrefix.Centi);
+        public static readonly IUnit<SurfaceTension> DeciNewtonPerMeter = new ConstantConverterUnit<SurfaceTension>(UnitPrefix.Deci);
+        public static readonly IUnit<SurfaceTension> DekaNewtonPerMeter = new ConstantConverterUnit<SurfaceTension>(UnitPrefix.Deka);
+        public static readonly IUnit<SurfaceTension> HectoNewtonPerMeter = new ConstantConverterUnit<SurfaceTension>(UnitPrefix.Hecto);
+        public static readonly IUnit<SurfaceTension> KiloNewtonPerMeter = new ConstantConverterUnit<SurfaceTension>(UnitPrefix.Kilo);
+        public static readonly IUnit<SurfaceTension> MegaNewtonPerMeter = new ConstantConverterUnit<SurfaceTension>(UnitPrefix.Mega);
+        public static readonly IUnit<SurfaceTension> GigaNewtonPerMeter = new ConstantConverterUnit<SurfaceTension>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

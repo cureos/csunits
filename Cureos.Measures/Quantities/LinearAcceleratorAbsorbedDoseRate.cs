@@ -18,8 +18,8 @@ namespace Cureos.Measures.Quantities
         private static readonly QuantityDimension _dimension = (QuantityDimension.Length ^ 2) * (QuantityDimension.Time ^ 2) *
             (QuantityDimension.LinearAcceleratorMeterset ^ -1);
 
-        public static readonly Unit<LinearAcceleratorAbsorbedDoseRate> GrayPerMonitorUnit = new Unit<LinearAcceleratorAbsorbedDoseRate>("Gy MU\u207b¹");
-        public static readonly Unit<LinearAcceleratorAbsorbedDoseRate> CentiGrayPerMonitorUnit = new Unit<LinearAcceleratorAbsorbedDoseRate>(UnitPrefix.Centi);
+        public static readonly ConstantConverterUnit<LinearAcceleratorAbsorbedDoseRate> GrayPerMonitorUnit = new ConstantConverterUnit<LinearAcceleratorAbsorbedDoseRate>("Gy MU\u207b¹");
+        public static readonly ConstantConverterUnit<LinearAcceleratorAbsorbedDoseRate> CentiGrayPerMonitorUnit = new ConstantConverterUnit<LinearAcceleratorAbsorbedDoseRate>(UnitPrefix.Centi);
 
         #endregion
 

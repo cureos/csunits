@@ -17,7 +17,7 @@ namespace Cureos.Measures.Quantities
 
         private static readonly QuantityDimension _dimension = QuantityDimension.LinearAcceleratorMeterset;
 
-        public static readonly Unit<LinearAcceleratorMeterset> MonitorUnit = new Unit<LinearAcceleratorMeterset>("MU");
+        public static readonly ConstantConverterUnit<LinearAcceleratorMeterset> MonitorUnit = new ConstantConverterUnit<LinearAcceleratorMeterset>("MU");
 
         #endregion
 

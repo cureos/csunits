@@ -35,13 +35,13 @@ namespace Cureos.Measures
     /// Representation of a physical unit of a specific quanity
     /// </summary>
     /// <typeparam name="Q">Quantity type with which the unit is associated</typeparam>
-    public sealed class Unit<Q> : IUnit<Q> where Q : struct, IQuantity<Q>
+    public sealed class ConstantConverterUnit<Q> : IUnit<Q> where Q : struct, IQuantity<Q>
     {
         #region FIELDS
 
-        private readonly Func<double, double> convertAmountToStandardUnit;
+        private readonly Func<AmountType, AmountType> convertAmountToStandardUnit;
 
-        private readonly Func<double, double> convertStandardAmountToUnit;
+        private readonly Func<AmountType, AmountType> convertStandardAmountToUnit;
 
         #endregion
 
@@ -51,8 +51,8 @@ namespace Cureos.Measures
         /// Initialize a physical unit object that is the standard unit of the specific quantity
         /// </summary>
         /// <param name="symbol">Unit display symbol</param>
-        public Unit(string symbol) :
-            this(true, symbol, a => a, a => a)
+        public ConstantConverterUnit(string symbol) :
+            this(symbol, Constants.One)
         {
         }
 
@@ -60,7 +60,7 @@ namespace Cureos.Measures
         /// Convenience constructor for initializing prefixed non-standard unit
         /// </summary>
         /// <param name="prefix">Prefix to use in unit naming and scaling vis-a-vis standard unit</param>
-        public Unit(UnitPrefix prefix)
+        public ConstantConverterUnit(UnitPrefix prefix)
             : this(String.Format("{0}{1}", prefix.GetSymbol(), default(Q).StandardUnit), prefix.GetFactor())
         {
         }
@@ -70,46 +70,15 @@ namespace Cureos.Measures
         /// </summary>
         /// <param name="symbol">Unit display symbol</param>
         /// <param name="toStandardUnitFactor">Amount converter factor from this unit to quantity's standard unit</param>
-        public Unit(string symbol, AmountType toStandardUnitFactor)
+        public ConstantConverterUnit(string symbol, AmountType toStandardUnitFactor)
+        {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            : this(toStandardUnitFactor == Constants.One, symbol, a => a * toStandardUnitFactor, a => a / toStandardUnitFactor)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a physical unit object
-        /// </summary>
-        /// <param name="symbol">Unit display symbol</param>
-        /// <param name="convertAmountToStandardUnit">Amount converter function from this unit to quantity's standard unit</param>
-        /// <param name="convertStandardAmountToUnit">Amount converter function from quantity's standard unit to this unit</param>
-        public Unit(
-            string symbol,
-            Func<AmountType, AmountType> convertAmountToStandardUnit,
-            Func<AmountType, AmountType> convertStandardAmountToUnit)
-            : this(false, symbol, convertAmountToStandardUnit, convertStandardAmountToUnit)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a physical unit object
-        /// </summary>
-        /// <param name="isStandardUnit">True if the unit is a standard unit of the associated quantity, false otherwise</param>
-        /// <param name="symbol">Unit display symbol</param>
-        /// <param name="convertAmountToStandardUnit">Amount converter function from this unit to quantity's standard unit</param>
-        /// <param name="convertStandardAmountToUnit">Amount converter function from quantity's standard unit to this unit</param>
-        private Unit(
-            bool isStandardUnit,
-            string symbol,
-            Func<AmountType, AmountType> convertAmountToStandardUnit,
-            Func<AmountType, AmountType> convertStandardAmountToUnit)
-        {
-            this.IsStandardUnit = isStandardUnit;
+            this.IsStandardUnit = toStandardUnitFactor == Constants.One;
             this.Symbol = symbol;
             this.DisplayName = string.Empty;
-            this.convertAmountToStandardUnit = convertAmountToStandardUnit;
-            this.convertStandardAmountToUnit = convertStandardAmountToUnit;
+            this.convertAmountToStandardUnit = a => a * toStandardUnitFactor;
+            this.convertStandardAmountToUnit = a => a / toStandardUnitFactor;
         }
-
         #endregion
 
         #region Implementation of IUnit<Q>

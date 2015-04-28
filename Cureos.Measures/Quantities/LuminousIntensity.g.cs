@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(0, 0, 0, 0, 0, 1, 0);
 
-        public static readonly IUnit<LuminousIntensity> Candela = new Unit<LuminousIntensity>("cd");
+        public static readonly IUnit<LuminousIntensity> Candela = new ConstantConverterUnit<LuminousIntensity>("cd");
 
-        public static readonly IUnit<LuminousIntensity> NanoCandela = new Unit<LuminousIntensity>(UnitPrefix.Nano);
-        public static readonly IUnit<LuminousIntensity> MicroCandela = new Unit<LuminousIntensity>(UnitPrefix.Micro);
-        public static readonly IUnit<LuminousIntensity> MilliCandela = new Unit<LuminousIntensity>(UnitPrefix.Milli);
-        public static readonly IUnit<LuminousIntensity> CentiCandela = new Unit<LuminousIntensity>(UnitPrefix.Centi);
-        public static readonly IUnit<LuminousIntensity> DeciCandela = new Unit<LuminousIntensity>(UnitPrefix.Deci);
-        public static readonly IUnit<LuminousIntensity> DekaCandela = new Unit<LuminousIntensity>(UnitPrefix.Deka);
-        public static readonly IUnit<LuminousIntensity> HectoCandela = new Unit<LuminousIntensity>(UnitPrefix.Hecto);
-        public static readonly IUnit<LuminousIntensity> KiloCandela = new Unit<LuminousIntensity>(UnitPrefix.Kilo);
-        public static readonly IUnit<LuminousIntensity> MegaCandela = new Unit<LuminousIntensity>(UnitPrefix.Mega);
-        public static readonly IUnit<LuminousIntensity> GigaCandela = new Unit<LuminousIntensity>(UnitPrefix.Giga);
+        public static readonly IUnit<LuminousIntensity> NanoCandela = new ConstantConverterUnit<LuminousIntensity>(UnitPrefix.Nano);
+        public static readonly IUnit<LuminousIntensity> MicroCandela = new ConstantConverterUnit<LuminousIntensity>(UnitPrefix.Micro);
+        public static readonly IUnit<LuminousIntensity> MilliCandela = new ConstantConverterUnit<LuminousIntensity>(UnitPrefix.Milli);
+        public static readonly IUnit<LuminousIntensity> CentiCandela = new ConstantConverterUnit<LuminousIntensity>(UnitPrefix.Centi);
+        public static readonly IUnit<LuminousIntensity> DeciCandela = new ConstantConverterUnit<LuminousIntensity>(UnitPrefix.Deci);
+        public static readonly IUnit<LuminousIntensity> DekaCandela = new ConstantConverterUnit<LuminousIntensity>(UnitPrefix.Deka);
+        public static readonly IUnit<LuminousIntensity> HectoCandela = new ConstantConverterUnit<LuminousIntensity>(UnitPrefix.Hecto);
+        public static readonly IUnit<LuminousIntensity> KiloCandela = new ConstantConverterUnit<LuminousIntensity>(UnitPrefix.Kilo);
+        public static readonly IUnit<LuminousIntensity> MegaCandela = new ConstantConverterUnit<LuminousIntensity>(UnitPrefix.Mega);
+        public static readonly IUnit<LuminousIntensity> GigaCandela = new ConstantConverterUnit<LuminousIntensity>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

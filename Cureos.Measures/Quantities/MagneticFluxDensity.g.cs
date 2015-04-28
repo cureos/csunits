@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(0, 1, -2, -1, 0, 0, 0);
 
-        public static readonly IUnit<MagneticFluxDensity> Tesla = new Unit<MagneticFluxDensity>("T");
+        public static readonly IUnit<MagneticFluxDensity> Tesla = new ConstantConverterUnit<MagneticFluxDensity>("T");
 
-        public static readonly IUnit<MagneticFluxDensity> NanoTesla = new Unit<MagneticFluxDensity>(UnitPrefix.Nano);
-        public static readonly IUnit<MagneticFluxDensity> MicroTesla = new Unit<MagneticFluxDensity>(UnitPrefix.Micro);
-        public static readonly IUnit<MagneticFluxDensity> MilliTesla = new Unit<MagneticFluxDensity>(UnitPrefix.Milli);
-        public static readonly IUnit<MagneticFluxDensity> CentiTesla = new Unit<MagneticFluxDensity>(UnitPrefix.Centi);
-        public static readonly IUnit<MagneticFluxDensity> DeciTesla = new Unit<MagneticFluxDensity>(UnitPrefix.Deci);
-        public static readonly IUnit<MagneticFluxDensity> DekaTesla = new Unit<MagneticFluxDensity>(UnitPrefix.Deka);
-        public static readonly IUnit<MagneticFluxDensity> HectoTesla = new Unit<MagneticFluxDensity>(UnitPrefix.Hecto);
-        public static readonly IUnit<MagneticFluxDensity> KiloTesla = new Unit<MagneticFluxDensity>(UnitPrefix.Kilo);
-        public static readonly IUnit<MagneticFluxDensity> MegaTesla = new Unit<MagneticFluxDensity>(UnitPrefix.Mega);
-        public static readonly IUnit<MagneticFluxDensity> GigaTesla = new Unit<MagneticFluxDensity>(UnitPrefix.Giga);
+        public static readonly IUnit<MagneticFluxDensity> NanoTesla = new ConstantConverterUnit<MagneticFluxDensity>(UnitPrefix.Nano);
+        public static readonly IUnit<MagneticFluxDensity> MicroTesla = new ConstantConverterUnit<MagneticFluxDensity>(UnitPrefix.Micro);
+        public static readonly IUnit<MagneticFluxDensity> MilliTesla = new ConstantConverterUnit<MagneticFluxDensity>(UnitPrefix.Milli);
+        public static readonly IUnit<MagneticFluxDensity> CentiTesla = new ConstantConverterUnit<MagneticFluxDensity>(UnitPrefix.Centi);
+        public static readonly IUnit<MagneticFluxDensity> DeciTesla = new ConstantConverterUnit<MagneticFluxDensity>(UnitPrefix.Deci);
+        public static readonly IUnit<MagneticFluxDensity> DekaTesla = new ConstantConverterUnit<MagneticFluxDensity>(UnitPrefix.Deka);
+        public static readonly IUnit<MagneticFluxDensity> HectoTesla = new ConstantConverterUnit<MagneticFluxDensity>(UnitPrefix.Hecto);
+        public static readonly IUnit<MagneticFluxDensity> KiloTesla = new ConstantConverterUnit<MagneticFluxDensity>(UnitPrefix.Kilo);
+        public static readonly IUnit<MagneticFluxDensity> MegaTesla = new ConstantConverterUnit<MagneticFluxDensity>(UnitPrefix.Mega);
+        public static readonly IUnit<MagneticFluxDensity> GigaTesla = new ConstantConverterUnit<MagneticFluxDensity>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

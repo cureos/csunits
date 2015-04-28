@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(-1, 1, -2, 0, 0, 0, 0);
 
-        public static readonly IUnit<Pressure> Pascal = new Unit<Pressure>("Pa");
+        public static readonly IUnit<Pressure> Pascal = new ConstantConverterUnit<Pressure>("Pa");
 
-        public static readonly IUnit<Pressure> NanoPascal = new Unit<Pressure>(UnitPrefix.Nano);
-        public static readonly IUnit<Pressure> MicroPascal = new Unit<Pressure>(UnitPrefix.Micro);
-        public static readonly IUnit<Pressure> MilliPascal = new Unit<Pressure>(UnitPrefix.Milli);
-        public static readonly IUnit<Pressure> CentiPascal = new Unit<Pressure>(UnitPrefix.Centi);
-        public static readonly IUnit<Pressure> DeciPascal = new Unit<Pressure>(UnitPrefix.Deci);
-        public static readonly IUnit<Pressure> DekaPascal = new Unit<Pressure>(UnitPrefix.Deka);
-        public static readonly IUnit<Pressure> HectoPascal = new Unit<Pressure>(UnitPrefix.Hecto);
-        public static readonly IUnit<Pressure> KiloPascal = new Unit<Pressure>(UnitPrefix.Kilo);
-        public static readonly IUnit<Pressure> MegaPascal = new Unit<Pressure>(UnitPrefix.Mega);
-        public static readonly IUnit<Pressure> GigaPascal = new Unit<Pressure>(UnitPrefix.Giga);
+        public static readonly IUnit<Pressure> NanoPascal = new ConstantConverterUnit<Pressure>(UnitPrefix.Nano);
+        public static readonly IUnit<Pressure> MicroPascal = new ConstantConverterUnit<Pressure>(UnitPrefix.Micro);
+        public static readonly IUnit<Pressure> MilliPascal = new ConstantConverterUnit<Pressure>(UnitPrefix.Milli);
+        public static readonly IUnit<Pressure> CentiPascal = new ConstantConverterUnit<Pressure>(UnitPrefix.Centi);
+        public static readonly IUnit<Pressure> DeciPascal = new ConstantConverterUnit<Pressure>(UnitPrefix.Deci);
+        public static readonly IUnit<Pressure> DekaPascal = new ConstantConverterUnit<Pressure>(UnitPrefix.Deka);
+        public static readonly IUnit<Pressure> HectoPascal = new ConstantConverterUnit<Pressure>(UnitPrefix.Hecto);
+        public static readonly IUnit<Pressure> KiloPascal = new ConstantConverterUnit<Pressure>(UnitPrefix.Kilo);
+        public static readonly IUnit<Pressure> MegaPascal = new ConstantConverterUnit<Pressure>(UnitPrefix.Mega);
+        public static readonly IUnit<Pressure> GigaPascal = new ConstantConverterUnit<Pressure>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

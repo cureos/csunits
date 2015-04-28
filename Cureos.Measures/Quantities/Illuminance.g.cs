@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = QuantityDimension.Steradian * new QuantityDimension(-2, 0, 0, 0, 0, 1, 0);
 
-        public static readonly IUnit<Illuminance> Lux = new Unit<Illuminance>("lx");
+        public static readonly IUnit<Illuminance> Lux = new ConstantConverterUnit<Illuminance>("lx");
 
-        public static readonly IUnit<Illuminance> NanoLux = new Unit<Illuminance>(UnitPrefix.Nano);
-        public static readonly IUnit<Illuminance> MicroLux = new Unit<Illuminance>(UnitPrefix.Micro);
-        public static readonly IUnit<Illuminance> MilliLux = new Unit<Illuminance>(UnitPrefix.Milli);
-        public static readonly IUnit<Illuminance> CentiLux = new Unit<Illuminance>(UnitPrefix.Centi);
-        public static readonly IUnit<Illuminance> DeciLux = new Unit<Illuminance>(UnitPrefix.Deci);
-        public static readonly IUnit<Illuminance> DekaLux = new Unit<Illuminance>(UnitPrefix.Deka);
-        public static readonly IUnit<Illuminance> HectoLux = new Unit<Illuminance>(UnitPrefix.Hecto);
-        public static readonly IUnit<Illuminance> KiloLux = new Unit<Illuminance>(UnitPrefix.Kilo);
-        public static readonly IUnit<Illuminance> MegaLux = new Unit<Illuminance>(UnitPrefix.Mega);
-        public static readonly IUnit<Illuminance> GigaLux = new Unit<Illuminance>(UnitPrefix.Giga);
+        public static readonly IUnit<Illuminance> NanoLux = new ConstantConverterUnit<Illuminance>(UnitPrefix.Nano);
+        public static readonly IUnit<Illuminance> MicroLux = new ConstantConverterUnit<Illuminance>(UnitPrefix.Micro);
+        public static readonly IUnit<Illuminance> MilliLux = new ConstantConverterUnit<Illuminance>(UnitPrefix.Milli);
+        public static readonly IUnit<Illuminance> CentiLux = new ConstantConverterUnit<Illuminance>(UnitPrefix.Centi);
+        public static readonly IUnit<Illuminance> DeciLux = new ConstantConverterUnit<Illuminance>(UnitPrefix.Deci);
+        public static readonly IUnit<Illuminance> DekaLux = new ConstantConverterUnit<Illuminance>(UnitPrefix.Deka);
+        public static readonly IUnit<Illuminance> HectoLux = new ConstantConverterUnit<Illuminance>(UnitPrefix.Hecto);
+        public static readonly IUnit<Illuminance> KiloLux = new ConstantConverterUnit<Illuminance>(UnitPrefix.Kilo);
+        public static readonly IUnit<Illuminance> MegaLux = new ConstantConverterUnit<Illuminance>(UnitPrefix.Mega);
+        public static readonly IUnit<Illuminance> GigaLux = new ConstantConverterUnit<Illuminance>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

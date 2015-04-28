@@ -191,6 +191,7 @@
     <Compile Include="Quantities\WaveNumber.g.cs">
       <DependentUpon>CodeGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="FunctionConverterUnit.cs" />
     <Compile Include="UnitPreservingMeasure.cs" />
     <Compile Include="PrimeNumbers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -239,7 +240,7 @@
     <Compile Include="Measure.cs" />
     <Compile Include="MeasureDoublet.cs" />
     <Compile Include="MeasureTriplet.cs" />
-    <Compile Include="Unit.cs" />
+    <Compile Include="ConstantConverterUnit.cs" />
     <Compile Include="UnitPrefix.cs" />
     <Compile Include="UnitPrefixMethods.cs" />
   </ItemGroup>

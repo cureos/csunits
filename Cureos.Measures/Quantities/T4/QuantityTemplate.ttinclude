@@ -110,14 +110,14 @@ namespace Cureos.Measures.Quantities
             }
 #>
 
-        public static readonly IUnit<<#= ClassName #>> <#= stdUnit #> = new Unit<<#= ClassName #>>("<#= stdUnitSymbol #>");
+        public static readonly IUnit<<#= ClassName #>> <#= stdUnit #> = new ConstantConverterUnit<<#= ClassName #>>("<#= stdUnitSymbol #>");
 <#
             if (ClassName.Equals("Temperature")) {
 #>
 
-        public static readonly IUnit<Temperature> Celsius = new Unit<Temperature>("°C",
+        public static readonly IUnit<Temperature> Celsius = new FunctionConverterUnit<Temperature>("°C",
                         a => a + Factors.KelvinCelsiusIntercept, a => a - Factors.KelvinCelsiusIntercept);
-        public static readonly IUnit<Temperature> Fahrenheit = new Unit<Temperature>("°F",
+        public static readonly IUnit<Temperature> Fahrenheit = new FunctionConverterUnit<Temperature>("°F",
                         a => (a + Factors.KelvinFahrenheitIntercept) * Factors.KelvinFahrenheitSlope,
                         a => a / Factors.KelvinFahrenheitSlope - Factors.KelvinFahrenheitIntercept);
 <#
@@ -130,7 +130,7 @@ namespace Cureos.Measures.Quantities
 
                 foreach (var selPrefix in selPrefixes) {
 #>
-        public static readonly IUnit<<#= ClassName #>> <#= selPrefix #><#= stdUnit #> = new Unit<<#= ClassName #>>(UnitPrefix.<#= selPrefix #>);
+        public static readonly IUnit<<#= ClassName #>> <#= selPrefix #><#= stdUnit #> = new ConstantConverterUnit<<#= ClassName #>>(UnitPrefix.<#= selPrefix #>);
 <#
             }
 
@@ -145,7 +145,7 @@ namespace Cureos.Measures.Quantities
                 var unitSymbol = unitSpec.Item2;
                 var factor = unitSpec.Item3;
 #>
-        public static readonly IUnit<<#= ClassName #>> <#= unitName #> = new Unit<<#= ClassName #>>("<#= unitSymbol #>", <#= factor #>);
+        public static readonly IUnit<<#= ClassName #>> <#= unitName #> = new ConstantConverterUnit<<#= ClassName #>>("<#= unitSymbol #>", <#= factor #>);
 <#
             }
         }

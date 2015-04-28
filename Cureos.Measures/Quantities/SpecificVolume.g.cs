@@ -48,7 +48,7 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(3, -1, 0, 0, 0, 0, 0);
 
-        public static readonly IUnit<SpecificVolume> CubicMeterPerKiloGram = new Unit<SpecificVolume>("m³ kg\u207b¹");
+        public static readonly IUnit<SpecificVolume> CubicMeterPerKiloGram = new ConstantConverterUnit<SpecificVolume>("m³ kg\u207b¹");
 
         [DataMember]
         private readonly AmountType amount;

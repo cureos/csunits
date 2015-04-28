@@ -17,9 +17,9 @@ namespace Cureos.Measures.Quantities
 
         private static readonly QuantityDimension _dimension =(QuantityDimension.Length ^ 2) * QuantityDimension.Time;
 
-        public static readonly Unit<RadioactiveAbsorbedDoseRate> GrayPerSecond = new Unit<RadioactiveAbsorbedDoseRate>("Gy s\u207b¹");
-        public static readonly Unit<RadioactiveAbsorbedDoseRate> GrayPerMinute = new Unit<RadioactiveAbsorbedDoseRate>("Gy min\u207b¹", Constants.One / Factors.SecondsPerMinute);
-        public static readonly Unit<RadioactiveAbsorbedDoseRate> CentiGrayPerMinute = new Unit<RadioactiveAbsorbedDoseRate>("cGy min\u207b¹", Factors.Centi / Factors.SecondsPerMinute);
+        public static readonly ConstantConverterUnit<RadioactiveAbsorbedDoseRate> GrayPerSecond = new ConstantConverterUnit<RadioactiveAbsorbedDoseRate>("Gy s\u207b¹");
+        public static readonly ConstantConverterUnit<RadioactiveAbsorbedDoseRate> GrayPerMinute = new ConstantConverterUnit<RadioactiveAbsorbedDoseRate>("Gy min\u207b¹", Constants.One / Factors.SecondsPerMinute);
+        public static readonly ConstantConverterUnit<RadioactiveAbsorbedDoseRate> CentiGrayPerMinute = new ConstantConverterUnit<RadioactiveAbsorbedDoseRate>("cGy min\u207b¹", Factors.Centi / Factors.SecondsPerMinute);
 
         #endregion
 

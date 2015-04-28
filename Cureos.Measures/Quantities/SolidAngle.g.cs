@@ -48,13 +48,13 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = QuantityDimension.Steradian;
 
-        public static readonly IUnit<SolidAngle> Steradian = new Unit<SolidAngle>("sr");
+        public static readonly IUnit<SolidAngle> Steradian = new ConstantConverterUnit<SolidAngle>("sr");
 
-        public static readonly IUnit<SolidAngle> NanoSteradian = new Unit<SolidAngle>(UnitPrefix.Nano);
-        public static readonly IUnit<SolidAngle> MicroSteradian = new Unit<SolidAngle>(UnitPrefix.Micro);
-        public static readonly IUnit<SolidAngle> MilliSteradian = new Unit<SolidAngle>(UnitPrefix.Milli);
+        public static readonly IUnit<SolidAngle> NanoSteradian = new ConstantConverterUnit<SolidAngle>(UnitPrefix.Nano);
+        public static readonly IUnit<SolidAngle> MicroSteradian = new ConstantConverterUnit<SolidAngle>(UnitPrefix.Micro);
+        public static readonly IUnit<SolidAngle> MilliSteradian = new ConstantConverterUnit<SolidAngle>(UnitPrefix.Milli);
 
-        public static readonly IUnit<SolidAngle> SquareDegree = new Unit<SolidAngle>("(°)²", Factors.RadiansPerDegree * Factors.RadiansPerDegree);
+        public static readonly IUnit<SolidAngle> SquareDegree = new ConstantConverterUnit<SolidAngle>("(°)²", Factors.RadiansPerDegree * Factors.RadiansPerDegree);
 
         [DataMember]
         private readonly AmountType amount;
