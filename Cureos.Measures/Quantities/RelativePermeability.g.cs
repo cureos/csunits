@@ -58,11 +58,11 @@ namespace Cureos.Measures.Quantities
         #region CONSTRUCTORS
 
         /// <summary>
-        /// Initializes a relative permeability object from an object implementing the IMeasure<RelativePermeability> interface
+        /// Initializes a relative permeability object from an object implementing the IMeasure&lt;RelativePermeability&gt; interface
         /// </summary>
         /// <param name="other">Object implemeting the IMeasure&lt;RelativePermeability&gt; interface</param>
         public RelativePermeability(IMeasure<RelativePermeability> other)
-            : this(other.Amount, other.Unit)
+            : this(other.StandardAmount)
         {
         }
 
@@ -179,7 +179,7 @@ namespace Cureos.Measures.Quantities
         #region Implementation of IMeasure<RelativePermeability>
 
         /// <summary>
-        /// Gets the measured amount in the <see cref="Unit">current unit of measure</see>
+        /// Gets the measured amount in the <see cref="StandardUnit">standard unit of measure</see>
         /// </summary>
         public AmountType Amount
         {
@@ -197,6 +197,7 @@ namespace Cureos.Measures.Quantities
         /// <summary>
         /// Gets the unit of measure
         /// </summary>
+        /// <remarks>Always return the standard unit of measure</remarks>
         IUnit IMeasure.Unit
         {
             get { return this.StandardUnit; }
@@ -210,7 +211,7 @@ namespace Cureos.Measures.Quantities
         AmountType IMeasure.GetAmount(IUnit unit)
         {
             if (unit == null) throw new ArgumentNullException("unit");
-            if (!unit.Quantity.Equals(default(RelativePermeability))) throw new ArgumentException("Unit is not the same quantity as measure");
+            if (!(unit.Quantity is RelativePermeability)) throw new ArgumentException("Unit is not the same quantity as measure");
             return unit.AmountFromStandardUnitConverter(this.amount);
         }
 
@@ -218,7 +219,7 @@ namespace Cureos.Measures.Quantities
         /// Gets a new unit specific measure based on this measure but in the <paramref name="unit">specified unit</paramref>
         /// </summary>
         /// <param name="unit">Unit in which the new measure should be specified</param>
-        /// <exception cref="ArgumentNullException">if specified unit is null or if specified unit is not of the 
+        /// <exception cref="ArgumentNullException">if specified unit is null or if specified unit is not of the RelativePermeability quantity.</exception>
         IMeasure IMeasure.this[IUnit unit]
         {
             get { return this[unit as IUnit<RelativePermeability>]; }
@@ -227,6 +228,7 @@ namespace Cureos.Measures.Quantities
         /// <summary>
         /// Gets the quantity-typed unit of measure
         /// </summary>
+        /// <remarks>Always return the standard unit of measure</remarks>
         public IUnit<RelativePermeability> Unit
         {
             get { return this.StandardUnit; }
@@ -275,7 +277,7 @@ namespace Cureos.Measures.Quantities
         bool IEquatable<IMeasure>.Equals(IMeasure other)
         {
             if (other == null) throw new ArgumentNullException("other");
-            if (!other.Unit.Quantity.Equals(default(RelativePermeability))) throw new ArgumentException("Measures are of different quantities");
+            if (!(other.Unit.Quantity is RelativePermeability)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.Equals(other.GetAmount(this.Unit));
         }
 
@@ -310,7 +312,7 @@ namespace Cureos.Measures.Quantities
         int IComparable<IMeasure>.CompareTo(IMeasure other)
         {
             if (other == null) throw new ArgumentNullException("other");
-            if (!other.Unit.Quantity.Equals(default(RelativePermeability))) throw new ArgumentException("Measures are of different quantities");
+            if (!(other.Unit.Quantity is RelativePermeability)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.GetAmount(this.Unit));
         }
 
@@ -398,7 +400,7 @@ namespace Cureos.Measures.Quantities
         /// <filterpriority>2</filterpriority>
         public override int GetHashCode()
         {
-            return this.StandardAmount.GetHashCode();
+            return this.amount.GetHashCode();
         }
 
         /// <summary>
@@ -567,14 +569,25 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Less than operator for measure objects, where right-hand side may be any object implementing the IMeasure interface
+        /// Less than operator for measure objects, where right-hand side may be any object implementing the IMeasure&lt;RelativePermeability&gt; interface
         /// </summary>
         /// <param name="lhs">First object</param>
-        /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
+        /// <param name="rhs">Second object (any object implementing IMeasure&lt;RelativePermeability&gt; interface)</param>
         /// <returns>true if first measure object is less than second measure object; false otherwise</returns>
         public static bool operator <(RelativePermeability lhs, IMeasure<RelativePermeability> rhs)
         {
             return lhs.amount < rhs.StandardAmount;
+        }
+
+        /// <summary>
+        /// Less than operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;RelativePermeability&gt; interface
+        /// </summary>
+        /// <param name="lhs">First object (any object implementing IMeasure&lt;RelativePermeability&gt; interface)</param>
+        /// <param name="rhs">Second object</param>
+        /// <returns>true if first measure object is less than second measure object; false otherwise</returns>
+        public static bool operator <(IMeasure<RelativePermeability> lhs, RelativePermeability rhs)
+        {
+            return lhs.StandardAmount < rhs.amount;
         }
 
         /// <summary>
@@ -589,14 +602,25 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Greater than operator for measure objects, where right-hand side may be any object implementing the IMeasure interface
+        /// Greater than operator for measure objects, where right-hand side may be any object implementing the IMeasure&lt;RelativePermeability&gt; interface
         /// </summary>
         /// <param name="lhs">First object</param>
-        /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
+        /// <param name="rhs">Second object (any object implementing IMeasure&lt;RelativePermeability&gt; interface)</param>
         /// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
         public static bool operator >(RelativePermeability lhs, IMeasure<RelativePermeability> rhs)
         {
             return lhs.amount > rhs.StandardAmount;
+        }
+
+        /// <summary>
+        /// Greater than operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;RelativePermeability&gt; interface
+        /// </summary>
+        /// <param name="lhs">First object (any object implementing IMeasure&lt;RelativePermeability&gt; interface)</param>
+        /// <param name="rhs">Second object</param>
+        /// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
+        public static bool operator >(IMeasure<RelativePermeability> lhs, RelativePermeability rhs)
+        {
+            return lhs.StandardAmount > rhs.amount;
         }
 
         /// <summary>
@@ -611,14 +635,25 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Less than or equal to operator for measure objects, where right-hand side may be any object implementing the IMeasure interface
+        /// Less than or equal to operator for measure objects, where right-hand side may be any object implementing the IMeasure&lt;RelativePermeability&gt; interface
         /// </summary>
         /// <param name="lhs">First object</param>
-        /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
+        /// <param name="rhs">Second object (any object implementing IMeasure&lt;RelativePermeability&gt; interface)</param>
         /// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
         public static bool operator <=(RelativePermeability lhs, IMeasure<RelativePermeability> rhs)
         {
             return lhs.amount <= rhs.StandardAmount;
+        }
+
+        /// <summary>
+        /// Less than or equal to operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;RelativePermeability&gt; interface
+        /// </summary>
+        /// <param name="lhs">First object (any object implementing IMeasure&lt;RelativePermeability&gt; interface)</param>
+        /// <param name="rhs">Second object</param>
+        /// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
+        public static bool operator <=(IMeasure<RelativePermeability> lhs, RelativePermeability rhs)
+        {
+            return lhs.StandardAmount <= rhs.amount;
         }
 
         /// <summary>
@@ -633,14 +668,25 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Greater than or equal to operator for measure objects, where right-hand side may be any object implementing the IMeasure interface
+        /// Greater than or equal to operator for measure objects, where right-hand side may be any object implementing the IMeasure&lt;RelativePermeability&gt; interface
         /// </summary>
         /// <param name="lhs">First object</param>
-        /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
+        /// <param name="rhs">Second object (any object implementing IMeasure&lt;RelativePermeability&gt; interface)</param>
         /// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
         public static bool operator >=(RelativePermeability lhs, IMeasure<RelativePermeability> rhs)
         {
             return lhs.amount >= rhs.StandardAmount;
+        }
+
+        /// <summary>
+        /// Greater than or equal to operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;RelativePermeability&gt; interface
+        /// </summary>
+        /// <param name="lhs">First object (any object implementing IMeasure&lt;RelativePermeability&gt; interface)</param>
+        /// <param name="rhs">Second object</param>
+        /// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
+        public static bool operator >=(IMeasure<RelativePermeability> lhs, RelativePermeability rhs)
+        {
+            return lhs.StandardAmount >= rhs.amount;
         }
 
         /// <summary>
@@ -655,14 +701,25 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Equality operator for measure objects, where right-hand side may be any object implementing the IMeasure interface
+        /// Equality operator for measure objects, where right-hand side may be any object implementing the IMeasure&lt;RelativePermeability&gt; interface
         /// </summary>
         /// <param name="lhs">First object</param>
-        /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
+        /// <param name="rhs">Second object (any object implementing IMeasure&lt;RelativePermeability&gt; interface)</param>
         /// <returns>true if the two measure objects are equal; false otherwise</returns>
         public static bool operator ==(RelativePermeability lhs, IMeasure<RelativePermeability> rhs)
         {
             return lhs.amount == rhs.StandardAmount;
+        }
+
+        /// <summary>
+        /// Equality operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;RelativePermeability&gt; interface
+        /// </summary>
+        /// <param name="lhs">First object (any object implementing IMeasure&lt;RelativePermeability&gt; interface)</param>
+        /// <param name="rhs">Second object</param>
+        /// <returns>true if the two measure objects are equal; false otherwise</returns>
+        public static bool operator ==(IMeasure<RelativePermeability> lhs, RelativePermeability rhs)
+        {
+            return lhs.StandardAmount == rhs.amount;
         }
 
         /// <summary>
@@ -677,14 +734,25 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Inequality operator for measure objects, where right-hand side may be any object implementing the IMeasure interface
+        /// Inequality operator for measure objects, where right-hand side may be any object implementing the IMeasure&lt;RelativePermeability&gt; interface
         /// </summary>
         /// <param name="lhs">First object</param>
-        /// <param name="rhs">Second object (any object implementing IMeasure interface)</param>
+        /// <param name="rhs">Second object (any object implementing IMeasure&lt;RelativePermeability&gt; interface)</param>
         /// <returns>true if the two measure objects are not equal; false if they are equal</returns>
         public static bool operator !=(RelativePermeability lhs, IMeasure<RelativePermeability> rhs)
         {
             return lhs.amount != rhs.StandardAmount;
+        }
+
+        /// <summary>
+        /// Inequality operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;RelativePermeability&gt; interface
+        /// </summary>
+        /// <param name="lhs">First object (any object implementing IMeasure&lt;RelativePermeability&gt; interface)</param>
+        /// <param name="rhs">Second object</param>
+        /// <returns>true if the two measure objects are not equal; false if they are equal</returns>
+        public static bool operator !=(IMeasure<RelativePermeability> lhs, RelativePermeability rhs)
+        {
+            return lhs.StandardAmount != rhs.amount;
         }
 
         #endregion
