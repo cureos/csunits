@@ -50,43 +50,43 @@ namespace Cureos.Measures
         /// <summary>
         /// Initialize a physical unit object that is the standard unit of the specific quantity
         /// </summary>
-        /// <param name="iSymbol">Unit display symbol</param>
-        public Unit(string iSymbol) :
-            this(true, iSymbol, a => a, a => a)
+        /// <param name="symbol">Unit display symbol</param>
+        public Unit(string symbol) :
+            this(true, symbol, a => a, a => a)
         {
         }
 
         /// <summary>
         /// Convenience constructor for initializing prefixed non-standard unit
         /// </summary>
-        /// <param name="iPrefix">Prefix to use in unit naming and scaling vis-a-vis standard unit</param>
-        public Unit(UnitPrefix iPrefix)
-            : this(String.Format("{0}{1}", iPrefix.GetSymbol(), default(Q).StandardUnit), iPrefix.GetFactor())
+        /// <param name="prefix">Prefix to use in unit naming and scaling vis-a-vis standard unit</param>
+        public Unit(UnitPrefix prefix)
+            : this(String.Format("{0}{1}", prefix.GetSymbol(), default(Q).StandardUnit), prefix.GetFactor())
         {
         }
 
         /// <summary>
         /// Initialize a physical unit object
         /// </summary>
-        /// <param name="iSymbol">Unit display symbol</param>
-        /// <param name="iToStandardUnitFactor">Amount converter factor from this unit to quantity's standard unit</param>
-        public Unit(string iSymbol, AmountType iToStandardUnitFactor)
+        /// <param name="symbol">Unit display symbol</param>
+        /// <param name="toStandardUnitFactor">Amount converter factor from this unit to quantity's standard unit</param>
+        public Unit(string symbol, AmountType toStandardUnitFactor)
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            : this(iToStandardUnitFactor == Constants.One, iSymbol, a => a * iToStandardUnitFactor, a => a / iToStandardUnitFactor)
+            : this(toStandardUnitFactor == Constants.One, symbol, a => a * toStandardUnitFactor, a => a / toStandardUnitFactor)
         {
         }
 
         /// <summary>
         /// Initializes a physical unit object
         /// </summary>
-        /// <param name="iSymbol">Unit display symbol</param>
-        /// <param name="iAmountToStandardUnitConverter">Amount converter function from this unit to quantity's standard unit</param>
-        /// <param name="iAmountFromStandardUnitConverter">Amount converter function from quantity's standard unit to this unit</param>
+        /// <param name="symbol">Unit display symbol</param>
+        /// <param name="convertAmountToStandardUnit">Amount converter function from this unit to quantity's standard unit</param>
+        /// <param name="convertStandardAmountToUnit">Amount converter function from quantity's standard unit to this unit</param>
         public Unit(
-            string iSymbol,
-            Func<AmountType, AmountType> iConvertAmountToStandardUnit,
-            Func<AmountType, AmountType> iConvertStandardAmountToUnit)
-            : this(false, iSymbol, iConvertAmountToStandardUnit, iConvertStandardAmountToUnit)
+            string symbol,
+            Func<AmountType, AmountType> convertAmountToStandardUnit,
+            Func<AmountType, AmountType> convertStandardAmountToUnit)
+            : this(false, symbol, convertAmountToStandardUnit, convertStandardAmountToUnit)
         {
         }
 
@@ -94,20 +94,20 @@ namespace Cureos.Measures
         /// Initializes a physical unit object
         /// </summary>
         /// <param name="isStandardUnit">True if the unit is a standard unit of the associated quantity, false otherwise</param>
-        /// <param name="iSymbol">Unit display symbol</param>
-        /// <param name="iConvertAmountToStandardUnit">Amount converter function from this unit to quantity's standard unit</param>
-        /// <param name="iConvertStandardAmountToUnit">Amount converter function from quantity's standard unit to this unit</param>
+        /// <param name="symbol">Unit display symbol</param>
+        /// <param name="convertAmountToStandardUnit">Amount converter function from this unit to quantity's standard unit</param>
+        /// <param name="convertStandardAmountToUnit">Amount converter function from quantity's standard unit to this unit</param>
         private Unit(
             bool isStandardUnit,
-            string iSymbol,
-            Func<AmountType, AmountType> iConvertAmountToStandardUnit,
-            Func<AmountType, AmountType> iConvertStandardAmountToUnit)
+            string symbol,
+            Func<AmountType, AmountType> convertAmountToStandardUnit,
+            Func<AmountType, AmountType> convertStandardAmountToUnit)
         {
             this.IsStandardUnit = isStandardUnit;
-            this.Symbol = iSymbol;
-            this.DisplayName = String.Empty;
-            this.convertAmountToStandardUnit = iConvertAmountToStandardUnit;
-            this.convertStandardAmountToUnit = iConvertStandardAmountToUnit;
+            this.Symbol = symbol;
+            this.DisplayName = string.Empty;
+            this.convertAmountToStandardUnit = convertAmountToStandardUnit;
+            this.convertStandardAmountToUnit = convertStandardAmountToUnit;
         }
 
         #endregion
@@ -123,7 +123,7 @@ namespace Cureos.Measures
         }
 
         /// <summary>
-        /// Gets true if the unit is a standard unit of the associated quantity, false otherwise
+        /// Gets a value indicating whether or not the unit is a standard unit of the associated quantity
         /// </summary>
         public bool IsStandardUnit { get; private set; }
 
@@ -146,27 +146,24 @@ namespace Cureos.Measures
         public string DisplayName { get; set; }
 
         /// <summary>
-        /// Gets the amount converter function from the current unit to the standard unit 
-        /// of the specified quantity
+        /// Convert the amount from the current unit to the standard unit of the specified quantity
         /// </summary>
-        public Func<AmountType, AmountType> ConvertAmountToStandardUnit
+        /// <param name="amount">Amount in this unit</param>
+        /// <returns>Amount converted to standard unit</returns>
+        public double ConvertAmountToStandardUnit(double amount)
         {
-            get
-            {
-                return this.convertAmountToStandardUnit;
-            }
+            return this.convertAmountToStandardUnit(amount);
         }
 
         /// <summary>
-        /// Gets the amount converter function from the standard unit of the specified quantity
+        /// Convert a standard amount to this unit of the specified quantity
         /// to the current unit
         /// </summary>
-        public Func<AmountType, AmountType> ConvertStandardAmountToUnit
+        /// <param name="standardAmount">Standard amount of the current <see cref="IUnit.Quantity"/>.</param>
+        /// <returns>Amount in this unit.</returns>
+        public double ConvertStandardAmountToUnit(double standardAmount)
         {
-            get
-            {
-                return this.convertStandardAmountToUnit;
-            }
+            return this.convertStandardAmountToUnit(standardAmount);
         }
 
         #endregion

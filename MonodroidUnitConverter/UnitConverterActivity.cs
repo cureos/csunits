@@ -34,7 +34,7 @@ namespace MonodroidUnitConverter
 
     using Activity = Android.App.Activity;
 
-    [Activity (Label = "Cureos Unit Converter", MainLauncher = true)]
+    [Activity(Label = "Cureos Unit Converter", MainLauncher = true)]
     public class UnitConverterActivity : Activity
     {
         #region PRIVATE FIELDS

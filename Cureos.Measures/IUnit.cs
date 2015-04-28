@@ -57,16 +57,19 @@ namespace Cureos.Measures
         string DisplayName { get; set; }
 
         /// <summary>
-        /// Gets the amount converter function from the current unit to the standard unit 
-        /// of the specified quantity
+        /// Convert the amount from the current unit to the standard unit of the specified quantity
         /// </summary>
-        Func<AmountType, AmountType> ConvertAmountToStandardUnit { get; }
+        /// <param name="amount">Amount in this unit</param>
+        /// <returns>Amount converted to standard unit</returns>
+        double ConvertAmountToStandardUnit(double amount);
 
         /// <summary>
-        /// Gets the amount converter function from the standard unit of the specified quantity
+        /// Convert a standard amount to this unit of the specified quantity
         /// to the current unit
         /// </summary>
-        Func<AmountType, AmountType> ConvertStandardAmountToUnit { get; }
+        /// <param name="standardAmount">Standard amount of the current <see cref="Quantity"/>.</param>
+        /// <returns>Amount in this unit.</returns>
+        double ConvertStandardAmountToUnit(double standardAmount);
     }
 
     /// <summary>
