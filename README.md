@@ -15,7 +15,7 @@ Visual Studio 2010 Service Pack 1 or higher with [Portable Library Tools](http:/
 
 Developed with Visual Studio 2010. The *Cureos.Measures* class library is portable and can without modifications be included in .NET 4+, Silverlight 5, Windows Phone 8+ (Silverlight and non-Silverlight), Windows 8+, Xamarin.Android and Xamarin.iOS applications.
 
-`Measure<Q>` and `UnitPreservingMeasure<Q>` are the main "work-horses" of the library. `Measure<Q>` is always represented in the reference unit of the associated quantity. If a different unit is specified in instantiation of `Measure<Q>`, the measured amount is automatically converted to the equivalent reference unit amount. On the other hand, the amount and unit used in instantiation of `UnitPreservingMeasure<Q>` are internally maintained.
+`Measure<Q>` and `InUnitMeasure<Q>` are the main "work-horses" of the library. `Measure<Q>` is always represented in the reference unit of the associated quantity. If a different unit is specified in instantiation of `Measure<Q>`, the measured amount is automatically converted to the equivalent reference unit amount. On the other hand, the amount and unit used in instantiation of `InUnitMeasure<Q>` are internally maintained.
 
 `Measure<Q>` is declared as a struct and only holds one member, the amount. The main goal of this approach is to maximize calculation performance, while at the same time ensuring quantity type safety.
 
@@ -32,12 +32,12 @@ There are also `MeasureDoublet<Q1, Q2>` and `MeasureTriplet<Q1, Q2, Q3>` structu
     Measure<Mass> gainedWgt = new Measure<Mass>(2.5, Mass.HectoGram);
     Measure<Mass> newWgt = initialWgt + gainedWgt;
 
-    UnitPreservingMeasure<Mass> newWgtInGram = newWgt[Mass.Gram];
-    UnitPreservingMeasure<Mass> initialWgtInGram = newWgtInGram - gainedWgt;
+    InUnitMeasure<Mass> newWgtInGram = (InUnitMeasure<Mass>)newWgt[Mass.Gram];
+    InUnitMeasure<Mass> initialWgtInGram = newWgtInGram - gainedWgt;
 
     Console.WriteLine("Initial weight: {0}", initialWgtInGram);
 
-    UnitPreservingMeasure<Length> height = new Measure<Length>(30.0, Length.CentiMeter);
+    Measure<Length> height = new Measure<Length>(30.0, Length.CentiMeter);
     Measure<Area> area = (Measure<Area>)0.02;
 
     Measure<Volume> vol; 

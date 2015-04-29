@@ -25,90 +25,84 @@ namespace Cureos.Measures
 
     using NUnit.Framework;
 
-	[TestFixture]
-	public class UnitTests
-	{
-		private ConstantConverterUnit<UnitTestsQuantity> _instance;
+    [TestFixture]
+    public class UnitTests
+    {
+        private ConstantConverterUnit<UnitTestsQuantity> instance;
 
-		private struct UnitTestsQuantity : IQuantity<UnitTestsQuantity>
-		{
-		    public string DisplayName { get; private set; }
+        private struct UnitTestsQuantity : IQuantity<UnitTestsQuantity>
+        {
+            public string DisplayName { get; private set; }
 
-		    public QuantityDimension Dimension
-			{
-				get { return QuantityDimension.Steradian; }
-			}
+            public QuantityDimension Dimension
+            {
+                get { return QuantityDimension.Steradian; }
+            }
 
-			IUnit IQuantity.StandardUnit
-			{
-				get { return StandardUnit; }
-			}
+            IUnit IQuantity.StandardUnit
+            {
+                get { return this.StandardUnit; }
+            }
 
-			public IUnit<UnitTestsQuantity> StandardUnit
-			{
-				get { return new ConstantConverterUnit<UnitTestsQuantity>("UTQ"); }
-			}
+            public IUnit<UnitTestsQuantity> StandardUnit
+            {
+                get { return new ConstantConverterUnit<UnitTestsQuantity>("UTQ"); }
+            }
 
-		    public bool Equals(IQuantity other)
-		    {
-		        return other is UnitTestsQuantity;
-		    }
-		}
+            public bool Equals(IQuantity other)
+            {
+                return other is UnitTestsQuantity;
+            }
+        }
 
-		#region Setup and TearDown
+        #region Setup and TearDown
 
-		[SetUp]
-		public void Setup()
-		{
-			_instance = new ConstantConverterUnit<UnitTestsQuantity>(UnitPrefix.Giga);
-		}
+        [SetUp]
+        public void Setup()
+        {
+            this.instance = new ConstantConverterUnit<UnitTestsQuantity>(UnitPrefix.Giga);
+        }
 
-		[TearDown]
-		public void TearDown()
-		{
-			_instance = null;
-		}
+        #endregion
 
-		#endregion
+        #region Unit tests
 
-		#region Unit tests
+        [Test]
+        public void SymbolGetter_InstanceUnit_ReturnsGUTQ()
+        {
+            var expected = "GUTQ";
+            var actual = this.instance.Symbol;
+            Assert.AreEqual(expected, actual);
+        }
 
-		[Test]
-		public void SymbolGetter_InstanceUnit_ReturnsGUTQ()
-		{
-			var expected = "GUTQ";
-			var actual = _instance.Symbol;
-			Assert.AreEqual(expected, actual);
-		}
+        [Test]
+        public void AmountToStandardUnitConverter_InstanceUnit_ReturnsGigaTimesOriginalValue()
+        {
+            var expected = AmountConverter.ToAmountType(1.0e9);
+            var actual = this.instance.ConvertAmountToStandardUnit(AmountConverter.ToAmountType(1.0));
+            AmountAssert.AreEqual(expected, actual);
+        }
 
-		[Test]
-		public void AmountToStandardUnitConverter_InstanceUnit_ReturnsGigaTimesOriginalValue()
-		{
-			var expected = AmountConverter.ToAmountType(1.0e9);
-			var actual = _instance.ConvertAmountToStandardUnit(AmountConverter.ToAmountType(1.0));
-			AmountAssert.AreEqual(expected, actual);
-		}
+        [Test]
+        public void Quantity_OfLengthUnit_IsLength()
+        {
+            Assert.IsInstanceOf(typeof(Length), Length.PicoMeter.Quantity);
+        }
 
-		[Test]
-		public void Quantity_OfLengthUnit_IsLength()
-		{
-			Assert.IsInstanceOf(typeof(Length), Length.PicoMeter.Quantity);
-		}
+        [Test]
+        public void Quantity_OfIUnitDefinedAsMassUnit_IsMass()
+        {
+            IUnit unit = Mass.HectoGram;
+            Assert.IsInstanceOf(typeof(Mass), unit.Quantity);
+        }
 
-		[Test]
-		public void Quantity_OfIUnitDefinedAsMassUnit_IsMass()
-		{
-			IUnit unit = Mass.HectoGram;
-			Assert.IsInstanceOf(typeof(Mass), unit.Quantity);
-		}
-
-		[Test]
-		public void DisplayNameGetter_NoExplicitDefinition_ReturnsFieldNameAndSymbol()
-		{
-			var expected = "Hectare | ha";
-			var actual = Area.Hectare.DisplayName;
-			StringAssert.AreEqualIgnoringCase(expected, actual);
-		}
-		#endregion
-	}
+        [Test]
+        public void DisplayNameGetter_NoExplicitDefinition_ReturnsFieldNameAndSymbol()
+        {
+            var expected = "Hectare | ha";
+            var actual = Area.Hectare.DisplayName;
+            StringAssert.AreEqualIgnoringCase(expected, actual);
+        }
+        #endregion
+    }
 }

@@ -35,13 +35,19 @@ namespace Cureos.Measures
     /// Representation of a physical unit of a specific quanity
     /// </summary>
     /// <typeparam name="Q">Quantity type with which the unit is associated</typeparam>
-    public sealed class ConstantConverterUnit<Q> : IUnit<Q> where Q : struct, IQuantity<Q>
+    public struct ConstantConverterUnit<Q> : IUnit<Q> where Q : struct, IQuantity<Q>
     {
         #region FIELDS
 
-        private readonly Func<AmountType, AmountType> convertAmountToStandardUnit;
+        private readonly bool isStandardUnit;
 
-        private readonly Func<AmountType, AmountType> convertStandardAmountToUnit;
+        private readonly string symbol;
+
+        private string displayName;
+
+        private readonly AmountType amountToStandardUnitFactor;
+
+        private readonly AmountType standardAmountToUnitFactor;
 
         #endregion
 
@@ -51,9 +57,13 @@ namespace Cureos.Measures
         /// Initialize a physical unit object that is the standard unit of the specific quantity
         /// </summary>
         /// <param name="symbol">Unit display symbol</param>
-        public ConstantConverterUnit(string symbol) :
-            this(symbol, Constants.One)
+        public ConstantConverterUnit(string symbol)
         {
+            this.isStandardUnit = true;
+            this.symbol = symbol;
+            this.displayName = string.Empty;
+            this.amountToStandardUnitFactor = 1.0;
+            this.standardAmountToUnitFactor = 1.0;
         }
 
         /// <summary>
@@ -73,11 +83,11 @@ namespace Cureos.Measures
         public ConstantConverterUnit(string symbol, AmountType toStandardUnitFactor)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator
-            this.IsStandardUnit = toStandardUnitFactor == Constants.One;
-            this.Symbol = symbol;
-            this.DisplayName = string.Empty;
-            this.convertAmountToStandardUnit = a => a * toStandardUnitFactor;
-            this.convertStandardAmountToUnit = a => a / toStandardUnitFactor;
+            this.isStandardUnit = toStandardUnitFactor == Constants.One;
+            this.symbol = symbol;
+            this.displayName = string.Empty;
+            this.amountToStandardUnitFactor = toStandardUnitFactor;
+            this.standardAmountToUnitFactor = 1.0 / toStandardUnitFactor;
         }
         #endregion
 
@@ -94,7 +104,13 @@ namespace Cureos.Measures
         /// <summary>
         /// Gets a value indicating whether or not the unit is a standard unit of the associated quantity
         /// </summary>
-        public bool IsStandardUnit { get; private set; }
+        public bool IsStandardUnit
+        {
+            get
+            {
+                return this.isStandardUnit;
+            }
+        }
 
         /// <summary>
         /// Gets the typed quantity associated with the unit
@@ -107,12 +123,28 @@ namespace Cureos.Measures
         /// <summary>
         /// Gets the display symbol of the unit
         /// </summary>
-        public string Symbol { get; private set; }
+        public string Symbol
+        {
+            get
+            {
+                return this.symbol;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the fully qualified display name of the unit
         /// </summary>
-        public string DisplayName { get; set; }
+        public string DisplayName
+        {
+            get
+            {
+                return this.displayName;
+            }
+            set
+            {
+                this.displayName = value;
+            }
+        }
 
         /// <summary>
         /// Convert the amount from the current unit to the standard unit of the specified quantity
@@ -121,7 +153,7 @@ namespace Cureos.Measures
         /// <returns>Amount converted to standard unit</returns>
         public double ConvertAmountToStandardUnit(double amount)
         {
-            return this.convertAmountToStandardUnit(amount);
+            return this.amountToStandardUnitFactor * amount;
         }
 
         /// <summary>
@@ -132,7 +164,7 @@ namespace Cureos.Measures
         /// <returns>Amount in this unit.</returns>
         public double ConvertStandardAmountToUnit(double standardAmount)
         {
-            return this.convertStandardAmountToUnit(standardAmount);
+            return this.standardAmountToUnitFactor * standardAmount;
         }
 
         #endregion

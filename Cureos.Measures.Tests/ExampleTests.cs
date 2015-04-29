@@ -1,46 +1,62 @@
-// Copyright (c) 2011 Anders Gustafsson, Cureos AB.
-// All rights reserved. This software and the accompanying materials
-// are made available under the terms of the Eclipse Public License v1.0
-// which accompanies this distribution, and is available at
-// http://www.eclipse.org/legal/epl-v10.html
-
-using System;
-using Cureos.Measures.Quantities;
-using NUnit.Framework;
+/*
+ *  Copyright (c) 2011-2015, Cureos AB.
+ *  All rights reserved.
+ *  http://www.cureos.com
+ *
+ *	This file is part of CSUnits.
+ *
+ *  CSUnits is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  CSUnits is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public
+ *  License along with CSUnits. If not, see http://www.gnu.org/licenses/.
+ */
 
 namespace Cureos.Measures
 {
-	[TestFixture]
-	public class ExampleTests
-	{
-		[Test]
-		public void Example1()
-		{
-			Mass initialWgt = new Mass(75.0);
-			Mass gainedWgt = new Mass(2.5, Mass.HectoGram);
-			Mass newWgt = initialWgt + gainedWgt;
+    using System;
+    using Cureos.Measures.Quantities;
+    using NUnit.Framework;
 
-			var newWgtInGram = (InUnitMeasure<Mass>)newWgt[Mass.Gram];
-			var initialWgtInGram = newWgtInGram - gainedWgt;
+    [TestFixture]
+    public class ExampleTests
+    {
+        [Test]
+        public void Example1()
+        {
+            Measure<Mass> initialWgt = new Measure<Mass>(75.0);
+            Measure<Mass> gainedWgt = new Measure<Mass>(2.5, Mass.HectoGram);
+            Measure<Mass> newWgt = initialWgt + gainedWgt;
 
-			Console.WriteLine("Initial weight: {0}", initialWgtInGram);
+            InUnitMeasure<Mass> newWgtInGram = (InUnitMeasure<Mass>)newWgt[Mass.Gram];
+            InUnitMeasure<Mass> initialWgtInGram = newWgtInGram - gainedWgt;
 
-			InUnitMeasure<Length> height = new InUnitMeasure<Length>(30.0, Length.CentiMeter);
-			Measure<Area> area = (Measure<Area>)0.02;
+            Console.WriteLine("Initial weight: {0}", initialWgtInGram);
 
-		    Measure<Volume> vol; ArithmeticOperations.Times(height, area, out vol);
-			var maxVol = new Measure<Volume>(10.0, Volume.Liter);
+            Measure<Length> height = new Measure<Length>(30.0, Length.CentiMeter);
+            Measure<Area> area = (Measure<Area>)0.02;
 
-			if (vol < maxVol)
-			{
-				Console.WriteLine("Calculated volume is within limits, actual volume: {0}", vol[Volume.Liter]);
-			}
+            Measure<Volume> vol;
+            ArithmeticOperations.Times(height, area, out vol);
+            var maxVol = new Measure<Volume>(10.0, Volume.Liter);
+
+            if (vol < maxVol)
+            {
+                Console.WriteLine("Calculated volume is within limits, actual volume: {0}", vol[Volume.Liter]);
+            }
 
 #if NUNIT24
-			Assert.Ignore();
+            Assert.Ignore();
 #else
-			Assert.Pass();
+            Assert.Pass();
 #endif
-		}
-	}
+        }
+    }
 }
