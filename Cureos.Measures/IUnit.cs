@@ -21,8 +21,6 @@
 
 namespace Cureos.Measures
 {
-    using System;
-
 #if SINGLE
     using AmountType = System.Single;
 #elif DECIMAL

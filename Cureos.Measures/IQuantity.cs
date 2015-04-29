@@ -23,6 +23,14 @@ namespace Cureos.Measures
 {
     using System;
 
+#if SINGLE
+    using AmountType = System.Single;
+#elif DECIMAL
+    using AmountType = System.Decimal;
+#elif DOUBLE
+    using AmountType = System.Double;
+#endif
+
     /// <summary>
     /// Interface representing a physical quantity
     /// </summary>
@@ -54,6 +62,14 @@ namespace Cureos.Measures
         /// Gets the standard unit associated with the quantity
         /// </summary>
         new IUnit<Q> StandardUnit { get; }
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        Q New(AmountType amount, IUnit<Q> unit);
     }
 }
 

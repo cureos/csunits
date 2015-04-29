@@ -44,6 +44,11 @@ namespace Cureos.Measures
                 get { return this.StandardUnit; }
             }
 
+            public UnitTestsQuantity New(double amount, IUnit<UnitTestsQuantity> unit)
+            {
+                throw new System.NotImplementedException();
+            }
+
             public IUnit<UnitTestsQuantity> StandardUnit
             {
                 get { return new ConstantConverterUnit<UnitTestsQuantity>("UTQ"); }

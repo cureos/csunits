@@ -40,6 +40,8 @@ namespace Cureos.Measures
     {
         #region FIELDS
 
+        private readonly Q quantity = default(Q);
+
         [DataMember]
         private readonly bool isStandardUnit;
 
@@ -103,7 +105,7 @@ namespace Cureos.Measures
         /// </summary>
         IQuantity IUnit.Quantity
         {
-            get { return this.Quantity; }
+            get { return this.quantity; }
         }
 
         /// <summary>
@@ -122,7 +124,7 @@ namespace Cureos.Measures
         /// </summary>
         public IQuantity<Q> Quantity
         {
-            get { return default(Q); }
+            get { return this.quantity; }
         }
 
         /// <summary>
@@ -182,6 +184,21 @@ namespace Cureos.Measures
         public override string ToString()
         {
             return this.Symbol;
+        }
+
+        #endregion
+
+        #region OPERATORS
+
+        /// <summary>
+        /// Creates a new measure object of the specified quantity.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>A new measure object of the specified quantity.</returns>
+        public static Q operator *(AmountType amount, ConstantConverterUnit<Q> unit)
+        {
+            return unit.Quantity.New(amount, unit);
         }
 
         #endregion

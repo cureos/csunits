@@ -186,6 +186,24 @@ namespace Cureos.Measures.Quantities
             get { return Ampere; }
         }
 
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public ElectricCurrent New(AmountType amount, IUnit<ElectricCurrent> unit)
+        {
+            return new ElectricCurrent(amount, unit);
+        }
+
+        /// <summary>
+        /// Indicates whether the current object is equal to another object of the same type.
+        /// </summary>
+        /// <returns>
+        /// true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
+        /// </returns>
+        /// <param name="other">An object to compare with this object.</param>
         bool IEquatable<IQuantity>.Equals(IQuantity other)
         {
             if (other == null)

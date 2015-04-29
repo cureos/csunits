@@ -160,5 +160,20 @@ namespace Cureos.Measures
         }
 
         #endregion
+
+        #region OPERATORS
+
+        /// <summary>
+        /// Creates a new measure object of the specified quantity.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>A new measure object of the specified quantity.</returns>
+        public static Q operator *(AmountType amount, FunctionConverterUnit<Q> unit)
+        {
+            return unit.Quantity.New(amount, unit);
+        }
+
+        #endregion
     }
 }
