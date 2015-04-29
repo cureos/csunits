@@ -35,7 +35,7 @@ namespace Cureos.Measures
     /// Representation of a unit preserving measure of a specific quantity
     /// </summary>
     /// <typeparam name="Q">Measured quantity</typeparam>
-    public class UnitPreservingMeasure<Q> : IMeasure<Q> where Q : struct, IQuantity<Q>
+    public class InUnitMeasure<Q> : IMeasure<Q> where Q : struct, IQuantity<Q>
     {
         #region MEMBER VARIABLES
 
@@ -49,7 +49,7 @@ namespace Cureos.Measures
         /// <summary>
         /// Default constructor, initializes the amount to zero, unit set to standard unit of the measured quantity
         /// </summary>
-        public UnitPreservingMeasure()
+        public InUnitMeasure()
             : this(0.0)
         {
         }
@@ -58,7 +58,7 @@ namespace Cureos.Measures
         /// Initializes a measure to the specified amount and standard unit of the measured quantity
         /// </summary>
         /// <param name="iAmount">Measured amount in standard unit of the specified quantity</param>
-        public UnitPreservingMeasure(double iAmount)
+        public InUnitMeasure(double iAmount)
             : this(iAmount, default(Q).StandardUnit)
         {
         }
@@ -67,7 +67,7 @@ namespace Cureos.Measures
         /// Initializes a measure to the specified amount and standard unit of the measured quantity
         /// </summary>
         /// <param name="iAmount">Measured amount in standard unit of the specified quantity</param>
-        public UnitPreservingMeasure(float iAmount)
+        public InUnitMeasure(float iAmount)
             : this(iAmount, default(Q).StandardUnit)
         {
         }
@@ -76,7 +76,7 @@ namespace Cureos.Measures
         /// Initializes a measure to the specified amount and standard unit of the measured quantity
         /// </summary>
         /// <param name="iAmount">Measured amount in standard unit of the specified quantity</param>
-        public UnitPreservingMeasure(decimal iAmount)
+        public InUnitMeasure(decimal iAmount)
             : this(iAmount, default(Q).StandardUnit)
         {
         }
@@ -87,7 +87,7 @@ namespace Cureos.Measures
         /// <param name="iAmount">Measured amount</param>
         /// <param name="iUnit">Unit of measure</param>
         /// <exception cref="ArgumentNullException">if the specified unit is null</exception>
-        public UnitPreservingMeasure(double iAmount, IUnit<Q> iUnit)
+        public InUnitMeasure(double iAmount, IUnit<Q> iUnit)
         {
             if (iUnit == null) throw new ArgumentNullException("iUnit");
 #if DOUBLE
@@ -104,7 +104,7 @@ namespace Cureos.Measures
         /// <param name="iAmount">Measured amount</param>
         /// <param name="iUnit">Unit of measure</param>
         /// <exception cref="ArgumentNullException">if the specified unit is null</exception>
-        public UnitPreservingMeasure(float iAmount, IUnit<Q> iUnit)
+        public InUnitMeasure(float iAmount, IUnit<Q> iUnit)
         {
             if (iUnit == null) throw new ArgumentNullException("iUnit");
 #if !DECIMAL
@@ -121,7 +121,7 @@ namespace Cureos.Measures
         /// <param name="iAmount">Measured amount</param>
         /// <param name="iUnit">Unit of measure</param>
         /// <exception cref="ArgumentNullException">if the specified unit is null</exception>
-        public UnitPreservingMeasure(decimal iAmount, IUnit<Q> iUnit)
+        public InUnitMeasure(decimal iAmount, IUnit<Q> iUnit)
         {
             if (iUnit == null) throw new ArgumentNullException("iUnit");
 #if DECIMAL
@@ -219,12 +219,12 @@ namespace Cureos.Measures
         /// Gets a new unit specific measure based on this measure but in the <paramref name="iUnit">specified unit</paramref>
         /// </summary>
         /// <param name="iUnit">Unit in which the new measure should be specified</param>
-        public UnitPreservingMeasure<Q> this[IUnit<Q> iUnit]
+        public InUnitMeasure<Q> this[IUnit<Q> iUnit]
         {
             get
             {
                 if (iUnit == null) throw new ArgumentNullException("iUnit");
-                return new UnitPreservingMeasure<Q>(GetAmount(iUnit), iUnit);
+                return new InUnitMeasure<Q>(GetAmount(iUnit), iUnit);
             }
         }
 
@@ -308,8 +308,8 @@ namespace Cureos.Measures
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != typeof(UnitPreservingMeasure<Q>)) return false;
-            return Equals((UnitPreservingMeasure<Q>)obj);
+            if (obj.GetType() != typeof(InUnitMeasure<Q>)) return false;
+            return Equals((InUnitMeasure<Q>)obj);
         }
 
         /// <summary>
@@ -377,9 +377,9 @@ namespace Cureos.Measures
         /// <param name="iLhs">First measure term</param>
         /// <param name="iRhs">Second measure term</param>
         /// <returns>Sum of the two measure objects in the unit of the <paramref name="iLhs">left-hand side measure</paramref></returns>
-        public static UnitPreservingMeasure<Q> operator +(UnitPreservingMeasure<Q> iLhs,  UnitPreservingMeasure<Q> iRhs)
+        public static InUnitMeasure<Q> operator +(InUnitMeasure<Q> iLhs,  InUnitMeasure<Q> iRhs)
         {
-            return new UnitPreservingMeasure<Q>(iLhs.mAmount + iRhs.GetAmount(iLhs.mUnit), iLhs.mUnit);
+            return new InUnitMeasure<Q>(iLhs.mAmount + iRhs.GetAmount(iLhs.mUnit), iLhs.mUnit);
         }
 
         /// <summary>
@@ -388,9 +388,9 @@ namespace Cureos.Measures
         /// <param name="iLhs">First measure term</param>
         /// <param name="iRhs">Second measure term (any object implementing the IMeasure interface)</param>
         /// <returns>Sum of the two measure objects in the unit of the <paramref name="iLhs">left-hand side measure</paramref></returns>
-        public static UnitPreservingMeasure<Q> operator +(UnitPreservingMeasure<Q> iLhs, IMeasure<Q> iRhs)
+        public static InUnitMeasure<Q> operator +(InUnitMeasure<Q> iLhs, IMeasure<Q> iRhs)
         {
-            return new UnitPreservingMeasure<Q>(iLhs.mAmount + iRhs.GetAmount(iLhs.mUnit), iLhs.mUnit);
+            return new InUnitMeasure<Q>(iLhs.mAmount + iRhs.GetAmount(iLhs.mUnit), iLhs.mUnit);
         }
 
         /// <summary>
@@ -399,9 +399,9 @@ namespace Cureos.Measures
         /// <param name="iLhs">First measure object</param>
         /// <param name="iRhs">Second measure object</param>
         /// <returns>Difference of the measure objects</returns>
-        public static UnitPreservingMeasure<Q> operator -(UnitPreservingMeasure<Q> iLhs, UnitPreservingMeasure<Q> iRhs)
+        public static InUnitMeasure<Q> operator -(InUnitMeasure<Q> iLhs, InUnitMeasure<Q> iRhs)
         {
-            return new UnitPreservingMeasure<Q>(iLhs.mAmount - iRhs.GetAmount(iLhs.mUnit), iLhs.mUnit);
+            return new InUnitMeasure<Q>(iLhs.mAmount - iRhs.GetAmount(iLhs.mUnit), iLhs.mUnit);
         }
 
         /// <summary>
@@ -410,9 +410,9 @@ namespace Cureos.Measures
         /// <param name="iLhs">First measure object</param>
         /// <param name="iRhs">Second measure object (any object implementing the IMeasure interface)</param>
         /// <returns>Difference of the measure objects</returns>
-        public static UnitPreservingMeasure<Q> operator -(UnitPreservingMeasure<Q> iLhs, IMeasure<Q> iRhs)
+        public static InUnitMeasure<Q> operator -(InUnitMeasure<Q> iLhs, IMeasure<Q> iRhs)
         {
-            return new UnitPreservingMeasure<Q>(iLhs.mAmount - iRhs.GetAmount(iLhs.mUnit), iLhs.mUnit);
+            return new InUnitMeasure<Q>(iLhs.mAmount - iRhs.GetAmount(iLhs.mUnit), iLhs.mUnit);
         }
 
         /// <summary>
@@ -421,9 +421,9 @@ namespace Cureos.Measures
         /// <param name="iScalar">Floating-point scalar</param>
         /// <param name="iMeasure">Measure object</param>
         /// <returns>Product of the scalar and the measure object</returns>
-        public static UnitPreservingMeasure<Q> operator *(AmountType iScalar, UnitPreservingMeasure<Q> iMeasure)
+        public static InUnitMeasure<Q> operator *(AmountType iScalar, InUnitMeasure<Q> iMeasure)
         {
-            return new UnitPreservingMeasure<Q>(iScalar * iMeasure.mAmount, iMeasure.mUnit);
+            return new InUnitMeasure<Q>(iScalar * iMeasure.mAmount, iMeasure.mUnit);
         }
 
         /// <summary>
@@ -432,9 +432,9 @@ namespace Cureos.Measures
         /// <param name="iMeasure">Measure object</param>
         /// <param name="iScalar">Floating-point scalar</param>
         /// <returns>Product of the measure object and the scalar</returns>
-        public static UnitPreservingMeasure<Q> operator *(UnitPreservingMeasure<Q> iMeasure, AmountType iScalar)
+        public static InUnitMeasure<Q> operator *(InUnitMeasure<Q> iMeasure, AmountType iScalar)
         {
-            return new UnitPreservingMeasure<Q>(iMeasure.mAmount * iScalar, iMeasure.mUnit);
+            return new InUnitMeasure<Q>(iMeasure.mAmount * iScalar, iMeasure.mUnit);
         }
 
         /// <summary>
@@ -443,9 +443,9 @@ namespace Cureos.Measures
         /// <param name="iMeasure">measure object</param>
         /// <param name="iScalar">Floating-point scalar</param>
         /// <returns>Quotient of the measure object and the scalar</returns>
-        public static UnitPreservingMeasure<Q> operator /(UnitPreservingMeasure<Q> iMeasure, AmountType iScalar)
+        public static InUnitMeasure<Q> operator /(InUnitMeasure<Q> iMeasure, AmountType iScalar)
         {
-            return new UnitPreservingMeasure<Q>(iMeasure.mAmount / iScalar, iMeasure.mUnit);
+            return new InUnitMeasure<Q>(iMeasure.mAmount / iScalar, iMeasure.mUnit);
         }
 
         /// <summary>
@@ -454,7 +454,7 @@ namespace Cureos.Measures
         /// <param name="iLhs">First object</param>
         /// <param name="iRhs">Second object</param>
         /// <returns>true if first measure object is less than second measure object; false otherwise</returns>
-        public static bool operator <(UnitPreservingMeasure<Q> iLhs, UnitPreservingMeasure<Q> iRhs)
+        public static bool operator <(InUnitMeasure<Q> iLhs, InUnitMeasure<Q> iRhs)
         {
             return iLhs.mAmount < iRhs.GetAmount(iLhs.mUnit);
         }
@@ -465,7 +465,7 @@ namespace Cureos.Measures
         /// <param name="iLhs">First object</param>
         /// <param name="iRhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if first measure object is less than second measure object; false otherwise</returns>
-        public static bool operator <(UnitPreservingMeasure<Q> iLhs, IMeasure<Q> iRhs)
+        public static bool operator <(InUnitMeasure<Q> iLhs, IMeasure<Q> iRhs)
         {
             return iLhs.mAmount < iRhs.GetAmount(iLhs.mUnit);
         }
@@ -476,7 +476,7 @@ namespace Cureos.Measures
         /// <param name="iLhs">First object</param>
         /// <param name="iRhs">Second object</param>
         /// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
-        public static bool operator >(UnitPreservingMeasure<Q> iLhs, UnitPreservingMeasure<Q> iRhs)
+        public static bool operator >(InUnitMeasure<Q> iLhs, InUnitMeasure<Q> iRhs)
         {
             return iLhs.mAmount > iRhs.GetAmount(iLhs.mUnit);
         }
@@ -487,7 +487,7 @@ namespace Cureos.Measures
         /// <param name="iLhs">First object</param>
         /// <param name="iRhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
-        public static bool operator >(UnitPreservingMeasure<Q> iLhs, IMeasure<Q> iRhs)
+        public static bool operator >(InUnitMeasure<Q> iLhs, IMeasure<Q> iRhs)
         {
             return iLhs.mAmount > iRhs.GetAmount(iLhs.mUnit);
         }
@@ -498,7 +498,7 @@ namespace Cureos.Measures
         /// <param name="iLhs">First object</param>
         /// <param name="iRhs">Second object</param>
         /// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
-        public static bool operator <=(UnitPreservingMeasure<Q> iLhs, UnitPreservingMeasure<Q> iRhs)
+        public static bool operator <=(InUnitMeasure<Q> iLhs, InUnitMeasure<Q> iRhs)
         {
             return iLhs.mAmount <= iRhs.GetAmount(iLhs.mUnit);
         }
@@ -509,7 +509,7 @@ namespace Cureos.Measures
         /// <param name="iLhs">First object</param>
         /// <param name="iRhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
-        public static bool operator <=(UnitPreservingMeasure<Q> iLhs, IMeasure<Q> iRhs)
+        public static bool operator <=(InUnitMeasure<Q> iLhs, IMeasure<Q> iRhs)
         {
             return iLhs.mAmount <= iRhs.GetAmount(iLhs.mUnit);
         }
@@ -520,7 +520,7 @@ namespace Cureos.Measures
         /// <param name="iLhs">First object</param>
         /// <param name="iRhs">Second object</param>
         /// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
-        public static bool operator >=(UnitPreservingMeasure<Q> iLhs, UnitPreservingMeasure<Q> iRhs)
+        public static bool operator >=(InUnitMeasure<Q> iLhs, InUnitMeasure<Q> iRhs)
         {
             return iLhs.mAmount >= iRhs.GetAmount(iLhs.mUnit);
         }
@@ -531,7 +531,7 @@ namespace Cureos.Measures
         /// <param name="iLhs">First object</param>
         /// <param name="iRhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
-        public static bool operator >=(UnitPreservingMeasure<Q> iLhs, IMeasure<Q> iRhs)
+        public static bool operator >=(InUnitMeasure<Q> iLhs, IMeasure<Q> iRhs)
         {
             return iLhs.mAmount >= iRhs.GetAmount(iLhs.mUnit);
         }
@@ -542,7 +542,7 @@ namespace Cureos.Measures
         /// <param name="iLhs">First object</param>
         /// <param name="iRhs">Second object</param>
         /// <returns>true if the two measure objects are equal; false otherwise</returns>
-        public static bool operator ==(UnitPreservingMeasure<Q> iLhs, UnitPreservingMeasure<Q> iRhs)
+        public static bool operator ==(InUnitMeasure<Q> iLhs, InUnitMeasure<Q> iRhs)
         {
             return iLhs.mAmount == iRhs.GetAmount(iLhs.mUnit);
         }
@@ -553,7 +553,7 @@ namespace Cureos.Measures
         /// <param name="iLhs">First object</param>
         /// <param name="iRhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if the two measure objects are equal; false otherwise</returns>
-        public static bool operator ==(UnitPreservingMeasure<Q> iLhs, IMeasure<Q> iRhs)
+        public static bool operator ==(InUnitMeasure<Q> iLhs, IMeasure<Q> iRhs)
         {
             return iLhs.mAmount == iRhs.GetAmount(iLhs.mUnit);
         }
@@ -564,7 +564,7 @@ namespace Cureos.Measures
         /// <param name="iLhs">First object</param>
         /// <param name="iRhs">Second object</param>
         /// <returns>true if the two measure objects are not equal; false if they are equal</returns>
-        public static bool operator !=(UnitPreservingMeasure<Q> iLhs, UnitPreservingMeasure<Q> iRhs)
+        public static bool operator !=(InUnitMeasure<Q> iLhs, InUnitMeasure<Q> iRhs)
         {
             return iLhs.mAmount != iRhs.GetAmount(iLhs.mUnit);
         }
@@ -575,7 +575,7 @@ namespace Cureos.Measures
         /// <param name="iLhs">First object</param>
         /// <param name="iRhs">Second object (any object implementing IMeasure interface)</param>
         /// <returns>true if the two measure objects are not equal; false if they are equal</returns>
-        public static bool operator !=(UnitPreservingMeasure<Q> iLhs, IMeasure<Q> iRhs)
+        public static bool operator !=(InUnitMeasure<Q> iLhs, IMeasure<Q> iRhs)
         {
             return iLhs.mAmount != iRhs.GetAmount(iLhs.mUnit);
         }

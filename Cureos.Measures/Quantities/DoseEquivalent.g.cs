@@ -383,7 +383,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<DoseEquivalent>)this
-                    : new UnitPreservingMeasure<DoseEquivalent>(this.GetAmount(unit), unit);
+                    : new InUnitMeasure<DoseEquivalent>(this.GetAmount(unit), unit);
             }
         }
 

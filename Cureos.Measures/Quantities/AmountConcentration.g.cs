@@ -385,7 +385,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<AmountConcentration>)this
-                    : new UnitPreservingMeasure<AmountConcentration>(this.GetAmount(unit), unit);
+                    : new InUnitMeasure<AmountConcentration>(this.GetAmount(unit), unit);
             }
         }
 

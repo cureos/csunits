@@ -384,7 +384,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<Capacitance>)this
-                    : new UnitPreservingMeasure<Capacitance>(this.GetAmount(unit), unit);
+                    : new InUnitMeasure<Capacitance>(this.GetAmount(unit), unit);
             }
         }
 

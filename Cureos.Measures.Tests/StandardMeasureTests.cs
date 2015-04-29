@@ -17,7 +17,7 @@ namespace Cureos.Measures
         [Test]
         public void Constructor_WithNonReferenceUnit_InitializesMeasureInReferenceUnit()
         {
-            var expected = new UnitPreservingMeasure<Time>(180.0, Time.Second);
+            var expected = new InUnitMeasure<Time>(180.0, Time.Second);
             var actual = new Measure<Time>(3.0, Time.Minute);
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }

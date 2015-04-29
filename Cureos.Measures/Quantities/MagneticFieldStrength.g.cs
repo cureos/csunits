@@ -385,7 +385,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<MagneticFieldStrength>)this
-                    : new UnitPreservingMeasure<MagneticFieldStrength>(this.GetAmount(unit), unit);
+                    : new InUnitMeasure<MagneticFieldStrength>(this.GetAmount(unit), unit);
             }
         }
 

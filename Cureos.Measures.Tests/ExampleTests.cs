@@ -20,12 +20,12 @@ namespace Cureos.Measures
 			Mass gainedWgt = new Mass(2.5, Mass.HectoGram);
 			Mass newWgt = initialWgt + gainedWgt;
 
-			var newWgtInGram = (UnitPreservingMeasure<Mass>)newWgt[Mass.Gram];
+			var newWgtInGram = (InUnitMeasure<Mass>)newWgt[Mass.Gram];
 			var initialWgtInGram = newWgtInGram - gainedWgt;
 
 			Console.WriteLine("Initial weight: {0}", initialWgtInGram);
 
-			UnitPreservingMeasure<Length> height = new UnitPreservingMeasure<Length>(30.0, Length.CentiMeter);
+			InUnitMeasure<Length> height = new InUnitMeasure<Length>(30.0, Length.CentiMeter);
 			Measure<Area> area = (Measure<Area>)0.02;
 
 		    Measure<Volume> vol; ArithmeticOperations.Times(height, area, out vol);

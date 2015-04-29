@@ -378,7 +378,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<Probability>)this
-                    : new UnitPreservingMeasure<Probability>(this.GetAmount(unit), unit);
+                    : new InUnitMeasure<Probability>(this.GetAmount(unit), unit);
             }
         }
 

@@ -23,7 +23,7 @@ namespace Cureos.Measures
         [SetUp]
         public void Setup()
         {
-            _instance = new UnitPreservingMeasure<Mass>(0.01, Mass.MetricTon);
+            _instance = new InUnitMeasure<Mass>(0.01, Mass.MetricTon);
         }
 
         [TearDown]

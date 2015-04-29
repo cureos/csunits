@@ -385,7 +385,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<Frequency>)this
-                    : new UnitPreservingMeasure<Frequency>(this.GetAmount(unit), unit);
+                    : new InUnitMeasure<Frequency>(this.GetAmount(unit), unit);
             }
         }
 

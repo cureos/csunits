@@ -374,7 +374,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<RelativePermeability>)this
-                    : new UnitPreservingMeasure<RelativePermeability>(this.GetAmount(unit), unit);
+                    : new InUnitMeasure<RelativePermeability>(this.GetAmount(unit), unit);
             }
         }
 

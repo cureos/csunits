@@ -242,7 +242,7 @@ namespace Cureos.Measures
 			get
 			{
 				if (iUnit == null) throw new ArgumentNullException("iUnit");
-				return new UnitPreservingMeasure<Q>(GetAmount(iUnit), iUnit);
+				return new InUnitMeasure<Q>(GetAmount(iUnit), iUnit);
 			}
 		}
 

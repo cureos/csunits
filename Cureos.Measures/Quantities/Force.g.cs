@@ -385,7 +385,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<Force>)this
-                    : new UnitPreservingMeasure<Force>(this.GetAmount(unit), unit);
+                    : new InUnitMeasure<Force>(this.GetAmount(unit), unit);
             }
         }
 

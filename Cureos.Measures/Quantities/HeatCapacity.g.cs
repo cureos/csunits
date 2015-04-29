@@ -385,7 +385,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<HeatCapacity>)this
-                    : new UnitPreservingMeasure<HeatCapacity>(this.GetAmount(unit), unit);
+                    : new InUnitMeasure<HeatCapacity>(this.GetAmount(unit), unit);
             }
         }
 

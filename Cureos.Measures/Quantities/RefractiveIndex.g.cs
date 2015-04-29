@@ -374,7 +374,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<RefractiveIndex>)this
-                    : new UnitPreservingMeasure<RefractiveIndex>(this.GetAmount(unit), unit);
+                    : new InUnitMeasure<RefractiveIndex>(this.GetAmount(unit), unit);
             }
         }
 

@@ -380,7 +380,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<SolidAngle>)this
-                    : new UnitPreservingMeasure<SolidAngle>(this.GetAmount(unit), unit);
+                    : new InUnitMeasure<SolidAngle>(this.GetAmount(unit), unit);
             }
         }
 

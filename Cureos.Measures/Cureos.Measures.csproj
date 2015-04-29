@@ -192,7 +192,7 @@
       <DependentUpon>CodeGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="FunctionConverterUnit.cs" />
-    <Compile Include="UnitPreservingMeasure.cs" />
+    <Compile Include="InUnitMeasure.cs" />
     <Compile Include="PrimeNumbers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quantities\AbsorbedDose.g.cs">

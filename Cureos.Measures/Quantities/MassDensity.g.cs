@@ -378,7 +378,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<MassDensity>)this
-                    : new UnitPreservingMeasure<MassDensity>(this.GetAmount(unit), unit);
+                    : new InUnitMeasure<MassDensity>(this.GetAmount(unit), unit);
             }
         }
 

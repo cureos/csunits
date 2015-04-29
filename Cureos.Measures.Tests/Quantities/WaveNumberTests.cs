@@ -17,7 +17,7 @@ namespace Cureos.Measures.Quantities
         [Test]
         public void StandardMeasureIndexer_ReciprocalCentiMeter_ReturnsHundredthValue()
         {
-            var expected = new UnitPreservingMeasure<WaveNumber>(1.0, WaveNumber.ReciprocalCentiMeter);
+            var expected = new InUnitMeasure<WaveNumber>(1.0, WaveNumber.ReciprocalCentiMeter);
             var actual = new Measure<WaveNumber>(100.0)[WaveNumber.ReciprocalCentiMeter];
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }

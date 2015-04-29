@@ -383,7 +383,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<DynamicViscosity>)this
-                    : new UnitPreservingMeasure<DynamicViscosity>(this.GetAmount(unit), unit);
+                    : new InUnitMeasure<DynamicViscosity>(this.GetAmount(unit), unit);
             }
         }
 

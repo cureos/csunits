@@ -385,7 +385,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<Pressure>)this
-                    : new UnitPreservingMeasure<Pressure>(this.GetAmount(unit), unit);
+                    : new InUnitMeasure<Pressure>(this.GetAmount(unit), unit);
             }
         }
 

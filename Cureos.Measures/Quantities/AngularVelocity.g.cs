@@ -385,7 +385,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<AngularVelocity>)this
-                    : new UnitPreservingMeasure<AngularVelocity>(this.GetAmount(unit), unit);
+                    : new InUnitMeasure<AngularVelocity>(this.GetAmount(unit), unit);
             }
         }
 

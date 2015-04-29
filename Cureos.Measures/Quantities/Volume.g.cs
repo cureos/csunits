@@ -380,7 +380,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<Volume>)this
-                    : new UnitPreservingMeasure<Volume>(this.GetAmount(unit), unit);
+                    : new InUnitMeasure<Volume>(this.GetAmount(unit), unit);
             }
         }
 

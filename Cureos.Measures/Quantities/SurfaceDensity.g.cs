@@ -376,7 +376,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<SurfaceDensity>)this
-                    : new UnitPreservingMeasure<SurfaceDensity>(this.GetAmount(unit), unit);
+                    : new InUnitMeasure<SurfaceDensity>(this.GetAmount(unit), unit);
             }
         }
 

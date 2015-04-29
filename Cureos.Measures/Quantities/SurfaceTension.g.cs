@@ -385,7 +385,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<SurfaceTension>)this
-                    : new UnitPreservingMeasure<SurfaceTension>(this.GetAmount(unit), unit);
+                    : new InUnitMeasure<SurfaceTension>(this.GetAmount(unit), unit);
             }
         }
 

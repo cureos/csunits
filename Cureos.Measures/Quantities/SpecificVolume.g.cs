@@ -374,7 +374,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<SpecificVolume>)this
-                    : new UnitPreservingMeasure<SpecificVolume>(this.GetAmount(unit), unit);
+                    : new InUnitMeasure<SpecificVolume>(this.GetAmount(unit), unit);
             }
         }
 

@@ -385,7 +385,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<HeatFluxDensity>)this
-                    : new UnitPreservingMeasure<HeatFluxDensity>(this.GetAmount(unit), unit);
+                    : new InUnitMeasure<HeatFluxDensity>(this.GetAmount(unit), unit);
             }
         }
 

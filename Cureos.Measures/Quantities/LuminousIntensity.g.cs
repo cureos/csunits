@@ -385,7 +385,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<LuminousIntensity>)this
-                    : new UnitPreservingMeasure<LuminousIntensity>(this.GetAmount(unit), unit);
+                    : new InUnitMeasure<LuminousIntensity>(this.GetAmount(unit), unit);
             }
         }
 
