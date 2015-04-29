@@ -36,15 +36,9 @@ namespace Cureos.Measures
     /// where unit conversion is applied via defined functions.
     /// </summary>
     /// <typeparam name="Q">Quantity type with which the unit is associated</typeparam>
-    public sealed class FunctionConverterUnit<Q> : IUnit<Q> where Q : struct, IQuantity<Q>, IMeasureFactory<Q>
+    public sealed class FunctionConverterUnit<Q> : Unit<Q> where Q : struct, IQuantity<Q>, IMeasureFactory<Q>
     {
         #region FIELDS
-
-        private readonly Q quantity = default(Q);
-
-        private string displayName;
-
-        private readonly string symbol;
 
         private readonly Func<AmountType, AmountType> convertAmountToStandardUnit;
 
@@ -64,9 +58,8 @@ namespace Cureos.Measures
             string symbol,
             Func<AmountType, AmountType> convertAmountToStandardUnit,
             Func<AmountType, AmountType> convertStandardAmountToUnit)
+            : base(false, symbol)
         {
-            this.symbol = symbol;
-            this.displayName = null;
             this.convertAmountToStandardUnit = convertAmountToStandardUnit;
             this.convertStandardAmountToUnit = convertStandardAmountToUnit;
         }
@@ -76,60 +69,11 @@ namespace Cureos.Measures
         #region Implementation of IUnit<Q>
 
         /// <summary>
-        /// Gets the quantity associated with the unit
-        /// </summary>
-        IQuantity IUnit.Quantity
-        {
-            get { return this.quantity; }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether or not the unit is a standard unit of the associated quantity
-        /// </summary>
-        public bool IsStandardUnit
-        {
-            get
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Gets the typed quantity associated with the unit
-        /// </summary>
-        public IQuantity<Q> Quantity
-        {
-            get { return this.quantity; }
-        }
-
-        /// <summary>
-        /// Gets the display symbol of the unit
-        /// </summary>
-        public string Symbol
-        {
-            get
-            {
-                return this.symbol;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the fully qualified display name of the unit
-        /// </summary>
-        public string DisplayName
-        {
-            get
-            {
-                return this.displayName ?? (this.displayName = UnitHelpers.CreateUnitDisplayName(this));
-            }
-        }
-
-        /// <summary>
         /// Convert the amount from the current unit to the standard unit of the specified quantity
         /// </summary>
         /// <param name="amount">Amount in this unit</param>
         /// <returns>Amount converted to standard unit</returns>
-        public double ConvertAmountToStandardUnit(double amount)
+        public override double ConvertAmountToStandardUnit(double amount)
         {
             return this.convertAmountToStandardUnit(amount);
         }
@@ -140,41 +84,9 @@ namespace Cureos.Measures
         /// </summary>
         /// <param name="standardAmount">Standard amount of the current <see cref="IUnit.Quantity"/>.</param>
         /// <returns>Amount in this unit.</returns>
-        public double ConvertStandardAmountToUnit(double standardAmount)
+        public override double ConvertStandardAmountToUnit(double standardAmount)
         {
             return this.convertStandardAmountToUnit(standardAmount);
-        }
-
-        #endregion
-
-        #region METHODS
-
-        /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
-        /// </summary>
-        /// <returns>
-        /// The <see cref="Symbol">unit symbol</see>
-        /// </returns>
-        /// <filterpriority>2</filterpriority>
-        public override string ToString()
-        {
-            return this.Symbol;
-        }
-
-        #endregion
-
-        #region OPERATORS
-
-        /// <summary>
-        /// Creates a new measure object of the specified quantity.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>A new measure object of the specified quantity.</returns>
-        public static Q operator *(AmountType amount, FunctionConverterUnit<Q> unit)
-        {
-            // ReSharper disable once ImpureMethodCallOnReadonlyValueField
-            return unit.quantity.Create(amount, unit);
         }
 
         #endregion

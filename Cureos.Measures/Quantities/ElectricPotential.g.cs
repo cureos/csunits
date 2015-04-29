@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(2, 1, -3, -1, 0, 0, 0);
 
-        public static readonly ConstantConverterUnit<ElectricPotential> Volt = new ConstantConverterUnit<ElectricPotential>("V");
+        public static readonly Unit<ElectricPotential> Volt = new ConstantConverterUnit<ElectricPotential>("V");
 
-        public static readonly ConstantConverterUnit<ElectricPotential> NanoVolt = new ConstantConverterUnit<ElectricPotential>(UnitPrefix.Nano);
-        public static readonly ConstantConverterUnit<ElectricPotential> MicroVolt = new ConstantConverterUnit<ElectricPotential>(UnitPrefix.Micro);
-        public static readonly ConstantConverterUnit<ElectricPotential> MilliVolt = new ConstantConverterUnit<ElectricPotential>(UnitPrefix.Milli);
-        public static readonly ConstantConverterUnit<ElectricPotential> CentiVolt = new ConstantConverterUnit<ElectricPotential>(UnitPrefix.Centi);
-        public static readonly ConstantConverterUnit<ElectricPotential> DeciVolt = new ConstantConverterUnit<ElectricPotential>(UnitPrefix.Deci);
-        public static readonly ConstantConverterUnit<ElectricPotential> DekaVolt = new ConstantConverterUnit<ElectricPotential>(UnitPrefix.Deka);
-        public static readonly ConstantConverterUnit<ElectricPotential> HectoVolt = new ConstantConverterUnit<ElectricPotential>(UnitPrefix.Hecto);
-        public static readonly ConstantConverterUnit<ElectricPotential> KiloVolt = new ConstantConverterUnit<ElectricPotential>(UnitPrefix.Kilo);
-        public static readonly ConstantConverterUnit<ElectricPotential> MegaVolt = new ConstantConverterUnit<ElectricPotential>(UnitPrefix.Mega);
-        public static readonly ConstantConverterUnit<ElectricPotential> GigaVolt = new ConstantConverterUnit<ElectricPotential>(UnitPrefix.Giga);
+        public static readonly Unit<ElectricPotential> NanoVolt = new ConstantConverterUnit<ElectricPotential>(UnitPrefix.Nano);
+        public static readonly Unit<ElectricPotential> MicroVolt = new ConstantConverterUnit<ElectricPotential>(UnitPrefix.Micro);
+        public static readonly Unit<ElectricPotential> MilliVolt = new ConstantConverterUnit<ElectricPotential>(UnitPrefix.Milli);
+        public static readonly Unit<ElectricPotential> CentiVolt = new ConstantConverterUnit<ElectricPotential>(UnitPrefix.Centi);
+        public static readonly Unit<ElectricPotential> DeciVolt = new ConstantConverterUnit<ElectricPotential>(UnitPrefix.Deci);
+        public static readonly Unit<ElectricPotential> DekaVolt = new ConstantConverterUnit<ElectricPotential>(UnitPrefix.Deka);
+        public static readonly Unit<ElectricPotential> HectoVolt = new ConstantConverterUnit<ElectricPotential>(UnitPrefix.Hecto);
+        public static readonly Unit<ElectricPotential> KiloVolt = new ConstantConverterUnit<ElectricPotential>(UnitPrefix.Kilo);
+        public static readonly Unit<ElectricPotential> MegaVolt = new ConstantConverterUnit<ElectricPotential>(UnitPrefix.Mega);
+        public static readonly Unit<ElectricPotential> GigaVolt = new ConstantConverterUnit<ElectricPotential>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

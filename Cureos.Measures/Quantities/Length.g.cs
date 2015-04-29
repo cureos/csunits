@@ -48,24 +48,24 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(1, 0, 0, 0, 0, 0, 0);
 
-        public static readonly ConstantConverterUnit<Length> Meter = new ConstantConverterUnit<Length>("m");
+        public static readonly Unit<Length> Meter = new ConstantConverterUnit<Length>("m");
 
-        public static readonly ConstantConverterUnit<Length> PicoMeter = new ConstantConverterUnit<Length>(UnitPrefix.Pico);
-        public static readonly ConstantConverterUnit<Length> NanoMeter = new ConstantConverterUnit<Length>(UnitPrefix.Nano);
-        public static readonly ConstantConverterUnit<Length> MicroMeter = new ConstantConverterUnit<Length>(UnitPrefix.Micro);
-        public static readonly ConstantConverterUnit<Length> MilliMeter = new ConstantConverterUnit<Length>(UnitPrefix.Milli);
-        public static readonly ConstantConverterUnit<Length> CentiMeter = new ConstantConverterUnit<Length>(UnitPrefix.Centi);
-        public static readonly ConstantConverterUnit<Length> DeciMeter = new ConstantConverterUnit<Length>(UnitPrefix.Deci);
-        public static readonly ConstantConverterUnit<Length> DekaMeter = new ConstantConverterUnit<Length>(UnitPrefix.Deka);
-        public static readonly ConstantConverterUnit<Length> HectoMeter = new ConstantConverterUnit<Length>(UnitPrefix.Hecto);
-        public static readonly ConstantConverterUnit<Length> KiloMeter = new ConstantConverterUnit<Length>(UnitPrefix.Kilo);
+        public static readonly Unit<Length> PicoMeter = new ConstantConverterUnit<Length>(UnitPrefix.Pico);
+        public static readonly Unit<Length> NanoMeter = new ConstantConverterUnit<Length>(UnitPrefix.Nano);
+        public static readonly Unit<Length> MicroMeter = new ConstantConverterUnit<Length>(UnitPrefix.Micro);
+        public static readonly Unit<Length> MilliMeter = new ConstantConverterUnit<Length>(UnitPrefix.Milli);
+        public static readonly Unit<Length> CentiMeter = new ConstantConverterUnit<Length>(UnitPrefix.Centi);
+        public static readonly Unit<Length> DeciMeter = new ConstantConverterUnit<Length>(UnitPrefix.Deci);
+        public static readonly Unit<Length> DekaMeter = new ConstantConverterUnit<Length>(UnitPrefix.Deka);
+        public static readonly Unit<Length> HectoMeter = new ConstantConverterUnit<Length>(UnitPrefix.Hecto);
+        public static readonly Unit<Length> KiloMeter = new ConstantConverterUnit<Length>(UnitPrefix.Kilo);
 
-        public static readonly ConstantConverterUnit<Length> Angstrom = new ConstantConverterUnit<Length>("Å", Factors.MetersPerAngstrom);
-        public static readonly ConstantConverterUnit<Length> Inch = new ConstantConverterUnit<Length>("in", Factors.MetersPerInch);
-        public static readonly ConstantConverterUnit<Length> Foot = new ConstantConverterUnit<Length>("ft", Factors.MetersPerFoot);
-        public static readonly ConstantConverterUnit<Length> Yard = new ConstantConverterUnit<Length>("yd", Factors.MetersPerYard);
-        public static readonly ConstantConverterUnit<Length> Mile = new ConstantConverterUnit<Length>("mi", Factors.MetersPerMile);
-        public static readonly ConstantConverterUnit<Length> NauticalMile = new ConstantConverterUnit<Length>("M", Factors.MetersPerNauticalMile);
+        public static readonly Unit<Length> Angstrom = new ConstantConverterUnit<Length>("Å", Factors.MetersPerAngstrom);
+        public static readonly Unit<Length> Inch = new ConstantConverterUnit<Length>("in", Factors.MetersPerInch);
+        public static readonly Unit<Length> Foot = new ConstantConverterUnit<Length>("ft", Factors.MetersPerFoot);
+        public static readonly Unit<Length> Yard = new ConstantConverterUnit<Length>("yd", Factors.MetersPerYard);
+        public static readonly Unit<Length> Mile = new ConstantConverterUnit<Length>("mi", Factors.MetersPerMile);
+        public static readonly Unit<Length> NauticalMile = new ConstantConverterUnit<Length>("M", Factors.MetersPerNauticalMile);
 
         [DataMember]
         private readonly AmountType amount;

@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(1, 1, -2, 0, 0, 0, 0);
 
-        public static readonly ConstantConverterUnit<Force> Newton = new ConstantConverterUnit<Force>("N");
+        public static readonly Unit<Force> Newton = new ConstantConverterUnit<Force>("N");
 
-        public static readonly ConstantConverterUnit<Force> NanoNewton = new ConstantConverterUnit<Force>(UnitPrefix.Nano);
-        public static readonly ConstantConverterUnit<Force> MicroNewton = new ConstantConverterUnit<Force>(UnitPrefix.Micro);
-        public static readonly ConstantConverterUnit<Force> MilliNewton = new ConstantConverterUnit<Force>(UnitPrefix.Milli);
-        public static readonly ConstantConverterUnit<Force> CentiNewton = new ConstantConverterUnit<Force>(UnitPrefix.Centi);
-        public static readonly ConstantConverterUnit<Force> DeciNewton = new ConstantConverterUnit<Force>(UnitPrefix.Deci);
-        public static readonly ConstantConverterUnit<Force> DekaNewton = new ConstantConverterUnit<Force>(UnitPrefix.Deka);
-        public static readonly ConstantConverterUnit<Force> HectoNewton = new ConstantConverterUnit<Force>(UnitPrefix.Hecto);
-        public static readonly ConstantConverterUnit<Force> KiloNewton = new ConstantConverterUnit<Force>(UnitPrefix.Kilo);
-        public static readonly ConstantConverterUnit<Force> MegaNewton = new ConstantConverterUnit<Force>(UnitPrefix.Mega);
-        public static readonly ConstantConverterUnit<Force> GigaNewton = new ConstantConverterUnit<Force>(UnitPrefix.Giga);
+        public static readonly Unit<Force> NanoNewton = new ConstantConverterUnit<Force>(UnitPrefix.Nano);
+        public static readonly Unit<Force> MicroNewton = new ConstantConverterUnit<Force>(UnitPrefix.Micro);
+        public static readonly Unit<Force> MilliNewton = new ConstantConverterUnit<Force>(UnitPrefix.Milli);
+        public static readonly Unit<Force> CentiNewton = new ConstantConverterUnit<Force>(UnitPrefix.Centi);
+        public static readonly Unit<Force> DeciNewton = new ConstantConverterUnit<Force>(UnitPrefix.Deci);
+        public static readonly Unit<Force> DekaNewton = new ConstantConverterUnit<Force>(UnitPrefix.Deka);
+        public static readonly Unit<Force> HectoNewton = new ConstantConverterUnit<Force>(UnitPrefix.Hecto);
+        public static readonly Unit<Force> KiloNewton = new ConstantConverterUnit<Force>(UnitPrefix.Kilo);
+        public static readonly Unit<Force> MegaNewton = new ConstantConverterUnit<Force>(UnitPrefix.Mega);
+        public static readonly Unit<Force> GigaNewton = new ConstantConverterUnit<Force>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

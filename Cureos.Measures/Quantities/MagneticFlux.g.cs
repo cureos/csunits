@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(2, 1, -2, -1, 0, 0, 0);
 
-        public static readonly ConstantConverterUnit<MagneticFlux> Weber = new ConstantConverterUnit<MagneticFlux>("Wb");
+        public static readonly Unit<MagneticFlux> Weber = new ConstantConverterUnit<MagneticFlux>("Wb");
 
-        public static readonly ConstantConverterUnit<MagneticFlux> NanoWeber = new ConstantConverterUnit<MagneticFlux>(UnitPrefix.Nano);
-        public static readonly ConstantConverterUnit<MagneticFlux> MicroWeber = new ConstantConverterUnit<MagneticFlux>(UnitPrefix.Micro);
-        public static readonly ConstantConverterUnit<MagneticFlux> MilliWeber = new ConstantConverterUnit<MagneticFlux>(UnitPrefix.Milli);
-        public static readonly ConstantConverterUnit<MagneticFlux> CentiWeber = new ConstantConverterUnit<MagneticFlux>(UnitPrefix.Centi);
-        public static readonly ConstantConverterUnit<MagneticFlux> DeciWeber = new ConstantConverterUnit<MagneticFlux>(UnitPrefix.Deci);
-        public static readonly ConstantConverterUnit<MagneticFlux> DekaWeber = new ConstantConverterUnit<MagneticFlux>(UnitPrefix.Deka);
-        public static readonly ConstantConverterUnit<MagneticFlux> HectoWeber = new ConstantConverterUnit<MagneticFlux>(UnitPrefix.Hecto);
-        public static readonly ConstantConverterUnit<MagneticFlux> KiloWeber = new ConstantConverterUnit<MagneticFlux>(UnitPrefix.Kilo);
-        public static readonly ConstantConverterUnit<MagneticFlux> MegaWeber = new ConstantConverterUnit<MagneticFlux>(UnitPrefix.Mega);
-        public static readonly ConstantConverterUnit<MagneticFlux> GigaWeber = new ConstantConverterUnit<MagneticFlux>(UnitPrefix.Giga);
+        public static readonly Unit<MagneticFlux> NanoWeber = new ConstantConverterUnit<MagneticFlux>(UnitPrefix.Nano);
+        public static readonly Unit<MagneticFlux> MicroWeber = new ConstantConverterUnit<MagneticFlux>(UnitPrefix.Micro);
+        public static readonly Unit<MagneticFlux> MilliWeber = new ConstantConverterUnit<MagneticFlux>(UnitPrefix.Milli);
+        public static readonly Unit<MagneticFlux> CentiWeber = new ConstantConverterUnit<MagneticFlux>(UnitPrefix.Centi);
+        public static readonly Unit<MagneticFlux> DeciWeber = new ConstantConverterUnit<MagneticFlux>(UnitPrefix.Deci);
+        public static readonly Unit<MagneticFlux> DekaWeber = new ConstantConverterUnit<MagneticFlux>(UnitPrefix.Deka);
+        public static readonly Unit<MagneticFlux> HectoWeber = new ConstantConverterUnit<MagneticFlux>(UnitPrefix.Hecto);
+        public static readonly Unit<MagneticFlux> KiloWeber = new ConstantConverterUnit<MagneticFlux>(UnitPrefix.Kilo);
+        public static readonly Unit<MagneticFlux> MegaWeber = new ConstantConverterUnit<MagneticFlux>(UnitPrefix.Mega);
+        public static readonly Unit<MagneticFlux> GigaWeber = new ConstantConverterUnit<MagneticFlux>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

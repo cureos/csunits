@@ -48,10 +48,10 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(-1, 0, 0, 0, 0, 0, 0);
 
-        public static readonly ConstantConverterUnit<WaveNumber> ReciprocalMeter = new ConstantConverterUnit<WaveNumber>("m\u207b¹");
+        public static readonly Unit<WaveNumber> ReciprocalMeter = new ConstantConverterUnit<WaveNumber>("m\u207b¹");
 
-        public static readonly ConstantConverterUnit<WaveNumber> ReciprocalCentiMeter = new ConstantConverterUnit<WaveNumber>("cm\u207b¹", Factors.Hecto);
-        public static readonly ConstantConverterUnit<WaveNumber> ReciprocalMilliMeter = new ConstantConverterUnit<WaveNumber>("mm\u207b¹", Factors.Kilo);
+        public static readonly Unit<WaveNumber> ReciprocalCentiMeter = new ConstantConverterUnit<WaveNumber>("cm\u207b¹", Factors.Hecto);
+        public static readonly Unit<WaveNumber> ReciprocalMilliMeter = new ConstantConverterUnit<WaveNumber>("mm\u207b¹", Factors.Kilo);
 
         [DataMember]
         private readonly AmountType amount;

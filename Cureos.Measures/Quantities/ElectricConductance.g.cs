@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(-2, -1, 3, 2, 0, 0, 0);
 
-        public static readonly ConstantConverterUnit<ElectricConductance> Siemens = new ConstantConverterUnit<ElectricConductance>("S");
+        public static readonly Unit<ElectricConductance> Siemens = new ConstantConverterUnit<ElectricConductance>("S");
 
-        public static readonly ConstantConverterUnit<ElectricConductance> NanoSiemens = new ConstantConverterUnit<ElectricConductance>(UnitPrefix.Nano);
-        public static readonly ConstantConverterUnit<ElectricConductance> MicroSiemens = new ConstantConverterUnit<ElectricConductance>(UnitPrefix.Micro);
-        public static readonly ConstantConverterUnit<ElectricConductance> MilliSiemens = new ConstantConverterUnit<ElectricConductance>(UnitPrefix.Milli);
-        public static readonly ConstantConverterUnit<ElectricConductance> CentiSiemens = new ConstantConverterUnit<ElectricConductance>(UnitPrefix.Centi);
-        public static readonly ConstantConverterUnit<ElectricConductance> DeciSiemens = new ConstantConverterUnit<ElectricConductance>(UnitPrefix.Deci);
-        public static readonly ConstantConverterUnit<ElectricConductance> DekaSiemens = new ConstantConverterUnit<ElectricConductance>(UnitPrefix.Deka);
-        public static readonly ConstantConverterUnit<ElectricConductance> HectoSiemens = new ConstantConverterUnit<ElectricConductance>(UnitPrefix.Hecto);
-        public static readonly ConstantConverterUnit<ElectricConductance> KiloSiemens = new ConstantConverterUnit<ElectricConductance>(UnitPrefix.Kilo);
-        public static readonly ConstantConverterUnit<ElectricConductance> MegaSiemens = new ConstantConverterUnit<ElectricConductance>(UnitPrefix.Mega);
-        public static readonly ConstantConverterUnit<ElectricConductance> GigaSiemens = new ConstantConverterUnit<ElectricConductance>(UnitPrefix.Giga);
+        public static readonly Unit<ElectricConductance> NanoSiemens = new ConstantConverterUnit<ElectricConductance>(UnitPrefix.Nano);
+        public static readonly Unit<ElectricConductance> MicroSiemens = new ConstantConverterUnit<ElectricConductance>(UnitPrefix.Micro);
+        public static readonly Unit<ElectricConductance> MilliSiemens = new ConstantConverterUnit<ElectricConductance>(UnitPrefix.Milli);
+        public static readonly Unit<ElectricConductance> CentiSiemens = new ConstantConverterUnit<ElectricConductance>(UnitPrefix.Centi);
+        public static readonly Unit<ElectricConductance> DeciSiemens = new ConstantConverterUnit<ElectricConductance>(UnitPrefix.Deci);
+        public static readonly Unit<ElectricConductance> DekaSiemens = new ConstantConverterUnit<ElectricConductance>(UnitPrefix.Deka);
+        public static readonly Unit<ElectricConductance> HectoSiemens = new ConstantConverterUnit<ElectricConductance>(UnitPrefix.Hecto);
+        public static readonly Unit<ElectricConductance> KiloSiemens = new ConstantConverterUnit<ElectricConductance>(UnitPrefix.Kilo);
+        public static readonly Unit<ElectricConductance> MegaSiemens = new ConstantConverterUnit<ElectricConductance>(UnitPrefix.Mega);
+        public static readonly Unit<ElectricConductance> GigaSiemens = new ConstantConverterUnit<ElectricConductance>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

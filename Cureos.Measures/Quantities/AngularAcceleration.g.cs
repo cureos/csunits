@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = QuantityDimension.Radian * new QuantityDimension(0, 0, -2, 0, 0, 0, 0);
 
-        public static readonly ConstantConverterUnit<AngularAcceleration> RadianPerSecondSquared = new ConstantConverterUnit<AngularAcceleration>("rad s\u207b²");
+        public static readonly Unit<AngularAcceleration> RadianPerSecondSquared = new ConstantConverterUnit<AngularAcceleration>("rad s\u207b²");
 
-        public static readonly ConstantConverterUnit<AngularAcceleration> NanoRadianPerSecondSquared = new ConstantConverterUnit<AngularAcceleration>(UnitPrefix.Nano);
-        public static readonly ConstantConverterUnit<AngularAcceleration> MicroRadianPerSecondSquared = new ConstantConverterUnit<AngularAcceleration>(UnitPrefix.Micro);
-        public static readonly ConstantConverterUnit<AngularAcceleration> MilliRadianPerSecondSquared = new ConstantConverterUnit<AngularAcceleration>(UnitPrefix.Milli);
-        public static readonly ConstantConverterUnit<AngularAcceleration> CentiRadianPerSecondSquared = new ConstantConverterUnit<AngularAcceleration>(UnitPrefix.Centi);
-        public static readonly ConstantConverterUnit<AngularAcceleration> DeciRadianPerSecondSquared = new ConstantConverterUnit<AngularAcceleration>(UnitPrefix.Deci);
-        public static readonly ConstantConverterUnit<AngularAcceleration> DekaRadianPerSecondSquared = new ConstantConverterUnit<AngularAcceleration>(UnitPrefix.Deka);
-        public static readonly ConstantConverterUnit<AngularAcceleration> HectoRadianPerSecondSquared = new ConstantConverterUnit<AngularAcceleration>(UnitPrefix.Hecto);
-        public static readonly ConstantConverterUnit<AngularAcceleration> KiloRadianPerSecondSquared = new ConstantConverterUnit<AngularAcceleration>(UnitPrefix.Kilo);
-        public static readonly ConstantConverterUnit<AngularAcceleration> MegaRadianPerSecondSquared = new ConstantConverterUnit<AngularAcceleration>(UnitPrefix.Mega);
-        public static readonly ConstantConverterUnit<AngularAcceleration> GigaRadianPerSecondSquared = new ConstantConverterUnit<AngularAcceleration>(UnitPrefix.Giga);
+        public static readonly Unit<AngularAcceleration> NanoRadianPerSecondSquared = new ConstantConverterUnit<AngularAcceleration>(UnitPrefix.Nano);
+        public static readonly Unit<AngularAcceleration> MicroRadianPerSecondSquared = new ConstantConverterUnit<AngularAcceleration>(UnitPrefix.Micro);
+        public static readonly Unit<AngularAcceleration> MilliRadianPerSecondSquared = new ConstantConverterUnit<AngularAcceleration>(UnitPrefix.Milli);
+        public static readonly Unit<AngularAcceleration> CentiRadianPerSecondSquared = new ConstantConverterUnit<AngularAcceleration>(UnitPrefix.Centi);
+        public static readonly Unit<AngularAcceleration> DeciRadianPerSecondSquared = new ConstantConverterUnit<AngularAcceleration>(UnitPrefix.Deci);
+        public static readonly Unit<AngularAcceleration> DekaRadianPerSecondSquared = new ConstantConverterUnit<AngularAcceleration>(UnitPrefix.Deka);
+        public static readonly Unit<AngularAcceleration> HectoRadianPerSecondSquared = new ConstantConverterUnit<AngularAcceleration>(UnitPrefix.Hecto);
+        public static readonly Unit<AngularAcceleration> KiloRadianPerSecondSquared = new ConstantConverterUnit<AngularAcceleration>(UnitPrefix.Kilo);
+        public static readonly Unit<AngularAcceleration> MegaRadianPerSecondSquared = new ConstantConverterUnit<AngularAcceleration>(UnitPrefix.Mega);
+        public static readonly Unit<AngularAcceleration> GigaRadianPerSecondSquared = new ConstantConverterUnit<AngularAcceleration>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

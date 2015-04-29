@@ -48,17 +48,17 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(0, 0, 0, 1, 0, 0, 0);
 
-        public static readonly ConstantConverterUnit<ElectricCurrent> Ampere = new ConstantConverterUnit<ElectricCurrent>("A");
+        public static readonly Unit<ElectricCurrent> Ampere = new ConstantConverterUnit<ElectricCurrent>("A");
 
-        public static readonly ConstantConverterUnit<ElectricCurrent> PicoAmpere = new ConstantConverterUnit<ElectricCurrent>(UnitPrefix.Pico);
-        public static readonly ConstantConverterUnit<ElectricCurrent> NanoAmpere = new ConstantConverterUnit<ElectricCurrent>(UnitPrefix.Nano);
-        public static readonly ConstantConverterUnit<ElectricCurrent> MicroAmpere = new ConstantConverterUnit<ElectricCurrent>(UnitPrefix.Micro);
-        public static readonly ConstantConverterUnit<ElectricCurrent> MilliAmpere = new ConstantConverterUnit<ElectricCurrent>(UnitPrefix.Milli);
-        public static readonly ConstantConverterUnit<ElectricCurrent> CentiAmpere = new ConstantConverterUnit<ElectricCurrent>(UnitPrefix.Centi);
-        public static readonly ConstantConverterUnit<ElectricCurrent> DeciAmpere = new ConstantConverterUnit<ElectricCurrent>(UnitPrefix.Deci);
-        public static readonly ConstantConverterUnit<ElectricCurrent> DekaAmpere = new ConstantConverterUnit<ElectricCurrent>(UnitPrefix.Deka);
-        public static readonly ConstantConverterUnit<ElectricCurrent> HectoAmpere = new ConstantConverterUnit<ElectricCurrent>(UnitPrefix.Hecto);
-        public static readonly ConstantConverterUnit<ElectricCurrent> KiloAmpere = new ConstantConverterUnit<ElectricCurrent>(UnitPrefix.Kilo);
+        public static readonly Unit<ElectricCurrent> PicoAmpere = new ConstantConverterUnit<ElectricCurrent>(UnitPrefix.Pico);
+        public static readonly Unit<ElectricCurrent> NanoAmpere = new ConstantConverterUnit<ElectricCurrent>(UnitPrefix.Nano);
+        public static readonly Unit<ElectricCurrent> MicroAmpere = new ConstantConverterUnit<ElectricCurrent>(UnitPrefix.Micro);
+        public static readonly Unit<ElectricCurrent> MilliAmpere = new ConstantConverterUnit<ElectricCurrent>(UnitPrefix.Milli);
+        public static readonly Unit<ElectricCurrent> CentiAmpere = new ConstantConverterUnit<ElectricCurrent>(UnitPrefix.Centi);
+        public static readonly Unit<ElectricCurrent> DeciAmpere = new ConstantConverterUnit<ElectricCurrent>(UnitPrefix.Deci);
+        public static readonly Unit<ElectricCurrent> DekaAmpere = new ConstantConverterUnit<ElectricCurrent>(UnitPrefix.Deka);
+        public static readonly Unit<ElectricCurrent> HectoAmpere = new ConstantConverterUnit<ElectricCurrent>(UnitPrefix.Hecto);
+        public static readonly Unit<ElectricCurrent> KiloAmpere = new ConstantConverterUnit<ElectricCurrent>(UnitPrefix.Kilo);
 
         [DataMember]
         private readonly AmountType amount;

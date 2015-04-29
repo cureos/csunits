@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(0, 0, -1, 0, 0, 0, 0);
 
-        public static readonly ConstantConverterUnit<Frequency> Hertz = new ConstantConverterUnit<Frequency>("Hz");
+        public static readonly Unit<Frequency> Hertz = new ConstantConverterUnit<Frequency>("Hz");
 
-        public static readonly ConstantConverterUnit<Frequency> NanoHertz = new ConstantConverterUnit<Frequency>(UnitPrefix.Nano);
-        public static readonly ConstantConverterUnit<Frequency> MicroHertz = new ConstantConverterUnit<Frequency>(UnitPrefix.Micro);
-        public static readonly ConstantConverterUnit<Frequency> MilliHertz = new ConstantConverterUnit<Frequency>(UnitPrefix.Milli);
-        public static readonly ConstantConverterUnit<Frequency> CentiHertz = new ConstantConverterUnit<Frequency>(UnitPrefix.Centi);
-        public static readonly ConstantConverterUnit<Frequency> DeciHertz = new ConstantConverterUnit<Frequency>(UnitPrefix.Deci);
-        public static readonly ConstantConverterUnit<Frequency> DekaHertz = new ConstantConverterUnit<Frequency>(UnitPrefix.Deka);
-        public static readonly ConstantConverterUnit<Frequency> HectoHertz = new ConstantConverterUnit<Frequency>(UnitPrefix.Hecto);
-        public static readonly ConstantConverterUnit<Frequency> KiloHertz = new ConstantConverterUnit<Frequency>(UnitPrefix.Kilo);
-        public static readonly ConstantConverterUnit<Frequency> MegaHertz = new ConstantConverterUnit<Frequency>(UnitPrefix.Mega);
-        public static readonly ConstantConverterUnit<Frequency> GigaHertz = new ConstantConverterUnit<Frequency>(UnitPrefix.Giga);
+        public static readonly Unit<Frequency> NanoHertz = new ConstantConverterUnit<Frequency>(UnitPrefix.Nano);
+        public static readonly Unit<Frequency> MicroHertz = new ConstantConverterUnit<Frequency>(UnitPrefix.Micro);
+        public static readonly Unit<Frequency> MilliHertz = new ConstantConverterUnit<Frequency>(UnitPrefix.Milli);
+        public static readonly Unit<Frequency> CentiHertz = new ConstantConverterUnit<Frequency>(UnitPrefix.Centi);
+        public static readonly Unit<Frequency> DeciHertz = new ConstantConverterUnit<Frequency>(UnitPrefix.Deci);
+        public static readonly Unit<Frequency> DekaHertz = new ConstantConverterUnit<Frequency>(UnitPrefix.Deka);
+        public static readonly Unit<Frequency> HectoHertz = new ConstantConverterUnit<Frequency>(UnitPrefix.Hecto);
+        public static readonly Unit<Frequency> KiloHertz = new ConstantConverterUnit<Frequency>(UnitPrefix.Kilo);
+        public static readonly Unit<Frequency> MegaHertz = new ConstantConverterUnit<Frequency>(UnitPrefix.Mega);
+        public static readonly Unit<Frequency> GigaHertz = new ConstantConverterUnit<Frequency>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

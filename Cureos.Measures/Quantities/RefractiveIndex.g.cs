@@ -48,7 +48,7 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = QuantityDimension.RefractiveIndex;
 
-        public static readonly ConstantConverterUnit<RefractiveIndex> One = new ConstantConverterUnit<RefractiveIndex>("");
+        public static readonly Unit<RefractiveIndex> One = new ConstantConverterUnit<RefractiveIndex>("");
 
         [DataMember]
         private readonly AmountType amount;

@@ -48,13 +48,13 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(0, 0, 1, 0, 0, 0, 0);
 
-        public static readonly ConstantConverterUnit<Time> Second = new ConstantConverterUnit<Time>("s");
+        public static readonly Unit<Time> Second = new ConstantConverterUnit<Time>("s");
 
-        public static readonly ConstantConverterUnit<Time> Minute = new ConstantConverterUnit<Time>("min", Factors.SecondsPerMinute);
-        public static readonly ConstantConverterUnit<Time> Hour = new ConstantConverterUnit<Time>("h", Factors.SecondsPerHour);
-        public static readonly ConstantConverterUnit<Time> Day = new ConstantConverterUnit<Time>("dy", Factors.SecondsPerDay);
-        public static readonly ConstantConverterUnit<Time> Week = new ConstantConverterUnit<Time>("wk", Factors.SecondsPerWeek);
-        public static readonly ConstantConverterUnit<Time> JulianYear = new ConstantConverterUnit<Time>("a", Factors.SecondsPerJulianYear);
+        public static readonly Unit<Time> Minute = new ConstantConverterUnit<Time>("min", Factors.SecondsPerMinute);
+        public static readonly Unit<Time> Hour = new ConstantConverterUnit<Time>("h", Factors.SecondsPerHour);
+        public static readonly Unit<Time> Day = new ConstantConverterUnit<Time>("dy", Factors.SecondsPerDay);
+        public static readonly Unit<Time> Week = new ConstantConverterUnit<Time>("wk", Factors.SecondsPerWeek);
+        public static readonly Unit<Time> JulianYear = new ConstantConverterUnit<Time>("a", Factors.SecondsPerJulianYear);
 
         [DataMember]
         private readonly AmountType amount;

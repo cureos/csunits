@@ -48,15 +48,15 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(2, 0, 0, 0, 0, 0, 0);
 
-        public static readonly ConstantConverterUnit<Area> SquareMeter = new ConstantConverterUnit<Area>("m²");
+        public static readonly Unit<Area> SquareMeter = new ConstantConverterUnit<Area>("m²");
 
-        public static readonly ConstantConverterUnit<Area> SquareKiloMeter = new ConstantConverterUnit<Area>("km²", Factors.Kilo * Factors.Kilo);
-        public static readonly ConstantConverterUnit<Area> SquareDeciMeter = new ConstantConverterUnit<Area>("dm²", Factors.Deci * Factors.Deci);
-        public static readonly ConstantConverterUnit<Area> SquareCentiMeter = new ConstantConverterUnit<Area>("cm²", Factors.Centi * Factors.Centi);
-        public static readonly ConstantConverterUnit<Area> SquareMilliMeter = new ConstantConverterUnit<Area>("mm²", Factors.Milli * Factors.Milli);
-        public static readonly ConstantConverterUnit<Area> Barn = new ConstantConverterUnit<Area>("b", Factors.SquareMetersPerBarn);
-        public static readonly ConstantConverterUnit<Area> Are = new ConstantConverterUnit<Area>("a", Factors.Deka);
-        public static readonly ConstantConverterUnit<Area> Hectare = new ConstantConverterUnit<Area>("ha", Factors.Hecto);
+        public static readonly Unit<Area> SquareKiloMeter = new ConstantConverterUnit<Area>("km²", Factors.Kilo * Factors.Kilo);
+        public static readonly Unit<Area> SquareDeciMeter = new ConstantConverterUnit<Area>("dm²", Factors.Deci * Factors.Deci);
+        public static readonly Unit<Area> SquareCentiMeter = new ConstantConverterUnit<Area>("cm²", Factors.Centi * Factors.Centi);
+        public static readonly Unit<Area> SquareMilliMeter = new ConstantConverterUnit<Area>("mm²", Factors.Milli * Factors.Milli);
+        public static readonly Unit<Area> Barn = new ConstantConverterUnit<Area>("b", Factors.SquareMetersPerBarn);
+        public static readonly Unit<Area> Are = new ConstantConverterUnit<Area>("a", Factors.Deka);
+        public static readonly Unit<Area> Hectare = new ConstantConverterUnit<Area>("ha", Factors.Hecto);
 
         [DataMember]
         private readonly AmountType amount;

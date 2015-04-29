@@ -48,14 +48,14 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(1, 0, -2, 0, 0, 0, 0);
 
-        public static readonly ConstantConverterUnit<Acceleration> MeterPerSecondSquared = new ConstantConverterUnit<Acceleration>("m s\u207b²");
+        public static readonly Unit<Acceleration> MeterPerSecondSquared = new ConstantConverterUnit<Acceleration>("m s\u207b²");
 
-        public static readonly ConstantConverterUnit<Acceleration> MilliMeterPerSecondSquared = new ConstantConverterUnit<Acceleration>(UnitPrefix.Milli);
-        public static readonly ConstantConverterUnit<Acceleration> CentiMeterPerSecondSquared = new ConstantConverterUnit<Acceleration>(UnitPrefix.Centi);
-        public static readonly ConstantConverterUnit<Acceleration> DeciMeterPerSecondSquared = new ConstantConverterUnit<Acceleration>(UnitPrefix.Deci);
-        public static readonly ConstantConverterUnit<Acceleration> DekaMeterPerSecondSquared = new ConstantConverterUnit<Acceleration>(UnitPrefix.Deka);
-        public static readonly ConstantConverterUnit<Acceleration> HectoMeterPerSecondSquared = new ConstantConverterUnit<Acceleration>(UnitPrefix.Hecto);
-        public static readonly ConstantConverterUnit<Acceleration> KiloMeterPerSecondSquared = new ConstantConverterUnit<Acceleration>(UnitPrefix.Kilo);
+        public static readonly Unit<Acceleration> MilliMeterPerSecondSquared = new ConstantConverterUnit<Acceleration>(UnitPrefix.Milli);
+        public static readonly Unit<Acceleration> CentiMeterPerSecondSquared = new ConstantConverterUnit<Acceleration>(UnitPrefix.Centi);
+        public static readonly Unit<Acceleration> DeciMeterPerSecondSquared = new ConstantConverterUnit<Acceleration>(UnitPrefix.Deci);
+        public static readonly Unit<Acceleration> DekaMeterPerSecondSquared = new ConstantConverterUnit<Acceleration>(UnitPrefix.Deka);
+        public static readonly Unit<Acceleration> HectoMeterPerSecondSquared = new ConstantConverterUnit<Acceleration>(UnitPrefix.Hecto);
+        public static readonly Unit<Acceleration> KiloMeterPerSecondSquared = new ConstantConverterUnit<Acceleration>(UnitPrefix.Kilo);
 
         [DataMember]
         private readonly AmountType amount;

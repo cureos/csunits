@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(2, 0, -2, 0, 0, 0, 0);
 
-        public static readonly ConstantConverterUnit<AbsorbedDose> Gray = new ConstantConverterUnit<AbsorbedDose>("Gy");
+        public static readonly Unit<AbsorbedDose> Gray = new ConstantConverterUnit<AbsorbedDose>("Gy");
 
-        public static readonly ConstantConverterUnit<AbsorbedDose> NanoGray = new ConstantConverterUnit<AbsorbedDose>(UnitPrefix.Nano);
-        public static readonly ConstantConverterUnit<AbsorbedDose> MicroGray = new ConstantConverterUnit<AbsorbedDose>(UnitPrefix.Micro);
-        public static readonly ConstantConverterUnit<AbsorbedDose> MilliGray = new ConstantConverterUnit<AbsorbedDose>(UnitPrefix.Milli);
-        public static readonly ConstantConverterUnit<AbsorbedDose> CentiGray = new ConstantConverterUnit<AbsorbedDose>(UnitPrefix.Centi);
-        public static readonly ConstantConverterUnit<AbsorbedDose> DeciGray = new ConstantConverterUnit<AbsorbedDose>(UnitPrefix.Deci);
-        public static readonly ConstantConverterUnit<AbsorbedDose> DekaGray = new ConstantConverterUnit<AbsorbedDose>(UnitPrefix.Deka);
-        public static readonly ConstantConverterUnit<AbsorbedDose> HectoGray = new ConstantConverterUnit<AbsorbedDose>(UnitPrefix.Hecto);
-        public static readonly ConstantConverterUnit<AbsorbedDose> KiloGray = new ConstantConverterUnit<AbsorbedDose>(UnitPrefix.Kilo);
+        public static readonly Unit<AbsorbedDose> NanoGray = new ConstantConverterUnit<AbsorbedDose>(UnitPrefix.Nano);
+        public static readonly Unit<AbsorbedDose> MicroGray = new ConstantConverterUnit<AbsorbedDose>(UnitPrefix.Micro);
+        public static readonly Unit<AbsorbedDose> MilliGray = new ConstantConverterUnit<AbsorbedDose>(UnitPrefix.Milli);
+        public static readonly Unit<AbsorbedDose> CentiGray = new ConstantConverterUnit<AbsorbedDose>(UnitPrefix.Centi);
+        public static readonly Unit<AbsorbedDose> DeciGray = new ConstantConverterUnit<AbsorbedDose>(UnitPrefix.Deci);
+        public static readonly Unit<AbsorbedDose> DekaGray = new ConstantConverterUnit<AbsorbedDose>(UnitPrefix.Deka);
+        public static readonly Unit<AbsorbedDose> HectoGray = new ConstantConverterUnit<AbsorbedDose>(UnitPrefix.Hecto);
+        public static readonly Unit<AbsorbedDose> KiloGray = new ConstantConverterUnit<AbsorbedDose>(UnitPrefix.Kilo);
 
-        public static readonly ConstantConverterUnit<AbsorbedDose> Rad = new ConstantConverterUnit<AbsorbedDose>("rad", Factors.Centi);
+        public static readonly Unit<AbsorbedDose> Rad = new ConstantConverterUnit<AbsorbedDose>("rad", Factors.Centi);
 
         [DataMember]
         private readonly AmountType amount;

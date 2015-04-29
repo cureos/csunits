@@ -48,11 +48,11 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(0, 0, 0, 0, 1, 0, 0);
 
-        public static readonly ConstantConverterUnit<Temperature> Kelvin = new ConstantConverterUnit<Temperature>("K");
+        public static readonly Unit<Temperature> Kelvin = new ConstantConverterUnit<Temperature>("K");
 
-        public static readonly FunctionConverterUnit<Temperature> Celsius = new FunctionConverterUnit<Temperature>("°C",
+        public static readonly Unit<Temperature> Celsius = new FunctionConverterUnit<Temperature>("°C",
                         a => a + Factors.KelvinCelsiusIntercept, a => a - Factors.KelvinCelsiusIntercept);
-        public static readonly FunctionConverterUnit<Temperature> Fahrenheit = new FunctionConverterUnit<Temperature>("°F",
+        public static readonly Unit<Temperature> Fahrenheit = new FunctionConverterUnit<Temperature>("°F",
                         a => (a + Factors.KelvinFahrenheitIntercept) * Factors.KelvinFahrenheitSlope,
                         a => a / Factors.KelvinFahrenheitSlope - Factors.KelvinFahrenheitIntercept);
 

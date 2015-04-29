@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(-2, 0, 0, 0, 0, 1, 0);
 
-        public static readonly ConstantConverterUnit<Luminance> CandelaPerSquareMeter = new ConstantConverterUnit<Luminance>("cd m\u207b²");
+        public static readonly Unit<Luminance> CandelaPerSquareMeter = new ConstantConverterUnit<Luminance>("cd m\u207b²");
 
-        public static readonly ConstantConverterUnit<Luminance> NanoCandelaPerSquareMeter = new ConstantConverterUnit<Luminance>(UnitPrefix.Nano);
-        public static readonly ConstantConverterUnit<Luminance> MicroCandelaPerSquareMeter = new ConstantConverterUnit<Luminance>(UnitPrefix.Micro);
-        public static readonly ConstantConverterUnit<Luminance> MilliCandelaPerSquareMeter = new ConstantConverterUnit<Luminance>(UnitPrefix.Milli);
-        public static readonly ConstantConverterUnit<Luminance> CentiCandelaPerSquareMeter = new ConstantConverterUnit<Luminance>(UnitPrefix.Centi);
-        public static readonly ConstantConverterUnit<Luminance> DeciCandelaPerSquareMeter = new ConstantConverterUnit<Luminance>(UnitPrefix.Deci);
-        public static readonly ConstantConverterUnit<Luminance> DekaCandelaPerSquareMeter = new ConstantConverterUnit<Luminance>(UnitPrefix.Deka);
-        public static readonly ConstantConverterUnit<Luminance> HectoCandelaPerSquareMeter = new ConstantConverterUnit<Luminance>(UnitPrefix.Hecto);
-        public static readonly ConstantConverterUnit<Luminance> KiloCandelaPerSquareMeter = new ConstantConverterUnit<Luminance>(UnitPrefix.Kilo);
-        public static readonly ConstantConverterUnit<Luminance> MegaCandelaPerSquareMeter = new ConstantConverterUnit<Luminance>(UnitPrefix.Mega);
-        public static readonly ConstantConverterUnit<Luminance> GigaCandelaPerSquareMeter = new ConstantConverterUnit<Luminance>(UnitPrefix.Giga);
+        public static readonly Unit<Luminance> NanoCandelaPerSquareMeter = new ConstantConverterUnit<Luminance>(UnitPrefix.Nano);
+        public static readonly Unit<Luminance> MicroCandelaPerSquareMeter = new ConstantConverterUnit<Luminance>(UnitPrefix.Micro);
+        public static readonly Unit<Luminance> MilliCandelaPerSquareMeter = new ConstantConverterUnit<Luminance>(UnitPrefix.Milli);
+        public static readonly Unit<Luminance> CentiCandelaPerSquareMeter = new ConstantConverterUnit<Luminance>(UnitPrefix.Centi);
+        public static readonly Unit<Luminance> DeciCandelaPerSquareMeter = new ConstantConverterUnit<Luminance>(UnitPrefix.Deci);
+        public static readonly Unit<Luminance> DekaCandelaPerSquareMeter = new ConstantConverterUnit<Luminance>(UnitPrefix.Deka);
+        public static readonly Unit<Luminance> HectoCandelaPerSquareMeter = new ConstantConverterUnit<Luminance>(UnitPrefix.Hecto);
+        public static readonly Unit<Luminance> KiloCandelaPerSquareMeter = new ConstantConverterUnit<Luminance>(UnitPrefix.Kilo);
+        public static readonly Unit<Luminance> MegaCandelaPerSquareMeter = new ConstantConverterUnit<Luminance>(UnitPrefix.Mega);
+        public static readonly Unit<Luminance> GigaCandelaPerSquareMeter = new ConstantConverterUnit<Luminance>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

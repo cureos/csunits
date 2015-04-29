@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(-2, 0, 0, 1, 0, 0, 0);
 
-        public static readonly ConstantConverterUnit<CurrentDensity> AmperePerSquareMeter = new ConstantConverterUnit<CurrentDensity>("A m\u207b²");
+        public static readonly Unit<CurrentDensity> AmperePerSquareMeter = new ConstantConverterUnit<CurrentDensity>("A m\u207b²");
 
-        public static readonly ConstantConverterUnit<CurrentDensity> NanoAmperePerSquareMeter = new ConstantConverterUnit<CurrentDensity>(UnitPrefix.Nano);
-        public static readonly ConstantConverterUnit<CurrentDensity> MicroAmperePerSquareMeter = new ConstantConverterUnit<CurrentDensity>(UnitPrefix.Micro);
-        public static readonly ConstantConverterUnit<CurrentDensity> MilliAmperePerSquareMeter = new ConstantConverterUnit<CurrentDensity>(UnitPrefix.Milli);
-        public static readonly ConstantConverterUnit<CurrentDensity> CentiAmperePerSquareMeter = new ConstantConverterUnit<CurrentDensity>(UnitPrefix.Centi);
-        public static readonly ConstantConverterUnit<CurrentDensity> DeciAmperePerSquareMeter = new ConstantConverterUnit<CurrentDensity>(UnitPrefix.Deci);
-        public static readonly ConstantConverterUnit<CurrentDensity> DekaAmperePerSquareMeter = new ConstantConverterUnit<CurrentDensity>(UnitPrefix.Deka);
-        public static readonly ConstantConverterUnit<CurrentDensity> HectoAmperePerSquareMeter = new ConstantConverterUnit<CurrentDensity>(UnitPrefix.Hecto);
-        public static readonly ConstantConverterUnit<CurrentDensity> KiloAmperePerSquareMeter = new ConstantConverterUnit<CurrentDensity>(UnitPrefix.Kilo);
-        public static readonly ConstantConverterUnit<CurrentDensity> MegaAmperePerSquareMeter = new ConstantConverterUnit<CurrentDensity>(UnitPrefix.Mega);
-        public static readonly ConstantConverterUnit<CurrentDensity> GigaAmperePerSquareMeter = new ConstantConverterUnit<CurrentDensity>(UnitPrefix.Giga);
+        public static readonly Unit<CurrentDensity> NanoAmperePerSquareMeter = new ConstantConverterUnit<CurrentDensity>(UnitPrefix.Nano);
+        public static readonly Unit<CurrentDensity> MicroAmperePerSquareMeter = new ConstantConverterUnit<CurrentDensity>(UnitPrefix.Micro);
+        public static readonly Unit<CurrentDensity> MilliAmperePerSquareMeter = new ConstantConverterUnit<CurrentDensity>(UnitPrefix.Milli);
+        public static readonly Unit<CurrentDensity> CentiAmperePerSquareMeter = new ConstantConverterUnit<CurrentDensity>(UnitPrefix.Centi);
+        public static readonly Unit<CurrentDensity> DeciAmperePerSquareMeter = new ConstantConverterUnit<CurrentDensity>(UnitPrefix.Deci);
+        public static readonly Unit<CurrentDensity> DekaAmperePerSquareMeter = new ConstantConverterUnit<CurrentDensity>(UnitPrefix.Deka);
+        public static readonly Unit<CurrentDensity> HectoAmperePerSquareMeter = new ConstantConverterUnit<CurrentDensity>(UnitPrefix.Hecto);
+        public static readonly Unit<CurrentDensity> KiloAmperePerSquareMeter = new ConstantConverterUnit<CurrentDensity>(UnitPrefix.Kilo);
+        public static readonly Unit<CurrentDensity> MegaAmperePerSquareMeter = new ConstantConverterUnit<CurrentDensity>(UnitPrefix.Mega);
+        public static readonly Unit<CurrentDensity> GigaAmperePerSquareMeter = new ConstantConverterUnit<CurrentDensity>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

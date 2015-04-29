@@ -60,6 +60,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArithmeticOperations.cs" />
+    <Compile Include="Quantities\CodeGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Unit.cs" />
     <Compile Include="Factors.cs" />
     <Compile Include="IMeasure.cs" />
     <Compile Include="IMeasureDoublet.cs" />
@@ -70,11 +76,6 @@
     <Compile Include="Linq\Conversions.cs" />
     <Compile Include="Linq\MeasureEnumerable.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Quantities\CodeGenerator.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CodeGenerator.tt</DependentUpon>
-    </Compile>
     <Compile Include="Quantities\CurrentDensity.g.cs">
       <DependentUpon>CodeGenerator.tt</DependentUpon>
     </Compile>

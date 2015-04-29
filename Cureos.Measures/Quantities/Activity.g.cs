@@ -48,16 +48,16 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(0, 0, -1, 0, 0, 0, 0);
 
-        public static readonly ConstantConverterUnit<Activity> Becquerel = new ConstantConverterUnit<Activity>("Bq");
+        public static readonly Unit<Activity> Becquerel = new ConstantConverterUnit<Activity>("Bq");
 
-        public static readonly ConstantConverterUnit<Activity> KiloBecquerel = new ConstantConverterUnit<Activity>(UnitPrefix.Kilo);
-        public static readonly ConstantConverterUnit<Activity> MegaBecquerel = new ConstantConverterUnit<Activity>(UnitPrefix.Mega);
-        public static readonly ConstantConverterUnit<Activity> GigaBecquerel = new ConstantConverterUnit<Activity>(UnitPrefix.Giga);
+        public static readonly Unit<Activity> KiloBecquerel = new ConstantConverterUnit<Activity>(UnitPrefix.Kilo);
+        public static readonly Unit<Activity> MegaBecquerel = new ConstantConverterUnit<Activity>(UnitPrefix.Mega);
+        public static readonly Unit<Activity> GigaBecquerel = new ConstantConverterUnit<Activity>(UnitPrefix.Giga);
 
-        public static readonly ConstantConverterUnit<Activity> Curie = new ConstantConverterUnit<Activity>("Ci", Factors.BecquerelPerCurie);
-        public static readonly ConstantConverterUnit<Activity> KiloCurie = new ConstantConverterUnit<Activity>("kCi", Factors.Kilo * Factors.BecquerelPerCurie);
-        public static readonly ConstantConverterUnit<Activity> MilliCurie = new ConstantConverterUnit<Activity>("mCi", Factors.Milli * Factors.BecquerelPerCurie);
-        public static readonly ConstantConverterUnit<Activity> MicroCurie = new ConstantConverterUnit<Activity>("µCi", Factors.Micro * Factors.BecquerelPerCurie);
+        public static readonly Unit<Activity> Curie = new ConstantConverterUnit<Activity>("Ci", Factors.BecquerelPerCurie);
+        public static readonly Unit<Activity> KiloCurie = new ConstantConverterUnit<Activity>("kCi", Factors.Kilo * Factors.BecquerelPerCurie);
+        public static readonly Unit<Activity> MilliCurie = new ConstantConverterUnit<Activity>("mCi", Factors.Milli * Factors.BecquerelPerCurie);
+        public static readonly Unit<Activity> MicroCurie = new ConstantConverterUnit<Activity>("µCi", Factors.Micro * Factors.BecquerelPerCurie);
 
         [DataMember]
         private readonly AmountType amount;

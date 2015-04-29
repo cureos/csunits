@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = QuantityDimension.Radian * new QuantityDimension(0, 0, -1, 0, 0, 0, 0);
 
-        public static readonly ConstantConverterUnit<AngularVelocity> RadianPerSecond = new ConstantConverterUnit<AngularVelocity>("rad s\u207b¹");
+        public static readonly Unit<AngularVelocity> RadianPerSecond = new ConstantConverterUnit<AngularVelocity>("rad s\u207b¹");
 
-        public static readonly ConstantConverterUnit<AngularVelocity> NanoRadianPerSecond = new ConstantConverterUnit<AngularVelocity>(UnitPrefix.Nano);
-        public static readonly ConstantConverterUnit<AngularVelocity> MicroRadianPerSecond = new ConstantConverterUnit<AngularVelocity>(UnitPrefix.Micro);
-        public static readonly ConstantConverterUnit<AngularVelocity> MilliRadianPerSecond = new ConstantConverterUnit<AngularVelocity>(UnitPrefix.Milli);
-        public static readonly ConstantConverterUnit<AngularVelocity> CentiRadianPerSecond = new ConstantConverterUnit<AngularVelocity>(UnitPrefix.Centi);
-        public static readonly ConstantConverterUnit<AngularVelocity> DeciRadianPerSecond = new ConstantConverterUnit<AngularVelocity>(UnitPrefix.Deci);
-        public static readonly ConstantConverterUnit<AngularVelocity> DekaRadianPerSecond = new ConstantConverterUnit<AngularVelocity>(UnitPrefix.Deka);
-        public static readonly ConstantConverterUnit<AngularVelocity> HectoRadianPerSecond = new ConstantConverterUnit<AngularVelocity>(UnitPrefix.Hecto);
-        public static readonly ConstantConverterUnit<AngularVelocity> KiloRadianPerSecond = new ConstantConverterUnit<AngularVelocity>(UnitPrefix.Kilo);
-        public static readonly ConstantConverterUnit<AngularVelocity> MegaRadianPerSecond = new ConstantConverterUnit<AngularVelocity>(UnitPrefix.Mega);
-        public static readonly ConstantConverterUnit<AngularVelocity> GigaRadianPerSecond = new ConstantConverterUnit<AngularVelocity>(UnitPrefix.Giga);
+        public static readonly Unit<AngularVelocity> NanoRadianPerSecond = new ConstantConverterUnit<AngularVelocity>(UnitPrefix.Nano);
+        public static readonly Unit<AngularVelocity> MicroRadianPerSecond = new ConstantConverterUnit<AngularVelocity>(UnitPrefix.Micro);
+        public static readonly Unit<AngularVelocity> MilliRadianPerSecond = new ConstantConverterUnit<AngularVelocity>(UnitPrefix.Milli);
+        public static readonly Unit<AngularVelocity> CentiRadianPerSecond = new ConstantConverterUnit<AngularVelocity>(UnitPrefix.Centi);
+        public static readonly Unit<AngularVelocity> DeciRadianPerSecond = new ConstantConverterUnit<AngularVelocity>(UnitPrefix.Deci);
+        public static readonly Unit<AngularVelocity> DekaRadianPerSecond = new ConstantConverterUnit<AngularVelocity>(UnitPrefix.Deka);
+        public static readonly Unit<AngularVelocity> HectoRadianPerSecond = new ConstantConverterUnit<AngularVelocity>(UnitPrefix.Hecto);
+        public static readonly Unit<AngularVelocity> KiloRadianPerSecond = new ConstantConverterUnit<AngularVelocity>(UnitPrefix.Kilo);
+        public static readonly Unit<AngularVelocity> MegaRadianPerSecond = new ConstantConverterUnit<AngularVelocity>(UnitPrefix.Mega);
+        public static readonly Unit<AngularVelocity> GigaRadianPerSecond = new ConstantConverterUnit<AngularVelocity>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

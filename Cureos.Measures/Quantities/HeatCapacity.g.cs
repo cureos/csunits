@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(2, 1, -2, 0, -1, 0, 0);
 
-        public static readonly ConstantConverterUnit<HeatCapacity> JoulePerKelvin = new ConstantConverterUnit<HeatCapacity>("J K\u207b¹");
+        public static readonly Unit<HeatCapacity> JoulePerKelvin = new ConstantConverterUnit<HeatCapacity>("J K\u207b¹");
 
-        public static readonly ConstantConverterUnit<HeatCapacity> NanoJoulePerKelvin = new ConstantConverterUnit<HeatCapacity>(UnitPrefix.Nano);
-        public static readonly ConstantConverterUnit<HeatCapacity> MicroJoulePerKelvin = new ConstantConverterUnit<HeatCapacity>(UnitPrefix.Micro);
-        public static readonly ConstantConverterUnit<HeatCapacity> MilliJoulePerKelvin = new ConstantConverterUnit<HeatCapacity>(UnitPrefix.Milli);
-        public static readonly ConstantConverterUnit<HeatCapacity> CentiJoulePerKelvin = new ConstantConverterUnit<HeatCapacity>(UnitPrefix.Centi);
-        public static readonly ConstantConverterUnit<HeatCapacity> DeciJoulePerKelvin = new ConstantConverterUnit<HeatCapacity>(UnitPrefix.Deci);
-        public static readonly ConstantConverterUnit<HeatCapacity> DekaJoulePerKelvin = new ConstantConverterUnit<HeatCapacity>(UnitPrefix.Deka);
-        public static readonly ConstantConverterUnit<HeatCapacity> HectoJoulePerKelvin = new ConstantConverterUnit<HeatCapacity>(UnitPrefix.Hecto);
-        public static readonly ConstantConverterUnit<HeatCapacity> KiloJoulePerKelvin = new ConstantConverterUnit<HeatCapacity>(UnitPrefix.Kilo);
-        public static readonly ConstantConverterUnit<HeatCapacity> MegaJoulePerKelvin = new ConstantConverterUnit<HeatCapacity>(UnitPrefix.Mega);
-        public static readonly ConstantConverterUnit<HeatCapacity> GigaJoulePerKelvin = new ConstantConverterUnit<HeatCapacity>(UnitPrefix.Giga);
+        public static readonly Unit<HeatCapacity> NanoJoulePerKelvin = new ConstantConverterUnit<HeatCapacity>(UnitPrefix.Nano);
+        public static readonly Unit<HeatCapacity> MicroJoulePerKelvin = new ConstantConverterUnit<HeatCapacity>(UnitPrefix.Micro);
+        public static readonly Unit<HeatCapacity> MilliJoulePerKelvin = new ConstantConverterUnit<HeatCapacity>(UnitPrefix.Milli);
+        public static readonly Unit<HeatCapacity> CentiJoulePerKelvin = new ConstantConverterUnit<HeatCapacity>(UnitPrefix.Centi);
+        public static readonly Unit<HeatCapacity> DeciJoulePerKelvin = new ConstantConverterUnit<HeatCapacity>(UnitPrefix.Deci);
+        public static readonly Unit<HeatCapacity> DekaJoulePerKelvin = new ConstantConverterUnit<HeatCapacity>(UnitPrefix.Deka);
+        public static readonly Unit<HeatCapacity> HectoJoulePerKelvin = new ConstantConverterUnit<HeatCapacity>(UnitPrefix.Hecto);
+        public static readonly Unit<HeatCapacity> KiloJoulePerKelvin = new ConstantConverterUnit<HeatCapacity>(UnitPrefix.Kilo);
+        public static readonly Unit<HeatCapacity> MegaJoulePerKelvin = new ConstantConverterUnit<HeatCapacity>(UnitPrefix.Mega);
+        public static readonly Unit<HeatCapacity> GigaJoulePerKelvin = new ConstantConverterUnit<HeatCapacity>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

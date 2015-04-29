@@ -48,9 +48,9 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(-2, 1, 0, 0, 0, 0, 0);
 
-        public static readonly ConstantConverterUnit<SurfaceDensity> KiloGramPerSquareMeter = new ConstantConverterUnit<SurfaceDensity>("kg m\u207b²");
+        public static readonly Unit<SurfaceDensity> KiloGramPerSquareMeter = new ConstantConverterUnit<SurfaceDensity>("kg m\u207b²");
 
-        public static readonly ConstantConverterUnit<SurfaceDensity> GramPerSquareCentiMeter = new ConstantConverterUnit<SurfaceDensity>("g cm\u207b²", Factors.Deka);
+        public static readonly Unit<SurfaceDensity> GramPerSquareCentiMeter = new ConstantConverterUnit<SurfaceDensity>("g cm\u207b²", Factors.Deka);
 
         [DataMember]
         private readonly AmountType amount;

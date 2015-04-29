@@ -48,17 +48,17 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(-2, -1, 4, 2, 0, 0, 0);
 
-        public static readonly ConstantConverterUnit<Capacitance> Farad = new ConstantConverterUnit<Capacitance>("F");
+        public static readonly Unit<Capacitance> Farad = new ConstantConverterUnit<Capacitance>("F");
 
-        public static readonly ConstantConverterUnit<Capacitance> PicoFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Pico);
-        public static readonly ConstantConverterUnit<Capacitance> NanoFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Nano);
-        public static readonly ConstantConverterUnit<Capacitance> MicroFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Micro);
-        public static readonly ConstantConverterUnit<Capacitance> MilliFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Milli);
-        public static readonly ConstantConverterUnit<Capacitance> CentiFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Centi);
-        public static readonly ConstantConverterUnit<Capacitance> DeciFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Deci);
-        public static readonly ConstantConverterUnit<Capacitance> DekaFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Deka);
-        public static readonly ConstantConverterUnit<Capacitance> HectoFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Hecto);
-        public static readonly ConstantConverterUnit<Capacitance> KiloFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Kilo);
+        public static readonly Unit<Capacitance> PicoFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Pico);
+        public static readonly Unit<Capacitance> NanoFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Nano);
+        public static readonly Unit<Capacitance> MicroFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Micro);
+        public static readonly Unit<Capacitance> MilliFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Milli);
+        public static readonly Unit<Capacitance> CentiFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Centi);
+        public static readonly Unit<Capacitance> DeciFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Deci);
+        public static readonly Unit<Capacitance> DekaFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Deka);
+        public static readonly Unit<Capacitance> HectoFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Hecto);
+        public static readonly Unit<Capacitance> KiloFarad = new ConstantConverterUnit<Capacitance>(UnitPrefix.Kilo);
 
         [DataMember]
         private readonly AmountType amount;

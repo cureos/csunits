@@ -48,14 +48,14 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(0, 0, 1, 1, 0, 0, 0);
 
-        public static readonly ConstantConverterUnit<ElectricCharge> Coulomb = new ConstantConverterUnit<ElectricCharge>("C");
+        public static readonly Unit<ElectricCharge> Coulomb = new ConstantConverterUnit<ElectricCharge>("C");
 
-        public static readonly ConstantConverterUnit<ElectricCharge> PicoCoulomb = new ConstantConverterUnit<ElectricCharge>(UnitPrefix.Pico);
-        public static readonly ConstantConverterUnit<ElectricCharge> NanoCoulomb = new ConstantConverterUnit<ElectricCharge>(UnitPrefix.Nano);
-        public static readonly ConstantConverterUnit<ElectricCharge> MicroCoulomb = new ConstantConverterUnit<ElectricCharge>(UnitPrefix.Micro);
-        public static readonly ConstantConverterUnit<ElectricCharge> MilliCoulomb = new ConstantConverterUnit<ElectricCharge>(UnitPrefix.Milli);
+        public static readonly Unit<ElectricCharge> PicoCoulomb = new ConstantConverterUnit<ElectricCharge>(UnitPrefix.Pico);
+        public static readonly Unit<ElectricCharge> NanoCoulomb = new ConstantConverterUnit<ElectricCharge>(UnitPrefix.Nano);
+        public static readonly Unit<ElectricCharge> MicroCoulomb = new ConstantConverterUnit<ElectricCharge>(UnitPrefix.Micro);
+        public static readonly Unit<ElectricCharge> MilliCoulomb = new ConstantConverterUnit<ElectricCharge>(UnitPrefix.Milli);
 
-        public static readonly ConstantConverterUnit<ElectricCharge> ElementaryCharge = new ConstantConverterUnit<ElectricCharge>("e", Factors.CoulombsPerElementaryCharge);
+        public static readonly Unit<ElectricCharge> ElementaryCharge = new ConstantConverterUnit<ElectricCharge>("e", Factors.CoulombsPerElementaryCharge);
 
         [DataMember]
         private readonly AmountType amount;

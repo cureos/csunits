@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(1, 0, -1, 0, 0, 0, 0);
 
-        public static readonly ConstantConverterUnit<Velocity> MeterPerSecond = new ConstantConverterUnit<Velocity>("m s\u207b¹");
+        public static readonly Unit<Velocity> MeterPerSecond = new ConstantConverterUnit<Velocity>("m s\u207b¹");
 
-        public static readonly ConstantConverterUnit<Velocity> NanoMeterPerSecond = new ConstantConverterUnit<Velocity>(UnitPrefix.Nano);
-        public static readonly ConstantConverterUnit<Velocity> MicroMeterPerSecond = new ConstantConverterUnit<Velocity>(UnitPrefix.Micro);
-        public static readonly ConstantConverterUnit<Velocity> MilliMeterPerSecond = new ConstantConverterUnit<Velocity>(UnitPrefix.Milli);
-        public static readonly ConstantConverterUnit<Velocity> CentiMeterPerSecond = new ConstantConverterUnit<Velocity>(UnitPrefix.Centi);
-        public static readonly ConstantConverterUnit<Velocity> DeciMeterPerSecond = new ConstantConverterUnit<Velocity>(UnitPrefix.Deci);
-        public static readonly ConstantConverterUnit<Velocity> DekaMeterPerSecond = new ConstantConverterUnit<Velocity>(UnitPrefix.Deka);
-        public static readonly ConstantConverterUnit<Velocity> HectoMeterPerSecond = new ConstantConverterUnit<Velocity>(UnitPrefix.Hecto);
-        public static readonly ConstantConverterUnit<Velocity> KiloMeterPerSecond = new ConstantConverterUnit<Velocity>(UnitPrefix.Kilo);
+        public static readonly Unit<Velocity> NanoMeterPerSecond = new ConstantConverterUnit<Velocity>(UnitPrefix.Nano);
+        public static readonly Unit<Velocity> MicroMeterPerSecond = new ConstantConverterUnit<Velocity>(UnitPrefix.Micro);
+        public static readonly Unit<Velocity> MilliMeterPerSecond = new ConstantConverterUnit<Velocity>(UnitPrefix.Milli);
+        public static readonly Unit<Velocity> CentiMeterPerSecond = new ConstantConverterUnit<Velocity>(UnitPrefix.Centi);
+        public static readonly Unit<Velocity> DeciMeterPerSecond = new ConstantConverterUnit<Velocity>(UnitPrefix.Deci);
+        public static readonly Unit<Velocity> DekaMeterPerSecond = new ConstantConverterUnit<Velocity>(UnitPrefix.Deka);
+        public static readonly Unit<Velocity> HectoMeterPerSecond = new ConstantConverterUnit<Velocity>(UnitPrefix.Hecto);
+        public static readonly Unit<Velocity> KiloMeterPerSecond = new ConstantConverterUnit<Velocity>(UnitPrefix.Kilo);
 
-        public static readonly ConstantConverterUnit<Velocity> KiloMeterPerHour = new ConstantConverterUnit<Velocity>("km h\u207b¹", Factors.Kilo / Factors.SecondsPerHour);
+        public static readonly Unit<Velocity> KiloMeterPerHour = new ConstantConverterUnit<Velocity>("km h\u207b¹", Factors.Kilo / Factors.SecondsPerHour);
 
         [DataMember]
         private readonly AmountType amount;

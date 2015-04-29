@@ -48,24 +48,24 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(0, 1, 0, 0, 0, 0, 0);
 
-        public static readonly ConstantConverterUnit<Mass> KiloGram = new ConstantConverterUnit<Mass>("kg");
+        public static readonly Unit<Mass> KiloGram = new ConstantConverterUnit<Mass>("kg");
 
-        public static readonly ConstantConverterUnit<Mass> MetricTon = new ConstantConverterUnit<Mass>("t", Factors.Kilo);
-        public static readonly ConstantConverterUnit<Mass> HectoGram = new ConstantConverterUnit<Mass>("hg", Factors.Deci);
-        public static readonly ConstantConverterUnit<Mass> Gram = new ConstantConverterUnit<Mass>("g", Factors.Milli);
-        public static readonly ConstantConverterUnit<Mass> MilliGram = new ConstantConverterUnit<Mass>("mg", Factors.Micro);
-        public static readonly ConstantConverterUnit<Mass> MicroGram = new ConstantConverterUnit<Mass>("µg", Factors.Nano);
-        public static readonly ConstantConverterUnit<Mass> NanoGram = new ConstantConverterUnit<Mass>("ng", Factors.Pico);
-        public static readonly ConstantConverterUnit<Mass> PicoGram = new ConstantConverterUnit<Mass>("pg", Factors.Femto);
-        public static readonly ConstantConverterUnit<Mass> ElectronMass = new ConstantConverterUnit<Mass>("m\u2091", Factors.KiloGramsPerElectronMass);
-        public static readonly ConstantConverterUnit<Mass> AtomicMassUnit = new ConstantConverterUnit<Mass>("u", Factors.KiloGramsPerAtomicMassUnit);
-        public static readonly ConstantConverterUnit<Mass> Dalton = new ConstantConverterUnit<Mass>("Da", Factors.KiloGramsPerAtomicMassUnit);
-        public static readonly ConstantConverterUnit<Mass> PicoDalton = new ConstantConverterUnit<Mass>("pDa", Factors.Pico * Factors.KiloGramsPerAtomicMassUnit);
-        public static readonly ConstantConverterUnit<Mass> NanoDalton = new ConstantConverterUnit<Mass>("nDa", Factors.Nano * Factors.KiloGramsPerAtomicMassUnit);
-        public static readonly ConstantConverterUnit<Mass> MicroDalton = new ConstantConverterUnit<Mass>("µDa", Factors.Micro * Factors.KiloGramsPerAtomicMassUnit);
-        public static readonly ConstantConverterUnit<Mass> MilliDalton = new ConstantConverterUnit<Mass>("mDa", Factors.Milli * Factors.KiloGramsPerAtomicMassUnit);
-        public static readonly ConstantConverterUnit<Mass> KiloDalton = new ConstantConverterUnit<Mass>("kDa", Factors.Kilo * Factors.KiloGramsPerAtomicMassUnit);
-        public static readonly ConstantConverterUnit<Mass> MegaDalton = new ConstantConverterUnit<Mass>("MDa", Factors.Mega * Factors.KiloGramsPerAtomicMassUnit);
+        public static readonly Unit<Mass> MetricTon = new ConstantConverterUnit<Mass>("t", Factors.Kilo);
+        public static readonly Unit<Mass> HectoGram = new ConstantConverterUnit<Mass>("hg", Factors.Deci);
+        public static readonly Unit<Mass> Gram = new ConstantConverterUnit<Mass>("g", Factors.Milli);
+        public static readonly Unit<Mass> MilliGram = new ConstantConverterUnit<Mass>("mg", Factors.Micro);
+        public static readonly Unit<Mass> MicroGram = new ConstantConverterUnit<Mass>("µg", Factors.Nano);
+        public static readonly Unit<Mass> NanoGram = new ConstantConverterUnit<Mass>("ng", Factors.Pico);
+        public static readonly Unit<Mass> PicoGram = new ConstantConverterUnit<Mass>("pg", Factors.Femto);
+        public static readonly Unit<Mass> ElectronMass = new ConstantConverterUnit<Mass>("m\u2091", Factors.KiloGramsPerElectronMass);
+        public static readonly Unit<Mass> AtomicMassUnit = new ConstantConverterUnit<Mass>("u", Factors.KiloGramsPerAtomicMassUnit);
+        public static readonly Unit<Mass> Dalton = new ConstantConverterUnit<Mass>("Da", Factors.KiloGramsPerAtomicMassUnit);
+        public static readonly Unit<Mass> PicoDalton = new ConstantConverterUnit<Mass>("pDa", Factors.Pico * Factors.KiloGramsPerAtomicMassUnit);
+        public static readonly Unit<Mass> NanoDalton = new ConstantConverterUnit<Mass>("nDa", Factors.Nano * Factors.KiloGramsPerAtomicMassUnit);
+        public static readonly Unit<Mass> MicroDalton = new ConstantConverterUnit<Mass>("µDa", Factors.Micro * Factors.KiloGramsPerAtomicMassUnit);
+        public static readonly Unit<Mass> MilliDalton = new ConstantConverterUnit<Mass>("mDa", Factors.Milli * Factors.KiloGramsPerAtomicMassUnit);
+        public static readonly Unit<Mass> KiloDalton = new ConstantConverterUnit<Mass>("kDa", Factors.Kilo * Factors.KiloGramsPerAtomicMassUnit);
+        public static readonly Unit<Mass> MegaDalton = new ConstantConverterUnit<Mass>("MDa", Factors.Mega * Factors.KiloGramsPerAtomicMassUnit);
 
         [DataMember]
         private readonly AmountType amount;
