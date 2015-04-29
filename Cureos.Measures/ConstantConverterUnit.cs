@@ -22,6 +22,7 @@
 namespace Cureos.Measures
 {
     using System;
+    using System.Runtime.Serialization;
 
 #if SINGLE
     using AmountType = System.Single;
@@ -35,18 +36,24 @@ namespace Cureos.Measures
     /// Representation of a physical unit of a specific quanity
     /// </summary>
     /// <typeparam name="Q">Quantity type with which the unit is associated</typeparam>
+    [DataContract]
     public struct ConstantConverterUnit<Q> : IUnit<Q> where Q : struct, IQuantity<Q>
     {
         #region FIELDS
 
+        [DataMember]
         private readonly bool isStandardUnit;
 
+        [DataMember]
         private readonly string symbol;
 
+        [DataMember]
         private string displayName;
 
+        [DataMember]
         private readonly AmountType amountToStandardUnitFactor;
 
+        [DataMember]
         private readonly AmountType standardAmountToUnitFactor;
 
         #endregion
