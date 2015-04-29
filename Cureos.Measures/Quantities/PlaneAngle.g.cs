@@ -48,11 +48,11 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = QuantityDimension.Radian;
 
-        public static readonly IUnit<PlaneAngle> Radian = new ConstantConverterUnit<PlaneAngle>("rad");
+        public static readonly ConstantConverterUnit<PlaneAngle> Radian = new ConstantConverterUnit<PlaneAngle>("rad");
 
-        public static readonly IUnit<PlaneAngle> Degree = new ConstantConverterUnit<PlaneAngle>("°", Factors.RadiansPerDegree);
-        public static readonly IUnit<PlaneAngle> Minute = new ConstantConverterUnit<PlaneAngle>("'", Factors.RadiansPerMinute);
-        public static readonly IUnit<PlaneAngle> Second = new ConstantConverterUnit<PlaneAngle>("\"", Factors.RadiansPerSecond);
+        public static readonly ConstantConverterUnit<PlaneAngle> Degree = new ConstantConverterUnit<PlaneAngle>("°", Factors.RadiansPerDegree);
+        public static readonly ConstantConverterUnit<PlaneAngle> Minute = new ConstantConverterUnit<PlaneAngle>("'", Factors.RadiansPerMinute);
+        public static readonly ConstantConverterUnit<PlaneAngle> Second = new ConstantConverterUnit<PlaneAngle>("\"", Factors.RadiansPerSecond);
 
         [DataMember]
         private readonly AmountType amount;

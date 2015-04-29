@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(2, 1, -2, -2, 0, 0, 0);
 
-        public static readonly IUnit<Inductance> Henry = new ConstantConverterUnit<Inductance>("H");
+        public static readonly ConstantConverterUnit<Inductance> Henry = new ConstantConverterUnit<Inductance>("H");
 
-        public static readonly IUnit<Inductance> NanoHenry = new ConstantConverterUnit<Inductance>(UnitPrefix.Nano);
-        public static readonly IUnit<Inductance> MicroHenry = new ConstantConverterUnit<Inductance>(UnitPrefix.Micro);
-        public static readonly IUnit<Inductance> MilliHenry = new ConstantConverterUnit<Inductance>(UnitPrefix.Milli);
-        public static readonly IUnit<Inductance> CentiHenry = new ConstantConverterUnit<Inductance>(UnitPrefix.Centi);
-        public static readonly IUnit<Inductance> DeciHenry = new ConstantConverterUnit<Inductance>(UnitPrefix.Deci);
-        public static readonly IUnit<Inductance> DekaHenry = new ConstantConverterUnit<Inductance>(UnitPrefix.Deka);
-        public static readonly IUnit<Inductance> HectoHenry = new ConstantConverterUnit<Inductance>(UnitPrefix.Hecto);
-        public static readonly IUnit<Inductance> KiloHenry = new ConstantConverterUnit<Inductance>(UnitPrefix.Kilo);
-        public static readonly IUnit<Inductance> MegaHenry = new ConstantConverterUnit<Inductance>(UnitPrefix.Mega);
-        public static readonly IUnit<Inductance> GigaHenry = new ConstantConverterUnit<Inductance>(UnitPrefix.Giga);
+        public static readonly ConstantConverterUnit<Inductance> NanoHenry = new ConstantConverterUnit<Inductance>(UnitPrefix.Nano);
+        public static readonly ConstantConverterUnit<Inductance> MicroHenry = new ConstantConverterUnit<Inductance>(UnitPrefix.Micro);
+        public static readonly ConstantConverterUnit<Inductance> MilliHenry = new ConstantConverterUnit<Inductance>(UnitPrefix.Milli);
+        public static readonly ConstantConverterUnit<Inductance> CentiHenry = new ConstantConverterUnit<Inductance>(UnitPrefix.Centi);
+        public static readonly ConstantConverterUnit<Inductance> DeciHenry = new ConstantConverterUnit<Inductance>(UnitPrefix.Deci);
+        public static readonly ConstantConverterUnit<Inductance> DekaHenry = new ConstantConverterUnit<Inductance>(UnitPrefix.Deka);
+        public static readonly ConstantConverterUnit<Inductance> HectoHenry = new ConstantConverterUnit<Inductance>(UnitPrefix.Hecto);
+        public static readonly ConstantConverterUnit<Inductance> KiloHenry = new ConstantConverterUnit<Inductance>(UnitPrefix.Kilo);
+        public static readonly ConstantConverterUnit<Inductance> MegaHenry = new ConstantConverterUnit<Inductance>(UnitPrefix.Mega);
+        public static readonly ConstantConverterUnit<Inductance> GigaHenry = new ConstantConverterUnit<Inductance>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(0, 0, 0, 0, 0, 0, 1);
 
-        public static readonly IUnit<AmountOfSubstance> Mole = new ConstantConverterUnit<AmountOfSubstance>("mol");
+        public static readonly ConstantConverterUnit<AmountOfSubstance> Mole = new ConstantConverterUnit<AmountOfSubstance>("mol");
 
-        public static readonly IUnit<AmountOfSubstance> NanoMole = new ConstantConverterUnit<AmountOfSubstance>(UnitPrefix.Nano);
-        public static readonly IUnit<AmountOfSubstance> MicroMole = new ConstantConverterUnit<AmountOfSubstance>(UnitPrefix.Micro);
-        public static readonly IUnit<AmountOfSubstance> MilliMole = new ConstantConverterUnit<AmountOfSubstance>(UnitPrefix.Milli);
-        public static readonly IUnit<AmountOfSubstance> CentiMole = new ConstantConverterUnit<AmountOfSubstance>(UnitPrefix.Centi);
-        public static readonly IUnit<AmountOfSubstance> DeciMole = new ConstantConverterUnit<AmountOfSubstance>(UnitPrefix.Deci);
-        public static readonly IUnit<AmountOfSubstance> DekaMole = new ConstantConverterUnit<AmountOfSubstance>(UnitPrefix.Deka);
-        public static readonly IUnit<AmountOfSubstance> HectoMole = new ConstantConverterUnit<AmountOfSubstance>(UnitPrefix.Hecto);
-        public static readonly IUnit<AmountOfSubstance> KiloMole = new ConstantConverterUnit<AmountOfSubstance>(UnitPrefix.Kilo);
-        public static readonly IUnit<AmountOfSubstance> MegaMole = new ConstantConverterUnit<AmountOfSubstance>(UnitPrefix.Mega);
-        public static readonly IUnit<AmountOfSubstance> GigaMole = new ConstantConverterUnit<AmountOfSubstance>(UnitPrefix.Giga);
+        public static readonly ConstantConverterUnit<AmountOfSubstance> NanoMole = new ConstantConverterUnit<AmountOfSubstance>(UnitPrefix.Nano);
+        public static readonly ConstantConverterUnit<AmountOfSubstance> MicroMole = new ConstantConverterUnit<AmountOfSubstance>(UnitPrefix.Micro);
+        public static readonly ConstantConverterUnit<AmountOfSubstance> MilliMole = new ConstantConverterUnit<AmountOfSubstance>(UnitPrefix.Milli);
+        public static readonly ConstantConverterUnit<AmountOfSubstance> CentiMole = new ConstantConverterUnit<AmountOfSubstance>(UnitPrefix.Centi);
+        public static readonly ConstantConverterUnit<AmountOfSubstance> DeciMole = new ConstantConverterUnit<AmountOfSubstance>(UnitPrefix.Deci);
+        public static readonly ConstantConverterUnit<AmountOfSubstance> DekaMole = new ConstantConverterUnit<AmountOfSubstance>(UnitPrefix.Deka);
+        public static readonly ConstantConverterUnit<AmountOfSubstance> HectoMole = new ConstantConverterUnit<AmountOfSubstance>(UnitPrefix.Hecto);
+        public static readonly ConstantConverterUnit<AmountOfSubstance> KiloMole = new ConstantConverterUnit<AmountOfSubstance>(UnitPrefix.Kilo);
+        public static readonly ConstantConverterUnit<AmountOfSubstance> MegaMole = new ConstantConverterUnit<AmountOfSubstance>(UnitPrefix.Mega);
+        public static readonly ConstantConverterUnit<AmountOfSubstance> GigaMole = new ConstantConverterUnit<AmountOfSubstance>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

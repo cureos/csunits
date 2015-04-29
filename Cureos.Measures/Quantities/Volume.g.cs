@@ -48,13 +48,13 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(3, 0, 0, 0, 0, 0, 0);
 
-        public static readonly IUnit<Volume> CubicMeter = new ConstantConverterUnit<Volume>("m³");
+        public static readonly ConstantConverterUnit<Volume> CubicMeter = new ConstantConverterUnit<Volume>("m³");
 
-        public static readonly IUnit<Volume> CubicDeciMeter = new ConstantConverterUnit<Volume>("dm³", Factors.Deci * Factors.Deci * Factors.Deci);
-        public static readonly IUnit<Volume> CubicCentiMeter = new ConstantConverterUnit<Volume>("cm³", Factors.Centi * Factors.Centi * Factors.Centi);
-        public static readonly IUnit<Volume> CubicMilliMeter = new ConstantConverterUnit<Volume>("mm³", Factors.Milli * Factors.Milli * Factors.Milli);
-        public static readonly IUnit<Volume> Liter = new ConstantConverterUnit<Volume>("l", Factors.Deci * Factors.Deci * Factors.Deci);
-        public static readonly IUnit<Volume> USLiquidGallon = new ConstantConverterUnit<Volume>("gal", Factors.CubicMetersPerUSLiquidGallon);
+        public static readonly ConstantConverterUnit<Volume> CubicDeciMeter = new ConstantConverterUnit<Volume>("dm³", Factors.Deci * Factors.Deci * Factors.Deci);
+        public static readonly ConstantConverterUnit<Volume> CubicCentiMeter = new ConstantConverterUnit<Volume>("cm³", Factors.Centi * Factors.Centi * Factors.Centi);
+        public static readonly ConstantConverterUnit<Volume> CubicMilliMeter = new ConstantConverterUnit<Volume>("mm³", Factors.Milli * Factors.Milli * Factors.Milli);
+        public static readonly ConstantConverterUnit<Volume> Liter = new ConstantConverterUnit<Volume>("l", Factors.Deci * Factors.Deci * Factors.Deci);
+        public static readonly ConstantConverterUnit<Volume> USLiquidGallon = new ConstantConverterUnit<Volume>("gal", Factors.CubicMetersPerUSLiquidGallon);
 
         [DataMember]
         private readonly AmountType amount;

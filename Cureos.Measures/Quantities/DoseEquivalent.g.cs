@@ -48,16 +48,16 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(2, 0, -2, 0, 0, 0, 0);
 
-        public static readonly IUnit<DoseEquivalent> Sievert = new ConstantConverterUnit<DoseEquivalent>("Sv");
+        public static readonly ConstantConverterUnit<DoseEquivalent> Sievert = new ConstantConverterUnit<DoseEquivalent>("Sv");
 
-        public static readonly IUnit<DoseEquivalent> NanoSievert = new ConstantConverterUnit<DoseEquivalent>(UnitPrefix.Nano);
-        public static readonly IUnit<DoseEquivalent> MicroSievert = new ConstantConverterUnit<DoseEquivalent>(UnitPrefix.Micro);
-        public static readonly IUnit<DoseEquivalent> MilliSievert = new ConstantConverterUnit<DoseEquivalent>(UnitPrefix.Milli);
-        public static readonly IUnit<DoseEquivalent> CentiSievert = new ConstantConverterUnit<DoseEquivalent>(UnitPrefix.Centi);
-        public static readonly IUnit<DoseEquivalent> DeciSievert = new ConstantConverterUnit<DoseEquivalent>(UnitPrefix.Deci);
-        public static readonly IUnit<DoseEquivalent> DekaSievert = new ConstantConverterUnit<DoseEquivalent>(UnitPrefix.Deka);
-        public static readonly IUnit<DoseEquivalent> HectoSievert = new ConstantConverterUnit<DoseEquivalent>(UnitPrefix.Hecto);
-        public static readonly IUnit<DoseEquivalent> KiloSievert = new ConstantConverterUnit<DoseEquivalent>(UnitPrefix.Kilo);
+        public static readonly ConstantConverterUnit<DoseEquivalent> NanoSievert = new ConstantConverterUnit<DoseEquivalent>(UnitPrefix.Nano);
+        public static readonly ConstantConverterUnit<DoseEquivalent> MicroSievert = new ConstantConverterUnit<DoseEquivalent>(UnitPrefix.Micro);
+        public static readonly ConstantConverterUnit<DoseEquivalent> MilliSievert = new ConstantConverterUnit<DoseEquivalent>(UnitPrefix.Milli);
+        public static readonly ConstantConverterUnit<DoseEquivalent> CentiSievert = new ConstantConverterUnit<DoseEquivalent>(UnitPrefix.Centi);
+        public static readonly ConstantConverterUnit<DoseEquivalent> DeciSievert = new ConstantConverterUnit<DoseEquivalent>(UnitPrefix.Deci);
+        public static readonly ConstantConverterUnit<DoseEquivalent> DekaSievert = new ConstantConverterUnit<DoseEquivalent>(UnitPrefix.Deka);
+        public static readonly ConstantConverterUnit<DoseEquivalent> HectoSievert = new ConstantConverterUnit<DoseEquivalent>(UnitPrefix.Hecto);
+        public static readonly ConstantConverterUnit<DoseEquivalent> KiloSievert = new ConstantConverterUnit<DoseEquivalent>(UnitPrefix.Kilo);
 
         [DataMember]
         private readonly AmountType amount;

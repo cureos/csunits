@@ -48,7 +48,7 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = QuantityDimension.RelativePermeability;
 
-        public static readonly IUnit<RelativePermeability> One = new ConstantConverterUnit<RelativePermeability>("");
+        public static readonly ConstantConverterUnit<RelativePermeability> One = new ConstantConverterUnit<RelativePermeability>("");
 
         [DataMember]
         private readonly AmountType amount;

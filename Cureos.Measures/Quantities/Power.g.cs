@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(2, 1, -3, 0, 0, 0, 0);
 
-        public static readonly IUnit<Power> Watt = new ConstantConverterUnit<Power>("W");
+        public static readonly ConstantConverterUnit<Power> Watt = new ConstantConverterUnit<Power>("W");
 
-        public static readonly IUnit<Power> NanoWatt = new ConstantConverterUnit<Power>(UnitPrefix.Nano);
-        public static readonly IUnit<Power> MicroWatt = new ConstantConverterUnit<Power>(UnitPrefix.Micro);
-        public static readonly IUnit<Power> MilliWatt = new ConstantConverterUnit<Power>(UnitPrefix.Milli);
-        public static readonly IUnit<Power> CentiWatt = new ConstantConverterUnit<Power>(UnitPrefix.Centi);
-        public static readonly IUnit<Power> DeciWatt = new ConstantConverterUnit<Power>(UnitPrefix.Deci);
-        public static readonly IUnit<Power> DekaWatt = new ConstantConverterUnit<Power>(UnitPrefix.Deka);
-        public static readonly IUnit<Power> HectoWatt = new ConstantConverterUnit<Power>(UnitPrefix.Hecto);
-        public static readonly IUnit<Power> KiloWatt = new ConstantConverterUnit<Power>(UnitPrefix.Kilo);
-        public static readonly IUnit<Power> MegaWatt = new ConstantConverterUnit<Power>(UnitPrefix.Mega);
-        public static readonly IUnit<Power> GigaWatt = new ConstantConverterUnit<Power>(UnitPrefix.Giga);
+        public static readonly ConstantConverterUnit<Power> NanoWatt = new ConstantConverterUnit<Power>(UnitPrefix.Nano);
+        public static readonly ConstantConverterUnit<Power> MicroWatt = new ConstantConverterUnit<Power>(UnitPrefix.Micro);
+        public static readonly ConstantConverterUnit<Power> MilliWatt = new ConstantConverterUnit<Power>(UnitPrefix.Milli);
+        public static readonly ConstantConverterUnit<Power> CentiWatt = new ConstantConverterUnit<Power>(UnitPrefix.Centi);
+        public static readonly ConstantConverterUnit<Power> DeciWatt = new ConstantConverterUnit<Power>(UnitPrefix.Deci);
+        public static readonly ConstantConverterUnit<Power> DekaWatt = new ConstantConverterUnit<Power>(UnitPrefix.Deka);
+        public static readonly ConstantConverterUnit<Power> HectoWatt = new ConstantConverterUnit<Power>(UnitPrefix.Hecto);
+        public static readonly ConstantConverterUnit<Power> KiloWatt = new ConstantConverterUnit<Power>(UnitPrefix.Kilo);
+        public static readonly ConstantConverterUnit<Power> MegaWatt = new ConstantConverterUnit<Power>(UnitPrefix.Mega);
+        public static readonly ConstantConverterUnit<Power> GigaWatt = new ConstantConverterUnit<Power>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

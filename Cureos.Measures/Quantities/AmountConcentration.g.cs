@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(-3, 0, 0, 0, 0, 0, 1);
 
-        public static readonly IUnit<AmountConcentration> MolePerCubicMeter = new ConstantConverterUnit<AmountConcentration>("mol m\u207b³");
+        public static readonly ConstantConverterUnit<AmountConcentration> MolePerCubicMeter = new ConstantConverterUnit<AmountConcentration>("mol m\u207b³");
 
-        public static readonly IUnit<AmountConcentration> NanoMolePerCubicMeter = new ConstantConverterUnit<AmountConcentration>(UnitPrefix.Nano);
-        public static readonly IUnit<AmountConcentration> MicroMolePerCubicMeter = new ConstantConverterUnit<AmountConcentration>(UnitPrefix.Micro);
-        public static readonly IUnit<AmountConcentration> MilliMolePerCubicMeter = new ConstantConverterUnit<AmountConcentration>(UnitPrefix.Milli);
-        public static readonly IUnit<AmountConcentration> CentiMolePerCubicMeter = new ConstantConverterUnit<AmountConcentration>(UnitPrefix.Centi);
-        public static readonly IUnit<AmountConcentration> DeciMolePerCubicMeter = new ConstantConverterUnit<AmountConcentration>(UnitPrefix.Deci);
-        public static readonly IUnit<AmountConcentration> DekaMolePerCubicMeter = new ConstantConverterUnit<AmountConcentration>(UnitPrefix.Deka);
-        public static readonly IUnit<AmountConcentration> HectoMolePerCubicMeter = new ConstantConverterUnit<AmountConcentration>(UnitPrefix.Hecto);
-        public static readonly IUnit<AmountConcentration> KiloMolePerCubicMeter = new ConstantConverterUnit<AmountConcentration>(UnitPrefix.Kilo);
-        public static readonly IUnit<AmountConcentration> MegaMolePerCubicMeter = new ConstantConverterUnit<AmountConcentration>(UnitPrefix.Mega);
-        public static readonly IUnit<AmountConcentration> GigaMolePerCubicMeter = new ConstantConverterUnit<AmountConcentration>(UnitPrefix.Giga);
+        public static readonly ConstantConverterUnit<AmountConcentration> NanoMolePerCubicMeter = new ConstantConverterUnit<AmountConcentration>(UnitPrefix.Nano);
+        public static readonly ConstantConverterUnit<AmountConcentration> MicroMolePerCubicMeter = new ConstantConverterUnit<AmountConcentration>(UnitPrefix.Micro);
+        public static readonly ConstantConverterUnit<AmountConcentration> MilliMolePerCubicMeter = new ConstantConverterUnit<AmountConcentration>(UnitPrefix.Milli);
+        public static readonly ConstantConverterUnit<AmountConcentration> CentiMolePerCubicMeter = new ConstantConverterUnit<AmountConcentration>(UnitPrefix.Centi);
+        public static readonly ConstantConverterUnit<AmountConcentration> DeciMolePerCubicMeter = new ConstantConverterUnit<AmountConcentration>(UnitPrefix.Deci);
+        public static readonly ConstantConverterUnit<AmountConcentration> DekaMolePerCubicMeter = new ConstantConverterUnit<AmountConcentration>(UnitPrefix.Deka);
+        public static readonly ConstantConverterUnit<AmountConcentration> HectoMolePerCubicMeter = new ConstantConverterUnit<AmountConcentration>(UnitPrefix.Hecto);
+        public static readonly ConstantConverterUnit<AmountConcentration> KiloMolePerCubicMeter = new ConstantConverterUnit<AmountConcentration>(UnitPrefix.Kilo);
+        public static readonly ConstantConverterUnit<AmountConcentration> MegaMolePerCubicMeter = new ConstantConverterUnit<AmountConcentration>(UnitPrefix.Mega);
+        public static readonly ConstantConverterUnit<AmountConcentration> GigaMolePerCubicMeter = new ConstantConverterUnit<AmountConcentration>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

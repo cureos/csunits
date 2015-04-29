@@ -108,6 +108,15 @@ namespace Cureos.Measures
             var actual = Area.Hectare.DisplayName;
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
+
+        [Test]
+        public void MultiplicationOperator_LengthAmount_YieldsMeasure()
+        {
+            var length = 5.0 * Length.CentiMeter;
+            Assert.IsInstanceOf<Length>(length);
+            Assert.AreEqual(0.05, length.Amount, 1e-7);
+        }
+
         #endregion
     }
 }

@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(2, 1, -2, 0, 0, 0, 0);
 
-        public static readonly IUnit<MomentOfForce> NewtonMeter = new ConstantConverterUnit<MomentOfForce>("Nm");
+        public static readonly ConstantConverterUnit<MomentOfForce> NewtonMeter = new ConstantConverterUnit<MomentOfForce>("Nm");
 
-        public static readonly IUnit<MomentOfForce> NanoNewtonMeter = new ConstantConverterUnit<MomentOfForce>(UnitPrefix.Nano);
-        public static readonly IUnit<MomentOfForce> MicroNewtonMeter = new ConstantConverterUnit<MomentOfForce>(UnitPrefix.Micro);
-        public static readonly IUnit<MomentOfForce> MilliNewtonMeter = new ConstantConverterUnit<MomentOfForce>(UnitPrefix.Milli);
-        public static readonly IUnit<MomentOfForce> CentiNewtonMeter = new ConstantConverterUnit<MomentOfForce>(UnitPrefix.Centi);
-        public static readonly IUnit<MomentOfForce> DeciNewtonMeter = new ConstantConverterUnit<MomentOfForce>(UnitPrefix.Deci);
-        public static readonly IUnit<MomentOfForce> DekaNewtonMeter = new ConstantConverterUnit<MomentOfForce>(UnitPrefix.Deka);
-        public static readonly IUnit<MomentOfForce> HectoNewtonMeter = new ConstantConverterUnit<MomentOfForce>(UnitPrefix.Hecto);
-        public static readonly IUnit<MomentOfForce> KiloNewtonMeter = new ConstantConverterUnit<MomentOfForce>(UnitPrefix.Kilo);
-        public static readonly IUnit<MomentOfForce> MegaNewtonMeter = new ConstantConverterUnit<MomentOfForce>(UnitPrefix.Mega);
-        public static readonly IUnit<MomentOfForce> GigaNewtonMeter = new ConstantConverterUnit<MomentOfForce>(UnitPrefix.Giga);
+        public static readonly ConstantConverterUnit<MomentOfForce> NanoNewtonMeter = new ConstantConverterUnit<MomentOfForce>(UnitPrefix.Nano);
+        public static readonly ConstantConverterUnit<MomentOfForce> MicroNewtonMeter = new ConstantConverterUnit<MomentOfForce>(UnitPrefix.Micro);
+        public static readonly ConstantConverterUnit<MomentOfForce> MilliNewtonMeter = new ConstantConverterUnit<MomentOfForce>(UnitPrefix.Milli);
+        public static readonly ConstantConverterUnit<MomentOfForce> CentiNewtonMeter = new ConstantConverterUnit<MomentOfForce>(UnitPrefix.Centi);
+        public static readonly ConstantConverterUnit<MomentOfForce> DeciNewtonMeter = new ConstantConverterUnit<MomentOfForce>(UnitPrefix.Deci);
+        public static readonly ConstantConverterUnit<MomentOfForce> DekaNewtonMeter = new ConstantConverterUnit<MomentOfForce>(UnitPrefix.Deka);
+        public static readonly ConstantConverterUnit<MomentOfForce> HectoNewtonMeter = new ConstantConverterUnit<MomentOfForce>(UnitPrefix.Hecto);
+        public static readonly ConstantConverterUnit<MomentOfForce> KiloNewtonMeter = new ConstantConverterUnit<MomentOfForce>(UnitPrefix.Kilo);
+        public static readonly ConstantConverterUnit<MomentOfForce> MegaNewtonMeter = new ConstantConverterUnit<MomentOfForce>(UnitPrefix.Mega);
+        public static readonly ConstantConverterUnit<MomentOfForce> GigaNewtonMeter = new ConstantConverterUnit<MomentOfForce>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;

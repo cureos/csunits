@@ -48,18 +48,18 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(0, 1, -3, 0, 0, 0, 0);
 
-        public static readonly IUnit<HeatFluxDensity> WattPerSquareMeter = new ConstantConverterUnit<HeatFluxDensity>("W m\u207b²");
+        public static readonly ConstantConverterUnit<HeatFluxDensity> WattPerSquareMeter = new ConstantConverterUnit<HeatFluxDensity>("W m\u207b²");
 
-        public static readonly IUnit<HeatFluxDensity> NanoWattPerSquareMeter = new ConstantConverterUnit<HeatFluxDensity>(UnitPrefix.Nano);
-        public static readonly IUnit<HeatFluxDensity> MicroWattPerSquareMeter = new ConstantConverterUnit<HeatFluxDensity>(UnitPrefix.Micro);
-        public static readonly IUnit<HeatFluxDensity> MilliWattPerSquareMeter = new ConstantConverterUnit<HeatFluxDensity>(UnitPrefix.Milli);
-        public static readonly IUnit<HeatFluxDensity> CentiWattPerSquareMeter = new ConstantConverterUnit<HeatFluxDensity>(UnitPrefix.Centi);
-        public static readonly IUnit<HeatFluxDensity> DeciWattPerSquareMeter = new ConstantConverterUnit<HeatFluxDensity>(UnitPrefix.Deci);
-        public static readonly IUnit<HeatFluxDensity> DekaWattPerSquareMeter = new ConstantConverterUnit<HeatFluxDensity>(UnitPrefix.Deka);
-        public static readonly IUnit<HeatFluxDensity> HectoWattPerSquareMeter = new ConstantConverterUnit<HeatFluxDensity>(UnitPrefix.Hecto);
-        public static readonly IUnit<HeatFluxDensity> KiloWattPerSquareMeter = new ConstantConverterUnit<HeatFluxDensity>(UnitPrefix.Kilo);
-        public static readonly IUnit<HeatFluxDensity> MegaWattPerSquareMeter = new ConstantConverterUnit<HeatFluxDensity>(UnitPrefix.Mega);
-        public static readonly IUnit<HeatFluxDensity> GigaWattPerSquareMeter = new ConstantConverterUnit<HeatFluxDensity>(UnitPrefix.Giga);
+        public static readonly ConstantConverterUnit<HeatFluxDensity> NanoWattPerSquareMeter = new ConstantConverterUnit<HeatFluxDensity>(UnitPrefix.Nano);
+        public static readonly ConstantConverterUnit<HeatFluxDensity> MicroWattPerSquareMeter = new ConstantConverterUnit<HeatFluxDensity>(UnitPrefix.Micro);
+        public static readonly ConstantConverterUnit<HeatFluxDensity> MilliWattPerSquareMeter = new ConstantConverterUnit<HeatFluxDensity>(UnitPrefix.Milli);
+        public static readonly ConstantConverterUnit<HeatFluxDensity> CentiWattPerSquareMeter = new ConstantConverterUnit<HeatFluxDensity>(UnitPrefix.Centi);
+        public static readonly ConstantConverterUnit<HeatFluxDensity> DeciWattPerSquareMeter = new ConstantConverterUnit<HeatFluxDensity>(UnitPrefix.Deci);
+        public static readonly ConstantConverterUnit<HeatFluxDensity> DekaWattPerSquareMeter = new ConstantConverterUnit<HeatFluxDensity>(UnitPrefix.Deka);
+        public static readonly ConstantConverterUnit<HeatFluxDensity> HectoWattPerSquareMeter = new ConstantConverterUnit<HeatFluxDensity>(UnitPrefix.Hecto);
+        public static readonly ConstantConverterUnit<HeatFluxDensity> KiloWattPerSquareMeter = new ConstantConverterUnit<HeatFluxDensity>(UnitPrefix.Kilo);
+        public static readonly ConstantConverterUnit<HeatFluxDensity> MegaWattPerSquareMeter = new ConstantConverterUnit<HeatFluxDensity>(UnitPrefix.Mega);
+        public static readonly ConstantConverterUnit<HeatFluxDensity> GigaWattPerSquareMeter = new ConstantConverterUnit<HeatFluxDensity>(UnitPrefix.Giga);
 
         [DataMember]
         private readonly AmountType amount;
