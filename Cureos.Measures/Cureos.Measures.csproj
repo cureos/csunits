@@ -65,6 +65,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CodeGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="Quantities\Velocity.cs" />
     <Compile Include="Unit.cs" />
     <Compile Include="Factors.cs" />
     <Compile Include="IMeasure.cs" />
