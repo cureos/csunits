@@ -225,9 +225,6 @@
     <Compile Include="Quantities\CatalyticActivity.g.cs">
       <DependentUpon>CodeGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="Quantities\LinearAcceleratorAbsorbedDoseRate.cs" />
-    <Compile Include="Quantities\LinearAcceleratorMeterset.cs" />
-    <Compile Include="Quantities\RadioactiveAbsorbedDoseRate.cs" />
     <Compile Include="Quantities\Temperature.g.cs">
       <DependentUpon>CodeGenerator.tt</DependentUpon>
     </Compile>

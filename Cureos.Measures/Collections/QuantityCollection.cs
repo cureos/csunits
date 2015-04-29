@@ -43,8 +43,9 @@ namespace Cureos.Measures.Collections
                     .GetTypes()
                     .Where(type => type.GetInterfaces().Contains(typeof(IQuantity)))
                     .SelectMany(type => type.GetFields(BindingFlags.Public | BindingFlags.Static))
-                    .Select(fieldInfo => fieldInfo.GetValue(null) as IUnit)
-                    .Where(obj => !ReferenceEquals(obj, null)).ToList();
+                    .Select(fieldInfo => fieldInfo.GetValue(null))
+                    .OfType<IUnit>()
+                    .ToList();
 
             Quantities =
                 units.Select(unit => unit.Quantity)
