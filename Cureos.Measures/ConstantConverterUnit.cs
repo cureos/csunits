@@ -21,7 +21,6 @@
 
 namespace Cureos.Measures
 {
-    using System;
     using System.Runtime.Serialization;
 
 #if SINGLE
@@ -37,7 +36,7 @@ namespace Cureos.Measures
     /// </summary>
     /// <typeparam name="Q">Quantity type with which the unit is associated</typeparam>
     [DataContract]
-    public struct ConstantConverterUnit<Q> : IUnit<Q> where Q : struct, IQuantity<Q>
+    public sealed class ConstantConverterUnit<Q> : IUnit<Q> where Q : struct, IQuantity<Q>
     {
         #region FIELDS
 
@@ -47,7 +46,6 @@ namespace Cureos.Measures
         [DataMember]
         private readonly string symbol;
 
-        [DataMember]
         private string displayName;
 
         [DataMember]
@@ -68,7 +66,7 @@ namespace Cureos.Measures
         {
             this.isStandardUnit = true;
             this.symbol = symbol;
-            this.displayName = string.Empty;
+            this.displayName = null;
             this.amountToStandardUnitFactor = 1.0;
             this.standardAmountToUnitFactor = 1.0;
         }
@@ -78,7 +76,7 @@ namespace Cureos.Measures
         /// </summary>
         /// <param name="prefix">Prefix to use in unit naming and scaling vis-a-vis standard unit</param>
         public ConstantConverterUnit(UnitPrefix prefix)
-            : this(String.Format("{0}{1}", prefix.GetSymbol(), default(Q).StandardUnit), prefix.GetFactor())
+            : this(string.Format("{0}{1}", prefix.GetSymbol(), default(Q).StandardUnit), prefix.GetFactor())
         {
         }
 
@@ -92,7 +90,7 @@ namespace Cureos.Measures
             // ReSharper disable once CompareOfFloatsByEqualityOperator
             this.isStandardUnit = toStandardUnitFactor == Constants.One;
             this.symbol = symbol;
-            this.displayName = string.Empty;
+            this.displayName = null;
             this.amountToStandardUnitFactor = toStandardUnitFactor;
             this.standardAmountToUnitFactor = 1.0 / toStandardUnitFactor;
         }
@@ -145,11 +143,7 @@ namespace Cureos.Measures
         {
             get
             {
-                return this.displayName;
-            }
-            set
-            {
-                this.displayName = value;
+                return this.displayName ?? (this.displayName = UnitHelpers.CreateUnitDisplayName(this));
             }
         }
 

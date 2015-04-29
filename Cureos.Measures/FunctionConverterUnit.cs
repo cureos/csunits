@@ -40,6 +40,10 @@ namespace Cureos.Measures
     {
         #region FIELDS
 
+        private string displayName;
+
+        private readonly string symbol;
+
         private readonly Func<AmountType, AmountType> convertAmountToStandardUnit;
 
         private readonly Func<AmountType, AmountType> convertStandardAmountToUnit;
@@ -59,8 +63,8 @@ namespace Cureos.Measures
             Func<AmountType, AmountType> convertAmountToStandardUnit,
             Func<AmountType, AmountType> convertStandardAmountToUnit)
         {
-            this.Symbol = symbol;
-            this.DisplayName = string.Empty;
+            this.symbol = symbol;
+            this.displayName = null;
             this.convertAmountToStandardUnit = convertAmountToStandardUnit;
             this.convertStandardAmountToUnit = convertStandardAmountToUnit;
         }
@@ -99,12 +103,24 @@ namespace Cureos.Measures
         /// <summary>
         /// Gets the display symbol of the unit
         /// </summary>
-        public string Symbol { get; private set; }
+        public string Symbol
+        {
+            get
+            {
+                return this.symbol;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the fully qualified display name of the unit
         /// </summary>
-        public string DisplayName { get; set; }
+        public string DisplayName
+        {
+            get
+            {
+                return this.displayName ?? (this.displayName = UnitHelpers.CreateUnitDisplayName(this));
+            }
+        }
 
         /// <summary>
         /// Convert the amount from the current unit to the standard unit of the specified quantity

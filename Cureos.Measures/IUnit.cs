@@ -54,7 +54,7 @@ namespace Cureos.Measures
         /// <summary>
         /// Gets or sets the fully qualified display name of the unit
         /// </summary>
-        string DisplayName { get; set; }
+        string DisplayName { get; }
 
         /// <summary>
         /// Convert the amount from the current unit to the standard unit of the specified quantity

@@ -238,6 +238,7 @@
     <Compile Include="MeasureDoublet.cs" />
     <Compile Include="MeasureTriplet.cs" />
     <Compile Include="ConstantConverterUnit.cs" />
+    <Compile Include="UnitHelpers.cs" />
     <Compile Include="UnitPrefix.cs" />
     <Compile Include="UnitPrefixMethods.cs" />
   </ItemGroup>

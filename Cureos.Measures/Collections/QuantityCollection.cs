@@ -52,21 +52,6 @@ namespace Cureos.Measures.Collections
                     .Distinct()
                     .Select(
                         quantity => new QuantityAdapter(quantity, units.Where(unit => unit.Quantity.Equals(quantity))));
-
-            Assembly.GetExecutingAssembly()
-                .GetTypes()
-                .SelectMany(type => type.GetFields(BindingFlags.Public | BindingFlags.Static))
-                .Where(fieldInfo => fieldInfo.FieldType.GetInterfaces().Contains(typeof(IUnit)))
-                .Any(
-                    fieldInfo =>
-                        {
-                            var unit = (IUnit)fieldInfo.GetValue(null);
-                            unit.DisplayName = string.Format(
-                                "{0} | {1}",
-                                fieldInfo.Name,
-                                string.IsNullOrWhiteSpace(unit.Symbol) ? "<none>" : unit.Symbol);
-                            return false;
-                        });
         }
 
         #endregion
