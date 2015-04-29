@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the probability quantity
     /// </summary>
     [DataContract]
-    public partial struct Probability : IQuantity<Probability>, IMeasure<Probability>, IEquatable<Probability>, IComparable<Probability>
+    public partial struct Probability : IQuantity<Probability>, IMeasure<Probability>, IMeasureFactory<Probability>, IEquatable<Probability>, IComparable<Probability>
     {
         #region FIELDS
 
@@ -178,17 +178,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<Probability> StandardUnit
         {
             get { return Number; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Probability New(AmountType amount, IUnit<Probability> unit)
-        {
-            return new Probability(amount, unit);
         }
 
         /// <summary>
@@ -343,6 +332,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<Probability>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<Probability>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public Probability Create(AmountType amount, IUnit<Probability> unit)
+        {
+            return new Probability(amount, unit);
         }
 
         #endregion

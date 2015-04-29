@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the amount concentration quantity
     /// </summary>
     [DataContract]
-    public partial struct AmountConcentration : IQuantity<AmountConcentration>, IMeasure<AmountConcentration>, IEquatable<AmountConcentration>, IComparable<AmountConcentration>
+    public partial struct AmountConcentration : IQuantity<AmountConcentration>, IMeasure<AmountConcentration>, IMeasureFactory<AmountConcentration>, IEquatable<AmountConcentration>, IComparable<AmountConcentration>
     {
         #region FIELDS
 
@@ -185,17 +185,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<AmountConcentration> StandardUnit
         {
             get { return MolePerCubicMeter; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public AmountConcentration New(AmountType amount, IUnit<AmountConcentration> unit)
-        {
-            return new AmountConcentration(amount, unit);
         }
 
         /// <summary>
@@ -350,6 +339,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<AmountConcentration>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<AmountConcentration>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public AmountConcentration Create(AmountType amount, IUnit<AmountConcentration> unit)
+        {
+            return new AmountConcentration(amount, unit);
         }
 
         #endregion

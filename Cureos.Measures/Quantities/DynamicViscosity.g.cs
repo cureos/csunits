@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the dynamic viscosity quantity
     /// </summary>
     [DataContract]
-    public partial struct DynamicViscosity : IQuantity<DynamicViscosity>, IMeasure<DynamicViscosity>, IEquatable<DynamicViscosity>, IComparable<DynamicViscosity>
+    public partial struct DynamicViscosity : IQuantity<DynamicViscosity>, IMeasure<DynamicViscosity>, IMeasureFactory<DynamicViscosity>, IEquatable<DynamicViscosity>, IComparable<DynamicViscosity>
     {
         #region FIELDS
 
@@ -183,17 +183,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<DynamicViscosity> StandardUnit
         {
             get { return PascalSecond; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public DynamicViscosity New(AmountType amount, IUnit<DynamicViscosity> unit)
-        {
-            return new DynamicViscosity(amount, unit);
         }
 
         /// <summary>
@@ -348,6 +337,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<DynamicViscosity>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<DynamicViscosity>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public DynamicViscosity Create(AmountType amount, IUnit<DynamicViscosity> unit)
+        {
+            return new DynamicViscosity(amount, unit);
         }
 
         #endregion

@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the temperature quantity
     /// </summary>
     [DataContract]
-    public partial struct Temperature : IQuantity<Temperature>, IMeasure<Temperature>, IEquatable<Temperature>, IComparable<Temperature>
+    public partial struct Temperature : IQuantity<Temperature>, IMeasure<Temperature>, IMeasureFactory<Temperature>, IEquatable<Temperature>, IComparable<Temperature>
     {
         #region FIELDS
 
@@ -180,17 +180,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<Temperature> StandardUnit
         {
             get { return Kelvin; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Temperature New(AmountType amount, IUnit<Temperature> unit)
-        {
-            return new Temperature(amount, unit);
         }
 
         /// <summary>
@@ -345,6 +334,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<Temperature>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<Temperature>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public Temperature Create(AmountType amount, IUnit<Temperature> unit)
+        {
+            return new Temperature(amount, unit);
         }
 
         #endregion

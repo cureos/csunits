@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the electric current quantity
     /// </summary>
     [DataContract]
-    public partial struct ElectricCurrent : IQuantity<ElectricCurrent>, IMeasure<ElectricCurrent>, IEquatable<ElectricCurrent>, IComparable<ElectricCurrent>
+    public partial struct ElectricCurrent : IQuantity<ElectricCurrent>, IMeasure<ElectricCurrent>, IMeasureFactory<ElectricCurrent>, IEquatable<ElectricCurrent>, IComparable<ElectricCurrent>
     {
         #region FIELDS
 
@@ -184,17 +184,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<ElectricCurrent> StandardUnit
         {
             get { return Ampere; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public ElectricCurrent New(AmountType amount, IUnit<ElectricCurrent> unit)
-        {
-            return new ElectricCurrent(amount, unit);
         }
 
         /// <summary>
@@ -349,6 +338,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<ElectricCurrent>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<ElectricCurrent>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public ElectricCurrent Create(AmountType amount, IUnit<ElectricCurrent> unit)
+        {
+            return new ElectricCurrent(amount, unit);
         }
 
         #endregion

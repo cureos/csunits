@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the electric conductance quantity
     /// </summary>
     [DataContract]
-    public partial struct ElectricConductance : IQuantity<ElectricConductance>, IMeasure<ElectricConductance>, IEquatable<ElectricConductance>, IComparable<ElectricConductance>
+    public partial struct ElectricConductance : IQuantity<ElectricConductance>, IMeasure<ElectricConductance>, IMeasureFactory<ElectricConductance>, IEquatable<ElectricConductance>, IComparable<ElectricConductance>
     {
         #region FIELDS
 
@@ -185,17 +185,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<ElectricConductance> StandardUnit
         {
             get { return Siemens; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public ElectricConductance New(AmountType amount, IUnit<ElectricConductance> unit)
-        {
-            return new ElectricConductance(amount, unit);
         }
 
         /// <summary>
@@ -350,6 +339,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<ElectricConductance>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<ElectricConductance>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public ElectricConductance Create(AmountType amount, IUnit<ElectricConductance> unit)
+        {
+            return new ElectricConductance(amount, unit);
         }
 
         #endregion

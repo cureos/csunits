@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the time quantity
     /// </summary>
     [DataContract]
-    public partial struct Time : IQuantity<Time>, IMeasure<Time>, IEquatable<Time>, IComparable<Time>
+    public partial struct Time : IQuantity<Time>, IMeasure<Time>, IMeasureFactory<Time>, IEquatable<Time>, IComparable<Time>
     {
         #region FIELDS
 
@@ -180,17 +180,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<Time> StandardUnit
         {
             get { return Second; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Time New(AmountType amount, IUnit<Time> unit)
-        {
-            return new Time(amount, unit);
         }
 
         /// <summary>
@@ -345,6 +334,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<Time>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<Time>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public Time Create(AmountType amount, IUnit<Time> unit)
+        {
+            return new Time(amount, unit);
         }
 
         #endregion

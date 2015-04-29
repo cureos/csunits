@@ -30,7 +30,7 @@ namespace Cureos.Measures
     {
         private ConstantConverterUnit<UnitTestsQuantity> instance;
 
-        private struct UnitTestsQuantity : IQuantity<UnitTestsQuantity>
+        private struct UnitTestsQuantity : IQuantity<UnitTestsQuantity>, IMeasureFactory<UnitTestsQuantity>
         {
             public string DisplayName { get; private set; }
 
@@ -44,7 +44,7 @@ namespace Cureos.Measures
                 get { return this.StandardUnit; }
             }
 
-            public UnitTestsQuantity New(double amount, IUnit<UnitTestsQuantity> unit)
+            public UnitTestsQuantity Create(double amount, IUnit<UnitTestsQuantity> unit)
             {
                 throw new System.NotImplementedException();
             }

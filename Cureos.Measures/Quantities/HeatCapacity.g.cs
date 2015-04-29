@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the heat capacity quantity
     /// </summary>
     [DataContract]
-    public partial struct HeatCapacity : IQuantity<HeatCapacity>, IMeasure<HeatCapacity>, IEquatable<HeatCapacity>, IComparable<HeatCapacity>
+    public partial struct HeatCapacity : IQuantity<HeatCapacity>, IMeasure<HeatCapacity>, IMeasureFactory<HeatCapacity>, IEquatable<HeatCapacity>, IComparable<HeatCapacity>
     {
         #region FIELDS
 
@@ -185,17 +185,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<HeatCapacity> StandardUnit
         {
             get { return JoulePerKelvin; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public HeatCapacity New(AmountType amount, IUnit<HeatCapacity> unit)
-        {
-            return new HeatCapacity(amount, unit);
         }
 
         /// <summary>
@@ -350,6 +339,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<HeatCapacity>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<HeatCapacity>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public HeatCapacity Create(AmountType amount, IUnit<HeatCapacity> unit)
+        {
+            return new HeatCapacity(amount, unit);
         }
 
         #endregion

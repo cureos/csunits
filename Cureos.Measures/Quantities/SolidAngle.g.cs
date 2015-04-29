@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the solid angle quantity
     /// </summary>
     [DataContract]
-    public partial struct SolidAngle : IQuantity<SolidAngle>, IMeasure<SolidAngle>, IEquatable<SolidAngle>, IComparable<SolidAngle>
+    public partial struct SolidAngle : IQuantity<SolidAngle>, IMeasure<SolidAngle>, IMeasureFactory<SolidAngle>, IEquatable<SolidAngle>, IComparable<SolidAngle>
     {
         #region FIELDS
 
@@ -180,17 +180,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<SolidAngle> StandardUnit
         {
             get { return Steradian; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public SolidAngle New(AmountType amount, IUnit<SolidAngle> unit)
-        {
-            return new SolidAngle(amount, unit);
         }
 
         /// <summary>
@@ -345,6 +334,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<SolidAngle>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<SolidAngle>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public SolidAngle Create(AmountType amount, IUnit<SolidAngle> unit)
+        {
+            return new SolidAngle(amount, unit);
         }
 
         #endregion

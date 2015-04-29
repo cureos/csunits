@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the area quantity
     /// </summary>
     [DataContract]
-    public partial struct Area : IQuantity<Area>, IMeasure<Area>, IEquatable<Area>, IComparable<Area>
+    public partial struct Area : IQuantity<Area>, IMeasure<Area>, IMeasureFactory<Area>, IEquatable<Area>, IComparable<Area>
     {
         #region FIELDS
 
@@ -182,17 +182,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<Area> StandardUnit
         {
             get { return SquareMeter; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Area New(AmountType amount, IUnit<Area> unit)
-        {
-            return new Area(amount, unit);
         }
 
         /// <summary>
@@ -347,6 +336,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<Area>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<Area>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public Area Create(AmountType amount, IUnit<Area> unit)
+        {
+            return new Area(amount, unit);
         }
 
         #endregion

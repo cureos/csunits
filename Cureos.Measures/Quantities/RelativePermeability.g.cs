@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the relative permeability quantity
     /// </summary>
     [DataContract]
-    public partial struct RelativePermeability : IQuantity<RelativePermeability>, IMeasure<RelativePermeability>, IEquatable<RelativePermeability>, IComparable<RelativePermeability>
+    public partial struct RelativePermeability : IQuantity<RelativePermeability>, IMeasure<RelativePermeability>, IMeasureFactory<RelativePermeability>, IEquatable<RelativePermeability>, IComparable<RelativePermeability>
     {
         #region FIELDS
 
@@ -174,17 +174,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<RelativePermeability> StandardUnit
         {
             get { return One; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public RelativePermeability New(AmountType amount, IUnit<RelativePermeability> unit)
-        {
-            return new RelativePermeability(amount, unit);
         }
 
         /// <summary>
@@ -339,6 +328,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<RelativePermeability>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<RelativePermeability>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public RelativePermeability Create(AmountType amount, IUnit<RelativePermeability> unit)
+        {
+            return new RelativePermeability(amount, unit);
         }
 
         #endregion

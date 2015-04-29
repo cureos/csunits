@@ -89,7 +89,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the <#= displayNameLower #> quantity
     /// </summary>
     [DataContract]
-    public partial struct <#= ClassName #> : IQuantity<<#= ClassName #>>, IMeasure<<#= ClassName #>>, IEquatable<<#= ClassName #>>, IComparable<<#= ClassName #>>
+    public partial struct <#= ClassName #> : IQuantity<<#= ClassName #>>, IMeasure<<#= ClassName #>>, IMeasureFactory<<#= ClassName #>>, IEquatable<<#= ClassName #>>, IComparable<<#= ClassName #>>
     {
         #region FIELDS
 
@@ -278,17 +278,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public <#= ClassName #> New(AmountType amount, IUnit<<#= ClassName #>> unit)
-        {
-            return new <#= ClassName #>(amount, unit);
-        }
-
-        /// <summary>
         /// Indicates whether the current object is equal to another object of the same type.
         /// </summary>
         /// <returns>
@@ -440,6 +429,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<<#= ClassName #>>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<<#= ClassName #>>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public <#= ClassName #> Create(AmountType amount, IUnit<<#= ClassName #>> unit)
+        {
+            return new <#= ClassName #>(amount, unit);
         }
 
         #endregion

@@ -1,4 +1,4 @@
-/*
+﻿/*
  *  Copyright (c) 2011-2015, Cureos AB.
  *  All rights reserved.
  *  http://www.cureos.com
@@ -19,41 +19,32 @@
  *  License along with CSUnits. If not, see http://www.gnu.org/licenses/.
  */
 
+
 namespace Cureos.Measures
 {
-    using System;
+#if SINGLE
+    using AmountType = System.Single;
+#elif DECIMAL
+    using AmountType = System.Decimal;
+#elif DOUBLE
+    using AmountType = System.Double;
+#endif
 
     /// <summary>
-    /// Interface representing a physical quantity
+    /// The MeasureFactory interface.
     /// </summary>
-    public interface IQuantity : IEquatable<IQuantity>
+    /// <typeparam name="Q">
+    /// A struct that should implement both the IQuantity and IMeasure interfaces
+    /// </typeparam>
+    public interface IMeasureFactory<Q> where Q : struct, IQuantity<Q>
     {
-        /// <summary>
-        /// Gets the display name of the quantity
-        /// </summary>
-        string DisplayName { get; }
 
         /// <summary>
-        /// Gets the physical dimension of the quantity in terms of SI units
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
         /// </summary>
-        QuantityDimension Dimension { get; }
-
-        /// <summary>
-        /// Gets the standard unit associated with the quantity
-        /// </summary>
-        IUnit StandardUnit { get; }
-    }
-
-    /// <summary>
-    /// Typed interface representing a physical quantity
-    /// </summary>
-    /// <typeparam name="Q"></typeparam>
-    public interface IQuantity<Q> : IQuantity where Q : struct, IQuantity<Q>
-    {
-        /// <summary>
-        /// Gets the standard unit associated with the quantity
-        /// </summary>
-        new IUnit<Q> StandardUnit { get; }
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        Q Create(AmountType amount, IUnit<Q> unit);
     }
 }
-

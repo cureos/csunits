@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the current density quantity
     /// </summary>
     [DataContract]
-    public partial struct CurrentDensity : IQuantity<CurrentDensity>, IMeasure<CurrentDensity>, IEquatable<CurrentDensity>, IComparable<CurrentDensity>
+    public partial struct CurrentDensity : IQuantity<CurrentDensity>, IMeasure<CurrentDensity>, IMeasureFactory<CurrentDensity>, IEquatable<CurrentDensity>, IComparable<CurrentDensity>
     {
         #region FIELDS
 
@@ -185,17 +185,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<CurrentDensity> StandardUnit
         {
             get { return AmperePerSquareMeter; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public CurrentDensity New(AmountType amount, IUnit<CurrentDensity> unit)
-        {
-            return new CurrentDensity(amount, unit);
         }
 
         /// <summary>
@@ -350,6 +339,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<CurrentDensity>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<CurrentDensity>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public CurrentDensity Create(AmountType amount, IUnit<CurrentDensity> unit)
+        {
+            return new CurrentDensity(amount, unit);
         }
 
         #endregion

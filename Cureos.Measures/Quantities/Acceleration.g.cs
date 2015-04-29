@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the acceleration quantity
     /// </summary>
     [DataContract]
-    public partial struct Acceleration : IQuantity<Acceleration>, IMeasure<Acceleration>, IEquatable<Acceleration>, IComparable<Acceleration>
+    public partial struct Acceleration : IQuantity<Acceleration>, IMeasure<Acceleration>, IMeasureFactory<Acceleration>, IEquatable<Acceleration>, IComparable<Acceleration>
     {
         #region FIELDS
 
@@ -181,17 +181,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<Acceleration> StandardUnit
         {
             get { return MeterPerSecondSquared; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Acceleration New(AmountType amount, IUnit<Acceleration> unit)
-        {
-            return new Acceleration(amount, unit);
         }
 
         /// <summary>
@@ -346,6 +335,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<Acceleration>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<Acceleration>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public Acceleration Create(AmountType amount, IUnit<Acceleration> unit)
+        {
+            return new Acceleration(amount, unit);
         }
 
         #endregion

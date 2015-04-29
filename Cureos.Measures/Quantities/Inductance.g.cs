@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the inductance quantity
     /// </summary>
     [DataContract]
-    public partial struct Inductance : IQuantity<Inductance>, IMeasure<Inductance>, IEquatable<Inductance>, IComparable<Inductance>
+    public partial struct Inductance : IQuantity<Inductance>, IMeasure<Inductance>, IMeasureFactory<Inductance>, IEquatable<Inductance>, IComparable<Inductance>
     {
         #region FIELDS
 
@@ -185,17 +185,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<Inductance> StandardUnit
         {
             get { return Henry; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Inductance New(AmountType amount, IUnit<Inductance> unit)
-        {
-            return new Inductance(amount, unit);
         }
 
         /// <summary>
@@ -350,6 +339,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<Inductance>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<Inductance>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public Inductance Create(AmountType amount, IUnit<Inductance> unit)
+        {
+            return new Inductance(amount, unit);
         }
 
         #endregion

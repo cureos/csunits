@@ -36,9 +36,11 @@ namespace Cureos.Measures
     /// where unit conversion is applied via defined functions.
     /// </summary>
     /// <typeparam name="Q">Quantity type with which the unit is associated</typeparam>
-    public sealed class FunctionConverterUnit<Q> : IUnit<Q> where Q : struct, IQuantity<Q>
+    public sealed class FunctionConverterUnit<Q> : IUnit<Q> where Q : struct, IQuantity<Q>, IMeasureFactory<Q>
     {
         #region FIELDS
+
+        private readonly Q quantity = default(Q);
 
         private string displayName;
 
@@ -78,7 +80,7 @@ namespace Cureos.Measures
         /// </summary>
         IQuantity IUnit.Quantity
         {
-            get { return this.Quantity; }
+            get { return this.quantity; }
         }
 
         /// <summary>
@@ -97,7 +99,7 @@ namespace Cureos.Measures
         /// </summary>
         public IQuantity<Q> Quantity
         {
-            get { return default(Q); }
+            get { return this.quantity; }
         }
 
         /// <summary>
@@ -171,7 +173,8 @@ namespace Cureos.Measures
         /// <returns>A new measure object of the specified quantity.</returns>
         public static Q operator *(AmountType amount, FunctionConverterUnit<Q> unit)
         {
-            return unit.Quantity.New(amount, unit);
+            // ReSharper disable once ImpureMethodCallOnReadonlyValueField
+            return unit.quantity.Create(amount, unit);
         }
 
         #endregion

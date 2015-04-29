@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the angular acceleration quantity
     /// </summary>
     [DataContract]
-    public partial struct AngularAcceleration : IQuantity<AngularAcceleration>, IMeasure<AngularAcceleration>, IEquatable<AngularAcceleration>, IComparable<AngularAcceleration>
+    public partial struct AngularAcceleration : IQuantity<AngularAcceleration>, IMeasure<AngularAcceleration>, IMeasureFactory<AngularAcceleration>, IEquatable<AngularAcceleration>, IComparable<AngularAcceleration>
     {
         #region FIELDS
 
@@ -185,17 +185,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<AngularAcceleration> StandardUnit
         {
             get { return RadianPerSecondSquared; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public AngularAcceleration New(AmountType amount, IUnit<AngularAcceleration> unit)
-        {
-            return new AngularAcceleration(amount, unit);
         }
 
         /// <summary>
@@ -350,6 +339,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<AngularAcceleration>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<AngularAcceleration>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public AngularAcceleration Create(AmountType amount, IUnit<AngularAcceleration> unit)
+        {
+            return new AngularAcceleration(amount, unit);
         }
 
         #endregion

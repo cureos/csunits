@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the activity quantity
     /// </summary>
     [DataContract]
-    public partial struct Activity : IQuantity<Activity>, IMeasure<Activity>, IEquatable<Activity>, IComparable<Activity>
+    public partial struct Activity : IQuantity<Activity>, IMeasure<Activity>, IMeasureFactory<Activity>, IEquatable<Activity>, IComparable<Activity>
     {
         #region FIELDS
 
@@ -183,17 +183,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<Activity> StandardUnit
         {
             get { return Becquerel; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Activity New(AmountType amount, IUnit<Activity> unit)
-        {
-            return new Activity(amount, unit);
         }
 
         /// <summary>
@@ -348,6 +337,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<Activity>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<Activity>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public Activity Create(AmountType amount, IUnit<Activity> unit)
+        {
+            return new Activity(amount, unit);
         }
 
         #endregion

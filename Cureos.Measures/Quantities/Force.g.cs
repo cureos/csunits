@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the force quantity
     /// </summary>
     [DataContract]
-    public partial struct Force : IQuantity<Force>, IMeasure<Force>, IEquatable<Force>, IComparable<Force>
+    public partial struct Force : IQuantity<Force>, IMeasure<Force>, IMeasureFactory<Force>, IEquatable<Force>, IComparable<Force>
     {
         #region FIELDS
 
@@ -185,17 +185,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<Force> StandardUnit
         {
             get { return Newton; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Force New(AmountType amount, IUnit<Force> unit)
-        {
-            return new Force(amount, unit);
         }
 
         /// <summary>
@@ -350,6 +339,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<Force>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<Force>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public Force Create(AmountType amount, IUnit<Force> unit)
+        {
+            return new Force(amount, unit);
         }
 
         #endregion

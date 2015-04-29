@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the number quantity
     /// </summary>
     [DataContract]
-    public partial struct Number : IQuantity<Number>, IMeasure<Number>, IEquatable<Number>, IComparable<Number>
+    public partial struct Number : IQuantity<Number>, IMeasure<Number>, IMeasureFactory<Number>, IEquatable<Number>, IComparable<Number>
     {
         #region FIELDS
 
@@ -174,17 +174,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<Number> StandardUnit
         {
             get { return One; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Number New(AmountType amount, IUnit<Number> unit)
-        {
-            return new Number(amount, unit);
         }
 
         /// <summary>
@@ -339,6 +328,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<Number>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<Number>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public Number Create(AmountType amount, IUnit<Number> unit)
+        {
+            return new Number(amount, unit);
         }
 
         #endregion

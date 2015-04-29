@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the electric resistance quantity
     /// </summary>
     [DataContract]
-    public partial struct ElectricResistance : IQuantity<ElectricResistance>, IMeasure<ElectricResistance>, IEquatable<ElectricResistance>, IComparable<ElectricResistance>
+    public partial struct ElectricResistance : IQuantity<ElectricResistance>, IMeasure<ElectricResistance>, IMeasureFactory<ElectricResistance>, IEquatable<ElectricResistance>, IComparable<ElectricResistance>
     {
         #region FIELDS
 
@@ -185,17 +185,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<ElectricResistance> StandardUnit
         {
             get { return Ohm; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public ElectricResistance New(AmountType amount, IUnit<ElectricResistance> unit)
-        {
-            return new ElectricResistance(amount, unit);
         }
 
         /// <summary>
@@ -350,6 +339,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<ElectricResistance>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<ElectricResistance>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public ElectricResistance Create(AmountType amount, IUnit<ElectricResistance> unit)
+        {
+            return new ElectricResistance(amount, unit);
         }
 
         #endregion

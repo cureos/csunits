@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the moment of force quantity
     /// </summary>
     [DataContract]
-    public partial struct MomentOfForce : IQuantity<MomentOfForce>, IMeasure<MomentOfForce>, IEquatable<MomentOfForce>, IComparable<MomentOfForce>
+    public partial struct MomentOfForce : IQuantity<MomentOfForce>, IMeasure<MomentOfForce>, IMeasureFactory<MomentOfForce>, IEquatable<MomentOfForce>, IComparable<MomentOfForce>
     {
         #region FIELDS
 
@@ -185,17 +185,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<MomentOfForce> StandardUnit
         {
             get { return NewtonMeter; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public MomentOfForce New(AmountType amount, IUnit<MomentOfForce> unit)
-        {
-            return new MomentOfForce(amount, unit);
         }
 
         /// <summary>
@@ -350,6 +339,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<MomentOfForce>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<MomentOfForce>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public MomentOfForce Create(AmountType amount, IUnit<MomentOfForce> unit)
+        {
+            return new MomentOfForce(amount, unit);
         }
 
         #endregion

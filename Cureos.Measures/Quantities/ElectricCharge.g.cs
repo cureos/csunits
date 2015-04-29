@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the electric charge quantity
     /// </summary>
     [DataContract]
-    public partial struct ElectricCharge : IQuantity<ElectricCharge>, IMeasure<ElectricCharge>, IEquatable<ElectricCharge>, IComparable<ElectricCharge>
+    public partial struct ElectricCharge : IQuantity<ElectricCharge>, IMeasure<ElectricCharge>, IMeasureFactory<ElectricCharge>, IEquatable<ElectricCharge>, IComparable<ElectricCharge>
     {
         #region FIELDS
 
@@ -181,17 +181,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<ElectricCharge> StandardUnit
         {
             get { return Coulomb; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public ElectricCharge New(AmountType amount, IUnit<ElectricCharge> unit)
-        {
-            return new ElectricCharge(amount, unit);
         }
 
         /// <summary>
@@ -346,6 +335,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<ElectricCharge>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<ElectricCharge>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public ElectricCharge Create(AmountType amount, IUnit<ElectricCharge> unit)
+        {
+            return new ElectricCharge(amount, unit);
         }
 
         #endregion

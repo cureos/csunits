@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the absorbed dose quantity
     /// </summary>
     [DataContract]
-    public partial struct AbsorbedDose : IQuantity<AbsorbedDose>, IMeasure<AbsorbedDose>, IEquatable<AbsorbedDose>, IComparable<AbsorbedDose>
+    public partial struct AbsorbedDose : IQuantity<AbsorbedDose>, IMeasure<AbsorbedDose>, IMeasureFactory<AbsorbedDose>, IEquatable<AbsorbedDose>, IComparable<AbsorbedDose>
     {
         #region FIELDS
 
@@ -185,17 +185,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<AbsorbedDose> StandardUnit
         {
             get { return Gray; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public AbsorbedDose New(AmountType amount, IUnit<AbsorbedDose> unit)
-        {
-            return new AbsorbedDose(amount, unit);
         }
 
         /// <summary>
@@ -350,6 +339,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<AbsorbedDose>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<AbsorbedDose>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public AbsorbedDose Create(AmountType amount, IUnit<AbsorbedDose> unit)
+        {
+            return new AbsorbedDose(amount, unit);
         }
 
         #endregion

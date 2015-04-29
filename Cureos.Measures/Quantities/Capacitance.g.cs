@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the capacitance quantity
     /// </summary>
     [DataContract]
-    public partial struct Capacitance : IQuantity<Capacitance>, IMeasure<Capacitance>, IEquatable<Capacitance>, IComparable<Capacitance>
+    public partial struct Capacitance : IQuantity<Capacitance>, IMeasure<Capacitance>, IMeasureFactory<Capacitance>, IEquatable<Capacitance>, IComparable<Capacitance>
     {
         #region FIELDS
 
@@ -184,17 +184,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<Capacitance> StandardUnit
         {
             get { return Farad; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Capacitance New(AmountType amount, IUnit<Capacitance> unit)
-        {
-            return new Capacitance(amount, unit);
         }
 
         /// <summary>
@@ -349,6 +338,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<Capacitance>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<Capacitance>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public Capacitance Create(AmountType amount, IUnit<Capacitance> unit)
+        {
+            return new Capacitance(amount, unit);
         }
 
         #endregion

@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the surface density quantity
     /// </summary>
     [DataContract]
-    public partial struct SurfaceDensity : IQuantity<SurfaceDensity>, IMeasure<SurfaceDensity>, IEquatable<SurfaceDensity>, IComparable<SurfaceDensity>
+    public partial struct SurfaceDensity : IQuantity<SurfaceDensity>, IMeasure<SurfaceDensity>, IMeasureFactory<SurfaceDensity>, IEquatable<SurfaceDensity>, IComparable<SurfaceDensity>
     {
         #region FIELDS
 
@@ -176,17 +176,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<SurfaceDensity> StandardUnit
         {
             get { return KiloGramPerSquareMeter; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public SurfaceDensity New(AmountType amount, IUnit<SurfaceDensity> unit)
-        {
-            return new SurfaceDensity(amount, unit);
         }
 
         /// <summary>
@@ -341,6 +330,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<SurfaceDensity>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<SurfaceDensity>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public SurfaceDensity Create(AmountType amount, IUnit<SurfaceDensity> unit)
+        {
+            return new SurfaceDensity(amount, unit);
         }
 
         #endregion

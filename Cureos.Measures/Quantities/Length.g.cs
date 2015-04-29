@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the length quantity
     /// </summary>
     [DataContract]
-    public partial struct Length : IQuantity<Length>, IMeasure<Length>, IEquatable<Length>, IComparable<Length>
+    public partial struct Length : IQuantity<Length>, IMeasure<Length>, IMeasureFactory<Length>, IEquatable<Length>, IComparable<Length>
     {
         #region FIELDS
 
@@ -191,17 +191,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<Length> StandardUnit
         {
             get { return Meter; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Length New(AmountType amount, IUnit<Length> unit)
-        {
-            return new Length(amount, unit);
         }
 
         /// <summary>
@@ -356,6 +345,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<Length>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<Length>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public Length Create(AmountType amount, IUnit<Length> unit)
+        {
+            return new Length(amount, unit);
         }
 
         #endregion

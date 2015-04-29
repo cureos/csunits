@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the luminous flux quantity
     /// </summary>
     [DataContract]
-    public partial struct LuminousFlux : IQuantity<LuminousFlux>, IMeasure<LuminousFlux>, IEquatable<LuminousFlux>, IComparable<LuminousFlux>
+    public partial struct LuminousFlux : IQuantity<LuminousFlux>, IMeasure<LuminousFlux>, IMeasureFactory<LuminousFlux>, IEquatable<LuminousFlux>, IComparable<LuminousFlux>
     {
         #region FIELDS
 
@@ -185,17 +185,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<LuminousFlux> StandardUnit
         {
             get { return Lumen; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public LuminousFlux New(AmountType amount, IUnit<LuminousFlux> unit)
-        {
-            return new LuminousFlux(amount, unit);
         }
 
         /// <summary>
@@ -350,6 +339,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<LuminousFlux>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<LuminousFlux>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public LuminousFlux Create(AmountType amount, IUnit<LuminousFlux> unit)
+        {
+            return new LuminousFlux(amount, unit);
         }
 
         #endregion

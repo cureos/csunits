@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the illuminance quantity
     /// </summary>
     [DataContract]
-    public partial struct Illuminance : IQuantity<Illuminance>, IMeasure<Illuminance>, IEquatable<Illuminance>, IComparable<Illuminance>
+    public partial struct Illuminance : IQuantity<Illuminance>, IMeasure<Illuminance>, IMeasureFactory<Illuminance>, IEquatable<Illuminance>, IComparable<Illuminance>
     {
         #region FIELDS
 
@@ -185,17 +185,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<Illuminance> StandardUnit
         {
             get { return Lux; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Illuminance New(AmountType amount, IUnit<Illuminance> unit)
-        {
-            return new Illuminance(amount, unit);
         }
 
         /// <summary>
@@ -350,6 +339,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<Illuminance>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<Illuminance>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public Illuminance Create(AmountType amount, IUnit<Illuminance> unit)
+        {
+            return new Illuminance(amount, unit);
         }
 
         #endregion

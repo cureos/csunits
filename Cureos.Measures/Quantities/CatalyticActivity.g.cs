@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the catalytic activity quantity
     /// </summary>
     [DataContract]
-    public partial struct CatalyticActivity : IQuantity<CatalyticActivity>, IMeasure<CatalyticActivity>, IEquatable<CatalyticActivity>, IComparable<CatalyticActivity>
+    public partial struct CatalyticActivity : IQuantity<CatalyticActivity>, IMeasure<CatalyticActivity>, IMeasureFactory<CatalyticActivity>, IEquatable<CatalyticActivity>, IComparable<CatalyticActivity>
     {
         #region FIELDS
 
@@ -183,17 +183,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<CatalyticActivity> StandardUnit
         {
             get { return Katal; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public CatalyticActivity New(AmountType amount, IUnit<CatalyticActivity> unit)
-        {
-            return new CatalyticActivity(amount, unit);
         }
 
         /// <summary>
@@ -348,6 +337,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<CatalyticActivity>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<CatalyticActivity>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public CatalyticActivity Create(AmountType amount, IUnit<CatalyticActivity> unit)
+        {
+            return new CatalyticActivity(amount, unit);
         }
 
         #endregion

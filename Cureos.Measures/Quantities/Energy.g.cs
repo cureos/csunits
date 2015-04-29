@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the energy quantity
     /// </summary>
     [DataContract]
-    public partial struct Energy : IQuantity<Energy>, IMeasure<Energy>, IEquatable<Energy>, IComparable<Energy>
+    public partial struct Energy : IQuantity<Energy>, IMeasure<Energy>, IMeasureFactory<Energy>, IEquatable<Energy>, IComparable<Energy>
     {
         #region FIELDS
 
@@ -199,17 +199,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Energy New(AmountType amount, IUnit<Energy> unit)
-        {
-            return new Energy(amount, unit);
-        }
-
-        /// <summary>
         /// Indicates whether the current object is equal to another object of the same type.
         /// </summary>
         /// <returns>
@@ -361,6 +350,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<Energy>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<Energy>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public Energy Create(AmountType amount, IUnit<Energy> unit)
+        {
+            return new Energy(amount, unit);
         }
 
         #endregion

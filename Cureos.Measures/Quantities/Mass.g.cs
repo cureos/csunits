@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the mass quantity
     /// </summary>
     [DataContract]
-    public partial struct Mass : IQuantity<Mass>, IMeasure<Mass>, IEquatable<Mass>, IComparable<Mass>
+    public partial struct Mass : IQuantity<Mass>, IMeasure<Mass>, IMeasureFactory<Mass>, IEquatable<Mass>, IComparable<Mass>
     {
         #region FIELDS
 
@@ -191,17 +191,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<Mass> StandardUnit
         {
             get { return KiloGram; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Mass New(AmountType amount, IUnit<Mass> unit)
-        {
-            return new Mass(amount, unit);
         }
 
         /// <summary>
@@ -356,6 +345,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<Mass>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<Mass>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public Mass Create(AmountType amount, IUnit<Mass> unit)
+        {
+            return new Mass(amount, unit);
         }
 
         #endregion

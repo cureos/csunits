@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the angular velocity quantity
     /// </summary>
     [DataContract]
-    public partial struct AngularVelocity : IQuantity<AngularVelocity>, IMeasure<AngularVelocity>, IEquatable<AngularVelocity>, IComparable<AngularVelocity>
+    public partial struct AngularVelocity : IQuantity<AngularVelocity>, IMeasure<AngularVelocity>, IMeasureFactory<AngularVelocity>, IEquatable<AngularVelocity>, IComparable<AngularVelocity>
     {
         #region FIELDS
 
@@ -185,17 +185,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<AngularVelocity> StandardUnit
         {
             get { return RadianPerSecond; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public AngularVelocity New(AmountType amount, IUnit<AngularVelocity> unit)
-        {
-            return new AngularVelocity(amount, unit);
         }
 
         /// <summary>
@@ -350,6 +339,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<AngularVelocity>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<AngularVelocity>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public AngularVelocity Create(AmountType amount, IUnit<AngularVelocity> unit)
+        {
+            return new AngularVelocity(amount, unit);
         }
 
         #endregion

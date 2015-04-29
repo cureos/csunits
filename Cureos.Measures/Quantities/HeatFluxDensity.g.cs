@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the heat flux density quantity
     /// </summary>
     [DataContract]
-    public partial struct HeatFluxDensity : IQuantity<HeatFluxDensity>, IMeasure<HeatFluxDensity>, IEquatable<HeatFluxDensity>, IComparable<HeatFluxDensity>
+    public partial struct HeatFluxDensity : IQuantity<HeatFluxDensity>, IMeasure<HeatFluxDensity>, IMeasureFactory<HeatFluxDensity>, IEquatable<HeatFluxDensity>, IComparable<HeatFluxDensity>
     {
         #region FIELDS
 
@@ -185,17 +185,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<HeatFluxDensity> StandardUnit
         {
             get { return WattPerSquareMeter; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public HeatFluxDensity New(AmountType amount, IUnit<HeatFluxDensity> unit)
-        {
-            return new HeatFluxDensity(amount, unit);
         }
 
         /// <summary>
@@ -350,6 +339,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<HeatFluxDensity>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<HeatFluxDensity>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public HeatFluxDensity Create(AmountType amount, IUnit<HeatFluxDensity> unit)
+        {
+            return new HeatFluxDensity(amount, unit);
         }
 
         #endregion

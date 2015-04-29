@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the amount of substance quantity
     /// </summary>
     [DataContract]
-    public partial struct AmountOfSubstance : IQuantity<AmountOfSubstance>, IMeasure<AmountOfSubstance>, IEquatable<AmountOfSubstance>, IComparable<AmountOfSubstance>
+    public partial struct AmountOfSubstance : IQuantity<AmountOfSubstance>, IMeasure<AmountOfSubstance>, IMeasureFactory<AmountOfSubstance>, IEquatable<AmountOfSubstance>, IComparable<AmountOfSubstance>
     {
         #region FIELDS
 
@@ -185,17 +185,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<AmountOfSubstance> StandardUnit
         {
             get { return Mole; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public AmountOfSubstance New(AmountType amount, IUnit<AmountOfSubstance> unit)
-        {
-            return new AmountOfSubstance(amount, unit);
         }
 
         /// <summary>
@@ -350,6 +339,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<AmountOfSubstance>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<AmountOfSubstance>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public AmountOfSubstance Create(AmountType amount, IUnit<AmountOfSubstance> unit)
+        {
+            return new AmountOfSubstance(amount, unit);
         }
 
         #endregion

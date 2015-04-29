@@ -36,7 +36,7 @@ namespace Cureos.Measures
     /// </summary>
     /// <typeparam name="Q">Quantity type with which the unit is associated</typeparam>
     [DataContract]
-    public sealed class ConstantConverterUnit<Q> : IUnit<Q> where Q : struct, IQuantity<Q>
+    public sealed class ConstantConverterUnit<Q> : IUnit<Q> where Q : struct, IQuantity<Q>, IMeasureFactory<Q>
     {
         #region FIELDS
 
@@ -193,12 +193,13 @@ namespace Cureos.Measures
         /// <summary>
         /// Creates a new measure object of the specified quantity.
         /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
+        /// <param name="amount">The quantity amount.</param>
+        /// <param name="unit">The quantity unit.</param>
         /// <returns>A new measure object of the specified quantity.</returns>
         public static Q operator *(AmountType amount, ConstantConverterUnit<Q> unit)
         {
-            return unit.Quantity.New(amount, unit);
+            // ReSharper disable once ImpureMethodCallOnReadonlyValueField
+            return unit.quantity.Create(amount, unit);
         }
 
         #endregion

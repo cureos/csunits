@@ -63,6 +63,7 @@
     <Compile Include="Factors.cs" />
     <Compile Include="IMeasure.cs" />
     <Compile Include="IMeasureDoublet.cs" />
+    <Compile Include="IMeasureFactory.cs" />
     <Compile Include="IMeasureTriplet.cs" />
     <Compile Include="IQuantity.cs" />
     <Compile Include="IUnit.cs" />

@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the mass density quantity
     /// </summary>
     [DataContract]
-    public partial struct MassDensity : IQuantity<MassDensity>, IMeasure<MassDensity>, IEquatable<MassDensity>, IComparable<MassDensity>
+    public partial struct MassDensity : IQuantity<MassDensity>, IMeasure<MassDensity>, IMeasureFactory<MassDensity>, IEquatable<MassDensity>, IComparable<MassDensity>
     {
         #region FIELDS
 
@@ -178,17 +178,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<MassDensity> StandardUnit
         {
             get { return KiloGramPerCubicMeter; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public MassDensity New(AmountType amount, IUnit<MassDensity> unit)
-        {
-            return new MassDensity(amount, unit);
         }
 
         /// <summary>
@@ -343,6 +332,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<MassDensity>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<MassDensity>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public MassDensity Create(AmountType amount, IUnit<MassDensity> unit)
+        {
+            return new MassDensity(amount, unit);
         }
 
         #endregion

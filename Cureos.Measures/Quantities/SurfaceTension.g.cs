@@ -41,7 +41,7 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the surface tension quantity
     /// </summary>
     [DataContract]
-    public partial struct SurfaceTension : IQuantity<SurfaceTension>, IMeasure<SurfaceTension>, IEquatable<SurfaceTension>, IComparable<SurfaceTension>
+    public partial struct SurfaceTension : IQuantity<SurfaceTension>, IMeasure<SurfaceTension>, IMeasureFactory<SurfaceTension>, IEquatable<SurfaceTension>, IComparable<SurfaceTension>
     {
         #region FIELDS
 
@@ -185,17 +185,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<SurfaceTension> StandardUnit
         {
             get { return NewtonPerMeter; }
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public SurfaceTension New(AmountType amount, IUnit<SurfaceTension> unit)
-        {
-            return new SurfaceTension(amount, unit);
         }
 
         /// <summary>
@@ -350,6 +339,21 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<SurfaceTension>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
+        }
+
+        #endregion
+
+        #region Implementation of IMeasureFactory<SurfaceTension>
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public SurfaceTension Create(AmountType amount, IUnit<SurfaceTension> unit)
+        {
+            return new SurfaceTension(amount, unit);
         }
 
         #endregion
