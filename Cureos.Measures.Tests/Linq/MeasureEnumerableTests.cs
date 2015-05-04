@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  *  Copyright (c) 2011-2015, Cureos AB.
  *  All rights reserved.
  *  http://www.cureos.com
@@ -19,32 +19,35 @@
  *  License along with CSUnits. If not, see http://www.gnu.org/licenses/.
  */
 
-namespace Cureos.Measures.Quantities
+namespace Cureos.Measures.Linq
 {
-    using System;
+    using System.Linq;
+
+    using Cureos.Measures.Quantities;
 
     using NUnit.Framework;
 
     [TestFixture]
-    public class WaveNumberTests
+    public class MeasureEnumerableTests
     {
         #region Unit tests
 
         [Test]
-        public void StandardMeasureIndexer_ReciprocalCentiMeter_ReturnsHundredthValue()
+        public void ToStandardMeasures_DoubleNoUnitConversion_ReturningNonConvertedStandardMeasures()
         {
-            var expected = new InUnitMeasure<WaveNumber>(1.0, WaveNumber.ReciprocalCentiMeter);
-            var actual = new Measure<WaveNumber>(100.0)[WaveNumber.ReciprocalCentiMeter];
+            var measures = new[] { 1.0, 2.0, 3.0, -2.0 }.ToMeasures<Length>();
+            var expected = new Measure<Length>(3.0);
+            var actual = measures.ElementAt(2);
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }
 
         [Test]
-        public void SymbolGetter_ReciprocalCentiMeter_ShouldDisplayWithSuperscriptMinus()
+        public void ToStandardMeasures_DecimalWithUnitConversion_ReturningConvertedStandardMeasures()
         {
-            var expected = "cm\u207b¹";
-            var actual = WaveNumber.ReciprocalCentiMeter.Symbol;
-            Console.WriteLine(actual);
-            Assert.AreEqual(expected, actual);
+            var measures = new[] { 1.0m, 2.0m, 3.0m, -2.0m }.ToMeasures(ElectricCurrent.MilliAmpere);
+            var expected = new Measure<ElectricCurrent>(0.002m);
+            var actual = measures.ElementAt(1);
+            MeasureAssert.MeasuresAreEqual(expected, actual);
         }
 
         #endregion

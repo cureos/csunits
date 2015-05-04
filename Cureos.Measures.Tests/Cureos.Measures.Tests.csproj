@@ -49,7 +49,7 @@
     <Compile Include="IMeasureTests.cs" />
     <Compile Include="IMeasureTripletAssert.cs" />
     <Compile Include="Linq\ConversionsTests.cs" />
-    <Compile Include="Linq\StandardMeasureEnumerableTests.cs" />
+    <Compile Include="Linq\MeasureEnumerableTests.cs" />
     <Compile Include="MeasureAssert.cs" />
     <Compile Include="InUnitMeasureTests.cs" />
     <Compile Include="PrimeNumbersTests.cs" />
