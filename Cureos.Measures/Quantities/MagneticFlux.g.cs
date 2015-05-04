@@ -346,12 +346,64 @@ namespace Cureos.Measures.Quantities
         #region Implementation of IMeasureFactory<MagneticFlux>
 
         /// <summary>
+        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+        public MagneticFlux Create(double amount)
+        {
+            return new MagneticFlux(amount);
+        }
+
+        /// <summary>
         /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public MagneticFlux Create(AmountType amount, IUnit<MagneticFlux> unit)
+        public MagneticFlux Create(double amount, IUnit<MagneticFlux> unit)
+        {
+            return new MagneticFlux(amount, unit);
+        }
+
+        /// <summary>
+        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+        public MagneticFlux Create(float amount)
+        {
+            return new MagneticFlux(amount);
+        }
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public MagneticFlux Create(float amount, IUnit<MagneticFlux> unit)
+        {
+            return new MagneticFlux(amount, unit);
+        }
+
+        /// <summary>
+        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+        public MagneticFlux Create(decimal amount)
+        {
+            return new MagneticFlux(amount);
+        }
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public MagneticFlux Create(decimal amount, IUnit<MagneticFlux> unit)
         {
             return new MagneticFlux(amount, unit);
         }

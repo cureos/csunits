@@ -337,12 +337,64 @@ namespace Cureos.Measures.Quantities
         #region Implementation of IMeasureFactory<SurfaceDensity>
 
         /// <summary>
+        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+        public SurfaceDensity Create(double amount)
+        {
+            return new SurfaceDensity(amount);
+        }
+
+        /// <summary>
         /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public SurfaceDensity Create(AmountType amount, IUnit<SurfaceDensity> unit)
+        public SurfaceDensity Create(double amount, IUnit<SurfaceDensity> unit)
+        {
+            return new SurfaceDensity(amount, unit);
+        }
+
+        /// <summary>
+        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+        public SurfaceDensity Create(float amount)
+        {
+            return new SurfaceDensity(amount);
+        }
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public SurfaceDensity Create(float amount, IUnit<SurfaceDensity> unit)
+        {
+            return new SurfaceDensity(amount, unit);
+        }
+
+        /// <summary>
+        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+        public SurfaceDensity Create(decimal amount)
+        {
+            return new SurfaceDensity(amount);
+        }
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public SurfaceDensity Create(decimal amount, IUnit<SurfaceDensity> unit)
         {
             return new SurfaceDensity(amount, unit);
         }

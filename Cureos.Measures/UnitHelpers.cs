@@ -25,7 +25,7 @@ namespace Cureos.Measures
     using System.Linq;
     using System.Reflection;
 
-    public static class UnitHelpers
+    internal static class UnitHelpers
     {
         internal static string CreateUnitDisplayName(IUnit unit)
         {

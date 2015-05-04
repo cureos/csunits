@@ -22,14 +22,6 @@
 
 namespace Cureos.Measures
 {
-#if SINGLE
-    using AmountType = System.Single;
-#elif DECIMAL
-    using AmountType = System.Decimal;
-#elif DOUBLE
-    using AmountType = System.Double;
-#endif
-
     /// <summary>
     /// The MeasureFactory interface.
     /// </summary>
@@ -38,6 +30,12 @@ namespace Cureos.Measures
     /// </typeparam>
     public interface IMeasureFactory<Q> where Q : struct, IQuantity<Q>
     {
+        /// <summary>
+        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+        Q Create(double amount);
 
         /// <summary>
         /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
@@ -45,6 +43,36 @@ namespace Cureos.Measures
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        Q Create(AmountType amount, IUnit<Q> unit);
+        Q Create(double amount, IUnit<Q> unit);
+
+        /// <summary>
+        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+        Q Create(float amount);
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        Q Create(float amount, IUnit<Q> unit);
+
+        /// <summary>
+        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+        Q Create(decimal amount);
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        Q Create(decimal amount, IUnit<Q> unit);
     }
 }

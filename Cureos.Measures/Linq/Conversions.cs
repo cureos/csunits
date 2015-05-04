@@ -69,41 +69,5 @@ namespace Cureos.Measures.Linq
         {
             return new InUnitMeasure<Q>(iAmount, iUnit);
         }
-
-        /// <summary>
-        /// Convert floating-point value into standard measure, based on the specified amount and unit
-        /// </summary>
-        /// <typeparam name="Q">Quantity</typeparam>
-        /// <param name="iAmount">Floating-point value representing the amount in the specified unit</param>
-        /// <param name="iUnit">Observed unit of measure</param>
-        /// <returns>Standard measure corresponding to the specified amount and unit</returns>
-        public static Measure<Q> From<Q>(this double iAmount, IUnit<Q> iUnit) where Q : struct, IQuantity<Q>
-        {
-            return new Measure<Q>(iAmount, iUnit);
-        }
-
-        /// <summary>
-        /// Convert floating-point value into standard measure, based on the specified amount and unit
-        /// </summary>
-        /// <typeparam name="Q">Quantity</typeparam>
-        /// <param name="iAmount">Floating-point value representing the amount in the specified unit</param>
-        /// <param name="iUnit">Observed unit of measure</param>
-        /// <returns>Standard measure corresponding to the specified amount and unit</returns>
-        public static Measure<Q> From<Q>(this float iAmount, IUnit<Q> iUnit) where Q : struct, IQuantity<Q>
-        {
-            return new Measure<Q>(iAmount, iUnit);
-        }
-
-        /// <summary>
-        /// Convert floating-point value into standard measure, based on the specified amount and unit
-        /// </summary>
-        /// <typeparam name="Q">Quantity</typeparam>
-        /// <param name="iAmount">Floating-point value representing the amount in the specified unit</param>
-        /// <param name="iUnit">Observed unit of measure</param>
-        /// <returns>Standard measure corresponding to the specified amount and unit</returns>
-        public static Measure<Q> From<Q>(this decimal iAmount, IUnit<Q> iUnit) where Q : struct, IQuantity<Q>
-        {
-            return new Measure<Q>(iAmount, iUnit);
-        }
     }
 }

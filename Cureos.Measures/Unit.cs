@@ -155,10 +155,34 @@ namespace Cureos.Measures
         /// <param name="amount">The quantity amount.</param>
         /// <param name="unit">The quantity unit.</param>
         /// <returns>A new measure object of the specified quantity.</returns>
-        public static Q operator *(AmountType amount, Unit<Q> unit)
+        public static Q operator *(double amount, Unit<Q> unit)
         {
             // ReSharper disable once ImpureMethodCallOnReadonlyValueField
-            return unit.quantity.Create(amount, unit);
+            return unit.quantity.Create((AmountType)amount, unit);
+        }
+
+        /// <summary>
+        /// Creates a new measure object of the specified quantity.
+        /// </summary>
+        /// <param name="amount">The quantity amount.</param>
+        /// <param name="unit">The quantity unit.</param>
+        /// <returns>A new measure object of the specified quantity.</returns>
+        public static Q operator *(float amount, Unit<Q> unit)
+        {
+            // ReSharper disable once ImpureMethodCallOnReadonlyValueField
+            return unit.quantity.Create((AmountType)amount, unit);
+        }
+
+        /// <summary>
+        /// Creates a new measure object of the specified quantity.
+        /// </summary>
+        /// <param name="amount">The quantity amount.</param>
+        /// <param name="unit">The quantity unit.</param>
+        /// <returns>A new measure object of the specified quantity.</returns>
+        public static Q operator *(decimal amount, Unit<Q> unit)
+        {
+            // ReSharper disable once ImpureMethodCallOnReadonlyValueField
+            return unit.quantity.Create((AmountType)amount, unit);
         }
 
         #endregion

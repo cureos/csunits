@@ -42,7 +42,7 @@ namespace Cureos.Measures.Linq
         public void From_FloatAndVolumeUnit_ReturnsStandardVolumeMeasure()
         {
             var expected = new InUnitMeasure<Volume>(0.002f, Volume.CubicMeter);
-            var actual = 2.0f.From(Volume.Liter);
+            var actual = 2.0f * Volume.Liter;
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }
 

@@ -335,12 +335,64 @@ namespace Cureos.Measures.Quantities
         #region Implementation of IMeasureFactory<RefractiveIndex>
 
         /// <summary>
+        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+        public RefractiveIndex Create(double amount)
+        {
+            return new RefractiveIndex(amount);
+        }
+
+        /// <summary>
         /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public RefractiveIndex Create(AmountType amount, IUnit<RefractiveIndex> unit)
+        public RefractiveIndex Create(double amount, IUnit<RefractiveIndex> unit)
+        {
+            return new RefractiveIndex(amount, unit);
+        }
+
+        /// <summary>
+        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+        public RefractiveIndex Create(float amount)
+        {
+            return new RefractiveIndex(amount);
+        }
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public RefractiveIndex Create(float amount, IUnit<RefractiveIndex> unit)
+        {
+            return new RefractiveIndex(amount, unit);
+        }
+
+        /// <summary>
+        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+        public RefractiveIndex Create(decimal amount)
+        {
+            return new RefractiveIndex(amount);
+        }
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public RefractiveIndex Create(decimal amount, IUnit<RefractiveIndex> unit)
         {
             return new RefractiveIndex(amount, unit);
         }

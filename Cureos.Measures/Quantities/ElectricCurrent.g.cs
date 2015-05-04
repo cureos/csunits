@@ -345,12 +345,64 @@ namespace Cureos.Measures.Quantities
         #region Implementation of IMeasureFactory<ElectricCurrent>
 
         /// <summary>
+        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+        public ElectricCurrent Create(double amount)
+        {
+            return new ElectricCurrent(amount);
+        }
+
+        /// <summary>
         /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public ElectricCurrent Create(AmountType amount, IUnit<ElectricCurrent> unit)
+        public ElectricCurrent Create(double amount, IUnit<ElectricCurrent> unit)
+        {
+            return new ElectricCurrent(amount, unit);
+        }
+
+        /// <summary>
+        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+        public ElectricCurrent Create(float amount)
+        {
+            return new ElectricCurrent(amount);
+        }
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public ElectricCurrent Create(float amount, IUnit<ElectricCurrent> unit)
+        {
+            return new ElectricCurrent(amount, unit);
+        }
+
+        /// <summary>
+        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+        public ElectricCurrent Create(decimal amount)
+        {
+            return new ElectricCurrent(amount);
+        }
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        public ElectricCurrent Create(decimal amount, IUnit<ElectricCurrent> unit)
         {
             return new ElectricCurrent(amount, unit);
         }

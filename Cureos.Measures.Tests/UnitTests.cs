@@ -44,7 +44,32 @@ namespace Cureos.Measures
                 get { return this.StandardUnit; }
             }
 
+            public UnitTestsQuantity Create(double amount)
+            {
+                throw new System.NotImplementedException();
+            }
+
             public UnitTestsQuantity Create(double amount, IUnit<UnitTestsQuantity> unit)
+            {
+                throw new System.NotImplementedException();
+            }
+
+            public UnitTestsQuantity Create(float amount)
+            {
+                throw new System.NotImplementedException();
+            }
+
+            public UnitTestsQuantity Create(float amount, IUnit<UnitTestsQuantity> unit)
+            {
+                throw new System.NotImplementedException();
+            }
+
+            public UnitTestsQuantity Create(decimal amount)
+            {
+                throw new System.NotImplementedException();
+            }
+
+            public UnitTestsQuantity Create(decimal amount, IUnit<UnitTestsQuantity> unit)
             {
                 throw new System.NotImplementedException();
             }
