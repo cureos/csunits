@@ -51,7 +51,7 @@
     <Compile Include="Linq\ConversionsTests.cs" />
     <Compile Include="Linq\StandardMeasureEnumerableTests.cs" />
     <Compile Include="MeasureAssert.cs" />
-    <Compile Include="MeasureTests.cs" />
+    <Compile Include="InUnitMeasureTests.cs" />
     <Compile Include="PrimeNumbersTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quantities\AbsorbedDoseTests.cs" />
@@ -60,9 +60,9 @@
     <Compile Include="Collections\QuantityAdapterTests.cs" />
     <Compile Include="Collections\QuantityCollectionTests.cs" />
     <Compile Include="QuantityDimensionTests.cs" />
-    <Compile Include="StandardMeasureDoubletTests.cs" />
-    <Compile Include="StandardMeasureTests.cs" />
-    <Compile Include="StandardMeasureTripletTests.cs" />
+    <Compile Include="MeasureDoubletTests.cs" />
+    <Compile Include="MeasureTests.cs" />
+    <Compile Include="MeasureTripletTests.cs" />
     <Compile Include="TimingTests.cs" />
     <Compile Include="UnitTests.cs" />
   </ItemGroup>

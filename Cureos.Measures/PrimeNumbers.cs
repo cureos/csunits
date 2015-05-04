@@ -1,22 +1,37 @@
-// Copyright (c) 2011 Anders Gustafsson, Cureos AB.
-// All rights reserved. This software and the accompanying materials
-// are made available under the terms of the Eclipse Public License v1.0
-// which accompanies this distribution, and is available at
-// http://www.eclipse.org/legal/epl-v10.html
-
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+/*
+ *  Copyright (c) 2011-2015, Cureos AB.
+ *  All rights reserved.
+ *  http://www.cureos.com
+ *
+ *	This file is part of CSUnits.
+ *
+ *  CSUnits is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, either version 3 of the
+ *  License, or (at your option) any later version.
+ *
+ *  CSUnits is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public
+ *  License along with CSUnits. If not, see http://www.gnu.org/licenses/.
+ */
 
 namespace Cureos.Measures
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+
     /// <summary>
     /// Support class for generating a (nearly) unbounded collection of primes.
     /// Adapted from an implementation by Clinton Sheppard, published at
     /// http://handcraftsman.wordpress.com/2010/09/02/ienumerable-of-prime-numbers-in-csharp/.
     /// </summary>
-    public sealed class PrimeNumbers : IEnumerable<int>
+    internal sealed class PrimeNumbers : IEnumerable<int>
     {
         #region Implementation of IEnumerable
 
