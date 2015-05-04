@@ -50,6 +50,15 @@ namespace Cureos.Measures.Quantities
 
         public static readonly Unit<Temperature> Kelvin = new ConstantConverterUnit<Temperature>("K");
 
+        public static readonly Unit<Temperature> MicroKelvin = new ConstantConverterUnit<Temperature>(UnitPrefix.Micro);
+        public static readonly Unit<Temperature> MilliKelvin = new ConstantConverterUnit<Temperature>(UnitPrefix.Milli);
+        public static readonly Unit<Temperature> CentiKelvin = new ConstantConverterUnit<Temperature>(UnitPrefix.Centi);
+        public static readonly Unit<Temperature> DeciKelvin = new ConstantConverterUnit<Temperature>(UnitPrefix.Deci);
+        public static readonly Unit<Temperature> DekaKelvin = new ConstantConverterUnit<Temperature>(UnitPrefix.Deka);
+        public static readonly Unit<Temperature> HectoKelvin = new ConstantConverterUnit<Temperature>(UnitPrefix.Hecto);
+        public static readonly Unit<Temperature> KiloKelvin = new ConstantConverterUnit<Temperature>(UnitPrefix.Kilo);
+        public static readonly Unit<Temperature> MegaKelvin = new ConstantConverterUnit<Temperature>(UnitPrefix.Mega);
+
         public static readonly Unit<Temperature> Celsius = new FunctionConverterUnit<Temperature>("°C",
                         a => a + Factors.KelvinCelsiusIntercept, a => a - Factors.KelvinCelsiusIntercept);
         public static readonly Unit<Temperature> Fahrenheit = new FunctionConverterUnit<Temperature>("°F",

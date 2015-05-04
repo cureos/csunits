@@ -53,7 +53,7 @@ SolidAngle,,Steradian,0,0,0,0,0,0,0,Steradian,sr,-9,-3,SquareDegree,(°)²,Radia
 SpecificVolume,,,3,-1,0,0,0,0,0,CubicMeterPerKiloGram,m³ kg\u207b¹,0,0
 SurfaceDensity,,,-2,1,0,0,0,0,0,KiloGramPerSquareMeter,kg m\u207b²,0,0,GramPerSquareCentiMeter,g cm\u207b²,Deka
 SurfaceTension,,,0,1,-2,0,0,0,0,NewtonPerMeter,N m\u207b¹,-9,9
-Temperature,,,0,0,0,0,1,0,0,Kelvin,K,0,0
+Temperature,,,0,0,0,0,1,0,0,Kelvin,K,-6,6
 Time,,,0,0,1,0,0,0,0,Second,s,0,0,Minute,min,SecondsPerMinute,Hour,h,SecondsPerHour,Day,dy,SecondsPerDay,Week,wk,SecondsPerWeek,JulianYear,a,SecondsPerJulianYear
 Velocity,,,1,0,-1,0,0,0,0,MeterPerSecond,m s\u207b¹,-9,3,KiloMeterPerHour,km h\u207b¹,Kilo/SecondsPerHour
 Volume,,,3,0,0,0,0,0,0,CubicMeter,m³,0,0,CubicDeciMeter,dm³,Deci*Deci*Deci,CubicCentiMeter,cm³,Centi*Centi*Centi,CubicMilliMeter,mm³,Milli*Milli*Milli,Liter,l,Deci*Deci*Deci,USLiquidGallon,gal,CubicMetersPerUSLiquidGallon

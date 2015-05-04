@@ -112,6 +112,18 @@ namespace Cureos.Measures.Quantities
 
         public static readonly Unit<<#= ClassName #>> <#= stdUnit #> = new ConstantConverterUnit<<#= ClassName #>>("<#= stdUnitSymbol #>");
 <#
+            if (selPrefixes.Count > 0) {
+#>
+
+<#
+            }
+
+            foreach (var selPrefix in selPrefixes) {
+#>
+        public static readonly Unit<<#= ClassName #>> <#= selPrefix #><#= stdUnit #> = new ConstantConverterUnit<<#= ClassName #>>(UnitPrefix.<#= selPrefix #>);
+<#
+            }
+
             if (ClassName.Equals("Temperature")) {
 #>
 
@@ -122,33 +134,21 @@ namespace Cureos.Measures.Quantities
                         a => a / Factors.KelvinFahrenheitSlope - Factors.KelvinFahrenheitIntercept);
 <#
             } else {
-                if (selPrefixes.Count > 0) {
+                if (unitSpecs.Count > 0) {
 #>
 
 <#
                 }
 
-                foreach (var selPrefix in selPrefixes) {
-#>
-        public static readonly Unit<<#= ClassName #>> <#= selPrefix #><#= stdUnit #> = new ConstantConverterUnit<<#= ClassName #>>(UnitPrefix.<#= selPrefix #>);
-<#
-            }
-
-            if (unitSpecs.Count > 0) {
-#>
-
-<#
-            }
-
-            foreach (var unitSpec in unitSpecs) {
-                var unitName = unitSpec.Item1;
-                var unitSymbol = unitSpec.Item2;
-                var factor = unitSpec.Item3;
+                foreach (var unitSpec in unitSpecs) {
+                    var unitName = unitSpec.Item1;
+                    var unitSymbol = unitSpec.Item2;
+                    var factor = unitSpec.Item3;
 #>
         public static readonly Unit<<#= ClassName #>> <#= unitName #> = new ConstantConverterUnit<<#= ClassName #>>("<#= unitSymbol #>", <#= factor #>);
 <#
+                }
             }
-        }
 #>
 
         [DataMember]
