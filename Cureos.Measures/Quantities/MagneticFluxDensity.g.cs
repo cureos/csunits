@@ -595,6 +595,28 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Multiply a number and a measure object
+        /// </summary>
+        /// <param name="scalar">Floating-point number</param>
+        /// <param name="measure">Measure object</param>
+        /// <returns>Product of the number and the measure object</returns>
+        public static MagneticFluxDensity operator *(IMeasure<Number> scalar, MagneticFluxDensity measure)
+        {
+            return new MagneticFluxDensity(scalar.StandardAmount * measure.amount);
+        }
+
+        /// <summary>
+        /// Multiply a measure object and a number
+        /// </summary>
+        /// <param name="measure">Measure object</param>
+        /// <param name="scalar">Floating-point number</param>
+        /// <returns>Product of the measure object and the number</returns>
+        public static MagneticFluxDensity operator *(MagneticFluxDensity measure, IMeasure<Number> scalar)
+        {
+            return new MagneticFluxDensity(measure.amount * scalar.StandardAmount);
+        }
+
+        /// <summary>
         /// Divide a measure object with a scalar
         /// </summary>
         /// <param name="measure">measure object</param>
@@ -603,6 +625,50 @@ namespace Cureos.Measures.Quantities
         public static MagneticFluxDensity operator /(MagneticFluxDensity measure, AmountType scalar)
         {
             return new MagneticFluxDensity(measure.amount / scalar);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a number
+        /// </summary>
+        /// <param name="measure">measure object</param>
+        /// <param name="scalar">Floating-point number</param>
+        /// <returns>Quotient of the measure object and the number</returns>
+        public static MagneticFluxDensity operator /(MagneticFluxDensity measure, IMeasure<Number> scalar)
+        {
+            return new MagneticFluxDensity(measure.amount / scalar.StandardAmount);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a measure object of the same quantity
+        /// </summary>
+        /// <param name="dividend">Dividend of specific quantity</param>
+        /// <param name="divisor">Divisor of same quantity as dividend</param>
+        /// <returns>Quotient of the two measure objects</returns>
+        public static Number operator /(MagneticFluxDensity dividend, MagneticFluxDensity divisor)
+        {
+            return new Number(dividend.amount / divisor.amount);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a measure object of the same quantity
+        /// </summary>
+        /// <param name="dividend">Dividend of specific quantity</param>
+        /// <param name="divisor">Divisor of same quantity as dividend</param>
+        /// <returns>Quotient of the two measure objects</returns>
+        public static Number operator /(IMeasure<MagneticFluxDensity> dividend, MagneticFluxDensity divisor)
+        {
+            return new Number(dividend.StandardAmount / divisor.amount);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a measure object of the same quantity
+        /// </summary>
+        /// <param name="dividend">Dividend of specific quantity</param>
+        /// <param name="divisor">Divisor of same quantity as dividend</param>
+        /// <returns>Quotient of the two measure objects</returns>
+        public static Number operator /(MagneticFluxDensity dividend, IMeasure<MagneticFluxDensity> divisor)
+        {
+            return new Number(dividend.amount / divisor.StandardAmount);
         }
 
         /// <summary>

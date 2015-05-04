@@ -595,6 +595,28 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Multiply a number and a measure object
+        /// </summary>
+        /// <param name="scalar">Floating-point number</param>
+        /// <param name="measure">Measure object</param>
+        /// <returns>Product of the number and the measure object</returns>
+        public static Frequency operator *(IMeasure<Number> scalar, Frequency measure)
+        {
+            return new Frequency(scalar.StandardAmount * measure.amount);
+        }
+
+        /// <summary>
+        /// Multiply a measure object and a number
+        /// </summary>
+        /// <param name="measure">Measure object</param>
+        /// <param name="scalar">Floating-point number</param>
+        /// <returns>Product of the measure object and the number</returns>
+        public static Frequency operator *(Frequency measure, IMeasure<Number> scalar)
+        {
+            return new Frequency(measure.amount * scalar.StandardAmount);
+        }
+
+        /// <summary>
         /// Divide a measure object with a scalar
         /// </summary>
         /// <param name="measure">measure object</param>
@@ -603,6 +625,50 @@ namespace Cureos.Measures.Quantities
         public static Frequency operator /(Frequency measure, AmountType scalar)
         {
             return new Frequency(measure.amount / scalar);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a number
+        /// </summary>
+        /// <param name="measure">measure object</param>
+        /// <param name="scalar">Floating-point number</param>
+        /// <returns>Quotient of the measure object and the number</returns>
+        public static Frequency operator /(Frequency measure, IMeasure<Number> scalar)
+        {
+            return new Frequency(measure.amount / scalar.StandardAmount);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a measure object of the same quantity
+        /// </summary>
+        /// <param name="dividend">Dividend of specific quantity</param>
+        /// <param name="divisor">Divisor of same quantity as dividend</param>
+        /// <returns>Quotient of the two measure objects</returns>
+        public static Number operator /(Frequency dividend, Frequency divisor)
+        {
+            return new Number(dividend.amount / divisor.amount);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a measure object of the same quantity
+        /// </summary>
+        /// <param name="dividend">Dividend of specific quantity</param>
+        /// <param name="divisor">Divisor of same quantity as dividend</param>
+        /// <returns>Quotient of the two measure objects</returns>
+        public static Number operator /(IMeasure<Frequency> dividend, Frequency divisor)
+        {
+            return new Number(dividend.StandardAmount / divisor.amount);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a measure object of the same quantity
+        /// </summary>
+        /// <param name="dividend">Dividend of specific quantity</param>
+        /// <param name="divisor">Divisor of same quantity as dividend</param>
+        /// <returns>Quotient of the two measure objects</returns>
+        public static Number operator /(Frequency dividend, IMeasure<Frequency> divisor)
+        {
+            return new Number(dividend.amount / divisor.StandardAmount);
         }
 
         /// <summary>

@@ -595,6 +595,28 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Multiply a number and a measure object
+        /// </summary>
+        /// <param name="scalar">Floating-point number</param>
+        /// <param name="measure">Measure object</param>
+        /// <returns>Product of the number and the measure object</returns>
+        public static MagneticFieldStrength operator *(IMeasure<Number> scalar, MagneticFieldStrength measure)
+        {
+            return new MagneticFieldStrength(scalar.StandardAmount * measure.amount);
+        }
+
+        /// <summary>
+        /// Multiply a measure object and a number
+        /// </summary>
+        /// <param name="measure">Measure object</param>
+        /// <param name="scalar">Floating-point number</param>
+        /// <returns>Product of the measure object and the number</returns>
+        public static MagneticFieldStrength operator *(MagneticFieldStrength measure, IMeasure<Number> scalar)
+        {
+            return new MagneticFieldStrength(measure.amount * scalar.StandardAmount);
+        }
+
+        /// <summary>
         /// Divide a measure object with a scalar
         /// </summary>
         /// <param name="measure">measure object</param>
@@ -603,6 +625,50 @@ namespace Cureos.Measures.Quantities
         public static MagneticFieldStrength operator /(MagneticFieldStrength measure, AmountType scalar)
         {
             return new MagneticFieldStrength(measure.amount / scalar);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a number
+        /// </summary>
+        /// <param name="measure">measure object</param>
+        /// <param name="scalar">Floating-point number</param>
+        /// <returns>Quotient of the measure object and the number</returns>
+        public static MagneticFieldStrength operator /(MagneticFieldStrength measure, IMeasure<Number> scalar)
+        {
+            return new MagneticFieldStrength(measure.amount / scalar.StandardAmount);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a measure object of the same quantity
+        /// </summary>
+        /// <param name="dividend">Dividend of specific quantity</param>
+        /// <param name="divisor">Divisor of same quantity as dividend</param>
+        /// <returns>Quotient of the two measure objects</returns>
+        public static Number operator /(MagneticFieldStrength dividend, MagneticFieldStrength divisor)
+        {
+            return new Number(dividend.amount / divisor.amount);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a measure object of the same quantity
+        /// </summary>
+        /// <param name="dividend">Dividend of specific quantity</param>
+        /// <param name="divisor">Divisor of same quantity as dividend</param>
+        /// <returns>Quotient of the two measure objects</returns>
+        public static Number operator /(IMeasure<MagneticFieldStrength> dividend, MagneticFieldStrength divisor)
+        {
+            return new Number(dividend.StandardAmount / divisor.amount);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a measure object of the same quantity
+        /// </summary>
+        /// <param name="dividend">Dividend of specific quantity</param>
+        /// <param name="divisor">Divisor of same quantity as dividend</param>
+        /// <returns>Quotient of the two measure objects</returns>
+        public static Number operator /(MagneticFieldStrength dividend, IMeasure<MagneticFieldStrength> divisor)
+        {
+            return new Number(dividend.amount / divisor.StandardAmount);
         }
 
         /// <summary>
