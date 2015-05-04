@@ -60,7 +60,7 @@ namespace Cureos.Measures
         /// </summary>
         /// <param name="prefix">Prefix to use in unit naming and scaling vis-a-vis standard unit</param>
         public ConstantConverterUnit(UnitPrefix prefix)
-            : this(string.Format("{0}{1}", prefix.GetSymbol(), default(Q).StandardUnit), prefix.GetFactor())
+            : this(string.Format("{0}{1}", prefix.GetSymbol(), default(Q).StandardUnit.Symbol), prefix.GetFactor())
         {
         }
 
