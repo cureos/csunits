@@ -15,9 +15,9 @@ Visual Studio 2010 Service Pack 1 or higher with [Portable Library Tools](http:/
 
 Developed with Visual Studio 2010. The *Cureos.Measures* class library is portable and can without modifications be included in .NET 4+, Silverlight 5, Windows Phone 8+ (Silverlight and non-Silverlight), Windows 8+, Xamarin.Android and Xamarin.iOS applications.
 
-`Measure<Q>` and `InUnitMeasure<Q>` are the main "work-horses" of the library. `Measure<Q>` is always represented in the reference unit of the associated quantity. If a different unit is specified in instantiation of `Measure<Q>`, the measured amount is automatically converted to the equivalent reference unit amount. On the other hand, the amount and unit used in instantiation of `InUnitMeasure<Q>` are internally maintained.
+Quantity `Q` and `Measure<Q>` are the main "work-horses" of the library. `Q` represents both the quantity itself and a measure in the same quantity, and is always expressed in the reference unit of the associated quantity. If a different unit is specified in instantiation of `Q`, the measured amount is automatically converted to the equivalent reference unit amount. On the other hand, the amount and unit used in instantiation of `Measure<Q>` are internally maintained.
 
-`Measure<Q>` is declared as a struct and only holds one member, the amount. The main goal of this approach is to maximize calculation performance, while at the same time ensuring quantity type safety.
+Quantity `Q` is declared as a struct and only holds one member, the amount. The main goal of this approach is to maximize calculation performance, while at the same time ensuring quantity type safety.
 
 There are also `MeasureDoublet<Q1, Q2>` and `MeasureTriplet<Q1, Q2, Q3>` structures that holds two and three measures, respectively, of potentially different quantities.
 
@@ -28,25 +28,25 @@ There are also `MeasureDoublet<Q1, Q2>` and `MeasureTriplet<Q1, Q2, Q3>` structu
     using Cureos.Measures.Quantities;
     ...
 
-    Measure<Mass> initialWgt = new Measure<Mass>(75.0);
-    Measure<Mass> gainedWgt = new Measure<Mass>(2.5, Mass.HectoGram);
-    Measure<Mass> newWgt = initialWgt + gainedWgt;
+    Mass initialWgt = new Mass(75.0);
+    Mass gainedWgt = new Mass(2.5, Mass.HectoGram);
+    Mass newWgt = initialWgt + gainedWgt;
 
-    InUnitMeasure<Mass> newWgtInGram = (InUnitMeasure<Mass>)newWgt[Mass.Gram];
-    InUnitMeasure<Mass> initialWgtInGram = newWgtInGram - gainedWgt;
+    Measure<Mass> newWgtInGram = newWgt[Mass.Gram];
+    Measure<Mass> initialWgtInGram = newWgtInGram - gainedWgt;
 
     Console.WriteLine("Initial weight: {0}", initialWgtInGram);
 
-    Measure<Length> height = new Measure<Length>(30.0, Length.CentiMeter);
-    Measure<Area> area = (Measure<Area>)0.02;
+    Length height = new Length(30.0, Length.CentiMeter);
+    Area area = (Area)0.02;
 
-    Measure<Volume> vol; 
+    Volume vol;
     ArithmeticOperations.Times(height, area, out vol);
-    var maxVol = new Measure<Volume>(10.0, Volume.Liter);
+    var maxVol = new Volume(10.0, Volume.Liter);
 
     if (vol < maxVol)
     {
-      Console.WriteLine("Calculated volume is within limits, actual volume: {0}", vol[Volume.Liter]);
+        Console.WriteLine("Calculated volume is within limits, actual volume: {0}", vol[Volume.Liter]);
     }
 
 should yield the output:
