@@ -237,7 +237,6 @@
     <Compile Include="Collections\QuantityAdapter.cs" />
     <Compile Include="Collections\QuantityCollection.cs" />
     <Compile Include="QuantityDimension.cs" />
-    <Compile Include="Measure.cs" />
     <Compile Include="MeasureDoublet.cs" />
     <Compile Include="MeasureTriplet.cs" />
     <Compile Include="ConstantConverterUnit.cs" />
