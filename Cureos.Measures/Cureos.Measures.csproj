@@ -74,7 +74,6 @@
     <Compile Include="IMeasureTriplet.cs" />
     <Compile Include="IQuantity.cs" />
     <Compile Include="IUnit.cs" />
-    <Compile Include="Linq\Conversions.cs" />
     <Compile Include="Linq\MeasureEnumerable.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Quantities\CurrentDensity.g.cs">

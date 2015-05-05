@@ -388,14 +388,12 @@ namespace Cureos.Measures.Quantities
         /// Gets a new unit preserving measure based on this measure but in the <paramref name="unit">specified unit</paramref>
         /// </summary>
         /// <param name="unit">Unit in which the new measure should be specified</param>
-        public IMeasure<WaveNumber> this[IUnit<WaveNumber> unit]
+        public Measure<WaveNumber> this[IUnit<WaveNumber> unit]
         {
             get
             {
                 if (unit == null) throw new ArgumentNullException("unit");
-                return unit.IsStandardUnit
-                    ? (IMeasure<WaveNumber>)this
-                    : new Measure<WaveNumber>(this.GetAmount(unit), unit);
+                return new Measure<WaveNumber>(this.GetAmount(unit), unit);
             }
         }
 

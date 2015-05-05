@@ -71,7 +71,7 @@ namespace Cureos.Measures
             PerformTiming(
                 () =>
                     {
-                        var val = new Measure<Mass>(0.0);
+                        var val = new Measure<Mass>(0.0, Mass.KiloGram);
                         for (var i = 0.0; i < no; ++i)
                         {
                             val += new Mass(i);

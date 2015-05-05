@@ -396,14 +396,12 @@ namespace Cureos.Measures.Quantities
         /// Gets a new unit preserving measure based on this measure but in the <paramref name="unit">specified unit</paramref>
         /// </summary>
         /// <param name="unit">Unit in which the new measure should be specified</param>
-        public IMeasure<Power> this[IUnit<Power> unit]
+        public Measure<Power> this[IUnit<Power> unit]
         {
             get
             {
                 if (unit == null) throw new ArgumentNullException("unit");
-                return unit.IsStandardUnit
-                    ? (IMeasure<Power>)this
-                    : new Measure<Power>(this.GetAmount(unit), unit);
+                return new Measure<Power>(this.GetAmount(unit), unit);
             }
         }
 

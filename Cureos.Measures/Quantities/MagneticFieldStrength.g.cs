@@ -396,14 +396,12 @@ namespace Cureos.Measures.Quantities
         /// Gets a new unit preserving measure based on this measure but in the <paramref name="unit">specified unit</paramref>
         /// </summary>
         /// <param name="unit">Unit in which the new measure should be specified</param>
-        public IMeasure<MagneticFieldStrength> this[IUnit<MagneticFieldStrength> unit]
+        public Measure<MagneticFieldStrength> this[IUnit<MagneticFieldStrength> unit]
         {
             get
             {
                 if (unit == null) throw new ArgumentNullException("unit");
-                return unit.IsStandardUnit
-                    ? (IMeasure<MagneticFieldStrength>)this
-                    : new Measure<MagneticFieldStrength>(this.GetAmount(unit), unit);
+                return new Measure<MagneticFieldStrength>(this.GetAmount(unit), unit);
             }
         }
 

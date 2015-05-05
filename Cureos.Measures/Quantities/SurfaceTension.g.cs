@@ -396,14 +396,12 @@ namespace Cureos.Measures.Quantities
         /// Gets a new unit preserving measure based on this measure but in the <paramref name="unit">specified unit</paramref>
         /// </summary>
         /// <param name="unit">Unit in which the new measure should be specified</param>
-        public IMeasure<SurfaceTension> this[IUnit<SurfaceTension> unit]
+        public Measure<SurfaceTension> this[IUnit<SurfaceTension> unit]
         {
             get
             {
                 if (unit == null) throw new ArgumentNullException("unit");
-                return unit.IsStandardUnit
-                    ? (IMeasure<SurfaceTension>)this
-                    : new Measure<SurfaceTension>(this.GetAmount(unit), unit);
+                return new Measure<SurfaceTension>(this.GetAmount(unit), unit);
             }
         }
 

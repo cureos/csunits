@@ -396,14 +396,12 @@ namespace Cureos.Measures.Quantities
         /// Gets a new unit preserving measure based on this measure but in the <paramref name="unit">specified unit</paramref>
         /// </summary>
         /// <param name="unit">Unit in which the new measure should be specified</param>
-        public IMeasure<CurrentDensity> this[IUnit<CurrentDensity> unit]
+        public Measure<CurrentDensity> this[IUnit<CurrentDensity> unit]
         {
             get
             {
                 if (unit == null) throw new ArgumentNullException("unit");
-                return unit.IsStandardUnit
-                    ? (IMeasure<CurrentDensity>)this
-                    : new Measure<CurrentDensity>(this.GetAmount(unit), unit);
+                return new Measure<CurrentDensity>(this.GetAmount(unit), unit);
             }
         }
 

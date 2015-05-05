@@ -37,7 +37,7 @@ namespace Cureos.Measures
             Mass gainedWgt = new Mass(2.5, Mass.HectoGram);
             Mass newWgt = initialWgt + gainedWgt;
 
-            Measure<Mass> newWgtInGram = (Measure<Mass>)newWgt[Mass.Gram];
+            Measure<Mass> newWgtInGram = newWgt[Mass.Gram];
             Measure<Mass> initialWgtInGram = newWgtInGram - gainedWgt;
 
             Console.WriteLine("Initial weight: {0}", initialWgtInGram);

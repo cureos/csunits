@@ -48,10 +48,8 @@
     <Compile Include="IMeasureDoubletAssert.cs" />
     <Compile Include="IMeasureTests.cs" />
     <Compile Include="IMeasureTripletAssert.cs" />
-    <Compile Include="Linq\ConversionsTests.cs" />
     <Compile Include="Linq\MeasureEnumerableTests.cs" />
     <Compile Include="MeasureAssert.cs" />
-    <Compile Include="InUnitMeasureTests.cs" />
     <Compile Include="PrimeNumbersTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quantities\AbsorbedDoseTests.cs" />

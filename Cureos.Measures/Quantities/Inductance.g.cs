@@ -396,14 +396,12 @@ namespace Cureos.Measures.Quantities
         /// Gets a new unit preserving measure based on this measure but in the <paramref name="unit">specified unit</paramref>
         /// </summary>
         /// <param name="unit">Unit in which the new measure should be specified</param>
-        public IMeasure<Inductance> this[IUnit<Inductance> unit]
+        public Measure<Inductance> this[IUnit<Inductance> unit]
         {
             get
             {
                 if (unit == null) throw new ArgumentNullException("unit");
-                return unit.IsStandardUnit
-                    ? (IMeasure<Inductance>)this
-                    : new Measure<Inductance>(this.GetAmount(unit), unit);
+                return new Measure<Inductance>(this.GetAmount(unit), unit);
             }
         }
 

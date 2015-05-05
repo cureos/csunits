@@ -389,14 +389,12 @@ namespace Cureos.Measures.Quantities
         /// Gets a new unit preserving measure based on this measure but in the <paramref name="unit">specified unit</paramref>
         /// </summary>
         /// <param name="unit">Unit in which the new measure should be specified</param>
-        public IMeasure<PlaneAngle> this[IUnit<PlaneAngle> unit]
+        public Measure<PlaneAngle> this[IUnit<PlaneAngle> unit]
         {
             get
             {
                 if (unit == null) throw new ArgumentNullException("unit");
-                return unit.IsStandardUnit
-                    ? (IMeasure<PlaneAngle>)this
-                    : new Measure<PlaneAngle>(this.GetAmount(unit), unit);
+                return new Measure<PlaneAngle>(this.GetAmount(unit), unit);
             }
         }
 
