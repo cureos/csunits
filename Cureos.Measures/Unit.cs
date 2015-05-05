@@ -159,7 +159,7 @@ namespace Cureos.Measures
         public static Q operator *(double amount, Unit<Q> unit)
         {
             // ReSharper disable once ImpureMethodCallOnReadonlyValueField
-            return quantity.Create(amount, unit);
+            return quantity.New(amount, unit);
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace Cureos.Measures
         public static Q operator *(float amount, Unit<Q> unit)
         {
             // ReSharper disable once ImpureMethodCallOnReadonlyValueField
-            return quantity.Create(amount, unit);
+            return quantity.New(amount, unit);
         }
 
         /// <summary>
@@ -183,7 +183,7 @@ namespace Cureos.Measures
         public static Q operator *(decimal amount, Unit<Q> unit)
         {
             // ReSharper disable once ImpureMethodCallOnReadonlyValueField
-            return quantity.Create(amount, unit);
+            return quantity.New(amount, unit);
         }
 
         #endregion

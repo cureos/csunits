@@ -46,10 +46,10 @@ namespace Cureos.Measures.Linq
         /// <param name="amounts">Collection of amounts to be cast into a collection of standard measures</param>
         /// <returns>Collection of standard measures</returns>
         public static IEnumerable<Q> Cast<Q>(this IEnumerable<double> amounts)
-            where Q : struct, IQuantity<Q>, IMeasureFactory<Q>
+            where Q : struct, IQuantity<Q>, IMeasure<Q>
         {
-            var quantity = default(Q);
-            return amounts.Select(val => quantity.Create(val));
+            var factory = new Q().Factory;
+            return amounts.Select(val => factory.New(val));
         }
 
         /// <summary>
@@ -60,10 +60,10 @@ namespace Cureos.Measures.Linq
         /// <param name="unit">Unit in which the amounts are specified</param>
         /// <returns>Collection of standard measures, converted from specified unit into quantity's standard unit</returns>
         public static IEnumerable<Q> Cast<Q>(this IEnumerable<double> amounts, IUnit<Q> unit)
-            where Q : struct, IQuantity<Q>, IMeasureFactory<Q>
+            where Q : struct, IQuantity<Q>, IMeasure<Q>
         {
-            var quantity = default(Q);
-            return amounts.Select(val => quantity.Create(val, unit));
+            var factory = new Q().Factory;
+            return amounts.Select(val => factory.New(val, unit));
         }
 
         /// <summary>
@@ -72,10 +72,10 @@ namespace Cureos.Measures.Linq
         /// <typeparam name="Q">Quantity of measurements</typeparam>
         /// <param name="amounts">Collection of amounts to be cast into a collection of standard measures</param>
         /// <returns>Collection of standard measures</returns>
-        public static IEnumerable<Q> Cast<Q>(this IEnumerable<float> amounts) where Q : struct, IQuantity<Q>, IMeasureFactory<Q>
+        public static IEnumerable<Q> Cast<Q>(this IEnumerable<float> amounts) where Q : struct, IQuantity<Q>, IMeasure<Q>
         {
-            var quantity = default(Q);
-            return amounts.Select(val => quantity.Create(val));
+            var factory = new Q().Factory;
+            return amounts.Select(val => factory.New(val));
         }
 
         /// <summary>
@@ -86,10 +86,10 @@ namespace Cureos.Measures.Linq
         /// <param name="unit">Unit in which the amounts are specified</param>
         /// <returns>Collection of standard measures, converted from specified unit into quantity's standard unit</returns>
         public static IEnumerable<Q> Cast<Q>(this IEnumerable<float> amounts, IUnit<Q> unit)
-            where Q : struct, IQuantity<Q>, IMeasureFactory<Q>
+            where Q : struct, IQuantity<Q>, IMeasure<Q>
         {
-            var quantity = default(Q);
-            return amounts.Select(val => quantity.Create(val, unit));
+            var factory = new Q().Factory;
+            return amounts.Select(val => factory.New(val, unit));
         }
 
         /// <summary>
@@ -99,10 +99,10 @@ namespace Cureos.Measures.Linq
         /// <param name="amounts">Collection of amounts to be cast into a collection of standard measures</param>
         /// <returns>Collection of standard measures</returns>
         public static IEnumerable<Q> Cast<Q>(this IEnumerable<decimal> amounts)
-            where Q : struct, IQuantity<Q>, IMeasureFactory<Q>
+            where Q : struct, IQuantity<Q>, IMeasure<Q>
         {
-            var quantity = default(Q);
-            return amounts.Select(val => quantity.Create(val));
+            var factory = new Q().Factory;
+            return amounts.Select(val => factory.New(val));
         }
 
         /// <summary>
@@ -113,10 +113,10 @@ namespace Cureos.Measures.Linq
         /// <param name="unit">Unit in which the amounts are specified</param>
         /// <returns>Collection of standard measures, converted from specified unit into quantity's standard unit</returns>
         public static IEnumerable<Q> Cast<Q>(this IEnumerable<decimal> amounts, IUnit<Q> unit)
-            where Q : struct, IQuantity<Q>, IMeasureFactory<Q>
+            where Q : struct, IQuantity<Q>, IMeasure<Q>
         {
-            var quantity = default(Q);
-            return amounts.Select(val => quantity.Create(val, unit));
+            var factory = new Q().Factory;
+            return amounts.Select(val => factory.New(val, unit));
         }
 
         /// <summary>

@@ -354,7 +354,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        Probability IMeasureFactory<Probability>.Create(IMeasure<Probability> measure)
+        Probability IMeasureFactory<Probability>.New(IMeasure<Probability> measure)
         {
             return new Probability(measure.StandardAmount);
         }
@@ -364,7 +364,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Probability Create(double amount)
+        public Probability New(double amount)
         {
             return new Probability(amount);
         }
@@ -375,7 +375,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Probability Create(double amount, IUnit<Probability> unit)
+        public Probability New(double amount, IUnit<Probability> unit)
         {
             return new Probability(amount, unit);
         }
@@ -385,7 +385,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Probability Create(float amount)
+        public Probability New(float amount)
         {
             return new Probability(amount);
         }
@@ -396,7 +396,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Probability Create(float amount, IUnit<Probability> unit)
+        public Probability New(float amount, IUnit<Probability> unit)
         {
             return new Probability(amount, unit);
         }
@@ -406,7 +406,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Probability Create(decimal amount)
+        public Probability New(decimal amount)
         {
             return new Probability(amount);
         }
@@ -417,7 +417,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Probability Create(decimal amount, IUnit<Probability> unit)
+        public Probability New(decimal amount, IUnit<Probability> unit)
         {
             return new Probability(amount, unit);
         }

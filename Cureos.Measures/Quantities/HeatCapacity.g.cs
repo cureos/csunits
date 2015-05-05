@@ -361,7 +361,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        HeatCapacity IMeasureFactory<HeatCapacity>.Create(IMeasure<HeatCapacity> measure)
+        HeatCapacity IMeasureFactory<HeatCapacity>.New(IMeasure<HeatCapacity> measure)
         {
             return new HeatCapacity(measure.StandardAmount);
         }
@@ -371,7 +371,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public HeatCapacity Create(double amount)
+        public HeatCapacity New(double amount)
         {
             return new HeatCapacity(amount);
         }
@@ -382,7 +382,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public HeatCapacity Create(double amount, IUnit<HeatCapacity> unit)
+        public HeatCapacity New(double amount, IUnit<HeatCapacity> unit)
         {
             return new HeatCapacity(amount, unit);
         }
@@ -392,7 +392,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public HeatCapacity Create(float amount)
+        public HeatCapacity New(float amount)
         {
             return new HeatCapacity(amount);
         }
@@ -403,7 +403,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public HeatCapacity Create(float amount, IUnit<HeatCapacity> unit)
+        public HeatCapacity New(float amount, IUnit<HeatCapacity> unit)
         {
             return new HeatCapacity(amount, unit);
         }
@@ -413,7 +413,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public HeatCapacity Create(decimal amount)
+        public HeatCapacity New(decimal amount)
         {
             return new HeatCapacity(amount);
         }
@@ -424,7 +424,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public HeatCapacity Create(decimal amount, IUnit<HeatCapacity> unit)
+        public HeatCapacity New(decimal amount, IUnit<HeatCapacity> unit)
         {
             return new HeatCapacity(amount, unit);
         }

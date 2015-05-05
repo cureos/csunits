@@ -357,7 +357,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        Acceleration IMeasureFactory<Acceleration>.Create(IMeasure<Acceleration> measure)
+        Acceleration IMeasureFactory<Acceleration>.New(IMeasure<Acceleration> measure)
         {
             return new Acceleration(measure.StandardAmount);
         }
@@ -367,7 +367,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Acceleration Create(double amount)
+        public Acceleration New(double amount)
         {
             return new Acceleration(amount);
         }
@@ -378,7 +378,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Acceleration Create(double amount, IUnit<Acceleration> unit)
+        public Acceleration New(double amount, IUnit<Acceleration> unit)
         {
             return new Acceleration(amount, unit);
         }
@@ -388,7 +388,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Acceleration Create(float amount)
+        public Acceleration New(float amount)
         {
             return new Acceleration(amount);
         }
@@ -399,7 +399,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Acceleration Create(float amount, IUnit<Acceleration> unit)
+        public Acceleration New(float amount, IUnit<Acceleration> unit)
         {
             return new Acceleration(amount, unit);
         }
@@ -409,7 +409,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Acceleration Create(decimal amount)
+        public Acceleration New(decimal amount)
         {
             return new Acceleration(amount);
         }
@@ -420,7 +420,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Acceleration Create(decimal amount, IUnit<Acceleration> unit)
+        public Acceleration New(decimal amount, IUnit<Acceleration> unit)
         {
             return new Acceleration(amount, unit);
         }

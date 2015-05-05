@@ -361,7 +361,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        LuminousFlux IMeasureFactory<LuminousFlux>.Create(IMeasure<LuminousFlux> measure)
+        LuminousFlux IMeasureFactory<LuminousFlux>.New(IMeasure<LuminousFlux> measure)
         {
             return new LuminousFlux(measure.StandardAmount);
         }
@@ -371,7 +371,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public LuminousFlux Create(double amount)
+        public LuminousFlux New(double amount)
         {
             return new LuminousFlux(amount);
         }
@@ -382,7 +382,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public LuminousFlux Create(double amount, IUnit<LuminousFlux> unit)
+        public LuminousFlux New(double amount, IUnit<LuminousFlux> unit)
         {
             return new LuminousFlux(amount, unit);
         }
@@ -392,7 +392,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public LuminousFlux Create(float amount)
+        public LuminousFlux New(float amount)
         {
             return new LuminousFlux(amount);
         }
@@ -403,7 +403,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public LuminousFlux Create(float amount, IUnit<LuminousFlux> unit)
+        public LuminousFlux New(float amount, IUnit<LuminousFlux> unit)
         {
             return new LuminousFlux(amount, unit);
         }
@@ -413,7 +413,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public LuminousFlux Create(decimal amount)
+        public LuminousFlux New(decimal amount)
         {
             return new LuminousFlux(amount);
         }
@@ -424,7 +424,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public LuminousFlux Create(decimal amount, IUnit<LuminousFlux> unit)
+        public LuminousFlux New(decimal amount, IUnit<LuminousFlux> unit)
         {
             return new LuminousFlux(amount, unit);
         }

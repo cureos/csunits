@@ -361,7 +361,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        SurfaceTension IMeasureFactory<SurfaceTension>.Create(IMeasure<SurfaceTension> measure)
+        SurfaceTension IMeasureFactory<SurfaceTension>.New(IMeasure<SurfaceTension> measure)
         {
             return new SurfaceTension(measure.StandardAmount);
         }
@@ -371,7 +371,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public SurfaceTension Create(double amount)
+        public SurfaceTension New(double amount)
         {
             return new SurfaceTension(amount);
         }
@@ -382,7 +382,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public SurfaceTension Create(double amount, IUnit<SurfaceTension> unit)
+        public SurfaceTension New(double amount, IUnit<SurfaceTension> unit)
         {
             return new SurfaceTension(amount, unit);
         }
@@ -392,7 +392,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public SurfaceTension Create(float amount)
+        public SurfaceTension New(float amount)
         {
             return new SurfaceTension(amount);
         }
@@ -403,7 +403,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public SurfaceTension Create(float amount, IUnit<SurfaceTension> unit)
+        public SurfaceTension New(float amount, IUnit<SurfaceTension> unit)
         {
             return new SurfaceTension(amount, unit);
         }
@@ -413,7 +413,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public SurfaceTension Create(decimal amount)
+        public SurfaceTension New(decimal amount)
         {
             return new SurfaceTension(amount);
         }
@@ -424,7 +424,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public SurfaceTension Create(decimal amount, IUnit<SurfaceTension> unit)
+        public SurfaceTension New(decimal amount, IUnit<SurfaceTension> unit)
         {
             return new SurfaceTension(amount, unit);
         }

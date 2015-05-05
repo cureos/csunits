@@ -361,7 +361,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        Pressure IMeasureFactory<Pressure>.Create(IMeasure<Pressure> measure)
+        Pressure IMeasureFactory<Pressure>.New(IMeasure<Pressure> measure)
         {
             return new Pressure(measure.StandardAmount);
         }
@@ -371,7 +371,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Pressure Create(double amount)
+        public Pressure New(double amount)
         {
             return new Pressure(amount);
         }
@@ -382,7 +382,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Pressure Create(double amount, IUnit<Pressure> unit)
+        public Pressure New(double amount, IUnit<Pressure> unit)
         {
             return new Pressure(amount, unit);
         }
@@ -392,7 +392,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Pressure Create(float amount)
+        public Pressure New(float amount)
         {
             return new Pressure(amount);
         }
@@ -403,7 +403,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Pressure Create(float amount, IUnit<Pressure> unit)
+        public Pressure New(float amount, IUnit<Pressure> unit)
         {
             return new Pressure(amount, unit);
         }
@@ -413,7 +413,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Pressure Create(decimal amount)
+        public Pressure New(decimal amount)
         {
             return new Pressure(amount);
         }
@@ -424,7 +424,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Pressure Create(decimal amount, IUnit<Pressure> unit)
+        public Pressure New(decimal amount, IUnit<Pressure> unit)
         {
             return new Pressure(amount, unit);
         }

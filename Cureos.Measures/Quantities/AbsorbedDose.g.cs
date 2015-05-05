@@ -361,7 +361,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        AbsorbedDose IMeasureFactory<AbsorbedDose>.Create(IMeasure<AbsorbedDose> measure)
+        AbsorbedDose IMeasureFactory<AbsorbedDose>.New(IMeasure<AbsorbedDose> measure)
         {
             return new AbsorbedDose(measure.StandardAmount);
         }
@@ -371,7 +371,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public AbsorbedDose Create(double amount)
+        public AbsorbedDose New(double amount)
         {
             return new AbsorbedDose(amount);
         }
@@ -382,7 +382,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public AbsorbedDose Create(double amount, IUnit<AbsorbedDose> unit)
+        public AbsorbedDose New(double amount, IUnit<AbsorbedDose> unit)
         {
             return new AbsorbedDose(amount, unit);
         }
@@ -392,7 +392,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public AbsorbedDose Create(float amount)
+        public AbsorbedDose New(float amount)
         {
             return new AbsorbedDose(amount);
         }
@@ -403,7 +403,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public AbsorbedDose Create(float amount, IUnit<AbsorbedDose> unit)
+        public AbsorbedDose New(float amount, IUnit<AbsorbedDose> unit)
         {
             return new AbsorbedDose(amount, unit);
         }
@@ -413,7 +413,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public AbsorbedDose Create(decimal amount)
+        public AbsorbedDose New(decimal amount)
         {
             return new AbsorbedDose(amount);
         }
@@ -424,7 +424,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public AbsorbedDose Create(decimal amount, IUnit<AbsorbedDose> unit)
+        public AbsorbedDose New(decimal amount, IUnit<AbsorbedDose> unit)
         {
             return new AbsorbedDose(amount, unit);
         }

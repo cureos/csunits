@@ -359,7 +359,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        DynamicViscosity IMeasureFactory<DynamicViscosity>.Create(IMeasure<DynamicViscosity> measure)
+        DynamicViscosity IMeasureFactory<DynamicViscosity>.New(IMeasure<DynamicViscosity> measure)
         {
             return new DynamicViscosity(measure.StandardAmount);
         }
@@ -369,7 +369,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public DynamicViscosity Create(double amount)
+        public DynamicViscosity New(double amount)
         {
             return new DynamicViscosity(amount);
         }
@@ -380,7 +380,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public DynamicViscosity Create(double amount, IUnit<DynamicViscosity> unit)
+        public DynamicViscosity New(double amount, IUnit<DynamicViscosity> unit)
         {
             return new DynamicViscosity(amount, unit);
         }
@@ -390,7 +390,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public DynamicViscosity Create(float amount)
+        public DynamicViscosity New(float amount)
         {
             return new DynamicViscosity(amount);
         }
@@ -401,7 +401,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public DynamicViscosity Create(float amount, IUnit<DynamicViscosity> unit)
+        public DynamicViscosity New(float amount, IUnit<DynamicViscosity> unit)
         {
             return new DynamicViscosity(amount, unit);
         }
@@ -411,7 +411,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public DynamicViscosity Create(decimal amount)
+        public DynamicViscosity New(decimal amount)
         {
             return new DynamicViscosity(amount);
         }
@@ -422,7 +422,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public DynamicViscosity Create(decimal amount, IUnit<DynamicViscosity> unit)
+        public DynamicViscosity New(decimal amount, IUnit<DynamicViscosity> unit)
         {
             return new DynamicViscosity(amount, unit);
         }

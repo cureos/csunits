@@ -361,7 +361,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        Luminance IMeasureFactory<Luminance>.Create(IMeasure<Luminance> measure)
+        Luminance IMeasureFactory<Luminance>.New(IMeasure<Luminance> measure)
         {
             return new Luminance(measure.StandardAmount);
         }
@@ -371,7 +371,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Luminance Create(double amount)
+        public Luminance New(double amount)
         {
             return new Luminance(amount);
         }
@@ -382,7 +382,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Luminance Create(double amount, IUnit<Luminance> unit)
+        public Luminance New(double amount, IUnit<Luminance> unit)
         {
             return new Luminance(amount, unit);
         }
@@ -392,7 +392,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Luminance Create(float amount)
+        public Luminance New(float amount)
         {
             return new Luminance(amount);
         }
@@ -403,7 +403,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Luminance Create(float amount, IUnit<Luminance> unit)
+        public Luminance New(float amount, IUnit<Luminance> unit)
         {
             return new Luminance(amount, unit);
         }
@@ -413,7 +413,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Luminance Create(decimal amount)
+        public Luminance New(decimal amount)
         {
             return new Luminance(amount);
         }
@@ -424,7 +424,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Luminance Create(decimal amount, IUnit<Luminance> unit)
+        public Luminance New(decimal amount, IUnit<Luminance> unit)
         {
             return new Luminance(amount, unit);
         }

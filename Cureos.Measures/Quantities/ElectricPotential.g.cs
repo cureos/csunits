@@ -361,7 +361,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        ElectricPotential IMeasureFactory<ElectricPotential>.Create(IMeasure<ElectricPotential> measure)
+        ElectricPotential IMeasureFactory<ElectricPotential>.New(IMeasure<ElectricPotential> measure)
         {
             return new ElectricPotential(measure.StandardAmount);
         }
@@ -371,7 +371,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public ElectricPotential Create(double amount)
+        public ElectricPotential New(double amount)
         {
             return new ElectricPotential(amount);
         }
@@ -382,7 +382,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public ElectricPotential Create(double amount, IUnit<ElectricPotential> unit)
+        public ElectricPotential New(double amount, IUnit<ElectricPotential> unit)
         {
             return new ElectricPotential(amount, unit);
         }
@@ -392,7 +392,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public ElectricPotential Create(float amount)
+        public ElectricPotential New(float amount)
         {
             return new ElectricPotential(amount);
         }
@@ -403,7 +403,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public ElectricPotential Create(float amount, IUnit<ElectricPotential> unit)
+        public ElectricPotential New(float amount, IUnit<ElectricPotential> unit)
         {
             return new ElectricPotential(amount, unit);
         }
@@ -413,7 +413,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public ElectricPotential Create(decimal amount)
+        public ElectricPotential New(decimal amount)
         {
             return new ElectricPotential(amount);
         }
@@ -424,7 +424,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public ElectricPotential Create(decimal amount, IUnit<ElectricPotential> unit)
+        public ElectricPotential New(decimal amount, IUnit<ElectricPotential> unit)
         {
             return new ElectricPotential(amount, unit);
         }

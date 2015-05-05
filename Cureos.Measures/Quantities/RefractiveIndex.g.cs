@@ -350,7 +350,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        RefractiveIndex IMeasureFactory<RefractiveIndex>.Create(IMeasure<RefractiveIndex> measure)
+        RefractiveIndex IMeasureFactory<RefractiveIndex>.New(IMeasure<RefractiveIndex> measure)
         {
             return new RefractiveIndex(measure.StandardAmount);
         }
@@ -360,7 +360,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public RefractiveIndex Create(double amount)
+        public RefractiveIndex New(double amount)
         {
             return new RefractiveIndex(amount);
         }
@@ -371,7 +371,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public RefractiveIndex Create(double amount, IUnit<RefractiveIndex> unit)
+        public RefractiveIndex New(double amount, IUnit<RefractiveIndex> unit)
         {
             return new RefractiveIndex(amount, unit);
         }
@@ -381,7 +381,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public RefractiveIndex Create(float amount)
+        public RefractiveIndex New(float amount)
         {
             return new RefractiveIndex(amount);
         }
@@ -392,7 +392,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public RefractiveIndex Create(float amount, IUnit<RefractiveIndex> unit)
+        public RefractiveIndex New(float amount, IUnit<RefractiveIndex> unit)
         {
             return new RefractiveIndex(amount, unit);
         }
@@ -402,7 +402,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public RefractiveIndex Create(decimal amount)
+        public RefractiveIndex New(decimal amount)
         {
             return new RefractiveIndex(amount);
         }
@@ -413,7 +413,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public RefractiveIndex Create(decimal amount, IUnit<RefractiveIndex> unit)
+        public RefractiveIndex New(decimal amount, IUnit<RefractiveIndex> unit)
         {
             return new RefractiveIndex(amount, unit);
         }

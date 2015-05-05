@@ -350,7 +350,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        RelativePermeability IMeasureFactory<RelativePermeability>.Create(IMeasure<RelativePermeability> measure)
+        RelativePermeability IMeasureFactory<RelativePermeability>.New(IMeasure<RelativePermeability> measure)
         {
             return new RelativePermeability(measure.StandardAmount);
         }
@@ -360,7 +360,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public RelativePermeability Create(double amount)
+        public RelativePermeability New(double amount)
         {
             return new RelativePermeability(amount);
         }
@@ -371,7 +371,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public RelativePermeability Create(double amount, IUnit<RelativePermeability> unit)
+        public RelativePermeability New(double amount, IUnit<RelativePermeability> unit)
         {
             return new RelativePermeability(amount, unit);
         }
@@ -381,7 +381,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public RelativePermeability Create(float amount)
+        public RelativePermeability New(float amount)
         {
             return new RelativePermeability(amount);
         }
@@ -392,7 +392,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public RelativePermeability Create(float amount, IUnit<RelativePermeability> unit)
+        public RelativePermeability New(float amount, IUnit<RelativePermeability> unit)
         {
             return new RelativePermeability(amount, unit);
         }
@@ -402,7 +402,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public RelativePermeability Create(decimal amount)
+        public RelativePermeability New(decimal amount)
         {
             return new RelativePermeability(amount);
         }
@@ -413,7 +413,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public RelativePermeability Create(decimal amount, IUnit<RelativePermeability> unit)
+        public RelativePermeability New(decimal amount, IUnit<RelativePermeability> unit)
         {
             return new RelativePermeability(amount, unit);
         }

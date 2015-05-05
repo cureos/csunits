@@ -350,7 +350,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        SpecificVolume IMeasureFactory<SpecificVolume>.Create(IMeasure<SpecificVolume> measure)
+        SpecificVolume IMeasureFactory<SpecificVolume>.New(IMeasure<SpecificVolume> measure)
         {
             return new SpecificVolume(measure.StandardAmount);
         }
@@ -360,7 +360,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public SpecificVolume Create(double amount)
+        public SpecificVolume New(double amount)
         {
             return new SpecificVolume(amount);
         }
@@ -371,7 +371,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public SpecificVolume Create(double amount, IUnit<SpecificVolume> unit)
+        public SpecificVolume New(double amount, IUnit<SpecificVolume> unit)
         {
             return new SpecificVolume(amount, unit);
         }
@@ -381,7 +381,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public SpecificVolume Create(float amount)
+        public SpecificVolume New(float amount)
         {
             return new SpecificVolume(amount);
         }
@@ -392,7 +392,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public SpecificVolume Create(float amount, IUnit<SpecificVolume> unit)
+        public SpecificVolume New(float amount, IUnit<SpecificVolume> unit)
         {
             return new SpecificVolume(amount, unit);
         }
@@ -402,7 +402,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public SpecificVolume Create(decimal amount)
+        public SpecificVolume New(decimal amount)
         {
             return new SpecificVolume(amount);
         }
@@ -413,7 +413,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public SpecificVolume Create(decimal amount, IUnit<SpecificVolume> unit)
+        public SpecificVolume New(decimal amount, IUnit<SpecificVolume> unit)
         {
             return new SpecificVolume(amount, unit);
         }

@@ -451,7 +451,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        <#= ClassName #> IMeasureFactory<<#= ClassName #>>.Create(IMeasure<<#= ClassName #>> measure)
+        <#= ClassName #> IMeasureFactory<<#= ClassName #>>.New(IMeasure<<#= ClassName #>> measure)
         {
             return new <#= ClassName #>(measure.StandardAmount);
         }
@@ -461,7 +461,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public <#= ClassName #> Create(double amount)
+        public <#= ClassName #> New(double amount)
         {
             return new <#= ClassName #>(amount);
         }
@@ -472,7 +472,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public <#= ClassName #> Create(double amount, IUnit<<#= ClassName #>> unit)
+        public <#= ClassName #> New(double amount, IUnit<<#= ClassName #>> unit)
         {
             return new <#= ClassName #>(amount, unit);
         }
@@ -482,7 +482,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public <#= ClassName #> Create(float amount)
+        public <#= ClassName #> New(float amount)
         {
             return new <#= ClassName #>(amount);
         }
@@ -493,7 +493,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public <#= ClassName #> Create(float amount, IUnit<<#= ClassName #>> unit)
+        public <#= ClassName #> New(float amount, IUnit<<#= ClassName #>> unit)
         {
             return new <#= ClassName #>(amount, unit);
         }
@@ -503,7 +503,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public <#= ClassName #> Create(decimal amount)
+        public <#= ClassName #> New(decimal amount)
         {
             return new <#= ClassName #>(amount);
         }
@@ -514,7 +514,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public <#= ClassName #> Create(decimal amount, IUnit<<#= ClassName #>> unit)
+        public <#= ClassName #> New(decimal amount, IUnit<<#= ClassName #>> unit)
         {
             return new <#= ClassName #>(amount, unit);
         }

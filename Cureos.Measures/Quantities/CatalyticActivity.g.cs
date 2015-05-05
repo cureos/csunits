@@ -359,7 +359,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        CatalyticActivity IMeasureFactory<CatalyticActivity>.Create(IMeasure<CatalyticActivity> measure)
+        CatalyticActivity IMeasureFactory<CatalyticActivity>.New(IMeasure<CatalyticActivity> measure)
         {
             return new CatalyticActivity(measure.StandardAmount);
         }
@@ -369,7 +369,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public CatalyticActivity Create(double amount)
+        public CatalyticActivity New(double amount)
         {
             return new CatalyticActivity(amount);
         }
@@ -380,7 +380,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public CatalyticActivity Create(double amount, IUnit<CatalyticActivity> unit)
+        public CatalyticActivity New(double amount, IUnit<CatalyticActivity> unit)
         {
             return new CatalyticActivity(amount, unit);
         }
@@ -390,7 +390,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public CatalyticActivity Create(float amount)
+        public CatalyticActivity New(float amount)
         {
             return new CatalyticActivity(amount);
         }
@@ -401,7 +401,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public CatalyticActivity Create(float amount, IUnit<CatalyticActivity> unit)
+        public CatalyticActivity New(float amount, IUnit<CatalyticActivity> unit)
         {
             return new CatalyticActivity(amount, unit);
         }
@@ -411,7 +411,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public CatalyticActivity Create(decimal amount)
+        public CatalyticActivity New(decimal amount)
         {
             return new CatalyticActivity(amount);
         }
@@ -422,7 +422,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public CatalyticActivity Create(decimal amount, IUnit<CatalyticActivity> unit)
+        public CatalyticActivity New(decimal amount, IUnit<CatalyticActivity> unit)
         {
             return new CatalyticActivity(amount, unit);
         }

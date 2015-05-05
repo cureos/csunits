@@ -361,7 +361,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        AmountConcentration IMeasureFactory<AmountConcentration>.Create(IMeasure<AmountConcentration> measure)
+        AmountConcentration IMeasureFactory<AmountConcentration>.New(IMeasure<AmountConcentration> measure)
         {
             return new AmountConcentration(measure.StandardAmount);
         }
@@ -371,7 +371,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public AmountConcentration Create(double amount)
+        public AmountConcentration New(double amount)
         {
             return new AmountConcentration(amount);
         }
@@ -382,7 +382,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public AmountConcentration Create(double amount, IUnit<AmountConcentration> unit)
+        public AmountConcentration New(double amount, IUnit<AmountConcentration> unit)
         {
             return new AmountConcentration(amount, unit);
         }
@@ -392,7 +392,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public AmountConcentration Create(float amount)
+        public AmountConcentration New(float amount)
         {
             return new AmountConcentration(amount);
         }
@@ -403,7 +403,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public AmountConcentration Create(float amount, IUnit<AmountConcentration> unit)
+        public AmountConcentration New(float amount, IUnit<AmountConcentration> unit)
         {
             return new AmountConcentration(amount, unit);
         }
@@ -413,7 +413,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public AmountConcentration Create(decimal amount)
+        public AmountConcentration New(decimal amount)
         {
             return new AmountConcentration(amount);
         }
@@ -424,7 +424,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public AmountConcentration Create(decimal amount, IUnit<AmountConcentration> unit)
+        public AmountConcentration New(decimal amount, IUnit<AmountConcentration> unit)
         {
             return new AmountConcentration(amount, unit);
         }

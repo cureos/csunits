@@ -372,7 +372,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        Energy IMeasureFactory<Energy>.Create(IMeasure<Energy> measure)
+        Energy IMeasureFactory<Energy>.New(IMeasure<Energy> measure)
         {
             return new Energy(measure.StandardAmount);
         }
@@ -382,7 +382,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Energy Create(double amount)
+        public Energy New(double amount)
         {
             return new Energy(amount);
         }
@@ -393,7 +393,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Energy Create(double amount, IUnit<Energy> unit)
+        public Energy New(double amount, IUnit<Energy> unit)
         {
             return new Energy(amount, unit);
         }
@@ -403,7 +403,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Energy Create(float amount)
+        public Energy New(float amount)
         {
             return new Energy(amount);
         }
@@ -414,7 +414,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Energy Create(float amount, IUnit<Energy> unit)
+        public Energy New(float amount, IUnit<Energy> unit)
         {
             return new Energy(amount, unit);
         }
@@ -424,7 +424,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Energy Create(decimal amount)
+        public Energy New(decimal amount)
         {
             return new Energy(amount);
         }
@@ -435,7 +435,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Energy Create(decimal amount, IUnit<Energy> unit)
+        public Energy New(decimal amount, IUnit<Energy> unit)
         {
             return new Energy(amount, unit);
         }

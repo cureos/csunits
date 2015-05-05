@@ -361,7 +361,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        Frequency IMeasureFactory<Frequency>.Create(IMeasure<Frequency> measure)
+        Frequency IMeasureFactory<Frequency>.New(IMeasure<Frequency> measure)
         {
             return new Frequency(measure.StandardAmount);
         }
@@ -371,7 +371,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Frequency Create(double amount)
+        public Frequency New(double amount)
         {
             return new Frequency(amount);
         }
@@ -382,7 +382,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Frequency Create(double amount, IUnit<Frequency> unit)
+        public Frequency New(double amount, IUnit<Frequency> unit)
         {
             return new Frequency(amount, unit);
         }
@@ -392,7 +392,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Frequency Create(float amount)
+        public Frequency New(float amount)
         {
             return new Frequency(amount);
         }
@@ -403,7 +403,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Frequency Create(float amount, IUnit<Frequency> unit)
+        public Frequency New(float amount, IUnit<Frequency> unit)
         {
             return new Frequency(amount, unit);
         }
@@ -413,7 +413,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Frequency Create(decimal amount)
+        public Frequency New(decimal amount)
         {
             return new Frequency(amount);
         }
@@ -424,7 +424,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Frequency Create(decimal amount, IUnit<Frequency> unit)
+        public Frequency New(decimal amount, IUnit<Frequency> unit)
         {
             return new Frequency(amount, unit);
         }

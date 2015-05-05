@@ -78,9 +78,9 @@ namespace Cureos.Measures
         /// <param name="iMeasure3">Third measure object</param>
         public MeasureTriplet(IMeasure<Q1> iMeasure1, IMeasure<Q2> iMeasure2, IMeasure<Q3> iMeasure3)
         {
-            this.x = Q1Factory.Create(iMeasure1);
-            this.y = Q2Factory.Create(iMeasure2);
-            this.z = Q3Factory.Create(iMeasure3);
+            this.x = Q1Factory.New(iMeasure1);
+            this.y = Q2Factory.New(iMeasure2);
+            this.z = Q3Factory.New(iMeasure3);
         }
 
         /// <summary>
@@ -91,9 +91,9 @@ namespace Cureos.Measures
         /// <param name="iAmount3">Amount in standard units of the third measure object</param>
         public MeasureTriplet(double iAmount1, double iAmount2, double iAmount3)
         {
-            this.x = Q1Factory.Create(iAmount1);
-            this.y = Q2Factory.Create(iAmount2);
-            this.z = Q3Factory.Create(iAmount3);
+            this.x = Q1Factory.New(iAmount1);
+            this.y = Q2Factory.New(iAmount2);
+            this.z = Q3Factory.New(iAmount3);
         }
 
         /// <summary>
@@ -104,9 +104,9 @@ namespace Cureos.Measures
         /// <param name="iAmount3">Amount in standard units of the third measure object</param>
         public MeasureTriplet(float iAmount1, float iAmount2, float iAmount3)
         {
-            this.x = Q1Factory.Create(iAmount1);
-            this.y = Q2Factory.Create(iAmount2);
-            this.z = Q3Factory.Create(iAmount3);
+            this.x = Q1Factory.New(iAmount1);
+            this.y = Q2Factory.New(iAmount2);
+            this.z = Q3Factory.New(iAmount3);
         }
 
         /// <summary>
@@ -117,9 +117,9 @@ namespace Cureos.Measures
         /// <param name="iAmount3">Amount in standard units of the third measure object</param>
         public MeasureTriplet(decimal iAmount1, decimal iAmount2, decimal iAmount3)
         {
-            this.x = Q1Factory.Create(iAmount1);
-            this.y = Q2Factory.Create(iAmount2);
-            this.z = Q3Factory.Create(iAmount3);
+            this.x = Q1Factory.New(iAmount1);
+            this.y = Q2Factory.New(iAmount2);
+            this.z = Q3Factory.New(iAmount3);
         }
 
         #endregion

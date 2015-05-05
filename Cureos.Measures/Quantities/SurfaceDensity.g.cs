@@ -352,7 +352,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        SurfaceDensity IMeasureFactory<SurfaceDensity>.Create(IMeasure<SurfaceDensity> measure)
+        SurfaceDensity IMeasureFactory<SurfaceDensity>.New(IMeasure<SurfaceDensity> measure)
         {
             return new SurfaceDensity(measure.StandardAmount);
         }
@@ -362,7 +362,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public SurfaceDensity Create(double amount)
+        public SurfaceDensity New(double amount)
         {
             return new SurfaceDensity(amount);
         }
@@ -373,7 +373,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public SurfaceDensity Create(double amount, IUnit<SurfaceDensity> unit)
+        public SurfaceDensity New(double amount, IUnit<SurfaceDensity> unit)
         {
             return new SurfaceDensity(amount, unit);
         }
@@ -383,7 +383,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public SurfaceDensity Create(float amount)
+        public SurfaceDensity New(float amount)
         {
             return new SurfaceDensity(amount);
         }
@@ -394,7 +394,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public SurfaceDensity Create(float amount, IUnit<SurfaceDensity> unit)
+        public SurfaceDensity New(float amount, IUnit<SurfaceDensity> unit)
         {
             return new SurfaceDensity(amount, unit);
         }
@@ -404,7 +404,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public SurfaceDensity Create(decimal amount)
+        public SurfaceDensity New(decimal amount)
         {
             return new SurfaceDensity(amount);
         }
@@ -415,7 +415,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public SurfaceDensity Create(decimal amount, IUnit<SurfaceDensity> unit)
+        public SurfaceDensity New(decimal amount, IUnit<SurfaceDensity> unit)
         {
             return new SurfaceDensity(amount, unit);
         }

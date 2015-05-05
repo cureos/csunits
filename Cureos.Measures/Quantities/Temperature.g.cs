@@ -365,7 +365,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        Temperature IMeasureFactory<Temperature>.Create(IMeasure<Temperature> measure)
+        Temperature IMeasureFactory<Temperature>.New(IMeasure<Temperature> measure)
         {
             return new Temperature(measure.StandardAmount);
         }
@@ -375,7 +375,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Temperature Create(double amount)
+        public Temperature New(double amount)
         {
             return new Temperature(amount);
         }
@@ -386,7 +386,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Temperature Create(double amount, IUnit<Temperature> unit)
+        public Temperature New(double amount, IUnit<Temperature> unit)
         {
             return new Temperature(amount, unit);
         }
@@ -396,7 +396,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Temperature Create(float amount)
+        public Temperature New(float amount)
         {
             return new Temperature(amount);
         }
@@ -407,7 +407,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Temperature Create(float amount, IUnit<Temperature> unit)
+        public Temperature New(float amount, IUnit<Temperature> unit)
         {
             return new Temperature(amount, unit);
         }
@@ -417,7 +417,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Temperature Create(decimal amount)
+        public Temperature New(decimal amount)
         {
             return new Temperature(amount);
         }
@@ -428,7 +428,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Temperature Create(decimal amount, IUnit<Temperature> unit)
+        public Temperature New(decimal amount, IUnit<Temperature> unit)
         {
             return new Temperature(amount, unit);
         }

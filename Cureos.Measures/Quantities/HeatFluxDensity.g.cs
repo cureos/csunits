@@ -361,7 +361,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        HeatFluxDensity IMeasureFactory<HeatFluxDensity>.Create(IMeasure<HeatFluxDensity> measure)
+        HeatFluxDensity IMeasureFactory<HeatFluxDensity>.New(IMeasure<HeatFluxDensity> measure)
         {
             return new HeatFluxDensity(measure.StandardAmount);
         }
@@ -371,7 +371,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public HeatFluxDensity Create(double amount)
+        public HeatFluxDensity New(double amount)
         {
             return new HeatFluxDensity(amount);
         }
@@ -382,7 +382,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public HeatFluxDensity Create(double amount, IUnit<HeatFluxDensity> unit)
+        public HeatFluxDensity New(double amount, IUnit<HeatFluxDensity> unit)
         {
             return new HeatFluxDensity(amount, unit);
         }
@@ -392,7 +392,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public HeatFluxDensity Create(float amount)
+        public HeatFluxDensity New(float amount)
         {
             return new HeatFluxDensity(amount);
         }
@@ -403,7 +403,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public HeatFluxDensity Create(float amount, IUnit<HeatFluxDensity> unit)
+        public HeatFluxDensity New(float amount, IUnit<HeatFluxDensity> unit)
         {
             return new HeatFluxDensity(amount, unit);
         }
@@ -413,7 +413,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public HeatFluxDensity Create(decimal amount)
+        public HeatFluxDensity New(decimal amount)
         {
             return new HeatFluxDensity(amount);
         }
@@ -424,7 +424,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public HeatFluxDensity Create(decimal amount, IUnit<HeatFluxDensity> unit)
+        public HeatFluxDensity New(decimal amount, IUnit<HeatFluxDensity> unit)
         {
             return new HeatFluxDensity(amount, unit);
         }

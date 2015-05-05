@@ -357,7 +357,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        ElectricCharge IMeasureFactory<ElectricCharge>.Create(IMeasure<ElectricCharge> measure)
+        ElectricCharge IMeasureFactory<ElectricCharge>.New(IMeasure<ElectricCharge> measure)
         {
             return new ElectricCharge(measure.StandardAmount);
         }
@@ -367,7 +367,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public ElectricCharge Create(double amount)
+        public ElectricCharge New(double amount)
         {
             return new ElectricCharge(amount);
         }
@@ -378,7 +378,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public ElectricCharge Create(double amount, IUnit<ElectricCharge> unit)
+        public ElectricCharge New(double amount, IUnit<ElectricCharge> unit)
         {
             return new ElectricCharge(amount, unit);
         }
@@ -388,7 +388,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public ElectricCharge Create(float amount)
+        public ElectricCharge New(float amount)
         {
             return new ElectricCharge(amount);
         }
@@ -399,7 +399,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public ElectricCharge Create(float amount, IUnit<ElectricCharge> unit)
+        public ElectricCharge New(float amount, IUnit<ElectricCharge> unit)
         {
             return new ElectricCharge(amount, unit);
         }
@@ -409,7 +409,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public ElectricCharge Create(decimal amount)
+        public ElectricCharge New(decimal amount)
         {
             return new ElectricCharge(amount);
         }
@@ -420,7 +420,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public ElectricCharge Create(decimal amount, IUnit<ElectricCharge> unit)
+        public ElectricCharge New(decimal amount, IUnit<ElectricCharge> unit)
         {
             return new ElectricCharge(amount, unit);
         }

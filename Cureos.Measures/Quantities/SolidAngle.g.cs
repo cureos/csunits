@@ -356,7 +356,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        SolidAngle IMeasureFactory<SolidAngle>.Create(IMeasure<SolidAngle> measure)
+        SolidAngle IMeasureFactory<SolidAngle>.New(IMeasure<SolidAngle> measure)
         {
             return new SolidAngle(measure.StandardAmount);
         }
@@ -366,7 +366,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public SolidAngle Create(double amount)
+        public SolidAngle New(double amount)
         {
             return new SolidAngle(amount);
         }
@@ -377,7 +377,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public SolidAngle Create(double amount, IUnit<SolidAngle> unit)
+        public SolidAngle New(double amount, IUnit<SolidAngle> unit)
         {
             return new SolidAngle(amount, unit);
         }
@@ -387,7 +387,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public SolidAngle Create(float amount)
+        public SolidAngle New(float amount)
         {
             return new SolidAngle(amount);
         }
@@ -398,7 +398,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public SolidAngle Create(float amount, IUnit<SolidAngle> unit)
+        public SolidAngle New(float amount, IUnit<SolidAngle> unit)
         {
             return new SolidAngle(amount, unit);
         }
@@ -408,7 +408,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public SolidAngle Create(decimal amount)
+        public SolidAngle New(decimal amount)
         {
             return new SolidAngle(amount);
         }
@@ -419,7 +419,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public SolidAngle Create(decimal amount, IUnit<SolidAngle> unit)
+        public SolidAngle New(decimal amount, IUnit<SolidAngle> unit)
         {
             return new SolidAngle(amount, unit);
         }

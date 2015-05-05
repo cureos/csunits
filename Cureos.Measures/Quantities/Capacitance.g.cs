@@ -360,7 +360,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        Capacitance IMeasureFactory<Capacitance>.Create(IMeasure<Capacitance> measure)
+        Capacitance IMeasureFactory<Capacitance>.New(IMeasure<Capacitance> measure)
         {
             return new Capacitance(measure.StandardAmount);
         }
@@ -370,7 +370,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Capacitance Create(double amount)
+        public Capacitance New(double amount)
         {
             return new Capacitance(amount);
         }
@@ -381,7 +381,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Capacitance Create(double amount, IUnit<Capacitance> unit)
+        public Capacitance New(double amount, IUnit<Capacitance> unit)
         {
             return new Capacitance(amount, unit);
         }
@@ -391,7 +391,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Capacitance Create(float amount)
+        public Capacitance New(float amount)
         {
             return new Capacitance(amount);
         }
@@ -402,7 +402,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Capacitance Create(float amount, IUnit<Capacitance> unit)
+        public Capacitance New(float amount, IUnit<Capacitance> unit)
         {
             return new Capacitance(amount, unit);
         }
@@ -412,7 +412,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Capacitance Create(decimal amount)
+        public Capacitance New(decimal amount)
         {
             return new Capacitance(amount);
         }
@@ -423,7 +423,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Capacitance Create(decimal amount, IUnit<Capacitance> unit)
+        public Capacitance New(decimal amount, IUnit<Capacitance> unit)
         {
             return new Capacitance(amount, unit);
         }

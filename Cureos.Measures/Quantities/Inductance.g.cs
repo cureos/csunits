@@ -361,7 +361,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        Inductance IMeasureFactory<Inductance>.Create(IMeasure<Inductance> measure)
+        Inductance IMeasureFactory<Inductance>.New(IMeasure<Inductance> measure)
         {
             return new Inductance(measure.StandardAmount);
         }
@@ -371,7 +371,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Inductance Create(double amount)
+        public Inductance New(double amount)
         {
             return new Inductance(amount);
         }
@@ -382,7 +382,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Inductance Create(double amount, IUnit<Inductance> unit)
+        public Inductance New(double amount, IUnit<Inductance> unit)
         {
             return new Inductance(amount, unit);
         }
@@ -392,7 +392,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Inductance Create(float amount)
+        public Inductance New(float amount)
         {
             return new Inductance(amount);
         }
@@ -403,7 +403,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Inductance Create(float amount, IUnit<Inductance> unit)
+        public Inductance New(float amount, IUnit<Inductance> unit)
         {
             return new Inductance(amount, unit);
         }
@@ -413,7 +413,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Inductance Create(decimal amount)
+        public Inductance New(decimal amount)
         {
             return new Inductance(amount);
         }
@@ -424,7 +424,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Inductance Create(decimal amount, IUnit<Inductance> unit)
+        public Inductance New(decimal amount, IUnit<Inductance> unit)
         {
             return new Inductance(amount, unit);
         }

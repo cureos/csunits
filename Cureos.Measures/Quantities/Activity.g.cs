@@ -359,7 +359,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        Activity IMeasureFactory<Activity>.Create(IMeasure<Activity> measure)
+        Activity IMeasureFactory<Activity>.New(IMeasure<Activity> measure)
         {
             return new Activity(measure.StandardAmount);
         }
@@ -369,7 +369,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Activity Create(double amount)
+        public Activity New(double amount)
         {
             return new Activity(amount);
         }
@@ -380,7 +380,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Activity Create(double amount, IUnit<Activity> unit)
+        public Activity New(double amount, IUnit<Activity> unit)
         {
             return new Activity(amount, unit);
         }
@@ -390,7 +390,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Activity Create(float amount)
+        public Activity New(float amount)
         {
             return new Activity(amount);
         }
@@ -401,7 +401,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Activity Create(float amount, IUnit<Activity> unit)
+        public Activity New(float amount, IUnit<Activity> unit)
         {
             return new Activity(amount, unit);
         }
@@ -411,7 +411,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Activity Create(decimal amount)
+        public Activity New(decimal amount)
         {
             return new Activity(amount);
         }
@@ -422,7 +422,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Activity Create(decimal amount, IUnit<Activity> unit)
+        public Activity New(decimal amount, IUnit<Activity> unit)
         {
             return new Activity(amount, unit);
         }

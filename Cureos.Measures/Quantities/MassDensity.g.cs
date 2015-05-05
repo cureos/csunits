@@ -354,7 +354,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        MassDensity IMeasureFactory<MassDensity>.Create(IMeasure<MassDensity> measure)
+        MassDensity IMeasureFactory<MassDensity>.New(IMeasure<MassDensity> measure)
         {
             return new MassDensity(measure.StandardAmount);
         }
@@ -364,7 +364,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public MassDensity Create(double amount)
+        public MassDensity New(double amount)
         {
             return new MassDensity(amount);
         }
@@ -375,7 +375,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public MassDensity Create(double amount, IUnit<MassDensity> unit)
+        public MassDensity New(double amount, IUnit<MassDensity> unit)
         {
             return new MassDensity(amount, unit);
         }
@@ -385,7 +385,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public MassDensity Create(float amount)
+        public MassDensity New(float amount)
         {
             return new MassDensity(amount);
         }
@@ -396,7 +396,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public MassDensity Create(float amount, IUnit<MassDensity> unit)
+        public MassDensity New(float amount, IUnit<MassDensity> unit)
         {
             return new MassDensity(amount, unit);
         }
@@ -406,7 +406,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public MassDensity Create(decimal amount)
+        public MassDensity New(decimal amount)
         {
             return new MassDensity(amount);
         }
@@ -417,7 +417,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public MassDensity Create(decimal amount, IUnit<MassDensity> unit)
+        public MassDensity New(decimal amount, IUnit<MassDensity> unit)
         {
             return new MassDensity(amount, unit);
         }

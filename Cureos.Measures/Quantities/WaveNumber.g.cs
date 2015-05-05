@@ -353,7 +353,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        WaveNumber IMeasureFactory<WaveNumber>.Create(IMeasure<WaveNumber> measure)
+        WaveNumber IMeasureFactory<WaveNumber>.New(IMeasure<WaveNumber> measure)
         {
             return new WaveNumber(measure.StandardAmount);
         }
@@ -363,7 +363,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public WaveNumber Create(double amount)
+        public WaveNumber New(double amount)
         {
             return new WaveNumber(amount);
         }
@@ -374,7 +374,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public WaveNumber Create(double amount, IUnit<WaveNumber> unit)
+        public WaveNumber New(double amount, IUnit<WaveNumber> unit)
         {
             return new WaveNumber(amount, unit);
         }
@@ -384,7 +384,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public WaveNumber Create(float amount)
+        public WaveNumber New(float amount)
         {
             return new WaveNumber(amount);
         }
@@ -395,7 +395,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public WaveNumber Create(float amount, IUnit<WaveNumber> unit)
+        public WaveNumber New(float amount, IUnit<WaveNumber> unit)
         {
             return new WaveNumber(amount, unit);
         }
@@ -405,7 +405,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public WaveNumber Create(decimal amount)
+        public WaveNumber New(decimal amount)
         {
             return new WaveNumber(amount);
         }
@@ -416,7 +416,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public WaveNumber Create(decimal amount, IUnit<WaveNumber> unit)
+        public WaveNumber New(decimal amount, IUnit<WaveNumber> unit)
         {
             return new WaveNumber(amount, unit);
         }

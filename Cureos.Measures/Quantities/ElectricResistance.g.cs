@@ -361,7 +361,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        ElectricResistance IMeasureFactory<ElectricResistance>.Create(IMeasure<ElectricResistance> measure)
+        ElectricResistance IMeasureFactory<ElectricResistance>.New(IMeasure<ElectricResistance> measure)
         {
             return new ElectricResistance(measure.StandardAmount);
         }
@@ -371,7 +371,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public ElectricResistance Create(double amount)
+        public ElectricResistance New(double amount)
         {
             return new ElectricResistance(amount);
         }
@@ -382,7 +382,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public ElectricResistance Create(double amount, IUnit<ElectricResistance> unit)
+        public ElectricResistance New(double amount, IUnit<ElectricResistance> unit)
         {
             return new ElectricResistance(amount, unit);
         }
@@ -392,7 +392,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public ElectricResistance Create(float amount)
+        public ElectricResistance New(float amount)
         {
             return new ElectricResistance(amount);
         }
@@ -403,7 +403,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public ElectricResistance Create(float amount, IUnit<ElectricResistance> unit)
+        public ElectricResistance New(float amount, IUnit<ElectricResistance> unit)
         {
             return new ElectricResistance(amount, unit);
         }
@@ -413,7 +413,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public ElectricResistance Create(decimal amount)
+        public ElectricResistance New(decimal amount)
         {
             return new ElectricResistance(amount);
         }
@@ -424,7 +424,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public ElectricResistance Create(decimal amount, IUnit<ElectricResistance> unit)
+        public ElectricResistance New(decimal amount, IUnit<ElectricResistance> unit)
         {
             return new ElectricResistance(amount, unit);
         }

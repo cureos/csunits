@@ -361,7 +361,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        CurrentDensity IMeasureFactory<CurrentDensity>.Create(IMeasure<CurrentDensity> measure)
+        CurrentDensity IMeasureFactory<CurrentDensity>.New(IMeasure<CurrentDensity> measure)
         {
             return new CurrentDensity(measure.StandardAmount);
         }
@@ -371,7 +371,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public CurrentDensity Create(double amount)
+        public CurrentDensity New(double amount)
         {
             return new CurrentDensity(amount);
         }
@@ -382,7 +382,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public CurrentDensity Create(double amount, IUnit<CurrentDensity> unit)
+        public CurrentDensity New(double amount, IUnit<CurrentDensity> unit)
         {
             return new CurrentDensity(amount, unit);
         }
@@ -392,7 +392,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public CurrentDensity Create(float amount)
+        public CurrentDensity New(float amount)
         {
             return new CurrentDensity(amount);
         }
@@ -403,7 +403,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public CurrentDensity Create(float amount, IUnit<CurrentDensity> unit)
+        public CurrentDensity New(float amount, IUnit<CurrentDensity> unit)
         {
             return new CurrentDensity(amount, unit);
         }
@@ -413,7 +413,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public CurrentDensity Create(decimal amount)
+        public CurrentDensity New(decimal amount)
         {
             return new CurrentDensity(amount);
         }
@@ -424,7 +424,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public CurrentDensity Create(decimal amount, IUnit<CurrentDensity> unit)
+        public CurrentDensity New(decimal amount, IUnit<CurrentDensity> unit)
         {
             return new CurrentDensity(amount, unit);
         }

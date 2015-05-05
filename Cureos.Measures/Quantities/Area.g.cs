@@ -358,7 +358,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        Area IMeasureFactory<Area>.Create(IMeasure<Area> measure)
+        Area IMeasureFactory<Area>.New(IMeasure<Area> measure)
         {
             return new Area(measure.StandardAmount);
         }
@@ -368,7 +368,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Area Create(double amount)
+        public Area New(double amount)
         {
             return new Area(amount);
         }
@@ -379,7 +379,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Area Create(double amount, IUnit<Area> unit)
+        public Area New(double amount, IUnit<Area> unit)
         {
             return new Area(amount, unit);
         }
@@ -389,7 +389,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Area Create(float amount)
+        public Area New(float amount)
         {
             return new Area(amount);
         }
@@ -400,7 +400,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Area Create(float amount, IUnit<Area> unit)
+        public Area New(float amount, IUnit<Area> unit)
         {
             return new Area(amount, unit);
         }
@@ -410,7 +410,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Area Create(decimal amount)
+        public Area New(decimal amount)
         {
             return new Area(amount);
         }
@@ -421,7 +421,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Area Create(decimal amount, IUnit<Area> unit)
+        public Area New(decimal amount, IUnit<Area> unit)
         {
             return new Area(amount, unit);
         }

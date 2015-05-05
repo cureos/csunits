@@ -361,7 +361,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        MagneticFieldStrength IMeasureFactory<MagneticFieldStrength>.Create(IMeasure<MagneticFieldStrength> measure)
+        MagneticFieldStrength IMeasureFactory<MagneticFieldStrength>.New(IMeasure<MagneticFieldStrength> measure)
         {
             return new MagneticFieldStrength(measure.StandardAmount);
         }
@@ -371,7 +371,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public MagneticFieldStrength Create(double amount)
+        public MagneticFieldStrength New(double amount)
         {
             return new MagneticFieldStrength(amount);
         }
@@ -382,7 +382,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public MagneticFieldStrength Create(double amount, IUnit<MagneticFieldStrength> unit)
+        public MagneticFieldStrength New(double amount, IUnit<MagneticFieldStrength> unit)
         {
             return new MagneticFieldStrength(amount, unit);
         }
@@ -392,7 +392,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public MagneticFieldStrength Create(float amount)
+        public MagneticFieldStrength New(float amount)
         {
             return new MagneticFieldStrength(amount);
         }
@@ -403,7 +403,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public MagneticFieldStrength Create(float amount, IUnit<MagneticFieldStrength> unit)
+        public MagneticFieldStrength New(float amount, IUnit<MagneticFieldStrength> unit)
         {
             return new MagneticFieldStrength(amount, unit);
         }
@@ -413,7 +413,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public MagneticFieldStrength Create(decimal amount)
+        public MagneticFieldStrength New(decimal amount)
         {
             return new MagneticFieldStrength(amount);
         }
@@ -424,7 +424,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public MagneticFieldStrength Create(decimal amount, IUnit<MagneticFieldStrength> unit)
+        public MagneticFieldStrength New(decimal amount, IUnit<MagneticFieldStrength> unit)
         {
             return new MagneticFieldStrength(amount, unit);
         }

@@ -367,7 +367,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        Mass IMeasureFactory<Mass>.Create(IMeasure<Mass> measure)
+        Mass IMeasureFactory<Mass>.New(IMeasure<Mass> measure)
         {
             return new Mass(measure.StandardAmount);
         }
@@ -377,7 +377,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Mass Create(double amount)
+        public Mass New(double amount)
         {
             return new Mass(amount);
         }
@@ -388,7 +388,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Mass Create(double amount, IUnit<Mass> unit)
+        public Mass New(double amount, IUnit<Mass> unit)
         {
             return new Mass(amount, unit);
         }
@@ -398,7 +398,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Mass Create(float amount)
+        public Mass New(float amount)
         {
             return new Mass(amount);
         }
@@ -409,7 +409,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Mass Create(float amount, IUnit<Mass> unit)
+        public Mass New(float amount, IUnit<Mass> unit)
         {
             return new Mass(amount, unit);
         }
@@ -419,7 +419,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public Mass Create(decimal amount)
+        public Mass New(decimal amount)
         {
             return new Mass(amount);
         }
@@ -430,7 +430,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public Mass Create(decimal amount, IUnit<Mass> unit)
+        public Mass New(decimal amount, IUnit<Mass> unit)
         {
             return new Mass(amount, unit);
         }

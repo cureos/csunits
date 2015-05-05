@@ -354,7 +354,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        PlaneAngle IMeasureFactory<PlaneAngle>.Create(IMeasure<PlaneAngle> measure)
+        PlaneAngle IMeasureFactory<PlaneAngle>.New(IMeasure<PlaneAngle> measure)
         {
             return new PlaneAngle(measure.StandardAmount);
         }
@@ -364,7 +364,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public PlaneAngle Create(double amount)
+        public PlaneAngle New(double amount)
         {
             return new PlaneAngle(amount);
         }
@@ -375,7 +375,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public PlaneAngle Create(double amount, IUnit<PlaneAngle> unit)
+        public PlaneAngle New(double amount, IUnit<PlaneAngle> unit)
         {
             return new PlaneAngle(amount, unit);
         }
@@ -385,7 +385,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public PlaneAngle Create(float amount)
+        public PlaneAngle New(float amount)
         {
             return new PlaneAngle(amount);
         }
@@ -396,7 +396,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public PlaneAngle Create(float amount, IUnit<PlaneAngle> unit)
+        public PlaneAngle New(float amount, IUnit<PlaneAngle> unit)
         {
             return new PlaneAngle(amount, unit);
         }
@@ -406,7 +406,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public PlaneAngle Create(decimal amount)
+        public PlaneAngle New(decimal amount)
         {
             return new PlaneAngle(amount);
         }
@@ -417,7 +417,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public PlaneAngle Create(decimal amount, IUnit<PlaneAngle> unit)
+        public PlaneAngle New(decimal amount, IUnit<PlaneAngle> unit)
         {
             return new PlaneAngle(amount, unit);
         }

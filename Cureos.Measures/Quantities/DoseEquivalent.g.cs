@@ -359,7 +359,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        DoseEquivalent IMeasureFactory<DoseEquivalent>.Create(IMeasure<DoseEquivalent> measure)
+        DoseEquivalent IMeasureFactory<DoseEquivalent>.New(IMeasure<DoseEquivalent> measure)
         {
             return new DoseEquivalent(measure.StandardAmount);
         }
@@ -369,7 +369,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public DoseEquivalent Create(double amount)
+        public DoseEquivalent New(double amount)
         {
             return new DoseEquivalent(amount);
         }
@@ -380,7 +380,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public DoseEquivalent Create(double amount, IUnit<DoseEquivalent> unit)
+        public DoseEquivalent New(double amount, IUnit<DoseEquivalent> unit)
         {
             return new DoseEquivalent(amount, unit);
         }
@@ -390,7 +390,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public DoseEquivalent Create(float amount)
+        public DoseEquivalent New(float amount)
         {
             return new DoseEquivalent(amount);
         }
@@ -401,7 +401,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public DoseEquivalent Create(float amount, IUnit<DoseEquivalent> unit)
+        public DoseEquivalent New(float amount, IUnit<DoseEquivalent> unit)
         {
             return new DoseEquivalent(amount, unit);
         }
@@ -411,7 +411,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public DoseEquivalent Create(decimal amount)
+        public DoseEquivalent New(decimal amount)
         {
             return new DoseEquivalent(amount);
         }
@@ -422,7 +422,7 @@ namespace Cureos.Measures.Quantities
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public DoseEquivalent Create(decimal amount, IUnit<DoseEquivalent> unit)
+        public DoseEquivalent New(decimal amount, IUnit<DoseEquivalent> unit)
         {
             return new DoseEquivalent(amount, unit);
         }
