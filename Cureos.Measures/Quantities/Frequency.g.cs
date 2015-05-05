@@ -403,7 +403,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<Frequency>)this
-                    : new InUnitMeasure<Frequency>(this.GetAmount(unit), unit);
+                    : new Measure<Frequency>(this.GetAmount(unit), unit);
             }
         }
 
@@ -869,81 +869,81 @@ namespace Cureos.Measures.Quantities
 
         #region Private class implementation of IMeasureFactory<Frequency>
 
-		private class MeasureFactory : IMeasureFactory<Frequency>
-		{
-			/// <summary>
-			/// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-			/// </summary>
-			/// <param name="measure">Measure.</param>
-			/// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-			Frequency IMeasureFactory<Frequency>.New(IMeasure<Frequency> measure)
-			{
-				return new Frequency(measure.StandardAmount);
-			}
+        private class MeasureFactory : IMeasureFactory<Frequency>
+        {
+            /// <summary>
+            /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+            /// </summary>
+            /// <param name="measure">Measure.</param>
+            /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+            Frequency IMeasureFactory<Frequency>.New(IMeasure<Frequency> measure)
+            {
+                return new Frequency(measure.StandardAmount);
+            }
 
-			/// <summary>
-			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-			public Frequency New(double amount)
-			{
-				return new Frequency(amount);
-			}
+            /// <summary>
+            /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+            public Frequency New(double amount)
+            {
+                return new Frequency(amount);
+            }
 
-			/// <summary>
-			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <param name="unit">Unit.</param>
-			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-			public Frequency New(double amount, IUnit<Frequency> unit)
-			{
-				return new Frequency(amount, unit);
-			}
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public Frequency New(double amount, IUnit<Frequency> unit)
+            {
+                return new Frequency(amount, unit);
+            }
 
-			/// <summary>
-			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-			public Frequency New(float amount)
-			{
-				return new Frequency(amount);
-			}
+            /// <summary>
+            /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+            public Frequency New(float amount)
+            {
+                return new Frequency(amount);
+            }
 
-			/// <summary>
-			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <param name="unit">Unit.</param>
-			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-			public Frequency New(float amount, IUnit<Frequency> unit)
-			{
-				return new Frequency(amount, unit);
-			}
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public Frequency New(float amount, IUnit<Frequency> unit)
+            {
+                return new Frequency(amount, unit);
+            }
 
-			/// <summary>
-			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-			public Frequency New(decimal amount)
-			{
-				return new Frequency(amount);
-			}
+            /// <summary>
+            /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+            public Frequency New(decimal amount)
+            {
+                return new Frequency(amount);
+            }
 
-			/// <summary>
-			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <param name="unit">Unit.</param>
-			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-			public Frequency New(decimal amount, IUnit<Frequency> unit)
-			{
-				return new Frequency(amount, unit);
-			}
-		}
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public Frequency New(decimal amount, IUnit<Frequency> unit)
+            {
+                return new Frequency(amount, unit);
+            }
+        }
 
         #endregion
     }

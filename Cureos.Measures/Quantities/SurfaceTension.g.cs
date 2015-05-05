@@ -403,7 +403,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<SurfaceTension>)this
-                    : new InUnitMeasure<SurfaceTension>(this.GetAmount(unit), unit);
+                    : new Measure<SurfaceTension>(this.GetAmount(unit), unit);
             }
         }
 
@@ -869,81 +869,81 @@ namespace Cureos.Measures.Quantities
 
         #region Private class implementation of IMeasureFactory<SurfaceTension>
 
-		private class MeasureFactory : IMeasureFactory<SurfaceTension>
-		{
-			/// <summary>
-			/// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-			/// </summary>
-			/// <param name="measure">Measure.</param>
-			/// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-			SurfaceTension IMeasureFactory<SurfaceTension>.New(IMeasure<SurfaceTension> measure)
-			{
-				return new SurfaceTension(measure.StandardAmount);
-			}
+        private class MeasureFactory : IMeasureFactory<SurfaceTension>
+        {
+            /// <summary>
+            /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+            /// </summary>
+            /// <param name="measure">Measure.</param>
+            /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+            SurfaceTension IMeasureFactory<SurfaceTension>.New(IMeasure<SurfaceTension> measure)
+            {
+                return new SurfaceTension(measure.StandardAmount);
+            }
 
-			/// <summary>
-			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-			public SurfaceTension New(double amount)
-			{
-				return new SurfaceTension(amount);
-			}
+            /// <summary>
+            /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+            public SurfaceTension New(double amount)
+            {
+                return new SurfaceTension(amount);
+            }
 
-			/// <summary>
-			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <param name="unit">Unit.</param>
-			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-			public SurfaceTension New(double amount, IUnit<SurfaceTension> unit)
-			{
-				return new SurfaceTension(amount, unit);
-			}
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public SurfaceTension New(double amount, IUnit<SurfaceTension> unit)
+            {
+                return new SurfaceTension(amount, unit);
+            }
 
-			/// <summary>
-			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-			public SurfaceTension New(float amount)
-			{
-				return new SurfaceTension(amount);
-			}
+            /// <summary>
+            /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+            public SurfaceTension New(float amount)
+            {
+                return new SurfaceTension(amount);
+            }
 
-			/// <summary>
-			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <param name="unit">Unit.</param>
-			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-			public SurfaceTension New(float amount, IUnit<SurfaceTension> unit)
-			{
-				return new SurfaceTension(amount, unit);
-			}
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public SurfaceTension New(float amount, IUnit<SurfaceTension> unit)
+            {
+                return new SurfaceTension(amount, unit);
+            }
 
-			/// <summary>
-			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-			public SurfaceTension New(decimal amount)
-			{
-				return new SurfaceTension(amount);
-			}
+            /// <summary>
+            /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+            public SurfaceTension New(decimal amount)
+            {
+                return new SurfaceTension(amount);
+            }
 
-			/// <summary>
-			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <param name="unit">Unit.</param>
-			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-			public SurfaceTension New(decimal amount, IUnit<SurfaceTension> unit)
-			{
-				return new SurfaceTension(amount, unit);
-			}
-		}
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public SurfaceTension New(decimal amount, IUnit<SurfaceTension> unit)
+            {
+                return new SurfaceTension(amount, unit);
+            }
+        }
 
         #endregion
     }

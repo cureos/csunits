@@ -403,7 +403,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<Pressure>)this
-                    : new InUnitMeasure<Pressure>(this.GetAmount(unit), unit);
+                    : new Measure<Pressure>(this.GetAmount(unit), unit);
             }
         }
 
@@ -869,81 +869,81 @@ namespace Cureos.Measures.Quantities
 
         #region Private class implementation of IMeasureFactory<Pressure>
 
-		private class MeasureFactory : IMeasureFactory<Pressure>
-		{
-			/// <summary>
-			/// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-			/// </summary>
-			/// <param name="measure">Measure.</param>
-			/// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-			Pressure IMeasureFactory<Pressure>.New(IMeasure<Pressure> measure)
-			{
-				return new Pressure(measure.StandardAmount);
-			}
+        private class MeasureFactory : IMeasureFactory<Pressure>
+        {
+            /// <summary>
+            /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+            /// </summary>
+            /// <param name="measure">Measure.</param>
+            /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+            Pressure IMeasureFactory<Pressure>.New(IMeasure<Pressure> measure)
+            {
+                return new Pressure(measure.StandardAmount);
+            }
 
-			/// <summary>
-			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-			public Pressure New(double amount)
-			{
-				return new Pressure(amount);
-			}
+            /// <summary>
+            /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+            public Pressure New(double amount)
+            {
+                return new Pressure(amount);
+            }
 
-			/// <summary>
-			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <param name="unit">Unit.</param>
-			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-			public Pressure New(double amount, IUnit<Pressure> unit)
-			{
-				return new Pressure(amount, unit);
-			}
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public Pressure New(double amount, IUnit<Pressure> unit)
+            {
+                return new Pressure(amount, unit);
+            }
 
-			/// <summary>
-			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-			public Pressure New(float amount)
-			{
-				return new Pressure(amount);
-			}
+            /// <summary>
+            /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+            public Pressure New(float amount)
+            {
+                return new Pressure(amount);
+            }
 
-			/// <summary>
-			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <param name="unit">Unit.</param>
-			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-			public Pressure New(float amount, IUnit<Pressure> unit)
-			{
-				return new Pressure(amount, unit);
-			}
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public Pressure New(float amount, IUnit<Pressure> unit)
+            {
+                return new Pressure(amount, unit);
+            }
 
-			/// <summary>
-			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-			public Pressure New(decimal amount)
-			{
-				return new Pressure(amount);
-			}
+            /// <summary>
+            /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+            public Pressure New(decimal amount)
+            {
+                return new Pressure(amount);
+            }
 
-			/// <summary>
-			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <param name="unit">Unit.</param>
-			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-			public Pressure New(decimal amount, IUnit<Pressure> unit)
-			{
-				return new Pressure(amount, unit);
-			}
-		}
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public Pressure New(decimal amount, IUnit<Pressure> unit)
+            {
+                return new Pressure(amount, unit);
+            }
+        }
 
         #endregion
     }

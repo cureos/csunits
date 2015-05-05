@@ -396,7 +396,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<PlaneAngle>)this
-                    : new InUnitMeasure<PlaneAngle>(this.GetAmount(unit), unit);
+                    : new Measure<PlaneAngle>(this.GetAmount(unit), unit);
             }
         }
 
@@ -862,81 +862,81 @@ namespace Cureos.Measures.Quantities
 
         #region Private class implementation of IMeasureFactory<PlaneAngle>
 
-		private class MeasureFactory : IMeasureFactory<PlaneAngle>
-		{
-			/// <summary>
-			/// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-			/// </summary>
-			/// <param name="measure">Measure.</param>
-			/// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-			PlaneAngle IMeasureFactory<PlaneAngle>.New(IMeasure<PlaneAngle> measure)
-			{
-				return new PlaneAngle(measure.StandardAmount);
-			}
+        private class MeasureFactory : IMeasureFactory<PlaneAngle>
+        {
+            /// <summary>
+            /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+            /// </summary>
+            /// <param name="measure">Measure.</param>
+            /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+            PlaneAngle IMeasureFactory<PlaneAngle>.New(IMeasure<PlaneAngle> measure)
+            {
+                return new PlaneAngle(measure.StandardAmount);
+            }
 
-			/// <summary>
-			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-			public PlaneAngle New(double amount)
-			{
-				return new PlaneAngle(amount);
-			}
+            /// <summary>
+            /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+            public PlaneAngle New(double amount)
+            {
+                return new PlaneAngle(amount);
+            }
 
-			/// <summary>
-			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <param name="unit">Unit.</param>
-			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-			public PlaneAngle New(double amount, IUnit<PlaneAngle> unit)
-			{
-				return new PlaneAngle(amount, unit);
-			}
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public PlaneAngle New(double amount, IUnit<PlaneAngle> unit)
+            {
+                return new PlaneAngle(amount, unit);
+            }
 
-			/// <summary>
-			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-			public PlaneAngle New(float amount)
-			{
-				return new PlaneAngle(amount);
-			}
+            /// <summary>
+            /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+            public PlaneAngle New(float amount)
+            {
+                return new PlaneAngle(amount);
+            }
 
-			/// <summary>
-			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <param name="unit">Unit.</param>
-			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-			public PlaneAngle New(float amount, IUnit<PlaneAngle> unit)
-			{
-				return new PlaneAngle(amount, unit);
-			}
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public PlaneAngle New(float amount, IUnit<PlaneAngle> unit)
+            {
+                return new PlaneAngle(amount, unit);
+            }
 
-			/// <summary>
-			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-			public PlaneAngle New(decimal amount)
-			{
-				return new PlaneAngle(amount);
-			}
+            /// <summary>
+            /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+            public PlaneAngle New(decimal amount)
+            {
+                return new PlaneAngle(amount);
+            }
 
-			/// <summary>
-			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <param name="unit">Unit.</param>
-			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-			public PlaneAngle New(decimal amount, IUnit<PlaneAngle> unit)
-			{
-				return new PlaneAngle(amount, unit);
-			}
-		}
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public PlaneAngle New(decimal amount, IUnit<PlaneAngle> unit)
+            {
+                return new PlaneAngle(amount, unit);
+            }
+        }
 
         #endregion
     }

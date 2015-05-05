@@ -403,7 +403,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<LuminousIntensity>)this
-                    : new InUnitMeasure<LuminousIntensity>(this.GetAmount(unit), unit);
+                    : new Measure<LuminousIntensity>(this.GetAmount(unit), unit);
             }
         }
 
@@ -869,81 +869,81 @@ namespace Cureos.Measures.Quantities
 
         #region Private class implementation of IMeasureFactory<LuminousIntensity>
 
-		private class MeasureFactory : IMeasureFactory<LuminousIntensity>
-		{
-			/// <summary>
-			/// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-			/// </summary>
-			/// <param name="measure">Measure.</param>
-			/// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-			LuminousIntensity IMeasureFactory<LuminousIntensity>.New(IMeasure<LuminousIntensity> measure)
-			{
-				return new LuminousIntensity(measure.StandardAmount);
-			}
+        private class MeasureFactory : IMeasureFactory<LuminousIntensity>
+        {
+            /// <summary>
+            /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+            /// </summary>
+            /// <param name="measure">Measure.</param>
+            /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+            LuminousIntensity IMeasureFactory<LuminousIntensity>.New(IMeasure<LuminousIntensity> measure)
+            {
+                return new LuminousIntensity(measure.StandardAmount);
+            }
 
-			/// <summary>
-			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-			public LuminousIntensity New(double amount)
-			{
-				return new LuminousIntensity(amount);
-			}
+            /// <summary>
+            /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+            public LuminousIntensity New(double amount)
+            {
+                return new LuminousIntensity(amount);
+            }
 
-			/// <summary>
-			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <param name="unit">Unit.</param>
-			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-			public LuminousIntensity New(double amount, IUnit<LuminousIntensity> unit)
-			{
-				return new LuminousIntensity(amount, unit);
-			}
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public LuminousIntensity New(double amount, IUnit<LuminousIntensity> unit)
+            {
+                return new LuminousIntensity(amount, unit);
+            }
 
-			/// <summary>
-			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-			public LuminousIntensity New(float amount)
-			{
-				return new LuminousIntensity(amount);
-			}
+            /// <summary>
+            /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+            public LuminousIntensity New(float amount)
+            {
+                return new LuminousIntensity(amount);
+            }
 
-			/// <summary>
-			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <param name="unit">Unit.</param>
-			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-			public LuminousIntensity New(float amount, IUnit<LuminousIntensity> unit)
-			{
-				return new LuminousIntensity(amount, unit);
-			}
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public LuminousIntensity New(float amount, IUnit<LuminousIntensity> unit)
+            {
+                return new LuminousIntensity(amount, unit);
+            }
 
-			/// <summary>
-			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-			public LuminousIntensity New(decimal amount)
-			{
-				return new LuminousIntensity(amount);
-			}
+            /// <summary>
+            /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+            public LuminousIntensity New(decimal amount)
+            {
+                return new LuminousIntensity(amount);
+            }
 
-			/// <summary>
-			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <param name="unit">Unit.</param>
-			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-			public LuminousIntensity New(decimal amount, IUnit<LuminousIntensity> unit)
-			{
-				return new LuminousIntensity(amount, unit);
-			}
-		}
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public LuminousIntensity New(decimal amount, IUnit<LuminousIntensity> unit)
+            {
+                return new LuminousIntensity(amount, unit);
+            }
+        }
 
         #endregion
     }

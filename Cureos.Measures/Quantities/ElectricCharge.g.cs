@@ -399,7 +399,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<ElectricCharge>)this
-                    : new InUnitMeasure<ElectricCharge>(this.GetAmount(unit), unit);
+                    : new Measure<ElectricCharge>(this.GetAmount(unit), unit);
             }
         }
 
@@ -865,81 +865,81 @@ namespace Cureos.Measures.Quantities
 
         #region Private class implementation of IMeasureFactory<ElectricCharge>
 
-		private class MeasureFactory : IMeasureFactory<ElectricCharge>
-		{
-			/// <summary>
-			/// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-			/// </summary>
-			/// <param name="measure">Measure.</param>
-			/// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-			ElectricCharge IMeasureFactory<ElectricCharge>.New(IMeasure<ElectricCharge> measure)
-			{
-				return new ElectricCharge(measure.StandardAmount);
-			}
+        private class MeasureFactory : IMeasureFactory<ElectricCharge>
+        {
+            /// <summary>
+            /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+            /// </summary>
+            /// <param name="measure">Measure.</param>
+            /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+            ElectricCharge IMeasureFactory<ElectricCharge>.New(IMeasure<ElectricCharge> measure)
+            {
+                return new ElectricCharge(measure.StandardAmount);
+            }
 
-			/// <summary>
-			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-			public ElectricCharge New(double amount)
-			{
-				return new ElectricCharge(amount);
-			}
+            /// <summary>
+            /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+            public ElectricCharge New(double amount)
+            {
+                return new ElectricCharge(amount);
+            }
 
-			/// <summary>
-			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <param name="unit">Unit.</param>
-			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-			public ElectricCharge New(double amount, IUnit<ElectricCharge> unit)
-			{
-				return new ElectricCharge(amount, unit);
-			}
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public ElectricCharge New(double amount, IUnit<ElectricCharge> unit)
+            {
+                return new ElectricCharge(amount, unit);
+            }
 
-			/// <summary>
-			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-			public ElectricCharge New(float amount)
-			{
-				return new ElectricCharge(amount);
-			}
+            /// <summary>
+            /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+            public ElectricCharge New(float amount)
+            {
+                return new ElectricCharge(amount);
+            }
 
-			/// <summary>
-			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <param name="unit">Unit.</param>
-			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-			public ElectricCharge New(float amount, IUnit<ElectricCharge> unit)
-			{
-				return new ElectricCharge(amount, unit);
-			}
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public ElectricCharge New(float amount, IUnit<ElectricCharge> unit)
+            {
+                return new ElectricCharge(amount, unit);
+            }
 
-			/// <summary>
-			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-			public ElectricCharge New(decimal amount)
-			{
-				return new ElectricCharge(amount);
-			}
+            /// <summary>
+            /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+            public ElectricCharge New(decimal amount)
+            {
+                return new ElectricCharge(amount);
+            }
 
-			/// <summary>
-			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <param name="unit">Unit.</param>
-			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-			public ElectricCharge New(decimal amount, IUnit<ElectricCharge> unit)
-			{
-				return new ElectricCharge(amount, unit);
-			}
-		}
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public ElectricCharge New(decimal amount, IUnit<ElectricCharge> unit)
+            {
+                return new ElectricCharge(amount, unit);
+            }
+        }
 
         #endregion
     }

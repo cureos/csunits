@@ -74,7 +74,7 @@ namespace Cureos.Measures
         public void Power_LengthRaisedWith3_ReturnsVolume()
         {
             var expected = new Volume(1.0, Volume.CubicDeciMeter);
-            var len = new InUnitMeasure<Length>(1.0, Length.DeciMeter);
+            var len = new Measure<Length>(1.0, Length.DeciMeter);
             Volume actual; ArithmeticOperations.Power(len, 3, out actual);
             MeasureAssert.AmountsAreEqual(expected, actual);
         }

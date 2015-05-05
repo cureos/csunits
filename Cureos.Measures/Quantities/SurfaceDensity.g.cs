@@ -394,7 +394,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<SurfaceDensity>)this
-                    : new InUnitMeasure<SurfaceDensity>(this.GetAmount(unit), unit);
+                    : new Measure<SurfaceDensity>(this.GetAmount(unit), unit);
             }
         }
 
@@ -860,81 +860,81 @@ namespace Cureos.Measures.Quantities
 
         #region Private class implementation of IMeasureFactory<SurfaceDensity>
 
-		private class MeasureFactory : IMeasureFactory<SurfaceDensity>
-		{
-			/// <summary>
-			/// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-			/// </summary>
-			/// <param name="measure">Measure.</param>
-			/// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-			SurfaceDensity IMeasureFactory<SurfaceDensity>.New(IMeasure<SurfaceDensity> measure)
-			{
-				return new SurfaceDensity(measure.StandardAmount);
-			}
+        private class MeasureFactory : IMeasureFactory<SurfaceDensity>
+        {
+            /// <summary>
+            /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+            /// </summary>
+            /// <param name="measure">Measure.</param>
+            /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+            SurfaceDensity IMeasureFactory<SurfaceDensity>.New(IMeasure<SurfaceDensity> measure)
+            {
+                return new SurfaceDensity(measure.StandardAmount);
+            }
 
-			/// <summary>
-			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-			public SurfaceDensity New(double amount)
-			{
-				return new SurfaceDensity(amount);
-			}
+            /// <summary>
+            /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+            public SurfaceDensity New(double amount)
+            {
+                return new SurfaceDensity(amount);
+            }
 
-			/// <summary>
-			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <param name="unit">Unit.</param>
-			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-			public SurfaceDensity New(double amount, IUnit<SurfaceDensity> unit)
-			{
-				return new SurfaceDensity(amount, unit);
-			}
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public SurfaceDensity New(double amount, IUnit<SurfaceDensity> unit)
+            {
+                return new SurfaceDensity(amount, unit);
+            }
 
-			/// <summary>
-			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-			public SurfaceDensity New(float amount)
-			{
-				return new SurfaceDensity(amount);
-			}
+            /// <summary>
+            /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+            public SurfaceDensity New(float amount)
+            {
+                return new SurfaceDensity(amount);
+            }
 
-			/// <summary>
-			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <param name="unit">Unit.</param>
-			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-			public SurfaceDensity New(float amount, IUnit<SurfaceDensity> unit)
-			{
-				return new SurfaceDensity(amount, unit);
-			}
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public SurfaceDensity New(float amount, IUnit<SurfaceDensity> unit)
+            {
+                return new SurfaceDensity(amount, unit);
+            }
 
-			/// <summary>
-			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-			public SurfaceDensity New(decimal amount)
-			{
-				return new SurfaceDensity(amount);
-			}
+            /// <summary>
+            /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+            public SurfaceDensity New(decimal amount)
+            {
+                return new SurfaceDensity(amount);
+            }
 
-			/// <summary>
-			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <param name="unit">Unit.</param>
-			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-			public SurfaceDensity New(decimal amount, IUnit<SurfaceDensity> unit)
-			{
-				return new SurfaceDensity(amount, unit);
-			}
-		}
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public SurfaceDensity New(decimal amount, IUnit<SurfaceDensity> unit)
+            {
+                return new SurfaceDensity(amount, unit);
+            }
+        }
 
         #endregion
     }

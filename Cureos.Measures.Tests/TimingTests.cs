@@ -71,7 +71,7 @@ namespace Cureos.Measures
             PerformTiming(
                 () =>
                     {
-                        var val = new InUnitMeasure<Mass>(0.0);
+                        var val = new Measure<Mass>(0.0);
                         for (var i = 0.0; i < no; ++i)
                         {
                             val += new Mass(i);
@@ -87,10 +87,10 @@ namespace Cureos.Measures
             PerformTiming(
                 () =>
                     {
-                        var val = new InUnitMeasure<Mass>(0.0, Mass.KiloGram);
+                        var val = new Measure<Mass>(0.0, Mass.KiloGram);
                         for (var i = 0.0; i < no; ++i)
                         {
-                            val += new InUnitMeasure<Mass>(i, Mass.Gram);
+                            val += new Measure<Mass>(i, Mass.Gram);
                         }
                         return val;
                     },
@@ -119,7 +119,7 @@ namespace Cureos.Measures
             PerformTiming(
                 () =>
                     {
-                        var val = new InUnitMeasure<Length>(0.0, Length.CentiMeter);
+                        var val = new Measure<Length>(0.0, Length.CentiMeter);
                         for (var i = 0.0; i < no; ++i)
                         {
                             val += new Length(i);

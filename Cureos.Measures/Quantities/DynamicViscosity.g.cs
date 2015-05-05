@@ -401,7 +401,7 @@ namespace Cureos.Measures.Quantities
                 if (unit == null) throw new ArgumentNullException("unit");
                 return unit.IsStandardUnit
                     ? (IMeasure<DynamicViscosity>)this
-                    : new InUnitMeasure<DynamicViscosity>(this.GetAmount(unit), unit);
+                    : new Measure<DynamicViscosity>(this.GetAmount(unit), unit);
             }
         }
 
@@ -867,81 +867,81 @@ namespace Cureos.Measures.Quantities
 
         #region Private class implementation of IMeasureFactory<DynamicViscosity>
 
-		private class MeasureFactory : IMeasureFactory<DynamicViscosity>
-		{
-			/// <summary>
-			/// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-			/// </summary>
-			/// <param name="measure">Measure.</param>
-			/// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-			DynamicViscosity IMeasureFactory<DynamicViscosity>.New(IMeasure<DynamicViscosity> measure)
-			{
-				return new DynamicViscosity(measure.StandardAmount);
-			}
+        private class MeasureFactory : IMeasureFactory<DynamicViscosity>
+        {
+            /// <summary>
+            /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+            /// </summary>
+            /// <param name="measure">Measure.</param>
+            /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+            DynamicViscosity IMeasureFactory<DynamicViscosity>.New(IMeasure<DynamicViscosity> measure)
+            {
+                return new DynamicViscosity(measure.StandardAmount);
+            }
 
-			/// <summary>
-			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-			public DynamicViscosity New(double amount)
-			{
-				return new DynamicViscosity(amount);
-			}
+            /// <summary>
+            /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+            public DynamicViscosity New(double amount)
+            {
+                return new DynamicViscosity(amount);
+            }
 
-			/// <summary>
-			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <param name="unit">Unit.</param>
-			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-			public DynamicViscosity New(double amount, IUnit<DynamicViscosity> unit)
-			{
-				return new DynamicViscosity(amount, unit);
-			}
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public DynamicViscosity New(double amount, IUnit<DynamicViscosity> unit)
+            {
+                return new DynamicViscosity(amount, unit);
+            }
 
-			/// <summary>
-			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-			public DynamicViscosity New(float amount)
-			{
-				return new DynamicViscosity(amount);
-			}
+            /// <summary>
+            /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+            public DynamicViscosity New(float amount)
+            {
+                return new DynamicViscosity(amount);
+            }
 
-			/// <summary>
-			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <param name="unit">Unit.</param>
-			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-			public DynamicViscosity New(float amount, IUnit<DynamicViscosity> unit)
-			{
-				return new DynamicViscosity(amount, unit);
-			}
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public DynamicViscosity New(float amount, IUnit<DynamicViscosity> unit)
+            {
+                return new DynamicViscosity(amount, unit);
+            }
 
-			/// <summary>
-			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-			public DynamicViscosity New(decimal amount)
-			{
-				return new DynamicViscosity(amount);
-			}
+            /// <summary>
+            /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+            public DynamicViscosity New(decimal amount)
+            {
+                return new DynamicViscosity(amount);
+            }
 
-			/// <summary>
-			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-			/// </summary>
-			/// <param name="amount">Amount.</param>
-			/// <param name="unit">Unit.</param>
-			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-			public DynamicViscosity New(decimal amount, IUnit<DynamicViscosity> unit)
-			{
-				return new DynamicViscosity(amount, unit);
-			}
-		}
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public DynamicViscosity New(decimal amount, IUnit<DynamicViscosity> unit)
+            {
+                return new DynamicViscosity(amount, unit);
+            }
+        }
 
         #endregion
     }

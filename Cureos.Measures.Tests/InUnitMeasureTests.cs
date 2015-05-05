@@ -36,7 +36,7 @@ namespace Cureos.Measures
         public void GetAmount_UsingIUnit_ValidConversion()
         {
             var expected = AmountConverter.ToAmountType(500.0);
-            var instance = new InUnitMeasure<Length>(5.0, Length.Meter);
+            var instance = new Measure<Length>(5.0, Length.Meter);
             var actual = instance.GetAmount(Length.CentiMeter);
             Assert.AreEqual(expected, actual);
         }
@@ -44,15 +44,15 @@ namespace Cureos.Measures
         [Test]
         public void DefaultConstructor_Apply_YieldsZeroAmountStandardUnit()
         {
-            var expected = new InUnitMeasure<Temperature>(0.0, Temperature.Kelvin);
-            var actual = new InUnitMeasure<Temperature>();
+            var expected = new Measure<Temperature>(0.0, Temperature.Kelvin);
+            var actual = new Measure<Temperature>();
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }
 
         [Test]
         public void Indexer_SameQuantityNonGenericInterface_YieldsValidMeasureOBject()
         {
-            var expected = new InUnitMeasure<Volume>(5000.0, Volume.Liter);
+            var expected = new Measure<Volume>(5000.0, Volume.Liter);
             IMeasure meas = new Volume(5.0);
             var actual = meas[Volume.Liter];
             MeasureAssert.MeasuresAreEqual(expected, actual);

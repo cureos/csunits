@@ -41,9 +41,9 @@ namespace Cureos.Measures.Linq
         /// <param name="iAmount">Floating-point value representing the measure amount</param>
         /// <param name="iUnit">Requested unit of measure</param>
         /// <returns>Measure in the specified amount and unit</returns>
-        public static InUnitMeasure<Q> To<Q>(this double iAmount, IUnit<Q> iUnit) where Q : struct, IQuantity<Q>
+        public static Measure<Q> To<Q>(this double iAmount, IUnit<Q> iUnit) where Q : struct, IQuantity<Q>
         {
-            return new InUnitMeasure<Q>(iAmount, iUnit);
+            return new Measure<Q>(iAmount, iUnit);
         }
 
         /// <summary>
@@ -53,9 +53,9 @@ namespace Cureos.Measures.Linq
         /// <param name="iAmount">Floating-point value representing the measure amount</param>
         /// <param name="iUnit">Requested unit of measure</param>
         /// <returns>Measure in the specified amount and unit</returns>
-        public static InUnitMeasure<Q> To<Q>(this float iAmount, IUnit<Q> iUnit) where Q : struct, IQuantity<Q>
+        public static Measure<Q> To<Q>(this float iAmount, IUnit<Q> iUnit) where Q : struct, IQuantity<Q>
         {
-            return new InUnitMeasure<Q>(iAmount, iUnit);
+            return new Measure<Q>(iAmount, iUnit);
         }
 
         /// <summary>
@@ -65,9 +65,9 @@ namespace Cureos.Measures.Linq
         /// <param name="iAmount">Floating-point value representing the measure amount</param>
         /// <param name="iUnit">Requested unit of measure</param>
         /// <returns>Measure in the specified amount and unit</returns>
-        public static InUnitMeasure<Q> To<Q>(this decimal iAmount, IUnit<Q> iUnit) where Q : struct, IQuantity<Q>
+        public static Measure<Q> To<Q>(this decimal iAmount, IUnit<Q> iUnit) where Q : struct, IQuantity<Q>
         {
-            return new InUnitMeasure<Q>(iAmount, iUnit);
+            return new Measure<Q>(iAmount, iUnit);
         }
     }
 }
