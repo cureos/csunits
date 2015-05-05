@@ -29,6 +29,7 @@ namespace Cureos.Measures
     using AmountType = System.Decimal;
 #elif DOUBLE
     using AmountType = System.Double;
+
 #endif
 
     /// <summary>
@@ -36,12 +37,18 @@ namespace Cureos.Measures
     /// </summary>
     /// <typeparam name="Q1">Quantity type of the first measure</typeparam>
     /// <typeparam name="Q2">Quantity type of the second measure</typeparam>
-    public struct MeasureDoublet<Q1, Q2> : IMeasureDoublet<Q1, Q2> where Q1 : struct, IQuantity<Q1> where Q2 : struct, IQuantity<Q2>
+    public struct MeasureDoublet<Q1, Q2> : IMeasureDoublet<Q1, Q2>
+        where Q1 : struct, IQuantity<Q1>, IMeasure<Q1> where Q2 : struct, IQuantity<Q2>, IMeasure<Q2>
     {
         #region MEMBER VARIABLES
 
-        private readonly Measure<Q1> mX;
-        private readonly Measure<Q2> mY;
+        private static readonly IMeasureFactory<Q1> Q1Factory = new Q1().Factory;
+
+        private static readonly IMeasureFactory<Q2> Q2Factory = new Q2().Factory;
+
+        private readonly Q1 x;
+
+        private readonly Q2 y;
 
         #endregion
 
@@ -57,25 +64,14 @@ namespace Cureos.Measures
         }
 
         /// <summary>
-        /// Initializes a pair of standard measures from two standard measure objects
-        /// </summary>
-        /// <param name="iX">First measure object</param>
-        /// <param name="iY">Second measure object</param>
-        public MeasureDoublet(Measure<Q1> iX, Measure<Q2> iY)
-        {
-            mX = iX;
-            mY = iY;
-        }
-
-        /// <summary>
         /// Initializes a pair of standard measures
         /// </summary>
         /// <param name="iMeasure1">First measure object</param>
         /// <param name="iMeasure2">Second measure object</param>
         public MeasureDoublet(IMeasure<Q1> iMeasure1, IMeasure<Q2> iMeasure2)
         {
-            mX = new Measure<Q1>(iMeasure1);
-            mY = new Measure<Q2>(iMeasure2);
+            this.x = Q1Factory.New(iMeasure1);
+            this.y = Q2Factory.New(iMeasure2);
         }
 
         /// <summary>
@@ -85,8 +81,8 @@ namespace Cureos.Measures
         /// <param name="iAmount2">Amount in standard units of the second measure object</param>
         public MeasureDoublet(double iAmount1, double iAmount2)
         {
-            mX = new Measure<Q1>(iAmount1);
-            mY = new Measure<Q2>(iAmount2);
+            this.x = Q1Factory.New(iAmount1);
+            this.y = Q2Factory.New(iAmount2);
         }
 
         /// <summary>
@@ -96,8 +92,8 @@ namespace Cureos.Measures
         /// <param name="iAmount2">Amount in standard units of the second measure object</param>
         public MeasureDoublet(float iAmount1, float iAmount2)
         {
-            mX = new Measure<Q1>(iAmount1);
-            mY = new Measure<Q2>(iAmount2);
+            this.x = Q1Factory.New(iAmount1);
+            this.y = Q2Factory.New(iAmount2);
         }
 
         /// <summary>
@@ -107,8 +103,8 @@ namespace Cureos.Measures
         /// <param name="iAmount2">Amount in standard units of the second measure object</param>
         public MeasureDoublet(decimal iAmount1, decimal iAmount2)
         {
-            mX = new Measure<Q1>(iAmount1);
-            mY = new Measure<Q2>(iAmount2);
+            this.x = Q1Factory.New(iAmount1);
+            this.y = Q2Factory.New(iAmount2);
         }
 
         #endregion
@@ -120,7 +116,10 @@ namespace Cureos.Measures
         /// </summary>
         public IMeasure<Q1> X
         {
-            get { return mX; }
+            get
+            {
+                return this.x;
+            }
         }
 
         /// <summary>
@@ -128,7 +127,10 @@ namespace Cureos.Measures
         /// </summary>
         public IMeasure<Q2> Y
         {
-            get { return mY; }
+            get
+            {
+                return this.y;
+            }
         }
 
         #endregion
@@ -141,9 +143,9 @@ namespace Cureos.Measures
         /// <param name="iLhs">First measure doublet</param>
         /// <param name="iRhs">Second measure doublet</param>
         /// <returns>Sum of the specified measure doublets</returns>
-        public static MeasureDoublet<Q1, Q2> operator+ (MeasureDoublet<Q1, Q2> iLhs, MeasureDoublet<Q1, Q2> iRhs)
+        public static MeasureDoublet<Q1, Q2> operator +(MeasureDoublet<Q1, Q2> iLhs, MeasureDoublet<Q1, Q2> iRhs)
         {
-            return new MeasureDoublet<Q1, Q2>(iLhs.mX + iRhs.mX, iLhs.mY + iRhs.mY);
+            return new MeasureDoublet<Q1, Q2>(iLhs.x.Amount + iRhs.x.Amount, iLhs.y.Amount + iRhs.y.Amount);
         }
 
         /// <summary>
@@ -154,8 +156,9 @@ namespace Cureos.Measures
         /// <returns>Sum of the specified measure doublets</returns>
         public static MeasureDoublet<Q1, Q2> operator +(MeasureDoublet<Q1, Q2> iLhs, IMeasureDoublet<Q1, Q2> iRhs)
         {
-            return new MeasureDoublet<Q1, Q2>(iLhs.mX.Amount + iRhs.X.StandardAmount,
-                                                      iLhs.mY.Amount + iRhs.Y.StandardAmount);
+            return new MeasureDoublet<Q1, Q2>(
+                iLhs.x.Amount + iRhs.X.StandardAmount,
+                iLhs.y.Amount + iRhs.Y.StandardAmount);
         }
 
         /// <summary>
@@ -166,7 +169,7 @@ namespace Cureos.Measures
         /// <returns>Difference of the specified measure doublets</returns>
         public static MeasureDoublet<Q1, Q2> operator -(MeasureDoublet<Q1, Q2> iLhs, MeasureDoublet<Q1, Q2> iRhs)
         {
-            return new MeasureDoublet<Q1, Q2>(iLhs.mX - iRhs.mX, iLhs.mY - iRhs.mY);
+            return new MeasureDoublet<Q1, Q2>(iLhs.x.Amount - iRhs.x.Amount, iLhs.y.Amount - iRhs.y.Amount);
         }
 
         /// <summary>
@@ -177,8 +180,9 @@ namespace Cureos.Measures
         /// <returns>Difference of the specified measure doublets</returns>
         public static MeasureDoublet<Q1, Q2> operator -(MeasureDoublet<Q1, Q2> iLhs, IMeasureDoublet<Q1, Q2> iRhs)
         {
-            return new MeasureDoublet<Q1, Q2>(iLhs.mX.Amount - iRhs.X.StandardAmount,
-                                                      iLhs.mY.Amount - iRhs.Y.StandardAmount);
+            return new MeasureDoublet<Q1, Q2>(
+                iLhs.x.Amount - iRhs.X.StandardAmount,
+                iLhs.y.Amount - iRhs.Y.StandardAmount);
         }
 
         /// <summary>
@@ -187,9 +191,10 @@ namespace Cureos.Measures
         /// <param name="iLhs">Measure doublet</param>
         /// <param name="iRhs">Number doublet</param>
         /// <returns>Product of the measure and number doublets</returns>
-        public static MeasureDoublet<Q1, Q2> operator *(MeasureDoublet<Q1, Q2> iLhs, MeasureDoublet<Number, Number> iRhs)
+        public static MeasureDoublet<Q1, Q2> operator *(MeasureDoublet<Q1, Q2> iLhs, MeasureDoublet<Number, Number> iRhs
+            )
         {
-            return new MeasureDoublet<Q1, Q2>(iLhs.mX.Amount * iRhs.mX.Amount, iLhs.mY.Amount * iRhs.mY.Amount);
+            return new MeasureDoublet<Q1, Q2>(iLhs.x.Amount * iRhs.x.Amount, iLhs.y.Amount * iRhs.y.Amount);
         }
 
         /// <summary>
@@ -198,9 +203,13 @@ namespace Cureos.Measures
         /// <param name="iLhs">Measure doublet</param>
         /// <param name="iRhs">Number doublet</param>
         /// <returns>Product of the measure and number doublets</returns>
-        public static MeasureDoublet<Q1, Q2> operator *(MeasureDoublet<Q1, Q2> iLhs, IMeasureDoublet<Number, Number> iRhs)
+        public static MeasureDoublet<Q1, Q2> operator *(
+            MeasureDoublet<Q1, Q2> iLhs,
+            IMeasureDoublet<Number, Number> iRhs)
         {
-            return new MeasureDoublet<Q1, Q2>(iLhs.mX.Amount * iRhs.X.StandardAmount, iLhs.mY.Amount * iRhs.Y.StandardAmount);
+            return new MeasureDoublet<Q1, Q2>(
+                iLhs.x.Amount * iRhs.X.StandardAmount,
+                iLhs.y.Amount * iRhs.Y.StandardAmount);
         }
 
         /// <summary>
@@ -209,9 +218,10 @@ namespace Cureos.Measures
         /// <param name="iLhs">Measure doublet</param>
         /// <param name="iRhs">Number doublet</param>
         /// <returns>Quotient of the measure and number doublets</returns>
-        public static MeasureDoublet<Q1, Q2> operator /(MeasureDoublet<Q1, Q2> iLhs, MeasureDoublet<Number, Number> iRhs)
+        public static MeasureDoublet<Q1, Q2> operator /(MeasureDoublet<Q1, Q2> iLhs, MeasureDoublet<Number, Number> iRhs
+            )
         {
-            return new MeasureDoublet<Q1, Q2>(iLhs.mX.Amount / iRhs.mX.Amount, iLhs.mY.Amount / iRhs.mY.Amount);
+            return new MeasureDoublet<Q1, Q2>(iLhs.x.Amount / iRhs.x.Amount, iLhs.y.Amount / iRhs.y.Amount);
         }
 
         /// <summary>
@@ -220,9 +230,13 @@ namespace Cureos.Measures
         /// <param name="iLhs">Measure doublet</param>
         /// <param name="iRhs">Number doublet</param>
         /// <returns>Quotient of the measure and number doublets</returns>
-        public static MeasureDoublet<Q1, Q2> operator /(MeasureDoublet<Q1, Q2> iLhs, IMeasureDoublet<Number, Number> iRhs)
+        public static MeasureDoublet<Q1, Q2> operator /(
+            MeasureDoublet<Q1, Q2> iLhs,
+            IMeasureDoublet<Number, Number> iRhs)
         {
-            return new MeasureDoublet<Q1, Q2>(iLhs.mX.Amount / iRhs.X.StandardAmount, iLhs.mY.Amount / iRhs.Y.StandardAmount);
+            return new MeasureDoublet<Q1, Q2>(
+                iLhs.x.Amount / iRhs.X.StandardAmount,
+                iLhs.y.Amount / iRhs.Y.StandardAmount);
         }
 
         /// <summary>
@@ -231,9 +245,10 @@ namespace Cureos.Measures
         /// <param name="iLhs">Numerator measure doublet</param>
         /// <param name="iRhs">Denominator measure doublet</param>
         /// <returns>Quotient of the measure doublets as a number doublet</returns>
-        public static MeasureDoublet<Number, Number> operator /(MeasureDoublet<Q1, Q2> iLhs, MeasureDoublet<Q1, Q2> iRhs)
+        public static MeasureDoublet<Number, Number> operator /(MeasureDoublet<Q1, Q2> iLhs, MeasureDoublet<Q1, Q2> iRhs
+            )
         {
-            return new MeasureDoublet<Number, Number>(iLhs.mX / iRhs.mX, iLhs.mY / iRhs.mY);
+            return new MeasureDoublet<Number, Number>(iLhs.x.Amount / iRhs.x.Amount, iLhs.y.Amount / iRhs.y.Amount);
         }
 
         /// <summary>
@@ -242,10 +257,13 @@ namespace Cureos.Measures
         /// <param name="iLhs">Numerator measure doublet</param>
         /// <param name="iRhs">Denominator measure doublet</param>
         /// <returns>Quotient of the measure doublets as a number doublet</returns>
-        public static MeasureDoublet<Number, Number> operator /(MeasureDoublet<Q1, Q2> iLhs, IMeasureDoublet<Q1, Q2> iRhs)
+        public static MeasureDoublet<Number, Number> operator /(
+            MeasureDoublet<Q1, Q2> iLhs,
+            IMeasureDoublet<Q1, Q2> iRhs)
         {
-            return new MeasureDoublet<Number, Number>(iLhs.mX.Amount / iRhs.X.StandardAmount,
-                                                              iLhs.mY.Amount / iRhs.Y.StandardAmount);
+            return new MeasureDoublet<Number, Number>(
+                iLhs.x.Amount / iRhs.X.StandardAmount,
+                iLhs.y.Amount / iRhs.Y.StandardAmount);
         }
 
         #endregion
