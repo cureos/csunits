@@ -41,12 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the amount concentration quantity
     /// </summary>
     [DataContract]
-    public partial struct AmountConcentration : IQuantity<AmountConcentration>, IMeasure<AmountConcentration>, 
-        IMeasureFactory<AmountConcentration>, IEquatable<AmountConcentration>, IComparable<AmountConcentration>
+    public partial struct AmountConcentration : IQuantity<AmountConcentration>, IMeasure<AmountConcentration>, IEquatable<AmountConcentration>, IComparable<AmountConcentration>
     {
         #region FIELDS
 
-        private static readonly IMeasureFactory<AmountConcentration> factory = new AmountConcentration();
+        // ReSharper disable once InconsistentNaming
+        private static readonly IMeasureFactory<AmountConcentration> factory = new MeasureFactory();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(-3, 0, 0, 0, 0, 0, 1);
@@ -191,6 +191,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<AmountConcentration> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Indicates whether the current object is equal to another object of the same type.
         /// </summary>
         /// <returns>
@@ -262,14 +270,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<AmountConcentration> Unit
         {
             get { return this.StandardUnit; }
-        }
-
-        /// <summary>
-        /// Gets the measure factory associated with the quantity.
-        /// </summary>
-        public IMeasureFactory<AmountConcentration> Factory
-        { 
-            get { return factory; }
         }
 
         /// <summary>
@@ -350,83 +350,6 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<AmountConcentration>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
-        }
-
-        #endregion
-
-        #region Implementation of IMeasureFactory<AmountConcentration>
-
-        /// <summary>
-        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-        /// </summary>
-        /// <param name="measure">Measure.</param>
-        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        AmountConcentration IMeasureFactory<AmountConcentration>.New(IMeasure<AmountConcentration> measure)
-        {
-            return new AmountConcentration(measure.StandardAmount);
-        }
-
-        /// <summary>
-        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public AmountConcentration New(double amount)
-        {
-            return new AmountConcentration(amount);
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public AmountConcentration New(double amount, IUnit<AmountConcentration> unit)
-        {
-            return new AmountConcentration(amount, unit);
-        }
-
-        /// <summary>
-        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public AmountConcentration New(float amount)
-        {
-            return new AmountConcentration(amount);
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public AmountConcentration New(float amount, IUnit<AmountConcentration> unit)
-        {
-            return new AmountConcentration(amount, unit);
-        }
-
-        /// <summary>
-        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public AmountConcentration New(decimal amount)
-        {
-            return new AmountConcentration(amount);
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public AmountConcentration New(decimal amount, IUnit<AmountConcentration> unit)
-        {
-            return new AmountConcentration(amount, unit);
         }
 
         #endregion
@@ -941,6 +864,86 @@ namespace Cureos.Measures.Quantities
         {
             return lhs.StandardAmount != rhs.amount;
         }
+
+        #endregion
+
+        #region Private class implementation of IMeasureFactory<AmountConcentration>
+
+		private class MeasureFactory : IMeasureFactory<AmountConcentration>
+		{
+			/// <summary>
+			/// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+			/// </summary>
+			/// <param name="measure">Measure.</param>
+			/// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+			AmountConcentration IMeasureFactory<AmountConcentration>.New(IMeasure<AmountConcentration> measure)
+			{
+				return new AmountConcentration(measure.StandardAmount);
+			}
+
+			/// <summary>
+			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+			public AmountConcentration New(double amount)
+			{
+				return new AmountConcentration(amount);
+			}
+
+			/// <summary>
+			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <param name="unit">Unit.</param>
+			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+			public AmountConcentration New(double amount, IUnit<AmountConcentration> unit)
+			{
+				return new AmountConcentration(amount, unit);
+			}
+
+			/// <summary>
+			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+			public AmountConcentration New(float amount)
+			{
+				return new AmountConcentration(amount);
+			}
+
+			/// <summary>
+			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <param name="unit">Unit.</param>
+			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+			public AmountConcentration New(float amount, IUnit<AmountConcentration> unit)
+			{
+				return new AmountConcentration(amount, unit);
+			}
+
+			/// <summary>
+			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+			public AmountConcentration New(decimal amount)
+			{
+				return new AmountConcentration(amount);
+			}
+
+			/// <summary>
+			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <param name="unit">Unit.</param>
+			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+			public AmountConcentration New(decimal amount, IUnit<AmountConcentration> unit)
+			{
+				return new AmountConcentration(amount, unit);
+			}
+		}
 
         #endregion
     }

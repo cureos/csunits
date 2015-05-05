@@ -41,12 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the heat capacity quantity
     /// </summary>
     [DataContract]
-    public partial struct HeatCapacity : IQuantity<HeatCapacity>, IMeasure<HeatCapacity>, 
-        IMeasureFactory<HeatCapacity>, IEquatable<HeatCapacity>, IComparable<HeatCapacity>
+    public partial struct HeatCapacity : IQuantity<HeatCapacity>, IMeasure<HeatCapacity>, IEquatable<HeatCapacity>, IComparable<HeatCapacity>
     {
         #region FIELDS
 
-        private static readonly IMeasureFactory<HeatCapacity> factory = new HeatCapacity();
+        // ReSharper disable once InconsistentNaming
+        private static readonly IMeasureFactory<HeatCapacity> factory = new MeasureFactory();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(2, 1, -2, 0, -1, 0, 0);
@@ -191,6 +191,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<HeatCapacity> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Indicates whether the current object is equal to another object of the same type.
         /// </summary>
         /// <returns>
@@ -262,14 +270,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<HeatCapacity> Unit
         {
             get { return this.StandardUnit; }
-        }
-
-        /// <summary>
-        /// Gets the measure factory associated with the quantity.
-        /// </summary>
-        public IMeasureFactory<HeatCapacity> Factory
-        { 
-            get { return factory; }
         }
 
         /// <summary>
@@ -350,83 +350,6 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<HeatCapacity>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
-        }
-
-        #endregion
-
-        #region Implementation of IMeasureFactory<HeatCapacity>
-
-        /// <summary>
-        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-        /// </summary>
-        /// <param name="measure">Measure.</param>
-        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        HeatCapacity IMeasureFactory<HeatCapacity>.New(IMeasure<HeatCapacity> measure)
-        {
-            return new HeatCapacity(measure.StandardAmount);
-        }
-
-        /// <summary>
-        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public HeatCapacity New(double amount)
-        {
-            return new HeatCapacity(amount);
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public HeatCapacity New(double amount, IUnit<HeatCapacity> unit)
-        {
-            return new HeatCapacity(amount, unit);
-        }
-
-        /// <summary>
-        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public HeatCapacity New(float amount)
-        {
-            return new HeatCapacity(amount);
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public HeatCapacity New(float amount, IUnit<HeatCapacity> unit)
-        {
-            return new HeatCapacity(amount, unit);
-        }
-
-        /// <summary>
-        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public HeatCapacity New(decimal amount)
-        {
-            return new HeatCapacity(amount);
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public HeatCapacity New(decimal amount, IUnit<HeatCapacity> unit)
-        {
-            return new HeatCapacity(amount, unit);
         }
 
         #endregion
@@ -941,6 +864,86 @@ namespace Cureos.Measures.Quantities
         {
             return lhs.StandardAmount != rhs.amount;
         }
+
+        #endregion
+
+        #region Private class implementation of IMeasureFactory<HeatCapacity>
+
+		private class MeasureFactory : IMeasureFactory<HeatCapacity>
+		{
+			/// <summary>
+			/// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+			/// </summary>
+			/// <param name="measure">Measure.</param>
+			/// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+			HeatCapacity IMeasureFactory<HeatCapacity>.New(IMeasure<HeatCapacity> measure)
+			{
+				return new HeatCapacity(measure.StandardAmount);
+			}
+
+			/// <summary>
+			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+			public HeatCapacity New(double amount)
+			{
+				return new HeatCapacity(amount);
+			}
+
+			/// <summary>
+			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <param name="unit">Unit.</param>
+			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+			public HeatCapacity New(double amount, IUnit<HeatCapacity> unit)
+			{
+				return new HeatCapacity(amount, unit);
+			}
+
+			/// <summary>
+			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+			public HeatCapacity New(float amount)
+			{
+				return new HeatCapacity(amount);
+			}
+
+			/// <summary>
+			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <param name="unit">Unit.</param>
+			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+			public HeatCapacity New(float amount, IUnit<HeatCapacity> unit)
+			{
+				return new HeatCapacity(amount, unit);
+			}
+
+			/// <summary>
+			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+			public HeatCapacity New(decimal amount)
+			{
+				return new HeatCapacity(amount);
+			}
+
+			/// <summary>
+			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <param name="unit">Unit.</param>
+			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+			public HeatCapacity New(decimal amount, IUnit<HeatCapacity> unit)
+			{
+				return new HeatCapacity(amount, unit);
+			}
+		}
 
         #endregion
     }

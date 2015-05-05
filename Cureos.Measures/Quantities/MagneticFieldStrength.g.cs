@@ -41,12 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the magnetic field strength quantity
     /// </summary>
     [DataContract]
-    public partial struct MagneticFieldStrength : IQuantity<MagneticFieldStrength>, IMeasure<MagneticFieldStrength>, 
-        IMeasureFactory<MagneticFieldStrength>, IEquatable<MagneticFieldStrength>, IComparable<MagneticFieldStrength>
+    public partial struct MagneticFieldStrength : IQuantity<MagneticFieldStrength>, IMeasure<MagneticFieldStrength>, IEquatable<MagneticFieldStrength>, IComparable<MagneticFieldStrength>
     {
         #region FIELDS
 
-        private static readonly IMeasureFactory<MagneticFieldStrength> factory = new MagneticFieldStrength();
+        // ReSharper disable once InconsistentNaming
+        private static readonly IMeasureFactory<MagneticFieldStrength> factory = new MeasureFactory();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(-1, 0, 0, 1, 0, 0, 0);
@@ -191,6 +191,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<MagneticFieldStrength> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Indicates whether the current object is equal to another object of the same type.
         /// </summary>
         /// <returns>
@@ -262,14 +270,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<MagneticFieldStrength> Unit
         {
             get { return this.StandardUnit; }
-        }
-
-        /// <summary>
-        /// Gets the measure factory associated with the quantity.
-        /// </summary>
-        public IMeasureFactory<MagneticFieldStrength> Factory
-        { 
-            get { return factory; }
         }
 
         /// <summary>
@@ -350,83 +350,6 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<MagneticFieldStrength>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
-        }
-
-        #endregion
-
-        #region Implementation of IMeasureFactory<MagneticFieldStrength>
-
-        /// <summary>
-        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-        /// </summary>
-        /// <param name="measure">Measure.</param>
-        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        MagneticFieldStrength IMeasureFactory<MagneticFieldStrength>.New(IMeasure<MagneticFieldStrength> measure)
-        {
-            return new MagneticFieldStrength(measure.StandardAmount);
-        }
-
-        /// <summary>
-        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public MagneticFieldStrength New(double amount)
-        {
-            return new MagneticFieldStrength(amount);
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public MagneticFieldStrength New(double amount, IUnit<MagneticFieldStrength> unit)
-        {
-            return new MagneticFieldStrength(amount, unit);
-        }
-
-        /// <summary>
-        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public MagneticFieldStrength New(float amount)
-        {
-            return new MagneticFieldStrength(amount);
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public MagneticFieldStrength New(float amount, IUnit<MagneticFieldStrength> unit)
-        {
-            return new MagneticFieldStrength(amount, unit);
-        }
-
-        /// <summary>
-        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public MagneticFieldStrength New(decimal amount)
-        {
-            return new MagneticFieldStrength(amount);
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public MagneticFieldStrength New(decimal amount, IUnit<MagneticFieldStrength> unit)
-        {
-            return new MagneticFieldStrength(amount, unit);
         }
 
         #endregion
@@ -941,6 +864,86 @@ namespace Cureos.Measures.Quantities
         {
             return lhs.StandardAmount != rhs.amount;
         }
+
+        #endregion
+
+        #region Private class implementation of IMeasureFactory<MagneticFieldStrength>
+
+		private class MeasureFactory : IMeasureFactory<MagneticFieldStrength>
+		{
+			/// <summary>
+			/// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+			/// </summary>
+			/// <param name="measure">Measure.</param>
+			/// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+			MagneticFieldStrength IMeasureFactory<MagneticFieldStrength>.New(IMeasure<MagneticFieldStrength> measure)
+			{
+				return new MagneticFieldStrength(measure.StandardAmount);
+			}
+
+			/// <summary>
+			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+			public MagneticFieldStrength New(double amount)
+			{
+				return new MagneticFieldStrength(amount);
+			}
+
+			/// <summary>
+			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <param name="unit">Unit.</param>
+			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+			public MagneticFieldStrength New(double amount, IUnit<MagneticFieldStrength> unit)
+			{
+				return new MagneticFieldStrength(amount, unit);
+			}
+
+			/// <summary>
+			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+			public MagneticFieldStrength New(float amount)
+			{
+				return new MagneticFieldStrength(amount);
+			}
+
+			/// <summary>
+			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <param name="unit">Unit.</param>
+			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+			public MagneticFieldStrength New(float amount, IUnit<MagneticFieldStrength> unit)
+			{
+				return new MagneticFieldStrength(amount, unit);
+			}
+
+			/// <summary>
+			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+			public MagneticFieldStrength New(decimal amount)
+			{
+				return new MagneticFieldStrength(amount);
+			}
+
+			/// <summary>
+			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <param name="unit">Unit.</param>
+			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+			public MagneticFieldStrength New(decimal amount, IUnit<MagneticFieldStrength> unit)
+			{
+				return new MagneticFieldStrength(amount, unit);
+			}
+		}
 
         #endregion
     }

@@ -54,6 +54,11 @@ namespace Cureos.Measures
         /// Gets the standard unit associated with the quantity
         /// </summary>
         new IUnit<Q> StandardUnit { get; }
+
+        /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        IMeasureFactory<Q> Factory { get; }
     }
 }
 

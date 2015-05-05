@@ -41,12 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the specific volume quantity
     /// </summary>
     [DataContract]
-    public partial struct SpecificVolume : IQuantity<SpecificVolume>, IMeasure<SpecificVolume>, 
-        IMeasureFactory<SpecificVolume>, IEquatable<SpecificVolume>, IComparable<SpecificVolume>
+    public partial struct SpecificVolume : IQuantity<SpecificVolume>, IMeasure<SpecificVolume>, IEquatable<SpecificVolume>, IComparable<SpecificVolume>
     {
         #region FIELDS
 
-        private static readonly IMeasureFactory<SpecificVolume> factory = new SpecificVolume();
+        // ReSharper disable once InconsistentNaming
+        private static readonly IMeasureFactory<SpecificVolume> factory = new MeasureFactory();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(3, -1, 0, 0, 0, 0, 0);
@@ -180,6 +180,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<SpecificVolume> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Indicates whether the current object is equal to another object of the same type.
         /// </summary>
         /// <returns>
@@ -251,14 +259,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<SpecificVolume> Unit
         {
             get { return this.StandardUnit; }
-        }
-
-        /// <summary>
-        /// Gets the measure factory associated with the quantity.
-        /// </summary>
-        public IMeasureFactory<SpecificVolume> Factory
-        { 
-            get { return factory; }
         }
 
         /// <summary>
@@ -339,83 +339,6 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<SpecificVolume>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
-        }
-
-        #endregion
-
-        #region Implementation of IMeasureFactory<SpecificVolume>
-
-        /// <summary>
-        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-        /// </summary>
-        /// <param name="measure">Measure.</param>
-        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        SpecificVolume IMeasureFactory<SpecificVolume>.New(IMeasure<SpecificVolume> measure)
-        {
-            return new SpecificVolume(measure.StandardAmount);
-        }
-
-        /// <summary>
-        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public SpecificVolume New(double amount)
-        {
-            return new SpecificVolume(amount);
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public SpecificVolume New(double amount, IUnit<SpecificVolume> unit)
-        {
-            return new SpecificVolume(amount, unit);
-        }
-
-        /// <summary>
-        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public SpecificVolume New(float amount)
-        {
-            return new SpecificVolume(amount);
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public SpecificVolume New(float amount, IUnit<SpecificVolume> unit)
-        {
-            return new SpecificVolume(amount, unit);
-        }
-
-        /// <summary>
-        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public SpecificVolume New(decimal amount)
-        {
-            return new SpecificVolume(amount);
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public SpecificVolume New(decimal amount, IUnit<SpecificVolume> unit)
-        {
-            return new SpecificVolume(amount, unit);
         }
 
         #endregion
@@ -930,6 +853,86 @@ namespace Cureos.Measures.Quantities
         {
             return lhs.StandardAmount != rhs.amount;
         }
+
+        #endregion
+
+        #region Private class implementation of IMeasureFactory<SpecificVolume>
+
+		private class MeasureFactory : IMeasureFactory<SpecificVolume>
+		{
+			/// <summary>
+			/// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+			/// </summary>
+			/// <param name="measure">Measure.</param>
+			/// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+			SpecificVolume IMeasureFactory<SpecificVolume>.New(IMeasure<SpecificVolume> measure)
+			{
+				return new SpecificVolume(measure.StandardAmount);
+			}
+
+			/// <summary>
+			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+			public SpecificVolume New(double amount)
+			{
+				return new SpecificVolume(amount);
+			}
+
+			/// <summary>
+			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <param name="unit">Unit.</param>
+			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+			public SpecificVolume New(double amount, IUnit<SpecificVolume> unit)
+			{
+				return new SpecificVolume(amount, unit);
+			}
+
+			/// <summary>
+			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+			public SpecificVolume New(float amount)
+			{
+				return new SpecificVolume(amount);
+			}
+
+			/// <summary>
+			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <param name="unit">Unit.</param>
+			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+			public SpecificVolume New(float amount, IUnit<SpecificVolume> unit)
+			{
+				return new SpecificVolume(amount, unit);
+			}
+
+			/// <summary>
+			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+			public SpecificVolume New(decimal amount)
+			{
+				return new SpecificVolume(amount);
+			}
+
+			/// <summary>
+			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <param name="unit">Unit.</param>
+			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+			public SpecificVolume New(decimal amount, IUnit<SpecificVolume> unit)
+			{
+				return new SpecificVolume(amount, unit);
+			}
+		}
 
         #endregion
     }

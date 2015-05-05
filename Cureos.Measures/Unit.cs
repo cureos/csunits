@@ -33,7 +33,7 @@ namespace Cureos.Measures
     /// Representation of a physical unit of a specific quanity
     /// </summary>
     /// <typeparam name="Q">Quantity type with which the unit is associated</typeparam>
-    public abstract class Unit<Q> : IUnit<Q> where Q : struct, IQuantity<Q>, IMeasureFactory<Q>
+    public abstract class Unit<Q> : IUnit<Q> where Q : struct, IQuantity<Q>
     {
         #region FIELDS
 
@@ -159,7 +159,7 @@ namespace Cureos.Measures
         public static Q operator *(double amount, Unit<Q> unit)
         {
             // ReSharper disable once ImpureMethodCallOnReadonlyValueField
-            return quantity.New(amount, unit);
+            return quantity.Factory.New(amount, unit);
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace Cureos.Measures
         public static Q operator *(float amount, Unit<Q> unit)
         {
             // ReSharper disable once ImpureMethodCallOnReadonlyValueField
-            return quantity.New(amount, unit);
+            return quantity.Factory.New(amount, unit);
         }
 
         /// <summary>
@@ -183,7 +183,7 @@ namespace Cureos.Measures
         public static Q operator *(decimal amount, Unit<Q> unit)
         {
             // ReSharper disable once ImpureMethodCallOnReadonlyValueField
-            return quantity.New(amount, unit);
+            return quantity.Factory.New(amount, unit);
         }
 
         #endregion

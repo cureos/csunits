@@ -36,7 +36,7 @@ namespace Cureos.Measures
     /// where unit conversion is applied via defined functions.
     /// </summary>
     /// <typeparam name="Q">Quantity type with which the unit is associated</typeparam>
-    public sealed class FunctionConverterUnit<Q> : Unit<Q> where Q : struct, IQuantity<Q>, IMeasureFactory<Q>
+    public sealed class FunctionConverterUnit<Q> : Unit<Q> where Q : struct, IQuantity<Q>
     {
         #region FIELDS
 

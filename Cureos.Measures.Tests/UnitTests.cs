@@ -30,7 +30,7 @@ namespace Cureos.Measures
     {
         private ConstantConverterUnit<UnitTestsQuantity> instance;
 
-        private struct UnitTestsQuantity : IQuantity<UnitTestsQuantity>, IMeasureFactory<UnitTestsQuantity>
+        private struct UnitTestsQuantity : IQuantity<UnitTestsQuantity>
         {
             public string DisplayName { get; private set; }
 
@@ -44,39 +44,12 @@ namespace Cureos.Measures
                 get { return this.StandardUnit; }
             }
 
-            public UnitTestsQuantity New(IMeasure<UnitTestsQuantity> measure)
+            public IMeasureFactory<UnitTestsQuantity> Factory
             {
-                throw new System.NotImplementedException();
-            }
-
-            public UnitTestsQuantity New(double amount)
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public UnitTestsQuantity New(double amount, IUnit<UnitTestsQuantity> unit)
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public UnitTestsQuantity New(float amount)
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public UnitTestsQuantity New(float amount, IUnit<UnitTestsQuantity> unit)
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public UnitTestsQuantity New(decimal amount)
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public UnitTestsQuantity New(decimal amount, IUnit<UnitTestsQuantity> unit)
-            {
-                throw new System.NotImplementedException();
+                get
+                {
+                    throw new System.NotImplementedException();
+                }
             }
 
             public IUnit<UnitTestsQuantity> StandardUnit

@@ -41,12 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the dose equivalent quantity
     /// </summary>
     [DataContract]
-    public partial struct DoseEquivalent : IQuantity<DoseEquivalent>, IMeasure<DoseEquivalent>, 
-        IMeasureFactory<DoseEquivalent>, IEquatable<DoseEquivalent>, IComparable<DoseEquivalent>
+    public partial struct DoseEquivalent : IQuantity<DoseEquivalent>, IMeasure<DoseEquivalent>, IEquatable<DoseEquivalent>, IComparable<DoseEquivalent>
     {
         #region FIELDS
 
-        private static readonly IMeasureFactory<DoseEquivalent> factory = new DoseEquivalent();
+        // ReSharper disable once InconsistentNaming
+        private static readonly IMeasureFactory<DoseEquivalent> factory = new MeasureFactory();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(2, 0, -2, 0, 0, 0, 0);
@@ -189,6 +189,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<DoseEquivalent> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Indicates whether the current object is equal to another object of the same type.
         /// </summary>
         /// <returns>
@@ -260,14 +268,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<DoseEquivalent> Unit
         {
             get { return this.StandardUnit; }
-        }
-
-        /// <summary>
-        /// Gets the measure factory associated with the quantity.
-        /// </summary>
-        public IMeasureFactory<DoseEquivalent> Factory
-        { 
-            get { return factory; }
         }
 
         /// <summary>
@@ -348,83 +348,6 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<DoseEquivalent>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
-        }
-
-        #endregion
-
-        #region Implementation of IMeasureFactory<DoseEquivalent>
-
-        /// <summary>
-        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-        /// </summary>
-        /// <param name="measure">Measure.</param>
-        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        DoseEquivalent IMeasureFactory<DoseEquivalent>.New(IMeasure<DoseEquivalent> measure)
-        {
-            return new DoseEquivalent(measure.StandardAmount);
-        }
-
-        /// <summary>
-        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public DoseEquivalent New(double amount)
-        {
-            return new DoseEquivalent(amount);
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public DoseEquivalent New(double amount, IUnit<DoseEquivalent> unit)
-        {
-            return new DoseEquivalent(amount, unit);
-        }
-
-        /// <summary>
-        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public DoseEquivalent New(float amount)
-        {
-            return new DoseEquivalent(amount);
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public DoseEquivalent New(float amount, IUnit<DoseEquivalent> unit)
-        {
-            return new DoseEquivalent(amount, unit);
-        }
-
-        /// <summary>
-        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public DoseEquivalent New(decimal amount)
-        {
-            return new DoseEquivalent(amount);
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public DoseEquivalent New(decimal amount, IUnit<DoseEquivalent> unit)
-        {
-            return new DoseEquivalent(amount, unit);
         }
 
         #endregion
@@ -939,6 +862,86 @@ namespace Cureos.Measures.Quantities
         {
             return lhs.StandardAmount != rhs.amount;
         }
+
+        #endregion
+
+        #region Private class implementation of IMeasureFactory<DoseEquivalent>
+
+		private class MeasureFactory : IMeasureFactory<DoseEquivalent>
+		{
+			/// <summary>
+			/// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+			/// </summary>
+			/// <param name="measure">Measure.</param>
+			/// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+			DoseEquivalent IMeasureFactory<DoseEquivalent>.New(IMeasure<DoseEquivalent> measure)
+			{
+				return new DoseEquivalent(measure.StandardAmount);
+			}
+
+			/// <summary>
+			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+			public DoseEquivalent New(double amount)
+			{
+				return new DoseEquivalent(amount);
+			}
+
+			/// <summary>
+			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <param name="unit">Unit.</param>
+			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+			public DoseEquivalent New(double amount, IUnit<DoseEquivalent> unit)
+			{
+				return new DoseEquivalent(amount, unit);
+			}
+
+			/// <summary>
+			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+			public DoseEquivalent New(float amount)
+			{
+				return new DoseEquivalent(amount);
+			}
+
+			/// <summary>
+			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <param name="unit">Unit.</param>
+			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+			public DoseEquivalent New(float amount, IUnit<DoseEquivalent> unit)
+			{
+				return new DoseEquivalent(amount, unit);
+			}
+
+			/// <summary>
+			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+			public DoseEquivalent New(decimal amount)
+			{
+				return new DoseEquivalent(amount);
+			}
+
+			/// <summary>
+			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <param name="unit">Unit.</param>
+			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+			public DoseEquivalent New(decimal amount, IUnit<DoseEquivalent> unit)
+			{
+				return new DoseEquivalent(amount, unit);
+			}
+		}
 
         #endregion
     }

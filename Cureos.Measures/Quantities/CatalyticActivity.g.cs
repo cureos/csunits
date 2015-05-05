@@ -41,12 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the catalytic activity quantity
     /// </summary>
     [DataContract]
-    public partial struct CatalyticActivity : IQuantity<CatalyticActivity>, IMeasure<CatalyticActivity>, 
-        IMeasureFactory<CatalyticActivity>, IEquatable<CatalyticActivity>, IComparable<CatalyticActivity>
+    public partial struct CatalyticActivity : IQuantity<CatalyticActivity>, IMeasure<CatalyticActivity>, IEquatable<CatalyticActivity>, IComparable<CatalyticActivity>
     {
         #region FIELDS
 
-        private static readonly IMeasureFactory<CatalyticActivity> factory = new CatalyticActivity();
+        // ReSharper disable once InconsistentNaming
+        private static readonly IMeasureFactory<CatalyticActivity> factory = new MeasureFactory();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(0, 0, -1, 0, 0, 0, 1);
@@ -189,6 +189,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<CatalyticActivity> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Indicates whether the current object is equal to another object of the same type.
         /// </summary>
         /// <returns>
@@ -260,14 +268,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<CatalyticActivity> Unit
         {
             get { return this.StandardUnit; }
-        }
-
-        /// <summary>
-        /// Gets the measure factory associated with the quantity.
-        /// </summary>
-        public IMeasureFactory<CatalyticActivity> Factory
-        { 
-            get { return factory; }
         }
 
         /// <summary>
@@ -348,83 +348,6 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<CatalyticActivity>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
-        }
-
-        #endregion
-
-        #region Implementation of IMeasureFactory<CatalyticActivity>
-
-        /// <summary>
-        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-        /// </summary>
-        /// <param name="measure">Measure.</param>
-        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        CatalyticActivity IMeasureFactory<CatalyticActivity>.New(IMeasure<CatalyticActivity> measure)
-        {
-            return new CatalyticActivity(measure.StandardAmount);
-        }
-
-        /// <summary>
-        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public CatalyticActivity New(double amount)
-        {
-            return new CatalyticActivity(amount);
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public CatalyticActivity New(double amount, IUnit<CatalyticActivity> unit)
-        {
-            return new CatalyticActivity(amount, unit);
-        }
-
-        /// <summary>
-        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public CatalyticActivity New(float amount)
-        {
-            return new CatalyticActivity(amount);
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public CatalyticActivity New(float amount, IUnit<CatalyticActivity> unit)
-        {
-            return new CatalyticActivity(amount, unit);
-        }
-
-        /// <summary>
-        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public CatalyticActivity New(decimal amount)
-        {
-            return new CatalyticActivity(amount);
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public CatalyticActivity New(decimal amount, IUnit<CatalyticActivity> unit)
-        {
-            return new CatalyticActivity(amount, unit);
         }
 
         #endregion
@@ -939,6 +862,86 @@ namespace Cureos.Measures.Quantities
         {
             return lhs.StandardAmount != rhs.amount;
         }
+
+        #endregion
+
+        #region Private class implementation of IMeasureFactory<CatalyticActivity>
+
+		private class MeasureFactory : IMeasureFactory<CatalyticActivity>
+		{
+			/// <summary>
+			/// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+			/// </summary>
+			/// <param name="measure">Measure.</param>
+			/// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+			CatalyticActivity IMeasureFactory<CatalyticActivity>.New(IMeasure<CatalyticActivity> measure)
+			{
+				return new CatalyticActivity(measure.StandardAmount);
+			}
+
+			/// <summary>
+			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+			public CatalyticActivity New(double amount)
+			{
+				return new CatalyticActivity(amount);
+			}
+
+			/// <summary>
+			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <param name="unit">Unit.</param>
+			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+			public CatalyticActivity New(double amount, IUnit<CatalyticActivity> unit)
+			{
+				return new CatalyticActivity(amount, unit);
+			}
+
+			/// <summary>
+			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+			public CatalyticActivity New(float amount)
+			{
+				return new CatalyticActivity(amount);
+			}
+
+			/// <summary>
+			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <param name="unit">Unit.</param>
+			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+			public CatalyticActivity New(float amount, IUnit<CatalyticActivity> unit)
+			{
+				return new CatalyticActivity(amount, unit);
+			}
+
+			/// <summary>
+			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+			public CatalyticActivity New(decimal amount)
+			{
+				return new CatalyticActivity(amount);
+			}
+
+			/// <summary>
+			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <param name="unit">Unit.</param>
+			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+			public CatalyticActivity New(decimal amount, IUnit<CatalyticActivity> unit)
+			{
+				return new CatalyticActivity(amount, unit);
+			}
+		}
 
         #endregion
     }

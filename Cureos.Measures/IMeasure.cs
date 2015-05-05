@@ -77,11 +77,6 @@ namespace Cureos.Measures
         new IUnit<Q> Unit { get; }
 
         /// <summary>
-        /// Gets the measure factory associated with the quantity.
-        /// </summary>
-        IMeasureFactory<Q> Factory { get; }
-
-        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="iUnit">Unit to which the measured amount should be converted</param>

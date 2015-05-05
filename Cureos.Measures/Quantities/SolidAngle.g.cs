@@ -41,12 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the solid angle quantity
     /// </summary>
     [DataContract]
-    public partial struct SolidAngle : IQuantity<SolidAngle>, IMeasure<SolidAngle>, 
-        IMeasureFactory<SolidAngle>, IEquatable<SolidAngle>, IComparable<SolidAngle>
+    public partial struct SolidAngle : IQuantity<SolidAngle>, IMeasure<SolidAngle>, IEquatable<SolidAngle>, IComparable<SolidAngle>
     {
         #region FIELDS
 
-        private static readonly IMeasureFactory<SolidAngle> factory = new SolidAngle();
+        // ReSharper disable once InconsistentNaming
+        private static readonly IMeasureFactory<SolidAngle> factory = new MeasureFactory();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = QuantityDimension.Steradian;
@@ -186,6 +186,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<SolidAngle> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Indicates whether the current object is equal to another object of the same type.
         /// </summary>
         /// <returns>
@@ -257,14 +265,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<SolidAngle> Unit
         {
             get { return this.StandardUnit; }
-        }
-
-        /// <summary>
-        /// Gets the measure factory associated with the quantity.
-        /// </summary>
-        public IMeasureFactory<SolidAngle> Factory
-        { 
-            get { return factory; }
         }
 
         /// <summary>
@@ -345,83 +345,6 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<SolidAngle>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
-        }
-
-        #endregion
-
-        #region Implementation of IMeasureFactory<SolidAngle>
-
-        /// <summary>
-        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-        /// </summary>
-        /// <param name="measure">Measure.</param>
-        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        SolidAngle IMeasureFactory<SolidAngle>.New(IMeasure<SolidAngle> measure)
-        {
-            return new SolidAngle(measure.StandardAmount);
-        }
-
-        /// <summary>
-        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public SolidAngle New(double amount)
-        {
-            return new SolidAngle(amount);
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public SolidAngle New(double amount, IUnit<SolidAngle> unit)
-        {
-            return new SolidAngle(amount, unit);
-        }
-
-        /// <summary>
-        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public SolidAngle New(float amount)
-        {
-            return new SolidAngle(amount);
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public SolidAngle New(float amount, IUnit<SolidAngle> unit)
-        {
-            return new SolidAngle(amount, unit);
-        }
-
-        /// <summary>
-        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public SolidAngle New(decimal amount)
-        {
-            return new SolidAngle(amount);
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public SolidAngle New(decimal amount, IUnit<SolidAngle> unit)
-        {
-            return new SolidAngle(amount, unit);
         }
 
         #endregion
@@ -936,6 +859,86 @@ namespace Cureos.Measures.Quantities
         {
             return lhs.StandardAmount != rhs.amount;
         }
+
+        #endregion
+
+        #region Private class implementation of IMeasureFactory<SolidAngle>
+
+		private class MeasureFactory : IMeasureFactory<SolidAngle>
+		{
+			/// <summary>
+			/// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+			/// </summary>
+			/// <param name="measure">Measure.</param>
+			/// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+			SolidAngle IMeasureFactory<SolidAngle>.New(IMeasure<SolidAngle> measure)
+			{
+				return new SolidAngle(measure.StandardAmount);
+			}
+
+			/// <summary>
+			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+			public SolidAngle New(double amount)
+			{
+				return new SolidAngle(amount);
+			}
+
+			/// <summary>
+			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <param name="unit">Unit.</param>
+			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+			public SolidAngle New(double amount, IUnit<SolidAngle> unit)
+			{
+				return new SolidAngle(amount, unit);
+			}
+
+			/// <summary>
+			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+			public SolidAngle New(float amount)
+			{
+				return new SolidAngle(amount);
+			}
+
+			/// <summary>
+			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <param name="unit">Unit.</param>
+			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+			public SolidAngle New(float amount, IUnit<SolidAngle> unit)
+			{
+				return new SolidAngle(amount, unit);
+			}
+
+			/// <summary>
+			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+			public SolidAngle New(decimal amount)
+			{
+				return new SolidAngle(amount);
+			}
+
+			/// <summary>
+			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <param name="unit">Unit.</param>
+			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+			public SolidAngle New(decimal amount, IUnit<SolidAngle> unit)
+			{
+				return new SolidAngle(amount, unit);
+			}
+		}
 
         #endregion
     }

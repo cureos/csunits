@@ -41,12 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the magnetic flux density quantity
     /// </summary>
     [DataContract]
-    public partial struct MagneticFluxDensity : IQuantity<MagneticFluxDensity>, IMeasure<MagneticFluxDensity>, 
-        IMeasureFactory<MagneticFluxDensity>, IEquatable<MagneticFluxDensity>, IComparable<MagneticFluxDensity>
+    public partial struct MagneticFluxDensity : IQuantity<MagneticFluxDensity>, IMeasure<MagneticFluxDensity>, IEquatable<MagneticFluxDensity>, IComparable<MagneticFluxDensity>
     {
         #region FIELDS
 
-        private static readonly IMeasureFactory<MagneticFluxDensity> factory = new MagneticFluxDensity();
+        // ReSharper disable once InconsistentNaming
+        private static readonly IMeasureFactory<MagneticFluxDensity> factory = new MeasureFactory();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(0, 1, -2, -1, 0, 0, 0);
@@ -191,6 +191,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<MagneticFluxDensity> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Indicates whether the current object is equal to another object of the same type.
         /// </summary>
         /// <returns>
@@ -262,14 +270,6 @@ namespace Cureos.Measures.Quantities
         public IUnit<MagneticFluxDensity> Unit
         {
             get { return this.StandardUnit; }
-        }
-
-        /// <summary>
-        /// Gets the measure factory associated with the quantity.
-        /// </summary>
-        public IMeasureFactory<MagneticFluxDensity> Factory
-        { 
-            get { return factory; }
         }
 
         /// <summary>
@@ -350,83 +350,6 @@ namespace Cureos.Measures.Quantities
             if (other == null) throw new ArgumentNullException("other");
             if (!(other.Unit.Quantity is IMeasure<MagneticFluxDensity>)) throw new ArgumentException("Measures are of different quantities");
             return this.amount.CompareTo(other.StandardAmount);
-        }
-
-        #endregion
-
-        #region Implementation of IMeasureFactory<MagneticFluxDensity>
-
-        /// <summary>
-        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-        /// </summary>
-        /// <param name="measure">Measure.</param>
-        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        MagneticFluxDensity IMeasureFactory<MagneticFluxDensity>.New(IMeasure<MagneticFluxDensity> measure)
-        {
-            return new MagneticFluxDensity(measure.StandardAmount);
-        }
-
-        /// <summary>
-        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public MagneticFluxDensity New(double amount)
-        {
-            return new MagneticFluxDensity(amount);
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public MagneticFluxDensity New(double amount, IUnit<MagneticFluxDensity> unit)
-        {
-            return new MagneticFluxDensity(amount, unit);
-        }
-
-        /// <summary>
-        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public MagneticFluxDensity New(float amount)
-        {
-            return new MagneticFluxDensity(amount);
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public MagneticFluxDensity New(float amount, IUnit<MagneticFluxDensity> unit)
-        {
-            return new MagneticFluxDensity(amount, unit);
-        }
-
-        /// <summary>
-        /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
-        public MagneticFluxDensity New(decimal amount)
-        {
-            return new MagneticFluxDensity(amount);
-        }
-
-        /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
-        /// </summary>
-        /// <param name="amount">Amount.</param>
-        /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        public MagneticFluxDensity New(decimal amount, IUnit<MagneticFluxDensity> unit)
-        {
-            return new MagneticFluxDensity(amount, unit);
         }
 
         #endregion
@@ -941,6 +864,86 @@ namespace Cureos.Measures.Quantities
         {
             return lhs.StandardAmount != rhs.amount;
         }
+
+        #endregion
+
+        #region Private class implementation of IMeasureFactory<MagneticFluxDensity>
+
+		private class MeasureFactory : IMeasureFactory<MagneticFluxDensity>
+		{
+			/// <summary>
+			/// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+			/// </summary>
+			/// <param name="measure">Measure.</param>
+			/// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+			MagneticFluxDensity IMeasureFactory<MagneticFluxDensity>.New(IMeasure<MagneticFluxDensity> measure)
+			{
+				return new MagneticFluxDensity(measure.StandardAmount);
+			}
+
+			/// <summary>
+			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+			public MagneticFluxDensity New(double amount)
+			{
+				return new MagneticFluxDensity(amount);
+			}
+
+			/// <summary>
+			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <param name="unit">Unit.</param>
+			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+			public MagneticFluxDensity New(double amount, IUnit<MagneticFluxDensity> unit)
+			{
+				return new MagneticFluxDensity(amount, unit);
+			}
+
+			/// <summary>
+			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+			public MagneticFluxDensity New(float amount)
+			{
+				return new MagneticFluxDensity(amount);
+			}
+
+			/// <summary>
+			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <param name="unit">Unit.</param>
+			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+			public MagneticFluxDensity New(float amount, IUnit<MagneticFluxDensity> unit)
+			{
+				return new MagneticFluxDensity(amount, unit);
+			}
+
+			/// <summary>
+			/// Creates a new standard unit measure at the specified <paramref name="amount"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <returns>Standard unit measure at the specified <paramref name="amount"/>.</returns>
+			public MagneticFluxDensity New(decimal amount)
+			{
+				return new MagneticFluxDensity(amount);
+			}
+
+			/// <summary>
+			/// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+			/// </summary>
+			/// <param name="amount">Amount.</param>
+			/// <param name="unit">Unit.</param>
+			/// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+			public MagneticFluxDensity New(decimal amount, IUnit<MagneticFluxDensity> unit)
+			{
+				return new MagneticFluxDensity(amount, unit);
+			}
+		}
 
         #endregion
     }

@@ -33,7 +33,7 @@ namespace Cureos.Measures
     /// Representation of a physical unit of a specific quanity
     /// </summary>
     /// <typeparam name="Q">Quantity type with which the unit is associated</typeparam>
-    public sealed class ConstantConverterUnit<Q> : Unit<Q> where Q : struct, IQuantity<Q>, IMeasureFactory<Q>
+    public sealed class ConstantConverterUnit<Q> : Unit<Q> where Q : struct, IQuantity<Q>
     {
         #region FIELDS
 
