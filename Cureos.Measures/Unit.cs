@@ -38,7 +38,7 @@ namespace Cureos.Measures
         #region FIELDS
 
         // ReSharper disable once InconsistentNaming
-        private static readonly Q quantity = default(Q);
+        private static readonly Q quantity = new Q();
 
         private readonly bool isStandardUnit;
 

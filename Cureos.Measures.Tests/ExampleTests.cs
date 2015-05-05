@@ -22,7 +22,9 @@
 namespace Cureos.Measures
 {
     using System;
+
     using Cureos.Measures.Quantities;
+
     using NUnit.Framework;
 
     [TestFixture]
@@ -31,21 +33,21 @@ namespace Cureos.Measures
         [Test]
         public void Example1()
         {
-            Measure<Mass> initialWgt = new Measure<Mass>(75.0);
-            Measure<Mass> gainedWgt = new Measure<Mass>(2.5, Mass.HectoGram);
-            Measure<Mass> newWgt = initialWgt + gainedWgt;
+            Mass initialWgt = new Mass(75.0);
+            Mass gainedWgt = new Mass(2.5, Mass.HectoGram);
+            Mass newWgt = initialWgt + gainedWgt;
 
             InUnitMeasure<Mass> newWgtInGram = (InUnitMeasure<Mass>)newWgt[Mass.Gram];
             InUnitMeasure<Mass> initialWgtInGram = newWgtInGram - gainedWgt;
 
             Console.WriteLine("Initial weight: {0}", initialWgtInGram);
 
-            Measure<Length> height = new Measure<Length>(30.0, Length.CentiMeter);
-            Measure<Area> area = (Measure<Area>)0.02;
+            Length height = new Length(30.0, Length.CentiMeter);
+            Area area = (Area)0.02;
 
-            Measure<Volume> vol;
+            Volume vol;
             ArithmeticOperations.Times(height, area, out vol);
-            var maxVol = new Measure<Volume>(10.0, Volume.Liter);
+            var maxVol = new Volume(10.0, Volume.Liter);
 
             if (vol < maxVol)
             {

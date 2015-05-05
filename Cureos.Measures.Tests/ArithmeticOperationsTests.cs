@@ -35,10 +35,10 @@ namespace Cureos.Measures
         [Test]
         public void Times_MultiplyAreaAndLength_ReturnsVolume()
         {
-            var expected = new Measure<Volume>(6.0);
+            var expected = new Volume(6.0);
             var lhs = new Measure<Area>(2.0);
             var rhs = new Measure<Length>(3.0);
-            Measure<Volume> actual; ArithmeticOperations.Times(lhs, rhs, out actual);
+            Volume actual; ArithmeticOperations.Times(lhs, rhs, out actual);
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }
 
@@ -48,16 +48,16 @@ namespace Cureos.Measures
         {
             var lhs = new Measure<Area>(2.0);
             var rhs = new Measure<Area>(3.0);
-            Measure<Volume> throws; ArithmeticOperations.Times(lhs, rhs, out throws);
+            Volume throws; ArithmeticOperations.Times(lhs, rhs, out throws);
         }
 
         [Test]
         public void Divide_DivideVolumeAndLength_ReturnsArea()
         {
-            var expected = new Measure<Area>(4.0);
+            var expected = new Area(4.0);
             var numerator = new Measure<Volume>(8.0);
             var denominator = new Measure<Length>(200.0, Length.CentiMeter);
-            Measure<Area> actual; ArithmeticOperations.Divide(numerator, denominator, out actual);
+            Area actual; ArithmeticOperations.Divide(numerator, denominator, out actual);
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }
 
@@ -67,15 +67,15 @@ namespace Cureos.Measures
         {
             var numerator = new Measure<Area>(8.0);
             var denominator = new Measure<Area>(200.0, Area.SquareDeciMeter);
-            Measure<Length> throws; ArithmeticOperations.Divide(numerator, denominator, out throws);
+            Length throws; ArithmeticOperations.Divide(numerator, denominator, out throws);
         }
 
         [Test]
         public void Power_LengthRaisedWith3_ReturnsVolume()
         {
-            var expected = new InUnitMeasure<Volume>(1.0, Volume.CubicDeciMeter);
+            var expected = new Volume(1.0, Volume.CubicDeciMeter);
             var len = new InUnitMeasure<Length>(1.0, Length.DeciMeter);
-            Measure<Volume> actual; ArithmeticOperations.Power(len, 3, out actual);
+            Volume actual; ArithmeticOperations.Power(len, 3, out actual);
             MeasureAssert.AmountsAreEqual(expected, actual);
         }
 
