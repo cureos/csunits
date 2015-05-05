@@ -79,9 +79,9 @@ namespace Cureos.Measures
         /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
-        /// <param name="iUnit">Unit to which the measured amount should be converted</param>
-        /// <returns>Measured amount converted into <paramref name="iUnit">specified unit</paramref></returns>
-        AmountType GetAmount(IUnit<Q> iUnit);
+        /// <param name="unit">Unit to which the measured amount should be converted</param>
+        /// <returns>Measured amount converted into <paramref name="unit">specified unit</paramref></returns>
+        AmountType GetAmount(IUnit<Q> unit);
 
         /// <summary>
         /// Gets a new unit specific measure based on this measure but in the <paramref name="iUnit">specified unit</paramref>
