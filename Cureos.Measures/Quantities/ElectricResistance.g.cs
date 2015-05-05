@@ -41,9 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the electric resistance quantity
     /// </summary>
     [DataContract]
-    public partial struct ElectricResistance : IQuantity<ElectricResistance>, IMeasure<ElectricResistance>, IMeasureFactory<ElectricResistance>, IEquatable<ElectricResistance>, IComparable<ElectricResistance>
+    public partial struct ElectricResistance : IQuantity<ElectricResistance>, IMeasure<ElectricResistance>, 
+        IMeasureFactory<ElectricResistance>, IEquatable<ElectricResistance>, IComparable<ElectricResistance>
     {
         #region FIELDS
+
+        private static readonly IMeasureFactory<ElectricResistance> factory = new ElectricResistance();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(2, 1, -3, -2, 0, 0, 0);
@@ -262,6 +265,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<ElectricResistance> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
@@ -344,6 +355,16 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IMeasureFactory<ElectricResistance>
+
+        /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        ElectricResistance IMeasureFactory<ElectricResistance>.Create(IMeasure<ElectricResistance> measure)
+        {
+            return new ElectricResistance(measure.StandardAmount);
+        }
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.

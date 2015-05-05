@@ -41,9 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the probability quantity
     /// </summary>
     [DataContract]
-    public partial struct Probability : IQuantity<Probability>, IMeasure<Probability>, IMeasureFactory<Probability>, IEquatable<Probability>, IComparable<Probability>
+    public partial struct Probability : IQuantity<Probability>, IMeasure<Probability>, 
+        IMeasureFactory<Probability>, IEquatable<Probability>, IComparable<Probability>
     {
         #region FIELDS
+
+        private static readonly IMeasureFactory<Probability> factory = new Probability();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = QuantityDimension.Number;
@@ -255,6 +258,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<Probability> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
@@ -337,6 +348,16 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IMeasureFactory<Probability>
+
+        /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        Probability IMeasureFactory<Probability>.Create(IMeasure<Probability> measure)
+        {
+            return new Probability(measure.StandardAmount);
+        }
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.

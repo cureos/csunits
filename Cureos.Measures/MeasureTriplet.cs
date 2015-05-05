@@ -29,6 +29,7 @@ namespace Cureos.Measures
     using AmountType = System.Decimal;
 #elif DOUBLE
     using AmountType = System.Double;
+
 #endif
 
     /// <summary>
@@ -38,15 +39,23 @@ namespace Cureos.Measures
     /// <typeparam name="Q2">Quantity type of the second measure</typeparam>
     /// <typeparam name="Q3">Quantity type of the third measure</typeparam>
     public struct MeasureTriplet<Q1, Q2, Q3> : IMeasureTriplet<Q1, Q2, Q3>
-        where Q1 : struct, IQuantity<Q1>
-        where Q2 : struct, IQuantity<Q2>
-        where Q3 : struct, IQuantity<Q3>
+        where Q1 : struct, IQuantity<Q1>, IMeasure<Q1>
+        where Q2 : struct, IQuantity<Q2>, IMeasure<Q2>
+        where Q3 : struct, IQuantity<Q3>, IMeasure<Q3>
     {
         #region MEMBER VARIABLES
 
-        private readonly Measure<Q1> mX;
-        private readonly Measure<Q2> mY;
-        private readonly Measure<Q3> mZ;
+        private static readonly IMeasureFactory<Q1> Q1Factory = new Q1().Factory;
+
+        private static readonly IMeasureFactory<Q2> Q2Factory = new Q2().Factory;
+
+        private static readonly IMeasureFactory<Q3> Q3Factory = new Q3().Factory;
+
+        private readonly Q1 x;
+
+        private readonly Q2 y;
+
+        private readonly Q3 z;
 
         #endregion
 
@@ -62,19 +71,6 @@ namespace Cureos.Measures
         }
 
         /// <summary>
-        /// Initializes a triplet of standard measures from three standard measure objects
-        /// </summary>
-        /// <param name="iX">First measure object</param>
-        /// <param name="iY">Second measure object</param>
-        /// <param name="iZ">Third measure object</param>
-        public MeasureTriplet(Measure<Q1> iX, Measure<Q2> iY, Measure<Q3> iZ)
-        {
-            mX = iX;
-            mY = iY;
-            mZ = iZ;
-        }
-
-        /// <summary>
         /// Initializes a triplet of standard measures
         /// </summary>
         /// <param name="iMeasure1">First measure object</param>
@@ -82,9 +78,9 @@ namespace Cureos.Measures
         /// <param name="iMeasure3">Third measure object</param>
         public MeasureTriplet(IMeasure<Q1> iMeasure1, IMeasure<Q2> iMeasure2, IMeasure<Q3> iMeasure3)
         {
-            mX = new Measure<Q1>(iMeasure1);
-            mY = new Measure<Q2>(iMeasure2);
-            mZ = new Measure<Q3>(iMeasure3);
+            this.x = Q1Factory.Create(iMeasure1);
+            this.y = Q2Factory.Create(iMeasure2);
+            this.z = Q3Factory.Create(iMeasure3);
         }
 
         /// <summary>
@@ -95,9 +91,9 @@ namespace Cureos.Measures
         /// <param name="iAmount3">Amount in standard units of the third measure object</param>
         public MeasureTriplet(double iAmount1, double iAmount2, double iAmount3)
         {
-            mX = new Measure<Q1>(iAmount1);
-            mY = new Measure<Q2>(iAmount2);
-            mZ = new Measure<Q3>(iAmount3);
+            this.x = Q1Factory.Create(iAmount1);
+            this.y = Q2Factory.Create(iAmount2);
+            this.z = Q3Factory.Create(iAmount3);
         }
 
         /// <summary>
@@ -108,9 +104,9 @@ namespace Cureos.Measures
         /// <param name="iAmount3">Amount in standard units of the third measure object</param>
         public MeasureTriplet(float iAmount1, float iAmount2, float iAmount3)
         {
-            mX = new Measure<Q1>(iAmount1);
-            mY = new Measure<Q2>(iAmount2);
-            mZ = new Measure<Q3>(iAmount3);
+            this.x = Q1Factory.Create(iAmount1);
+            this.y = Q2Factory.Create(iAmount2);
+            this.z = Q3Factory.Create(iAmount3);
         }
 
         /// <summary>
@@ -121,9 +117,9 @@ namespace Cureos.Measures
         /// <param name="iAmount3">Amount in standard units of the third measure object</param>
         public MeasureTriplet(decimal iAmount1, decimal iAmount2, decimal iAmount3)
         {
-            mX = new Measure<Q1>(iAmount1);
-            mY = new Measure<Q2>(iAmount2);
-            mZ = new Measure<Q3>(iAmount3);
+            this.x = Q1Factory.Create(iAmount1);
+            this.y = Q2Factory.Create(iAmount2);
+            this.z = Q3Factory.Create(iAmount3);
         }
 
         #endregion
@@ -133,25 +129,34 @@ namespace Cureos.Measures
         /// <summary>
         /// Gets the first measure in the measure triplet
         /// </summary>
-        public Measure<Q1> X
+        public Q1 X
         {
-            get { return mX; }
+            get
+            {
+                return this.x;
+            }
         }
 
         /// <summary>
         /// Gets the second measure in the measure triplet
         /// </summary>
-        public Measure<Q2> Y
+        public Q2 Y
         {
-            get { return mY; }
+            get
+            {
+                return this.y;
+            }
         }
 
         /// <summary>
         /// Gets the third measure in the measure triplet
         /// </summary>
-        public Measure<Q3> Z
+        public Q3 Z
         {
-            get { return mZ; }
+            get
+            {
+                return this.z;
+            }
         }
 
         #endregion
@@ -163,7 +168,10 @@ namespace Cureos.Measures
         /// </summary>
         IMeasure<Q1> IMeasureTriplet<Q1, Q2, Q3>.X
         {
-            get { return mX; }
+            get
+            {
+                return this.x;
+            }
         }
 
         /// <summary>
@@ -171,7 +179,10 @@ namespace Cureos.Measures
         /// </summary>
         IMeasure<Q2> IMeasureTriplet<Q1, Q2, Q3>.Y
         {
-            get { return mY; }
+            get
+            {
+                return this.y;
+            }
         }
 
         /// <summary>
@@ -179,7 +190,10 @@ namespace Cureos.Measures
         /// </summary>
         IMeasure<Q3> IMeasureTriplet<Q1, Q2, Q3>.Z
         {
-            get { return mZ; }
+            get
+            {
+                return this.z;
+            }
         }
 
         #endregion
@@ -192,9 +206,14 @@ namespace Cureos.Measures
         /// <param name="iLhs">First measure triplet</param>
         /// <param name="iRhs">Second measure triplet</param>
         /// <returns>Sum of the specified measure triplets</returns>
-        public static MeasureTriplet<Q1, Q2, Q3> operator +(MeasureTriplet<Q1, Q2, Q3> iLhs, MeasureTriplet<Q1, Q2, Q3> iRhs)
+        public static MeasureTriplet<Q1, Q2, Q3> operator +(
+            MeasureTriplet<Q1, Q2, Q3> iLhs,
+            MeasureTriplet<Q1, Q2, Q3> iRhs)
         {
-            return new MeasureTriplet<Q1, Q2, Q3>(iLhs.mX + iRhs.mX, iLhs.mY + iRhs.mY, iLhs.mZ + iRhs.mZ);
+            return new MeasureTriplet<Q1, Q2, Q3>(
+                iLhs.x.StandardAmount + iRhs.x.StandardAmount,
+                iLhs.y.StandardAmount + iRhs.y.StandardAmount,
+                iLhs.z.StandardAmount + iRhs.z.StandardAmount);
         }
 
         /// <summary>
@@ -203,11 +222,14 @@ namespace Cureos.Measures
         /// <param name="iLhs">First measure triplet</param>
         /// <param name="iRhs">Second measure triplet</param>
         /// <returns>Sum of the specified measure triplets</returns>
-        public static MeasureTriplet<Q1, Q2, Q3> operator +(MeasureTriplet<Q1, Q2, Q3> iLhs, IMeasureTriplet<Q1, Q2, Q3> iRhs)
+        public static MeasureTriplet<Q1, Q2, Q3> operator +(
+            MeasureTriplet<Q1, Q2, Q3> iLhs,
+            IMeasureTriplet<Q1, Q2, Q3> iRhs)
         {
-            return new MeasureTriplet<Q1, Q2, Q3>(iLhs.mX.Amount + iRhs.X.StandardAmount,
-                                                          iLhs.mY.Amount + iRhs.Y.StandardAmount,
-                                                          iLhs.mZ.Amount + iRhs.Z.StandardAmount);
+            return new MeasureTriplet<Q1, Q2, Q3>(
+                iLhs.x.Amount + iRhs.X.StandardAmount,
+                iLhs.y.Amount + iRhs.Y.StandardAmount,
+                iLhs.z.Amount + iRhs.Z.StandardAmount);
         }
 
         /// <summary>
@@ -216,9 +238,14 @@ namespace Cureos.Measures
         /// <param name="iLhs">First measure triplet</param>
         /// <param name="iRhs">Second measure triplet</param>
         /// <returns>Difference of the specified measure triplets</returns>
-        public static MeasureTriplet<Q1, Q2, Q3> operator -(MeasureTriplet<Q1, Q2, Q3> iLhs, MeasureTriplet<Q1, Q2, Q3> iRhs)
+        public static MeasureTriplet<Q1, Q2, Q3> operator -(
+            MeasureTriplet<Q1, Q2, Q3> iLhs,
+            MeasureTriplet<Q1, Q2, Q3> iRhs)
         {
-            return new MeasureTriplet<Q1, Q2, Q3>(iLhs.mX - iRhs.mX, iLhs.mY - iRhs.mY, iLhs.mZ - iRhs.mZ);
+            return new MeasureTriplet<Q1, Q2, Q3>(
+                iLhs.x.StandardAmount - iRhs.x.StandardAmount,
+                iLhs.y.StandardAmount - iRhs.y.StandardAmount,
+                iLhs.z.StandardAmount - iRhs.z.StandardAmount);
         }
 
         /// <summary>
@@ -227,11 +254,14 @@ namespace Cureos.Measures
         /// <param name="iLhs">First measure triplet</param>
         /// <param name="iRhs">Second measure triplet</param>
         /// <returns>Difference of the specified measure triplets</returns>
-        public static MeasureTriplet<Q1, Q2, Q3> operator -(MeasureTriplet<Q1, Q2, Q3> iLhs, IMeasureTriplet<Q1, Q2, Q3> iRhs)
+        public static MeasureTriplet<Q1, Q2, Q3> operator -(
+            MeasureTriplet<Q1, Q2, Q3> iLhs,
+            IMeasureTriplet<Q1, Q2, Q3> iRhs)
         {
-            return new MeasureTriplet<Q1, Q2, Q3>(iLhs.mX.Amount - iRhs.X.StandardAmount,
-                                                          iLhs.mY.Amount - iRhs.Y.StandardAmount,
-                                                          iLhs.mZ.Amount - iRhs.Z.StandardAmount);
+            return new MeasureTriplet<Q1, Q2, Q3>(
+                iLhs.x.Amount - iRhs.X.StandardAmount,
+                iLhs.y.Amount - iRhs.Y.StandardAmount,
+                iLhs.z.Amount - iRhs.Z.StandardAmount);
         }
 
         /// <summary>
@@ -242,7 +272,7 @@ namespace Cureos.Measures
         /// <returns>Product of the measure triplet and the multiplicative factor</returns>
         public static MeasureTriplet<Q1, Q2, Q3> operator *(AmountType iLhs, MeasureTriplet<Q1, Q2, Q3> iRhs)
         {
-            return new MeasureTriplet<Q1, Q2, Q3>(iLhs * iRhs.mX.Amount, iLhs * iRhs.mY.Amount, iLhs * iRhs.mZ.Amount);
+            return new MeasureTriplet<Q1, Q2, Q3>(iLhs * iRhs.x.Amount, iLhs * iRhs.y.Amount, iLhs * iRhs.z.Amount);
         }
 
         /// <summary>
@@ -251,9 +281,12 @@ namespace Cureos.Measures
         /// <param name="iLhs">Multiplicative factor</param>
         /// <param name="iRhs">Measure triplet</param>
         /// <returns>Product of the measure triplet and the multiplicative factor</returns>
-        public static MeasureTriplet<Q1, Q2, Q3> operator *(Measure<Number> iLhs, MeasureTriplet<Q1, Q2, Q3> iRhs)
+        public static MeasureTriplet<Q1, Q2, Q3> operator *(Number iLhs, MeasureTriplet<Q1, Q2, Q3> iRhs)
         {
-            return new MeasureTriplet<Q1, Q2, Q3>(iLhs.Amount * iRhs.mX.Amount, iLhs.Amount * iRhs.mY.Amount, iLhs.Amount * iRhs.mZ.Amount);
+            return new MeasureTriplet<Q1, Q2, Q3>(
+                iLhs.Amount * iRhs.x.Amount,
+                iLhs.Amount * iRhs.y.Amount,
+                iLhs.Amount * iRhs.z.Amount);
         }
 
         /// <summary>
@@ -273,7 +306,7 @@ namespace Cureos.Measures
         /// <param name="iLhs">Measure triplet</param>
         /// <param name="iRhs">Multiplicative factor</param>
         /// <returns>Product of the measure triplet and the multiplicative factor</returns>
-        public static MeasureTriplet<Q1, Q2, Q3> operator *(MeasureTriplet<Q1, Q2, Q3> iLhs, Measure<Number> iRhs)
+        public static MeasureTriplet<Q1, Q2, Q3> operator *(MeasureTriplet<Q1, Q2, Q3> iLhs, Number iRhs)
         {
             return iRhs * iLhs;
         }
@@ -284,11 +317,14 @@ namespace Cureos.Measures
         /// <param name="iLhs">Measure triplet</param>
         /// <param name="iRhs">Number triplet</param>
         /// <returns>Product of the measure and number triplets</returns>
-        public static MeasureTriplet<Q1, Q2, Q3> operator *(MeasureTriplet<Q1, Q2, Q3> iLhs, MeasureTriplet<Number, Number, Number> iRhs)
+        public static MeasureTriplet<Q1, Q2, Q3> operator *(
+            MeasureTriplet<Q1, Q2, Q3> iLhs,
+            MeasureTriplet<Number, Number, Number> iRhs)
         {
-            return new MeasureTriplet<Q1, Q2, Q3>(iLhs.mX.Amount * iRhs.mX.Amount,
-                                                          iLhs.mY.Amount * iRhs.mY.Amount,
-                                                          iLhs.mZ.Amount * iRhs.mZ.Amount);
+            return new MeasureTriplet<Q1, Q2, Q3>(
+                iLhs.x.Amount * iRhs.x.Amount,
+                iLhs.y.Amount * iRhs.y.Amount,
+                iLhs.z.Amount * iRhs.z.Amount);
         }
 
         /// <summary>
@@ -297,11 +333,14 @@ namespace Cureos.Measures
         /// <param name="iLhs">Measure triplet</param>
         /// <param name="iRhs">Number triplet</param>
         /// <returns>Product of the measure and number triplets</returns>
-        public static MeasureTriplet<Q1, Q2, Q3> operator *(MeasureTriplet<Q1, Q2, Q3> iLhs, IMeasureTriplet<Number, Number, Number> iRhs)
+        public static MeasureTriplet<Q1, Q2, Q3> operator *(
+            MeasureTriplet<Q1, Q2, Q3> iLhs,
+            IMeasureTriplet<Number, Number, Number> iRhs)
         {
-            return new MeasureTriplet<Q1, Q2, Q3>(iLhs.mX.Amount * iRhs.X.StandardAmount,
-                                                          iLhs.mY.Amount * iRhs.Y.StandardAmount,
-                                                          iLhs.mZ.Amount * iRhs.Z.StandardAmount);
+            return new MeasureTriplet<Q1, Q2, Q3>(
+                iLhs.x.Amount * iRhs.X.StandardAmount,
+                iLhs.y.Amount * iRhs.Y.StandardAmount,
+                iLhs.z.Amount * iRhs.Z.StandardAmount);
         }
 
         /// <summary>
@@ -312,7 +351,7 @@ namespace Cureos.Measures
         /// <returns>Quotient of the measure triplet and the scalar denominator</returns>
         public static MeasureTriplet<Q1, Q2, Q3> operator /(MeasureTriplet<Q1, Q2, Q3> iLhs, AmountType iRhs)
         {
-            return new MeasureTriplet<Q1, Q2, Q3>(iLhs.mX.Amount / iRhs, iLhs.mY.Amount / iRhs, iLhs.mZ.Amount / iRhs);
+            return new MeasureTriplet<Q1, Q2, Q3>(iLhs.x.Amount / iRhs, iLhs.y.Amount / iRhs, iLhs.z.Amount / iRhs);
         }
 
         /// <summary>
@@ -321,10 +360,12 @@ namespace Cureos.Measures
         /// <param name="iLhs">Measure triplet</param>
         /// <param name="iRhs">Scalar denominator</param>
         /// <returns>Quotient of the measure triplet and the scalar denominator</returns>
-        public static MeasureTriplet<Q1, Q2, Q3> operator /(MeasureTriplet<Q1, Q2, Q3> iLhs, Measure<Number> iRhs)
+        public static MeasureTriplet<Q1, Q2, Q3> operator /(MeasureTriplet<Q1, Q2, Q3> iLhs, Number iRhs)
         {
-            return new MeasureTriplet<Q1, Q2, Q3>(iLhs.mX.Amount / iRhs.Amount, iLhs.mY.Amount / iRhs.Amount,
-                                                          iLhs.mZ.Amount / iRhs.Amount);
+            return new MeasureTriplet<Q1, Q2, Q3>(
+                iLhs.x.Amount / iRhs.Amount,
+                iLhs.y.Amount / iRhs.Amount,
+                iLhs.z.Amount / iRhs.Amount);
         }
 
         /// <summary>
@@ -333,11 +374,14 @@ namespace Cureos.Measures
         /// <param name="iLhs">Measure triplet</param>
         /// <param name="iRhs">Number triplet</param>
         /// <returns>Quotient of the measure and number triplets</returns>
-        public static MeasureTriplet<Q1, Q2, Q3> operator /(MeasureTriplet<Q1, Q2, Q3> iLhs, MeasureTriplet<Number, Number, Number> iRhs)
+        public static MeasureTriplet<Q1, Q2, Q3> operator /(
+            MeasureTriplet<Q1, Q2, Q3> iLhs,
+            MeasureTriplet<Number, Number, Number> iRhs)
         {
-            return new MeasureTriplet<Q1, Q2, Q3>(iLhs.mX.Amount / iRhs.mX.Amount,
-                                                          iLhs.mY.Amount / iRhs.mY.Amount,
-                                                          iLhs.mZ.Amount / iRhs.mZ.Amount);
+            return new MeasureTriplet<Q1, Q2, Q3>(
+                iLhs.x.Amount / iRhs.x.Amount,
+                iLhs.y.Amount / iRhs.y.Amount,
+                iLhs.z.Amount / iRhs.z.Amount);
         }
 
         /// <summary>
@@ -346,11 +390,14 @@ namespace Cureos.Measures
         /// <param name="iLhs">Measure triplet</param>
         /// <param name="iRhs">Number triplet</param>
         /// <returns>Quotient of the measure and number triplets</returns>
-        public static MeasureTriplet<Q1, Q2, Q3> operator /(MeasureTriplet<Q1, Q2, Q3> iLhs, IMeasureTriplet<Number, Number, Number> iRhs)
+        public static MeasureTriplet<Q1, Q2, Q3> operator /(
+            MeasureTriplet<Q1, Q2, Q3> iLhs,
+            IMeasureTriplet<Number, Number, Number> iRhs)
         {
-            return new MeasureTriplet<Q1, Q2, Q3>(iLhs.mX.Amount / iRhs.X.StandardAmount,
-                                                          iLhs.mY.Amount / iRhs.Y.StandardAmount,
-                                                          iLhs.mZ.Amount / iRhs.Z.StandardAmount);
+            return new MeasureTriplet<Q1, Q2, Q3>(
+                iLhs.x.Amount / iRhs.X.StandardAmount,
+                iLhs.y.Amount / iRhs.Y.StandardAmount,
+                iLhs.z.Amount / iRhs.Z.StandardAmount);
         }
 
         /// <summary>
@@ -359,9 +406,14 @@ namespace Cureos.Measures
         /// <param name="iLhs">Numerator measure triplet</param>
         /// <param name="iRhs">Denominator measure triplet</param>
         /// <returns>Quotient of the measure triplets as a number triplet</returns>
-        public static MeasureTriplet<Number, Number, Number> operator /(MeasureTriplet<Q1, Q2, Q3> iLhs, MeasureTriplet<Q1, Q2, Q3> iRhs)
+        public static MeasureTriplet<Number, Number, Number> operator /(
+            MeasureTriplet<Q1, Q2, Q3> iLhs,
+            MeasureTriplet<Q1, Q2, Q3> iRhs)
         {
-            return new MeasureTriplet<Number, Number, Number>(iLhs.mX / iRhs.mX, iLhs.mY / iRhs.mY, iLhs.mZ / iRhs.mZ);
+            return new MeasureTriplet<Number, Number, Number>(
+                iLhs.x.StandardAmount / iRhs.x.StandardAmount,
+                iLhs.y.StandardAmount / iRhs.y.StandardAmount,
+                iLhs.z.StandardAmount / iRhs.z.StandardAmount);
         }
 
         /// <summary>
@@ -370,48 +422,16 @@ namespace Cureos.Measures
         /// <param name="iLhs">Numerator measure triplet</param>
         /// <param name="iRhs">Denominator measure triplet</param>
         /// <returns>Quotient of the measure triplets as a number triplet</returns>
-        public static MeasureTriplet<Number, Number, Number> operator /(MeasureTriplet<Q1, Q2, Q3> iLhs, IMeasureTriplet<Q1, Q2, Q3> iRhs)
+        public static MeasureTriplet<Number, Number, Number> operator /(
+            MeasureTriplet<Q1, Q2, Q3> iLhs,
+            IMeasureTriplet<Q1, Q2, Q3> iRhs)
         {
-            return new MeasureTriplet<Number, Number, Number>(iLhs.mX.Amount / iRhs.X.StandardAmount,
-                                                                      iLhs.mY.Amount / iRhs.Y.StandardAmount,
-                                                                      iLhs.mZ.Amount / iRhs.Z.StandardAmount);
+            return new MeasureTriplet<Number, Number, Number>(
+                iLhs.x.Amount / iRhs.X.StandardAmount,
+                iLhs.y.Amount / iRhs.Y.StandardAmount,
+                iLhs.z.Amount / iRhs.Z.StandardAmount);
         }
 
         #endregion
-    }
-
-    /// <summary>
-    /// Utility class for operations on StandardMeasureTriplet objects
-    /// </summary>
-    public static class MeasureTriplet
-    {
-        /// <summary>
-        /// Compare two nullable standard measure triplets containing a single quantity for approximate equivalence
-        /// </summary>
-        /// <typeparam name="Q">Struct type implementing the IQuantity{Q} interface</typeparam>
-        /// <param name="iLhs">First nullable standard measure triplet subject to comparison</param>
-        /// <param name="iRhs">Second nullable standard measure triplet subject to comparison</param>
-        /// <param name="iTol">Tolerance of the difference between the two measures</param>
-        /// <returns>true if both objects have values and the difference is less than the specified tolerance, false otherwise</returns>
-        public static bool AreEqual<Q>(MeasureTriplet<Q, Q, Q>? iLhs, 
-            MeasureTriplet<Q, Q, Q>? iRhs, Measure<Q> iTol) where Q : struct, IQuantity<Q>
-        {
-            return iLhs.HasValue && iRhs.HasValue && iLhs.Value.X.Equals(iRhs.Value.X, iTol) &&
-                iLhs.Value.Y.Equals(iRhs.Value.Y, iTol) && iLhs.Value.Z.Equals(iRhs.Value.Z, iTol);
-        }
-
-        /// <summary>
-        /// Compare two standard measure triplets containing a single quantity for approximate equivalence
-        /// </summary>
-        /// <typeparam name="Q">Struct type implementing the IQuantity{Q} interface</typeparam>
-        /// <param name="iLhs">First standard measure triplet subject to comparison</param>
-        /// <param name="iRhs">Second standard measure triplet subject to comparison</param>
-        /// <param name="iTol">Tolerance of the difference between the two measures</param>
-        /// <returns>true if the difference between each coordinate is less than the specified tolerance, false otherwise</returns>
-        public static bool AreEqual<Q>(MeasureTriplet<Q, Q, Q> iLhs,
-            MeasureTriplet<Q, Q, Q> iRhs, Measure<Q> iTol) where Q : struct, IQuantity<Q>
-        {
-            return iLhs.X.Equals(iRhs.X, iTol) && iLhs.Y.Equals(iRhs.Y, iTol) && iLhs.Z.Equals(iRhs.Z, iTol);
-        }
     }
 }

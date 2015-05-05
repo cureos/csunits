@@ -41,9 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the angular acceleration quantity
     /// </summary>
     [DataContract]
-    public partial struct AngularAcceleration : IQuantity<AngularAcceleration>, IMeasure<AngularAcceleration>, IMeasureFactory<AngularAcceleration>, IEquatable<AngularAcceleration>, IComparable<AngularAcceleration>
+    public partial struct AngularAcceleration : IQuantity<AngularAcceleration>, IMeasure<AngularAcceleration>, 
+        IMeasureFactory<AngularAcceleration>, IEquatable<AngularAcceleration>, IComparable<AngularAcceleration>
     {
         #region FIELDS
+
+        private static readonly IMeasureFactory<AngularAcceleration> factory = new AngularAcceleration();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = QuantityDimension.Radian * new QuantityDimension(0, 0, -2, 0, 0, 0, 0);
@@ -262,6 +265,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<AngularAcceleration> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
@@ -344,6 +355,16 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IMeasureFactory<AngularAcceleration>
+
+        /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        AngularAcceleration IMeasureFactory<AngularAcceleration>.Create(IMeasure<AngularAcceleration> measure)
+        {
+            return new AngularAcceleration(measure.StandardAmount);
+        }
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.

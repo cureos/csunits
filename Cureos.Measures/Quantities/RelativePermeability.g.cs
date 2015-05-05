@@ -41,9 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the relative permeability quantity
     /// </summary>
     [DataContract]
-    public partial struct RelativePermeability : IQuantity<RelativePermeability>, IMeasure<RelativePermeability>, IMeasureFactory<RelativePermeability>, IEquatable<RelativePermeability>, IComparable<RelativePermeability>
+    public partial struct RelativePermeability : IQuantity<RelativePermeability>, IMeasure<RelativePermeability>, 
+        IMeasureFactory<RelativePermeability>, IEquatable<RelativePermeability>, IComparable<RelativePermeability>
     {
         #region FIELDS
+
+        private static readonly IMeasureFactory<RelativePermeability> factory = new RelativePermeability();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = QuantityDimension.RelativePermeability;
@@ -251,6 +254,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<RelativePermeability> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
@@ -333,6 +344,16 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IMeasureFactory<RelativePermeability>
+
+        /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        RelativePermeability IMeasureFactory<RelativePermeability>.Create(IMeasure<RelativePermeability> measure)
+        {
+            return new RelativePermeability(measure.StandardAmount);
+        }
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.

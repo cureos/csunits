@@ -41,9 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the acceleration quantity
     /// </summary>
     [DataContract]
-    public partial struct Acceleration : IQuantity<Acceleration>, IMeasure<Acceleration>, IMeasureFactory<Acceleration>, IEquatable<Acceleration>, IComparable<Acceleration>
+    public partial struct Acceleration : IQuantity<Acceleration>, IMeasure<Acceleration>, 
+        IMeasureFactory<Acceleration>, IEquatable<Acceleration>, IComparable<Acceleration>
     {
         #region FIELDS
+
+        private static readonly IMeasureFactory<Acceleration> factory = new Acceleration();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(1, 0, -2, 0, 0, 0, 0);
@@ -258,6 +261,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<Acceleration> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
@@ -340,6 +351,16 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IMeasureFactory<Acceleration>
+
+        /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        Acceleration IMeasureFactory<Acceleration>.Create(IMeasure<Acceleration> measure)
+        {
+            return new Acceleration(measure.StandardAmount);
+        }
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.

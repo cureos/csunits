@@ -41,9 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the dynamic viscosity quantity
     /// </summary>
     [DataContract]
-    public partial struct DynamicViscosity : IQuantity<DynamicViscosity>, IMeasure<DynamicViscosity>, IMeasureFactory<DynamicViscosity>, IEquatable<DynamicViscosity>, IComparable<DynamicViscosity>
+    public partial struct DynamicViscosity : IQuantity<DynamicViscosity>, IMeasure<DynamicViscosity>, 
+        IMeasureFactory<DynamicViscosity>, IEquatable<DynamicViscosity>, IComparable<DynamicViscosity>
     {
         #region FIELDS
+
+        private static readonly IMeasureFactory<DynamicViscosity> factory = new DynamicViscosity();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(-1, 1, -1, 0, 0, 0, 0);
@@ -260,6 +263,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<DynamicViscosity> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
@@ -342,6 +353,16 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IMeasureFactory<DynamicViscosity>
+
+        /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        DynamicViscosity IMeasureFactory<DynamicViscosity>.Create(IMeasure<DynamicViscosity> measure)
+        {
+            return new DynamicViscosity(measure.StandardAmount);
+        }
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.

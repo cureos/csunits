@@ -31,6 +31,13 @@ namespace Cureos.Measures
     public interface IMeasureFactory<Q> where Q : struct, IQuantity<Q>
     {
         /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        Q Create(IMeasure<Q> measure);
+
+        /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
         /// </summary>
         /// <param name="amount">Amount.</param>

@@ -211,6 +211,18 @@ namespace Cureos.Measures
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        /// <remarks>Not supported.</remarks>
+        IMeasureFactory<Q> IMeasure<Q>.Factory
+        {
+            get
+            {
+                throw new InvalidOperationException();
+            }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="iUnit">Unit to which the measured amount should be converted</param>

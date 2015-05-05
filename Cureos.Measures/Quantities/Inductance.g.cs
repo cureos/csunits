@@ -41,9 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the inductance quantity
     /// </summary>
     [DataContract]
-    public partial struct Inductance : IQuantity<Inductance>, IMeasure<Inductance>, IMeasureFactory<Inductance>, IEquatable<Inductance>, IComparable<Inductance>
+    public partial struct Inductance : IQuantity<Inductance>, IMeasure<Inductance>, 
+        IMeasureFactory<Inductance>, IEquatable<Inductance>, IComparable<Inductance>
     {
         #region FIELDS
+
+        private static readonly IMeasureFactory<Inductance> factory = new Inductance();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(2, 1, -2, -2, 0, 0, 0);
@@ -262,6 +265,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<Inductance> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
@@ -344,6 +355,16 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IMeasureFactory<Inductance>
+
+        /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        Inductance IMeasureFactory<Inductance>.Create(IMeasure<Inductance> measure)
+        {
+            return new Inductance(measure.StandardAmount);
+        }
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.

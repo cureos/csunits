@@ -41,9 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the force quantity
     /// </summary>
     [DataContract]
-    public partial struct Force : IQuantity<Force>, IMeasure<Force>, IMeasureFactory<Force>, IEquatable<Force>, IComparable<Force>
+    public partial struct Force : IQuantity<Force>, IMeasure<Force>, 
+        IMeasureFactory<Force>, IEquatable<Force>, IComparable<Force>
     {
         #region FIELDS
+
+        private static readonly IMeasureFactory<Force> factory = new Force();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(1, 1, -2, 0, 0, 0, 0);
@@ -262,6 +265,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<Force> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
@@ -344,6 +355,16 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IMeasureFactory<Force>
+
+        /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        Force IMeasureFactory<Force>.Create(IMeasure<Force> measure)
+        {
+            return new Force(measure.StandardAmount);
+        }
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.

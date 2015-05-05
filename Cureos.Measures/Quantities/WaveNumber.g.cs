@@ -41,9 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the wave number quantity
     /// </summary>
     [DataContract]
-    public partial struct WaveNumber : IQuantity<WaveNumber>, IMeasure<WaveNumber>, IMeasureFactory<WaveNumber>, IEquatable<WaveNumber>, IComparable<WaveNumber>
+    public partial struct WaveNumber : IQuantity<WaveNumber>, IMeasure<WaveNumber>, 
+        IMeasureFactory<WaveNumber>, IEquatable<WaveNumber>, IComparable<WaveNumber>
     {
         #region FIELDS
+
+        private static readonly IMeasureFactory<WaveNumber> factory = new WaveNumber();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(-1, 0, 0, 0, 0, 0, 0);
@@ -254,6 +257,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<WaveNumber> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
@@ -336,6 +347,16 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IMeasureFactory<WaveNumber>
+
+        /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        WaveNumber IMeasureFactory<WaveNumber>.Create(IMeasure<WaveNumber> measure)
+        {
+            return new WaveNumber(measure.StandardAmount);
+        }
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.

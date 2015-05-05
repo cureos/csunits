@@ -41,9 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the solid angle quantity
     /// </summary>
     [DataContract]
-    public partial struct SolidAngle : IQuantity<SolidAngle>, IMeasure<SolidAngle>, IMeasureFactory<SolidAngle>, IEquatable<SolidAngle>, IComparable<SolidAngle>
+    public partial struct SolidAngle : IQuantity<SolidAngle>, IMeasure<SolidAngle>, 
+        IMeasureFactory<SolidAngle>, IEquatable<SolidAngle>, IComparable<SolidAngle>
     {
         #region FIELDS
+
+        private static readonly IMeasureFactory<SolidAngle> factory = new SolidAngle();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = QuantityDimension.Steradian;
@@ -257,6 +260,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<SolidAngle> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
@@ -339,6 +350,16 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IMeasureFactory<SolidAngle>
+
+        /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        SolidAngle IMeasureFactory<SolidAngle>.Create(IMeasure<SolidAngle> measure)
+        {
+            return new SolidAngle(measure.StandardAmount);
+        }
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.

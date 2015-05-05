@@ -41,9 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the energy quantity
     /// </summary>
     [DataContract]
-    public partial struct Energy : IQuantity<Energy>, IMeasure<Energy>, IMeasureFactory<Energy>, IEquatable<Energy>, IComparable<Energy>
+    public partial struct Energy : IQuantity<Energy>, IMeasure<Energy>, 
+        IMeasureFactory<Energy>, IEquatable<Energy>, IComparable<Energy>
     {
         #region FIELDS
+
+        private static readonly IMeasureFactory<Energy> factory = new Energy();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(2, 1, -2, 0, 0, 0, 0);
@@ -273,6 +276,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<Energy> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
@@ -355,6 +366,16 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IMeasureFactory<Energy>
+
+        /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        Energy IMeasureFactory<Energy>.Create(IMeasure<Energy> measure)
+        {
+            return new Energy(measure.StandardAmount);
+        }
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.

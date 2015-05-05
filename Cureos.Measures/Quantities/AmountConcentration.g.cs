@@ -41,9 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the amount concentration quantity
     /// </summary>
     [DataContract]
-    public partial struct AmountConcentration : IQuantity<AmountConcentration>, IMeasure<AmountConcentration>, IMeasureFactory<AmountConcentration>, IEquatable<AmountConcentration>, IComparable<AmountConcentration>
+    public partial struct AmountConcentration : IQuantity<AmountConcentration>, IMeasure<AmountConcentration>, 
+        IMeasureFactory<AmountConcentration>, IEquatable<AmountConcentration>, IComparable<AmountConcentration>
     {
         #region FIELDS
+
+        private static readonly IMeasureFactory<AmountConcentration> factory = new AmountConcentration();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(-3, 0, 0, 0, 0, 0, 1);
@@ -262,6 +265,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<AmountConcentration> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
@@ -344,6 +355,16 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IMeasureFactory<AmountConcentration>
+
+        /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        AmountConcentration IMeasureFactory<AmountConcentration>.Create(IMeasure<AmountConcentration> measure)
+        {
+            return new AmountConcentration(measure.StandardAmount);
+        }
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.

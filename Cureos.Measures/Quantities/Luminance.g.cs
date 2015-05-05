@@ -41,9 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the luminance quantity
     /// </summary>
     [DataContract]
-    public partial struct Luminance : IQuantity<Luminance>, IMeasure<Luminance>, IMeasureFactory<Luminance>, IEquatable<Luminance>, IComparable<Luminance>
+    public partial struct Luminance : IQuantity<Luminance>, IMeasure<Luminance>, 
+        IMeasureFactory<Luminance>, IEquatable<Luminance>, IComparable<Luminance>
     {
         #region FIELDS
+
+        private static readonly IMeasureFactory<Luminance> factory = new Luminance();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(-2, 0, 0, 0, 0, 1, 0);
@@ -262,6 +265,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<Luminance> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
@@ -344,6 +355,16 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IMeasureFactory<Luminance>
+
+        /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        Luminance IMeasureFactory<Luminance>.Create(IMeasure<Luminance> measure)
+        {
+            return new Luminance(measure.StandardAmount);
+        }
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.

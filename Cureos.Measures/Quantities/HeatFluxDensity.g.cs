@@ -41,9 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the heat flux density quantity
     /// </summary>
     [DataContract]
-    public partial struct HeatFluxDensity : IQuantity<HeatFluxDensity>, IMeasure<HeatFluxDensity>, IMeasureFactory<HeatFluxDensity>, IEquatable<HeatFluxDensity>, IComparable<HeatFluxDensity>
+    public partial struct HeatFluxDensity : IQuantity<HeatFluxDensity>, IMeasure<HeatFluxDensity>, 
+        IMeasureFactory<HeatFluxDensity>, IEquatable<HeatFluxDensity>, IComparable<HeatFluxDensity>
     {
         #region FIELDS
+
+        private static readonly IMeasureFactory<HeatFluxDensity> factory = new HeatFluxDensity();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(0, 1, -3, 0, 0, 0, 0);
@@ -262,6 +265,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<HeatFluxDensity> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
@@ -344,6 +355,16 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IMeasureFactory<HeatFluxDensity>
+
+        /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        HeatFluxDensity IMeasureFactory<HeatFluxDensity>.Create(IMeasure<HeatFluxDensity> measure)
+        {
+            return new HeatFluxDensity(measure.StandardAmount);
+        }
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.

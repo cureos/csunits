@@ -41,9 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the mass density quantity
     /// </summary>
     [DataContract]
-    public partial struct MassDensity : IQuantity<MassDensity>, IMeasure<MassDensity>, IMeasureFactory<MassDensity>, IEquatable<MassDensity>, IComparable<MassDensity>
+    public partial struct MassDensity : IQuantity<MassDensity>, IMeasure<MassDensity>, 
+        IMeasureFactory<MassDensity>, IEquatable<MassDensity>, IComparable<MassDensity>
     {
         #region FIELDS
+
+        private static readonly IMeasureFactory<MassDensity> factory = new MassDensity();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(-3, 1, 0, 0, 0, 0, 0);
@@ -255,6 +258,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<MassDensity> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
@@ -337,6 +348,16 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IMeasureFactory<MassDensity>
+
+        /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        MassDensity IMeasureFactory<MassDensity>.Create(IMeasure<MassDensity> measure)
+        {
+            return new MassDensity(measure.StandardAmount);
+        }
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.

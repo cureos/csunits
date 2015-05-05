@@ -111,7 +111,7 @@ namespace Cureos.Measures
         public void TimesOperator_MultiplyNumberLhs_AllMeasuresEquallyScaled()
         {
             var expected = new MeasureTriplet<Time, Power, ElectricPotential>(15.0, 0.36, 1.8); ;
-            var actual = _instance * new Measure<Number>(3.0);
+            var actual = _instance * new Number(3.0);
             IMeasureTripletAssert.AreEqual(expected, actual);
         }
 
@@ -119,7 +119,7 @@ namespace Cureos.Measures
         public void TimesOperator_MultiplyNumberRhs_AllMeasuresEquallyScaled()
         {
             var expected = new MeasureTriplet<Time, Power, ElectricPotential>(15.0, 0.36, 1.8); ;
-            var actual = new Measure<Number>(3.0) * _instance;
+            var actual = new Number(3.0) * _instance;
             IMeasureTripletAssert.AreEqual(expected, actual);
         }
 

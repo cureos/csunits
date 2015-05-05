@@ -41,9 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the amount of substance quantity
     /// </summary>
     [DataContract]
-    public partial struct AmountOfSubstance : IQuantity<AmountOfSubstance>, IMeasure<AmountOfSubstance>, IMeasureFactory<AmountOfSubstance>, IEquatable<AmountOfSubstance>, IComparable<AmountOfSubstance>
+    public partial struct AmountOfSubstance : IQuantity<AmountOfSubstance>, IMeasure<AmountOfSubstance>, 
+        IMeasureFactory<AmountOfSubstance>, IEquatable<AmountOfSubstance>, IComparable<AmountOfSubstance>
     {
         #region FIELDS
+
+        private static readonly IMeasureFactory<AmountOfSubstance> factory = new AmountOfSubstance();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(0, 0, 0, 0, 0, 0, 1);
@@ -262,6 +265,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<AmountOfSubstance> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
@@ -344,6 +355,16 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IMeasureFactory<AmountOfSubstance>
+
+        /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        AmountOfSubstance IMeasureFactory<AmountOfSubstance>.Create(IMeasure<AmountOfSubstance> measure)
+        {
+            return new AmountOfSubstance(measure.StandardAmount);
+        }
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.

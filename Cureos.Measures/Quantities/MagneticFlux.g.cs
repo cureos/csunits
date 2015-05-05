@@ -41,9 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the magnetic flux quantity
     /// </summary>
     [DataContract]
-    public partial struct MagneticFlux : IQuantity<MagneticFlux>, IMeasure<MagneticFlux>, IMeasureFactory<MagneticFlux>, IEquatable<MagneticFlux>, IComparable<MagneticFlux>
+    public partial struct MagneticFlux : IQuantity<MagneticFlux>, IMeasure<MagneticFlux>, 
+        IMeasureFactory<MagneticFlux>, IEquatable<MagneticFlux>, IComparable<MagneticFlux>
     {
         #region FIELDS
+
+        private static readonly IMeasureFactory<MagneticFlux> factory = new MagneticFlux();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(2, 1, -2, -1, 0, 0, 0);
@@ -262,6 +265,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<MagneticFlux> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
@@ -344,6 +355,16 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IMeasureFactory<MagneticFlux>
+
+        /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        MagneticFlux IMeasureFactory<MagneticFlux>.Create(IMeasure<MagneticFlux> measure)
+        {
+            return new MagneticFlux(measure.StandardAmount);
+        }
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.

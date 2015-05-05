@@ -41,9 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the pressure quantity
     /// </summary>
     [DataContract]
-    public partial struct Pressure : IQuantity<Pressure>, IMeasure<Pressure>, IMeasureFactory<Pressure>, IEquatable<Pressure>, IComparable<Pressure>
+    public partial struct Pressure : IQuantity<Pressure>, IMeasure<Pressure>, 
+        IMeasureFactory<Pressure>, IEquatable<Pressure>, IComparable<Pressure>
     {
         #region FIELDS
+
+        private static readonly IMeasureFactory<Pressure> factory = new Pressure();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(-1, 1, -2, 0, 0, 0, 0);
@@ -262,6 +265,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<Pressure> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
@@ -344,6 +355,16 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IMeasureFactory<Pressure>
+
+        /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        Pressure IMeasureFactory<Pressure>.Create(IMeasure<Pressure> measure)
+        {
+            return new Pressure(measure.StandardAmount);
+        }
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.

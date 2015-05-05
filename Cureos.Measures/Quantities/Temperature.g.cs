@@ -41,9 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the temperature quantity
     /// </summary>
     [DataContract]
-    public partial struct Temperature : IQuantity<Temperature>, IMeasure<Temperature>, IMeasureFactory<Temperature>, IEquatable<Temperature>, IComparable<Temperature>
+    public partial struct Temperature : IQuantity<Temperature>, IMeasure<Temperature>, 
+        IMeasureFactory<Temperature>, IEquatable<Temperature>, IComparable<Temperature>
     {
         #region FIELDS
+
+        private static readonly IMeasureFactory<Temperature> factory = new Temperature();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(0, 0, 0, 0, 1, 0, 0);
@@ -266,6 +269,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<Temperature> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
@@ -348,6 +359,16 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IMeasureFactory<Temperature>
+
+        /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        Temperature IMeasureFactory<Temperature>.Create(IMeasure<Temperature> measure)
+        {
+            return new Temperature(measure.StandardAmount);
+        }
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.

@@ -41,9 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the moment of force quantity
     /// </summary>
     [DataContract]
-    public partial struct MomentOfForce : IQuantity<MomentOfForce>, IMeasure<MomentOfForce>, IMeasureFactory<MomentOfForce>, IEquatable<MomentOfForce>, IComparable<MomentOfForce>
+    public partial struct MomentOfForce : IQuantity<MomentOfForce>, IMeasure<MomentOfForce>, 
+        IMeasureFactory<MomentOfForce>, IEquatable<MomentOfForce>, IComparable<MomentOfForce>
     {
         #region FIELDS
+
+        private static readonly IMeasureFactory<MomentOfForce> factory = new MomentOfForce();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(2, 1, -2, 0, 0, 0, 0);
@@ -262,6 +265,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<MomentOfForce> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
@@ -344,6 +355,16 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IMeasureFactory<MomentOfForce>
+
+        /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        MomentOfForce IMeasureFactory<MomentOfForce>.Create(IMeasure<MomentOfForce> measure)
+        {
+            return new MomentOfForce(measure.StandardAmount);
+        }
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.

@@ -41,9 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the luminous flux quantity
     /// </summary>
     [DataContract]
-    public partial struct LuminousFlux : IQuantity<LuminousFlux>, IMeasure<LuminousFlux>, IMeasureFactory<LuminousFlux>, IEquatable<LuminousFlux>, IComparable<LuminousFlux>
+    public partial struct LuminousFlux : IQuantity<LuminousFlux>, IMeasure<LuminousFlux>, 
+        IMeasureFactory<LuminousFlux>, IEquatable<LuminousFlux>, IComparable<LuminousFlux>
     {
         #region FIELDS
+
+        private static readonly IMeasureFactory<LuminousFlux> factory = new LuminousFlux();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = QuantityDimension.Steradian * new QuantityDimension(0, 0, 0, 0, 0, 1, 0);
@@ -262,6 +265,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<LuminousFlux> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
@@ -344,6 +355,16 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IMeasureFactory<LuminousFlux>
+
+        /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        LuminousFlux IMeasureFactory<LuminousFlux>.Create(IMeasure<LuminousFlux> measure)
+        {
+            return new LuminousFlux(measure.StandardAmount);
+        }
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.

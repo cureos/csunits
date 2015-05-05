@@ -41,9 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the electric current quantity
     /// </summary>
     [DataContract]
-    public partial struct ElectricCurrent : IQuantity<ElectricCurrent>, IMeasure<ElectricCurrent>, IMeasureFactory<ElectricCurrent>, IEquatable<ElectricCurrent>, IComparable<ElectricCurrent>
+    public partial struct ElectricCurrent : IQuantity<ElectricCurrent>, IMeasure<ElectricCurrent>, 
+        IMeasureFactory<ElectricCurrent>, IEquatable<ElectricCurrent>, IComparable<ElectricCurrent>
     {
         #region FIELDS
+
+        private static readonly IMeasureFactory<ElectricCurrent> factory = new ElectricCurrent();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(0, 0, 0, 1, 0, 0, 0);
@@ -261,6 +264,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<ElectricCurrent> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
@@ -343,6 +354,16 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IMeasureFactory<ElectricCurrent>
+
+        /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        ElectricCurrent IMeasureFactory<ElectricCurrent>.Create(IMeasure<ElectricCurrent> measure)
+        {
+            return new ElectricCurrent(measure.StandardAmount);
+        }
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.

@@ -41,9 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the length quantity
     /// </summary>
     [DataContract]
-    public partial struct Length : IQuantity<Length>, IMeasure<Length>, IMeasureFactory<Length>, IEquatable<Length>, IComparable<Length>
+    public partial struct Length : IQuantity<Length>, IMeasure<Length>, 
+        IMeasureFactory<Length>, IEquatable<Length>, IComparable<Length>
     {
         #region FIELDS
+
+        private static readonly IMeasureFactory<Length> factory = new Length();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(1, 0, 0, 0, 0, 0, 0);
@@ -268,6 +271,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<Length> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
@@ -350,6 +361,16 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IMeasureFactory<Length>
+
+        /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        Length IMeasureFactory<Length>.Create(IMeasure<Length> measure)
+        {
+            return new Length(measure.StandardAmount);
+        }
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.

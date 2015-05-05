@@ -41,9 +41,12 @@ namespace Cureos.Measures.Quantities
     /// Implementation of the current density quantity
     /// </summary>
     [DataContract]
-    public partial struct CurrentDensity : IQuantity<CurrentDensity>, IMeasure<CurrentDensity>, IMeasureFactory<CurrentDensity>, IEquatable<CurrentDensity>, IComparable<CurrentDensity>
+    public partial struct CurrentDensity : IQuantity<CurrentDensity>, IMeasure<CurrentDensity>, 
+        IMeasureFactory<CurrentDensity>, IEquatable<CurrentDensity>, IComparable<CurrentDensity>
     {
         #region FIELDS
+
+        private static readonly IMeasureFactory<CurrentDensity> factory = new CurrentDensity();
 
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = new QuantityDimension(-2, 0, 0, 1, 0, 0, 0);
@@ -262,6 +265,14 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Gets the measure factory associated with the quantity.
+        /// </summary>
+        public IMeasureFactory<CurrentDensity> Factory
+        { 
+            get { return factory; }
+        }
+
+        /// <summary>
         /// Gets the amount of this measure in the requested unit
         /// </summary>
         /// <param name="unit">Unit to which the measured amount should be converted</param>
@@ -344,6 +355,16 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region Implementation of IMeasureFactory<CurrentDensity>
+
+        /// <summary>
+        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
+        /// </summary>
+        /// <param name="measure">Measure.</param>
+        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
+        CurrentDensity IMeasureFactory<CurrentDensity>.Create(IMeasure<CurrentDensity> measure)
+        {
+            return new CurrentDensity(measure.StandardAmount);
+        }
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
