@@ -37,7 +37,7 @@ namespace Cureos.Measures
     {
         #region FIELDS
 
-        private readonly Q quantity = default(Q);
+        private static readonly Q quantity = default(Q);
 
         private readonly bool isStandardUnit;
 
@@ -70,7 +70,7 @@ namespace Cureos.Measures
         /// </summary>
         IQuantity IUnit.Quantity
         {
-            get { return this.quantity; }
+            get { return quantity; }
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Cureos.Measures
         /// </summary>
         public IQuantity<Q> Quantity
         {
-            get { return this.quantity; }
+            get { return quantity; }
         }
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace Cureos.Measures
         public static Q operator *(double amount, Unit<Q> unit)
         {
             // ReSharper disable once ImpureMethodCallOnReadonlyValueField
-            return unit.quantity.Create((AmountType)amount, unit);
+            return quantity.Create(amount, unit);
         }
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace Cureos.Measures
         public static Q operator *(float amount, Unit<Q> unit)
         {
             // ReSharper disable once ImpureMethodCallOnReadonlyValueField
-            return unit.quantity.Create((AmountType)amount, unit);
+            return quantity.Create(amount, unit);
         }
 
         /// <summary>
@@ -182,7 +182,7 @@ namespace Cureos.Measures
         public static Q operator *(decimal amount, Unit<Q> unit)
         {
             // ReSharper disable once ImpureMethodCallOnReadonlyValueField
-            return unit.quantity.Create((AmountType)amount, unit);
+            return quantity.Create(amount, unit);
         }
 
         #endregion
