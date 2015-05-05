@@ -53,7 +53,7 @@ namespace Cureos.Measures
         public void Indexer_SameQuantityNonGenericInterface_YieldsValidMeasureOBject()
         {
             var expected = new InUnitMeasure<Volume>(5000.0, Volume.Liter);
-            IMeasure meas = new Measure<Volume>(5.0);
+            IMeasure meas = new Volume(5.0);
             var actual = meas[Volume.Liter];
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }
@@ -62,7 +62,7 @@ namespace Cureos.Measures
         [ExpectedException(typeof(ArgumentNullException))]
         public void Indexer_DifferentQuantitiesNonGenericInterface_Throws()
         {
-            IMeasure meas = new Measure<SpecificVolume>(1.0);
+            IMeasure meas = new SpecificVolume(1.0);
             var throws = meas[Volume.CubicMeter];
         }
 

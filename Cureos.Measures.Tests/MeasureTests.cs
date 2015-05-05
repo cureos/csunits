@@ -21,6 +21,8 @@
 
 namespace Cureos.Measures
 {
+    using System;
+
     using Cureos.Measures.Quantities;
 
     using NUnit.Framework;
@@ -34,7 +36,7 @@ namespace Cureos.Measures
         public void Constructor_WithNonReferenceUnit_InitializesMeasureInReferenceUnit()
         {
             var expected = new InUnitMeasure<Time>(180.0, Time.Second);
-            var actual = new Measure<Time>(3.0, Time.Minute);
+            var actual = new Time(3.0, Time.Minute);
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }
 
@@ -42,8 +44,8 @@ namespace Cureos.Measures
         public void DivisionOperator_DivideGenericSameQuantity_ReturnsScalar()
         {
             var expected = 1.0;
-            var numerator = new Measure<Area>(500.0, Area.SquareCentiMeter);
-            var denominator = new Measure<Area>(5.0, Area.SquareDeciMeter);
+            var numerator = new Area(500.0, Area.SquareCentiMeter);
+            var denominator = new Area(5.0, Area.SquareDeciMeter);
             var actual = (double)(numerator / denominator);
             Assert.AreEqual(expected, actual, 1.0e-6);
         }
@@ -52,7 +54,7 @@ namespace Cureos.Measures
         public void GetAmount_UsingIUnit_ValidConversion()
         {
             var expected = AmountConverter.ToAmountType(500.0);
-            var instance = new Measure<Length>(5.0);
+            var instance = new Length(5.0);
             var actual = instance.GetAmount(Length.CentiMeter);
             Assert.AreEqual(expected, actual);
         }
@@ -60,61 +62,70 @@ namespace Cureos.Measures
         [Test]
         public void AreEqual_BothArgumentsHaveValuesValuesWithinTolerance_ReturnsTrue()
         {
-            Measure<AmountConcentration>? lhs = new Measure<AmountConcentration>(5.0);
-            Measure<AmountConcentration>? rhs = new Measure<AmountConcentration>(5.0001);
-            Measure<AmountConcentration> tol = new Measure<AmountConcentration>(0.001);
+            AmountConcentration? lhs = new AmountConcentration(5.0);
+            AmountConcentration? rhs = new AmountConcentration(5.0001);
+            AmountConcentration tol = new AmountConcentration(0.001);
 
             var expected = true;
-            var actual = Measure.AreEqual(lhs, rhs, tol);
+            var actual = AreApproximatelyEqual(lhs, rhs, tol);
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         public void AreEqual_BothArgumentsHaveValuesValuesNotWithinTolerance_ReturnsFalse()
         {
-            Measure<AmountConcentration>? lhs = new Measure<AmountConcentration>(5.0);
-            Measure<AmountConcentration>? rhs = new Measure<AmountConcentration>(5.001);
-            Measure<AmountConcentration> tol = new Measure<AmountConcentration>(0.0001);
+            AmountConcentration? lhs = new AmountConcentration(5.0);
+            AmountConcentration? rhs = new AmountConcentration(5.001);
+            AmountConcentration tol = new AmountConcentration(0.0001);
 
             var expected = false;
-            var actual = Measure.AreEqual(lhs, rhs, tol);
+            var actual = AreApproximatelyEqual(lhs, rhs, tol);
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         public void AreEqual_LhsArgumentHasValue_ReturnsFalse()
         {
-            Measure<AmountConcentration>? lhs = new Measure<AmountConcentration>(5.0);
-            Measure<AmountConcentration>? rhs = null;
-            Measure<AmountConcentration> tol = Measure<AmountConcentration>.Zero;
+            AmountConcentration? lhs = new AmountConcentration(5.0);
+            AmountConcentration? rhs = null;
+            AmountConcentration tol = AmountConcentration.Zero;
 
             var expected = false;
-            var actual = Measure.AreEqual(lhs, rhs, tol);
+            var actual = AreApproximatelyEqual(lhs, rhs, tol);
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         public void AreEqual_RhsArgumentHasValue_ReturnsFalse()
         {
-            Measure<AmountConcentration>? lhs = null;
-            Measure<AmountConcentration>? rhs = new Measure<AmountConcentration>(5.0);
-            Measure<AmountConcentration> tol = Measure<AmountConcentration>.Zero;
+            AmountConcentration? lhs = null;
+            AmountConcentration? rhs = new AmountConcentration(5.0);
+            AmountConcentration tol = AmountConcentration.Zero;
 
             var expected = false;
-            var actual = Measure.AreEqual(lhs, rhs, tol);
+            var actual = AreApproximatelyEqual(lhs, rhs, tol);
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         public void AreEqual_NoArgumentHasValue_ReturnsFalse()
         {
-            Measure<AmountConcentration>? lhs = null;
-            Measure<AmountConcentration>? rhs = null;
-            Measure<AmountConcentration> tol = Measure<AmountConcentration>.Zero;
+            AmountConcentration? lhs = null;
+            AmountConcentration? rhs = null;
+            AmountConcentration tol = AmountConcentration.Zero;
 
             var expected = false;
-            var actual = Measure.AreEqual(lhs, rhs, tol);
+            var actual = AreApproximatelyEqual(lhs, rhs, tol);
             Assert.AreEqual(expected, actual);
+        }
+
+        #endregion
+
+        #region Private support methods
+
+        private static bool AreApproximatelyEqual<Q>(Q? lhs, Q? rhs, Q tol) where Q : struct, IQuantity<Q>, IMeasure<Q>
+        {
+            return lhs.HasValue && rhs.HasValue && Math.Abs(lhs.Value.Amount - rhs.Value.Amount) < tol.Amount;
         }
 
         #endregion

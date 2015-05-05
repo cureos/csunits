@@ -36,8 +36,8 @@ namespace Cureos.Measures
         public void Times_MultiplyAreaAndLength_ReturnsVolume()
         {
             var expected = new Volume(6.0);
-            var lhs = new Measure<Area>(2.0);
-            var rhs = new Measure<Length>(3.0);
+            var lhs = new Area(2.0);
+            var rhs = new Length(3.0);
             Volume actual; ArithmeticOperations.Times(lhs, rhs, out actual);
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }
@@ -46,8 +46,8 @@ namespace Cureos.Measures
         [ExpectedException(typeof(InvalidOperationException))]
         public void Times_MultiplyAreaAndAreaToVolume_Throws()
         {
-            var lhs = new Measure<Area>(2.0);
-            var rhs = new Measure<Area>(3.0);
+            var lhs = new Area(2.0);
+            var rhs = new Area(3.0);
             Volume throws; ArithmeticOperations.Times(lhs, rhs, out throws);
         }
 
@@ -55,8 +55,8 @@ namespace Cureos.Measures
         public void Divide_DivideVolumeAndLength_ReturnsArea()
         {
             var expected = new Area(4.0);
-            var numerator = new Measure<Volume>(8.0);
-            var denominator = new Measure<Length>(200.0, Length.CentiMeter);
+            var numerator = new Volume(8.0);
+            var denominator = new Length(200.0, Length.CentiMeter);
             Area actual; ArithmeticOperations.Divide(numerator, denominator, out actual);
             MeasureAssert.MeasuresAreEqual(expected, actual);
         }
@@ -65,8 +65,8 @@ namespace Cureos.Measures
         [ExpectedException(typeof(InvalidOperationException))]
         public void Divide_DivideAreaAndAreaToLength_Throws()
         {
-            var numerator = new Measure<Area>(8.0);
-            var denominator = new Measure<Area>(200.0, Area.SquareDeciMeter);
+            var numerator = new Area(8.0);
+            var denominator = new Area(200.0, Area.SquareDeciMeter);
             Length throws; ArithmeticOperations.Divide(numerator, denominator, out throws);
         }
 

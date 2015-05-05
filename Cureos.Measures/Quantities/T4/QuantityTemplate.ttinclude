@@ -639,6 +639,22 @@ namespace Cureos.Measures.Quantities
         #endregion
 
         #region OPERATORS
+<#
+            if (ClassName.Equals("Number")) {
+#>
+
+        /// <summary>
+        /// Casts a <#= ClassName #> object to a scalar amount
+        /// </summary>
+        /// <param name="measure"><#= ClassName #> object</param>
+        /// <returns>Amount of <paramref name="measure"/> in unit <#= stdUnit #></returns>
+        public static explicit operator AmountType(<#= ClassName #> measure)
+        {
+            return (AmountType)measure.amount;
+        }
+<#
+            }
+#>
 
         /// <summary>
         /// Casts a float value to a <#= ClassName #> object

@@ -540,6 +540,16 @@ namespace Cureos.Measures.Quantities
         #region OPERATORS
 
         /// <summary>
+        /// Casts a Number object to a scalar amount
+        /// </summary>
+        /// <param name="measure">Number object</param>
+        /// <returns>Amount of <paramref name="measure"/> in unit One</returns>
+        public static explicit operator AmountType(Number measure)
+        {
+            return (AmountType)measure.amount;
+        }
+
+        /// <summary>
         /// Casts a float value to a Number object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
