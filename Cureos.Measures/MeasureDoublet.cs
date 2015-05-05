@@ -57,54 +57,54 @@ namespace Cureos.Measures
         /// <summary>
         /// Initializes a pair of standard measures
         /// </summary>
-        /// <param name="iMeasureDoublet">Pair of measures in arbitrary unit</param>
-        public MeasureDoublet(IMeasureDoublet<Q1, Q2> iMeasureDoublet)
-            : this(iMeasureDoublet.X, iMeasureDoublet.Y)
+        /// <param name="measureDoublet">Pair of measures in arbitrary unit</param>
+        public MeasureDoublet(IMeasureDoublet<Q1, Q2> measureDoublet)
+            : this(measureDoublet.X, measureDoublet.Y)
         {
         }
 
         /// <summary>
         /// Initializes a pair of standard measures
         /// </summary>
-        /// <param name="iMeasure1">First measure object</param>
-        /// <param name="iMeasure2">Second measure object</param>
-        public MeasureDoublet(IMeasure<Q1> iMeasure1, IMeasure<Q2> iMeasure2)
+        /// <param name="measure1">First measure object</param>
+        /// <param name="measure2">Second measure object</param>
+        public MeasureDoublet(IMeasure<Q1> measure1, IMeasure<Q2> measure2)
         {
-            this.x = Q1Factory.New(iMeasure1);
-            this.y = Q2Factory.New(iMeasure2);
+            this.x = Q1Factory.New(measure1.StandardAmount);
+            this.y = Q2Factory.New(measure2.StandardAmount);
         }
 
         /// <summary>
         /// Initializes a pair of standard measures from a pair of standard unit amounts
         /// </summary>
-        /// <param name="iAmount1">Amount in standard units of the first measure object</param>
-        /// <param name="iAmount2">Amount in standard units of the second measure object</param>
-        public MeasureDoublet(double iAmount1, double iAmount2)
+        /// <param name="amount1">Amount in standard units of the first measure object</param>
+        /// <param name="amount2">Amount in standard units of the second measure object</param>
+        public MeasureDoublet(double amount1, double amount2)
         {
-            this.x = Q1Factory.New(iAmount1);
-            this.y = Q2Factory.New(iAmount2);
+            this.x = Q1Factory.New(amount1);
+            this.y = Q2Factory.New(amount2);
         }
 
         /// <summary>
         /// Initializes a pair of standard measures from a pair of standard unit amounts
         /// </summary>
-        /// <param name="iAmount1">Amount in standard units of the first measure object</param>
-        /// <param name="iAmount2">Amount in standard units of the second measure object</param>
-        public MeasureDoublet(float iAmount1, float iAmount2)
+        /// <param name="amount1">Amount in standard units of the first measure object</param>
+        /// <param name="amount2">Amount in standard units of the second measure object</param>
+        public MeasureDoublet(float amount1, float amount2)
         {
-            this.x = Q1Factory.New(iAmount1);
-            this.y = Q2Factory.New(iAmount2);
+            this.x = Q1Factory.New(amount1);
+            this.y = Q2Factory.New(amount2);
         }
 
         /// <summary>
         /// Initializes a pair of standard measures from a pair of standard unit amounts
         /// </summary>
-        /// <param name="iAmount1">Amount in standard units of the first measure object</param>
-        /// <param name="iAmount2">Amount in standard units of the second measure object</param>
-        public MeasureDoublet(decimal iAmount1, decimal iAmount2)
+        /// <param name="amount1">Amount in standard units of the first measure object</param>
+        /// <param name="amount2">Amount in standard units of the second measure object</param>
+        public MeasureDoublet(decimal amount1, decimal amount2)
         {
-            this.x = Q1Factory.New(iAmount1);
-            this.y = Q2Factory.New(iAmount2);
+            this.x = Q1Factory.New(amount1);
+            this.y = Q2Factory.New(amount2);
         }
 
         #endregion
@@ -140,130 +140,130 @@ namespace Cureos.Measures
         /// <summary>
         /// Adds two measure doublets
         /// </summary>
-        /// <param name="iLhs">First measure doublet</param>
-        /// <param name="iRhs">Second measure doublet</param>
+        /// <param name="lhs">First measure doublet</param>
+        /// <param name="rhs">Second measure doublet</param>
         /// <returns>Sum of the specified measure doublets</returns>
-        public static MeasureDoublet<Q1, Q2> operator +(MeasureDoublet<Q1, Q2> iLhs, MeasureDoublet<Q1, Q2> iRhs)
+        public static MeasureDoublet<Q1, Q2> operator +(MeasureDoublet<Q1, Q2> lhs, MeasureDoublet<Q1, Q2> rhs)
         {
-            return new MeasureDoublet<Q1, Q2>(iLhs.x.Amount + iRhs.x.Amount, iLhs.y.Amount + iRhs.y.Amount);
+            return new MeasureDoublet<Q1, Q2>(lhs.x.Amount + rhs.x.Amount, lhs.y.Amount + rhs.y.Amount);
         }
 
         /// <summary>
         /// Adds two measure doublets
         /// </summary>
-        /// <param name="iLhs">First measure doublet</param>
-        /// <param name="iRhs">Second measure doublet</param>
+        /// <param name="lhs">First measure doublet</param>
+        /// <param name="rhs">Second measure doublet</param>
         /// <returns>Sum of the specified measure doublets</returns>
-        public static MeasureDoublet<Q1, Q2> operator +(MeasureDoublet<Q1, Q2> iLhs, IMeasureDoublet<Q1, Q2> iRhs)
+        public static MeasureDoublet<Q1, Q2> operator +(MeasureDoublet<Q1, Q2> lhs, IMeasureDoublet<Q1, Q2> rhs)
         {
             return new MeasureDoublet<Q1, Q2>(
-                iLhs.x.Amount + iRhs.X.StandardAmount,
-                iLhs.y.Amount + iRhs.Y.StandardAmount);
+                lhs.x.Amount + rhs.X.StandardAmount,
+                lhs.y.Amount + rhs.Y.StandardAmount);
         }
 
         /// <summary>
         /// Subtracts two measure doublets
         /// </summary>
-        /// <param name="iLhs">First measure doublet</param>
-        /// <param name="iRhs">Second measure doublet</param>
+        /// <param name="lhs">First measure doublet</param>
+        /// <param name="rhs">Second measure doublet</param>
         /// <returns>Difference of the specified measure doublets</returns>
-        public static MeasureDoublet<Q1, Q2> operator -(MeasureDoublet<Q1, Q2> iLhs, MeasureDoublet<Q1, Q2> iRhs)
+        public static MeasureDoublet<Q1, Q2> operator -(MeasureDoublet<Q1, Q2> lhs, MeasureDoublet<Q1, Q2> rhs)
         {
-            return new MeasureDoublet<Q1, Q2>(iLhs.x.Amount - iRhs.x.Amount, iLhs.y.Amount - iRhs.y.Amount);
+            return new MeasureDoublet<Q1, Q2>(lhs.x.Amount - rhs.x.Amount, lhs.y.Amount - rhs.y.Amount);
         }
 
         /// <summary>
         /// Subtracts two measure doublets
         /// </summary>
-        /// <param name="iLhs">First measure doublet</param>
-        /// <param name="iRhs">Second measure doublet</param>
+        /// <param name="lhs">First measure doublet</param>
+        /// <param name="rhs">Second measure doublet</param>
         /// <returns>Difference of the specified measure doublets</returns>
-        public static MeasureDoublet<Q1, Q2> operator -(MeasureDoublet<Q1, Q2> iLhs, IMeasureDoublet<Q1, Q2> iRhs)
+        public static MeasureDoublet<Q1, Q2> operator -(MeasureDoublet<Q1, Q2> lhs, IMeasureDoublet<Q1, Q2> rhs)
         {
             return new MeasureDoublet<Q1, Q2>(
-                iLhs.x.Amount - iRhs.X.StandardAmount,
-                iLhs.y.Amount - iRhs.Y.StandardAmount);
+                lhs.x.Amount - rhs.X.StandardAmount,
+                lhs.y.Amount - rhs.Y.StandardAmount);
         }
 
         /// <summary>
         /// Multiplies one measure doublet with a number doublet
         /// </summary>
-        /// <param name="iLhs">Measure doublet</param>
-        /// <param name="iRhs">Number doublet</param>
+        /// <param name="lhs">Measure doublet</param>
+        /// <param name="rhs">Number doublet</param>
         /// <returns>Product of the measure and number doublets</returns>
-        public static MeasureDoublet<Q1, Q2> operator *(MeasureDoublet<Q1, Q2> iLhs, MeasureDoublet<Number, Number> iRhs
+        public static MeasureDoublet<Q1, Q2> operator *(MeasureDoublet<Q1, Q2> lhs, MeasureDoublet<Number, Number> rhs
             )
         {
-            return new MeasureDoublet<Q1, Q2>(iLhs.x.Amount * iRhs.x.Amount, iLhs.y.Amount * iRhs.y.Amount);
+            return new MeasureDoublet<Q1, Q2>(lhs.x.Amount * rhs.x.Amount, lhs.y.Amount * rhs.y.Amount);
         }
 
         /// <summary>
         /// Multiplies one measure doublet with a number doublet
         /// </summary>
-        /// <param name="iLhs">Measure doublet</param>
-        /// <param name="iRhs">Number doublet</param>
+        /// <param name="lhs">Measure doublet</param>
+        /// <param name="rhs">Number doublet</param>
         /// <returns>Product of the measure and number doublets</returns>
         public static MeasureDoublet<Q1, Q2> operator *(
-            MeasureDoublet<Q1, Q2> iLhs,
-            IMeasureDoublet<Number, Number> iRhs)
+            MeasureDoublet<Q1, Q2> lhs,
+            IMeasureDoublet<Number, Number> rhs)
         {
             return new MeasureDoublet<Q1, Q2>(
-                iLhs.x.Amount * iRhs.X.StandardAmount,
-                iLhs.y.Amount * iRhs.Y.StandardAmount);
+                lhs.x.Amount * rhs.X.StandardAmount,
+                lhs.y.Amount * rhs.Y.StandardAmount);
         }
 
         /// <summary>
         /// Divides one measure doublet with a number doublet
         /// </summary>
-        /// <param name="iLhs">Measure doublet</param>
-        /// <param name="iRhs">Number doublet</param>
+        /// <param name="lhs">Measure doublet</param>
+        /// <param name="rhs">Number doublet</param>
         /// <returns>Quotient of the measure and number doublets</returns>
-        public static MeasureDoublet<Q1, Q2> operator /(MeasureDoublet<Q1, Q2> iLhs, MeasureDoublet<Number, Number> iRhs
+        public static MeasureDoublet<Q1, Q2> operator /(MeasureDoublet<Q1, Q2> lhs, MeasureDoublet<Number, Number> rhs
             )
         {
-            return new MeasureDoublet<Q1, Q2>(iLhs.x.Amount / iRhs.x.Amount, iLhs.y.Amount / iRhs.y.Amount);
+            return new MeasureDoublet<Q1, Q2>(lhs.x.Amount / rhs.x.Amount, lhs.y.Amount / rhs.y.Amount);
         }
 
         /// <summary>
         /// Divides one measure doublet with a number doublet
         /// </summary>
-        /// <param name="iLhs">Measure doublet</param>
-        /// <param name="iRhs">Number doublet</param>
+        /// <param name="lhs">Measure doublet</param>
+        /// <param name="rhs">Number doublet</param>
         /// <returns>Quotient of the measure and number doublets</returns>
         public static MeasureDoublet<Q1, Q2> operator /(
-            MeasureDoublet<Q1, Q2> iLhs,
-            IMeasureDoublet<Number, Number> iRhs)
+            MeasureDoublet<Q1, Q2> lhs,
+            IMeasureDoublet<Number, Number> rhs)
         {
             return new MeasureDoublet<Q1, Q2>(
-                iLhs.x.Amount / iRhs.X.StandardAmount,
-                iLhs.y.Amount / iRhs.Y.StandardAmount);
+                lhs.x.Amount / rhs.X.StandardAmount,
+                lhs.y.Amount / rhs.Y.StandardAmount);
         }
 
         /// <summary>
         /// Divides one measure doublet with another measure doublet of the same quantities
         /// </summary>
-        /// <param name="iLhs">Numerator measure doublet</param>
-        /// <param name="iRhs">Denominator measure doublet</param>
+        /// <param name="lhs">Numerator measure doublet</param>
+        /// <param name="rhs">Denominator measure doublet</param>
         /// <returns>Quotient of the measure doublets as a number doublet</returns>
-        public static MeasureDoublet<Number, Number> operator /(MeasureDoublet<Q1, Q2> iLhs, MeasureDoublet<Q1, Q2> iRhs
+        public static MeasureDoublet<Number, Number> operator /(MeasureDoublet<Q1, Q2> lhs, MeasureDoublet<Q1, Q2> rhs
             )
         {
-            return new MeasureDoublet<Number, Number>(iLhs.x.Amount / iRhs.x.Amount, iLhs.y.Amount / iRhs.y.Amount);
+            return new MeasureDoublet<Number, Number>(lhs.x.Amount / rhs.x.Amount, lhs.y.Amount / rhs.y.Amount);
         }
 
         /// <summary>
         /// Divides one measure doublet with another measure doublet of the same quantities
         /// </summary>
-        /// <param name="iLhs">Numerator measure doublet</param>
-        /// <param name="iRhs">Denominator measure doublet</param>
+        /// <param name="lhs">Numerator measure doublet</param>
+        /// <param name="rhs">Denominator measure doublet</param>
         /// <returns>Quotient of the measure doublets as a number doublet</returns>
         public static MeasureDoublet<Number, Number> operator /(
-            MeasureDoublet<Q1, Q2> iLhs,
-            IMeasureDoublet<Q1, Q2> iRhs)
+            MeasureDoublet<Q1, Q2> lhs,
+            IMeasureDoublet<Q1, Q2> rhs)
         {
             return new MeasureDoublet<Number, Number>(
-                iLhs.x.Amount / iRhs.X.StandardAmount,
-                iLhs.y.Amount / iRhs.Y.StandardAmount);
+                lhs.x.Amount / rhs.X.StandardAmount,
+                lhs.y.Amount / rhs.Y.StandardAmount);
         }
 
         #endregion

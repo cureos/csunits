@@ -38,7 +38,7 @@ namespace Cureos.Measures
     /// <typeparam name="Q">Measured quantity</typeparam>
     public class Measure<Q> : IMeasure<Q> where Q : struct, IQuantity<Q>, IMeasure<Q>
     {
-        #region MEMBER VARIABLES
+        #region FIELDS
 
         private static readonly IMeasureFactory<Q> Factory = new Q().Factory;
  
@@ -48,6 +48,21 @@ namespace Cureos.Measures
         #endregion
 
         #region CONSTRUCTORS
+
+        /// <summary>
+        /// Copy constructor, initializes a measure based on the specified measure object.
+        /// </summary>
+        /// <param name="measure">Measure to be copied.</param>
+        public Measure(IMeasure<Q> measure)
+        {
+            if (measure == null)
+            {
+                throw new ArgumentNullException("measure");
+            }
+
+            this.amount = measure.Amount;
+            this.unit = measure.Unit;
+        }
 
         /// <summary>
         /// Initializes a measure to the specified amount and unit
@@ -396,7 +411,7 @@ namespace Cureos.Measures
         /// <returns>Quantity measure in standard unit.</returns>
         public static explicit operator Q(Measure<Q> measure)
         {
-            return Factory.New(measure);
+            return Factory.New(measure.StandardAmount);
         }
 
         /// <summary>

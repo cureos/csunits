@@ -873,9 +873,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            Capacitance IMeasureFactory<Capacitance>.New(IMeasure<Capacitance> measure)
+            public IMeasure<Capacitance> New(IMeasure<Capacitance> measure)
             {
-                return new Capacitance(measure.StandardAmount);
+                return new Measure<Capacitance>(measure);
             }
 
             /// <summary>
@@ -894,9 +894,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Capacitance New(double amount, IUnit<Capacitance> unit)
+            public IMeasure<Capacitance> New(double amount, IUnit<Capacitance> unit)
             {
-                return new Capacitance(amount, unit);
+                return new Measure<Capacitance>(amount, unit);
             }
 
             /// <summary>
@@ -915,9 +915,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Capacitance New(float amount, IUnit<Capacitance> unit)
+            public IMeasure<Capacitance> New(float amount, IUnit<Capacitance> unit)
             {
-                return new Capacitance(amount, unit);
+                return new Measure<Capacitance>(amount, unit);
             }
 
             /// <summary>
@@ -936,9 +936,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Capacitance New(decimal amount, IUnit<Capacitance> unit)
+            public IMeasure<Capacitance> New(decimal amount, IUnit<Capacitance> unit)
             {
-                return new Capacitance(amount, unit);
+                return new Measure<Capacitance>(amount, unit);
             }
         }
 

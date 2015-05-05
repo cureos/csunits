@@ -874,9 +874,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            AngularAcceleration IMeasureFactory<AngularAcceleration>.New(IMeasure<AngularAcceleration> measure)
+            public IMeasure<AngularAcceleration> New(IMeasure<AngularAcceleration> measure)
             {
-                return new AngularAcceleration(measure.StandardAmount);
+                return new Measure<AngularAcceleration>(measure);
             }
 
             /// <summary>
@@ -895,9 +895,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public AngularAcceleration New(double amount, IUnit<AngularAcceleration> unit)
+            public IMeasure<AngularAcceleration> New(double amount, IUnit<AngularAcceleration> unit)
             {
-                return new AngularAcceleration(amount, unit);
+                return new Measure<AngularAcceleration>(amount, unit);
             }
 
             /// <summary>
@@ -916,9 +916,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public AngularAcceleration New(float amount, IUnit<AngularAcceleration> unit)
+            public IMeasure<AngularAcceleration> New(float amount, IUnit<AngularAcceleration> unit)
             {
-                return new AngularAcceleration(amount, unit);
+                return new Measure<AngularAcceleration>(amount, unit);
             }
 
             /// <summary>
@@ -937,9 +937,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public AngularAcceleration New(decimal amount, IUnit<AngularAcceleration> unit)
+            public IMeasure<AngularAcceleration> New(decimal amount, IUnit<AngularAcceleration> unit)
             {
-                return new AngularAcceleration(amount, unit);
+                return new Measure<AngularAcceleration>(amount, unit);
             }
         }
 

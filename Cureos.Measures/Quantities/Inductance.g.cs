@@ -874,9 +874,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            Inductance IMeasureFactory<Inductance>.New(IMeasure<Inductance> measure)
+            public IMeasure<Inductance> New(IMeasure<Inductance> measure)
             {
-                return new Inductance(measure.StandardAmount);
+                return new Measure<Inductance>(measure);
             }
 
             /// <summary>
@@ -895,9 +895,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Inductance New(double amount, IUnit<Inductance> unit)
+            public IMeasure<Inductance> New(double amount, IUnit<Inductance> unit)
             {
-                return new Inductance(amount, unit);
+                return new Measure<Inductance>(amount, unit);
             }
 
             /// <summary>
@@ -916,9 +916,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Inductance New(float amount, IUnit<Inductance> unit)
+            public IMeasure<Inductance> New(float amount, IUnit<Inductance> unit)
             {
-                return new Inductance(amount, unit);
+                return new Measure<Inductance>(amount, unit);
             }
 
             /// <summary>
@@ -937,9 +937,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Inductance New(decimal amount, IUnit<Inductance> unit)
+            public IMeasure<Inductance> New(decimal amount, IUnit<Inductance> unit)
             {
-                return new Inductance(amount, unit);
+                return new Measure<Inductance>(amount, unit);
             }
         }
 

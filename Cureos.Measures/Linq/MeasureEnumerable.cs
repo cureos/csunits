@@ -63,7 +63,7 @@ namespace Cureos.Measures.Linq
             where Q : struct, IQuantity<Q>, IMeasure<Q>
         {
             var factory = new Q().Factory;
-            return amounts.Select(val => factory.New(val, unit));
+            return amounts.Select(val => factory.New(factory.New(val, unit).StandardAmount));
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Cureos.Measures.Linq
             where Q : struct, IQuantity<Q>, IMeasure<Q>
         {
             var factory = new Q().Factory;
-            return amounts.Select(val => factory.New(val, unit));
+            return amounts.Select(val => factory.New(factory.New(val, unit).StandardAmount));
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace Cureos.Measures.Linq
             where Q : struct, IQuantity<Q>, IMeasure<Q>
         {
             var factory = new Q().Factory;
-            return amounts.Select(val => factory.New(val, unit));
+            return amounts.Select(val => factory.New(factory.New(val, unit).StandardAmount));
         }
 
         /// <summary>

@@ -874,9 +874,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            CurrentDensity IMeasureFactory<CurrentDensity>.New(IMeasure<CurrentDensity> measure)
+            public IMeasure<CurrentDensity> New(IMeasure<CurrentDensity> measure)
             {
-                return new CurrentDensity(measure.StandardAmount);
+                return new Measure<CurrentDensity>(measure);
             }
 
             /// <summary>
@@ -895,9 +895,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public CurrentDensity New(double amount, IUnit<CurrentDensity> unit)
+            public IMeasure<CurrentDensity> New(double amount, IUnit<CurrentDensity> unit)
             {
-                return new CurrentDensity(amount, unit);
+                return new Measure<CurrentDensity>(amount, unit);
             }
 
             /// <summary>
@@ -916,9 +916,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public CurrentDensity New(float amount, IUnit<CurrentDensity> unit)
+            public IMeasure<CurrentDensity> New(float amount, IUnit<CurrentDensity> unit)
             {
-                return new CurrentDensity(amount, unit);
+                return new Measure<CurrentDensity>(amount, unit);
             }
 
             /// <summary>
@@ -937,9 +937,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public CurrentDensity New(decimal amount, IUnit<CurrentDensity> unit)
+            public IMeasure<CurrentDensity> New(decimal amount, IUnit<CurrentDensity> unit)
             {
-                return new CurrentDensity(amount, unit);
+                return new Measure<CurrentDensity>(amount, unit);
             }
         }
 

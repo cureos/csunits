@@ -874,9 +874,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            Force IMeasureFactory<Force>.New(IMeasure<Force> measure)
+            public IMeasure<Force> New(IMeasure<Force> measure)
             {
-                return new Force(measure.StandardAmount);
+                return new Measure<Force>(measure);
             }
 
             /// <summary>
@@ -895,9 +895,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Force New(double amount, IUnit<Force> unit)
+            public IMeasure<Force> New(double amount, IUnit<Force> unit)
             {
-                return new Force(amount, unit);
+                return new Measure<Force>(amount, unit);
             }
 
             /// <summary>
@@ -916,9 +916,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Force New(float amount, IUnit<Force> unit)
+            public IMeasure<Force> New(float amount, IUnit<Force> unit)
             {
-                return new Force(amount, unit);
+                return new Measure<Force>(amount, unit);
             }
 
             /// <summary>
@@ -937,9 +937,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Force New(decimal amount, IUnit<Force> unit)
+            public IMeasure<Force> New(decimal amount, IUnit<Force> unit)
             {
-                return new Force(amount, unit);
+                return new Measure<Force>(amount, unit);
             }
         }
 

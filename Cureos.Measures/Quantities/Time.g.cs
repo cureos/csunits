@@ -869,9 +869,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            Time IMeasureFactory<Time>.New(IMeasure<Time> measure)
+            public IMeasure<Time> New(IMeasure<Time> measure)
             {
-                return new Time(measure.StandardAmount);
+                return new Measure<Time>(measure);
             }
 
             /// <summary>
@@ -890,9 +890,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Time New(double amount, IUnit<Time> unit)
+            public IMeasure<Time> New(double amount, IUnit<Time> unit)
             {
-                return new Time(amount, unit);
+                return new Measure<Time>(amount, unit);
             }
 
             /// <summary>
@@ -911,9 +911,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Time New(float amount, IUnit<Time> unit)
+            public IMeasure<Time> New(float amount, IUnit<Time> unit)
             {
-                return new Time(amount, unit);
+                return new Measure<Time>(amount, unit);
             }
 
             /// <summary>
@@ -932,9 +932,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Time New(decimal amount, IUnit<Time> unit)
+            public IMeasure<Time> New(decimal amount, IUnit<Time> unit)
             {
-                return new Time(amount, unit);
+                return new Measure<Time>(amount, unit);
             }
         }
 

@@ -863,9 +863,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            RelativePermeability IMeasureFactory<RelativePermeability>.New(IMeasure<RelativePermeability> measure)
+            public IMeasure<RelativePermeability> New(IMeasure<RelativePermeability> measure)
             {
-                return new RelativePermeability(measure.StandardAmount);
+                return new Measure<RelativePermeability>(measure);
             }
 
             /// <summary>
@@ -884,9 +884,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public RelativePermeability New(double amount, IUnit<RelativePermeability> unit)
+            public IMeasure<RelativePermeability> New(double amount, IUnit<RelativePermeability> unit)
             {
-                return new RelativePermeability(amount, unit);
+                return new Measure<RelativePermeability>(amount, unit);
             }
 
             /// <summary>
@@ -905,9 +905,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public RelativePermeability New(float amount, IUnit<RelativePermeability> unit)
+            public IMeasure<RelativePermeability> New(float amount, IUnit<RelativePermeability> unit)
             {
-                return new RelativePermeability(amount, unit);
+                return new Measure<RelativePermeability>(amount, unit);
             }
 
             /// <summary>
@@ -926,9 +926,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public RelativePermeability New(decimal amount, IUnit<RelativePermeability> unit)
+            public IMeasure<RelativePermeability> New(decimal amount, IUnit<RelativePermeability> unit)
             {
-                return new RelativePermeability(amount, unit);
+                return new Measure<RelativePermeability>(amount, unit);
             }
         }
 

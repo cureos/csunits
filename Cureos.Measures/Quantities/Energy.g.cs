@@ -885,9 +885,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            Energy IMeasureFactory<Energy>.New(IMeasure<Energy> measure)
+            public IMeasure<Energy> New(IMeasure<Energy> measure)
             {
-                return new Energy(measure.StandardAmount);
+                return new Measure<Energy>(measure);
             }
 
             /// <summary>
@@ -906,9 +906,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Energy New(double amount, IUnit<Energy> unit)
+            public IMeasure<Energy> New(double amount, IUnit<Energy> unit)
             {
-                return new Energy(amount, unit);
+                return new Measure<Energy>(amount, unit);
             }
 
             /// <summary>
@@ -927,9 +927,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Energy New(float amount, IUnit<Energy> unit)
+            public IMeasure<Energy> New(float amount, IUnit<Energy> unit)
             {
-                return new Energy(amount, unit);
+                return new Measure<Energy>(amount, unit);
             }
 
             /// <summary>
@@ -948,9 +948,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Energy New(decimal amount, IUnit<Energy> unit)
+            public IMeasure<Energy> New(decimal amount, IUnit<Energy> unit)
             {
-                return new Energy(amount, unit);
+                return new Measure<Energy>(amount, unit);
             }
         }
 

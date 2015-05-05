@@ -874,9 +874,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            MagneticFieldStrength IMeasureFactory<MagneticFieldStrength>.New(IMeasure<MagneticFieldStrength> measure)
+            public IMeasure<MagneticFieldStrength> New(IMeasure<MagneticFieldStrength> measure)
             {
-                return new MagneticFieldStrength(measure.StandardAmount);
+                return new Measure<MagneticFieldStrength>(measure);
             }
 
             /// <summary>
@@ -895,9 +895,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public MagneticFieldStrength New(double amount, IUnit<MagneticFieldStrength> unit)
+            public IMeasure<MagneticFieldStrength> New(double amount, IUnit<MagneticFieldStrength> unit)
             {
-                return new MagneticFieldStrength(amount, unit);
+                return new Measure<MagneticFieldStrength>(amount, unit);
             }
 
             /// <summary>
@@ -916,9 +916,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public MagneticFieldStrength New(float amount, IUnit<MagneticFieldStrength> unit)
+            public IMeasure<MagneticFieldStrength> New(float amount, IUnit<MagneticFieldStrength> unit)
             {
-                return new MagneticFieldStrength(amount, unit);
+                return new Measure<MagneticFieldStrength>(amount, unit);
             }
 
             /// <summary>
@@ -937,9 +937,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public MagneticFieldStrength New(decimal amount, IUnit<MagneticFieldStrength> unit)
+            public IMeasure<MagneticFieldStrength> New(decimal amount, IUnit<MagneticFieldStrength> unit)
             {
-                return new MagneticFieldStrength(amount, unit);
+                return new Measure<MagneticFieldStrength>(amount, unit);
             }
         }
 

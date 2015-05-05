@@ -862,9 +862,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            Number IMeasureFactory<Number>.New(IMeasure<Number> measure)
+            public IMeasure<Number> New(IMeasure<Number> measure)
             {
-                return new Number(measure.StandardAmount);
+                return new Measure<Number>(measure);
             }
 
             /// <summary>
@@ -883,9 +883,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Number New(double amount, IUnit<Number> unit)
+            public IMeasure<Number> New(double amount, IUnit<Number> unit)
             {
-                return new Number(amount, unit);
+                return new Measure<Number>(amount, unit);
             }
 
             /// <summary>
@@ -904,9 +904,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Number New(float amount, IUnit<Number> unit)
+            public IMeasure<Number> New(float amount, IUnit<Number> unit)
             {
-                return new Number(amount, unit);
+                return new Measure<Number>(amount, unit);
             }
 
             /// <summary>
@@ -925,9 +925,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Number New(decimal amount, IUnit<Number> unit)
+            public IMeasure<Number> New(decimal amount, IUnit<Number> unit)
             {
-                return new Number(amount, unit);
+                return new Measure<Number>(amount, unit);
             }
         }
 

@@ -869,9 +869,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            Volume IMeasureFactory<Volume>.New(IMeasure<Volume> measure)
+            public IMeasure<Volume> New(IMeasure<Volume> measure)
             {
-                return new Volume(measure.StandardAmount);
+                return new Measure<Volume>(measure);
             }
 
             /// <summary>
@@ -890,9 +890,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Volume New(double amount, IUnit<Volume> unit)
+            public IMeasure<Volume> New(double amount, IUnit<Volume> unit)
             {
-                return new Volume(amount, unit);
+                return new Measure<Volume>(amount, unit);
             }
 
             /// <summary>
@@ -911,9 +911,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Volume New(float amount, IUnit<Volume> unit)
+            public IMeasure<Volume> New(float amount, IUnit<Volume> unit)
             {
-                return new Volume(amount, unit);
+                return new Measure<Volume>(amount, unit);
             }
 
             /// <summary>
@@ -932,9 +932,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Volume New(decimal amount, IUnit<Volume> unit)
+            public IMeasure<Volume> New(decimal amount, IUnit<Volume> unit)
             {
-                return new Volume(amount, unit);
+                return new Measure<Volume>(amount, unit);
             }
         }
 

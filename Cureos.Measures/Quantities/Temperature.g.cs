@@ -878,9 +878,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            Temperature IMeasureFactory<Temperature>.New(IMeasure<Temperature> measure)
+            public IMeasure<Temperature> New(IMeasure<Temperature> measure)
             {
-                return new Temperature(measure.StandardAmount);
+                return new Measure<Temperature>(measure);
             }
 
             /// <summary>
@@ -899,9 +899,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Temperature New(double amount, IUnit<Temperature> unit)
+            public IMeasure<Temperature> New(double amount, IUnit<Temperature> unit)
             {
-                return new Temperature(amount, unit);
+                return new Measure<Temperature>(amount, unit);
             }
 
             /// <summary>
@@ -920,9 +920,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Temperature New(float amount, IUnit<Temperature> unit)
+            public IMeasure<Temperature> New(float amount, IUnit<Temperature> unit)
             {
-                return new Temperature(amount, unit);
+                return new Measure<Temperature>(amount, unit);
             }
 
             /// <summary>
@@ -941,9 +941,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Temperature New(decimal amount, IUnit<Temperature> unit)
+            public IMeasure<Temperature> New(decimal amount, IUnit<Temperature> unit)
             {
-                return new Temperature(amount, unit);
+                return new Measure<Temperature>(amount, unit);
             }
         }
 

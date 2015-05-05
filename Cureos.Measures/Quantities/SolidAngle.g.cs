@@ -869,9 +869,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            SolidAngle IMeasureFactory<SolidAngle>.New(IMeasure<SolidAngle> measure)
+            public IMeasure<SolidAngle> New(IMeasure<SolidAngle> measure)
             {
-                return new SolidAngle(measure.StandardAmount);
+                return new Measure<SolidAngle>(measure);
             }
 
             /// <summary>
@@ -890,9 +890,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public SolidAngle New(double amount, IUnit<SolidAngle> unit)
+            public IMeasure<SolidAngle> New(double amount, IUnit<SolidAngle> unit)
             {
-                return new SolidAngle(amount, unit);
+                return new Measure<SolidAngle>(amount, unit);
             }
 
             /// <summary>
@@ -911,9 +911,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public SolidAngle New(float amount, IUnit<SolidAngle> unit)
+            public IMeasure<SolidAngle> New(float amount, IUnit<SolidAngle> unit)
             {
-                return new SolidAngle(amount, unit);
+                return new Measure<SolidAngle>(amount, unit);
             }
 
             /// <summary>
@@ -932,9 +932,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public SolidAngle New(decimal amount, IUnit<SolidAngle> unit)
+            public IMeasure<SolidAngle> New(decimal amount, IUnit<SolidAngle> unit)
             {
-                return new SolidAngle(amount, unit);
+                return new Measure<SolidAngle>(amount, unit);
             }
         }
 

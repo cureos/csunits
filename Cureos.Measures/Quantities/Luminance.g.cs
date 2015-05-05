@@ -874,9 +874,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            Luminance IMeasureFactory<Luminance>.New(IMeasure<Luminance> measure)
+            public IMeasure<Luminance> New(IMeasure<Luminance> measure)
             {
-                return new Luminance(measure.StandardAmount);
+                return new Measure<Luminance>(measure);
             }
 
             /// <summary>
@@ -895,9 +895,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Luminance New(double amount, IUnit<Luminance> unit)
+            public IMeasure<Luminance> New(double amount, IUnit<Luminance> unit)
             {
-                return new Luminance(amount, unit);
+                return new Measure<Luminance>(amount, unit);
             }
 
             /// <summary>
@@ -916,9 +916,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Luminance New(float amount, IUnit<Luminance> unit)
+            public IMeasure<Luminance> New(float amount, IUnit<Luminance> unit)
             {
-                return new Luminance(amount, unit);
+                return new Measure<Luminance>(amount, unit);
             }
 
             /// <summary>
@@ -937,9 +937,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Luminance New(decimal amount, IUnit<Luminance> unit)
+            public IMeasure<Luminance> New(decimal amount, IUnit<Luminance> unit)
             {
-                return new Luminance(amount, unit);
+                return new Measure<Luminance>(amount, unit);
             }
         }
 

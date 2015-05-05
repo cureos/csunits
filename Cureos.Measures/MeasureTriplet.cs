@@ -78,9 +78,9 @@ namespace Cureos.Measures
         /// <param name="iMeasure3">Third measure object</param>
         public MeasureTriplet(IMeasure<Q1> iMeasure1, IMeasure<Q2> iMeasure2, IMeasure<Q3> iMeasure3)
         {
-            this.x = Q1Factory.New(iMeasure1);
-            this.y = Q2Factory.New(iMeasure2);
-            this.z = Q3Factory.New(iMeasure3);
+            this.x = Q1Factory.New(iMeasure1.StandardAmount);
+            this.y = Q2Factory.New(iMeasure2.StandardAmount);
+            this.z = Q3Factory.New(iMeasure3.StandardAmount);
         }
 
         /// <summary>

@@ -874,9 +874,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            Frequency IMeasureFactory<Frequency>.New(IMeasure<Frequency> measure)
+            public IMeasure<Frequency> New(IMeasure<Frequency> measure)
             {
-                return new Frequency(measure.StandardAmount);
+                return new Measure<Frequency>(measure);
             }
 
             /// <summary>
@@ -895,9 +895,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Frequency New(double amount, IUnit<Frequency> unit)
+            public IMeasure<Frequency> New(double amount, IUnit<Frequency> unit)
             {
-                return new Frequency(amount, unit);
+                return new Measure<Frequency>(amount, unit);
             }
 
             /// <summary>
@@ -916,9 +916,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Frequency New(float amount, IUnit<Frequency> unit)
+            public IMeasure<Frequency> New(float amount, IUnit<Frequency> unit)
             {
-                return new Frequency(amount, unit);
+                return new Measure<Frequency>(amount, unit);
             }
 
             /// <summary>
@@ -937,9 +937,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Frequency New(decimal amount, IUnit<Frequency> unit)
+            public IMeasure<Frequency> New(decimal amount, IUnit<Frequency> unit)
             {
-                return new Frequency(amount, unit);
+                return new Measure<Frequency>(amount, unit);
             }
         }
 

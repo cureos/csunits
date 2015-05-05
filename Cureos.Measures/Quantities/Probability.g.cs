@@ -867,9 +867,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            Probability IMeasureFactory<Probability>.New(IMeasure<Probability> measure)
+            public IMeasure<Probability> New(IMeasure<Probability> measure)
             {
-                return new Probability(measure.StandardAmount);
+                return new Measure<Probability>(measure);
             }
 
             /// <summary>
@@ -888,9 +888,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Probability New(double amount, IUnit<Probability> unit)
+            public IMeasure<Probability> New(double amount, IUnit<Probability> unit)
             {
-                return new Probability(amount, unit);
+                return new Measure<Probability>(amount, unit);
             }
 
             /// <summary>
@@ -909,9 +909,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Probability New(float amount, IUnit<Probability> unit)
+            public IMeasure<Probability> New(float amount, IUnit<Probability> unit)
             {
-                return new Probability(amount, unit);
+                return new Measure<Probability>(amount, unit);
             }
 
             /// <summary>
@@ -930,9 +930,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Probability New(decimal amount, IUnit<Probability> unit)
+            public IMeasure<Probability> New(decimal amount, IUnit<Probability> unit)
             {
-                return new Probability(amount, unit);
+                return new Measure<Probability>(amount, unit);
             }
         }
 

@@ -865,9 +865,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            SurfaceDensity IMeasureFactory<SurfaceDensity>.New(IMeasure<SurfaceDensity> measure)
+            public IMeasure<SurfaceDensity> New(IMeasure<SurfaceDensity> measure)
             {
-                return new SurfaceDensity(measure.StandardAmount);
+                return new Measure<SurfaceDensity>(measure);
             }
 
             /// <summary>
@@ -886,9 +886,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public SurfaceDensity New(double amount, IUnit<SurfaceDensity> unit)
+            public IMeasure<SurfaceDensity> New(double amount, IUnit<SurfaceDensity> unit)
             {
-                return new SurfaceDensity(amount, unit);
+                return new Measure<SurfaceDensity>(amount, unit);
             }
 
             /// <summary>
@@ -907,9 +907,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public SurfaceDensity New(float amount, IUnit<SurfaceDensity> unit)
+            public IMeasure<SurfaceDensity> New(float amount, IUnit<SurfaceDensity> unit)
             {
-                return new SurfaceDensity(amount, unit);
+                return new Measure<SurfaceDensity>(amount, unit);
             }
 
             /// <summary>
@@ -928,9 +928,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public SurfaceDensity New(decimal amount, IUnit<SurfaceDensity> unit)
+            public IMeasure<SurfaceDensity> New(decimal amount, IUnit<SurfaceDensity> unit)
             {
-                return new SurfaceDensity(amount, unit);
+                return new Measure<SurfaceDensity>(amount, unit);
             }
         }
 

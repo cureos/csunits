@@ -874,9 +874,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            LuminousIntensity IMeasureFactory<LuminousIntensity>.New(IMeasure<LuminousIntensity> measure)
+            public IMeasure<LuminousIntensity> New(IMeasure<LuminousIntensity> measure)
             {
-                return new LuminousIntensity(measure.StandardAmount);
+                return new Measure<LuminousIntensity>(measure);
             }
 
             /// <summary>
@@ -895,9 +895,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public LuminousIntensity New(double amount, IUnit<LuminousIntensity> unit)
+            public IMeasure<LuminousIntensity> New(double amount, IUnit<LuminousIntensity> unit)
             {
-                return new LuminousIntensity(amount, unit);
+                return new Measure<LuminousIntensity>(amount, unit);
             }
 
             /// <summary>
@@ -916,9 +916,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public LuminousIntensity New(float amount, IUnit<LuminousIntensity> unit)
+            public IMeasure<LuminousIntensity> New(float amount, IUnit<LuminousIntensity> unit)
             {
-                return new LuminousIntensity(amount, unit);
+                return new Measure<LuminousIntensity>(amount, unit);
             }
 
             /// <summary>
@@ -937,9 +937,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public LuminousIntensity New(decimal amount, IUnit<LuminousIntensity> unit)
+            public IMeasure<LuminousIntensity> New(decimal amount, IUnit<LuminousIntensity> unit)
             {
-                return new LuminousIntensity(amount, unit);
+                return new Measure<LuminousIntensity>(amount, unit);
             }
         }
 

@@ -872,9 +872,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            DoseEquivalent IMeasureFactory<DoseEquivalent>.New(IMeasure<DoseEquivalent> measure)
+            public IMeasure<DoseEquivalent> New(IMeasure<DoseEquivalent> measure)
             {
-                return new DoseEquivalent(measure.StandardAmount);
+                return new Measure<DoseEquivalent>(measure);
             }
 
             /// <summary>
@@ -893,9 +893,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public DoseEquivalent New(double amount, IUnit<DoseEquivalent> unit)
+            public IMeasure<DoseEquivalent> New(double amount, IUnit<DoseEquivalent> unit)
             {
-                return new DoseEquivalent(amount, unit);
+                return new Measure<DoseEquivalent>(amount, unit);
             }
 
             /// <summary>
@@ -914,9 +914,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public DoseEquivalent New(float amount, IUnit<DoseEquivalent> unit)
+            public IMeasure<DoseEquivalent> New(float amount, IUnit<DoseEquivalent> unit)
             {
-                return new DoseEquivalent(amount, unit);
+                return new Measure<DoseEquivalent>(amount, unit);
             }
 
             /// <summary>
@@ -935,9 +935,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public DoseEquivalent New(decimal amount, IUnit<DoseEquivalent> unit)
+            public IMeasure<DoseEquivalent> New(decimal amount, IUnit<DoseEquivalent> unit)
             {
-                return new DoseEquivalent(amount, unit);
+                return new Measure<DoseEquivalent>(amount, unit);
             }
         }
 

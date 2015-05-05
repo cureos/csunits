@@ -874,9 +874,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            MagneticFluxDensity IMeasureFactory<MagneticFluxDensity>.New(IMeasure<MagneticFluxDensity> measure)
+            public IMeasure<MagneticFluxDensity> New(IMeasure<MagneticFluxDensity> measure)
             {
-                return new MagneticFluxDensity(measure.StandardAmount);
+                return new Measure<MagneticFluxDensity>(measure);
             }
 
             /// <summary>
@@ -895,9 +895,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public MagneticFluxDensity New(double amount, IUnit<MagneticFluxDensity> unit)
+            public IMeasure<MagneticFluxDensity> New(double amount, IUnit<MagneticFluxDensity> unit)
             {
-                return new MagneticFluxDensity(amount, unit);
+                return new Measure<MagneticFluxDensity>(amount, unit);
             }
 
             /// <summary>
@@ -916,9 +916,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public MagneticFluxDensity New(float amount, IUnit<MagneticFluxDensity> unit)
+            public IMeasure<MagneticFluxDensity> New(float amount, IUnit<MagneticFluxDensity> unit)
             {
-                return new MagneticFluxDensity(amount, unit);
+                return new Measure<MagneticFluxDensity>(amount, unit);
             }
 
             /// <summary>
@@ -937,9 +937,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public MagneticFluxDensity New(decimal amount, IUnit<MagneticFluxDensity> unit)
+            public IMeasure<MagneticFluxDensity> New(decimal amount, IUnit<MagneticFluxDensity> unit)
             {
-                return new MagneticFluxDensity(amount, unit);
+                return new Measure<MagneticFluxDensity>(amount, unit);
             }
         }
 

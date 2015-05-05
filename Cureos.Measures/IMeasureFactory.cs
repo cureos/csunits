@@ -35,7 +35,7 @@ namespace Cureos.Measures
         /// </summary>
         /// <param name="measure">Measure.</param>
         /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        Q New(IMeasure<Q> measure);
+        IMeasure<Q> New(IMeasure<Q> measure);
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
@@ -50,7 +50,7 @@ namespace Cureos.Measures
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        Q New(double amount, IUnit<Q> unit);
+        IMeasure<Q> New(double amount, IUnit<Q> unit);
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
@@ -65,7 +65,7 @@ namespace Cureos.Measures
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        Q New(float amount, IUnit<Q> unit);
+        IMeasure<Q> New(float amount, IUnit<Q> unit);
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
@@ -80,6 +80,6 @@ namespace Cureos.Measures
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        Q New(decimal amount, IUnit<Q> unit);
+        IMeasure<Q> New(decimal amount, IUnit<Q> unit);
     }
 }

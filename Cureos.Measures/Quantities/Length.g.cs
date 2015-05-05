@@ -880,9 +880,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            Length IMeasureFactory<Length>.New(IMeasure<Length> measure)
+            public IMeasure<Length> New(IMeasure<Length> measure)
             {
-                return new Length(measure.StandardAmount);
+                return new Measure<Length>(measure);
             }
 
             /// <summary>
@@ -901,9 +901,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Length New(double amount, IUnit<Length> unit)
+            public IMeasure<Length> New(double amount, IUnit<Length> unit)
             {
-                return new Length(amount, unit);
+                return new Measure<Length>(amount, unit);
             }
 
             /// <summary>
@@ -922,9 +922,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Length New(float amount, IUnit<Length> unit)
+            public IMeasure<Length> New(float amount, IUnit<Length> unit)
             {
-                return new Length(amount, unit);
+                return new Measure<Length>(amount, unit);
             }
 
             /// <summary>
@@ -943,9 +943,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Length New(decimal amount, IUnit<Length> unit)
+            public IMeasure<Length> New(decimal amount, IUnit<Length> unit)
             {
-                return new Length(amount, unit);
+                return new Measure<Length>(amount, unit);
             }
         }
 

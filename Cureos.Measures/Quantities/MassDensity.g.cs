@@ -867,9 +867,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            MassDensity IMeasureFactory<MassDensity>.New(IMeasure<MassDensity> measure)
+            public IMeasure<MassDensity> New(IMeasure<MassDensity> measure)
             {
-                return new MassDensity(measure.StandardAmount);
+                return new Measure<MassDensity>(measure);
             }
 
             /// <summary>
@@ -888,9 +888,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public MassDensity New(double amount, IUnit<MassDensity> unit)
+            public IMeasure<MassDensity> New(double amount, IUnit<MassDensity> unit)
             {
-                return new MassDensity(amount, unit);
+                return new Measure<MassDensity>(amount, unit);
             }
 
             /// <summary>
@@ -909,9 +909,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public MassDensity New(float amount, IUnit<MassDensity> unit)
+            public IMeasure<MassDensity> New(float amount, IUnit<MassDensity> unit)
             {
-                return new MassDensity(amount, unit);
+                return new Measure<MassDensity>(amount, unit);
             }
 
             /// <summary>
@@ -930,9 +930,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public MassDensity New(decimal amount, IUnit<MassDensity> unit)
+            public IMeasure<MassDensity> New(decimal amount, IUnit<MassDensity> unit)
             {
-                return new MassDensity(amount, unit);
+                return new Measure<MassDensity>(amount, unit);
             }
         }
 

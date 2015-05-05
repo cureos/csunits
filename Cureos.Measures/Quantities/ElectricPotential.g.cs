@@ -874,9 +874,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            ElectricPotential IMeasureFactory<ElectricPotential>.New(IMeasure<ElectricPotential> measure)
+            public IMeasure<ElectricPotential> New(IMeasure<ElectricPotential> measure)
             {
-                return new ElectricPotential(measure.StandardAmount);
+                return new Measure<ElectricPotential>(measure);
             }
 
             /// <summary>
@@ -895,9 +895,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public ElectricPotential New(double amount, IUnit<ElectricPotential> unit)
+            public IMeasure<ElectricPotential> New(double amount, IUnit<ElectricPotential> unit)
             {
-                return new ElectricPotential(amount, unit);
+                return new Measure<ElectricPotential>(amount, unit);
             }
 
             /// <summary>
@@ -916,9 +916,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public ElectricPotential New(float amount, IUnit<ElectricPotential> unit)
+            public IMeasure<ElectricPotential> New(float amount, IUnit<ElectricPotential> unit)
             {
-                return new ElectricPotential(amount, unit);
+                return new Measure<ElectricPotential>(amount, unit);
             }
 
             /// <summary>
@@ -937,9 +937,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public ElectricPotential New(decimal amount, IUnit<ElectricPotential> unit)
+            public IMeasure<ElectricPotential> New(decimal amount, IUnit<ElectricPotential> unit)
             {
-                return new ElectricPotential(amount, unit);
+                return new Measure<ElectricPotential>(amount, unit);
             }
         }
 

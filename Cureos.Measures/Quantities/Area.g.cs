@@ -871,9 +871,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            Area IMeasureFactory<Area>.New(IMeasure<Area> measure)
+            public IMeasure<Area> New(IMeasure<Area> measure)
             {
-                return new Area(measure.StandardAmount);
+                return new Measure<Area>(measure);
             }
 
             /// <summary>
@@ -892,9 +892,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Area New(double amount, IUnit<Area> unit)
+            public IMeasure<Area> New(double amount, IUnit<Area> unit)
             {
-                return new Area(amount, unit);
+                return new Measure<Area>(amount, unit);
             }
 
             /// <summary>
@@ -913,9 +913,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Area New(float amount, IUnit<Area> unit)
+            public IMeasure<Area> New(float amount, IUnit<Area> unit)
             {
-                return new Area(amount, unit);
+                return new Measure<Area>(amount, unit);
             }
 
             /// <summary>
@@ -934,9 +934,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Area New(decimal amount, IUnit<Area> unit)
+            public IMeasure<Area> New(decimal amount, IUnit<Area> unit)
             {
-                return new Area(amount, unit);
+                return new Measure<Area>(amount, unit);
             }
         }
 

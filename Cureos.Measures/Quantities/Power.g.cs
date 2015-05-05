@@ -874,9 +874,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            Power IMeasureFactory<Power>.New(IMeasure<Power> measure)
+            public IMeasure<Power> New(IMeasure<Power> measure)
             {
-                return new Power(measure.StandardAmount);
+                return new Measure<Power>(measure);
             }
 
             /// <summary>
@@ -895,9 +895,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Power New(double amount, IUnit<Power> unit)
+            public IMeasure<Power> New(double amount, IUnit<Power> unit)
             {
-                return new Power(amount, unit);
+                return new Measure<Power>(amount, unit);
             }
 
             /// <summary>
@@ -916,9 +916,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Power New(float amount, IUnit<Power> unit)
+            public IMeasure<Power> New(float amount, IUnit<Power> unit)
             {
-                return new Power(amount, unit);
+                return new Measure<Power>(amount, unit);
             }
 
             /// <summary>
@@ -937,9 +937,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Power New(decimal amount, IUnit<Power> unit)
+            public IMeasure<Power> New(decimal amount, IUnit<Power> unit)
             {
-                return new Power(amount, unit);
+                return new Measure<Power>(amount, unit);
             }
         }
 

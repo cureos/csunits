@@ -866,9 +866,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            WaveNumber IMeasureFactory<WaveNumber>.New(IMeasure<WaveNumber> measure)
+            public IMeasure<WaveNumber> New(IMeasure<WaveNumber> measure)
             {
-                return new WaveNumber(measure.StandardAmount);
+                return new Measure<WaveNumber>(measure);
             }
 
             /// <summary>
@@ -887,9 +887,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public WaveNumber New(double amount, IUnit<WaveNumber> unit)
+            public IMeasure<WaveNumber> New(double amount, IUnit<WaveNumber> unit)
             {
-                return new WaveNumber(amount, unit);
+                return new Measure<WaveNumber>(amount, unit);
             }
 
             /// <summary>
@@ -908,9 +908,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public WaveNumber New(float amount, IUnit<WaveNumber> unit)
+            public IMeasure<WaveNumber> New(float amount, IUnit<WaveNumber> unit)
             {
-                return new WaveNumber(amount, unit);
+                return new Measure<WaveNumber>(amount, unit);
             }
 
             /// <summary>
@@ -929,9 +929,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public WaveNumber New(decimal amount, IUnit<WaveNumber> unit)
+            public IMeasure<WaveNumber> New(decimal amount, IUnit<WaveNumber> unit)
             {
-                return new WaveNumber(amount, unit);
+                return new Measure<WaveNumber>(amount, unit);
             }
         }
 

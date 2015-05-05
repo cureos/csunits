@@ -874,9 +874,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            MagneticFlux IMeasureFactory<MagneticFlux>.New(IMeasure<MagneticFlux> measure)
+            public IMeasure<MagneticFlux> New(IMeasure<MagneticFlux> measure)
             {
-                return new MagneticFlux(measure.StandardAmount);
+                return new Measure<MagneticFlux>(measure);
             }
 
             /// <summary>
@@ -895,9 +895,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public MagneticFlux New(double amount, IUnit<MagneticFlux> unit)
+            public IMeasure<MagneticFlux> New(double amount, IUnit<MagneticFlux> unit)
             {
-                return new MagneticFlux(amount, unit);
+                return new Measure<MagneticFlux>(amount, unit);
             }
 
             /// <summary>
@@ -916,9 +916,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public MagneticFlux New(float amount, IUnit<MagneticFlux> unit)
+            public IMeasure<MagneticFlux> New(float amount, IUnit<MagneticFlux> unit)
             {
-                return new MagneticFlux(amount, unit);
+                return new Measure<MagneticFlux>(amount, unit);
             }
 
             /// <summary>
@@ -937,9 +937,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public MagneticFlux New(decimal amount, IUnit<MagneticFlux> unit)
+            public IMeasure<MagneticFlux> New(decimal amount, IUnit<MagneticFlux> unit)
             {
-                return new MagneticFlux(amount, unit);
+                return new Measure<MagneticFlux>(amount, unit);
             }
         }
 

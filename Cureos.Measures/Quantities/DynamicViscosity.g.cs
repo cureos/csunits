@@ -872,9 +872,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            DynamicViscosity IMeasureFactory<DynamicViscosity>.New(IMeasure<DynamicViscosity> measure)
+            public IMeasure<DynamicViscosity> New(IMeasure<DynamicViscosity> measure)
             {
-                return new DynamicViscosity(measure.StandardAmount);
+                return new Measure<DynamicViscosity>(measure);
             }
 
             /// <summary>
@@ -893,9 +893,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public DynamicViscosity New(double amount, IUnit<DynamicViscosity> unit)
+            public IMeasure<DynamicViscosity> New(double amount, IUnit<DynamicViscosity> unit)
             {
-                return new DynamicViscosity(amount, unit);
+                return new Measure<DynamicViscosity>(amount, unit);
             }
 
             /// <summary>
@@ -914,9 +914,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public DynamicViscosity New(float amount, IUnit<DynamicViscosity> unit)
+            public IMeasure<DynamicViscosity> New(float amount, IUnit<DynamicViscosity> unit)
             {
-                return new DynamicViscosity(amount, unit);
+                return new Measure<DynamicViscosity>(amount, unit);
             }
 
             /// <summary>
@@ -935,9 +935,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public DynamicViscosity New(decimal amount, IUnit<DynamicViscosity> unit)
+            public IMeasure<DynamicViscosity> New(decimal amount, IUnit<DynamicViscosity> unit)
             {
-                return new DynamicViscosity(amount, unit);
+                return new Measure<DynamicViscosity>(amount, unit);
             }
         }
 

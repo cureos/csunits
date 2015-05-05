@@ -872,9 +872,9 @@ namespace Cureos.Measures.Quantities
             /// </summary>
             /// <param name="measure">Measure.</param>
             /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            Activity IMeasureFactory<Activity>.New(IMeasure<Activity> measure)
+            public IMeasure<Activity> New(IMeasure<Activity> measure)
             {
-                return new Activity(measure.StandardAmount);
+                return new Measure<Activity>(measure);
             }
 
             /// <summary>
@@ -893,9 +893,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Activity New(double amount, IUnit<Activity> unit)
+            public IMeasure<Activity> New(double amount, IUnit<Activity> unit)
             {
-                return new Activity(amount, unit);
+                return new Measure<Activity>(amount, unit);
             }
 
             /// <summary>
@@ -914,9 +914,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Activity New(float amount, IUnit<Activity> unit)
+            public IMeasure<Activity> New(float amount, IUnit<Activity> unit)
             {
-                return new Activity(amount, unit);
+                return new Measure<Activity>(amount, unit);
             }
 
             /// <summary>
@@ -935,9 +935,9 @@ namespace Cureos.Measures.Quantities
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public Activity New(decimal amount, IUnit<Activity> unit)
+            public IMeasure<Activity> New(decimal amount, IUnit<Activity> unit)
             {
-                return new Activity(amount, unit);
+                return new Measure<Activity>(amount, unit);
             }
         }
 
