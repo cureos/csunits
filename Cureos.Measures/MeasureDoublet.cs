@@ -109,12 +109,12 @@ namespace Cureos.Measures
 
         #endregion
 
-        #region Implementation of IMeasure<Q1,Q2>
+        #region PROPERTIES
 
         /// <summary>
         /// Gets the first measure in the measure pair
         /// </summary>
-        public IMeasure<Q1> X
+        public Q1 X
         {
             get
             {
@@ -125,7 +125,33 @@ namespace Cureos.Measures
         /// <summary>
         /// Gets the second measure in the measure pair
         /// </summary>
-        public IMeasure<Q2> Y
+        public Q2 Y
+        {
+            get
+            {
+                return this.y;
+            }
+        }
+
+        #endregion
+
+        #region Implementation of IMeasure<Q1,Q2>
+
+        /// <summary>
+        /// Gets the first measure in the measure pair
+        /// </summary>
+        IMeasure<Q1> IMeasureDoublet<Q1, Q2>.X
+        {
+            get
+            {
+                return this.x;
+            }
+        }
+
+        /// <summary>
+        /// Gets the second measure in the measure pair
+        /// </summary>
+        IMeasure<Q2> IMeasureDoublet<Q1, Q2>.Y
         {
             get
             {
