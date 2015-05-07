@@ -493,21 +493,21 @@ namespace Cureos.Measures.Quantities
         #region OPERATORS
 
         /// <summary>
-        /// Casts a float value to a MomentOfForce object
-        /// </summary>
-        /// <param name="standardAmount">Standard amount</param>
-        /// <returns>MomentOfForce representation of <paramref name="standardAmount"/> in unit NewtonMeter</returns>
-        public static explicit operator MomentOfForce(float standardAmount)
-        {
-            return new MomentOfForce(standardAmount);
-        }
-
-        /// <summary>
         /// Casts a double value to a MomentOfForce object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
         /// <returns>MomentOfForce representation of <paramref name="standardAmount"/> in unit NewtonMeter</returns>
         public static explicit operator MomentOfForce(double standardAmount)
+        {
+            return new MomentOfForce(standardAmount);
+        }
+
+        /// <summary>
+        /// Casts a float value to a MomentOfForce object
+        /// </summary>
+        /// <param name="standardAmount">Standard amount</param>
+        /// <returns>MomentOfForce representation of <paramref name="standardAmount"/> in unit NewtonMeter</returns>
+        public static explicit operator MomentOfForce(float standardAmount)
         {
             return new MomentOfForce(standardAmount);
         }
@@ -572,9 +572,31 @@ namespace Cureos.Measures.Quantities
         /// <param name="scalar">Floating-point scalar</param>
         /// <param name="measure">Measure object</param>
         /// <returns>Product of the scalar and the measure object</returns>
-        public static MomentOfForce operator *(AmountType scalar, MomentOfForce measure)
+        public static MomentOfForce operator *(double scalar, MomentOfForce measure)
         {
-            return new MomentOfForce(scalar * measure.amount);
+            return new MomentOfForce((AmountType)scalar * measure.amount);
+        }
+
+        /// <summary>
+        /// Multiply a scalar and a measure object
+        /// </summary>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <param name="measure">Measure object</param>
+        /// <returns>Product of the scalar and the measure object</returns>
+        public static MomentOfForce operator *(float scalar, MomentOfForce measure)
+        {
+            return new MomentOfForce((AmountType)scalar * measure.amount);
+        }
+
+        /// <summary>
+        /// Multiply a scalar and a measure object
+        /// </summary>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <param name="measure">Measure object</param>
+        /// <returns>Product of the scalar and the measure object</returns>
+        public static MomentOfForce operator *(decimal scalar, MomentOfForce measure)
+        {
+            return new MomentOfForce((AmountType)scalar * measure.amount);
         }
 
         /// <summary>
@@ -583,20 +605,31 @@ namespace Cureos.Measures.Quantities
         /// <param name="measure">Measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Product of the measure object and the scalar</returns>
-        public static MomentOfForce operator *(MomentOfForce measure, AmountType scalar)
+        public static MomentOfForce operator *(MomentOfForce measure, double scalar)
         {
-            return new MomentOfForce(measure.amount * scalar);
+            return new MomentOfForce(measure.amount * (AmountType)scalar);
         }
 
         /// <summary>
-        /// Multiply a number and a measure object
+        /// Multiply a measure object and a scalar
         /// </summary>
-        /// <param name="scalar">Floating-point number</param>
         /// <param name="measure">Measure object</param>
-        /// <returns>Product of the number and the measure object</returns>
-        public static MomentOfForce operator *(IMeasure<Number> scalar, MomentOfForce measure)
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Product of the measure object and the scalar</returns>
+        public static MomentOfForce operator *(MomentOfForce measure, float scalar)
         {
-            return new MomentOfForce(scalar.StandardAmount * measure.amount);
+            return new MomentOfForce(measure.amount * (AmountType)scalar);
+        }
+
+        /// <summary>
+        /// Multiply a measure object and a scalar
+        /// </summary>
+        /// <param name="measure">Measure object</param>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Product of the measure object and the scalar</returns>
+        public static MomentOfForce operator *(MomentOfForce measure, decimal scalar)
+        {
+            return new MomentOfForce(measure.amount * (AmountType)scalar);
         }
 
         /// <summary>
@@ -616,9 +649,31 @@ namespace Cureos.Measures.Quantities
         /// <param name="measure">measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Quotient of the measure object and the scalar</returns>
-        public static MomentOfForce operator /(MomentOfForce measure, AmountType scalar)
+        public static MomentOfForce operator /(MomentOfForce measure, double scalar)
         {
-            return new MomentOfForce(measure.amount / scalar);
+            return new MomentOfForce(measure.amount / (AmountType)scalar);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a scalar
+        /// </summary>
+        /// <param name="measure">measure object</param>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Quotient of the measure object and the scalar</returns>
+        public static MomentOfForce operator /(MomentOfForce measure, float scalar)
+        {
+            return new MomentOfForce(measure.amount / (AmountType)scalar);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a scalar
+        /// </summary>
+        /// <param name="measure">measure object</param>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Quotient of the measure object and the scalar</returns>
+        public static MomentOfForce operator /(MomentOfForce measure, decimal scalar)
+        {
+            return new MomentOfForce(measure.amount / (AmountType)scalar);
         }
 
         /// <summary>
@@ -641,17 +696,6 @@ namespace Cureos.Measures.Quantities
         public static Number operator /(MomentOfForce dividend, MomentOfForce divisor)
         {
             return new Number(dividend.amount / divisor.amount);
-        }
-
-        /// <summary>
-        /// Divide a measure object with a measure object of the same quantity
-        /// </summary>
-        /// <param name="dividend">Dividend of specific quantity</param>
-        /// <param name="divisor">Divisor of same quantity as dividend</param>
-        /// <returns>Quotient of the two measure objects</returns>
-        public static Number operator /(IMeasure<MomentOfForce> dividend, MomentOfForce divisor)
-        {
-            return new Number(dividend.StandardAmount / divisor.amount);
         }
 
         /// <summary>
@@ -688,17 +732,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Less than operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;MomentOfForce&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;MomentOfForce&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is less than second measure object; false otherwise</returns>
-        public static bool operator <(IMeasure<MomentOfForce> lhs, MomentOfForce rhs)
-        {
-            return lhs.StandardAmount < rhs.amount;
-        }
-
-        /// <summary>
         /// Greater than operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -718,17 +751,6 @@ namespace Cureos.Measures.Quantities
         public static bool operator >(MomentOfForce lhs, IMeasure<MomentOfForce> rhs)
         {
             return lhs.amount > rhs.StandardAmount;
-        }
-
-        /// <summary>
-        /// Greater than operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;MomentOfForce&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;MomentOfForce&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
-        public static bool operator >(IMeasure<MomentOfForce> lhs, MomentOfForce rhs)
-        {
-            return lhs.StandardAmount > rhs.amount;
         }
 
         /// <summary>
@@ -754,17 +776,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Less than or equal to operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;MomentOfForce&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;MomentOfForce&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
-        public static bool operator <=(IMeasure<MomentOfForce> lhs, MomentOfForce rhs)
-        {
-            return lhs.StandardAmount <= rhs.amount;
-        }
-
-        /// <summary>
         /// Greater than or equal to operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -784,17 +795,6 @@ namespace Cureos.Measures.Quantities
         public static bool operator >=(MomentOfForce lhs, IMeasure<MomentOfForce> rhs)
         {
             return lhs.amount >= rhs.StandardAmount;
-        }
-
-        /// <summary>
-        /// Greater than or equal to operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;MomentOfForce&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;MomentOfForce&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
-        public static bool operator >=(IMeasure<MomentOfForce> lhs, MomentOfForce rhs)
-        {
-            return lhs.StandardAmount >= rhs.amount;
         }
 
         /// <summary>
@@ -820,17 +820,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Equality operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;MomentOfForce&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;MomentOfForce&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if the two measure objects are equal; false otherwise</returns>
-        public static bool operator ==(IMeasure<MomentOfForce> lhs, MomentOfForce rhs)
-        {
-            return lhs.StandardAmount == rhs.amount;
-        }
-
-        /// <summary>
         /// Inequality operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -850,17 +839,6 @@ namespace Cureos.Measures.Quantities
         public static bool operator !=(MomentOfForce lhs, IMeasure<MomentOfForce> rhs)
         {
             return lhs.amount != rhs.StandardAmount;
-        }
-
-        /// <summary>
-        /// Inequality operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;MomentOfForce&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;MomentOfForce&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if the two measure objects are not equal; false if they are equal</returns>
-        public static bool operator !=(IMeasure<MomentOfForce> lhs, MomentOfForce rhs)
-        {
-            return lhs.StandardAmount != rhs.amount;
         }
 
         #endregion

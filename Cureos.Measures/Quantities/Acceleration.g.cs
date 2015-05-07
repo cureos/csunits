@@ -489,21 +489,21 @@ namespace Cureos.Measures.Quantities
         #region OPERATORS
 
         /// <summary>
-        /// Casts a float value to a Acceleration object
-        /// </summary>
-        /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Acceleration representation of <paramref name="standardAmount"/> in unit MeterPerSecondSquared</returns>
-        public static explicit operator Acceleration(float standardAmount)
-        {
-            return new Acceleration(standardAmount);
-        }
-
-        /// <summary>
         /// Casts a double value to a Acceleration object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
         /// <returns>Acceleration representation of <paramref name="standardAmount"/> in unit MeterPerSecondSquared</returns>
         public static explicit operator Acceleration(double standardAmount)
+        {
+            return new Acceleration(standardAmount);
+        }
+
+        /// <summary>
+        /// Casts a float value to a Acceleration object
+        /// </summary>
+        /// <param name="standardAmount">Standard amount</param>
+        /// <returns>Acceleration representation of <paramref name="standardAmount"/> in unit MeterPerSecondSquared</returns>
+        public static explicit operator Acceleration(float standardAmount)
         {
             return new Acceleration(standardAmount);
         }
@@ -568,9 +568,31 @@ namespace Cureos.Measures.Quantities
         /// <param name="scalar">Floating-point scalar</param>
         /// <param name="measure">Measure object</param>
         /// <returns>Product of the scalar and the measure object</returns>
-        public static Acceleration operator *(AmountType scalar, Acceleration measure)
+        public static Acceleration operator *(double scalar, Acceleration measure)
         {
-            return new Acceleration(scalar * measure.amount);
+            return new Acceleration((AmountType)scalar * measure.amount);
+        }
+
+        /// <summary>
+        /// Multiply a scalar and a measure object
+        /// </summary>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <param name="measure">Measure object</param>
+        /// <returns>Product of the scalar and the measure object</returns>
+        public static Acceleration operator *(float scalar, Acceleration measure)
+        {
+            return new Acceleration((AmountType)scalar * measure.amount);
+        }
+
+        /// <summary>
+        /// Multiply a scalar and a measure object
+        /// </summary>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <param name="measure">Measure object</param>
+        /// <returns>Product of the scalar and the measure object</returns>
+        public static Acceleration operator *(decimal scalar, Acceleration measure)
+        {
+            return new Acceleration((AmountType)scalar * measure.amount);
         }
 
         /// <summary>
@@ -579,20 +601,31 @@ namespace Cureos.Measures.Quantities
         /// <param name="measure">Measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Product of the measure object and the scalar</returns>
-        public static Acceleration operator *(Acceleration measure, AmountType scalar)
+        public static Acceleration operator *(Acceleration measure, double scalar)
         {
-            return new Acceleration(measure.amount * scalar);
+            return new Acceleration(measure.amount * (AmountType)scalar);
         }
 
         /// <summary>
-        /// Multiply a number and a measure object
+        /// Multiply a measure object and a scalar
         /// </summary>
-        /// <param name="scalar">Floating-point number</param>
         /// <param name="measure">Measure object</param>
-        /// <returns>Product of the number and the measure object</returns>
-        public static Acceleration operator *(IMeasure<Number> scalar, Acceleration measure)
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Product of the measure object and the scalar</returns>
+        public static Acceleration operator *(Acceleration measure, float scalar)
         {
-            return new Acceleration(scalar.StandardAmount * measure.amount);
+            return new Acceleration(measure.amount * (AmountType)scalar);
+        }
+
+        /// <summary>
+        /// Multiply a measure object and a scalar
+        /// </summary>
+        /// <param name="measure">Measure object</param>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Product of the measure object and the scalar</returns>
+        public static Acceleration operator *(Acceleration measure, decimal scalar)
+        {
+            return new Acceleration(measure.amount * (AmountType)scalar);
         }
 
         /// <summary>
@@ -612,9 +645,31 @@ namespace Cureos.Measures.Quantities
         /// <param name="measure">measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Quotient of the measure object and the scalar</returns>
-        public static Acceleration operator /(Acceleration measure, AmountType scalar)
+        public static Acceleration operator /(Acceleration measure, double scalar)
         {
-            return new Acceleration(measure.amount / scalar);
+            return new Acceleration(measure.amount / (AmountType)scalar);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a scalar
+        /// </summary>
+        /// <param name="measure">measure object</param>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Quotient of the measure object and the scalar</returns>
+        public static Acceleration operator /(Acceleration measure, float scalar)
+        {
+            return new Acceleration(measure.amount / (AmountType)scalar);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a scalar
+        /// </summary>
+        /// <param name="measure">measure object</param>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Quotient of the measure object and the scalar</returns>
+        public static Acceleration operator /(Acceleration measure, decimal scalar)
+        {
+            return new Acceleration(measure.amount / (AmountType)scalar);
         }
 
         /// <summary>
@@ -637,17 +692,6 @@ namespace Cureos.Measures.Quantities
         public static Number operator /(Acceleration dividend, Acceleration divisor)
         {
             return new Number(dividend.amount / divisor.amount);
-        }
-
-        /// <summary>
-        /// Divide a measure object with a measure object of the same quantity
-        /// </summary>
-        /// <param name="dividend">Dividend of specific quantity</param>
-        /// <param name="divisor">Divisor of same quantity as dividend</param>
-        /// <returns>Quotient of the two measure objects</returns>
-        public static Number operator /(IMeasure<Acceleration> dividend, Acceleration divisor)
-        {
-            return new Number(dividend.StandardAmount / divisor.amount);
         }
 
         /// <summary>
@@ -684,17 +728,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Less than operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;Acceleration&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;Acceleration&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is less than second measure object; false otherwise</returns>
-        public static bool operator <(IMeasure<Acceleration> lhs, Acceleration rhs)
-        {
-            return lhs.StandardAmount < rhs.amount;
-        }
-
-        /// <summary>
         /// Greater than operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -714,17 +747,6 @@ namespace Cureos.Measures.Quantities
         public static bool operator >(Acceleration lhs, IMeasure<Acceleration> rhs)
         {
             return lhs.amount > rhs.StandardAmount;
-        }
-
-        /// <summary>
-        /// Greater than operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;Acceleration&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;Acceleration&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
-        public static bool operator >(IMeasure<Acceleration> lhs, Acceleration rhs)
-        {
-            return lhs.StandardAmount > rhs.amount;
         }
 
         /// <summary>
@@ -750,17 +772,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Less than or equal to operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;Acceleration&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;Acceleration&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
-        public static bool operator <=(IMeasure<Acceleration> lhs, Acceleration rhs)
-        {
-            return lhs.StandardAmount <= rhs.amount;
-        }
-
-        /// <summary>
         /// Greater than or equal to operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -780,17 +791,6 @@ namespace Cureos.Measures.Quantities
         public static bool operator >=(Acceleration lhs, IMeasure<Acceleration> rhs)
         {
             return lhs.amount >= rhs.StandardAmount;
-        }
-
-        /// <summary>
-        /// Greater than or equal to operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;Acceleration&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;Acceleration&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
-        public static bool operator >=(IMeasure<Acceleration> lhs, Acceleration rhs)
-        {
-            return lhs.StandardAmount >= rhs.amount;
         }
 
         /// <summary>
@@ -816,17 +816,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Equality operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;Acceleration&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;Acceleration&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if the two measure objects are equal; false otherwise</returns>
-        public static bool operator ==(IMeasure<Acceleration> lhs, Acceleration rhs)
-        {
-            return lhs.StandardAmount == rhs.amount;
-        }
-
-        /// <summary>
         /// Inequality operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -846,17 +835,6 @@ namespace Cureos.Measures.Quantities
         public static bool operator !=(Acceleration lhs, IMeasure<Acceleration> rhs)
         {
             return lhs.amount != rhs.StandardAmount;
-        }
-
-        /// <summary>
-        /// Inequality operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;Acceleration&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;Acceleration&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if the two measure objects are not equal; false if they are equal</returns>
-        public static bool operator !=(IMeasure<Acceleration> lhs, Acceleration rhs)
-        {
-            return lhs.StandardAmount != rhs.amount;
         }
 
         #endregion

@@ -491,21 +491,21 @@ namespace Cureos.Measures.Quantities
         #region OPERATORS
 
         /// <summary>
-        /// Casts a float value to a Activity object
-        /// </summary>
-        /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Activity representation of <paramref name="standardAmount"/> in unit Becquerel</returns>
-        public static explicit operator Activity(float standardAmount)
-        {
-            return new Activity(standardAmount);
-        }
-
-        /// <summary>
         /// Casts a double value to a Activity object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
         /// <returns>Activity representation of <paramref name="standardAmount"/> in unit Becquerel</returns>
         public static explicit operator Activity(double standardAmount)
+        {
+            return new Activity(standardAmount);
+        }
+
+        /// <summary>
+        /// Casts a float value to a Activity object
+        /// </summary>
+        /// <param name="standardAmount">Standard amount</param>
+        /// <returns>Activity representation of <paramref name="standardAmount"/> in unit Becquerel</returns>
+        public static explicit operator Activity(float standardAmount)
         {
             return new Activity(standardAmount);
         }
@@ -570,9 +570,31 @@ namespace Cureos.Measures.Quantities
         /// <param name="scalar">Floating-point scalar</param>
         /// <param name="measure">Measure object</param>
         /// <returns>Product of the scalar and the measure object</returns>
-        public static Activity operator *(AmountType scalar, Activity measure)
+        public static Activity operator *(double scalar, Activity measure)
         {
-            return new Activity(scalar * measure.amount);
+            return new Activity((AmountType)scalar * measure.amount);
+        }
+
+        /// <summary>
+        /// Multiply a scalar and a measure object
+        /// </summary>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <param name="measure">Measure object</param>
+        /// <returns>Product of the scalar and the measure object</returns>
+        public static Activity operator *(float scalar, Activity measure)
+        {
+            return new Activity((AmountType)scalar * measure.amount);
+        }
+
+        /// <summary>
+        /// Multiply a scalar and a measure object
+        /// </summary>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <param name="measure">Measure object</param>
+        /// <returns>Product of the scalar and the measure object</returns>
+        public static Activity operator *(decimal scalar, Activity measure)
+        {
+            return new Activity((AmountType)scalar * measure.amount);
         }
 
         /// <summary>
@@ -581,20 +603,31 @@ namespace Cureos.Measures.Quantities
         /// <param name="measure">Measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Product of the measure object and the scalar</returns>
-        public static Activity operator *(Activity measure, AmountType scalar)
+        public static Activity operator *(Activity measure, double scalar)
         {
-            return new Activity(measure.amount * scalar);
+            return new Activity(measure.amount * (AmountType)scalar);
         }
 
         /// <summary>
-        /// Multiply a number and a measure object
+        /// Multiply a measure object and a scalar
         /// </summary>
-        /// <param name="scalar">Floating-point number</param>
         /// <param name="measure">Measure object</param>
-        /// <returns>Product of the number and the measure object</returns>
-        public static Activity operator *(IMeasure<Number> scalar, Activity measure)
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Product of the measure object and the scalar</returns>
+        public static Activity operator *(Activity measure, float scalar)
         {
-            return new Activity(scalar.StandardAmount * measure.amount);
+            return new Activity(measure.amount * (AmountType)scalar);
+        }
+
+        /// <summary>
+        /// Multiply a measure object and a scalar
+        /// </summary>
+        /// <param name="measure">Measure object</param>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Product of the measure object and the scalar</returns>
+        public static Activity operator *(Activity measure, decimal scalar)
+        {
+            return new Activity(measure.amount * (AmountType)scalar);
         }
 
         /// <summary>
@@ -614,9 +647,31 @@ namespace Cureos.Measures.Quantities
         /// <param name="measure">measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Quotient of the measure object and the scalar</returns>
-        public static Activity operator /(Activity measure, AmountType scalar)
+        public static Activity operator /(Activity measure, double scalar)
         {
-            return new Activity(measure.amount / scalar);
+            return new Activity(measure.amount / (AmountType)scalar);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a scalar
+        /// </summary>
+        /// <param name="measure">measure object</param>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Quotient of the measure object and the scalar</returns>
+        public static Activity operator /(Activity measure, float scalar)
+        {
+            return new Activity(measure.amount / (AmountType)scalar);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a scalar
+        /// </summary>
+        /// <param name="measure">measure object</param>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Quotient of the measure object and the scalar</returns>
+        public static Activity operator /(Activity measure, decimal scalar)
+        {
+            return new Activity(measure.amount / (AmountType)scalar);
         }
 
         /// <summary>
@@ -639,17 +694,6 @@ namespace Cureos.Measures.Quantities
         public static Number operator /(Activity dividend, Activity divisor)
         {
             return new Number(dividend.amount / divisor.amount);
-        }
-
-        /// <summary>
-        /// Divide a measure object with a measure object of the same quantity
-        /// </summary>
-        /// <param name="dividend">Dividend of specific quantity</param>
-        /// <param name="divisor">Divisor of same quantity as dividend</param>
-        /// <returns>Quotient of the two measure objects</returns>
-        public static Number operator /(IMeasure<Activity> dividend, Activity divisor)
-        {
-            return new Number(dividend.StandardAmount / divisor.amount);
         }
 
         /// <summary>
@@ -686,17 +730,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Less than operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;Activity&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;Activity&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is less than second measure object; false otherwise</returns>
-        public static bool operator <(IMeasure<Activity> lhs, Activity rhs)
-        {
-            return lhs.StandardAmount < rhs.amount;
-        }
-
-        /// <summary>
         /// Greater than operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -716,17 +749,6 @@ namespace Cureos.Measures.Quantities
         public static bool operator >(Activity lhs, IMeasure<Activity> rhs)
         {
             return lhs.amount > rhs.StandardAmount;
-        }
-
-        /// <summary>
-        /// Greater than operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;Activity&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;Activity&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
-        public static bool operator >(IMeasure<Activity> lhs, Activity rhs)
-        {
-            return lhs.StandardAmount > rhs.amount;
         }
 
         /// <summary>
@@ -752,17 +774,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Less than or equal to operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;Activity&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;Activity&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
-        public static bool operator <=(IMeasure<Activity> lhs, Activity rhs)
-        {
-            return lhs.StandardAmount <= rhs.amount;
-        }
-
-        /// <summary>
         /// Greater than or equal to operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -782,17 +793,6 @@ namespace Cureos.Measures.Quantities
         public static bool operator >=(Activity lhs, IMeasure<Activity> rhs)
         {
             return lhs.amount >= rhs.StandardAmount;
-        }
-
-        /// <summary>
-        /// Greater than or equal to operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;Activity&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;Activity&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
-        public static bool operator >=(IMeasure<Activity> lhs, Activity rhs)
-        {
-            return lhs.StandardAmount >= rhs.amount;
         }
 
         /// <summary>
@@ -818,17 +818,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Equality operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;Activity&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;Activity&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if the two measure objects are equal; false otherwise</returns>
-        public static bool operator ==(IMeasure<Activity> lhs, Activity rhs)
-        {
-            return lhs.StandardAmount == rhs.amount;
-        }
-
-        /// <summary>
         /// Inequality operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -848,17 +837,6 @@ namespace Cureos.Measures.Quantities
         public static bool operator !=(Activity lhs, IMeasure<Activity> rhs)
         {
             return lhs.amount != rhs.StandardAmount;
-        }
-
-        /// <summary>
-        /// Inequality operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;Activity&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;Activity&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if the two measure objects are not equal; false if they are equal</returns>
-        public static bool operator !=(IMeasure<Activity> lhs, Activity rhs)
-        {
-            return lhs.StandardAmount != rhs.amount;
         }
 
         #endregion

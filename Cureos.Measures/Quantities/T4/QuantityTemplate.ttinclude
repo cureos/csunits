@@ -599,21 +599,21 @@ namespace Cureos.Measures.Quantities
 #>
 
         /// <summary>
-        /// Casts a float value to a <#= ClassName #> object
-        /// </summary>
-        /// <param name="standardAmount">Standard amount</param>
-        /// <returns><#= ClassName #> representation of <paramref name="standardAmount"/> in unit <#= stdUnit #></returns>
-        public static explicit operator <#= ClassName #>(float standardAmount)
-        {
-            return new <#= ClassName #>(standardAmount);
-        }
-
-        /// <summary>
         /// Casts a double value to a <#= ClassName #> object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
         /// <returns><#= ClassName #> representation of <paramref name="standardAmount"/> in unit <#= stdUnit #></returns>
         public static explicit operator <#= ClassName #>(double standardAmount)
+        {
+            return new <#= ClassName #>(standardAmount);
+        }
+
+        /// <summary>
+        /// Casts a float value to a <#= ClassName #> object
+        /// </summary>
+        /// <param name="standardAmount">Standard amount</param>
+        /// <returns><#= ClassName #> representation of <paramref name="standardAmount"/> in unit <#= stdUnit #></returns>
+        public static explicit operator <#= ClassName #>(float standardAmount)
         {
             return new <#= ClassName #>(standardAmount);
         }
@@ -678,9 +678,31 @@ namespace Cureos.Measures.Quantities
         /// <param name="scalar">Floating-point scalar</param>
         /// <param name="measure">Measure object</param>
         /// <returns>Product of the scalar and the measure object</returns>
-        public static <#= ClassName #> operator *(AmountType scalar, <#= ClassName #> measure)
+        public static <#= ClassName #> operator *(double scalar, <#= ClassName #> measure)
         {
-            return new <#= ClassName #>(scalar * measure.amount);
+            return new <#= ClassName #>((AmountType)scalar * measure.amount);
+        }
+
+        /// <summary>
+        /// Multiply a scalar and a measure object
+        /// </summary>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <param name="measure">Measure object</param>
+        /// <returns>Product of the scalar and the measure object</returns>
+        public static <#= ClassName #> operator *(float scalar, <#= ClassName #> measure)
+        {
+            return new <#= ClassName #>((AmountType)scalar * measure.amount);
+        }
+
+        /// <summary>
+        /// Multiply a scalar and a measure object
+        /// </summary>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <param name="measure">Measure object</param>
+        /// <returns>Product of the scalar and the measure object</returns>
+        public static <#= ClassName #> operator *(decimal scalar, <#= ClassName #> measure)
+        {
+            return new <#= ClassName #>((AmountType)scalar * measure.amount);
         }
 
         /// <summary>
@@ -689,20 +711,31 @@ namespace Cureos.Measures.Quantities
         /// <param name="measure">Measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Product of the measure object and the scalar</returns>
-        public static <#= ClassName #> operator *(<#= ClassName #> measure, AmountType scalar)
+        public static <#= ClassName #> operator *(<#= ClassName #> measure, double scalar)
         {
-            return new <#= ClassName #>(measure.amount * scalar);
+            return new <#= ClassName #>(measure.amount * (AmountType)scalar);
         }
 
         /// <summary>
-        /// Multiply a number and a measure object
+        /// Multiply a measure object and a scalar
         /// </summary>
-        /// <param name="scalar">Floating-point number</param>
         /// <param name="measure">Measure object</param>
-        /// <returns>Product of the number and the measure object</returns>
-        public static <#= ClassName #> operator *(IMeasure<Number> scalar, <#= ClassName #> measure)
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Product of the measure object and the scalar</returns>
+        public static <#= ClassName #> operator *(<#= ClassName #> measure, float scalar)
         {
-            return new <#= ClassName #>(scalar.StandardAmount * measure.amount);
+            return new <#= ClassName #>(measure.amount * (AmountType)scalar);
+        }
+
+        /// <summary>
+        /// Multiply a measure object and a scalar
+        /// </summary>
+        /// <param name="measure">Measure object</param>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Product of the measure object and the scalar</returns>
+        public static <#= ClassName #> operator *(<#= ClassName #> measure, decimal scalar)
+        {
+            return new <#= ClassName #>(measure.amount * (AmountType)scalar);
         }
 
         /// <summary>
@@ -722,9 +755,31 @@ namespace Cureos.Measures.Quantities
         /// <param name="measure">measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Quotient of the measure object and the scalar</returns>
-        public static <#= ClassName #> operator /(<#= ClassName #> measure, AmountType scalar)
+        public static <#= ClassName #> operator /(<#= ClassName #> measure, double scalar)
         {
-            return new <#= ClassName #>(measure.amount / scalar);
+            return new <#= ClassName #>(measure.amount / (AmountType)scalar);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a scalar
+        /// </summary>
+        /// <param name="measure">measure object</param>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Quotient of the measure object and the scalar</returns>
+        public static <#= ClassName #> operator /(<#= ClassName #> measure, float scalar)
+        {
+            return new <#= ClassName #>(measure.amount / (AmountType)scalar);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a scalar
+        /// </summary>
+        /// <param name="measure">measure object</param>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Quotient of the measure object and the scalar</returns>
+        public static <#= ClassName #> operator /(<#= ClassName #> measure, decimal scalar)
+        {
+            return new <#= ClassName #>(measure.amount / (AmountType)scalar);
         }
 
 <#
@@ -761,17 +816,6 @@ namespace Cureos.Measures.Quantities
         /// <param name="dividend">Dividend of specific quantity</param>
         /// <param name="divisor">Divisor of same quantity as dividend</param>
         /// <returns>Quotient of the two measure objects</returns>
-        public static Number operator /(IMeasure<<#= ClassName #>> dividend, <#= ClassName #> divisor)
-        {
-            return new Number(dividend.StandardAmount / divisor.amount);
-        }
-
-        /// <summary>
-        /// Divide a measure object with a measure object of the same quantity
-        /// </summary>
-        /// <param name="dividend">Dividend of specific quantity</param>
-        /// <param name="divisor">Divisor of same quantity as dividend</param>
-        /// <returns>Quotient of the two measure objects</returns>
         public static Number operator /(<#= ClassName #> dividend, IMeasure<<#= ClassName #>> divisor)
         {
             return new Number(dividend.amount / divisor.StandardAmount);
@@ -800,17 +844,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Less than operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;<#= ClassName #>&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;<#= ClassName #>&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is less than second measure object; false otherwise</returns>
-        public static bool operator <(IMeasure<<#= ClassName #>> lhs, <#= ClassName #> rhs)
-        {
-            return lhs.StandardAmount < rhs.amount;
-        }
-
-        /// <summary>
         /// Greater than operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -830,17 +863,6 @@ namespace Cureos.Measures.Quantities
         public static bool operator >(<#= ClassName #> lhs, IMeasure<<#= ClassName #>> rhs)
         {
             return lhs.amount > rhs.StandardAmount;
-        }
-
-        /// <summary>
-        /// Greater than operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;<#= ClassName #>&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;<#= ClassName #>&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
-        public static bool operator >(IMeasure<<#= ClassName #>> lhs, <#= ClassName #> rhs)
-        {
-            return lhs.StandardAmount > rhs.amount;
         }
 
         /// <summary>
@@ -866,17 +888,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Less than or equal to operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;<#= ClassName #>&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;<#= ClassName #>&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
-        public static bool operator <=(IMeasure<<#= ClassName #>> lhs, <#= ClassName #> rhs)
-        {
-            return lhs.StandardAmount <= rhs.amount;
-        }
-
-        /// <summary>
         /// Greater than or equal to operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -896,17 +907,6 @@ namespace Cureos.Measures.Quantities
         public static bool operator >=(<#= ClassName #> lhs, IMeasure<<#= ClassName #>> rhs)
         {
             return lhs.amount >= rhs.StandardAmount;
-        }
-
-        /// <summary>
-        /// Greater than or equal to operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;<#= ClassName #>&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;<#= ClassName #>&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
-        public static bool operator >=(IMeasure<<#= ClassName #>> lhs, <#= ClassName #> rhs)
-        {
-            return lhs.StandardAmount >= rhs.amount;
         }
 
         /// <summary>
@@ -932,17 +932,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Equality operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;<#= ClassName #>&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;<#= ClassName #>&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if the two measure objects are equal; false otherwise</returns>
-        public static bool operator ==(IMeasure<<#= ClassName #>> lhs, <#= ClassName #> rhs)
-        {
-            return lhs.StandardAmount == rhs.amount;
-        }
-
-        /// <summary>
         /// Inequality operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -962,17 +951,6 @@ namespace Cureos.Measures.Quantities
         public static bool operator !=(<#= ClassName #> lhs, IMeasure<<#= ClassName #>> rhs)
         {
             return lhs.amount != rhs.StandardAmount;
-        }
-
-        /// <summary>
-        /// Inequality operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;<#= ClassName #>&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;<#= ClassName #>&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if the two measure objects are not equal; false if they are equal</returns>
-        public static bool operator !=(IMeasure<<#= ClassName #>> lhs, <#= ClassName #> rhs)
-        {
-            return lhs.StandardAmount != rhs.amount;
         }
 
         #endregion

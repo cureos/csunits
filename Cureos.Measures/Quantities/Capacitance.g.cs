@@ -492,21 +492,21 @@ namespace Cureos.Measures.Quantities
         #region OPERATORS
 
         /// <summary>
-        /// Casts a float value to a Capacitance object
-        /// </summary>
-        /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Capacitance representation of <paramref name="standardAmount"/> in unit Farad</returns>
-        public static explicit operator Capacitance(float standardAmount)
-        {
-            return new Capacitance(standardAmount);
-        }
-
-        /// <summary>
         /// Casts a double value to a Capacitance object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
         /// <returns>Capacitance representation of <paramref name="standardAmount"/> in unit Farad</returns>
         public static explicit operator Capacitance(double standardAmount)
+        {
+            return new Capacitance(standardAmount);
+        }
+
+        /// <summary>
+        /// Casts a float value to a Capacitance object
+        /// </summary>
+        /// <param name="standardAmount">Standard amount</param>
+        /// <returns>Capacitance representation of <paramref name="standardAmount"/> in unit Farad</returns>
+        public static explicit operator Capacitance(float standardAmount)
         {
             return new Capacitance(standardAmount);
         }
@@ -571,9 +571,31 @@ namespace Cureos.Measures.Quantities
         /// <param name="scalar">Floating-point scalar</param>
         /// <param name="measure">Measure object</param>
         /// <returns>Product of the scalar and the measure object</returns>
-        public static Capacitance operator *(AmountType scalar, Capacitance measure)
+        public static Capacitance operator *(double scalar, Capacitance measure)
         {
-            return new Capacitance(scalar * measure.amount);
+            return new Capacitance((AmountType)scalar * measure.amount);
+        }
+
+        /// <summary>
+        /// Multiply a scalar and a measure object
+        /// </summary>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <param name="measure">Measure object</param>
+        /// <returns>Product of the scalar and the measure object</returns>
+        public static Capacitance operator *(float scalar, Capacitance measure)
+        {
+            return new Capacitance((AmountType)scalar * measure.amount);
+        }
+
+        /// <summary>
+        /// Multiply a scalar and a measure object
+        /// </summary>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <param name="measure">Measure object</param>
+        /// <returns>Product of the scalar and the measure object</returns>
+        public static Capacitance operator *(decimal scalar, Capacitance measure)
+        {
+            return new Capacitance((AmountType)scalar * measure.amount);
         }
 
         /// <summary>
@@ -582,20 +604,31 @@ namespace Cureos.Measures.Quantities
         /// <param name="measure">Measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Product of the measure object and the scalar</returns>
-        public static Capacitance operator *(Capacitance measure, AmountType scalar)
+        public static Capacitance operator *(Capacitance measure, double scalar)
         {
-            return new Capacitance(measure.amount * scalar);
+            return new Capacitance(measure.amount * (AmountType)scalar);
         }
 
         /// <summary>
-        /// Multiply a number and a measure object
+        /// Multiply a measure object and a scalar
         /// </summary>
-        /// <param name="scalar">Floating-point number</param>
         /// <param name="measure">Measure object</param>
-        /// <returns>Product of the number and the measure object</returns>
-        public static Capacitance operator *(IMeasure<Number> scalar, Capacitance measure)
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Product of the measure object and the scalar</returns>
+        public static Capacitance operator *(Capacitance measure, float scalar)
         {
-            return new Capacitance(scalar.StandardAmount * measure.amount);
+            return new Capacitance(measure.amount * (AmountType)scalar);
+        }
+
+        /// <summary>
+        /// Multiply a measure object and a scalar
+        /// </summary>
+        /// <param name="measure">Measure object</param>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Product of the measure object and the scalar</returns>
+        public static Capacitance operator *(Capacitance measure, decimal scalar)
+        {
+            return new Capacitance(measure.amount * (AmountType)scalar);
         }
 
         /// <summary>
@@ -615,9 +648,31 @@ namespace Cureos.Measures.Quantities
         /// <param name="measure">measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Quotient of the measure object and the scalar</returns>
-        public static Capacitance operator /(Capacitance measure, AmountType scalar)
+        public static Capacitance operator /(Capacitance measure, double scalar)
         {
-            return new Capacitance(measure.amount / scalar);
+            return new Capacitance(measure.amount / (AmountType)scalar);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a scalar
+        /// </summary>
+        /// <param name="measure">measure object</param>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Quotient of the measure object and the scalar</returns>
+        public static Capacitance operator /(Capacitance measure, float scalar)
+        {
+            return new Capacitance(measure.amount / (AmountType)scalar);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a scalar
+        /// </summary>
+        /// <param name="measure">measure object</param>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Quotient of the measure object and the scalar</returns>
+        public static Capacitance operator /(Capacitance measure, decimal scalar)
+        {
+            return new Capacitance(measure.amount / (AmountType)scalar);
         }
 
         /// <summary>
@@ -640,17 +695,6 @@ namespace Cureos.Measures.Quantities
         public static Number operator /(Capacitance dividend, Capacitance divisor)
         {
             return new Number(dividend.amount / divisor.amount);
-        }
-
-        /// <summary>
-        /// Divide a measure object with a measure object of the same quantity
-        /// </summary>
-        /// <param name="dividend">Dividend of specific quantity</param>
-        /// <param name="divisor">Divisor of same quantity as dividend</param>
-        /// <returns>Quotient of the two measure objects</returns>
-        public static Number operator /(IMeasure<Capacitance> dividend, Capacitance divisor)
-        {
-            return new Number(dividend.StandardAmount / divisor.amount);
         }
 
         /// <summary>
@@ -687,17 +731,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Less than operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;Capacitance&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;Capacitance&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is less than second measure object; false otherwise</returns>
-        public static bool operator <(IMeasure<Capacitance> lhs, Capacitance rhs)
-        {
-            return lhs.StandardAmount < rhs.amount;
-        }
-
-        /// <summary>
         /// Greater than operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -717,17 +750,6 @@ namespace Cureos.Measures.Quantities
         public static bool operator >(Capacitance lhs, IMeasure<Capacitance> rhs)
         {
             return lhs.amount > rhs.StandardAmount;
-        }
-
-        /// <summary>
-        /// Greater than operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;Capacitance&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;Capacitance&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
-        public static bool operator >(IMeasure<Capacitance> lhs, Capacitance rhs)
-        {
-            return lhs.StandardAmount > rhs.amount;
         }
 
         /// <summary>
@@ -753,17 +775,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Less than or equal to operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;Capacitance&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;Capacitance&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
-        public static bool operator <=(IMeasure<Capacitance> lhs, Capacitance rhs)
-        {
-            return lhs.StandardAmount <= rhs.amount;
-        }
-
-        /// <summary>
         /// Greater than or equal to operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -783,17 +794,6 @@ namespace Cureos.Measures.Quantities
         public static bool operator >=(Capacitance lhs, IMeasure<Capacitance> rhs)
         {
             return lhs.amount >= rhs.StandardAmount;
-        }
-
-        /// <summary>
-        /// Greater than or equal to operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;Capacitance&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;Capacitance&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
-        public static bool operator >=(IMeasure<Capacitance> lhs, Capacitance rhs)
-        {
-            return lhs.StandardAmount >= rhs.amount;
         }
 
         /// <summary>
@@ -819,17 +819,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Equality operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;Capacitance&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;Capacitance&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if the two measure objects are equal; false otherwise</returns>
-        public static bool operator ==(IMeasure<Capacitance> lhs, Capacitance rhs)
-        {
-            return lhs.StandardAmount == rhs.amount;
-        }
-
-        /// <summary>
         /// Inequality operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -849,17 +838,6 @@ namespace Cureos.Measures.Quantities
         public static bool operator !=(Capacitance lhs, IMeasure<Capacitance> rhs)
         {
             return lhs.amount != rhs.StandardAmount;
-        }
-
-        /// <summary>
-        /// Inequality operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;Capacitance&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;Capacitance&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if the two measure objects are not equal; false if they are equal</returns>
-        public static bool operator !=(IMeasure<Capacitance> lhs, Capacitance rhs)
-        {
-            return lhs.StandardAmount != rhs.amount;
         }
 
         #endregion

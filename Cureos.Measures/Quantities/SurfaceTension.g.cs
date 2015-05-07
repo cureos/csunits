@@ -493,21 +493,21 @@ namespace Cureos.Measures.Quantities
         #region OPERATORS
 
         /// <summary>
-        /// Casts a float value to a SurfaceTension object
-        /// </summary>
-        /// <param name="standardAmount">Standard amount</param>
-        /// <returns>SurfaceTension representation of <paramref name="standardAmount"/> in unit NewtonPerMeter</returns>
-        public static explicit operator SurfaceTension(float standardAmount)
-        {
-            return new SurfaceTension(standardAmount);
-        }
-
-        /// <summary>
         /// Casts a double value to a SurfaceTension object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
         /// <returns>SurfaceTension representation of <paramref name="standardAmount"/> in unit NewtonPerMeter</returns>
         public static explicit operator SurfaceTension(double standardAmount)
+        {
+            return new SurfaceTension(standardAmount);
+        }
+
+        /// <summary>
+        /// Casts a float value to a SurfaceTension object
+        /// </summary>
+        /// <param name="standardAmount">Standard amount</param>
+        /// <returns>SurfaceTension representation of <paramref name="standardAmount"/> in unit NewtonPerMeter</returns>
+        public static explicit operator SurfaceTension(float standardAmount)
         {
             return new SurfaceTension(standardAmount);
         }
@@ -572,9 +572,31 @@ namespace Cureos.Measures.Quantities
         /// <param name="scalar">Floating-point scalar</param>
         /// <param name="measure">Measure object</param>
         /// <returns>Product of the scalar and the measure object</returns>
-        public static SurfaceTension operator *(AmountType scalar, SurfaceTension measure)
+        public static SurfaceTension operator *(double scalar, SurfaceTension measure)
         {
-            return new SurfaceTension(scalar * measure.amount);
+            return new SurfaceTension((AmountType)scalar * measure.amount);
+        }
+
+        /// <summary>
+        /// Multiply a scalar and a measure object
+        /// </summary>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <param name="measure">Measure object</param>
+        /// <returns>Product of the scalar and the measure object</returns>
+        public static SurfaceTension operator *(float scalar, SurfaceTension measure)
+        {
+            return new SurfaceTension((AmountType)scalar * measure.amount);
+        }
+
+        /// <summary>
+        /// Multiply a scalar and a measure object
+        /// </summary>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <param name="measure">Measure object</param>
+        /// <returns>Product of the scalar and the measure object</returns>
+        public static SurfaceTension operator *(decimal scalar, SurfaceTension measure)
+        {
+            return new SurfaceTension((AmountType)scalar * measure.amount);
         }
 
         /// <summary>
@@ -583,20 +605,31 @@ namespace Cureos.Measures.Quantities
         /// <param name="measure">Measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Product of the measure object and the scalar</returns>
-        public static SurfaceTension operator *(SurfaceTension measure, AmountType scalar)
+        public static SurfaceTension operator *(SurfaceTension measure, double scalar)
         {
-            return new SurfaceTension(measure.amount * scalar);
+            return new SurfaceTension(measure.amount * (AmountType)scalar);
         }
 
         /// <summary>
-        /// Multiply a number and a measure object
+        /// Multiply a measure object and a scalar
         /// </summary>
-        /// <param name="scalar">Floating-point number</param>
         /// <param name="measure">Measure object</param>
-        /// <returns>Product of the number and the measure object</returns>
-        public static SurfaceTension operator *(IMeasure<Number> scalar, SurfaceTension measure)
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Product of the measure object and the scalar</returns>
+        public static SurfaceTension operator *(SurfaceTension measure, float scalar)
         {
-            return new SurfaceTension(scalar.StandardAmount * measure.amount);
+            return new SurfaceTension(measure.amount * (AmountType)scalar);
+        }
+
+        /// <summary>
+        /// Multiply a measure object and a scalar
+        /// </summary>
+        /// <param name="measure">Measure object</param>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Product of the measure object and the scalar</returns>
+        public static SurfaceTension operator *(SurfaceTension measure, decimal scalar)
+        {
+            return new SurfaceTension(measure.amount * (AmountType)scalar);
         }
 
         /// <summary>
@@ -616,9 +649,31 @@ namespace Cureos.Measures.Quantities
         /// <param name="measure">measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Quotient of the measure object and the scalar</returns>
-        public static SurfaceTension operator /(SurfaceTension measure, AmountType scalar)
+        public static SurfaceTension operator /(SurfaceTension measure, double scalar)
         {
-            return new SurfaceTension(measure.amount / scalar);
+            return new SurfaceTension(measure.amount / (AmountType)scalar);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a scalar
+        /// </summary>
+        /// <param name="measure">measure object</param>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Quotient of the measure object and the scalar</returns>
+        public static SurfaceTension operator /(SurfaceTension measure, float scalar)
+        {
+            return new SurfaceTension(measure.amount / (AmountType)scalar);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a scalar
+        /// </summary>
+        /// <param name="measure">measure object</param>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Quotient of the measure object and the scalar</returns>
+        public static SurfaceTension operator /(SurfaceTension measure, decimal scalar)
+        {
+            return new SurfaceTension(measure.amount / (AmountType)scalar);
         }
 
         /// <summary>
@@ -641,17 +696,6 @@ namespace Cureos.Measures.Quantities
         public static Number operator /(SurfaceTension dividend, SurfaceTension divisor)
         {
             return new Number(dividend.amount / divisor.amount);
-        }
-
-        /// <summary>
-        /// Divide a measure object with a measure object of the same quantity
-        /// </summary>
-        /// <param name="dividend">Dividend of specific quantity</param>
-        /// <param name="divisor">Divisor of same quantity as dividend</param>
-        /// <returns>Quotient of the two measure objects</returns>
-        public static Number operator /(IMeasure<SurfaceTension> dividend, SurfaceTension divisor)
-        {
-            return new Number(dividend.StandardAmount / divisor.amount);
         }
 
         /// <summary>
@@ -688,17 +732,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Less than operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;SurfaceTension&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;SurfaceTension&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is less than second measure object; false otherwise</returns>
-        public static bool operator <(IMeasure<SurfaceTension> lhs, SurfaceTension rhs)
-        {
-            return lhs.StandardAmount < rhs.amount;
-        }
-
-        /// <summary>
         /// Greater than operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -718,17 +751,6 @@ namespace Cureos.Measures.Quantities
         public static bool operator >(SurfaceTension lhs, IMeasure<SurfaceTension> rhs)
         {
             return lhs.amount > rhs.StandardAmount;
-        }
-
-        /// <summary>
-        /// Greater than operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;SurfaceTension&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;SurfaceTension&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
-        public static bool operator >(IMeasure<SurfaceTension> lhs, SurfaceTension rhs)
-        {
-            return lhs.StandardAmount > rhs.amount;
         }
 
         /// <summary>
@@ -754,17 +776,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Less than or equal to operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;SurfaceTension&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;SurfaceTension&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
-        public static bool operator <=(IMeasure<SurfaceTension> lhs, SurfaceTension rhs)
-        {
-            return lhs.StandardAmount <= rhs.amount;
-        }
-
-        /// <summary>
         /// Greater than or equal to operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -784,17 +795,6 @@ namespace Cureos.Measures.Quantities
         public static bool operator >=(SurfaceTension lhs, IMeasure<SurfaceTension> rhs)
         {
             return lhs.amount >= rhs.StandardAmount;
-        }
-
-        /// <summary>
-        /// Greater than or equal to operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;SurfaceTension&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;SurfaceTension&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
-        public static bool operator >=(IMeasure<SurfaceTension> lhs, SurfaceTension rhs)
-        {
-            return lhs.StandardAmount >= rhs.amount;
         }
 
         /// <summary>
@@ -820,17 +820,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Equality operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;SurfaceTension&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;SurfaceTension&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if the two measure objects are equal; false otherwise</returns>
-        public static bool operator ==(IMeasure<SurfaceTension> lhs, SurfaceTension rhs)
-        {
-            return lhs.StandardAmount == rhs.amount;
-        }
-
-        /// <summary>
         /// Inequality operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -850,17 +839,6 @@ namespace Cureos.Measures.Quantities
         public static bool operator !=(SurfaceTension lhs, IMeasure<SurfaceTension> rhs)
         {
             return lhs.amount != rhs.StandardAmount;
-        }
-
-        /// <summary>
-        /// Inequality operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;SurfaceTension&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;SurfaceTension&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if the two measure objects are not equal; false if they are equal</returns>
-        public static bool operator !=(IMeasure<SurfaceTension> lhs, SurfaceTension rhs)
-        {
-            return lhs.StandardAmount != rhs.amount;
         }
 
         #endregion

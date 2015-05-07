@@ -493,21 +493,21 @@ namespace Cureos.Measures.Quantities
         #region OPERATORS
 
         /// <summary>
-        /// Casts a float value to a ElectricConductance object
-        /// </summary>
-        /// <param name="standardAmount">Standard amount</param>
-        /// <returns>ElectricConductance representation of <paramref name="standardAmount"/> in unit Siemens</returns>
-        public static explicit operator ElectricConductance(float standardAmount)
-        {
-            return new ElectricConductance(standardAmount);
-        }
-
-        /// <summary>
         /// Casts a double value to a ElectricConductance object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
         /// <returns>ElectricConductance representation of <paramref name="standardAmount"/> in unit Siemens</returns>
         public static explicit operator ElectricConductance(double standardAmount)
+        {
+            return new ElectricConductance(standardAmount);
+        }
+
+        /// <summary>
+        /// Casts a float value to a ElectricConductance object
+        /// </summary>
+        /// <param name="standardAmount">Standard amount</param>
+        /// <returns>ElectricConductance representation of <paramref name="standardAmount"/> in unit Siemens</returns>
+        public static explicit operator ElectricConductance(float standardAmount)
         {
             return new ElectricConductance(standardAmount);
         }
@@ -572,9 +572,31 @@ namespace Cureos.Measures.Quantities
         /// <param name="scalar">Floating-point scalar</param>
         /// <param name="measure">Measure object</param>
         /// <returns>Product of the scalar and the measure object</returns>
-        public static ElectricConductance operator *(AmountType scalar, ElectricConductance measure)
+        public static ElectricConductance operator *(double scalar, ElectricConductance measure)
         {
-            return new ElectricConductance(scalar * measure.amount);
+            return new ElectricConductance((AmountType)scalar * measure.amount);
+        }
+
+        /// <summary>
+        /// Multiply a scalar and a measure object
+        /// </summary>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <param name="measure">Measure object</param>
+        /// <returns>Product of the scalar and the measure object</returns>
+        public static ElectricConductance operator *(float scalar, ElectricConductance measure)
+        {
+            return new ElectricConductance((AmountType)scalar * measure.amount);
+        }
+
+        /// <summary>
+        /// Multiply a scalar and a measure object
+        /// </summary>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <param name="measure">Measure object</param>
+        /// <returns>Product of the scalar and the measure object</returns>
+        public static ElectricConductance operator *(decimal scalar, ElectricConductance measure)
+        {
+            return new ElectricConductance((AmountType)scalar * measure.amount);
         }
 
         /// <summary>
@@ -583,20 +605,31 @@ namespace Cureos.Measures.Quantities
         /// <param name="measure">Measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Product of the measure object and the scalar</returns>
-        public static ElectricConductance operator *(ElectricConductance measure, AmountType scalar)
+        public static ElectricConductance operator *(ElectricConductance measure, double scalar)
         {
-            return new ElectricConductance(measure.amount * scalar);
+            return new ElectricConductance(measure.amount * (AmountType)scalar);
         }
 
         /// <summary>
-        /// Multiply a number and a measure object
+        /// Multiply a measure object and a scalar
         /// </summary>
-        /// <param name="scalar">Floating-point number</param>
         /// <param name="measure">Measure object</param>
-        /// <returns>Product of the number and the measure object</returns>
-        public static ElectricConductance operator *(IMeasure<Number> scalar, ElectricConductance measure)
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Product of the measure object and the scalar</returns>
+        public static ElectricConductance operator *(ElectricConductance measure, float scalar)
         {
-            return new ElectricConductance(scalar.StandardAmount * measure.amount);
+            return new ElectricConductance(measure.amount * (AmountType)scalar);
+        }
+
+        /// <summary>
+        /// Multiply a measure object and a scalar
+        /// </summary>
+        /// <param name="measure">Measure object</param>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Product of the measure object and the scalar</returns>
+        public static ElectricConductance operator *(ElectricConductance measure, decimal scalar)
+        {
+            return new ElectricConductance(measure.amount * (AmountType)scalar);
         }
 
         /// <summary>
@@ -616,9 +649,31 @@ namespace Cureos.Measures.Quantities
         /// <param name="measure">measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Quotient of the measure object and the scalar</returns>
-        public static ElectricConductance operator /(ElectricConductance measure, AmountType scalar)
+        public static ElectricConductance operator /(ElectricConductance measure, double scalar)
         {
-            return new ElectricConductance(measure.amount / scalar);
+            return new ElectricConductance(measure.amount / (AmountType)scalar);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a scalar
+        /// </summary>
+        /// <param name="measure">measure object</param>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Quotient of the measure object and the scalar</returns>
+        public static ElectricConductance operator /(ElectricConductance measure, float scalar)
+        {
+            return new ElectricConductance(measure.amount / (AmountType)scalar);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a scalar
+        /// </summary>
+        /// <param name="measure">measure object</param>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Quotient of the measure object and the scalar</returns>
+        public static ElectricConductance operator /(ElectricConductance measure, decimal scalar)
+        {
+            return new ElectricConductance(measure.amount / (AmountType)scalar);
         }
 
         /// <summary>
@@ -641,17 +696,6 @@ namespace Cureos.Measures.Quantities
         public static Number operator /(ElectricConductance dividend, ElectricConductance divisor)
         {
             return new Number(dividend.amount / divisor.amount);
-        }
-
-        /// <summary>
-        /// Divide a measure object with a measure object of the same quantity
-        /// </summary>
-        /// <param name="dividend">Dividend of specific quantity</param>
-        /// <param name="divisor">Divisor of same quantity as dividend</param>
-        /// <returns>Quotient of the two measure objects</returns>
-        public static Number operator /(IMeasure<ElectricConductance> dividend, ElectricConductance divisor)
-        {
-            return new Number(dividend.StandardAmount / divisor.amount);
         }
 
         /// <summary>
@@ -688,17 +732,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Less than operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;ElectricConductance&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;ElectricConductance&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is less than second measure object; false otherwise</returns>
-        public static bool operator <(IMeasure<ElectricConductance> lhs, ElectricConductance rhs)
-        {
-            return lhs.StandardAmount < rhs.amount;
-        }
-
-        /// <summary>
         /// Greater than operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -718,17 +751,6 @@ namespace Cureos.Measures.Quantities
         public static bool operator >(ElectricConductance lhs, IMeasure<ElectricConductance> rhs)
         {
             return lhs.amount > rhs.StandardAmount;
-        }
-
-        /// <summary>
-        /// Greater than operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;ElectricConductance&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;ElectricConductance&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
-        public static bool operator >(IMeasure<ElectricConductance> lhs, ElectricConductance rhs)
-        {
-            return lhs.StandardAmount > rhs.amount;
         }
 
         /// <summary>
@@ -754,17 +776,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Less than or equal to operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;ElectricConductance&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;ElectricConductance&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
-        public static bool operator <=(IMeasure<ElectricConductance> lhs, ElectricConductance rhs)
-        {
-            return lhs.StandardAmount <= rhs.amount;
-        }
-
-        /// <summary>
         /// Greater than or equal to operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -784,17 +795,6 @@ namespace Cureos.Measures.Quantities
         public static bool operator >=(ElectricConductance lhs, IMeasure<ElectricConductance> rhs)
         {
             return lhs.amount >= rhs.StandardAmount;
-        }
-
-        /// <summary>
-        /// Greater than or equal to operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;ElectricConductance&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;ElectricConductance&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
-        public static bool operator >=(IMeasure<ElectricConductance> lhs, ElectricConductance rhs)
-        {
-            return lhs.StandardAmount >= rhs.amount;
         }
 
         /// <summary>
@@ -820,17 +820,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Equality operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;ElectricConductance&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;ElectricConductance&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if the two measure objects are equal; false otherwise</returns>
-        public static bool operator ==(IMeasure<ElectricConductance> lhs, ElectricConductance rhs)
-        {
-            return lhs.StandardAmount == rhs.amount;
-        }
-
-        /// <summary>
         /// Inequality operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -850,17 +839,6 @@ namespace Cureos.Measures.Quantities
         public static bool operator !=(ElectricConductance lhs, IMeasure<ElectricConductance> rhs)
         {
             return lhs.amount != rhs.StandardAmount;
-        }
-
-        /// <summary>
-        /// Inequality operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;ElectricConductance&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;ElectricConductance&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if the two measure objects are not equal; false if they are equal</returns>
-        public static bool operator !=(IMeasure<ElectricConductance> lhs, ElectricConductance rhs)
-        {
-            return lhs.StandardAmount != rhs.amount;
         }
 
         #endregion

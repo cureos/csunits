@@ -482,21 +482,21 @@ namespace Cureos.Measures.Quantities
         #region OPERATORS
 
         /// <summary>
-        /// Casts a float value to a RefractiveIndex object
-        /// </summary>
-        /// <param name="standardAmount">Standard amount</param>
-        /// <returns>RefractiveIndex representation of <paramref name="standardAmount"/> in unit One</returns>
-        public static explicit operator RefractiveIndex(float standardAmount)
-        {
-            return new RefractiveIndex(standardAmount);
-        }
-
-        /// <summary>
         /// Casts a double value to a RefractiveIndex object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
         /// <returns>RefractiveIndex representation of <paramref name="standardAmount"/> in unit One</returns>
         public static explicit operator RefractiveIndex(double standardAmount)
+        {
+            return new RefractiveIndex(standardAmount);
+        }
+
+        /// <summary>
+        /// Casts a float value to a RefractiveIndex object
+        /// </summary>
+        /// <param name="standardAmount">Standard amount</param>
+        /// <returns>RefractiveIndex representation of <paramref name="standardAmount"/> in unit One</returns>
+        public static explicit operator RefractiveIndex(float standardAmount)
         {
             return new RefractiveIndex(standardAmount);
         }
@@ -561,9 +561,31 @@ namespace Cureos.Measures.Quantities
         /// <param name="scalar">Floating-point scalar</param>
         /// <param name="measure">Measure object</param>
         /// <returns>Product of the scalar and the measure object</returns>
-        public static RefractiveIndex operator *(AmountType scalar, RefractiveIndex measure)
+        public static RefractiveIndex operator *(double scalar, RefractiveIndex measure)
         {
-            return new RefractiveIndex(scalar * measure.amount);
+            return new RefractiveIndex((AmountType)scalar * measure.amount);
+        }
+
+        /// <summary>
+        /// Multiply a scalar and a measure object
+        /// </summary>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <param name="measure">Measure object</param>
+        /// <returns>Product of the scalar and the measure object</returns>
+        public static RefractiveIndex operator *(float scalar, RefractiveIndex measure)
+        {
+            return new RefractiveIndex((AmountType)scalar * measure.amount);
+        }
+
+        /// <summary>
+        /// Multiply a scalar and a measure object
+        /// </summary>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <param name="measure">Measure object</param>
+        /// <returns>Product of the scalar and the measure object</returns>
+        public static RefractiveIndex operator *(decimal scalar, RefractiveIndex measure)
+        {
+            return new RefractiveIndex((AmountType)scalar * measure.amount);
         }
 
         /// <summary>
@@ -572,20 +594,31 @@ namespace Cureos.Measures.Quantities
         /// <param name="measure">Measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Product of the measure object and the scalar</returns>
-        public static RefractiveIndex operator *(RefractiveIndex measure, AmountType scalar)
+        public static RefractiveIndex operator *(RefractiveIndex measure, double scalar)
         {
-            return new RefractiveIndex(measure.amount * scalar);
+            return new RefractiveIndex(measure.amount * (AmountType)scalar);
         }
 
         /// <summary>
-        /// Multiply a number and a measure object
+        /// Multiply a measure object and a scalar
         /// </summary>
-        /// <param name="scalar">Floating-point number</param>
         /// <param name="measure">Measure object</param>
-        /// <returns>Product of the number and the measure object</returns>
-        public static RefractiveIndex operator *(IMeasure<Number> scalar, RefractiveIndex measure)
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Product of the measure object and the scalar</returns>
+        public static RefractiveIndex operator *(RefractiveIndex measure, float scalar)
         {
-            return new RefractiveIndex(scalar.StandardAmount * measure.amount);
+            return new RefractiveIndex(measure.amount * (AmountType)scalar);
+        }
+
+        /// <summary>
+        /// Multiply a measure object and a scalar
+        /// </summary>
+        /// <param name="measure">Measure object</param>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Product of the measure object and the scalar</returns>
+        public static RefractiveIndex operator *(RefractiveIndex measure, decimal scalar)
+        {
+            return new RefractiveIndex(measure.amount * (AmountType)scalar);
         }
 
         /// <summary>
@@ -605,9 +638,31 @@ namespace Cureos.Measures.Quantities
         /// <param name="measure">measure object</param>
         /// <param name="scalar">Floating-point scalar</param>
         /// <returns>Quotient of the measure object and the scalar</returns>
-        public static RefractiveIndex operator /(RefractiveIndex measure, AmountType scalar)
+        public static RefractiveIndex operator /(RefractiveIndex measure, double scalar)
         {
-            return new RefractiveIndex(measure.amount / scalar);
+            return new RefractiveIndex(measure.amount / (AmountType)scalar);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a scalar
+        /// </summary>
+        /// <param name="measure">measure object</param>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Quotient of the measure object and the scalar</returns>
+        public static RefractiveIndex operator /(RefractiveIndex measure, float scalar)
+        {
+            return new RefractiveIndex(measure.amount / (AmountType)scalar);
+        }
+
+        /// <summary>
+        /// Divide a measure object with a scalar
+        /// </summary>
+        /// <param name="measure">measure object</param>
+        /// <param name="scalar">Floating-point scalar</param>
+        /// <returns>Quotient of the measure object and the scalar</returns>
+        public static RefractiveIndex operator /(RefractiveIndex measure, decimal scalar)
+        {
+            return new RefractiveIndex(measure.amount / (AmountType)scalar);
         }
 
         /// <summary>
@@ -630,17 +685,6 @@ namespace Cureos.Measures.Quantities
         public static Number operator /(RefractiveIndex dividend, RefractiveIndex divisor)
         {
             return new Number(dividend.amount / divisor.amount);
-        }
-
-        /// <summary>
-        /// Divide a measure object with a measure object of the same quantity
-        /// </summary>
-        /// <param name="dividend">Dividend of specific quantity</param>
-        /// <param name="divisor">Divisor of same quantity as dividend</param>
-        /// <returns>Quotient of the two measure objects</returns>
-        public static Number operator /(IMeasure<RefractiveIndex> dividend, RefractiveIndex divisor)
-        {
-            return new Number(dividend.StandardAmount / divisor.amount);
         }
 
         /// <summary>
@@ -677,17 +721,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Less than operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;RefractiveIndex&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;RefractiveIndex&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is less than second measure object; false otherwise</returns>
-        public static bool operator <(IMeasure<RefractiveIndex> lhs, RefractiveIndex rhs)
-        {
-            return lhs.StandardAmount < rhs.amount;
-        }
-
-        /// <summary>
         /// Greater than operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -707,17 +740,6 @@ namespace Cureos.Measures.Quantities
         public static bool operator >(RefractiveIndex lhs, IMeasure<RefractiveIndex> rhs)
         {
             return lhs.amount > rhs.StandardAmount;
-        }
-
-        /// <summary>
-        /// Greater than operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;RefractiveIndex&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;RefractiveIndex&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
-        public static bool operator >(IMeasure<RefractiveIndex> lhs, RefractiveIndex rhs)
-        {
-            return lhs.StandardAmount > rhs.amount;
         }
 
         /// <summary>
@@ -743,17 +765,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Less than or equal to operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;RefractiveIndex&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;RefractiveIndex&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
-        public static bool operator <=(IMeasure<RefractiveIndex> lhs, RefractiveIndex rhs)
-        {
-            return lhs.StandardAmount <= rhs.amount;
-        }
-
-        /// <summary>
         /// Greater than or equal to operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -773,17 +784,6 @@ namespace Cureos.Measures.Quantities
         public static bool operator >=(RefractiveIndex lhs, IMeasure<RefractiveIndex> rhs)
         {
             return lhs.amount >= rhs.StandardAmount;
-        }
-
-        /// <summary>
-        /// Greater than or equal to operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;RefractiveIndex&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;RefractiveIndex&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
-        public static bool operator >=(IMeasure<RefractiveIndex> lhs, RefractiveIndex rhs)
-        {
-            return lhs.StandardAmount >= rhs.amount;
         }
 
         /// <summary>
@@ -809,17 +809,6 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
-        /// Equality operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;RefractiveIndex&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;RefractiveIndex&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if the two measure objects are equal; false otherwise</returns>
-        public static bool operator ==(IMeasure<RefractiveIndex> lhs, RefractiveIndex rhs)
-        {
-            return lhs.StandardAmount == rhs.amount;
-        }
-
-        /// <summary>
         /// Inequality operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -839,17 +828,6 @@ namespace Cureos.Measures.Quantities
         public static bool operator !=(RefractiveIndex lhs, IMeasure<RefractiveIndex> rhs)
         {
             return lhs.amount != rhs.StandardAmount;
-        }
-
-        /// <summary>
-        /// Inequality operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;RefractiveIndex&gt; interface
-        /// </summary>
-        /// <param name="lhs">First object (any object implementing IMeasure&lt;RefractiveIndex&gt; interface)</param>
-        /// <param name="rhs">Second object</param>
-        /// <returns>true if the two measure objects are not equal; false if they are equal</returns>
-        public static bool operator !=(IMeasure<RefractiveIndex> lhs, RefractiveIndex rhs)
-        {
-            return lhs.StandardAmount != rhs.amount;
         }
 
         #endregion
