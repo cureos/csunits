@@ -32,7 +32,7 @@ namespace Cureos.Measures
     using AmountType = System.Double;
 #endif
 
-    public static class UnitPrefixMethods
+    internal static class UnitPrefixMethods
     {
         #region STATIC MEMBER VARIABLES
 
