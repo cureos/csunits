@@ -870,16 +870,6 @@ namespace Cureos.Measures.Quantities
         private class MeasureFactory : IMeasureFactory<MomentOfForce>
         {
             /// <summary>
-            /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-            /// </summary>
-            /// <param name="measure">Measure.</param>
-            /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            public IMeasure<MomentOfForce> New(IMeasure<MomentOfForce> measure)
-            {
-                return new Measure<MomentOfForce>(measure);
-            }
-
-            /// <summary>
             /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
             /// </summary>
             /// <param name="amount">Amount.</param>
@@ -890,14 +880,14 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
-            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// Creates a new standard unit measure.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
-            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<MomentOfForce> New(double amount, IUnit<MomentOfForce> unit)
+            /// <returns>Standard unit measure.</returns>
+            public MomentOfForce New(double amount, IUnit<MomentOfForce> unit)
             {
-                return new Measure<MomentOfForce>(amount, unit);
+                return new MomentOfForce(amount, unit);
             }
 
             /// <summary>
@@ -911,14 +901,14 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
-            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// Creates a new standard unit measure.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
-            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<MomentOfForce> New(float amount, IUnit<MomentOfForce> unit)
+            /// <returns>Standard unit measure.</returns>
+            public MomentOfForce New(float amount, IUnit<MomentOfForce> unit)
             {
-                return new Measure<MomentOfForce>(amount, unit);
+                return new MomentOfForce(amount, unit);
             }
 
             /// <summary>
@@ -932,12 +922,45 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
+            /// Creates a new standard unit measure.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Standard unit measure.</returns>
+            public MomentOfForce New(decimal amount, IUnit<MomentOfForce> unit)
+            {
+                return new MomentOfForce(amount, unit);
+            }
+
+            /// <summary>
             /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<MomentOfForce> New(decimal amount, IUnit<MomentOfForce> unit)
+            public IMeasure<MomentOfForce> NewPreserveUnit(double amount, IUnit<MomentOfForce> unit)
+            {
+                return new Measure<MomentOfForce>(amount, unit);
+            }
+
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public IMeasure<MomentOfForce> NewPreserveUnit(float amount, IUnit<MomentOfForce> unit)
+            {
+                return new Measure<MomentOfForce>(amount, unit);
+            }
+
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public IMeasure<MomentOfForce> NewPreserveUnit(decimal amount, IUnit<MomentOfForce> unit)
             {
                 return new Measure<MomentOfForce>(amount, unit);
             }

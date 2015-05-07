@@ -132,6 +132,76 @@ namespace Cureos.Measures
 
         #endregion
 
+        #region OPERATORS
+
+        /// <summary>
+        /// Creates a standard unit measure object of the specified quantity.
+        /// </summary>
+        /// <param name="amount">The quantity amount.</param>
+        /// <param name="unit">The quantity unit.</param>
+        /// <returns>A new standard unit measure object of the specified quantity.</returns>
+        public static Q operator *(double amount, Unit<Q> unit)
+        {
+            return quantity.Factory.New(amount, unit);
+        }
+
+        /// <summary>
+        /// Creates a standard unit measure object of the specified quantity.
+        /// </summary>
+        /// <param name="amount">The quantity amount.</param>
+        /// <param name="unit">The quantity unit.</param>
+        /// <returns>A new standard unit measure object of the specified quantity.</returns>
+        public static Q operator *(float amount, Unit<Q> unit)
+        {
+            return quantity.Factory.New(amount, unit);
+        }
+
+        /// <summary>
+        /// Creates a standard unit measure object of the specified quantity.
+        /// </summary>
+        /// <param name="amount">The quantity amount.</param>
+        /// <param name="unit">The quantity unit.</param>
+        /// <returns>A new standard unit measure object of the specified quantity.</returns>
+        public static Q operator *(decimal amount, Unit<Q> unit)
+        {
+            return quantity.Factory.New(amount, unit);
+        }
+
+        /// <summary>
+        /// Creates a new unit preserving measure object of the specified quantity.
+        /// </summary>
+        /// <param name="amount">The quantity amount.</param>
+        /// <param name="unit">The quantity unit.</param>
+        /// <returns>A new unit preserving measure object of the specified quantity.</returns>
+        public static Q operator ^(double amount, Unit<Q> unit)
+        {
+            return quantity.Factory.New(amount, unit);
+        }
+
+        /// <summary>
+        /// Creates a new unit preserving measure object of the specified quantity.
+        /// </summary>
+        /// <param name="amount">The quantity amount.</param>
+        /// <param name="unit">The quantity unit.</param>
+        /// <returns>A new unit preserving measure object of the specified quantity.</returns>
+        public static Q operator ^(float amount, Unit<Q> unit)
+        {
+            return quantity.Factory.New(amount, unit);
+        }
+
+        /// <summary>
+        /// Creates a new unit preserving measure object of the specified quantity.
+        /// </summary>
+        /// <param name="amount">The quantity amount.</param>
+        /// <param name="unit">The quantity unit.</param>
+        /// <returns>A new unit preserving measure object of the specified quantity.</returns>
+        public static Q operator ^(decimal amount, Unit<Q> unit)
+        {
+            return quantity.Factory.New(amount, unit);
+        }
+
+        #endregion
+
         #region METHODS
 
         /// <summary>
@@ -144,46 +214,6 @@ namespace Cureos.Measures
         public override string ToString()
         {
             return this.DisplayName;
-        }
-
-        #endregion
-
-        #region OPERATORS
-
-        /// <summary>
-        /// Creates a new measure object of the specified quantity.
-        /// </summary>
-        /// <param name="amount">The quantity amount.</param>
-        /// <param name="unit">The quantity unit.</param>
-        /// <returns>A new measure object of the specified quantity.</returns>
-        public static IMeasure<Q> operator *(double amount, Unit<Q> unit)
-        {
-            // ReSharper disable once ImpureMethodCallOnReadonlyValueField
-            return quantity.Factory.New(amount, unit);
-        }
-
-        /// <summary>
-        /// Creates a new measure object of the specified quantity.
-        /// </summary>
-        /// <param name="amount">The quantity amount.</param>
-        /// <param name="unit">The quantity unit.</param>
-        /// <returns>A new measure object of the specified quantity.</returns>
-        public static IMeasure<Q> operator *(float amount, Unit<Q> unit)
-        {
-            // ReSharper disable once ImpureMethodCallOnReadonlyValueField
-            return quantity.Factory.New(amount, unit);
-        }
-
-        /// <summary>
-        /// Creates a new measure object of the specified quantity.
-        /// </summary>
-        /// <param name="amount">The quantity amount.</param>
-        /// <param name="unit">The quantity unit.</param>
-        /// <returns>A new measure object of the specified quantity.</returns>
-        public static IMeasure<Q> operator *(decimal amount, Unit<Q> unit)
-        {
-            // ReSharper disable once ImpureMethodCallOnReadonlyValueField
-            return quantity.Factory.New(amount, unit);
         }
 
         #endregion

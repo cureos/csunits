@@ -21,26 +21,40 @@
 
 namespace Cureos.Measures.Quantities
 {
-    public partial struct Velocity
+    public partial struct Length
     {
-        public static Length operator *(Velocity lhs, Time rhs)
+        #region OPERATORS
+
+        public static Area operator *(Length lhs, Length rhs)
         {
-            return new Length(lhs.amount * rhs.Amount);
+            return new Area(lhs.amount * rhs.amount);
         }
 
-        public static Length operator *(Velocity lhs, IMeasure<Time> rhs)
+        public static Area operator *(Length lhs, IMeasure<Length> rhs)
         {
-            return new Length(lhs.amount * rhs.StandardAmount);
+            return new Area(lhs.amount * rhs.StandardAmount);
         }
 
-        public static Acceleration operator /(Velocity lhs, Time rhs)
+        public static Volume operator *(Length lhs, Area rhs)
         {
-            return new Acceleration(lhs.amount / rhs.Amount);
+            return new Volume(lhs.amount * rhs.Amount);
         }
 
-        public static Acceleration operator /(Velocity lhs, IMeasure<Time> rhs)
+        public static Volume operator *(Length lhs, IMeasure<Area> rhs)
         {
-            return new Acceleration(lhs.amount / rhs.StandardAmount);
+            return new Volume(lhs.amount * rhs.StandardAmount);
         }
+
+        public static Velocity operator /(Length lhs, Time rhs)
+        {
+            return new Velocity(lhs.amount / rhs.Amount);
+        }
+
+        public static Velocity operator /(Length lhs, IMeasure<Time> rhs)
+        {
+            return new Velocity(lhs.amount / rhs.StandardAmount);
+        }
+
+        #endregion
     }
 }

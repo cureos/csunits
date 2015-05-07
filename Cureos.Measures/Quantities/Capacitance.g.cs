@@ -869,16 +869,6 @@ namespace Cureos.Measures.Quantities
         private class MeasureFactory : IMeasureFactory<Capacitance>
         {
             /// <summary>
-            /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-            /// </summary>
-            /// <param name="measure">Measure.</param>
-            /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            public IMeasure<Capacitance> New(IMeasure<Capacitance> measure)
-            {
-                return new Measure<Capacitance>(measure);
-            }
-
-            /// <summary>
             /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
             /// </summary>
             /// <param name="amount">Amount.</param>
@@ -889,14 +879,14 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
-            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// Creates a new standard unit measure.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
-            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<Capacitance> New(double amount, IUnit<Capacitance> unit)
+            /// <returns>Standard unit measure.</returns>
+            public Capacitance New(double amount, IUnit<Capacitance> unit)
             {
-                return new Measure<Capacitance>(amount, unit);
+                return new Capacitance(amount, unit);
             }
 
             /// <summary>
@@ -910,14 +900,14 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
-            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// Creates a new standard unit measure.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
-            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<Capacitance> New(float amount, IUnit<Capacitance> unit)
+            /// <returns>Standard unit measure.</returns>
+            public Capacitance New(float amount, IUnit<Capacitance> unit)
             {
-                return new Measure<Capacitance>(amount, unit);
+                return new Capacitance(amount, unit);
             }
 
             /// <summary>
@@ -931,12 +921,45 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
+            /// Creates a new standard unit measure.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Standard unit measure.</returns>
+            public Capacitance New(decimal amount, IUnit<Capacitance> unit)
+            {
+                return new Capacitance(amount, unit);
+            }
+
+            /// <summary>
             /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<Capacitance> New(decimal amount, IUnit<Capacitance> unit)
+            public IMeasure<Capacitance> NewPreserveUnit(double amount, IUnit<Capacitance> unit)
+            {
+                return new Measure<Capacitance>(amount, unit);
+            }
+
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public IMeasure<Capacitance> NewPreserveUnit(float amount, IUnit<Capacitance> unit)
+            {
+                return new Measure<Capacitance>(amount, unit);
+            }
+
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public IMeasure<Capacitance> NewPreserveUnit(decimal amount, IUnit<Capacitance> unit)
             {
                 return new Measure<Capacitance>(amount, unit);
             }

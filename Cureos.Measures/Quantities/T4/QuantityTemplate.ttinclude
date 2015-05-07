@@ -982,16 +982,6 @@ namespace Cureos.Measures.Quantities
         private class MeasureFactory : IMeasureFactory<<#= ClassName #>>
         {
             /// <summary>
-            /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-            /// </summary>
-            /// <param name="measure">Measure.</param>
-            /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            public IMeasure<<#= ClassName #>> New(IMeasure<<#= ClassName #>> measure)
-            {
-                return new Measure<<#= ClassName #>>(measure);
-            }
-
-            /// <summary>
             /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
             /// </summary>
             /// <param name="amount">Amount.</param>
@@ -1002,14 +992,14 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
-            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// Creates a new standard unit measure.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
-            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<<#= ClassName #>> New(double amount, IUnit<<#= ClassName #>> unit)
+            /// <returns>Standard unit measure.</returns>
+            public <#= ClassName #> New(double amount, IUnit<<#= ClassName #>> unit)
             {
-                return new Measure<<#= ClassName #>>(amount, unit);
+                return new <#= ClassName #>(amount, unit);
             }
 
             /// <summary>
@@ -1023,14 +1013,14 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
-            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// Creates a new standard unit measure.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
-            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<<#= ClassName #>> New(float amount, IUnit<<#= ClassName #>> unit)
+            /// <returns>Standard unit measure.</returns>
+            public <#= ClassName #> New(float amount, IUnit<<#= ClassName #>> unit)
             {
-                return new Measure<<#= ClassName #>>(amount, unit);
+                return new <#= ClassName #>(amount, unit);
             }
 
             /// <summary>
@@ -1044,12 +1034,45 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
+            /// Creates a new standard unit measure.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Standard unit measure.</returns>
+            public <#= ClassName #> New(decimal amount, IUnit<<#= ClassName #>> unit)
+            {
+                return new <#= ClassName #>(amount, unit);
+            }
+
+            /// <summary>
             /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<<#= ClassName #>> New(decimal amount, IUnit<<#= ClassName #>> unit)
+            public IMeasure<<#= ClassName #>> NewPreserveUnit(double amount, IUnit<<#= ClassName #>> unit)
+            {
+                return new Measure<<#= ClassName #>>(amount, unit);
+            }
+
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public IMeasure<<#= ClassName #>> NewPreserveUnit(float amount, IUnit<<#= ClassName #>> unit)
+            {
+                return new Measure<<#= ClassName #>>(amount, unit);
+            }
+
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public IMeasure<<#= ClassName #>> NewPreserveUnit(decimal amount, IUnit<<#= ClassName #>> unit)
             {
                 return new Measure<<#= ClassName #>>(amount, unit);
             }

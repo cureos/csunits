@@ -859,16 +859,6 @@ namespace Cureos.Measures.Quantities
         private class MeasureFactory : IMeasureFactory<RefractiveIndex>
         {
             /// <summary>
-            /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-            /// </summary>
-            /// <param name="measure">Measure.</param>
-            /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            public IMeasure<RefractiveIndex> New(IMeasure<RefractiveIndex> measure)
-            {
-                return new Measure<RefractiveIndex>(measure);
-            }
-
-            /// <summary>
             /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
             /// </summary>
             /// <param name="amount">Amount.</param>
@@ -879,14 +869,14 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
-            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// Creates a new standard unit measure.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
-            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<RefractiveIndex> New(double amount, IUnit<RefractiveIndex> unit)
+            /// <returns>Standard unit measure.</returns>
+            public RefractiveIndex New(double amount, IUnit<RefractiveIndex> unit)
             {
-                return new Measure<RefractiveIndex>(amount, unit);
+                return new RefractiveIndex(amount, unit);
             }
 
             /// <summary>
@@ -900,14 +890,14 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
-            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// Creates a new standard unit measure.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
-            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<RefractiveIndex> New(float amount, IUnit<RefractiveIndex> unit)
+            /// <returns>Standard unit measure.</returns>
+            public RefractiveIndex New(float amount, IUnit<RefractiveIndex> unit)
             {
-                return new Measure<RefractiveIndex>(amount, unit);
+                return new RefractiveIndex(amount, unit);
             }
 
             /// <summary>
@@ -921,12 +911,45 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
+            /// Creates a new standard unit measure.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Standard unit measure.</returns>
+            public RefractiveIndex New(decimal amount, IUnit<RefractiveIndex> unit)
+            {
+                return new RefractiveIndex(amount, unit);
+            }
+
+            /// <summary>
             /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<RefractiveIndex> New(decimal amount, IUnit<RefractiveIndex> unit)
+            public IMeasure<RefractiveIndex> NewPreserveUnit(double amount, IUnit<RefractiveIndex> unit)
+            {
+                return new Measure<RefractiveIndex>(amount, unit);
+            }
+
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public IMeasure<RefractiveIndex> NewPreserveUnit(float amount, IUnit<RefractiveIndex> unit)
+            {
+                return new Measure<RefractiveIndex>(amount, unit);
+            }
+
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public IMeasure<RefractiveIndex> NewPreserveUnit(decimal amount, IUnit<RefractiveIndex> unit)
             {
                 return new Measure<RefractiveIndex>(amount, unit);
             }

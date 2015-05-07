@@ -866,16 +866,6 @@ namespace Cureos.Measures.Quantities
         private class MeasureFactory : IMeasureFactory<Acceleration>
         {
             /// <summary>
-            /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-            /// </summary>
-            /// <param name="measure">Measure.</param>
-            /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            public IMeasure<Acceleration> New(IMeasure<Acceleration> measure)
-            {
-                return new Measure<Acceleration>(measure);
-            }
-
-            /// <summary>
             /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
             /// </summary>
             /// <param name="amount">Amount.</param>
@@ -886,14 +876,14 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
-            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// Creates a new standard unit measure.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
-            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<Acceleration> New(double amount, IUnit<Acceleration> unit)
+            /// <returns>Standard unit measure.</returns>
+            public Acceleration New(double amount, IUnit<Acceleration> unit)
             {
-                return new Measure<Acceleration>(amount, unit);
+                return new Acceleration(amount, unit);
             }
 
             /// <summary>
@@ -907,14 +897,14 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
-            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// Creates a new standard unit measure.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
-            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<Acceleration> New(float amount, IUnit<Acceleration> unit)
+            /// <returns>Standard unit measure.</returns>
+            public Acceleration New(float amount, IUnit<Acceleration> unit)
             {
-                return new Measure<Acceleration>(amount, unit);
+                return new Acceleration(amount, unit);
             }
 
             /// <summary>
@@ -928,12 +918,45 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
+            /// Creates a new standard unit measure.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Standard unit measure.</returns>
+            public Acceleration New(decimal amount, IUnit<Acceleration> unit)
+            {
+                return new Acceleration(amount, unit);
+            }
+
+            /// <summary>
             /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<Acceleration> New(decimal amount, IUnit<Acceleration> unit)
+            public IMeasure<Acceleration> NewPreserveUnit(double amount, IUnit<Acceleration> unit)
+            {
+                return new Measure<Acceleration>(amount, unit);
+            }
+
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public IMeasure<Acceleration> NewPreserveUnit(float amount, IUnit<Acceleration> unit)
+            {
+                return new Measure<Acceleration>(amount, unit);
+            }
+
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public IMeasure<Acceleration> NewPreserveUnit(decimal amount, IUnit<Acceleration> unit)
             {
                 return new Measure<Acceleration>(amount, unit);
             }

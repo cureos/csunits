@@ -868,16 +868,6 @@ namespace Cureos.Measures.Quantities
         private class MeasureFactory : IMeasureFactory<Activity>
         {
             /// <summary>
-            /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-            /// </summary>
-            /// <param name="measure">Measure.</param>
-            /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            public IMeasure<Activity> New(IMeasure<Activity> measure)
-            {
-                return new Measure<Activity>(measure);
-            }
-
-            /// <summary>
             /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
             /// </summary>
             /// <param name="amount">Amount.</param>
@@ -888,14 +878,14 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
-            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// Creates a new standard unit measure.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
-            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<Activity> New(double amount, IUnit<Activity> unit)
+            /// <returns>Standard unit measure.</returns>
+            public Activity New(double amount, IUnit<Activity> unit)
             {
-                return new Measure<Activity>(amount, unit);
+                return new Activity(amount, unit);
             }
 
             /// <summary>
@@ -909,14 +899,14 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
-            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// Creates a new standard unit measure.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
-            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<Activity> New(float amount, IUnit<Activity> unit)
+            /// <returns>Standard unit measure.</returns>
+            public Activity New(float amount, IUnit<Activity> unit)
             {
-                return new Measure<Activity>(amount, unit);
+                return new Activity(amount, unit);
             }
 
             /// <summary>
@@ -930,12 +920,45 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
+            /// Creates a new standard unit measure.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Standard unit measure.</returns>
+            public Activity New(decimal amount, IUnit<Activity> unit)
+            {
+                return new Activity(amount, unit);
+            }
+
+            /// <summary>
             /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<Activity> New(decimal amount, IUnit<Activity> unit)
+            public IMeasure<Activity> NewPreserveUnit(double amount, IUnit<Activity> unit)
+            {
+                return new Measure<Activity>(amount, unit);
+            }
+
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public IMeasure<Activity> NewPreserveUnit(float amount, IUnit<Activity> unit)
+            {
+                return new Measure<Activity>(amount, unit);
+            }
+
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public IMeasure<Activity> NewPreserveUnit(decimal amount, IUnit<Activity> unit)
             {
                 return new Measure<Activity>(amount, unit);
             }

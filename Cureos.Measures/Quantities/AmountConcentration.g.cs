@@ -870,16 +870,6 @@ namespace Cureos.Measures.Quantities
         private class MeasureFactory : IMeasureFactory<AmountConcentration>
         {
             /// <summary>
-            /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-            /// </summary>
-            /// <param name="measure">Measure.</param>
-            /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            public IMeasure<AmountConcentration> New(IMeasure<AmountConcentration> measure)
-            {
-                return new Measure<AmountConcentration>(measure);
-            }
-
-            /// <summary>
             /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
             /// </summary>
             /// <param name="amount">Amount.</param>
@@ -890,14 +880,14 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
-            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// Creates a new standard unit measure.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
-            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<AmountConcentration> New(double amount, IUnit<AmountConcentration> unit)
+            /// <returns>Standard unit measure.</returns>
+            public AmountConcentration New(double amount, IUnit<AmountConcentration> unit)
             {
-                return new Measure<AmountConcentration>(amount, unit);
+                return new AmountConcentration(amount, unit);
             }
 
             /// <summary>
@@ -911,14 +901,14 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
-            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// Creates a new standard unit measure.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
-            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<AmountConcentration> New(float amount, IUnit<AmountConcentration> unit)
+            /// <returns>Standard unit measure.</returns>
+            public AmountConcentration New(float amount, IUnit<AmountConcentration> unit)
             {
-                return new Measure<AmountConcentration>(amount, unit);
+                return new AmountConcentration(amount, unit);
             }
 
             /// <summary>
@@ -932,12 +922,45 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
+            /// Creates a new standard unit measure.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Standard unit measure.</returns>
+            public AmountConcentration New(decimal amount, IUnit<AmountConcentration> unit)
+            {
+                return new AmountConcentration(amount, unit);
+            }
+
+            /// <summary>
             /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<AmountConcentration> New(decimal amount, IUnit<AmountConcentration> unit)
+            public IMeasure<AmountConcentration> NewPreserveUnit(double amount, IUnit<AmountConcentration> unit)
+            {
+                return new Measure<AmountConcentration>(amount, unit);
+            }
+
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public IMeasure<AmountConcentration> NewPreserveUnit(float amount, IUnit<AmountConcentration> unit)
+            {
+                return new Measure<AmountConcentration>(amount, unit);
+            }
+
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public IMeasure<AmountConcentration> NewPreserveUnit(decimal amount, IUnit<AmountConcentration> unit)
             {
                 return new Measure<AmountConcentration>(amount, unit);
             }

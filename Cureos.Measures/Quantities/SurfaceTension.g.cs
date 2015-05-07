@@ -870,16 +870,6 @@ namespace Cureos.Measures.Quantities
         private class MeasureFactory : IMeasureFactory<SurfaceTension>
         {
             /// <summary>
-            /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-            /// </summary>
-            /// <param name="measure">Measure.</param>
-            /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            public IMeasure<SurfaceTension> New(IMeasure<SurfaceTension> measure)
-            {
-                return new Measure<SurfaceTension>(measure);
-            }
-
-            /// <summary>
             /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
             /// </summary>
             /// <param name="amount">Amount.</param>
@@ -890,14 +880,14 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
-            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// Creates a new standard unit measure.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
-            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<SurfaceTension> New(double amount, IUnit<SurfaceTension> unit)
+            /// <returns>Standard unit measure.</returns>
+            public SurfaceTension New(double amount, IUnit<SurfaceTension> unit)
             {
-                return new Measure<SurfaceTension>(amount, unit);
+                return new SurfaceTension(amount, unit);
             }
 
             /// <summary>
@@ -911,14 +901,14 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
-            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// Creates a new standard unit measure.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
-            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<SurfaceTension> New(float amount, IUnit<SurfaceTension> unit)
+            /// <returns>Standard unit measure.</returns>
+            public SurfaceTension New(float amount, IUnit<SurfaceTension> unit)
             {
-                return new Measure<SurfaceTension>(amount, unit);
+                return new SurfaceTension(amount, unit);
             }
 
             /// <summary>
@@ -932,12 +922,45 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
+            /// Creates a new standard unit measure.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Standard unit measure.</returns>
+            public SurfaceTension New(decimal amount, IUnit<SurfaceTension> unit)
+            {
+                return new SurfaceTension(amount, unit);
+            }
+
+            /// <summary>
             /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<SurfaceTension> New(decimal amount, IUnit<SurfaceTension> unit)
+            public IMeasure<SurfaceTension> NewPreserveUnit(double amount, IUnit<SurfaceTension> unit)
+            {
+                return new Measure<SurfaceTension>(amount, unit);
+            }
+
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public IMeasure<SurfaceTension> NewPreserveUnit(float amount, IUnit<SurfaceTension> unit)
+            {
+                return new Measure<SurfaceTension>(amount, unit);
+            }
+
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public IMeasure<SurfaceTension> NewPreserveUnit(decimal amount, IUnit<SurfaceTension> unit)
             {
                 return new Measure<SurfaceTension>(amount, unit);
             }

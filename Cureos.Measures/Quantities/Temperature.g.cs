@@ -874,16 +874,6 @@ namespace Cureos.Measures.Quantities
         private class MeasureFactory : IMeasureFactory<Temperature>
         {
             /// <summary>
-            /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-            /// </summary>
-            /// <param name="measure">Measure.</param>
-            /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            public IMeasure<Temperature> New(IMeasure<Temperature> measure)
-            {
-                return new Measure<Temperature>(measure);
-            }
-
-            /// <summary>
             /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
             /// </summary>
             /// <param name="amount">Amount.</param>
@@ -894,14 +884,14 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
-            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// Creates a new standard unit measure.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
-            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<Temperature> New(double amount, IUnit<Temperature> unit)
+            /// <returns>Standard unit measure.</returns>
+            public Temperature New(double amount, IUnit<Temperature> unit)
             {
-                return new Measure<Temperature>(amount, unit);
+                return new Temperature(amount, unit);
             }
 
             /// <summary>
@@ -915,14 +905,14 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
-            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// Creates a new standard unit measure.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
-            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<Temperature> New(float amount, IUnit<Temperature> unit)
+            /// <returns>Standard unit measure.</returns>
+            public Temperature New(float amount, IUnit<Temperature> unit)
             {
-                return new Measure<Temperature>(amount, unit);
+                return new Temperature(amount, unit);
             }
 
             /// <summary>
@@ -936,12 +926,45 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
+            /// Creates a new standard unit measure.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Standard unit measure.</returns>
+            public Temperature New(decimal amount, IUnit<Temperature> unit)
+            {
+                return new Temperature(amount, unit);
+            }
+
+            /// <summary>
             /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<Temperature> New(decimal amount, IUnit<Temperature> unit)
+            public IMeasure<Temperature> NewPreserveUnit(double amount, IUnit<Temperature> unit)
+            {
+                return new Measure<Temperature>(amount, unit);
+            }
+
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public IMeasure<Temperature> NewPreserveUnit(float amount, IUnit<Temperature> unit)
+            {
+                return new Measure<Temperature>(amount, unit);
+            }
+
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public IMeasure<Temperature> NewPreserveUnit(decimal amount, IUnit<Temperature> unit)
             {
                 return new Measure<Temperature>(amount, unit);
             }

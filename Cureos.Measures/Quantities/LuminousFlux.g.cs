@@ -870,16 +870,6 @@ namespace Cureos.Measures.Quantities
         private class MeasureFactory : IMeasureFactory<LuminousFlux>
         {
             /// <summary>
-            /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-            /// </summary>
-            /// <param name="measure">Measure.</param>
-            /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-            public IMeasure<LuminousFlux> New(IMeasure<LuminousFlux> measure)
-            {
-                return new Measure<LuminousFlux>(measure);
-            }
-
-            /// <summary>
             /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
             /// </summary>
             /// <param name="amount">Amount.</param>
@@ -890,14 +880,14 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
-            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// Creates a new standard unit measure.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
-            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<LuminousFlux> New(double amount, IUnit<LuminousFlux> unit)
+            /// <returns>Standard unit measure.</returns>
+            public LuminousFlux New(double amount, IUnit<LuminousFlux> unit)
             {
-                return new Measure<LuminousFlux>(amount, unit);
+                return new LuminousFlux(amount, unit);
             }
 
             /// <summary>
@@ -911,14 +901,14 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
-            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// Creates a new standard unit measure.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
-            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<LuminousFlux> New(float amount, IUnit<LuminousFlux> unit)
+            /// <returns>Standard unit measure.</returns>
+            public LuminousFlux New(float amount, IUnit<LuminousFlux> unit)
             {
-                return new Measure<LuminousFlux>(amount, unit);
+                return new LuminousFlux(amount, unit);
             }
 
             /// <summary>
@@ -932,12 +922,45 @@ namespace Cureos.Measures.Quantities
             }
 
             /// <summary>
+            /// Creates a new standard unit measure.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Standard unit measure.</returns>
+            public LuminousFlux New(decimal amount, IUnit<LuminousFlux> unit)
+            {
+                return new LuminousFlux(amount, unit);
+            }
+
+            /// <summary>
             /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
             /// </summary>
             /// <param name="amount">Amount.</param>
             /// <param name="unit">Unit.</param>
             /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-            public IMeasure<LuminousFlux> New(decimal amount, IUnit<LuminousFlux> unit)
+            public IMeasure<LuminousFlux> NewPreserveUnit(double amount, IUnit<LuminousFlux> unit)
+            {
+                return new Measure<LuminousFlux>(amount, unit);
+            }
+
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public IMeasure<LuminousFlux> NewPreserveUnit(float amount, IUnit<LuminousFlux> unit)
+            {
+                return new Measure<LuminousFlux>(amount, unit);
+            }
+
+            /// <summary>
+            /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+            /// </summary>
+            /// <param name="amount">Amount.</param>
+            /// <param name="unit">Unit.</param>
+            /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+            public IMeasure<LuminousFlux> NewPreserveUnit(decimal amount, IUnit<LuminousFlux> unit)
             {
                 return new Measure<LuminousFlux>(amount, unit);
             }

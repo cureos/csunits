@@ -19,7 +19,6 @@
  *  License along with CSUnits. If not, see http://www.gnu.org/licenses/.
  */
 
-
 namespace Cureos.Measures
 {
     /// <summary>
@@ -31,13 +30,6 @@ namespace Cureos.Measures
     public interface IMeasureFactory<Q> where Q : struct, IQuantity<Q>
     {
         /// <summary>
-        /// Creates a new standard unit measure from the specified <paramref name="measure"/>.
-        /// </summary>
-        /// <param name="measure">Measure.</param>
-        /// <returns>Standard unit measure from the specified <paramref name="measure"/>.</returns>
-        IMeasure<Q> New(IMeasure<Q> measure);
-
-        /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
         /// </summary>
         /// <param name="amount">Amount.</param>
@@ -45,12 +37,12 @@ namespace Cureos.Measures
         Q New(double amount);
 
         /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// Creates a new standard unit measure.
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        IMeasure<Q> New(double amount, IUnit<Q> unit);
+        /// <returns>Standard unit measure.</returns>
+        Q New(double amount, IUnit<Q> unit);
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
@@ -60,12 +52,12 @@ namespace Cureos.Measures
         Q New(float amount);
 
         /// <summary>
-        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// Creates a new standard unit measure.
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
-        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        IMeasure<Q> New(float amount, IUnit<Q> unit);
+        /// <returns>Standard unit measure.</returns>
+        Q New(float amount, IUnit<Q> unit);
 
         /// <summary>
         /// Creates a new standard unit measure at the specified <paramref name="amount"/>.
@@ -75,11 +67,35 @@ namespace Cureos.Measures
         Q New(decimal amount);
 
         /// <summary>
+        /// Creates a new standard unit measure.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Standard unit measure.</returns>
+        Q New(decimal amount, IUnit<Q> unit);
+
+        /// <summary>
         /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
         /// </summary>
         /// <param name="amount">Amount.</param>
         /// <param name="unit">Unit.</param>
         /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
-        IMeasure<Q> New(decimal amount, IUnit<Q> unit);
+        IMeasure<Q> NewPreserveUnit(double amount, IUnit<Q> unit);
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        IMeasure<Q> NewPreserveUnit(float amount, IUnit<Q> unit);
+
+        /// <summary>
+        /// Creates a new measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="amount">Amount.</param>
+        /// <param name="unit">Unit.</param>
+        /// <returns>Measure from the specified <paramref name="amount"/> and <paramref name="unit"/>.</returns>
+        IMeasure<Q> NewPreserveUnit(decimal amount, IUnit<Q> unit);
     }
 }
