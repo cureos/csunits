@@ -37,11 +37,10 @@ There are also `MeasureDoublet<Q1, Q2>` and `MeasureTriplet<Q1, Q2, Q3>` structu
 
     Console.WriteLine("Initial weight: {0}", initialWgtInGram);
 
-    Length height = new Length(30.0, Length.CentiMeter);
+    Length height = 30.0 * Length.CentiMeter;
     Area area = (Area)0.02;
 
-    Volume vol;
-    ArithmeticOperations.Times(height, area, out vol);
+    Volume vol = height * area;
     var maxVol = new Volume(10.0, Volume.Liter);
 
     if (vol < maxVol)

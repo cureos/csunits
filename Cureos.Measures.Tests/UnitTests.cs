@@ -113,11 +113,19 @@ namespace Cureos.Measures
         }
 
         [Test]
-        public void MultiplicationOperator_LengthAmount_YieldsMeasure()
+        public void MultiplicationOperator_LengthAmount_YieldsLength()
         {
             var length = 5.0 * Length.CentiMeter;
+            Assert.IsInstanceOf<Length>(length);
+            Assert.AreEqual(0.05, length.Amount, 1e-7);
+        }
+
+        [Test]
+        public void UnitPreservingMultiplicationOperator_LengthAmount_YieldsLengthMeasure()
+        {
+            var length = 5.0 ^ Length.CentiMeter;
             Assert.IsInstanceOf<IMeasure<Length>>(length);
-            Assert.AreEqual(0.05, length.StandardAmount, 1e-7);
+            Assert.AreEqual("cm", length.Unit.Symbol);
         }
 
         #endregion
