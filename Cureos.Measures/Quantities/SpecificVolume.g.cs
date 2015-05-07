@@ -158,7 +158,7 @@ namespace Cureos.Measures.Quantities
         /// <summary>
         /// Gets the physical dimension of the quantity in terms of SI units
         /// </summary>
-        public QuantityDimension Dimension
+        QuantityDimension IQuantity.Dimension
         {
             get { return dimension; }
         }
@@ -182,7 +182,7 @@ namespace Cureos.Measures.Quantities
         /// <summary>
         /// Gets the measure factory associated with the quantity.
         /// </summary>
-        public IMeasureFactory<SpecificVolume> Factory
+        IMeasureFactory<SpecificVolume> IQuantity<SpecificVolume>.Factory
         { 
             get { return factory; }
         }
