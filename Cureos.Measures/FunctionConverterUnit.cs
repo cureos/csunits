@@ -73,7 +73,7 @@ namespace Cureos.Measures
         /// </summary>
         /// <param name="amount">Amount in this unit</param>
         /// <returns>Amount converted to standard unit</returns>
-        public override double ConvertAmountToStandardUnit(double amount)
+        public override AmountType ConvertAmountToStandardUnit(AmountType amount)
         {
             return this.convertAmountToStandardUnit(amount);
         }
@@ -84,7 +84,7 @@ namespace Cureos.Measures
         /// </summary>
         /// <param name="standardAmount">Standard amount of the current <see cref="IUnit.Quantity"/>.</param>
         /// <returns>Amount in this unit.</returns>
-        public override double ConvertStandardAmountToUnit(double standardAmount)
+        public override AmountType ConvertStandardAmountToUnit(AmountType standardAmount)
         {
             return this.convertStandardAmountToUnit(standardAmount);
         }

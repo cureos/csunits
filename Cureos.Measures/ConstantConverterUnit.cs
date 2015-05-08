@@ -51,8 +51,8 @@ namespace Cureos.Measures
         /// <param name="symbol">Unit display symbol</param>
         public ConstantConverterUnit(string symbol) : base(true, symbol)
         {
-            this.amountToStandardUnitFactor = 1.0;
-            this.standardAmountToUnitFactor = 1.0;
+            this.amountToStandardUnitFactor = Constants.One;
+            this.standardAmountToUnitFactor = Constants.One;
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Cureos.Measures
             : base(toStandardUnitFactor == Constants.One, symbol)
         {
             this.amountToStandardUnitFactor = toStandardUnitFactor;
-            this.standardAmountToUnitFactor = 1.0 / toStandardUnitFactor;
+            this.standardAmountToUnitFactor = Constants.One / toStandardUnitFactor;
         }
 
         #endregion
@@ -86,7 +86,7 @@ namespace Cureos.Measures
         /// </summary>
         /// <param name="amount">Amount in this unit</param>
         /// <returns>Amount converted to standard unit</returns>
-        public override double ConvertAmountToStandardUnit(double amount)
+        public override AmountType ConvertAmountToStandardUnit(AmountType amount)
         {
             return this.amountToStandardUnitFactor * amount;
         }
@@ -97,7 +97,7 @@ namespace Cureos.Measures
         /// </summary>
         /// <param name="standardAmount">Standard amount of the current <see cref="IUnit.Quantity"/>.</param>
         /// <returns>Amount in this unit.</returns>
-        public override double ConvertStandardAmountToUnit(double standardAmount)
+        public override AmountType ConvertStandardAmountToUnit(AmountType standardAmount)
         {
             return this.standardAmountToUnitFactor * standardAmount;
         }

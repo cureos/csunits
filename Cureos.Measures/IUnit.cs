@@ -59,7 +59,7 @@ namespace Cureos.Measures
         /// </summary>
         /// <param name="amount">Amount in this unit</param>
         /// <returns>Amount converted to standard unit</returns>
-        double ConvertAmountToStandardUnit(double amount);
+        AmountType ConvertAmountToStandardUnit(AmountType amount);
 
         /// <summary>
         /// Convert a standard amount to this unit of the specified quantity
@@ -67,7 +67,7 @@ namespace Cureos.Measures
         /// </summary>
         /// <param name="standardAmount">Standard amount of the current <see cref="Quantity"/>.</param>
         /// <returns>Amount in this unit.</returns>
-        double ConvertStandardAmountToUnit(double standardAmount);
+        AmountType ConvertStandardAmountToUnit(AmountType standardAmount);
     }
 
     /// <summary>
