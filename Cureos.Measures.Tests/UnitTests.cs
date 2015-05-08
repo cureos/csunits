@@ -123,7 +123,7 @@ namespace Cureos.Measures
         [Test]
         public void UnitPreservingMultiplicationOperator_LengthAmount_YieldsLengthMeasure()
         {
-            var length = 5.0 ^ Length.CentiMeter;
+            var length = 5.0 | Length.CentiMeter;
             Assert.IsInstanceOf<IMeasure<Length>>(length);
             Assert.AreEqual("cm", length.Unit.Symbol);
         }

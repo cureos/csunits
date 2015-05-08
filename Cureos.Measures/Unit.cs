@@ -135,6 +135,16 @@ namespace Cureos.Measures
         #region OPERATORS
 
         /// <summary>
+        /// Creates a standard unit measure object, corresponding to 1.0 of the specified <paramref name="unit"/>.
+        /// </summary>
+        /// <param name="unit">Defining unit of the standard measure.</param>
+        /// <returns>Standard unit measure object, corresponding to 1.0 of the specified <paramref name="unit"/>.</returns>
+        public static Q operator +(Unit<Q> unit)
+        {
+            return quantity.Factory.New(1.0, unit);
+        }
+
+        /// <summary>
         /// Creates a standard unit measure object of the specified quantity.
         /// </summary>
         /// <param name="amount">The quantity amount.</param>
@@ -173,7 +183,7 @@ namespace Cureos.Measures
         /// <param name="amount">The quantity amount.</param>
         /// <param name="unit">The quantity unit.</param>
         /// <returns>A new unit preserving measure object of the specified quantity.</returns>
-        public static IMeasure<Q> operator ^(double amount, Unit<Q> unit)
+        public static IMeasure<Q> operator |(double amount, Unit<Q> unit)
         {
             return quantity.Factory.NewPreserveUnit(amount, unit);
         }
@@ -184,7 +194,7 @@ namespace Cureos.Measures
         /// <param name="amount">The quantity amount.</param>
         /// <param name="unit">The quantity unit.</param>
         /// <returns>A new unit preserving measure object of the specified quantity.</returns>
-        public static IMeasure<Q> operator ^(float amount, Unit<Q> unit)
+        public static IMeasure<Q> operator |(float amount, Unit<Q> unit)
         {
             return quantity.Factory.NewPreserveUnit(amount, unit);
         }
@@ -195,7 +205,7 @@ namespace Cureos.Measures
         /// <param name="amount">The quantity amount.</param>
         /// <param name="unit">The quantity unit.</param>
         /// <returns>A new unit preserving measure object of the specified quantity.</returns>
-        public static IMeasure<Q> operator ^(decimal amount, Unit<Q> unit)
+        public static IMeasure<Q> operator |(decimal amount, Unit<Q> unit)
         {
             return quantity.Factory.NewPreserveUnit(amount, unit);
         }

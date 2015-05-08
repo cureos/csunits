@@ -59,5 +59,33 @@ namespace Cureos.Measures
             Assert.Pass();
 #endif
         }
+
+        [Test]
+        public void ExtendedExample()
+        {
+            Force f01 = new Force(1000.0);                  // 1000 N
+            Force f02 = new Force(1.0m, Force.KiloNewton);  // 1000 N
+            Force f03 = (Force)1000.0m;                     // 1000 N
+            Force f04 = 0.001f * Force.MegaNewton;          // ~1000 N
+            Force f05 = +Force.KiloNewton;                  // 1000 N
+
+            Measure<Force> f11 = new Measure<Force>(f01);                       // 1000 N
+            Measure<Force> f12 = new Measure<Force>(0.001f, Force.MegaNewton);  // ~0.001 MN
+            IMeasure<Force> f13 = 1.0 | Force.KiloNewton;                       // 1 kN
+            Measure<Force> f14 = (Measure<Force>)f13;                           // 1 kN
+
+            Assert.IsTrue(f01 == f05);
+            Assert.IsTrue(f01 == f14);
+
+            Force f21 = f02 + f03 - 0.99 * f04;             // 1010 N
+            Assert.IsTrue(f21 > f01);
+
+            Measure<Force> f31 = f14 / 2.0;                 // 0.5 kN
+            Force f32 = (Force)f31;                         // 500 N
+
+            Assert.IsTrue(f31 == f32);
+            Assert.AreEqual(Force.KiloNewton, f31.Unit);
+            Assert.AreEqual(Force.Newton, f32.Unit);
+        }
     }
 }
