@@ -42,11 +42,11 @@ MagneticFluxDensity,,,0,1,-2,-1,0,0,0,Tesla,T,-9,9
 Mass,,,0,1,0,0,0,0,0,KiloGram,kg,0,0,MetricTon,t,Kilo,HectoGram,hg,Deci,Gram,g,Milli,MilliGram,mg,Micro,MicroGram,µg,Nano,NanoGram,ng,Pico,PicoGram,pg,Femto,ElectronMass,m\u2091,KiloGramsPerElectronMass,AtomicMassUnit,u,KiloGramsPerAtomicMassUnit,Dalton,Da,KiloGramsPerAtomicMassUnit,PicoDalton,pDa,Pico*KiloGramsPerAtomicMassUnit,NanoDalton,nDa,Nano*KiloGramsPerAtomicMassUnit,MicroDalton,µDa,Micro*KiloGramsPerAtomicMassUnit,MilliDalton,mDa,Milli*KiloGramsPerAtomicMassUnit,KiloDalton,kDa,Kilo*KiloGramsPerAtomicMassUnit,MegaDalton,MDa,Mega*KiloGramsPerAtomicMassUnit
 MassDensity,,,-3,1,0,0,0,0,0,KiloGramPerCubicMeter,kg m\u207b³,0,0,KiloGramPerLiter,kg/l,Kilo,GramPerCubicCentiMeter,g cm\u207b³,Kilo,GramPerCubicMilliMeter,g mm\u207b³,Mega
 MomentOfForce,,,2,1,-2,0,0,0,0,NewtonMeter,Nm,-9,9
-Number,,Number,0,0,0,0,0,0,0,One,,0,0
+Number,,Number,0,0,0,0,0,0,0,One,,0,0,Percent,%,Centi,Permille,\u2030,Milli,PartsPerMillion,ppm,Micro
 PlaneAngle,,Radian,0,0,0,0,0,0,0,Radian,rad,0,0,Degree,°,RadiansPerDegree,Minute,',RadiansPerMinute,Second,\",RadiansPerSecond
 Power,,,2,1,-3,0,0,0,0,Watt,W,-9,9
 Pressure,,,-1,1,-2,0,0,0,0,Pascal,Pa,-9,9
-Probability,,Number,0,0,0,0,0,0,0,Number,,0,0,Percent,%,Centi,Permille,\u2030,Milli,PartsPerMillion,ppm,Micro
+Probability,,Number,0,0,0,0,0,0,0,One,,0,0,Percent,%,Centi,Permille,\u2030,Milli,PartsPerMillion,ppm,Micro
 RefractiveIndex,,RefractiveIndex,0,0,0,0,0,0,0,One,,0,0
 RelativePermeability,,RelativePermeability,0,0,0,0,0,0,0,One,,0,0
 SolidAngle,,Steradian,0,0,0,0,0,0,0,Steradian,sr,-9,-3,SquareDegree,(°)²,RadiansPerDegree*RadiansPerDegree

@@ -51,7 +51,7 @@ namespace Cureos.Measures.Quantities
         // ReSharper disable once InconsistentNaming
         private static readonly QuantityDimension dimension = QuantityDimension.Number;
 
-        public static readonly Unit<Probability> Number = new ConstantConverterUnit<Probability>("");
+        public static readonly Unit<Probability> One = new ConstantConverterUnit<Probability>("");
 
         public static readonly Unit<Probability> Percent = new ConstantConverterUnit<Probability>("%", Factors.Centi);
         public static readonly Unit<Probability> Permille = new ConstantConverterUnit<Probability>("\u2030", Factors.Milli);
@@ -180,7 +180,7 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         public IUnit<Probability> StandardUnit
         {
-            get { return Number; }
+            get { return One; }
         }
 
         /// <summary>
@@ -489,7 +489,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a double value to a Probability object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Probability representation of <paramref name="standardAmount"/> in unit Number</returns>
+        /// <returns>Probability representation of <paramref name="standardAmount"/> in unit One</returns>
         public static explicit operator Probability(double standardAmount)
         {
             return new Probability(standardAmount);
@@ -499,7 +499,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a float value to a Probability object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Probability representation of <paramref name="standardAmount"/> in unit Number</returns>
+        /// <returns>Probability representation of <paramref name="standardAmount"/> in unit One</returns>
         public static explicit operator Probability(float standardAmount)
         {
             return new Probability(standardAmount);
@@ -509,7 +509,7 @@ namespace Cureos.Measures.Quantities
         /// Casts a decimal value to a Probability object
         /// </summary>
         /// <param name="standardAmount">Standard amount</param>
-        /// <returns>Probability representation of <paramref name="standardAmount"/> in unit Number</returns>
+        /// <returns>Probability representation of <paramref name="standardAmount"/> in unit One</returns>
         public static explicit operator Probability(decimal standardAmount)
         {
             return new Probability(standardAmount);
