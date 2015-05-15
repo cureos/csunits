@@ -57,11 +57,13 @@ namespace Cureos.Measures.Quantities
 <#
             foreach (var operation in operations) {
 				var quantities = operation.Split('=', '*', '/');
-				var res = quantities[0];
-				var lhs = quantities[1];
-				var rhs = quantities[2];
+				var res = quantities[0].Trim();
+				var lhs = quantities[1].Trim();
+				var rhs = quantities[2].Trim();
 				var op = operation.Substring(operation.LastIndexOf(rhs) - 1, 1);
 				var opName = opNames[op];
+
+				if (!lhs.Equals(values[0])) continue;
 #>
 
         /// <summary>

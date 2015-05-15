@@ -1,4 +1,14 @@
-﻿// 0. Quantity class name (qty)
+﻿// 0. Quantity class name (qty), should always occur in left-hand side of the operation
 // 1.- Operations in form of qty1=qty*qty2, qty3=qty/qty2 etc.
+AbsorbedDose,AbsorbedDoseRate=AbsorbedDose/Time,AbsorbedDoseMetersetRate=AbsorbedDose/Meterset
+AbsorbedDoseMetersetRate,AbsorbedDose=AbsorbedDoseMetersetRate*Meterset
+AbsorbedDoseRate,AbsorbedDose=AbsorbedDoseRate*Time
+Acceleration,Velocity=Acceleration*Time
+Area,Length=Area/Length,Volume=Area*Length
+Energy,Force=Energy/Length,AbsorbedDose=Energy/Mass
+Force,Energy=Force*Length
 Length,Area=Length*Length,Volume=Length*Area,Velocity=Length/Time
+Meterset,AbsorbedDose=Meterset*AbsorbedDoseMetersetRate
+Time,Velocity=Time*Acceleration,Length=Time*Velocity,AbsorbedDose=Time*AbsorbedDoseRate
 Velocity,Length=Velocity*Time,Acceleration=Velocity/Time
+Volume,Area=Volume/Length

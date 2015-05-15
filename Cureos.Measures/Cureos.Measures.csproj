@@ -60,17 +60,41 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArithmeticOperations.cs" />
+    <Compile Include="Quantities\AbsorbedDose.operators.g.cs">
+      <DependentUpon>OperatorGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Quantities\AbsorbedDoseMetersetRate.g.cs">
       <DependentUpon>QuantityGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="Quantities\AbsorbedDoseMetersetRate.operators.g.cs">
+      <DependentUpon>OperatorGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Quantities\AbsorbedDoseRate.g.cs">
       <DependentUpon>QuantityGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\AbsorbedDoseRate.operators.g.cs">
+      <DependentUpon>OperatorGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\Acceleration.operators.g.cs">
+      <DependentUpon>OperatorGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\Area.operators.g.cs">
+      <DependentUpon>OperatorGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\Energy.operators.g.cs">
+      <DependentUpon>OperatorGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\Force.operators.g.cs">
+      <DependentUpon>OperatorGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="Quantities\Length.operators.g.cs">
       <DependentUpon>OperatorGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="Quantities\Meterset.g.cs">
       <DependentUpon>QuantityGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\Meterset.operators.g.cs">
+      <DependentUpon>OperatorGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="Quantities\MetersetRate.g.cs">
       <DependentUpon>QuantityGenerator.tt</DependentUpon>
@@ -85,7 +109,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QuantityGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="Quantities\Time.operators.g.cs">
+      <DependentUpon>OperatorGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Quantities\Velocity.operators.g.cs">
+      <DependentUpon>OperatorGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\Volume.operators.g.cs">
       <DependentUpon>OperatorGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="Unit.cs" />
