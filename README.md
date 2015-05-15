@@ -41,6 +41,26 @@ There are also `MeasureDoublet<Q1, Q2>` and `MeasureTriplet<Q1, Q2, Q3>` structu
     IMeasure<Force> f3 = 1.0 | Force.KiloNewton;						// 1 kN
     Measure<Force> f4 = (Measure<Force>)f3;								// 1 kN
 
+### Brief API overview
+
+	Area a = new Area(5.0, Area.SquareDeciMeter);
+	...
+	double amount = a.Amount;											// 0.05;
+	IUnit<Area> unit = a.Unit;											// Area.SquareMeter;
+	double stdAmount = a.StandardAmount;								// 0.05;
+	IUnit<Area> stdUnit = a.StandardUnit;								// Area.SquareMeter;
+	double amountInCm2 = a.GetAmount(Area.SquareCentiMeter);			// 500
+	IMeasure<Area> measureInMm2 = a[Area.SquareMilliMeter];				// 50000 mm²
+	
+	Measure<Volume> v = new Measure<Volume>(2.0, Volume.Liter);			// 2 l
+	...
+	double amount = v.Amount;											// 2
+	IUnit<Volume> unit = v.Unit;										// Volume.Liter
+	double stdAmount = v.StandardAmount;								// 0.002
+	IUnit<Volume> stdUnit = v.StandardUnit;								// Volume.CubicMeter
+	double amountInM3 = v.GetAmount(Volume.CubicMeter);					// 0.002 m³
+	IMeasure<Volume> measureInDm3 = v[Volume.CubicDeciMeter];			// 2 dm³
+
 ### Comparison operators
 
 	Length l1 = new Length(0.02);										// 0.02 m
