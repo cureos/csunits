@@ -30,6 +30,7 @@ namespace Cureos.Measures
     public static class Factors
     {
 #if DOUBLE
+        public const double One = 1.0;
         public const double Yotta = 1.0e24;
         public const double Zetta = 1.0e21;
         public const double Exa = 1.0e18;
@@ -78,6 +79,7 @@ namespace Cureos.Measures
         public static double Square(double a) { return a * a; }
         public static double Cube(double a) { return a * a * a; }
 #elif SINGLE
+        public const float One = 1.0f;
         public const float Yotta = 1.0e24f;
         public const float Zetta = 1.0e21f;
         public const float Exa = 1.0e18f;
@@ -126,6 +128,7 @@ namespace Cureos.Measures
         public static float Square(float a) { return a * a; }
         public static float Cube(float a) { return a * a * a; }
 #elif DECIMAL
+        public const decimal One = 1.0m;
         public const decimal Yotta = 1.0e24m;
         public const decimal Zetta = 1.0e21m;
         public const decimal Exa = 1.0e18m;

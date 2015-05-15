@@ -67,7 +67,7 @@ namespace Cureos.Measures
         public static readonly QuantityDimension RefractiveIndex = new QuantityDimension(GetNextPrime());
         public static readonly QuantityDimension RelativePermeability = new QuantityDimension(GetNextPrime());
         public static readonly QuantityDimension RelativeBiologicalEffectiveness = new QuantityDimension(GetNextPrime());
-        public static readonly QuantityDimension LinearAcceleratorMeterset = new QuantityDimension(GetNextPrime());
+        public static readonly QuantityDimension Meterset = new QuantityDimension(GetNextPrime());
 
         #endregion
         

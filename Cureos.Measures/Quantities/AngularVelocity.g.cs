@@ -49,7 +49,7 @@ namespace Cureos.Measures.Quantities
         private static readonly IMeasureFactory<AngularVelocity> factory = new MeasureFactory();
 
         // ReSharper disable once InconsistentNaming
-        private static readonly QuantityDimension dimension = QuantityDimension.Radian * new QuantityDimension(0, 0, -1, 0, 0, 0, 0);
+        private static readonly QuantityDimension dimension = (QuantityDimension.Radian) * new QuantityDimension(0, 0, -1, 0, 0, 0, 0);
 
         public static readonly Unit<AngularVelocity> RadianPerSecond = new ConstantConverterUnit<AngularVelocity>("rad s\u207b¹");
 

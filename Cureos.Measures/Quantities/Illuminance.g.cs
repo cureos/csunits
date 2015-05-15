@@ -49,7 +49,7 @@ namespace Cureos.Measures.Quantities
         private static readonly IMeasureFactory<Illuminance> factory = new MeasureFactory();
 
         // ReSharper disable once InconsistentNaming
-        private static readonly QuantityDimension dimension = QuantityDimension.Steradian * new QuantityDimension(-2, 0, 0, 0, 0, 1, 0);
+        private static readonly QuantityDimension dimension = (QuantityDimension.Steradian) * new QuantityDimension(-2, 0, 0, 0, 0, 1, 0);
 
         public static readonly Unit<Illuminance> Lux = new ConstantConverterUnit<Illuminance>("lx");
 

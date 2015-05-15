@@ -8,6 +8,8 @@
 // 13. Upper standard unit prefix exponent
 // 14.-16., 17.-19. etc. Additional unit triplets (Unit field name, unit symbol, Factors class conversion factor vs. standard unit)
 AbsorbedDose,,,2,0,-2,0,0,0,0,Gray,Gy,-9,3,Rad,rad,Centi
+AbsorbedDoseRate,,,2,0,-3,0,0,0,0,GrayPerSecond,Gy s\u207b¹,-9,3,GrayPerMinute,Gy min\u207b¹,One/SecondsPerMinute,CentiGrayPerMinute,cGy min\u207b¹,Centi/SecondsPerMinute
+AbsorbedDoseMetersetRate,,Meterset ^ -1,2,0,-2,0,0,0,0,GrayPerMonitorUnit,Gy MU\u207b¹,-9,3
 Acceleration,,,1,0,-2,0,0,0,0,MeterPerSecondSquared,m s\u207b²,-3,3
 Activity,,,0,0,-1,0,0,0,0,Becquerel,Bq,3,9,Curie,Ci,BecquerelPerCurie,KiloCurie,kCi,Kilo*BecquerelPerCurie,MilliCurie,mCi,Milli*BecquerelPerCurie,MicroCurie,µCi,Micro*BecquerelPerCurie
 AmountConcentration,,,-3,0,0,0,0,0,1,MolePerCubicMeter,mol m\u207b³,-9,9
@@ -41,6 +43,8 @@ MagneticFlux,,,2,1,-2,-1,0,0,0,Weber,Wb,-9,9
 MagneticFluxDensity,,,0,1,-2,-1,0,0,0,Tesla,T,-9,9
 Mass,,,0,1,0,0,0,0,0,KiloGram,kg,0,0,MetricTon,t,Kilo,HectoGram,hg,Deci,Gram,g,Milli,MilliGram,mg,Micro,MicroGram,µg,Nano,NanoGram,ng,Pico,PicoGram,pg,Femto,ElectronMass,m\u2091,KiloGramsPerElectronMass,AtomicMassUnit,u,KiloGramsPerAtomicMassUnit,Dalton,Da,KiloGramsPerAtomicMassUnit,PicoDalton,pDa,Pico*KiloGramsPerAtomicMassUnit,NanoDalton,nDa,Nano*KiloGramsPerAtomicMassUnit,MicroDalton,µDa,Micro*KiloGramsPerAtomicMassUnit,MilliDalton,mDa,Milli*KiloGramsPerAtomicMassUnit,KiloDalton,kDa,Kilo*KiloGramsPerAtomicMassUnit,MegaDalton,MDa,Mega*KiloGramsPerAtomicMassUnit
 MassDensity,,,-3,1,0,0,0,0,0,KiloGramPerCubicMeter,kg m\u207b³,0,0,KiloGramPerLiter,kg/l,Kilo,GramPerCubicCentiMeter,g cm\u207b³,Kilo,GramPerCubicMilliMeter,g mm\u207b³,Mega
+Meterset,,Meterset,0,0,0,0,0,0,0,MonitorUnit,MU,0,0
+MetersetRate,,Meterset,-2,0,2,0,0,0,0,MonitorUnitPerGray,MU Gy\u207b¹,0,0,MonitoUnitPerCentiGray,MU cGy\u207b¹,One/Centi
 MomentOfForce,,,2,1,-2,0,0,0,0,NewtonMeter,Nm,-9,9
 Number,,Number,0,0,0,0,0,0,0,One,,0,0,Percent,%,Centi,Permille,\u2030,Milli,PartsPerMillion,ppm,Micro
 PlaneAngle,,Radian,0,0,0,0,0,0,0,Radian,rad,0,0,Degree,°,RadiansPerDegree,Minute,',RadiansPerMinute,Second,\",RadiansPerSecond

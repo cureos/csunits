@@ -60,12 +60,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArithmeticOperations.cs" />
+    <Compile Include="Quantities\AbsorbedDoseMetersetRate.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\AbsorbedDoseRate.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Quantities\CodeGenerator.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CodeGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="Quantities\Length.cs" />
+    <Compile Include="Quantities\Meterset.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\MetersetRate.g.cs">
+      <DependentUpon>CodeGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Quantities\Velocity.cs" />
     <Compile Include="Unit.cs" />
     <Compile Include="Factors.cs" />
