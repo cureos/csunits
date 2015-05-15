@@ -61,13 +61,13 @@ namespace Cureos.Measures
         }
 
         [Test]
-        public void ExtendedExample()
+        public void InitializationExample()
         {
             Force f01 = new Force(1000.0);                  // 1000 N
             Force f02 = new Force(1.0m, Force.KiloNewton);  // 1000 N
             Force f03 = (Force)1000.0m;                     // 1000 N
             Force f04 = 0.001f * Force.MegaNewton;          // ~1000 N
-            Force f05 = +Force.KiloNewton;                  // 1000 N
+            Force f05 = Force.KiloNewton;                   // 1000 N
 
             Measure<Force> f11 = new Measure<Force>(f01);                       // 1000 N
             Measure<Force> f12 = new Measure<Force>(0.001f, Force.MegaNewton);  // ~0.001 MN
@@ -86,6 +86,37 @@ namespace Cureos.Measures
             Assert.IsTrue(f31 == f32);
             Assert.AreEqual(Force.KiloNewton, f31.Unit);
             Assert.AreEqual(Force.Newton, f32.Unit);
+        }
+
+        [Test]
+        public void ComparisonExample()
+        {
+	        Length l1 = new Length(0.02);										// 0.02 m
+	        Length l2 = Length.CentiMeter;										// 0.01 m
+	        Measure<Length> l3 = new Measure<Length>(15.0, Length.MilliMeter);	// 15 mm
+
+	        Assert.IsTrue(l1 > l2);		// true
+	        Assert.IsFalse(l2 >= l1);	// false
+	        Assert.IsTrue(l3 < l1);		// true
+	        Assert.IsFalse(l3 <= l2);	// false
+	        Assert.IsFalse(l1 == l3);	// false
+	        Assert.IsTrue(l2 != l1);	// true
+        }
+
+        [Test]
+        public void UnitConversionExample()
+        {
+	        Length s = new Length(180.0, Length.KiloMeter);
+	        Time t = new Time(2.0, Time.Hour);
+	        Velocity v1 = s / t;
+
+            Assert.AreEqual(25.0, v1.Amount, 1.0e-7);
+            Assert.AreEqual(Velocity.MeterPerSecond, v1.Unit);
+
+            IMeasure<Velocity> v2 = v1[Velocity.KiloMeterPerHour]; // 90 km/h
+
+            Assert.AreEqual(90.0, v2.Amount, 1.0e-7);
+            Assert.AreEqual(Velocity.KiloMeterPerHour, v2.Unit);
         }
     }
 }
