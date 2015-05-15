@@ -17,7 +17,7 @@ Developed with Visual Studio 2010. The *Cureos.Measures* class library is portab
 
 Quantity `Q` and `Measure<Q>` are the main "work-horses" of the library. `Q` represents both the quantity itself and a measure in the same quantity, and is always expressed in the reference unit of the associated quantity. If a different unit is specified in instantiation of `Q`, the measured amount is automatically converted to the equivalent reference unit amount. On the other hand, the amount and unit used in instantiation of `Measure<Q>` are internally maintained.
 
-Quantity `Q` is declared as a struct and only holds one member, the amount. The main goal of this approach is to maximize calculation performance, while at the same time ensuring quantity type safety.
+Quantity `Q` is declared as a `struct` and only holds one member, the amount. The main goal of this approach is to maximize calculation performance, while at the same time ensuring quantity type safety.
 
 There are also `MeasureDoublet<Q1, Q2>` and `MeasureTriplet<Q1, Q2, Q3>` structures that holds two and three measures, respectively, of potentially different quantities.
 
@@ -30,7 +30,7 @@ There are also `MeasureDoublet<Q1, Q2>` and `MeasureTriplet<Q1, Q2, Q3>` structu
     Force f2 = new Force(1.0m, Force.KiloNewton);  // 1000 N
     Force f3 = (Force)1000.0m;                     // 1000 N, explicit cast
     Force f4 = 0.001f * Force.MegaNewton;          // ~1000 N, multiply with unit
-    Force f5 = Force.KiloNewton;                   // 1000 N, implicity cast from unit
+    Force f5 = Force.KiloNewton;                   // 1000 N, implicitly cast from unit
 
 ### Create measure objects with preserved unit information
 
@@ -52,15 +52,31 @@ There are also `MeasureDoublet<Q1, Q2>` and `MeasureTriplet<Q1, Q2, Q3>` structu
 	double amountInCm2 = a.GetAmount(Area.SquareCentiMeter);			// 500
 	IMeasure<Area> measureInMm2 = a[Area.SquareMilliMeter];				// 50000 mm²
 	
-	Measure<Volume> v = new Measure<Volume>(2.0, Volume.Liter);			// 2 l
+	Measure<Volume> v = new Measure<Volume>(2.0, Volume.Liter);
 	...
 	double amount = v.Amount;											// 2
 	IUnit<Volume> unit = v.Unit;										// Volume.Liter
 	double stdAmount = v.StandardAmount;								// 0.002
 	IUnit<Volume> stdUnit = v.StandardUnit;								// Volume.CubicMeter
-	double amountInM3 = v.GetAmount(Volume.CubicMeter);					// 0.002 m³
+	double amountInCm3 = v.GetAmount(Volume.CubicCentiMeter);			// 2000 cm³
 	IMeasure<Volume> measureInDm3 = v[Volume.CubicDeciMeter];			// 2 dm³
 
+### Non-generic API
+
+	IMeasure doseRate;
+	...
+	doseRate = new Measure<AbsorbedDoseMetersetRate>(
+					98.0, AbsorbedDoseMetersetRate.CentiGrayPerMeterset);
+	...
+	double amount = doseRate.Amount;									// 98.0
+	IUnit unit = doseRate.Unit;											// cGy/MU
+	double stdAmount = doseRate.StandardAmount;							// 0.98
+	double stdUnit = doseRate.StandardUnit;								// Gy/MU
+	double amountInGyPerMU = doseRate.GetAmount(
+					AbsorbedDoseMetersetRate.GrayPerMeterset);			// 0.98
+	IMeasure measureInGyPerSec = 
+					doseRate[AbsorbedDoseRate.GrayPerSecond];			// Run-time exception
+					
 ### Comparison operators
 
 	Length l1 = new Length(0.02);										// 0.02 m
@@ -80,8 +96,8 @@ There are also `MeasureDoublet<Q1, Q2>` and `MeasureTriplet<Q1, Q2, Q3>` structu
 	Force f2 = (Force)2000.0;
 	IMeasure<Force> f3 = 0.5 | Force.KiloNewton;
 	...
-	Force f4 = f1 + f2 - f3;									// 2500 N
-	Measure<Force> f5 = (Measure<Force>)f3 + f2 - f1;			// 1.5 kN
+	Force f4 = f1 + f2 - f3;											// 2500 N
+	Measure<Force> f5 = (Measure<Force>)f3 + f2 - f1;					// 1.5 kN
 
 ### Multiplicative scalar operations
 
@@ -96,10 +112,6 @@ There are also `MeasureDoublet<Q1, Q2>` and `MeasureTriplet<Q1, Q2, Q3>` structu
 	Length s = new Length(180.0, Length.KiloMeter);
 	Time t = new Time(2.0, Time.Hour);
 	Velocity v1 = s / t;												// 25 m/s
-
-### Cast to requested unit
-
-	IMeasure<Velocity> v2 = v1[Velocity.KiloMeterPerHour];				// 90 km/h
 
 ## Application
 
