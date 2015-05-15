@@ -60,7 +60,6 @@ namespace Cureos.Measures.Quantities
 
         #region CONSTRUCTORS
 
-#if !MONO
         /// <summary>
         /// Static constructor for defining static class properties
         /// </summary>
@@ -69,7 +68,6 @@ namespace Cureos.Measures.Quantities
             Zero = new SpecificVolume(Constants.Zero);
             Epsilon = new SpecificVolume(Constants.MachineEpsilon);
         }
-#endif
         
         /// <summary>
         /// Initializes a specific volume object from an object implementing the IMeasure&lt;SpecificVolume&gt; interface
@@ -396,7 +394,6 @@ namespace Cureos.Measures.Quantities
 
         #endregion
 
-#if !MONO
         #region PROPERTIES
         
         public static SpecificVolume Zero { get; private set; }
@@ -404,7 +401,6 @@ namespace Cureos.Measures.Quantities
         public static SpecificVolume Epsilon { get; private set; }
 
         #endregion
-#endif
         
         #region METHODS
 
@@ -721,6 +717,17 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Less than operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;SpecificVolume&gt; interface
+        /// </summary>
+        /// <param name="lhs">First object (any object implementing IMeasure&lt;SpecificVolume&gt; interface)</param>
+        /// <param name="rhs">Second object</param>
+        /// <returns>true if first measure object is less than second measure object; false otherwise</returns>
+        public static bool operator <(IMeasure<SpecificVolume> lhs, SpecificVolume rhs)
+        {
+            return lhs.StandardAmount < rhs.amount;
+        }
+
+        /// <summary>
         /// Greater than operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -740,6 +747,17 @@ namespace Cureos.Measures.Quantities
         public static bool operator >(SpecificVolume lhs, IMeasure<SpecificVolume> rhs)
         {
             return lhs.amount > rhs.StandardAmount;
+        }
+
+        /// <summary>
+        /// Greater than operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;SpecificVolume&gt; interface
+        /// </summary>
+        /// <param name="lhs">First object (any object implementing IMeasure&lt;SpecificVolume&gt; interface)</param>
+        /// <param name="rhs">Second object</param>
+        /// <returns>true if first measure object is greater than second measure object; false otherwise</returns>
+        public static bool operator >(IMeasure<SpecificVolume> lhs, SpecificVolume rhs)
+        {
+            return lhs.StandardAmount > rhs.amount;
         }
 
         /// <summary>
@@ -765,6 +783,17 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Less than or equal to operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;SpecificVolume&gt; interface
+        /// </summary>
+        /// <param name="lhs">First object (any object implementing IMeasure&lt;SpecificVolume&gt; interface)</param>
+        /// <param name="rhs">Second object</param>
+        /// <returns>true if first measure object is less than or equal to second measure object; false otherwise</returns>
+        public static bool operator <=(IMeasure<SpecificVolume> lhs, SpecificVolume rhs)
+        {
+            return lhs.StandardAmount <= rhs.amount;
+        }
+
+        /// <summary>
         /// Greater than or equal to operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -784,6 +813,17 @@ namespace Cureos.Measures.Quantities
         public static bool operator >=(SpecificVolume lhs, IMeasure<SpecificVolume> rhs)
         {
             return lhs.amount >= rhs.StandardAmount;
+        }
+
+        /// <summary>
+        /// Greater than or equal to operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;SpecificVolume&gt; interface
+        /// </summary>
+        /// <param name="lhs">First object (any object implementing IMeasure&lt;SpecificVolume&gt; interface)</param>
+        /// <param name="rhs">Second object</param>
+        /// <returns>true if first measure object is greater than or equal to second measure object; false otherwise</returns>
+        public static bool operator >=(IMeasure<SpecificVolume> lhs, SpecificVolume rhs)
+        {
+            return lhs.StandardAmount >= rhs.amount;
         }
 
         /// <summary>
@@ -809,6 +849,17 @@ namespace Cureos.Measures.Quantities
         }
 
         /// <summary>
+        /// Equality operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;SpecificVolume&gt; interface
+        /// </summary>
+        /// <param name="lhs">First object (any object implementing IMeasure&lt;SpecificVolume&gt; interface)</param>
+        /// <param name="rhs">Second object</param>
+        /// <returns>true if the two measure objects are equal; false otherwise</returns>
+        public static bool operator ==(IMeasure<SpecificVolume> lhs, SpecificVolume rhs)
+        {
+            return lhs.StandardAmount == rhs.amount;
+        }
+
+        /// <summary>
         /// Inequality operator for measure objects
         /// </summary>
         /// <param name="lhs">First object</param>
@@ -828,6 +879,17 @@ namespace Cureos.Measures.Quantities
         public static bool operator !=(SpecificVolume lhs, IMeasure<SpecificVolume> rhs)
         {
             return lhs.amount != rhs.StandardAmount;
+        }
+
+        /// <summary>
+        /// Inequality operator for measure objects, where left-hand side may be any object implementing the IMeasure&lt;SpecificVolume&gt; interface
+        /// </summary>
+        /// <param name="lhs">First object (any object implementing IMeasure&lt;SpecificVolume&gt; interface)</param>
+        /// <param name="rhs">Second object</param>
+        /// <returns>true if the two measure objects are not equal; false if they are equal</returns>
+        public static bool operator !=(IMeasure<SpecificVolume> lhs, SpecificVolume rhs)
+        {
+            return lhs.StandardAmount != rhs.amount;
         }
 
         #endregion
