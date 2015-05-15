@@ -46,9 +46,9 @@ There are also `MeasureDoublet<Q1, Q2>` and `MeasureTriplet<Q1, Q2, Q3>` structu
 	Area a = new Area(5.0, Area.SquareDeciMeter);
 	...
 	double amount = a.Amount;											// 0.05;
-	IUnit<Area> unit = a.Unit;											// Area.SquareMeter;
+	IUnit<Area> unit = a.Unit;											// Area.SquareMeter
 	double stdAmount = a.StandardAmount;								// 0.05;
-	IUnit<Area> stdUnit = a.StandardUnit;								// Area.SquareMeter;
+	IUnit<Area> stdUnit = a.StandardUnit;								// Area.SquareMeter
 	double amountInCm2 = a.GetAmount(Area.SquareCentiMeter);			// 500
 	IMeasure<Area> measureInMm2 = a[Area.SquareMilliMeter];				// 50000 mm²
 	
@@ -58,7 +58,7 @@ There are also `MeasureDoublet<Q1, Q2>` and `MeasureTriplet<Q1, Q2, Q3>` structu
 	IUnit<Volume> unit = v.Unit;										// Volume.Liter
 	double stdAmount = v.StandardAmount;								// 0.002
 	IUnit<Volume> stdUnit = v.StandardUnit;								// Volume.CubicMeter
-	double amountInCm3 = v.GetAmount(Volume.CubicCentiMeter);			// 2000 cm³
+	double amountInCm3 = v.GetAmount(Volume.CubicCentiMeter);			// 2000
 	IMeasure<Volume> measureInDm3 = v[Volume.CubicDeciMeter];			// 2 dm³
 
 ### Non-generic API
