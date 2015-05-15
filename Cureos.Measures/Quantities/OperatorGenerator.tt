@@ -2,12 +2,12 @@
 <#@ import namespace="System.Collections.Generic" #>
 
 <#@ include file="T4/MultiOutput.ttinclude" #>
-<#@ include file="T4/QuantityTemplate.ttinclude" #>
+<#@ include file="T4/OperatorTemplate.ttinclude" #>
 
 <#
-    var lines1=File.ReadAllLines(Path.Combine(Path.GetDirectoryName(Host.TemplateFile), "T4", "Quantities.csv"));
+    var lines2=File.ReadAllLines(Path.Combine(Path.GetDirectoryName(Host.TemplateFile), "T4", "Operators.csv"));
 
-    foreach (var line in lines1) {
+    foreach (var line in lines2) {
           if (string.IsNullOrWhiteSpace(line) || line.Trim().StartsWith("//")) {
               continue;
           }
@@ -15,7 +15,7 @@
           var values=line.Split(',');
           var name = values[0];
 
-          ProcessTemplate(@"T4\QuantityTemplate.ttinclude", name+".g.cs", name);  
+          ProcessTemplate(@"T4\OperatorTemplate.ttinclude", name+".operators.g.cs", name);  
     }
 
     DeleteOldOutputs();

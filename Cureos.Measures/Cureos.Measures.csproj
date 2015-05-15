@@ -71,14 +71,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CodeGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="Quantities\Length.cs" />
+    <Compile Include="Quantities\Length.operators.g.cs">
+      <DependentUpon>OperatorGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Quantities\Meterset.g.cs">
       <DependentUpon>CodeGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="Quantities\MetersetRate.g.cs">
       <DependentUpon>CodeGenerator.tt</DependentUpon>
     </Compile>
-    <Compile Include="Quantities\Velocity.cs" />
+    <Compile Include="Quantities\OperatorGenerator.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OperatorGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Quantities\Velocity.operators.g.cs">
+      <DependentUpon>OperatorGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="Unit.cs" />
     <Compile Include="Factors.cs" />
     <Compile Include="IMeasure.cs" />
@@ -274,11 +283,19 @@
       <LastGenOutput>CodeGenerator.cs</LastGenOutput>
     </None>
     <None Include="Quantities\T4\MultiOutput.ttinclude" />
+    <None Include="Quantities\T4\Operators.csv" />
     <None Include="Quantities\T4\Quantities.csv" />
+    <None Include="Quantities\T4\OperatorTemplate.ttinclude" />
     <None Include="Quantities\T4\QuantityTemplate.ttinclude" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Quantities\OperatorGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>OperatorGenerator.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

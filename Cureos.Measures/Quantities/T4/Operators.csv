@@ -1,0 +1,4 @@
+﻿// 0. Quantity class name (qty)
+// 1.- Operations in form of qty1=qty*qty2, qty3=qty/qty2 etc.
+Length,Area=Length*Length,Volume=Length*Area,Velocity=Length/Time
+Velocity,Length=Velocity*Time,Acceleration=Velocity/Time
