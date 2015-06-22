@@ -1,5 +1,7 @@
 # CSUnits
 
+[![Join the chat at https://gitter.im/cureos/csunits](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/cureos/csunits?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Simple C# framework to support Units of Measurement
 
 Copyright 2011-2015 (c) Anders Gustafsson, Cureos AB.  
