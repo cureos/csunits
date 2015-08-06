@@ -434,7 +434,7 @@ namespace Cureos.Measures.Quantities
         /// Returns the actual value with the quantity suffixed
         /// </summary>
         /// <returns>
-        /// A <see cref="T:System.String"/> containing a the actual value with the quantity symbol appended
+        /// A <see cref="T:System.String"/> containing the actual value and unit
         /// </returns>
         /// <filterpriority>2</filterpriority>
         public override string ToString()
@@ -446,7 +446,7 @@ namespace Cureos.Measures.Quantities
         /// Returns the actual value in formatted form with the quantity suffixed
         /// </summary>
         /// <param name="format">Format string to display the value with</param>
-        /// <returns>A <see cref="T:System.String"/> containing a the actual value in formatted form with the quantity symbol appended</returns>
+        /// <returns>A <see cref="T:System.String"/> containing the actual value in formatted form and unit</returns>
         public string ToString(string format)
         {
             return this.ToString(format, CultureInfo.CurrentCulture);
@@ -456,7 +456,7 @@ namespace Cureos.Measures.Quantities
         /// Returns the actual value in formatted form with the quantity suffixed
         /// </summary>
         /// <param name="provider">Formatting provider to format the value with</param>
-        /// <returns></returns>
+        /// <returns>A <see cref="T:System.String"/> containing the actual value and unit</returns>
         public string ToString(IFormatProvider provider)
         {
             return this.ToString("G", provider);
@@ -467,10 +467,10 @@ namespace Cureos.Measures.Quantities
         /// </summary>
         /// <param name="format">Format string to display the value with</param>
         /// <param name="provider">Formatting provider to format the value with</param>
-        /// <returns></returns>
+        /// <returns>A <see cref="T:System.String"/> containing the actual value in formatted form and unit</returns>
         public string ToString(string format, IFormatProvider provider)
         {
-            return String.Format("({0}) {1} {2}", this.DisplayName, this.amount.ToString(format, provider), this.Unit.Symbol).TrimEnd();
+            return String.Format("{0} {1}", this.amount.ToString(format, provider), this.Unit.Symbol).TrimEnd();
         }
         
         #endregion
