@@ -1,5 +1,8 @@
 # CSUnits
 
+[![NuGet](https://img.shields.io/nuget/v/csunits.svg)](https://www.nuget.org/packages/csunits/)
+[![NuGet](https://img.shields.io/nuget/dt/csunits.svg)](https://www.nuget.org/packages/csunits/)
+[![Build status](https://ci.appveyor.com/api/projects/status/6rntuke5f9y307n0?svg=true)](https://ci.appveyor.com/project/anders9ustafsson/csunits)
 [![Join the chat at https://gitter.im/cureos/csunits](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/cureos/csunits?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Simple C# framework to support Units of Measurement
